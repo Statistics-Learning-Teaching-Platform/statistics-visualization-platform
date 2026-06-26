@@ -1,14 +1,15 @@
 import { describe, expect, it } from "vitest";
-import { createState as createAnovaState } from "../apps/mes-anova/src/components/MesAnovaApp/model";
-import { createState as createMesConfidenceState } from "../apps/mes-confidence-interval/src/components/MesConfidenceIntervalApp/model";
-import { createState as createDistributionsState } from "../apps/mes-distributions/src/components/MesDistributionsApp/model";
-import { createState as createMesRegressionState } from "../apps/mes-linear-regression/src/components/MesLinearRegressionApp/model";
-import { createState as createCltState } from "../apps/simulation-clt/src/components/SimulationCltApp/model";
-import { createState as createIntroductionState } from "../apps/simulation-introduction/src/components/SimulationIntroductionApp/model";
-import { createState as createMcmcState } from "../apps/simulation-mcmc/src/components/SimulationMcmcApp/model";
-import { createState as createRandomVariableState } from "../apps/simulation-random-variable/src/components/SimulationRandomVariableApp/model";
-import { createState as createResamplingState } from "../apps/simulation-resampling/src/components/SimulationResamplingApp/model";
-import { createState as createVarianceReductionState } from "../apps/simulation-variance-reduction/src/components/SimulationVarianceReductionApp/model";
+import { createState } from "../apps/shared/wals/WalsApp";
+import { moduleConfig as cltConfig } from "../apps/simulation-clt/src/module-config";
+import { moduleConfig as anovaConfig } from "../apps/mes-anova/src/module-config";
+import { moduleConfig as mesConfidenceConfig } from "../apps/mes-confidence-interval/src/module-config";
+import { moduleConfig as distributionsConfig } from "../apps/mes-distributions/src/module-config";
+import { moduleConfig as mesRegressionConfig } from "../apps/mes-linear-regression/src/module-config";
+import { moduleConfig as introductionConfig } from "../apps/simulation-introduction/src/module-config";
+import { moduleConfig as mcmcConfig } from "../apps/simulation-mcmc/src/module-config";
+import { moduleConfig as randomVariableConfig } from "../apps/simulation-random-variable/src/module-config";
+import { moduleConfig as resamplingConfig } from "../apps/simulation-resampling/src/module-config";
+import { moduleConfig as varianceReductionConfig } from "../apps/simulation-variance-reduction/src/module-config";
 
 const allowedLatinWords = new Set([
   "ANOVA",
@@ -21,6 +22,7 @@ const allowedLatinWords = new Set([
   "PDF",
   "PMF",
   "Phi",
+  "React",
   "SSE",
   "WALS",
   "exp",
@@ -108,16 +110,16 @@ function unexpectedLatin(text: string): boolean {
 describe("template modules Chinese completeness", () => {
   it("does not leave visible template module copy in English", () => {
     const states = [
-      createIntroductionState(undefined, undefined, 510, "zh"),
-      createRandomVariableState(undefined, undefined, 510, "zh"),
-      createCltState(undefined, undefined, 510, [], "zh"),
-      createVarianceReductionState(undefined, undefined, 510, "zh"),
-      createResamplingState(undefined, undefined, 510, "zh"),
-      createMcmcState(undefined, undefined, 510, "zh"),
-      createAnovaState(undefined, undefined, 510, "zh"),
-      createMesConfidenceState(undefined, undefined, 510, "zh"),
-      createDistributionsState(undefined, undefined, 510, "zh"),
-      createMesRegressionState(undefined, undefined, 510, "zh")
+      createState(introductionConfig, undefined, undefined, 510, "zh"),
+      createState(randomVariableConfig, undefined, undefined, 510, "zh"),
+      createState(cltConfig, undefined, undefined, 510, "zh"),
+      createState(varianceReductionConfig, undefined, undefined, 510, "zh"),
+      createState(resamplingConfig, undefined, undefined, 510, "zh"),
+      createState(mcmcConfig, undefined, undefined, 510, "zh"),
+      createState(anovaConfig, undefined, undefined, 510, "zh"),
+      createState(mesConfidenceConfig, undefined, undefined, 510, "zh"),
+      createState(distributionsConfig, undefined, undefined, 510, "zh"),
+      createState(mesRegressionConfig, undefined, undefined, 510, "zh")
     ];
 
     const leftovers = [...new Set(states.flatMap((state) => collectVisibleStateStrings(state)).filter(unexpectedLatin))];

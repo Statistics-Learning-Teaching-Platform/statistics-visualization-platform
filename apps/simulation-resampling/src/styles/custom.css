@@ -401,28 +401,7 @@ p {
 }
 
 /* Warm academic studio theme shared by WALS/MES modules. */
-:root {
-  --bg: #f8f3ea;
-  --card: rgba(255, 252, 246, 0.92);
-  --card-strong: #fffdf8;
-  --chart-bg: #fffaf1;
-  --text-primary: #252822;
-  --text-secondary: #696e63;
-  --border: rgba(90, 80, 60, 0.13);
-  --sage: #6f8f7a;
-  --sage-soft: #eef4ec;
-  --teal: #2f6f64;
-  --soft-teal: #ddede8;
-  --lavender: #8d75b5;
-  --soft-lavender: #f0e9f7;
-  --danger: #c8665a;
-  --shadow-soft: 0 18px 44px rgba(40, 35, 25, 0.08);
-  color: var(--text-primary);
-  background: var(--bg);
-  font-family:
-    "Plus Jakarta Sans", Inter, ui-sans-serif, system-ui, -apple-system,
-    BlinkMacSystemFont, "Segoe UI", sans-serif;
-}
+/* Design tokens provided by @stats-viz/shared/styles/tokens.css */
 
 body {
   overflow: hidden;

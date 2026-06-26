@@ -12,7 +12,11 @@ permissions:
   id-token: write
 
 concurrency:
-  group: pages
+  # Scope per-branch instead of the global reserved "pages" group so pushes to
+  # different branches (and manual workflow_dispatch runs) do not queue behind
+  # each other. Keep cancel-in-progress off: aborting a Pages deploy mid-way
+  # can leave the artifact in a partial state.
+  group: pages-${{ github.ref }}
   cancel-in-progress: false
 
 jobs:

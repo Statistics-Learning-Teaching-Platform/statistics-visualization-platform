@@ -1,9 +1,10 @@
 import { describe, expect, it } from "vitest";
-import { createState } from "../apps/mes-anova/src/components/MesAnovaApp/model";
+import { createState } from "../apps/shared/wals/WalsApp";
+import { moduleConfig } from "../apps/mes-anova/src/module-config";
 
 describe("template module language rendering", () => {
   it("localizes template config, controls, and generated output in Chinese mode", () => {
-    const state = createState("anova-workbench", undefined, 510, "zh");
+    const state = createState(moduleConfig, "anova-workbench", undefined, 510, "zh");
 
     expect(state.copy.parameters).toBe("参数");
     expect(state.config.category).toBe("WALS MES");

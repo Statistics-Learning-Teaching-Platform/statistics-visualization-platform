@@ -1,0 +1,24 @@
+{
+  "name": "@stats-viz/shared",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./index.ts",
+    "./i18n": "./i18n/index.tsx",
+    "./i18n/runtime-dictionary": "./i18n/runtime-dictionary.ts",
+    "./random": "./random.ts",
+    "./format": "./format.ts",
+    "./math": "./math.ts",
+    "./confidence-interval": "./confidence-interval.ts",
+    "./chart-utils": "./chart-utils.ts",
+    "./regression": "./regression.ts",
+    "./wals/types": "./wals/types.ts",
+    "./wals/engine": "./wals/engine.ts",
+    "./wals/charts": "./wals/charts.tsx",
+    "./wals/WalsApp": "./wals/WalsApp.tsx",
+    "./styles/tokens": "./styles/tokens.css",
+    "./styles/tokens.css": "./styles/tokens.css"
+  },
+  "types": "./index.ts"
+}

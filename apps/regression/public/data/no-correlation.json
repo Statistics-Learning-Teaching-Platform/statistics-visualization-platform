@@ -1,6 +1,7 @@
 {
   "id": "no-correlation",
   "name": "No Correlation",
+  "source": "合成数据(教学演示用,非真实采样)",
   "data": [
     { "x": 1, "y": 4.2 },
     { "x": 2, "y": 3.8 },

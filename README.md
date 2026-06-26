@@ -71,8 +71,12 @@ docs/integration/
 .github/workflows/deploy.yml
 ```
 
-Each visualizer is built into `dist/apps/<visualizer>/`. The root shell loads
-the selected visualizer in an iframe using the registry in `src/visualizers.ts`.
+The platform builds as a single Vite SPA. The shell in `src/shell/` lazy-loads
+the selected visualizer via dynamic import (`src/shell/appRegistry.tsx`) inside
+a `<Suspense>` boundary, so each visualizer is code-split into its own chunk
+rather than loaded in an iframe. The app registry itself lives in
+`scripts/apps.ts` (one typed source of truth, including each app's sidebar
+icon and the default/lookup helpers).
 
 ## Integration Notes
 

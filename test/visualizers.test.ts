@@ -1,15 +1,14 @@
 import { describe, expect, it } from "vitest";
 import {
+  apps,
   DEFAULT_VISUALIZER_ID,
   getDefaultVisualizer,
-  getVisualizerById,
-  resolveVisualizerPath,
-  visualizers
-} from "../src/visualizers";
+  getVisualizerById
+} from "../scripts/apps";
 
 describe("visualizer registry", () => {
   it("registers all teaching visualizers in grouped navigation order", () => {
-    expect(visualizers.map((visualizer) => visualizer.id)).toEqual([
+    expect(apps.map((visualizer) => visualizer.id)).toEqual([
       "confidence-interval",
       "type-error",
       "regression",
@@ -27,7 +26,7 @@ describe("visualizer registry", () => {
   });
 
   it("groups the existing and WALS visualizers separately", () => {
-    expect(visualizers.map((visualizer) => visualizer.group)).toEqual([
+    expect(apps.map((visualizer) => visualizer.group)).toEqual([
       "Core Visualizers",
       "Core Visualizers",
       "Core Visualizers",
@@ -44,15 +43,16 @@ describe("visualizer registry", () => {
     ]);
   });
 
+  it("carries a sidebar icon on every record", () => {
+    for (const app of apps) {
+      expect(typeof app.icon).toBe("string");
+      expect(app.icon.length).toBeGreaterThan(0);
+    }
+  });
+
   it("selects the confidence interval page as the default", () => {
     expect(DEFAULT_VISUALIZER_ID).toBe("confidence-interval");
     expect(getDefaultVisualizer().id).toBe(DEFAULT_VISUALIZER_ID);
-  });
-
-  it("resolves iframe paths under the current Vite base URL", () => {
-    expect(
-      resolveVisualizerPath("/statistics-visualization-platform/", "apps/type-error/")
-    ).toBe("/statistics-visualization-platform/apps/type-error/");
   });
 
   it("falls back to the default visualizer for unknown ids", () => {

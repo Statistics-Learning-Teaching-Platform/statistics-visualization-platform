@@ -1,6 +1,7 @@
 {
   "id": "negative-correlation",
   "name": "Negative Correlation",
+  "source": "合成数据(教学演示用,非真实采样)",
   "data": [
     { "x": 1, "y": 8.5 },
     { "x": 2, "y": 7.2 },

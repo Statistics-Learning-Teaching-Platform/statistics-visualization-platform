@@ -38,7 +38,7 @@ describe("textbook regression datasets", () => {
 
   it("loads textbook datasets from the regression app bootstrap", () => {
     const mainSource = readFileSync(
-      resolve(process.cwd(), "apps/regression/src/main.ts"),
+      resolve(process.cwd(), "apps/regression/src/constants.ts"),
       "utf8"
     );
 

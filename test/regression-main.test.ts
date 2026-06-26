@@ -1,37 +1,17 @@
-import { readFileSync } from "node:fs";
-import { resolve } from "node:path";
 import { describe, expect, it } from "vitest";
-import { getRegressionDataBaseUrl } from "../apps/regression/src/dataBaseUrl";
+import { useDatasets } from "../apps/regression/src/useDatasets";
+import { DATASET_PATHS } from "../apps/regression/src/constants";
 
 describe("regression app bootstrap", () => {
-  it("initializes the data base URL before building sidebar dataset paths", () => {
-    const mainSource = readFileSync(
-      resolve(process.cwd(), "apps/regression/src/main.ts"),
-      "utf8"
-    );
-
-    const dataBaseUrlDeclaration = mainSource.indexOf("const dataBaseUrl");
-    const sidebarPropsDeclaration = mainSource.indexOf("const sidebarProps$");
-
-    expect(dataBaseUrlDeclaration).toBeGreaterThanOrEqual(0);
-    expect(dataBaseUrlDeclaration).toBeLessThan(sidebarPropsDeclaration);
+  it("bundles all declared datasets at build time", () => {
+    const { datasets } = useDatasets();
+    expect(datasets).toHaveLength(DATASET_PATHS.length);
+    expect(datasets.every((d) => d.data.length > 0)).toBe(true);
   });
 
-  it("serves regression datasets from the nested app public folder in platform dev", () => {
-    expect(
-      getRegressionDataBaseUrl("/apps/regression/", "/", true)
-    ).toBe("/apps/regression/public/");
-  });
-
-  it("keeps the Vite base URL for production and standalone app dev", () => {
-    expect(
-      getRegressionDataBaseUrl(
-        "/statistics-visualization-platform/apps/regression/",
-        "/statistics-visualization-platform/apps/regression/",
-        false
-      )
-    ).toBe("/statistics-visualization-platform/apps/regression/");
-
-    expect(getRegressionDataBaseUrl("/", "/", true)).toBe("/");
+  it("seeds the initial selection with the first declared dataset", () => {
+    const { datasets, initialId } = useDatasets();
+    expect(initialId).toBe(datasets[0].id);
+    expect(initialId).toBe("outlier-impact");
   });
 });

@@ -19,6 +19,7 @@ apps/type-error
 apps/regression
 apps/simulation-introduction
 apps/simulation-random-variable
+apps/simulation-clt
 apps/simulation-variance-reduction
 apps/simulation-resampling
 apps/simulation-mcmc
@@ -28,8 +29,10 @@ apps/mes-distributions
 apps/mes-linear-regression
 ```
 
-The root shell loads apps through `src/visualizers.ts`, renders grouped
-navigation in `src/main.ts`, and builds app copies through `scripts/build.mjs`.
+The root shell lazy-loads apps via dynamic import in
+`src/shell/appRegistry.tsx` (re-exported through `src/visualizers.ts`), renders
+grouped navigation in `src/main.tsx`, and produces a single Vite build through
+`scripts/build.mjs` that code-splits each app into its own chunk.
 
 ## App Registry Inventory
 
@@ -40,6 +43,7 @@ navigation in `src/main.ts`, and builds app copies through `scripts/build.mjs`.
 | `regression` | Core Visualizers | `apps/regression/` | `regression-visualizer` | Existing standalone app | Registered and present |
 | `simulation-introduction` | WALS Simulation | `apps/simulation-introduction/` | `simulation-introduction-visualization` | WALS migration | Registered and present |
 | `simulation-random-variable` | WALS Simulation | `apps/simulation-random-variable/` | `simulation-random-variable-visualization` | WALS migration | Registered and present |
+| `simulation-clt` | WALS Simulation | `apps/simulation-clt/` | `simulation-clt-visualization` | WALS migration | Registered and present |
 | `simulation-variance-reduction` | WALS Simulation | `apps/simulation-variance-reduction/` | `simulation-variance-reduction-visualization` | WALS migration | Registered and present |
 | `simulation-resampling` | WALS Simulation | `apps/simulation-resampling/` | `simulation-resampling-visualization` | WALS migration | Registered and present |
 | `simulation-mcmc` | WALS Simulation | `apps/simulation-mcmc/` | `simulation-mcmc-visualization` | WALS migration | Registered and present |
@@ -48,22 +52,29 @@ navigation in `src/main.ts`, and builds app copies through `scripts/build.mjs`.
 | `mes-distributions` | WALS MES | `apps/mes-distributions/` | `mes-distributions-visualization` | WALS migration | Registered and present |
 | `mes-linear-regression` | WALS MES | `apps/mes-linear-regression/` | `mes-linear-regression-visualization` | WALS migration | Registered and present |
 
-## Workspace Script Inventory
+## Build & Test Inventory
 
-| App path | Package name | Build script | Test script |
-| --- | --- | --- | --- |
-| `apps/confidence-interval` | `confidence-interval-visualization` | yes | yes |
-| `apps/type-error` | `type-error-visualization` | yes | yes |
-| `apps/regression` | `regression-visualization` | yes | no |
-| `apps/simulation-introduction` | `simulation-introduction-visualization` | yes | yes |
-| `apps/simulation-random-variable` | `simulation-random-variable-visualization` | yes | yes |
-| `apps/simulation-variance-reduction` | `simulation-variance-reduction-visualization` | yes | yes |
-| `apps/simulation-resampling` | `simulation-resampling-visualization` | yes | yes |
-| `apps/simulation-mcmc` | `simulation-mcmc-visualization` | yes | yes |
-| `apps/mes-anova` | `mes-anova-visualization` | yes | yes |
-| `apps/mes-confidence-interval` | `mes-confidence-interval-visualization` | yes | yes |
-| `apps/mes-distributions` | `mes-distributions-visualization` | yes | yes |
-| `apps/mes-linear-regression` | `mes-linear-regression-visualization` | yes | yes |
+All dependencies and scripts live in the root `package.json`. Apps are source
+directories, not workspace packages (only `apps/shared` is a workspace, for
+`@stats-viz/shared` resolution). There is a single Vite build (`npm run build`,
+`scripts/build.mjs`) that code-splits each app; per-app `package.json` files no
+longer exist.
+
+| App path | Per-app `test/module.test.ts` |
+| --- | --- |
+| `apps/confidence-interval` | Core app (no WALS test harness) |
+| `apps/type-error` | Core app (no WALS test harness) |
+| `apps/regression` | Core app (no WALS test harness) |
+| `apps/simulation-introduction` | yes |
+| `apps/simulation-random-variable` | yes |
+| `apps/simulation-clt` | yes |
+| `apps/simulation-variance-reduction` | yes |
+| `apps/simulation-resampling` | yes |
+| `apps/simulation-mcmc` | yes |
+| `apps/mes-anova` | yes |
+| `apps/mes-confidence-interval` | yes |
+| `apps/mes-distributions` | yes |
+| `apps/mes-linear-regression` | yes |
 
 ## Current Verification Coverage
 
@@ -73,14 +84,15 @@ The root platform currently has tests for:
 - build script coverage for every registered visualizer
 - descriptive workspace package names for every registered visualizer
 - default visualizer selection
-- iframe path resolution under the Vite base URL
+- default visualizer fallback for unknown ids
 - regression bootstrap path ordering
 - regression teaching visual style markers
 - textbook regression dataset publication and bootstrap references
 
-Most WALS app folders include `test/module.test.ts`. The regression app is the
-main exception in this inventory: it has a build script but no local app-level
-test script in `apps/regression/package.json`.
+Most WALS app folders include `test/module.test.ts`. The three Core apps
+(`confidence-interval`, `type-error`, `regression`) are bespoke D3/React apps
+outside the WALS template and have no per-app test files; they share the root
+build like every other app.
 
 ## Source-of-Truth Decisions Needed
 
