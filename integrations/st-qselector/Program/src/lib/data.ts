@@ -63,6 +63,8 @@ function attachmentExists(chapterDir: string, name: string): boolean {
 
 interface RawQuestion {
   id: string;
+  group_id?: string;
+  part_count?: number;
   content?: string;
   source?: string;
   type?: string;
@@ -79,6 +81,13 @@ interface RawAnswer {
 }
 
 const QUESTION_TYPES = new Set(["选择题", "判断题", "填空题", "计算题", "简答题", "综合题"]);
+
+const PART_MARKER_RE = /(?:^|\n)\s*(?:[a-h][.)]|\([a-h]\))\s+/gm;
+
+function detectPartCount(content: string): number {
+  const markers = content.match(PART_MARKER_RE) || [];
+  return markers.length >= 2 ? markers.length : 1;
+}
 
 function inferQuestionType(rawType: string | undefined, content: string): string {
   if (rawType && QUESTION_TYPES.has(rawType)) return rawType;
@@ -150,8 +159,16 @@ export function loadAllQuestions(): Question[] {
           ? String(q.review_status)
           : answerRecord?.reviewStatus ?? null;
         const content = q.content ?? "";
+        const groupId = q.group_id?.trim() || q.id;
+        const partCount =
+          typeof q.part_count === "number" && q.part_count > 0
+            ? Math.floor(q.part_count)
+            : detectPartCount(content);
         all.push({
           id: q.id,
+          groupId,
+          partCount,
+          selectionUnit: "atomic",
           chapterId: ch.id,
           chapterTitle: ch.title,
           chapterNum,

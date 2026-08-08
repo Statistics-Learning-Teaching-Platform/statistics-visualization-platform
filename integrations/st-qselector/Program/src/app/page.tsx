@@ -397,6 +397,9 @@ function QuestionCard({
           <span className="qb-badge qb-badge--chapter">{question.chapterTitle}</span>
           <span className="qb-badge qb-badge--difficulty">{diffLabel(question.difficulty)}</span>
           <span className="qb-badge qb-badge--type">{question.type}</span>
+          {question.partCount > 1 && (
+            <span className="qb-badge qb-badge--knowledge">整题选择 · {question.partCount} 小问</span>
+          )}
           <span className={`qb-badge ${question.isComplete ? "qb-badge--complete" : "qb-badge--warning"}`}>
             {question.isComplete ? "题目完整" : "材料不完整"}
           </span>

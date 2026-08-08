@@ -13,6 +13,9 @@ export interface AppConfig {
 
 export interface Question {
   id: string; // 如 "ch01_q01"
+  groupId: string; // 组卷原子；同一大题的所有小问共享此 ID
+  partCount: number; // 顶层小问数量；单问题为 1
+  selectionUnit: "atomic"; // 大题及其小问必须整体选择
   chapterId: string; // "Ch01"
   chapterTitle: string; // "第1章"
   chapterNum: number; // 1

@@ -9,6 +9,7 @@ const dataDir = path.resolve(programDir, "..", "Data", "Formed");
 const outputFile = path.resolve(programDir, "public", "data", "reviewed-questions.json");
 const outputModule = path.resolve(programDir, "src", "generated", "reviewed-questions.ts");
 const imagePathPattern = /^[\w./\- ]+\.(png|jpe?g|gif|webp)$/i;
+const partMarkerPattern = /(?:^|\n)\s*(?:[a-h][.)]|\([a-h]\))\s+/gm;
 
 const config = yamlLoad(fs.readFileSync(path.join(dataDir, "config.yaml"), "utf8"));
 const root = path.resolve(dataDir, config.dataRoot || ".");
@@ -22,6 +23,11 @@ function attachmentExists(chapterDir, name) {
       fs.existsSync(candidate) &&
       fs.statSync(candidate).isFile()
   );
+}
+
+function detectPartCount(content) {
+  const markers = String(content || "").match(partMarkerPattern) || [];
+  return markers.length >= 2 ? markers.length : 1;
 }
 
 for (const chapter of config.chapters || []) {
@@ -54,6 +60,12 @@ for (const chapter of config.chapters || []) {
 
     questions.push({
       id: question.id,
+      groupId: String(question.group_id || question.id),
+      partCount:
+        typeof question.part_count === "number" && question.part_count > 0
+          ? Math.floor(question.part_count)
+          : detectPartCount(question.content),
+      selectionUnit: "atomic",
       chapterId: String(chapter.id),
       chapterTitle: String(chapter.title || chapter.id),
       chapterNum: Number.parseInt(String(chapter.id).replace(/\D/g, ""), 10) || 0,
