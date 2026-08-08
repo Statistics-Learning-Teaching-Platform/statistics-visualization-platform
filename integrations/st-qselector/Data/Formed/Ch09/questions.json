@@ -381,79 +381,83 @@
     },
     {
       "id": "rotel_ch09_hypothesis_01",
-      "content": "某零件主轴直径的目标均值为6 mm。研究者要检验生产过程的平均直径是否已经偏离目标值。写出原假设与备择假设。",
+      "content": "The target mean diameter of a component's spindle is 6 mm. A researcher wants to test whether the production process's mean diameter has deviated from the target. State the null and alternative hypotheses.",
       "source": "ROTEL Statistical Problem Sets in WeBWorK — 8.3-9.3 Problem 2(a) — https://rotel.pressbooks.pub/statsproblemsets/chapter/8-3-9-3-ci-and-hypothesis-testing/",
       "source_url": "https://rotel.pressbooks.pub/statsproblemsets/chapter/8-3-9-3-ci-and-hypothesis-testing/",
       "source_problem": "8.3-9.3 Problem 2(a)",
       "license": "CC BY-NC-SA 4.0",
       "attribution": "Rachael Norton and Peter Staab, 2023",
-      "review_status": "答案已独立推导并审核",
+      "review_status": "independently solved, translated, and reviewed",
       "type": "填空题",
       "difficulty": 1,
       "keywords": [
-        "原假设",
-        "备择假设",
-        "双侧检验"
+        "null hypothesis",
+        "alternative hypothesis",
+        "two-sided test"
       ],
       "formula_refs": [],
-      "data_refs": []
+      "data_refs": [],
+      "audit_pack": "english-normalization-v1"
     },
     {
       "id": "rotel_ch09_hypothesis_02",
-      "content": "全国某产品的平均售价为55美元。研究者声称某地该产品的总体平均售价低于55美元。写出原假设与备择假设。",
+      "content": "The national mean selling price of a product is 55 dollars. A researcher claims that the population mean selling price in a particular area is less than 55 dollars. State the null and alternative hypotheses.",
       "source": "ROTEL Statistical Problem Sets in WeBWorK — 8.3-9.3 Problem 2(b) — https://rotel.pressbooks.pub/statsproblemsets/chapter/8-3-9-3-ci-and-hypothesis-testing/",
       "source_url": "https://rotel.pressbooks.pub/statsproblemsets/chapter/8-3-9-3-ci-and-hypothesis-testing/",
       "source_problem": "8.3-9.3 Problem 2(b)",
       "license": "CC BY-NC-SA 4.0",
       "attribution": "Rachael Norton and Peter Staab, 2023",
-      "review_status": "答案已独立推导并审核",
+      "review_status": "independently solved, translated, and reviewed",
       "type": "填空题",
       "difficulty": 1,
       "keywords": [
-        "原假设",
-        "备择假设",
-        "左侧检验"
+        "null hypothesis",
+        "alternative hypothesis",
+        "left-tailed test"
       ],
       "formula_refs": [],
-      "data_refs": []
+      "data_refs": [],
+      "audit_pack": "english-normalization-v1"
     },
     {
       "id": "rotel_ch09_errors_01",
-      "content": "检验 $H_0:\\mu=98.6^\\circ\\mathrm{F}$ 与 $H_a:\\mu\\ne98.6^\\circ\\mathrm{F}$。分别判断下列结果属于正确决策、第一类错误还是第二类错误。\n\na. $H_0$ 为真却被拒绝；\n\nb. $H_0$ 为假且被拒绝；\n\nc. $H_0$ 为真且未被拒绝；\n\nd. $H_0$ 为假却未被拒绝。",
+      "content": "Test $H_0:\\mu=98.6^\\circ\\mathrm{F}$ versus $H_a:\\mu\\ne98.6^\\circ\\mathrm{F}$. Classify each outcome as a correct decision, Type I error, or Type II error.\n\na. $H_0$ is true but rejected.\n\nb. $H_0$ is false and rejected.\n\nc. $H_0$ is true and not rejected.\n\nd. $H_0$ is false but not rejected.",
       "source": "ROTEL Statistical Problem Sets in WeBWorK — 8.3-9.3 Problem 3 — https://rotel.pressbooks.pub/statsproblemsets/chapter/8-3-9-3-ci-and-hypothesis-testing/",
       "source_url": "https://rotel.pressbooks.pub/statsproblemsets/chapter/8-3-9-3-ci-and-hypothesis-testing/",
       "source_problem": "8.3-9.3 Problem 3",
       "license": "CC BY-NC-SA 4.0",
       "attribution": "Rachael Norton and Peter Staab, 2023",
-      "review_status": "答案已独立推导并审核",
+      "review_status": "independently solved, translated, and reviewed",
       "type": "综合题",
       "difficulty": 2,
       "keywords": [
-        "第一类错误",
-        "第二类错误",
-        "假设检验"
+        "Type I error",
+        "Type II error",
+        "hypothesis testing"
       ],
       "formula_refs": [],
-      "data_refs": []
+      "data_refs": [],
+      "audit_pack": "english-normalization-v1"
     },
     {
       "id": "rotel_ch09_ttest_01",
-      "content": "某农村地区14份讣告中的寿命样本均值为81.09岁，样本标准差为0.91岁。已知比较基准为77岁。在显著性水平 $\\alpha=0.10$ 下，检验该地区总体平均寿命是否高于77岁。",
+      "content": "A sample of lifespans from 14 obituaries in a rural area has mean 81.09 years and sample standard deviation 0.91 years. At $\\alpha=0.10$, test whether the population mean lifespan in this area exceeds 77 years.",
       "source": "ROTEL Statistical Problem Sets in WeBWorK — 9.4-9.5 Problem 1 — https://rotel.pressbooks.pub/statsproblemsets/chapter/9-4-9-5-hypothesis-testing/",
       "source_url": "https://rotel.pressbooks.pub/statsproblemsets/chapter/9-4-9-5-hypothesis-testing/",
       "source_problem": "9.4-9.5 Problem 1",
       "license": "CC BY-NC-SA 4.0",
       "attribution": "Rachael Norton and Peter Staab, 2023",
-      "review_status": "答案已独立推导并审核",
+      "review_status": "independently solved, translated, and reviewed",
       "type": "计算题",
       "difficulty": 3,
       "keywords": [
-        "单样本t检验",
-        "右侧检验",
-        "检验统计量"
+        "one-sample t test",
+        "right-tailed test",
+        "test statistic"
       ],
       "formula_refs": [],
-      "data_refs": []
+      "data_refs": [],
+      "audit_pack": "english-normalization-v1"
     }
   ]
 }

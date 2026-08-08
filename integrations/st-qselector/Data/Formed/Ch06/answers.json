@@ -143,8 +143,9 @@
     },
     {
       "id": "rotel_ch06_normal_01",
-      "answer": "a. 标准化得到 $z_1=(65-66)/2.5=-0.4$，$z_2=(70-66)/2.5=1.6$。因此\n\n$$P(65<X<70)=\\Phi(1.6)-\\Phi(-0.4)\\approx0.6006.$$\n\nb. $z=(71.5-66)/2.5=2.2$，所以\n\n$$P(X>71.5)=1-\\Phi(2.2)\\approx0.0139.$$\n\n百分比约为 **1.39%**。",
-      "review_status": "答案已独立推导并审核"
+      "answer": "a. Standardize: $z_1=(65-66)/2.5=-0.4$ and $z_2=(70-66)/2.5=1.6$. Therefore,\n\n$$P(65<X<70)=\\Phi(1.6)-\\Phi(-0.4)\\approx0.6006.$$\n\nb. Here $z=(71.5-66)/2.5=2.2$, so\n\n$$P(X>71.5)=1-\\Phi(2.2)\\approx0.0139.$$\n\nThe percentage is approximately **1.39%**.",
+      "review_status": "independently solved, translated, and reviewed",
+      "audit_pack": "english-normalization-v1"
     },
     {
       "id": "ch06_q16",

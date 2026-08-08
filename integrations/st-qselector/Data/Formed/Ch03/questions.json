@@ -379,41 +379,43 @@
     },
     {
       "id": "rotel_ch03_center_01",
-      "content": "四个学期的通勤生人数分别为 $8,17,14,17$。求均值和中位数。",
+      "content": "The numbers of commuter students in four semesters were $8,17,14,17$. Find the mean and median.",
       "source": "ROTEL Statistical Problem Sets in WeBWorK — 2.5 Problem 1(a) — https://rotel.pressbooks.pub/statsproblemsets/chapter/assignment-2-5-center-of-data/",
       "source_url": "https://rotel.pressbooks.pub/statsproblemsets/chapter/assignment-2-5-center-of-data/",
       "source_problem": "2.5 Problem 1(a)",
       "license": "CC BY-NC-SA 4.0",
       "attribution": "Rachael Norton and Peter Staab, 2023",
-      "review_status": "答案已独立推导并审核",
+      "review_status": "independently solved, translated, and reviewed",
       "type": "计算题",
       "difficulty": 1,
       "keywords": [
-        "均值",
-        "中位数",
-        "中心趋势"
+        "mean",
+        "median",
+        "measures of center"
       ],
       "formula_refs": [],
-      "data_refs": []
+      "data_refs": [],
+      "audit_pack": "english-normalization-v1"
     },
     {
       "id": "rotel_ch03_center_02",
-      "content": "四个学期的住宿生人数分别为 $22,13,16,13$。\n\na. 求均值和中位数；\n\nb. 若要比较四个学期通勤生和住宿生的总人数，应比较均值还是中位数？说明理由。已知四个学期通勤生人数为 $8,17,14,17$。",
+      "content": "The numbers of resident students in four semesters were $22,13,16,13$.\n\na. Find the mean and median.\n\nb. To compare the total numbers of commuter and resident students across the four semesters, should you compare the means or the medians? Explain why. The commuter-student counts were $8,17,14,17$.",
       "source": "ROTEL Statistical Problem Sets in WeBWorK — 2.5 Problem 1(b) — https://rotel.pressbooks.pub/statsproblemsets/chapter/assignment-2-5-center-of-data/",
       "source_url": "https://rotel.pressbooks.pub/statsproblemsets/chapter/assignment-2-5-center-of-data/",
       "source_problem": "2.5 Problem 1(b)",
       "license": "CC BY-NC-SA 4.0",
       "attribution": "Rachael Norton and Peter Staab, 2023",
-      "review_status": "答案已独立推导并审核",
+      "review_status": "independently solved, translated, and reviewed",
       "type": "综合题",
       "difficulty": 2,
       "keywords": [
-        "均值",
-        "中位数",
-        "比较"
+        "mean",
+        "median",
+        "comparison"
       ],
       "formula_refs": [],
-      "data_refs": []
+      "data_refs": [],
+      "audit_pack": "english-normalization-v1"
     }
   ]
 }

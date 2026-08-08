@@ -135,23 +135,27 @@
     },
     {
       "id": "rotel_ch08_ci_01",
-      "answer": "a. 下限为 $24-4=20$ mmHg。\n\nb. 取 $z_{0.975}=1.96$，样本量需满足\n\n$$n>\\left(\\frac{1.96\\times9}{2}\\right)^2=77.79.$$\n\n样本量必须向上取整，因此至少需要 **78人**。",
-      "review_status": "答案已独立推导并审核"
+      "answer": "a. The lower endpoint is $24-4=20$ mmHg.\n\nb. Using $z_{0.975}=1.96$, require\n\n$$n>\\left(\\frac{1.96(9)}{2}\\right)^2=77.79.$$\n\nRounding up, at least **78 participants** are required.",
+      "review_status": "independently solved, translated, and reviewed",
+      "audit_pack": "english-normalization-v1"
     },
     {
       "id": "rotel_ch08_ci_02",
-      "answer": "a. 标准误为 $300/\\sqrt{30}\\approx54.7723$，99%置信区间使用 $z^*\\approx2.576$，误差限为\n\n$$E=2.576\\times54.7723\\approx141.09.$$\n\n因此置信区间为 **$(1858.91,2141.09)$ 美元**。\n\nb. 可以表述为：我们有99%的置信度认为总体平均成交价位于该区间。若用同样方法重复抽样并构造区间，长期来看约99%的这些区间会覆盖真实总体均值。该区间不是对单辆汽车价格的范围说明。",
-      "review_status": "答案已独立推导并审核"
+      "answer": "a. The standard error is\n\n$$SE=\\frac{300}{\\sqrt{30}}\\approx54.7723.$$\n\nWith $z_{0.995}\\approx2.5758$, the margin of error is approximately $141.084$. Thus the 99% confidence interval is\n\n$$(1858.92,2141.08)\\text{ dollars}.$$\n\nb. We are 99% confident that the population mean sale price lies in this interval. In repeated sampling, about 99% of intervals constructed by this method would contain the true population mean. This is not an interval for an individual car's price.",
+      "review_status": "independently solved, translated, and reviewed",
+      "audit_pack": "english-normalization-v1"
     },
     {
       "id": "rotel_ch08_ci_03",
-      "answer": "样本统计量为\n\n$$n=15,\\qquad \\bar{x}=36337.4,\\qquad s\\approx5948.61.$$\n\n自由度为14，双侧94%区间使用 $t_{0.97,14}\\approx2.04617$。误差限为\n\n$$E=2.04617\\frac{5948.61}{\\sqrt{15}}\\approx3142.76.$$\n\n因此94%置信区间为\n\n$$36337.4\\pm3142.76=(33194.64,39480.16).$$",
-      "review_status": "答案已独立推导并审核"
+      "answer": "The sample statistics are $n=15$, $\\bar x=36{,}337.4$, and $s\\approx5{,}948.61$. With $df=14$ and $t_{0.97,14}\\approx2.04617$, the margin of error is\n\n$$E=2.04617\\frac{5948.61}{\\sqrt{15}}\\approx3142.76.$$\n\nTherefore, the 94% confidence interval is\n\n$$36{,}337.4\\pm3{,}142.76=(33{,}194.64,39{,}480.16)\\text{ dollars}.$$",
+      "review_status": "independently solved, translated, and reviewed",
+      "audit_pack": "english-normalization-v1"
     },
     {
       "id": "rotel_ch08_proportion_n_01",
-      "answer": "没有先验估计时取最保守的 $\\hat p=0.5$。99%置信水平取 $z^*=2.576$，于是\n\n$$n>\\frac{(2.576)^2(0.5)(0.5)}{(0.01)^2}=16589.44.$$\n\n向上取整，至少需要 **16590名学生**。",
-      "review_status": "答案已独立推导并审核"
+      "answer": "With no prior estimate, use the conservative value $p=0.5$. Using $z_{0.995}\\approx2.575829$,\n\n$$n>\\frac{(2.575829)^2(0.5)(0.5)}{(0.01)^2}\\approx16587.24.$$\n\nBecause the margin of error must be strictly less than 0.01, round up to **16,588 students**.",
+      "review_status": "independently solved, translated, and reviewed",
+      "audit_pack": "english-normalization-v1"
     }
   ]
 }

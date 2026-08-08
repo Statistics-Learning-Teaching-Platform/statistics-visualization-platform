@@ -390,22 +390,23 @@
     },
     {
       "id": "rotel_ch05_expectation_01",
-      "content": "一个转盘落在A、B、C、D区域的概率分别为 $4/12,3/12,1/12,4/12$。每次游戏收费4美元；落在B区获得10美元奖金，落在D区获得0.10美元奖金，落在A或C区没有奖金。求玩家每局净收益的期望。",
+      "content": "A spinner lands in regions A, B, C, and D with probabilities $4/12$, $3/12$, $1/12$, and $4/12$, respectively. Each game costs 4 dollars. Landing on B pays a 10-dollar bonus, landing on D pays a 0.10-dollar bonus, and A or C pays no bonus. Find the expected net payoff per game.",
       "source": "ROTEL Statistical Problem Sets in WeBWorK — 4.1-4.2 Problem 1 (adapted to text) — https://rotel.pressbooks.pub/statsproblemsets/chapter/assignment-4-1-4-2-random-variables/",
       "source_url": "https://rotel.pressbooks.pub/statsproblemsets/chapter/assignment-4-1-4-2-random-variables/",
       "source_problem": "4.1-4.2 Problem 1 (adapted to text)",
       "license": "CC BY-NC-SA 4.0",
       "attribution": "Rachael Norton and Peter Staab, 2023",
-      "review_status": "答案已独立推导并审核",
+      "review_status": "independently solved, translated, and reviewed",
       "type": "计算题",
       "difficulty": 3,
       "keywords": [
-        "离散型随机变量",
-        "期望",
-        "净收益"
+        "discrete random variable",
+        "expected value",
+        "net payoff"
       ],
       "formula_refs": [],
-      "data_refs": []
+      "data_refs": [],
+      "audit_pack": "english-normalization-v1"
     }
   ]
 }

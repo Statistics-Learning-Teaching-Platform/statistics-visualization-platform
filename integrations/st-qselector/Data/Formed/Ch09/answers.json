@@ -59,23 +59,27 @@
     },
     {
       "id": "rotel_ch09_hypothesis_01",
-      "answer": "$$H_0:\\mu=6\\text{ mm},\\qquad H_a:\\mu\\ne6\\text{ mm}.$$\n\n“偏离”包括变大和变小，因此使用双侧备择假设。",
-      "review_status": "答案已独立推导并审核"
+      "answer": "$$H_0:\\mu=6\\text{ mm},\\qquad H_a:\\mu\\ne6\\text{ mm}.$$\n\n“Deviated” includes both larger and smaller values, so the alternative is two-sided.",
+      "review_status": "independently solved, translated, and reviewed",
+      "audit_pack": "english-normalization-v1"
     },
     {
       "id": "rotel_ch09_hypothesis_02",
-      "answer": "$$H_0:\\mu=55,\\qquad H_a:\\mu<55.$$\n\n研究主张是“低于”，所以备择假设为左侧。",
-      "review_status": "答案已独立推导并审核"
+      "answer": "$$H_0:\\mu=55,\\qquad H_a:\\mu<55.$$\n\nThe claim “less than” implies a left-tailed alternative.",
+      "review_status": "independently solved, translated, and reviewed",
+      "audit_pack": "english-normalization-v1"
     },
     {
       "id": "rotel_ch09_errors_01",
-      "answer": "a. **第一类错误**：拒绝了真实的 $H_0$。\n\nb. **正确决策**：拒绝了错误的 $H_0$。\n\nc. **正确决策**：没有拒绝真实的 $H_0$。\n\nd. **第二类错误**：没有拒绝错误的 $H_0$。",
-      "review_status": "答案已独立推导并审核"
+      "answer": "a. **Type I error:** a true null hypothesis is rejected.\n\nb. **Correct decision:** a false null hypothesis is rejected.\n\nc. **Correct decision:** a true null hypothesis is not rejected.\n\nd. **Type II error:** a false null hypothesis is not rejected.",
+      "review_status": "independently solved, translated, and reviewed",
+      "audit_pack": "english-normalization-v1"
     },
     {
       "id": "rotel_ch09_ttest_01",
-      "answer": "设\n\n$$H_0:\\mu=77,\\qquad H_a:\\mu>77.$$\n\n总体标准差未知，使用单样本 $t$ 检验：\n\n$$t=\\frac{81.09-77}{0.91/\\sqrt{14}}\\approx16.817,\\qquad df=13.$$\n\n右侧临界值 $t_{0.90,13}\\approx1.350$。由于 $16.817>1.350$，拒绝 $H_0$。在10%的显著性水平下，有充分证据认为该地区总体平均寿命高于77岁。",
-      "review_status": "答案已独立推导并审核"
+      "answer": "Test\n\n$$H_0:\\mu=77\\quad\\text{versus}\\quad H_a:\\mu>77.$$\n\nBecause $\\sigma$ is unknown, use a one-sample $t$ test:\n\n$$t=\\frac{81.09-77}{0.91/\\sqrt{14}}\\approx16.817,\\qquad df=13.$$\n\nThe right-tail critical value is $t_{0.90,13}\\approx1.350$. Since $16.817>1.350$, reject $H_0$. There is sufficient evidence that the population mean lifespan exceeds 77 years.",
+      "review_status": "independently solved, translated, and reviewed",
+      "audit_pack": "english-normalization-v1"
     },
     {
       "id": "ch09_q11",

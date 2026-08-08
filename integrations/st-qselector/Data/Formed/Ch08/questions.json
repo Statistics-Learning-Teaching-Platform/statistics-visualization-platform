@@ -359,79 +359,83 @@
     },
     {
       "id": "rotel_ch08_ci_01",
-      "content": "研究报告称，某降压药使用者收缩压平均下降24 mmHg，95%置信水平下误差限为 $\\pm4$ mmHg。\n\na. 该置信区间的下限是多少？\n\nb. 若总体标准差为9 mmHg，要使95%置信区间的误差限小于2 mmHg，样本量至少是多少？",
+      "content": "A report states that users of an antihypertensive drug experience a mean reduction in systolic blood pressure of 24 mmHg, with a margin of error of $\\pm4$ mmHg at the 95% confidence level.\n\na. What is the lower endpoint of the confidence interval?\n\nb. If the population standard deviation is 9 mmHg, what minimum sample size is required for the margin of error of a 95% confidence interval to be less than 2 mmHg?",
       "source": "ROTEL Statistical Problem Sets in WeBWorK — 8.1-8.2 Problem 1 — https://rotel.pressbooks.pub/statsproblemsets/chapter/8-1-8-2-confidence-intervals/",
       "source_url": "https://rotel.pressbooks.pub/statsproblemsets/chapter/8-1-8-2-confidence-intervals/",
       "source_problem": "8.1-8.2 Problem 1",
       "license": "CC BY-NC-SA 4.0",
       "attribution": "Rachael Norton and Peter Staab, 2023",
-      "review_status": "答案已独立推导并审核",
+      "review_status": "independently solved, translated, and reviewed",
       "type": "综合题",
       "difficulty": 2,
       "keywords": [
-        "置信区间",
-        "误差限",
-        "样本量"
+        "confidence interval",
+        "margin of error",
+        "sample size"
       ],
       "formula_refs": [],
-      "data_refs": []
+      "data_refs": [],
+      "audit_pack": "english-normalization-v1"
     },
     {
       "id": "rotel_ch08_ci_02",
-      "content": "随机抽取30笔二手车交易，样本平均成交价为2000美元。已知总体标准差为300美元。\n\na. 求总体平均成交价的99%置信区间，结果保留两位小数；\n\nb. 正确解释该置信区间。",
+      "content": "A random sample of 30 used-car transactions has sample mean sale price 2,000 dollars. The population standard deviation is known to be 300 dollars.\n\na. Find the 99% confidence interval for the population mean sale price, rounding to two decimals.\n\nb. Correctly interpret this confidence interval.",
       "source": "ROTEL Statistical Problem Sets in WeBWorK — 8.1-8.2 Problem 2 — https://rotel.pressbooks.pub/statsproblemsets/chapter/8-1-8-2-confidence-intervals/",
       "source_url": "https://rotel.pressbooks.pub/statsproblemsets/chapter/8-1-8-2-confidence-intervals/",
       "source_problem": "8.1-8.2 Problem 2",
       "license": "CC BY-NC-SA 4.0",
       "attribution": "Rachael Norton and Peter Staab, 2023",
-      "review_status": "答案已独立推导并审核",
+      "review_status": "independently solved, translated, and reviewed",
       "type": "综合题",
       "difficulty": 3,
       "keywords": [
-        "总体均值",
-        "已知标准差",
-        "区间解释"
+        "population mean",
+        "known standard deviation",
+        "confidence interval interpretation"
       ],
       "formula_refs": [],
-      "data_refs": []
+      "data_refs": [],
+      "audit_pack": "english-normalization-v1"
     },
     {
       "id": "rotel_ch08_ci_03",
-      "content": "随机抽取15名电视知识竞赛获胜者，其奖金金额为：$43460,38213,42876,38921,36709,26735,35472,31319,42833,27159,32799,39271,44016,28191,37087$。在总体标准差未知的情况下，构造总体平均奖金的94%置信区间。",
+      "content": "A random sample of 15 television quiz-show winners received the following prize amounts, in dollars: $43{,}460, 38{,}213, 42{,}876, 38{,}921, 36{,}709, 26{,}735, 35{,}472, 31{,}319, 42{,}833, 27{,}159, 32{,}799, 39{,}271, 44{,}016, 28{,}191, 37{,}087$. With the population standard deviation unknown, construct a 94% confidence interval for the population mean prize amount.",
       "source": "ROTEL Statistical Problem Sets in WeBWorK — 8.1-8.2 Problem 3 — https://rotel.pressbooks.pub/statsproblemsets/chapter/8-1-8-2-confidence-intervals/",
       "source_url": "https://rotel.pressbooks.pub/statsproblemsets/chapter/8-1-8-2-confidence-intervals/",
       "source_problem": "8.1-8.2 Problem 3",
       "license": "CC BY-NC-SA 4.0",
       "attribution": "Rachael Norton and Peter Staab, 2023",
-      "review_status": "答案已独立推导并审核",
+      "review_status": "independently solved, translated, and reviewed",
       "type": "计算题",
       "difficulty": 4,
       "keywords": [
-        "t置信区间",
-        "小样本",
-        "总体均值"
+        "t confidence interval",
+        "small sample",
+        "population mean"
       ],
       "formula_refs": [],
-      "data_refs": []
+      "data_refs": [],
+      "audit_pack": "english-normalization-v1"
     },
     {
       "id": "rotel_ch08_proportion_n_01",
-      "content": "计划估计参加主场篮球比赛的学生比例。没有先验比例估计时，要使99%置信区间的误差限小于0.01，至少需要调查多少名学生？",
+      "content": "You plan to estimate the proportion of students who attend home basketball games. With no prior estimate of the proportion, what minimum number of students must be surveyed so that the margin of error of a 99% confidence interval is less than 0.01?",
       "source": "ROTEL Statistical Problem Sets in WeBWorK — 8.3-9.3 Problem 1 — https://rotel.pressbooks.pub/statsproblemsets/chapter/8-3-9-3-ci-and-hypothesis-testing/",
       "source_url": "https://rotel.pressbooks.pub/statsproblemsets/chapter/8-3-9-3-ci-and-hypothesis-testing/",
       "source_problem": "8.3-9.3 Problem 1",
       "license": "CC BY-NC-SA 4.0",
       "attribution": "Rachael Norton and Peter Staab, 2023",
-      "review_status": "答案已独立推导并审核",
+      "review_status": "independently solved, translated, and reviewed",
       "type": "计算题",
       "difficulty": 3,
       "keywords": [
-        "总体比例",
-        "样本量",
-        "误差限"
+        "population proportion",
+        "sample size",
+        "margin of error"
       ],
       "formula_refs": [],
-      "data_refs": []
+      "data_refs": [],
+      "audit_pack": "english-normalization-v1"
     }
   ]
 }

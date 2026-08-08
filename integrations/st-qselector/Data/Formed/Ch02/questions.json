@@ -193,11 +193,15 @@
     },
     {
       "id": "ch02_q19",
-      "content": "Calculate the mean, median and mode of each of the following populations of numbers:\n>\n> a\\. 9, 8, 10, 10, 12, 6, 11, 10, 12, 8\n>\n> b\\. 110, 120, 70, 90, 90, 100, 80, 130, 140\n>",
+      "content": "Calculate the mean, median, and mode of each population.\n\na. $9,8,10,10,12,6,11,10,12,8$\n\nb. $110,120,70,90,90,100,80,130,140$",
       "source": "Assignment Prof Lv/assignment2-Lu.doc",
       "type": "unknown",
       "difficulty": 1,
-      "keywords": [],
+      "keywords": [
+        "mean",
+        "median",
+        "mode"
+      ],
       "formula_refs": [
         "ch02_q15_f01_image2.wmf",
         "ch02_q15_f03_image4.wmf",
@@ -205,7 +209,9 @@
         "ch02_q15_f05_image6.emf",
         "ch02_q15_f06_image7.emf"
       ],
-      "data_refs": []
+      "data_refs": [],
+      "review_status": "independently solved, normalized, and reviewed",
+      "audit_pack": "english-normalization-v1"
     },
     {
       "id": "ch02_q20",
@@ -330,63 +336,66 @@
     },
     {
       "id": "rotel_ch02_histogram_01",
-      "content": "某生物系教师服务年限按区间分组，六个区间 $0$–$4.9$、$5$–$9.9$、$10$–$14.9$、$15$–$19.9$、$20$–$24.9$、$25$–$29.9$ 的频数依次为 $3,11,10,11,3,12$。求服务年限少于10年的教师所占百分比。",
+      "content": "A biology department groups faculty members by years of service into six intervals: $0$–$4.9$, $5$–$9.9$, $10$–$14.9$, $15$–$19.9$, $20$–$24.9$, and $25$–$29.9$. The corresponding frequencies are $3,11,10,11,3,12$. What percentage of faculty members have fewer than 10 years of service?",
       "source": "ROTEL Statistical Problem Sets in WeBWorK — 2.1-2.2 Problem 2 — https://rotel.pressbooks.pub/statsproblemsets/chapter/assignment-2-1-2-2-graphs-and-percentages/",
       "source_url": "https://rotel.pressbooks.pub/statsproblemsets/chapter/assignment-2-1-2-2-graphs-and-percentages/",
       "source_problem": "2.1-2.2 Problem 2",
       "license": "CC BY-NC-SA 4.0",
       "attribution": "Rachael Norton and Peter Staab, 2023",
-      "review_status": "答案已独立推导并审核",
+      "review_status": "independently solved, translated, and reviewed",
       "type": "计算题",
       "difficulty": 1,
       "keywords": [
-        "直方图",
-        "频数",
-        "百分比"
+        "histogram",
+        "frequency",
+        "percentage"
       ],
       "formula_refs": [],
-      "data_refs": []
+      "data_refs": [],
+      "audit_pack": "english-normalization-v1"
     },
     {
       "id": "rotel_ch02_boxplot_01",
-      "content": "观察下列箱线图，填写该数据的最小值、第一四分位数和中位数。\n\n[IMG:Assests/rotel-boxplot-five-number.png|箱线图：左须端点24，第一四分位数37，中位数46，第三四分位数78，右须端点91]",
+      "content": "Examine the following box plot and give the minimum value, first quartile, and median.\n\n[IMG:Assests/rotel-boxplot-five-number.png|Box plot: left whisker endpoint 24, first quartile 37, median 46, third quartile 78, right whisker endpoint 91]",
       "source": "ROTEL Statistical Problem Sets in WeBWorK — 2.4 Problem 2 (adapted to text) — https://rotel.pressbooks.pub/statsproblemsets/chapter/assignment-2-4-box-plots/",
       "source_url": "https://rotel.pressbooks.pub/statsproblemsets/chapter/assignment-2-4-box-plots/",
       "source_problem": "2.4 Problem 2 (adapted to text)",
       "license": "CC BY-NC-SA 4.0",
       "attribution": "Rachael Norton and Peter Staab, 2023",
-      "review_status": "答案已独立推导并审核",
+      "review_status": "independently solved, translated, and reviewed",
       "type": "填空题",
       "difficulty": 1,
       "keywords": [
-        "箱线图",
-        "五数概括"
+        "box plot",
+        "five-number summary"
       ],
       "formula_refs": [],
       "data_refs": [
         "Assests/rotel-boxplot-five-number.png"
-      ]
+      ],
+      "audit_pack": "english-normalization-v1"
     },
     {
       "id": "rotel_ch02_boxplot_02",
-      "content": "下图给出洛杉矶律师年薪的箱线图（单位：千美元）。约有百分之多少的律师年薪位于152,000美元至252,000美元之间？说明理由。\n\n[IMG:Assests/rotel-boxplot-salary.png|律师年薪箱线图：最小值152，第一四分位数195，中位数252，第三四分位数308，最大值351]",
+      "content": "The figure below shows a box plot of annual salaries for Los Angeles attorneys (in thousands of dollars). Approximately what percentage of attorneys have annual salaries between 152,000 dollars and 252,000 dollars? Explain your reasoning.\n\n[IMG:Assests/rotel-boxplot-salary.png|Box plot of attorney salaries: minimum 152, first quartile 195, median 252, third quartile 308, maximum 351]",
       "source": "ROTEL Statistical Problem Sets in WeBWorK — 2.4 Problem 4 (adapted to text) — https://rotel.pressbooks.pub/statsproblemsets/chapter/assignment-2-4-box-plots/",
       "source_url": "https://rotel.pressbooks.pub/statsproblemsets/chapter/assignment-2-4-box-plots/",
       "source_problem": "2.4 Problem 4 (adapted to text)",
       "license": "CC BY-NC-SA 4.0",
       "attribution": "Rachael Norton and Peter Staab, 2023",
-      "review_status": "答案已独立推导并审核",
+      "review_status": "independently solved, translated, and reviewed",
       "type": "简答题",
       "difficulty": 1,
       "keywords": [
-        "箱线图",
-        "四分位数",
-        "百分位"
+        "box plot",
+        "quartiles",
+        "percentile"
       ],
       "formula_refs": [],
       "data_refs": [
         "Assests/rotel-boxplot-salary.png"
-      ]
+      ],
+      "audit_pack": "english-normalization-v1"
     }
   ]
 }

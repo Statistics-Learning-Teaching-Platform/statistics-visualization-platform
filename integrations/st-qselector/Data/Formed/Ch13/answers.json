@@ -15,28 +15,33 @@
     },
     {
       "id": "rotel_ch13_line_01",
-      "answer": "斜率为\n\n$$m=\\frac{5-3}{1-0}=2.$$\n\n纵截距为3，因此直线方程为\n\n$$y=2x+3.$$",
-      "review_status": "答案已独立推导并审核"
+      "answer": "The slope is\n\n$$m=\\frac{5-3}{1-0}=2.$$\n\nSince the y-intercept is 3, the line is\n\n$$y=2x+3.$$",
+      "review_status": "independently solved, translated, and reviewed",
+      "audit_pack": "english-normalization-v1"
     },
     {
       "id": "rotel_ch13_line_02",
-      "answer": "斜率为\n\n$$m=\\frac{-5-1}{9-0}=-\\frac23.$$\n\n因此直线方程为\n\n$$y=-\\frac23x+1.$$",
-      "review_status": "答案已独立推导并审核"
+      "answer": "The slope is\n\n$$m=\\frac{-5-1}{9-0}=-\\frac23.$$\n\nTherefore, the line is\n\n$$y=-\\frac23x+1.$$",
+      "review_status": "independently solved, translated, and reviewed",
+      "audit_pack": "english-normalization-v1"
     },
     {
       "id": "rotel_ch13_causation_01",
-      "answer": "不能仅凭相关关系断定因果关系。**室外温度或季节**是合理的潜在变量：天气炎热时，两种商品的销量都可能上升。若要建立因果关系，需要能够控制其他因素并实施随机分配的良好实验；现实中若实验不可行，则需要更严谨的准实验或因果推断设计，而不能只依赖简单相关系数。",
-      "review_status": "答案已独立推导并审核"
+      "answer": "No. Association alone does not establish causation. Outdoor temperature or season is a plausible lurking variable: when the weather is hot, sales of both products may rise. To establish causation, use a well-controlled randomized experiment that controls other factors. If an experiment is infeasible, use a rigorous quasi-experimental or causal-inference design rather than relying only on a simple correlation coefficient.",
+      "review_status": "independently solved, translated, and reviewed",
+      "audit_pack": "english-normalization-v1"
     },
     {
       "id": "rotel_ch13_slope_01",
-      "answer": "在该模型适用的身高范围内，身高每增加1 cm，预测的平均体重增加 **0.99 kg**。斜率描述的是预测均值的变化，不表示每个人的体重都会恰好增加0.99 kg。",
-      "review_status": "答案已独立推导并审核"
+      "answer": "Within the range of heights for which this model is appropriate, each 1-centimeter increase in height is associated with a 0.99-kilogram increase in predicted mean weight. The slope describes a change in the predicted mean; it does not mean every individual's weight increases by exactly 0.99 kilograms.",
+      "review_status": "independently solved, translated, and reviewed",
+      "audit_pack": "english-normalization-v1"
     },
     {
       "id": "rotel_ch13_regression_01",
-      "answer": "由数据得到 $\\bar{x}=287.5$、$\\bar{y}=41.5$。记\n\n$$S_{xx}=\\sum(x_i-\\bar{x})^2,\\quad S_{yy}=\\sum(y_i-\\bar{y})^2,\\quad S_{xy}=\\sum(x_i-\\bar{x})(y_i-\\bar{y}).$$\n\n代入8组数据可得\n\n$$r=\\frac{S_{xy}}{\\sqrt{S_{xx}S_{yy}}}\\approx-0.8074.$$\n\n回归斜率和截距为\n\n$$b_1=\\frac{S_{xy}}{S_{xx}}\\approx-0.20973,$$\n\n$$b_0=\\bar{y}-b_1\\bar{x}\\approx101.7968.$$\n\n因此最小二乘回归方程为\n\n$$\\hat{y}=101.7968-0.20973x.$$\n\n这组数据呈较强负相关。",
-      "review_status": "答案已独立推导并审核"
+      "answer": "The means are $\\bar{x}=287.5$ and $\\bar{y}=41.5$. Let\n\n$$S_{xx}=\\sum(x_i-\\bar{x})^2,\\quad S_{yy}=\\sum(y_i-\\bar{y})^2,\\quad S_{xy}=\\sum(x_i-\\bar{x})(y_i-\\bar{y}).$$\n\na. The correlation coefficient is\n\n$$r=\\frac{S_{xy}}{\\sqrt{S_{xx}S_{yy}}}\\approx-0.8074.$$\n\nb. The slope and intercept are\n\n$$b_1=\\frac{S_{xy}}{S_{xx}}\\approx-0.20973,$$\n\n$$b_0=\\bar{y}-b_1\\bar{x}\\approx101.7968.$$\n\nThus the regression equation is\n\n$$\\hat{y}=101.7968-0.20973x.$$\n\nThe data show a fairly strong negative association.",
+      "review_status": "independently solved, translated, and reviewed",
+      "audit_pack": "english-normalization-v1"
     }
   ]
 }

@@ -1,0 +1,304 @@
+{
+  "schema_version": 1,
+  "pack_id": "english-normalization-v1",
+  "target_language": "en",
+  "scope": "All 37 records whose question or answer was Chinese or mixed-language in the 334-question baseline.",
+  "records": [
+    {
+      "id": "rotel_ch01_variables_01",
+      "chapter": "Ch01",
+      "review_status": "independently solved, translated, and reviewed",
+      "keywords": ["categorical data", "variable types"],
+      "clean_question": "Which of the following situations collects categorical data? (Select all that apply)\n\nA. Measuring the number of computers owned by households in Vancouver\n\nB. Surveying the nationality of students in a statistics course\n\nC. Classifying and counting students by hair color—black, brown, blond, white, red, other, or bald\n\nD. Classifying newborns into low birth weight and not low birth weight\n\nE. None of the above",
+      "clean_answer": "Select **B, C, and D**.\n\nNationality, hair-color category, and low-birth-weight status are categorical variables; the number of computers is a discrete quantitative variable."
+    },
+    {
+      "id": "rotel_ch01_variables_02",
+      "chapter": "Ch01",
+      "review_status": "independently solved, translated, and reviewed",
+      "keywords": ["quantitative variables", "clinical trials"],
+      "clean_question": "In a clinical trial, which of the following variables are quantitative variables? (Select all that apply)\n\nA. Assigned sex: female, male, intersex\n\nB. Smoking history: number of cigarettes smoked per year\n\nC. Age group: under 20, 20–30, 30–40, etc.\n\nD. Body mass index, measured in $\\mathrm{kg}/\\mathrm{m}^2$\n\nE. Dosage-form code: 1 = tablet, 2 = capsule, 3 = liquid, 4 = other",
+      "clean_answer": "Select **B and D**.\n\nThe number of cigarettes smoked per year and body mass index are numerical measurements on which arithmetic operations can be performed. Age groups and dosage-form codes contain numbers but are fundamentally categorical variables."
+    },
+    {
+      "id": "rotel_ch01_sampling_01",
+      "chapter": "Ch01",
+      "review_status": "independently solved, translated, and reviewed",
+      "keywords": ["simple random sampling", "representativeness"],
+      "clean_question": "To estimate the median income of all Seattle residents, a researcher takes a simple random sample of 30 Seattle residents. Is this sample representative? Explain why.",
+      "clean_answer": "**Yes, it is representative.**\n\nThe sampled population and target population are both Seattle residents, and simple random sampling is used; assuming adequate coverage by the sampling frame, every resident has a chance of selection."
+    },
+    {
+      "id": "rotel_ch01_sampling_02",
+      "chapter": "Ch01",
+      "review_status": "independently solved, translated, and reviewed",
+      "keywords": ["simple random sampling", "target population"],
+      "clean_question": "To estimate the mean weight of all adults, a researcher takes a simple random sample from people aged 18 and older. Is this sample representative? Explain why.",
+      "clean_answer": "**Yes, it is representative.**\n\nThe problem defines adults as people aged 18 and older, so the sampled and target populations coincide, and simple random sampling is used."
+    },
+    {
+      "id": "rotel_ch01_sampling_03",
+      "chapter": "Ch01",
+      "review_status": "independently solved, translated, and reviewed",
+      "keywords": ["sampling bias", "telephone survey"],
+      "clean_question": "A researcher conducts telephone surveys only during weekday daytime hours and uses the results to estimate a candidate's chance of winning an election. Is this sample representative? Explain why.",
+      "clean_answer": "**No, it is not representative.**\n\nContacting people only during weekday daytime hours can systematically omit people who are working, unable to answer then, or lack an available telephone, creating coverage and time-selection bias."
+    },
+    {
+      "id": "rotel_ch01_sampling_04",
+      "chapter": "Ch01",
+      "review_status": "independently solved, translated, and reviewed",
+      "keywords": ["sampling bias", "extrapolation"],
+      "clean_question": "A researcher samples 40 patients from a local hospital, measures their cholesterol, and attempts to estimate the mean cholesterol level of all U.S. citizens. Is this sample representative? Explain why.",
+      "clean_answer": "**No, it is not representative.**\n\nPatients at one hospital are not a random sample of all U.S. citizens. Their health status, region, and care-seeking behavior may differ from those of the target population, so the result cannot be generalized to the national mean."
+    },
+    {
+      "id": "rotel_ch01_measurement_01",
+      "chapter": "Ch01",
+      "review_status": "independently solved, translated, and reviewed",
+      "keywords": ["level of measurement", "nominal data"],
+      "clean_question": "What level of measurement applies to responses to the questionnaire item “Do you feel that you have stayed in New York long enough?”\n\nA. Nominal\n\nB. Ordinal\n\nC. Interval\n\nD. Ratio",
+      "clean_answer": "Select **A, nominal**.\n\nResponses are typically categories such as “yes” or “no,” with no natural order of magnitude."
+    },
+    {
+      "id": "rotel_ch01_measurement_02",
+      "chapter": "Ch01",
+      "review_status": "independently solved, translated, and reviewed",
+      "keywords": ["level of measurement", "ratio scale"],
+      "clean_question": "What level of measurement applies to the starting salaries of newly graduated PhDs in statistics?\n\nA. Nominal\n\nB. Ordinal\n\nC. Interval\n\nD. Ratio",
+      "clean_answer": "Select **D, ratio**.\n\nSalary has a meaningful absolute zero; both differences and ratio comparisons are meaningful."
+    },
+    {
+      "id": "rotel_ch01_measurement_03",
+      "chapter": "Ch01",
+      "review_status": "independently solved, translated, and reviewed",
+      "keywords": ["level of measurement", "ordinal scale"],
+      "clean_question": "What level of measurement applies to the size of fries ordered by a customer (small, medium, or large)?\n\nA. Nominal\n\nB. Ordinal\n\nC. Interval\n\nD. Ratio",
+      "clean_answer": "Select **B, ordinal**.\n\nThe three categories have a natural order, but differences between adjacent categories cannot be interpreted as equal numerical intervals."
+    },
+    {
+      "id": "rotel_ch01_design_01",
+      "chapter": "Ch01",
+      "review_status": "independently solved, translated, and reviewed",
+      "keywords": ["experimental design", "explanatory variable", "response variable", "confounding variable"],
+      "clean_question": "Researchers compare the number of potato chips children eat while watching two types of movies. The first type is shown at 8:00 a.m. and the second at 11:00 a.m.; the researchers attribute differences in chip consumption to movie type.\n\nIdentify:\n\na. the explanatory variable;\n\nb. the response variable;\n\nc. one obvious confounding variable.",
+      "clean_answer": "a. **Explanatory variable: movie type.**\n\nb. **Response variable: number of potato chips eaten by the children.**\n\nc. **Confounding variable: movie screening time.**\n\nMovie type and screening time change simultaneously, so differences in chip consumption cannot be separated into effects of movie type versus children's differing hunger levels at 8:00 and 11:00 a.m."
+    },
+    {
+      "id": "rotel_ch02_histogram_01",
+      "chapter": "Ch02",
+      "review_status": "independently solved, translated, and reviewed",
+      "keywords": ["histogram", "frequency", "percentage"],
+      "clean_question": "A biology department groups faculty members by years of service into six intervals: $0$–$4.9$, $5$–$9.9$, $10$–$14.9$, $15$–$19.9$, $20$–$24.9$, and $25$–$29.9$. The corresponding frequencies are $3,11,10,11,3,12$. What percentage of faculty members have fewer than 10 years of service?",
+      "clean_answer": "The total number of faculty members is\n\n$$3+11+10+11+3+12=50.$$\n\nThe number with fewer than 10 years of service is\n\n$$3+11=14.$$\n\nTherefore,\n\n$$\\frac{14}{50}\\times100\\%=28\\%.$$"
+    },
+    {
+      "id": "rotel_ch02_boxplot_01",
+      "chapter": "Ch02",
+      "review_status": "independently solved, translated, and reviewed",
+      "keywords": ["box plot", "five-number summary"],
+      "clean_question": "Examine the following box plot and give the minimum value, first quartile, and median.\n\n[IMG:Assests/rotel-boxplot-five-number.png|Box plot: left whisker endpoint 24, first quartile 37, median 46, third quartile 78, right whisker endpoint 91]",
+      "clean_answer": "The minimum is **24**, the first quartile is **37**, and the median is **46**."
+    },
+    {
+      "id": "rotel_ch02_boxplot_02",
+      "chapter": "Ch02",
+      "review_status": "independently solved, translated, and reviewed",
+      "keywords": ["box plot", "quartiles", "percentile"],
+      "clean_question": "The figure below shows a box plot of annual salaries for Los Angeles attorneys (in thousands of dollars). Approximately what percentage of attorneys have annual salaries between 152,000 dollars and 252,000 dollars? Explain your reasoning.\n\n[IMG:Assests/rotel-boxplot-salary.png|Box plot of attorney salaries: minimum 152, first quartile 195, median 252, third quartile 308, maximum 351]",
+      "clean_answer": "Approximately **50%**. From the minimum to the median spans the first and second quartile intervals; each contains approximately 25% of the observations, for a total of $25\\%+25\\%=50\\%$."
+    },
+    {
+      "id": "ch02_q19",
+      "chapter": "Ch02",
+      "review_status": "independently solved, normalized, and reviewed",
+      "keywords": ["mean", "median", "mode"],
+      "clean_question": "Calculate the mean, median, and mode of each population.\n\na. $9,8,10,10,12,6,11,10,12,8$\n\nb. $110,120,70,90,90,100,80,130,140$",
+      "clean_answer": "a. The sum is 96 and $n=10$, so the mean is $96/10=9.6$. The sorted data are $6,8,8,9,10,10,10,11,12,12$, giving median 10 and mode 10.\n\nb. The sum is 930 and $n=9$, so the mean is $930/9\\approx103.33$. The sorted data are $70,80,90,90,100,110,120,130,140$, giving median 100 and mode 90."
+    },
+    {
+      "id": "rotel_ch03_center_01",
+      "chapter": "Ch03",
+      "review_status": "independently solved, translated, and reviewed",
+      "keywords": ["mean", "median", "measures of center"],
+      "clean_question": "The numbers of commuter students in four semesters were $8,17,14,17$. Find the mean and median.",
+      "clean_answer": "The mean is\n\n$$\\bar{x}=\\frac{8+17+14+17}{4}=14.$$\n\nAfter sorting, the values are $8,14,17,17$, so the median is\n\n$$\\frac{14+17}{2}=15.5.$$"
+    },
+    {
+      "id": "rotel_ch03_center_02",
+      "chapter": "Ch03",
+      "review_status": "independently solved, translated, and reviewed",
+      "keywords": ["mean", "median", "comparison"],
+      "clean_question": "The numbers of resident students in four semesters were $22,13,16,13$.\n\na. Find the mean and median.\n\nb. To compare the total numbers of commuter and resident students across the four semesters, should you compare the means or the medians? Explain why. The commuter-student counts were $8,17,14,17$.",
+      "clean_answer": "a. The mean number of resident students is\n\n$$\\bar{x}=\\frac{22+13+16+13}{4}=16.$$\n\nThe sorted values are $13,13,16,22$, so the median is\n\n$$\\frac{13+16}{2}=14.5.$$\n\nb. Compare the **means**. Both groups cover the same four semesters, so multiplying the mean by 4 gives the total. The resident-student mean is 16, while the commuter-student mean is 14; therefore, the resident-student total is larger."
+    },
+    {
+      "id": "rotel_ch04_probability_01",
+      "chapter": "Ch04",
+      "review_status": "independently solved, translated, and reviewed",
+      "keywords": ["conditional probability", "union", "intersection"],
+      "clean_question": "A bag contains 12 cards: 7 gray cards numbered 1–7 and 5 yellow cards numbered 1–5. Draw one card at random. Let $G$ denote “a gray card is drawn” and $E$ denote “the card number is even.” Find $P(G)$, $P(E)$, $P(G\\cap E)$, $P(G\\cup E)$, $P(G\\mid E)$, and $P(E\\mid G)$.",
+      "clean_answer": "There are 5 even-numbered cards: gray 2, 4, 6 and yellow 2, 4; 3 are gray even cards. Therefore\n\n$$P(G)=\\frac7{12},\\qquad P(E)=\\frac5{12},$$\n\n$$P(G\\cap E)=\\frac3{12}=\\frac14,$$\n\n$$P(G\\cup E)=\\frac{7+5-3}{12}=\\frac34,$$\n\n$$P(G\\mid E)=\\frac35,\\qquad P(E\\mid G)=\\frac37.$$"
+    },
+    {
+      "id": "rotel_ch04_probability_02",
+      "chapter": "Ch04",
+      "review_status": "independently solved, translated, and reviewed",
+      "keywords": ["independent events", "sampling with replacement", "complement"],
+      "clean_question": "A bag contains 15 cards, 9 gray and 6 yellow. Two draws are made with replacement. Let $G_1$ and $G_2$ denote gray on the first and second draws, respectively, and let $A$ denote “gray is drawn at least once.” Find $P(G_1\\cap G_2)$, $P(A)$, and $P(G_2\\mid G_1)$.",
+      "clean_answer": "With replacement, the draws are independent.\n\n$$P(G_1\\cap G_2)=\\left(\\frac9{15}\\right)^2=0.36.$$\n\nThe complement of at least one gray is two yellows, so\n\n$$P(A)=1-\\left(\\frac6{15}\\right)^2=0.84.$$\n\nBy independence,\n\n$$P(G_2\\mid G_1)=P(G_2)=\\frac9{15}=0.6.$$"
+    },
+    {
+      "id": "rotel_ch04_probability_03",
+      "chapter": "Ch04",
+      "review_status": "independently solved, translated, and reviewed",
+      "keywords": ["addition rule", "complement"],
+      "clean_question": "For a type of cookie, $P(C)=0.43$ for containing chocolate, $P(N)=0.12$ for containing nuts, and $P(C\\cap N)=0.03$ for containing both. Find the probability that a cookie contains chocolate or nuts and the probability that it contains neither.",
+      "clean_answer": "By the addition rule,\n\n$$P(C\\cup N)=0.43+0.12-0.03=0.52.$$\n\nTherefore,\n\n$$P(\\text{neither})=1-P(C\\cup N)=1-0.52=0.48.$$"
+    },
+    {
+      "id": "rotel_ch04_probability_04",
+      "chapter": "Ch04",
+      "review_status": "independently solved, translated, and reviewed",
+      "keywords": ["contingency table", "conditional probability", "marginal probability"],
+      "clean_question": "A shop sold 226 ice creams, summarized below.\n\n| Container | Chocolate | Vanilla | Swirl | Strawberry | Total |\n|---|---:|---:|---:|---:|---:|\n| Cup | 20 | 6 | 17 | 4 | 47 |\n| Cone | 82 | 12 | 70 | 15 | 179 |\n| Total | 102 | 18 | 87 | 19 | 226 |\n\nFind:\n\na. the probability of a cup;\n\nb. the probability of chocolate or swirl;\n\nc. the probability of chocolate and a cup;\n\nd. the probability of strawberry given a cone;\n\ne. the probability of not chocolate.",
+      "clean_answer": "a. $P(\\text{cup})=47/226\\approx0.2080$.\n\nb. The flavors are mutually exclusive, so $P(\\text{chocolate}\\cup\\text{swirl})=189/226\\approx0.8363$.\n\nc. $P(\\text{chocolate}\\cap\\text{cup})=20/226\\approx0.0885$.\n\nd. $P(\\text{strawberry}\\mid\\text{cone})=15/179\\approx0.0838$.\n\ne. $P(\\text{not chocolate})=124/226\\approx0.5487$."
+    },
+    {
+      "id": "rotel_ch04_probability_05",
+      "chapter": "Ch04",
+      "review_status": "independently solved, translated, and reviewed",
+      "keywords": ["contingency table", "union", "complement"],
+      "clean_question": "Among 100 nurses, 29 live alone and rent, 21 live alone and own, 35 do not live alone and rent, and 15 do not live alone and own. Find the probability of:\n\na. renting or living alone;\n\nb. owning or not living alone;\n\nc. renting or not living alone.",
+      "clean_answer": "a. The complement is owning and not living alone, so $1-15/100=0.85$.\n\nb. The complement is renting and living alone, so $1-29/100=0.71$.\n\nc. The complement is owning and living alone, so $1-21/100=0.79$."
+    },
+    {
+      "id": "rotel_ch05_expectation_01",
+      "chapter": "Ch05",
+      "review_status": "independently solved, translated, and reviewed",
+      "keywords": ["discrete random variable", "expected value", "net payoff"],
+      "clean_question": "A spinner lands in regions A, B, C, and D with probabilities $4/12$, $3/12$, $1/12$, and $4/12$, respectively. Each game costs 4 dollars. Landing on B pays a 10-dollar bonus, landing on D pays a 0.10-dollar bonus, and A or C pays no bonus. Find the expected net payoff per game.",
+      "clean_answer": "The net payoffs are 6 dollars for B, $-3.90$ dollars for D, and $-4$ dollars for A or C. Therefore,\n\n$$E(X)=\\frac3{12}(6)+\\frac4{12}(-3.9)+\\frac5{12}(-4)=-1.4667.$$\n\nThe player loses approximately **1.47 dollars per game** on average."
+    },
+    {
+      "id": "rotel_ch06_normal_01",
+      "chapter": "Ch06",
+      "review_status": "independently solved, translated, and reviewed",
+      "keywords": ["normal distribution", "standardization", "tail probability"],
+      "clean_question": "Adult male height $X$, in inches, follows a normal distribution $N(66,2.5^2)$.\n\na. Find $P(65<X<70)$.\n\nb. Find the percentage of men whose height exceeds 71.5 inches.",
+      "clean_answer": "a. Standardize: $z_1=(65-66)/2.5=-0.4$ and $z_2=(70-66)/2.5=1.6$. Therefore,\n\n$$P(65<X<70)=\\Phi(1.6)-\\Phi(-0.4)\\approx0.6006.$$\n\nb. Here $z=(71.5-66)/2.5=2.2$, so\n\n$$P(X>71.5)=1-\\Phi(2.2)\\approx0.0139.$$\n\nThe percentage is approximately **1.39%**."
+    },
+    {
+      "id": "rotel_ch07_sampling_mean_01",
+      "chapter": "Ch07",
+      "review_status": "independently solved, translated, and reviewed",
+      "keywords": ["sample mean", "standard error", "Central Limit Theorem"],
+      "clean_question": "The weight of canned tuna is normally distributed with mean 5.95 ounces and standard deviation 0.2 ounces. The original sample size is 42 and is then doubled to 84.\n\na. How does the standard deviation of the sample mean change?\n\nb. How does the expected value of the sample mean change?\n\nc. Must the normality of the sample mean rely on the Central Limit Theorem?",
+      "clean_answer": "a. The standard error is $\\sigma/\\sqrt n$, so\n\n$$\\frac{SE_{84}}{SE_{42}}=\\sqrt{\\frac{42}{84}}=\\frac1{\\sqrt2}.$$\n\nIt becomes $1/\\sqrt2$ of its original value.\n\nb. $E(\\bar X)=\\mu=5.95$, which is unchanged by sample size.\n\nc. No. Because the population itself is normal, the sample mean is exactly normal for any sample size. The Central Limit Theorem is mainly needed for large-sample approximations when the population is nonnormal or unknown."
+    },
+    {
+      "id": "rotel_ch08_ci_01",
+      "chapter": "Ch08",
+      "review_status": "independently solved, translated, and reviewed",
+      "keywords": ["confidence interval", "margin of error", "sample size"],
+      "clean_question": "A report states that users of an antihypertensive drug experience a mean reduction in systolic blood pressure of 24 mmHg, with a margin of error of $\\pm4$ mmHg at the 95% confidence level.\n\na. What is the lower endpoint of the confidence interval?\n\nb. If the population standard deviation is 9 mmHg, what minimum sample size is required for the margin of error of a 95% confidence interval to be less than 2 mmHg?",
+      "clean_answer": "a. The lower endpoint is $24-4=20$ mmHg.\n\nb. Using $z_{0.975}=1.96$, require\n\n$$n>\\left(\\frac{1.96(9)}{2}\\right)^2=77.79.$$\n\nRounding up, at least **78 participants** are required."
+    },
+    {
+      "id": "rotel_ch08_ci_02",
+      "chapter": "Ch08",
+      "review_status": "independently solved, translated, and reviewed",
+      "keywords": ["population mean", "known standard deviation", "confidence interval interpretation"],
+      "clean_question": "A random sample of 30 used-car transactions has sample mean sale price 2,000 dollars. The population standard deviation is known to be 300 dollars.\n\na. Find the 99% confidence interval for the population mean sale price, rounding to two decimals.\n\nb. Correctly interpret this confidence interval.",
+      "clean_answer": "a. The standard error is\n\n$$SE=\\frac{300}{\\sqrt{30}}\\approx54.7723.$$\n\nWith $z_{0.995}\\approx2.5758$, the margin of error is approximately $141.084$. Thus the 99% confidence interval is\n\n$$(1858.92,2141.08)\\text{ dollars}.$$\n\nb. We are 99% confident that the population mean sale price lies in this interval. In repeated sampling, about 99% of intervals constructed by this method would contain the true population mean. This is not an interval for an individual car's price."
+    },
+    {
+      "id": "rotel_ch08_ci_03",
+      "chapter": "Ch08",
+      "review_status": "independently solved, translated, and reviewed",
+      "keywords": ["t confidence interval", "small sample", "population mean"],
+      "clean_question": "A random sample of 15 television quiz-show winners received the following prize amounts, in dollars: $43{,}460, 38{,}213, 42{,}876, 38{,}921, 36{,}709, 26{,}735, 35{,}472, 31{,}319, 42{,}833, 27{,}159, 32{,}799, 39{,}271, 44{,}016, 28{,}191, 37{,}087$. With the population standard deviation unknown, construct a 94% confidence interval for the population mean prize amount.",
+      "clean_answer": "The sample statistics are $n=15$, $\\bar x=36{,}337.4$, and $s\\approx5{,}948.61$. With $df=14$ and $t_{0.97,14}\\approx2.04617$, the margin of error is\n\n$$E=2.04617\\frac{5948.61}{\\sqrt{15}}\\approx3142.76.$$\n\nTherefore, the 94% confidence interval is\n\n$$36{,}337.4\\pm3{,}142.76=(33{,}194.64,39{,}480.16)\\text{ dollars}.$$"
+    },
+    {
+      "id": "rotel_ch08_proportion_n_01",
+      "chapter": "Ch08",
+      "review_status": "independently solved, translated, and reviewed",
+      "keywords": ["population proportion", "sample size", "margin of error"],
+      "clean_question": "You plan to estimate the proportion of students who attend home basketball games. With no prior estimate of the proportion, what minimum number of students must be surveyed so that the margin of error of a 99% confidence interval is less than 0.01?",
+      "clean_answer": "With no prior estimate, use the conservative value $p=0.5$. Using $z_{0.995}\\approx2.575829$,\n\n$$n>\\frac{(2.575829)^2(0.5)(0.5)}{(0.01)^2}\\approx16587.24.$$\n\nBecause the margin of error must be strictly less than 0.01, round up to **16,588 students**."
+    },
+    {
+      "id": "rotel_ch09_hypothesis_01",
+      "chapter": "Ch09",
+      "review_status": "independently solved, translated, and reviewed",
+      "keywords": ["null hypothesis", "alternative hypothesis", "two-sided test"],
+      "clean_question": "The target mean diameter of a component's spindle is 6 mm. A researcher wants to test whether the production process's mean diameter has deviated from the target. State the null and alternative hypotheses.",
+      "clean_answer": "$$H_0:\\mu=6\\text{ mm},\\qquad H_a:\\mu\\ne6\\text{ mm}.$$\n\n“Deviated” includes both larger and smaller values, so the alternative is two-sided."
+    },
+    {
+      "id": "rotel_ch09_hypothesis_02",
+      "chapter": "Ch09",
+      "review_status": "independently solved, translated, and reviewed",
+      "keywords": ["null hypothesis", "alternative hypothesis", "left-tailed test"],
+      "clean_question": "The national mean selling price of a product is 55 dollars. A researcher claims that the population mean selling price in a particular area is less than 55 dollars. State the null and alternative hypotheses.",
+      "clean_answer": "$$H_0:\\mu=55,\\qquad H_a:\\mu<55.$$\n\nThe claim “less than” implies a left-tailed alternative."
+    },
+    {
+      "id": "rotel_ch09_errors_01",
+      "chapter": "Ch09",
+      "review_status": "independently solved, translated, and reviewed",
+      "keywords": ["Type I error", "Type II error", "hypothesis testing"],
+      "clean_question": "Test $H_0:\\mu=98.6^\\circ\\mathrm{F}$ versus $H_a:\\mu\\ne98.6^\\circ\\mathrm{F}$. Classify each outcome as a correct decision, Type I error, or Type II error.\n\na. $H_0$ is true but rejected.\n\nb. $H_0$ is false and rejected.\n\nc. $H_0$ is true and not rejected.\n\nd. $H_0$ is false but not rejected.",
+      "clean_answer": "a. **Type I error:** a true null hypothesis is rejected.\n\nb. **Correct decision:** a false null hypothesis is rejected.\n\nc. **Correct decision:** a true null hypothesis is not rejected.\n\nd. **Type II error:** a false null hypothesis is not rejected."
+    },
+    {
+      "id": "rotel_ch09_ttest_01",
+      "chapter": "Ch09",
+      "review_status": "independently solved, translated, and reviewed",
+      "keywords": ["one-sample t test", "right-tailed test", "test statistic"],
+      "clean_question": "A sample of lifespans from 14 obituaries in a rural area has mean 81.09 years and sample standard deviation 0.91 years. At $\\alpha=0.10$, test whether the population mean lifespan in this area exceeds 77 years.",
+      "clean_answer": "Test\n\n$$H_0:\\mu=77\\quad\\text{versus}\\quad H_a:\\mu>77.$$\n\nBecause $\\sigma$ is unknown, use a one-sample $t$ test:\n\n$$t=\\frac{81.09-77}{0.91/\\sqrt{14}}\\approx16.817,\\qquad df=13.$$\n\nThe right-tail critical value is $t_{0.90,13}\\approx1.350$. Since $16.817>1.350$, reject $H_0$. There is sufficient evidence that the population mean lifespan exceeds 77 years."
+    },
+    {
+      "id": "rotel_ch13_line_01",
+      "chapter": "Ch13",
+      "review_status": "independently solved, translated, and reviewed",
+      "keywords": ["line equation", "slope", "intercept"],
+      "clean_question": "A line has y-intercept 3 and passes through $(1,5)$. Find its slope-intercept equation.",
+      "clean_answer": "The slope is\n\n$$m=\\frac{5-3}{1-0}=2.$$\n\nSince the y-intercept is 3, the line is\n\n$$y=2x+3.$$"
+    },
+    {
+      "id": "rotel_ch13_line_02",
+      "chapter": "Ch13",
+      "review_status": "independently solved, translated, and reviewed",
+      "keywords": ["line equation", "slope from a point and intercept"],
+      "clean_question": "A line has y-intercept 1 and passes through $(9,-5)$. Find its slope-intercept equation.",
+      "clean_answer": "The slope is\n\n$$m=\\frac{-5-1}{9-0}=-\\frac23.$$\n\nTherefore, the line is\n\n$$y=-\\frac23x+1.$$"
+    },
+    {
+      "id": "rotel_ch13_causation_01",
+      "chapter": "Ch13",
+      "review_status": "independently solved, translated, and reviewed",
+      "keywords": ["association", "causation", "lurking variable"],
+      "clean_question": "Beer sales and ice-cream sales in a region show a strong positive association. Can we conclude that increasing beer sales causes ice-cream sales to increase? Identify one plausible lurking variable and explain what study design would be more appropriate for establishing causation.",
+      "clean_answer": "No. Association alone does not establish causation. Outdoor temperature or season is a plausible lurking variable: when the weather is hot, sales of both products may rise. To establish causation, use a well-controlled randomized experiment that controls other factors. If an experiment is infeasible, use a rigorous quasi-experimental or causal-inference design rather than relying only on a simple correlation coefficient."
+    },
+    {
+      "id": "rotel_ch13_slope_01",
+      "chapter": "Ch13",
+      "review_status": "independently solved, translated, and reviewed",
+      "keywords": ["least-squares regression", "slope interpretation"],
+      "clean_question": "A regression equation predicting weight $Y$, in kilograms, from height $X$, in centimeters, is $\\hat Y=0.99X-101.24$. Interpret the slope 0.99 in context.",
+      "clean_answer": "Within the range of heights for which this model is appropriate, each 1-centimeter increase in height is associated with a 0.99-kilogram increase in predicted mean weight. The slope describes a change in the predicted mean; it does not mean every individual's weight increases by exactly 0.99 kilograms."
+    },
+    {
+      "id": "rotel_ch13_regression_01",
+      "chapter": "Ch13",
+      "review_status": "independently solved, translated, and reviewed",
+      "keywords": ["correlation coefficient", "least-squares regression", "regression equation"],
+      "clean_question": "For 8 baseball teams, batting average $x$, recorded in thousandths, and number of wins $y$ are $(272,40),(262,45),(317,30),(304,41),(276,44),(286,45),(263,50),(320,37)$.\n\na. Compute Pearson's correlation coefficient.\n\nb. Find the least-squares regression equation for predicting wins from batting average.",
+      "clean_answer": "The means are $\\bar{x}=287.5$ and $\\bar{y}=41.5$. Let\n\n$$S_{xx}=\\sum(x_i-\\bar{x})^2,\\quad S_{yy}=\\sum(y_i-\\bar{y})^2,\\quad S_{xy}=\\sum(x_i-\\bar{x})(y_i-\\bar{y}).$$\n\na. The correlation coefficient is\n\n$$r=\\frac{S_{xy}}{\\sqrt{S_{xx}S_{yy}}}\\approx-0.8074.$$\n\nb. The slope and intercept are\n\n$$b_1=\\frac{S_{xy}}{S_{xx}}\\approx-0.20973,$$\n\n$$b_0=\\bar{y}-b_1\\bar{x}\\approx101.7968.$$\n\nThus the regression equation is\n\n$$\\hat{y}=101.7968-0.20973x.$$\n\nThe data show a fairly strong negative association."
+    }
+  ]
+}

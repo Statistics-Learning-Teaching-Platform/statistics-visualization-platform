@@ -119,8 +119,9 @@
     },
     {
       "id": "rotel_ch07_sampling_mean_01",
-      "answer": "a. 样本均值的标准误为 $\\sigma/\\sqrt n$，所以\n\n$$\\frac{SE_{84}}{SE_{42}}=\\sqrt{\\frac{42}{84}}=\\frac1{\\sqrt2}.$$\n\n标准误缩小为原来的 $1/\\sqrt2$。\n\nb. $E(\\bar X)=\\mu=5.95$，不随样本量改变。\n\nc. 不必须依赖中心极限定理。由于总体本身服从正态分布，任意样本量下样本均值都精确服从正态分布；中心极限定理主要用于总体非正态或未知时的大样本近似。",
-      "review_status": "答案已独立推导并审核"
+      "answer": "a. The standard error is $\\sigma/\\sqrt n$, so\n\n$$\\frac{SE_{84}}{SE_{42}}=\\sqrt{\\frac{42}{84}}=\\frac1{\\sqrt2}.$$\n\nIt becomes $1/\\sqrt2$ of its original value.\n\nb. $E(\\bar X)=\\mu=5.95$, which is unchanged by sample size.\n\nc. No. Because the population itself is normal, the sample mean is exactly normal for any sample size. The Central Limit Theorem is mainly needed for large-sample approximations when the population is nonnormal or unknown.",
+      "review_status": "independently solved, translated, and reviewed",
+      "audit_pack": "english-normalization-v1"
     },
     {
       "id": "ch07_q22",

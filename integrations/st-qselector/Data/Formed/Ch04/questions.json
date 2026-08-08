@@ -427,97 +427,102 @@
     },
     {
       "id": "rotel_ch04_probability_01",
-      "content": "袋中有12张卡片：7张灰色卡片编号1至7，5张黄色卡片编号1至5。随机抽取一张。令 $G$ 表示“抽到灰色卡片”，$E$ 表示“编号为偶数”。求 $P(G)$、$P(E)$、$P(G\\cap E)$、$P(G\\cup E)$、$P(G\\mid E)$ 和 $P(E\\mid G)$。",
+      "content": "A bag contains 12 cards: 7 gray cards numbered 1–7 and 5 yellow cards numbered 1–5. Draw one card at random. Let $G$ denote “a gray card is drawn” and $E$ denote “the card number is even.” Find $P(G)$, $P(E)$, $P(G\\cap E)$, $P(G\\cup E)$, $P(G\\mid E)$, and $P(E\\mid G)$.",
       "source": "ROTEL Statistical Problem Sets in WeBWorK — 3 Probability Problem 1 — https://rotel.pressbooks.pub/statsproblemsets/chapter/assignment-3-probability/",
       "source_url": "https://rotel.pressbooks.pub/statsproblemsets/chapter/assignment-3-probability/",
       "source_problem": "3 Probability Problem 1",
       "license": "CC BY-NC-SA 4.0",
       "attribution": "Rachael Norton and Peter Staab, 2023",
-      "review_status": "答案已独立推导并审核",
+      "review_status": "independently solved, translated, and reviewed",
       "type": "综合题",
       "difficulty": 2,
       "keywords": [
-        "条件概率",
-        "并集",
-        "交集"
+        "conditional probability",
+        "union",
+        "intersection"
       ],
       "formula_refs": [],
-      "data_refs": []
+      "data_refs": [],
+      "audit_pack": "english-normalization-v1"
     },
     {
       "id": "rotel_ch04_probability_02",
-      "content": "袋中有15张卡片，其中9张灰色、6张黄色。有放回地连续抽取两次。令 $G_1$、$G_2$ 分别表示第一次、第二次抽到灰色，$A$ 表示“两次中至少一次抽到灰色”。求 $P(G_1\\cap G_2)$、$P(A)$ 和 $P(G_2\\mid G_1)$。",
+      "content": "A bag contains 15 cards, 9 gray and 6 yellow. Two draws are made with replacement. Let $G_1$ and $G_2$ denote gray on the first and second draws, respectively, and let $A$ denote “gray is drawn at least once.” Find $P(G_1\\cap G_2)$, $P(A)$, and $P(G_2\\mid G_1)$.",
       "source": "ROTEL Statistical Problem Sets in WeBWorK — 3 Probability Problem 2 — https://rotel.pressbooks.pub/statsproblemsets/chapter/assignment-3-probability/",
       "source_url": "https://rotel.pressbooks.pub/statsproblemsets/chapter/assignment-3-probability/",
       "source_problem": "3 Probability Problem 2",
       "license": "CC BY-NC-SA 4.0",
       "attribution": "Rachael Norton and Peter Staab, 2023",
-      "review_status": "答案已独立推导并审核",
+      "review_status": "independently solved, translated, and reviewed",
       "type": "综合题",
       "difficulty": 2,
       "keywords": [
-        "独立事件",
-        "有放回抽样",
-        "补事件"
+        "independent events",
+        "sampling with replacement",
+        "complement"
       ],
       "formula_refs": [],
-      "data_refs": []
+      "data_refs": [],
+      "audit_pack": "english-normalization-v1"
     },
     {
       "id": "rotel_ch04_probability_03",
-      "content": "某种饼干含巧克力的概率为0.43，含坚果的概率为0.12，同时含巧克力和坚果的概率为0.03。求饼干含巧克力或坚果的概率，以及两者均不含的概率。",
+      "content": "For a type of cookie, $P(C)=0.43$ for containing chocolate, $P(N)=0.12$ for containing nuts, and $P(C\\cap N)=0.03$ for containing both. Find the probability that a cookie contains chocolate or nuts and the probability that it contains neither.",
       "source": "ROTEL Statistical Problem Sets in WeBWorK — 3 Probability Problem 3 — https://rotel.pressbooks.pub/statsproblemsets/chapter/assignment-3-probability/",
       "source_url": "https://rotel.pressbooks.pub/statsproblemsets/chapter/assignment-3-probability/",
       "source_problem": "3 Probability Problem 3",
       "license": "CC BY-NC-SA 4.0",
       "attribution": "Rachael Norton and Peter Staab, 2023",
-      "review_status": "答案已独立推导并审核",
+      "review_status": "independently solved, translated, and reviewed",
       "type": "计算题",
       "difficulty": 1,
       "keywords": [
-        "加法公式",
-        "补事件"
+        "addition rule",
+        "complement"
       ],
       "formula_refs": [],
-      "data_refs": []
+      "data_refs": [],
+      "audit_pack": "english-normalization-v1"
     },
     {
       "id": "rotel_ch04_probability_04",
-      "content": "某店共售出226份冰淇淋，销售记录如下。\n\n| 容器 | 巧克力 | 香草 | 旋涡口味 | 草莓 | 合计 |\n| --- | ---: | ---: | ---: | ---: | ---: |\n| 杯装 | 20 | 6 | 17 | 4 | 47 |\n| 蛋筒 | 82 | 12 | 70 | 15 | 179 |\n| 合计 | 102 | 18 | 87 | 19 | 226 |\n\n求：a. 杯装的概率；b. 巧克力或旋涡口味的概率；c. 巧克力且杯装的概率；d. 已知为蛋筒时是草莓味的概率；e. 不是巧克力味的概率。",
+      "content": "A shop sold 226 ice creams, summarized below.\n\n| Container | Chocolate | Vanilla | Swirl | Strawberry | Total |\n|---|---:|---:|---:|---:|---:|\n| Cup | 20 | 6 | 17 | 4 | 47 |\n| Cone | 82 | 12 | 70 | 15 | 179 |\n| Total | 102 | 18 | 87 | 19 | 226 |\n\nFind:\n\na. the probability of a cup;\n\nb. the probability of chocolate or swirl;\n\nc. the probability of chocolate and a cup;\n\nd. the probability of strawberry given a cone;\n\ne. the probability of not chocolate.",
       "source": "ROTEL Statistical Problem Sets in WeBWorK — 3 Probability Problem 4 — https://rotel.pressbooks.pub/statsproblemsets/chapter/assignment-3-probability/",
       "source_url": "https://rotel.pressbooks.pub/statsproblemsets/chapter/assignment-3-probability/",
       "source_problem": "3 Probability Problem 4",
       "license": "CC BY-NC-SA 4.0",
       "attribution": "Rachael Norton and Peter Staab, 2023",
-      "review_status": "答案已独立推导并审核",
+      "review_status": "independently solved, translated, and reviewed",
       "type": "综合题",
       "difficulty": 3,
       "keywords": [
-        "列联表",
-        "条件概率",
-        "边际概率"
+        "contingency table",
+        "conditional probability",
+        "marginal probability"
       ],
       "formula_refs": [],
-      "data_refs": []
+      "data_refs": [],
+      "audit_pack": "english-normalization-v1"
     },
     {
       "id": "rotel_ch04_probability_05",
-      "content": "调查100名护士的居住情况：独居且租房29人，独居且自有住房21人；非独居且租房35人，非独居且自有住房15人。求：a. 租房或独居；b. 自有住房或非独居；c. 租房或非独居的概率。",
+      "content": "Among 100 nurses, 29 live alone and rent, 21 live alone and own, 35 do not live alone and rent, and 15 do not live alone and own. Find the probability of:\n\na. renting or living alone;\n\nb. owning or not living alone;\n\nc. renting or not living alone.",
       "source": "ROTEL Statistical Problem Sets in WeBWorK — 3 Probability Problem 5 — https://rotel.pressbooks.pub/statsproblemsets/chapter/assignment-3-probability/",
       "source_url": "https://rotel.pressbooks.pub/statsproblemsets/chapter/assignment-3-probability/",
       "source_problem": "3 Probability Problem 5",
       "license": "CC BY-NC-SA 4.0",
       "attribution": "Rachael Norton and Peter Staab, 2023",
-      "review_status": "答案已独立推导并审核",
+      "review_status": "independently solved, translated, and reviewed",
       "type": "综合题",
       "difficulty": 2,
       "keywords": [
-        "列联表",
-        "并集",
-        "补事件"
+        "contingency table",
+        "union",
+        "complement"
       ],
       "formula_refs": [],
-      "data_refs": []
+      "data_refs": [],
+      "audit_pack": "english-normalization-v1"
     }
   ]
 }

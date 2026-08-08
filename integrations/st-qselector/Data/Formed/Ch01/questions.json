@@ -172,185 +172,195 @@
     },
     {
       "id": "rotel_ch01_variables_01",
-      "content": "下列哪些情形收集的是分类数据？（多选）\n\nA. 测量温哥华家庭拥有的电脑数量\n\nB. 调查统计学课程学生的国籍\n\nC. 按黑色、棕色、金色、白色、红色、其他发色或秃头对学生分类计数\n\nD. 将新生儿划分为低出生体重与非低出生体重两类\n\nE. 以上皆非",
+      "content": "Which of the following situations collects categorical data? (Select all that apply)\n\nA. Measuring the number of computers owned by households in Vancouver\n\nB. Surveying the nationality of students in a statistics course\n\nC. Classifying and counting students by hair color—black, brown, blond, white, red, other, or bald\n\nD. Classifying newborns into low birth weight and not low birth weight\n\nE. None of the above",
       "source": "ROTEL Statistical Problem Sets in WeBWorK — 1.1 Problem 1 — https://rotel.pressbooks.pub/statsproblemsets/chapter/chapter-1/",
       "source_url": "https://rotel.pressbooks.pub/statsproblemsets/chapter/chapter-1/",
       "source_problem": "1.1 Problem 1",
       "license": "CC BY-NC-SA 4.0",
       "attribution": "Rachael Norton and Peter Staab, 2023",
-      "review_status": "答案已独立推导并审核",
+      "review_status": "independently solved, translated, and reviewed",
       "type": "选择题",
       "difficulty": 2,
       "keywords": [
-        "分类数据",
-        "变量类型"
+        "categorical data",
+        "variable types"
       ],
       "formula_refs": [],
-      "data_refs": []
+      "data_refs": [],
+      "audit_pack": "english-normalization-v1"
     },
     {
       "id": "rotel_ch01_variables_02",
-      "content": "临床试验中，下列哪些变量是定量变量？（多选）\n\nA. 指定性别：女性、男性、间性\n\nB. 吸烟史：每年吸烟支数\n\nC. 年龄组：20岁以下、20–30岁、30–40岁等\n\nD. 体质指数，单位为 $\\mathrm{kg}/\\mathrm{m}^2$\n\nE. 剂型编码：1=片剂，2=胶囊，3=液体，4=其他",
+      "content": "In a clinical trial, which of the following variables are quantitative variables? (Select all that apply)\n\nA. Assigned sex: female, male, intersex\n\nB. Smoking history: number of cigarettes smoked per year\n\nC. Age group: under 20, 20–30, 30–40, etc.\n\nD. Body mass index, measured in $\\mathrm{kg}/\\mathrm{m}^2$\n\nE. Dosage-form code: 1 = tablet, 2 = capsule, 3 = liquid, 4 = other",
       "source": "ROTEL Statistical Problem Sets in WeBWorK — 1.1 Problem 2 — https://rotel.pressbooks.pub/statsproblemsets/chapter/chapter-1/",
       "source_url": "https://rotel.pressbooks.pub/statsproblemsets/chapter/chapter-1/",
       "source_problem": "1.1 Problem 2",
       "license": "CC BY-NC-SA 4.0",
       "attribution": "Rachael Norton and Peter Staab, 2023",
-      "review_status": "答案已独立推导并审核",
+      "review_status": "independently solved, translated, and reviewed",
       "type": "选择题",
       "difficulty": 2,
       "keywords": [
-        "定量变量",
-        "临床试验"
+        "quantitative variables",
+        "clinical trials"
       ],
       "formula_refs": [],
-      "data_refs": []
+      "data_refs": [],
+      "audit_pack": "english-normalization-v1"
     },
     {
       "id": "rotel_ch01_sampling_01",
-      "content": "为了估计全体西雅图居民收入的中位数，研究者从西雅图居民中简单随机抽取30人。判断该样本是否具有代表性，并说明理由。",
+      "content": "To estimate the median income of all Seattle residents, a researcher takes a simple random sample of 30 Seattle residents. Is this sample representative? Explain why.",
       "source": "ROTEL Statistical Problem Sets in WeBWorK — 1.2 Problem 3(a) — https://rotel.pressbooks.pub/statsproblemsets/chapter/assignment-1-2-data-sampling/",
       "source_url": "https://rotel.pressbooks.pub/statsproblemsets/chapter/assignment-1-2-data-sampling/",
       "source_problem": "1.2 Problem 3(a)",
       "license": "CC BY-NC-SA 4.0",
       "attribution": "Rachael Norton and Peter Staab, 2023",
-      "review_status": "答案已独立推导并审核",
+      "review_status": "independently solved, translated, and reviewed",
       "type": "判断题",
       "difficulty": 1,
       "keywords": [
-        "简单随机抽样",
-        "代表性"
+        "simple random sampling",
+        "representativeness"
       ],
       "formula_refs": [],
-      "data_refs": []
+      "data_refs": [],
+      "audit_pack": "english-normalization-v1"
     },
     {
       "id": "rotel_ch01_sampling_02",
-      "content": "为了估计所有成年人的平均体重，研究者从18岁以上人群中进行简单随机抽样。判断该样本是否具有代表性，并说明理由。",
+      "content": "To estimate the mean weight of all adults, a researcher takes a simple random sample from people aged 18 and older. Is this sample representative? Explain why.",
       "source": "ROTEL Statistical Problem Sets in WeBWorK — 1.2 Problem 3(b) — https://rotel.pressbooks.pub/statsproblemsets/chapter/assignment-1-2-data-sampling/",
       "source_url": "https://rotel.pressbooks.pub/statsproblemsets/chapter/assignment-1-2-data-sampling/",
       "source_problem": "1.2 Problem 3(b)",
       "license": "CC BY-NC-SA 4.0",
       "attribution": "Rachael Norton and Peter Staab, 2023",
-      "review_status": "答案已独立推导并审核",
+      "review_status": "independently solved, translated, and reviewed",
       "type": "判断题",
       "difficulty": 1,
       "keywords": [
-        "简单随机抽样",
-        "目标总体"
+        "simple random sampling",
+        "target population"
       ],
       "formula_refs": [],
-      "data_refs": []
+      "data_refs": [],
+      "audit_pack": "english-normalization-v1"
     },
     {
       "id": "rotel_ch01_sampling_03",
-      "content": "研究者只在工作日白天进行电话调查，并据此估计某候选人赢得选举的机会。判断该样本是否具有代表性，并说明理由。",
+      "content": "A researcher conducts telephone surveys only during weekday daytime hours and uses the results to estimate a candidate's chance of winning an election. Is this sample representative? Explain why.",
       "source": "ROTEL Statistical Problem Sets in WeBWorK — 1.2 Problem 3(c) — https://rotel.pressbooks.pub/statsproblemsets/chapter/assignment-1-2-data-sampling/",
       "source_url": "https://rotel.pressbooks.pub/statsproblemsets/chapter/assignment-1-2-data-sampling/",
       "source_problem": "1.2 Problem 3(c)",
       "license": "CC BY-NC-SA 4.0",
       "attribution": "Rachael Norton and Peter Staab, 2023",
-      "review_status": "答案已独立推导并审核",
+      "review_status": "independently solved, translated, and reviewed",
       "type": "判断题",
       "difficulty": 2,
       "keywords": [
-        "抽样偏差",
-        "电话调查"
+        "sampling bias",
+        "telephone survey"
       ],
       "formula_refs": [],
-      "data_refs": []
+      "data_refs": [],
+      "audit_pack": "english-normalization-v1"
     },
     {
       "id": "rotel_ch01_sampling_04",
-      "content": "研究者从当地一家医院抽取40名患者测量胆固醇，并试图估计全体美国公民的平均胆固醇。判断该样本是否具有代表性，并说明理由。",
+      "content": "A researcher samples 40 patients from a local hospital, measures their cholesterol, and attempts to estimate the mean cholesterol level of all U.S. citizens. Is this sample representative? Explain why.",
       "source": "ROTEL Statistical Problem Sets in WeBWorK — 1.2 Problem 3(d) — https://rotel.pressbooks.pub/statsproblemsets/chapter/assignment-1-2-data-sampling/",
       "source_url": "https://rotel.pressbooks.pub/statsproblemsets/chapter/assignment-1-2-data-sampling/",
       "source_problem": "1.2 Problem 3(d)",
       "license": "CC BY-NC-SA 4.0",
       "attribution": "Rachael Norton and Peter Staab, 2023",
-      "review_status": "答案已独立推导并审核",
+      "review_status": "independently solved, translated, and reviewed",
       "type": "判断题",
       "difficulty": 2,
       "keywords": [
-        "抽样偏差",
-        "外推"
+        "sampling bias",
+        "extrapolation"
       ],
       "formula_refs": [],
-      "data_refs": []
+      "data_refs": [],
+      "audit_pack": "english-normalization-v1"
     },
     {
       "id": "rotel_ch01_measurement_01",
-      "content": "问卷问题“你觉得在纽约的停留时间足够长吗？”的回答属于哪一种测量水平？\n\nA. 名义尺度\n\nB. 序数尺度\n\nC. 区间尺度\n\nD. 比率尺度",
+      "content": "What level of measurement applies to responses to the questionnaire item “Do you feel that you have stayed in New York long enough?”\n\nA. Nominal\n\nB. Ordinal\n\nC. Interval\n\nD. Ratio",
       "source": "ROTEL Statistical Problem Sets in WeBWorK — 1.3 Problem 1(1) — https://rotel.pressbooks.pub/statsproblemsets/chapter/assignment-1-3-frequency/",
       "source_url": "https://rotel.pressbooks.pub/statsproblemsets/chapter/assignment-1-3-frequency/",
       "source_problem": "1.3 Problem 1(1)",
       "license": "CC BY-NC-SA 4.0",
       "attribution": "Rachael Norton and Peter Staab, 2023",
-      "review_status": "答案已独立推导并审核",
+      "review_status": "independently solved, translated, and reviewed",
       "type": "选择题",
       "difficulty": 1,
       "keywords": [
-        "测量水平",
-        "名义数据"
+        "level of measurement",
+        "nominal data"
       ],
       "formula_refs": [],
-      "data_refs": []
+      "data_refs": [],
+      "audit_pack": "english-normalization-v1"
     },
     {
       "id": "rotel_ch01_measurement_02",
-      "content": "统计学专业新博士毕业生的起薪属于哪一种测量水平？\n\nA. 名义尺度\n\nB. 序数尺度\n\nC. 区间尺度\n\nD. 比率尺度",
+      "content": "What level of measurement applies to the starting salaries of newly graduated PhDs in statistics?\n\nA. Nominal\n\nB. Ordinal\n\nC. Interval\n\nD. Ratio",
       "source": "ROTEL Statistical Problem Sets in WeBWorK — 1.3 Problem 2(2) — https://rotel.pressbooks.pub/statsproblemsets/chapter/assignment-1-3-frequency/",
       "source_url": "https://rotel.pressbooks.pub/statsproblemsets/chapter/assignment-1-3-frequency/",
       "source_problem": "1.3 Problem 2(2)",
       "license": "CC BY-NC-SA 4.0",
       "attribution": "Rachael Norton and Peter Staab, 2023",
-      "review_status": "答案已独立推导并审核",
+      "review_status": "independently solved, translated, and reviewed",
       "type": "选择题",
       "difficulty": 2,
       "keywords": [
-        "测量水平",
-        "比率尺度"
+        "level of measurement",
+        "ratio scale"
       ],
       "formula_refs": [],
-      "data_refs": []
+      "data_refs": [],
+      "audit_pack": "english-normalization-v1"
     },
     {
       "id": "rotel_ch01_measurement_03",
-      "content": "顾客所点薯条的大小（小份、中份、大份）属于哪一种测量水平？\n\nA. 名义尺度\n\nB. 序数尺度\n\nC. 区间尺度\n\nD. 比率尺度",
+      "content": "What level of measurement applies to the size of fries ordered by a customer (small, medium, or large)?\n\nA. Nominal\n\nB. Ordinal\n\nC. Interval\n\nD. Ratio",
       "source": "ROTEL Statistical Problem Sets in WeBWorK — 1.3 Problem 2(4) — https://rotel.pressbooks.pub/statsproblemsets/chapter/assignment-1-3-frequency/",
       "source_url": "https://rotel.pressbooks.pub/statsproblemsets/chapter/assignment-1-3-frequency/",
       "source_problem": "1.3 Problem 2(4)",
       "license": "CC BY-NC-SA 4.0",
       "attribution": "Rachael Norton and Peter Staab, 2023",
-      "review_status": "答案已独立推导并审核",
+      "review_status": "independently solved, translated, and reviewed",
       "type": "选择题",
       "difficulty": 1,
       "keywords": [
-        "测量水平",
-        "序数尺度"
+        "level of measurement",
+        "ordinal scale"
       ],
       "formula_refs": [],
-      "data_refs": []
+      "data_refs": [],
+      "audit_pack": "english-normalization-v1"
     },
     {
       "id": "rotel_ch01_design_01",
-      "content": "研究者比较儿童观看两类电影时吃掉的薯片数量。第一类电影在上午8:00播放，第二类电影在上午11:00播放，研究者把薯片数量的差异归因于电影类型。\n\n请指出：\n\na. 解释变量；\n\nb. 响应变量；\n\nc. 一个明显的混杂变量。",
+      "content": "Researchers compare the number of potato chips children eat while watching two types of movies. The first type is shown at 8:00 a.m. and the second at 11:00 a.m.; the researchers attribute differences in chip consumption to movie type.\n\nIdentify:\n\na. the explanatory variable;\n\nb. the response variable;\n\nc. one obvious confounding variable.",
       "source": "ROTEL Statistical Problem Sets in WeBWorK — 1.4 Problem 1 — https://rotel.pressbooks.pub/statsproblemsets/chapter/32/",
       "source_url": "https://rotel.pressbooks.pub/statsproblemsets/chapter/32/",
       "source_problem": "1.4 Problem 1",
       "license": "CC BY-NC-SA 4.0",
       "attribution": "Rachael Norton and Peter Staab, 2023",
-      "review_status": "答案已独立推导并审核",
+      "review_status": "independently solved, translated, and reviewed",
       "type": "综合题",
       "difficulty": 3,
       "keywords": [
-        "实验设计",
-        "解释变量",
-        "响应变量",
-        "混杂变量"
+        "experimental design",
+        "explanatory variable",
+        "response variable",
+        "confounding variable"
       ],
       "formula_refs": [],
-      "data_refs": []
+      "data_refs": [],
+      "audit_pack": "english-normalization-v1"
     }
   ]
 }

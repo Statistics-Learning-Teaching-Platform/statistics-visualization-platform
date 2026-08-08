@@ -60,96 +60,101 @@
     },
     {
       "id": "rotel_ch13_line_01",
-      "content": "一条直线的纵截距为3，并经过点 $(1,5)$。求该直线的斜截式方程。",
+      "content": "A line has y-intercept 3 and passes through $(1,5)$. Find its slope-intercept equation.",
       "source": "ROTEL Statistical Problem Sets in WeBWorK — 12.1-12.2 Problem 1 (adapted to text) — https://rotel.pressbooks.pub/statsproblemsets/chapter/12-1-12-2-linear-eqns-scatter-plots/",
       "source_url": "https://rotel.pressbooks.pub/statsproblemsets/chapter/12-1-12-2-linear-eqns-scatter-plots/",
       "source_problem": "12.1-12.2 Problem 1 (adapted to text)",
       "license": "CC BY-NC-SA 4.0",
       "attribution": "Rachael Norton and Peter Staab, 2023",
-      "review_status": "答案已独立推导并审核",
+      "review_status": "independently solved, translated, and reviewed",
       "type": "计算题",
       "difficulty": 1,
       "keywords": [
-        "直线方程",
-        "斜率",
-        "截距"
+        "line equation",
+        "slope",
+        "intercept"
       ],
       "formula_refs": [],
-      "data_refs": []
+      "data_refs": [],
+      "audit_pack": "english-normalization-v1"
     },
     {
       "id": "rotel_ch13_line_02",
-      "content": "一条直线的纵截距为1，并经过点 $(9,-5)$。求该直线的斜截式方程。",
+      "content": "A line has y-intercept 1 and passes through $(9,-5)$. Find its slope-intercept equation.",
       "source": "ROTEL Statistical Problem Sets in WeBWorK — 12.1-12.2 Problem 2 (adapted to text) — https://rotel.pressbooks.pub/statsproblemsets/chapter/12-1-12-2-linear-eqns-scatter-plots/",
       "source_url": "https://rotel.pressbooks.pub/statsproblemsets/chapter/12-1-12-2-linear-eqns-scatter-plots/",
       "source_problem": "12.1-12.2 Problem 2 (adapted to text)",
       "license": "CC BY-NC-SA 4.0",
       "attribution": "Rachael Norton and Peter Staab, 2023",
-      "review_status": "答案已独立推导并审核",
+      "review_status": "independently solved, translated, and reviewed",
       "type": "计算题",
       "difficulty": 1,
       "keywords": [
-        "直线方程",
-        "两点斜率"
+        "line equation",
+        "slope from a point and intercept"
       ],
       "formula_refs": [],
-      "data_refs": []
+      "data_refs": [],
+      "audit_pack": "english-normalization-v1"
     },
     {
       "id": "rotel_ch13_causation_01",
-      "content": "某地区啤酒销量与冰淇淋销量呈明显正相关。能否据此断定增加啤酒销量会导致冰淇淋销量增加？指出一个合理的潜在变量，并说明怎样的研究设计更适合建立因果关系。",
+      "content": "Beer sales and ice-cream sales in a region show a strong positive association. Can we conclude that increasing beer sales causes ice-cream sales to increase? Identify one plausible lurking variable and explain what study design would be more appropriate for establishing causation.",
       "source": "ROTEL Statistical Problem Sets in WeBWorK — 12.3-12.4 Problem 1 (adapted) — https://rotel.pressbooks.pub/statsproblemsets/chapter/12-3-12-4-linear-regression/",
       "source_url": "https://rotel.pressbooks.pub/statsproblemsets/chapter/12-3-12-4-linear-regression/",
       "source_problem": "12.3-12.4 Problem 1 (adapted)",
       "license": "CC BY-NC-SA 4.0",
       "attribution": "Rachael Norton and Peter Staab, 2023",
-      "review_status": "答案已独立推导并审核",
+      "review_status": "independently solved, translated, and reviewed",
       "type": "简答题",
       "difficulty": 2,
       "keywords": [
-        "相关关系",
-        "因果关系",
-        "潜在变量"
+        "association",
+        "causation",
+        "lurking variable"
       ],
       "formula_refs": [],
-      "data_refs": []
+      "data_refs": [],
+      "audit_pack": "english-normalization-v1"
     },
     {
       "id": "rotel_ch13_slope_01",
-      "content": "用身高 $X$（cm）预测体重 $Y$（kg）的回归方程为 $\\hat Y=0.99X-101.24$。解释斜率0.99在该问题中的含义。",
+      "content": "A regression equation predicting weight $Y$, in kilograms, from height $X$, in centimeters, is $\\hat Y=0.99X-101.24$. Interpret the slope 0.99 in context.",
       "source": "ROTEL Statistical Problem Sets in WeBWorK — 12.3-12.4 Problem 4 — https://rotel.pressbooks.pub/statsproblemsets/chapter/12-3-12-4-linear-regression/",
       "source_url": "https://rotel.pressbooks.pub/statsproblemsets/chapter/12-3-12-4-linear-regression/",
       "source_problem": "12.3-12.4 Problem 4",
       "license": "CC BY-NC-SA 4.0",
       "attribution": "Rachael Norton and Peter Staab, 2023",
-      "review_status": "答案已独立推导并审核",
+      "review_status": "independently solved, translated, and reviewed",
       "type": "简答题",
       "difficulty": 2,
       "keywords": [
-        "最小二乘回归",
-        "斜率解释"
+        "least-squares regression",
+        "slope interpretation"
       ],
       "formula_refs": [],
-      "data_refs": []
+      "data_refs": [],
+      "audit_pack": "english-normalization-v1"
     },
     {
       "id": "rotel_ch13_regression_01",
-      "content": "8支垒球队的击球率 $x$（以千分数记录）与获胜场数 $y$ 如下：$(272,40),(262,45),(317,30),(304,41),(276,44),(286,45),(263,50),(320,37)$。\n\na. 计算皮尔逊相关系数；\n\nb. 求用击球率预测获胜场数的最小二乘回归方程。",
+      "content": "For 8 baseball teams, batting average $x$, recorded in thousandths, and number of wins $y$ are $(272,40),(262,45),(317,30),(304,41),(276,44),(286,45),(263,50),(320,37)$.\n\na. Compute Pearson's correlation coefficient.\n\nb. Find the least-squares regression equation for predicting wins from batting average.",
       "source": "ROTEL Statistical Problem Sets in WeBWorK — 12.3-12.4 Problem 5 (independently recalculated) — https://rotel.pressbooks.pub/statsproblemsets/chapter/12-3-12-4-linear-regression/",
       "source_url": "https://rotel.pressbooks.pub/statsproblemsets/chapter/12-3-12-4-linear-regression/",
       "source_problem": "12.3-12.4 Problem 5 (independently recalculated)",
       "license": "CC BY-NC-SA 4.0",
       "attribution": "Rachael Norton and Peter Staab, 2023",
-      "review_status": "答案已独立推导并审核",
+      "review_status": "independently solved, translated, and reviewed",
       "type": "计算题",
       "difficulty": 5,
       "keywords": [
-        "相关系数",
-        "最小二乘回归",
-        "回归方程"
+        "correlation coefficient",
+        "least-squares regression",
+        "regression equation"
       ],
       "formula_refs": [],
-      "data_refs": []
+      "data_refs": [],
+      "audit_pack": "english-normalization-v1"
     }
   ]
 }

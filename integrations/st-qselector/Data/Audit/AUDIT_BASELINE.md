@@ -11,15 +11,15 @@
 
 ## Language baseline
 
-- English questions: 298
-- Chinese questions: 29
-- Mixed-language questions: 7
+- English questions: 334
+- Chinese questions: 0
+- Mixed-language questions: 0
 
 ## Priority findings
 
 - Missing answers: 0
 - Unclassified question types: 274
-- Multi-part alignment candidates: 102
+- Multi-part alignment candidates: 105
 - Unresolved sources: 0
 - Missing referenced assets: 0
 

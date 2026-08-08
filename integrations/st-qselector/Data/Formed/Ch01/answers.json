@@ -63,53 +63,63 @@
     },
     {
       "id": "rotel_ch01_variables_01",
-      "answer": "选择 **B、C、D**。\n\n国籍、发色类别以及是否属于低出生体重都是分类变量；电脑数量是离散型定量变量。",
-      "review_status": "答案已独立推导并审核"
+      "answer": "Select **B, C, and D**.\n\nNationality, hair-color category, and low-birth-weight status are categorical variables; the number of computers is a discrete quantitative variable.",
+      "review_status": "independently solved, translated, and reviewed",
+      "audit_pack": "english-normalization-v1"
     },
     {
       "id": "rotel_ch01_variables_02",
-      "answer": "选择 **B、D**。\n\n每年吸烟支数和体质指数都表示可进行算术运算的数值测量。年龄组以及剂型编码虽然包含数字，但本质上仍是分类变量。",
-      "review_status": "答案已独立推导并审核"
+      "answer": "Select **B and D**.\n\nThe number of cigarettes smoked per year and body mass index are numerical measurements on which arithmetic operations can be performed. Age groups and dosage-form codes contain numbers but are fundamentally categorical variables.",
+      "review_status": "independently solved, translated, and reviewed",
+      "audit_pack": "english-normalization-v1"
     },
     {
       "id": "rotel_ch01_sampling_01",
-      "answer": "**具有代表性。**\n\n抽样总体与目标总体都是西雅图居民，而且采用简单随机抽样，因此在抽样框覆盖充分的前提下，每名居民都有被抽中的机会。",
-      "review_status": "答案已独立推导并审核"
+      "answer": "**Yes, it is representative.**\n\nThe sampled population and target population are both Seattle residents, and simple random sampling is used; assuming adequate coverage by the sampling frame, every resident has a chance of selection.",
+      "review_status": "independently solved, translated, and reviewed",
+      "audit_pack": "english-normalization-v1"
     },
     {
       "id": "rotel_ch01_sampling_02",
-      "answer": "**具有代表性。**\n\n题设将成年人定义为18岁以上人群，抽样总体与目标总体一致，并采用简单随机抽样。",
-      "review_status": "答案已独立推导并审核"
+      "answer": "**Yes, it is representative.**\n\nThe problem defines adults as people aged 18 and older, so the sampled and target populations coincide, and simple random sampling is used.",
+      "review_status": "independently solved, translated, and reviewed",
+      "audit_pack": "english-normalization-v1"
     },
     {
       "id": "rotel_ch01_sampling_03",
-      "answer": "**不具有代表性。**\n\n只在工作日白天联系受访者，容易系统性遗漏正在上班、无法接听电话或没有可用电话的人群，存在覆盖偏差和时间选择偏差。",
-      "review_status": "答案已独立推导并审核"
+      "answer": "**No, it is not representative.**\n\nContacting people only during weekday daytime hours can systematically omit people who are working, unable to answer then, or lack an available telephone, creating coverage and time-selection bias.",
+      "review_status": "independently solved, translated, and reviewed",
+      "audit_pack": "english-normalization-v1"
     },
     {
       "id": "rotel_ch01_sampling_04",
-      "answer": "**不具有代表性。**\n\n一家医院的患者不是全体美国公民的随机样本，患者的健康状况、地区和就医行为都可能与目标总体不同，因此不能据此外推全国平均值。",
-      "review_status": "答案已独立推导并审核"
+      "answer": "**No, it is not representative.**\n\nPatients at one hospital are not a random sample of all U.S. citizens. Their health status, region, and care-seeking behavior may differ from those of the target population, so the result cannot be generalized to the national mean.",
+      "review_status": "independently solved, translated, and reviewed",
+      "audit_pack": "english-normalization-v1"
     },
     {
       "id": "rotel_ch01_measurement_01",
-      "answer": "选择 **A，名义尺度**。\n\n回答通常是“是/否”等没有自然大小次序的类别。",
-      "review_status": "答案已独立推导并审核"
+      "answer": "Select **A, nominal**.\n\nResponses are typically categories such as “yes” or “no,” with no natural order of magnitude.",
+      "review_status": "independently solved, translated, and reviewed",
+      "audit_pack": "english-normalization-v1"
     },
     {
       "id": "rotel_ch01_measurement_02",
-      "answer": "选择 **D，比率尺度**。\n\n工资具有有意义的绝对零点，差值和倍数比较都有意义。",
-      "review_status": "答案已独立推导并审核"
+      "answer": "Select **D, ratio**.\n\nSalary has a meaningful absolute zero; both differences and ratio comparisons are meaningful.",
+      "review_status": "independently solved, translated, and reviewed",
+      "audit_pack": "english-normalization-v1"
     },
     {
       "id": "rotel_ch01_measurement_03",
-      "answer": "选择 **B，序数尺度**。\n\n三种类别具有自然顺序，但相邻类别之间的差距不能解释为等距数值。",
-      "review_status": "答案已独立推导并审核"
+      "answer": "Select **B, ordinal**.\n\nThe three categories have a natural order, but differences between adjacent categories cannot be interpreted as equal numerical intervals.",
+      "review_status": "independently solved, translated, and reviewed",
+      "audit_pack": "english-normalization-v1"
     },
     {
       "id": "rotel_ch01_design_01",
-      "answer": "a. **解释变量：电影类型。**\n\nb. **响应变量：儿童吃掉的薯片数量。**\n\nc. **混杂变量：电影播放时间。**\n\n电影类型和播放时间同时发生变化，因此无法区分薯片数量的差异究竟来自电影类型，还是来自8:00与11:00时儿童饥饿程度的差异。",
-      "review_status": "答案已独立推导并审核"
+      "answer": "a. **Explanatory variable: movie type.**\n\nb. **Response variable: number of potato chips eaten by the children.**\n\nc. **Confounding variable: movie screening time.**\n\nMovie type and screening time change simultaneously, so differences in chip consumption cannot be separated into effects of movie type versus children's differing hunger levels at 8:00 and 11:00 a.m.",
+      "review_status": "independently solved, translated, and reviewed",
+      "audit_pack": "english-normalization-v1"
     },
     {
       "id": "ch01_q11",
