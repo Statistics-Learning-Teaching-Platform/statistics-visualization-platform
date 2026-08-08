@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import {
   Check,
@@ -51,18 +51,83 @@ export default function Home() {
   const [reviewedOnly, setReviewedOnly] = useState(true);
   const [expanded, setExpanded] = useState<Set<string>>(new Set());
   const [page, setPage] = useState(1);
+  const [fullDataLoaded, setFullDataLoaded] = useState(false);
+  const [fullDataLoading, setFullDataLoading] = useState(false);
+  const [fullDataError, setFullDataError] = useState<string | null>(null);
+  const fullDataLoadedRef = useRef(false);
+  const fullRequest = useRef<Promise<QuestionsResponse | null> | null>(null);
 
   const { selected, isSelected, toggle, add, clear } = useSelection();
 
-  useEffect(() => {
-    fetch(withBasePath("/api/questions"))
+  const loadFullData = useCallback(() => {
+    if (fullDataLoadedRef.current) return Promise.resolve(null);
+    if (fullRequest.current) return fullRequest.current;
+
+    const controller = new AbortController();
+    const timeout = window.setTimeout(() => controller.abort(), 12_000);
+    setFullDataLoading(true);
+    setFullDataError(null);
+
+    const request = fetch(withBasePath("/api/questions"), {
+      signal: controller.signal,
+      cache: "default",
+    })
       .then(async (response) => {
-        if (!response.ok) throw new Error((await response.json()).error || "加载失败");
-        return response.json();
+        if (!response.ok) throw new Error((await response.json()).error || "完整题库加载失败");
+        return (await response.json()) as QuestionsResponse;
       })
-      .then(setData)
-      .catch((reason) => setError(reason.message));
+      .then((result) => {
+        setData(result);
+        fullDataLoadedRef.current = true;
+        setFullDataLoaded(true);
+        return result;
+      })
+      .catch((reason: Error) => {
+        const message = reason.name === "AbortError" ? "完整题库请求超时" : reason.message;
+        setFullDataError(message);
+        throw reason;
+      })
+      .finally(() => {
+        window.clearTimeout(timeout);
+        setFullDataLoading(false);
+        fullRequest.current = null;
+      });
+
+    fullRequest.current = request;
+    return request;
   }, []);
+
+  useEffect(() => {
+    const controller = new AbortController();
+    const timeout = window.setTimeout(() => controller.abort(), 4_000);
+
+    fetch(withBasePath("/data/reviewed-questions.json"), {
+      signal: controller.signal,
+      cache: "force-cache",
+    })
+      .then(async (response) => {
+        if (!response.ok) throw new Error("已审核题库索引不可用");
+        return (await response.json()) as QuestionsResponse;
+      })
+      .then((result) => {
+        setData(result);
+        setError(null);
+      })
+      .catch(() => {
+        void loadFullData().catch((reason: Error) => setError(reason.message));
+      })
+      .finally(() => window.clearTimeout(timeout));
+
+    return () => controller.abort();
+  }, [loadFullData]);
+
+  useEffect(() => {
+    if (!data || fullDataLoaded || fullDataLoading || fullDataError) return;
+    const timer = window.setTimeout(() => {
+      void loadFullData().catch(() => undefined);
+    }, 900);
+    return () => window.clearTimeout(timer);
+  }, [data, fullDataError, fullDataLoaded, fullDataLoading, loadFullData]);
 
   const reviewedQuestions = useMemo(
     () => data?.questions.filter((question) => question.isReviewed) ?? [],
@@ -106,10 +171,6 @@ export default function Home() {
     });
   }, [data, search, chapterSel, difficultySel, typeSel, knowledgeSel, reviewedOnly]);
 
-  useEffect(() => {
-    setPage(1);
-  }, [search, chapterSel, difficultySel, typeSel, knowledgeSel, reviewedOnly]);
-
   const totalPages = Math.max(1, Math.ceil(filtered.length / PAGE_SIZE));
   const currentPage = Math.min(page, totalPages);
   const pageQuestions = filtered.slice((currentPage - 1) * PAGE_SIZE, currentPage * PAGE_SIZE);
@@ -140,6 +201,7 @@ export default function Home() {
     setDifficultySel(new Set());
     setTypeSel(new Set());
     setKnowledgeSel(new Set());
+    setPage(1);
   }
 
   if (error) {
@@ -176,14 +238,35 @@ export default function Home() {
 
           <label className="qb-search">
             <Search />
-            <input value={search} onChange={(event) => setSearch(event.target.value)} placeholder="综合搜索：关键词 / 题号 / 来源" />
+            <input
+              value={search}
+              onChange={(event) => {
+                setSearch(event.target.value);
+                setPage(1);
+              }}
+              placeholder="综合搜索：关键词 / 题号 / 来源"
+            />
           </label>
 
           <div className="qb-review-toggle">
-            <button data-active={reviewedOnly} onClick={() => setReviewedOnly((value) => !value)}>
+            <button
+              data-active={reviewedOnly}
+              onClick={() => {
+                const next = !reviewedOnly;
+                setReviewedOnly(next);
+                setPage(1);
+                if (!next && !fullDataLoaded) void loadFullData().catch(() => undefined);
+              }}
+            >
               {reviewedOnly && <Check />} 只看已审核题目
             </button>
-            <span>未通过审核的题目不会进入组卷</span>
+            <span>
+              {fullDataLoading
+                ? "已审核题目可立即使用，完整题库正在后台加载"
+                : fullDataError
+                  ? "完整题库暂不可用，点击筛选开关可重试"
+                  : "未通过审核的题目不会进入组卷"}
+            </span>
           </div>
 
           {data && (
@@ -192,7 +275,10 @@ export default function Home() {
                 <FilterChip
                   key={chapter.id}
                   active={chapterSel.has(chapter.id)}
-                  onClick={() => toggleSet(setChapterSel, chapter.id)}
+                  onClick={() => {
+                    toggleSet(setChapterSel, chapter.id);
+                    setPage(1);
+                  }}
                 >
                   {chapter.title} <em>{chapterCounts.get(chapter.id) ?? 0}</em>
                 </FilterChip>
@@ -206,7 +292,10 @@ export default function Home() {
                 <FilterChip
                   key={difficulty}
                   active={difficultySel.has(difficulty)}
-                  onClick={() => toggleSet(setDifficultySel, difficulty)}
+                  onClick={() => {
+                    toggleSet(setDifficultySel, difficulty);
+                    setPage(1);
+                  }}
                 >
                   {diffLabel(difficulty)}
                 </FilterChip>
@@ -216,7 +305,14 @@ export default function Home() {
 
           <FilterGroup title="题型">
             {availableTypes.map((type) => (
-              <FilterChip key={type} active={typeSel.has(type)} onClick={() => toggleSet(setTypeSel, type)}>
+              <FilterChip
+                key={type}
+                active={typeSel.has(type)}
+                onClick={() => {
+                  toggleSet(setTypeSel, type);
+                  setPage(1);
+                }}
+              >
                 {type}
               </FilterChip>
             ))}
@@ -228,7 +324,10 @@ export default function Home() {
                 <FilterChip
                   key={point}
                   active={knowledgeSel.has(point)}
-                  onClick={() => toggleSet(setKnowledgeSel, point)}
+                  onClick={() => {
+                    toggleSet(setKnowledgeSel, point);
+                    setPage(1);
+                  }}
                 >
                   {point}
                 </FilterChip>

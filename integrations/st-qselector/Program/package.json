@@ -3,7 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "generate:reviewed-index": "node scripts/generate-reviewed-index.mjs",
+    "predev": "npm run generate:reviewed-index",
     "dev": "next dev --webpack -p 3200",
+    "prebuild": "npm run generate:reviewed-index",
     "build": "next build",
     "start": "next start -p 3200",
     "lint": "eslint"

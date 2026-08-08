@@ -25,7 +25,9 @@ export async function GET() {
     );
 
     const body: QuestionsResponse = { chapters, difficulties, questions };
-    return NextResponse.json(body);
+    const response = NextResponse.json(body);
+    response.headers.set("Cache-Control", "public, max-age=60, stale-while-revalidate=3600");
+    return response;
   } catch (err) {
     console.error("加载题库失败:", err);
     return NextResponse.json(
