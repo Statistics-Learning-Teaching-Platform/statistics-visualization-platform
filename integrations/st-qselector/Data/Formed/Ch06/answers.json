@@ -140,6 +140,11 @@
     {
       "id": "ch06_q36",
       "answer": "$\\begin{array}{r}\n\\hat{p} = \\frac{\\text{350}}{\\text{500}} = 0\\text{.}7 \\\\\n\\hat{\\sigma} = |\\overline{\\frac{0\\text{.}7(1 - 0\\text{.}7)}{\\text{500}}} = 0\\text{.}\\text{0205} \\\\\nn\\hat{p} = \\text{500} \\ast 0\\text{.}7 = \\text{350} \\geq 5 \\\\\nn(1 - \\hat{p}) = \\text{500}(1 - 0\\text{.}7) = \\text{150} \\geq 5 \\\\\n\\lbrack\\hat{p} - z_{\\frac{\\alpha}{2}}\\hat{\\sigma},\\hat{p} + z_{\\frac{\\alpha}{2}}\\hat{\\sigma}\\rbrack = \\lbrack 0\\text{.}7 - z_{0\\text{.005}} \\ast 0\\text{.}\\text{0205},0\\text{.}7 + z_{0\\text{.005}} \\ast 0\\text{.}\\text{0205}\\rbrack = \\lbrack 0\\text{.}\\text{647,0}\\text{.}\\text{753}\\rbrack\n\\end{array}$"
+    },
+    {
+      "id": "rotel_ch06_normal_01",
+      "answer": "a. 标准化得到 $z_1=(65-66)/2.5=-0.4$，$z_2=(70-66)/2.5=1.6$。因此\n\n$$P(65<X<70)=\\Phi(1.6)-\\Phi(-0.4)\\approx0.6006.$$\n\nb. $z=(71.5-66)/2.5=2.2$，所以\n\n$$P(X>71.5)=1-\\Phi(2.2)\\approx0.0139.$$\n\n百分比约为 **1.39%**。",
+      "review_status": "答案已独立推导并审核"
     }
   ]
 }

@@ -57,6 +57,99 @@
         "ch13_q10_f05_image29.wmf"
       ],
       "data_refs": []
+    },
+    {
+      "id": "rotel_ch13_line_01",
+      "content": "一条直线的纵截距为3，并经过点 $(1,5)$。求该直线的斜截式方程。",
+      "source": "ROTEL Statistical Problem Sets in WeBWorK — 12.1-12.2 Problem 1 (adapted to text) — https://rotel.pressbooks.pub/statsproblemsets/chapter/12-1-12-2-linear-eqns-scatter-plots/",
+      "source_url": "https://rotel.pressbooks.pub/statsproblemsets/chapter/12-1-12-2-linear-eqns-scatter-plots/",
+      "source_problem": "12.1-12.2 Problem 1 (adapted to text)",
+      "license": "CC BY-NC-SA 4.0",
+      "attribution": "Rachael Norton and Peter Staab, 2023",
+      "review_status": "答案已独立推导并审核",
+      "type": "计算题",
+      "difficulty": 1,
+      "keywords": [
+        "直线方程",
+        "斜率",
+        "截距"
+      ],
+      "formula_refs": [],
+      "data_refs": []
+    },
+    {
+      "id": "rotel_ch13_line_02",
+      "content": "一条直线的纵截距为1，并经过点 $(9,-5)$。求该直线的斜截式方程。",
+      "source": "ROTEL Statistical Problem Sets in WeBWorK — 12.1-12.2 Problem 2 (adapted to text) — https://rotel.pressbooks.pub/statsproblemsets/chapter/12-1-12-2-linear-eqns-scatter-plots/",
+      "source_url": "https://rotel.pressbooks.pub/statsproblemsets/chapter/12-1-12-2-linear-eqns-scatter-plots/",
+      "source_problem": "12.1-12.2 Problem 2 (adapted to text)",
+      "license": "CC BY-NC-SA 4.0",
+      "attribution": "Rachael Norton and Peter Staab, 2023",
+      "review_status": "答案已独立推导并审核",
+      "type": "计算题",
+      "difficulty": 1,
+      "keywords": [
+        "直线方程",
+        "两点斜率"
+      ],
+      "formula_refs": [],
+      "data_refs": []
+    },
+    {
+      "id": "rotel_ch13_causation_01",
+      "content": "某地区啤酒销量与冰淇淋销量呈明显正相关。能否据此断定增加啤酒销量会导致冰淇淋销量增加？指出一个合理的潜在变量，并说明怎样的研究设计更适合建立因果关系。",
+      "source": "ROTEL Statistical Problem Sets in WeBWorK — 12.3-12.4 Problem 1 (adapted) — https://rotel.pressbooks.pub/statsproblemsets/chapter/12-3-12-4-linear-regression/",
+      "source_url": "https://rotel.pressbooks.pub/statsproblemsets/chapter/12-3-12-4-linear-regression/",
+      "source_problem": "12.3-12.4 Problem 1 (adapted)",
+      "license": "CC BY-NC-SA 4.0",
+      "attribution": "Rachael Norton and Peter Staab, 2023",
+      "review_status": "答案已独立推导并审核",
+      "type": "简答题",
+      "difficulty": 2,
+      "keywords": [
+        "相关关系",
+        "因果关系",
+        "潜在变量"
+      ],
+      "formula_refs": [],
+      "data_refs": []
+    },
+    {
+      "id": "rotel_ch13_slope_01",
+      "content": "用身高 $X$（cm）预测体重 $Y$（kg）的回归方程为 $\\hat Y=0.99X-101.24$。解释斜率0.99在该问题中的含义。",
+      "source": "ROTEL Statistical Problem Sets in WeBWorK — 12.3-12.4 Problem 4 — https://rotel.pressbooks.pub/statsproblemsets/chapter/12-3-12-4-linear-regression/",
+      "source_url": "https://rotel.pressbooks.pub/statsproblemsets/chapter/12-3-12-4-linear-regression/",
+      "source_problem": "12.3-12.4 Problem 4",
+      "license": "CC BY-NC-SA 4.0",
+      "attribution": "Rachael Norton and Peter Staab, 2023",
+      "review_status": "答案已独立推导并审核",
+      "type": "简答题",
+      "difficulty": 2,
+      "keywords": [
+        "最小二乘回归",
+        "斜率解释"
+      ],
+      "formula_refs": [],
+      "data_refs": []
+    },
+    {
+      "id": "rotel_ch13_regression_01",
+      "content": "8支垒球队的击球率 $x$（以千分数记录）与获胜场数 $y$ 如下：$(272,40),(262,45),(317,30),(304,41),(276,44),(286,45),(263,50),(320,37)$。\n\na. 计算皮尔逊相关系数；\n\nb. 求用击球率预测获胜场数的最小二乘回归方程。",
+      "source": "ROTEL Statistical Problem Sets in WeBWorK — 12.3-12.4 Problem 5 (independently recalculated) — https://rotel.pressbooks.pub/statsproblemsets/chapter/12-3-12-4-linear-regression/",
+      "source_url": "https://rotel.pressbooks.pub/statsproblemsets/chapter/12-3-12-4-linear-regression/",
+      "source_problem": "12.3-12.4 Problem 5 (independently recalculated)",
+      "license": "CC BY-NC-SA 4.0",
+      "attribution": "Rachael Norton and Peter Staab, 2023",
+      "review_status": "答案已独立推导并审核",
+      "type": "计算题",
+      "difficulty": 5,
+      "keywords": [
+        "相关系数",
+        "最小二乘回归",
+        "回归方程"
+      ],
+      "formula_refs": [],
+      "data_refs": []
     }
   ]
 }

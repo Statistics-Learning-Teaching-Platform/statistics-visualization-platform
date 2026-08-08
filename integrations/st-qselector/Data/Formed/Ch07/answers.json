@@ -116,6 +116,11 @@
     {
       "id": "ch07_q31",
       "answer": "An urban planner claims that, nationally, 20 percent of all families renting condominiums move during a given year. A random sample of 200 families renting condominiums in Dallas Metroplex reveal that 56 had moved during the past year. At the 0.1 significance level, does this evidence suggest that a large proportion of condominium owners moved in the Dallas area? Determine the p-value.\n\n[IMG:ch07_q06_f01_image5.png]"
+    },
+    {
+      "id": "rotel_ch07_sampling_mean_01",
+      "answer": "a. 样本均值的标准误为 $\\sigma/\\sqrt n$，所以\n\n$$\\frac{SE_{84}}{SE_{42}}=\\sqrt{\\frac{42}{84}}=\\frac1{\\sqrt2}.$$\n\n标准误缩小为原来的 $1/\\sqrt2$。\n\nb. $E(\\bar X)=\\mu=5.95$，不随样本量改变。\n\nc. 不必须依赖中心极限定理。由于总体本身服从正态分布，任意样本量下样本均值都精确服从正态分布；中心极限定理主要用于总体非正态或未知时的大样本近似。",
+      "review_status": "答案已独立推导并审核"
     }
   ]
 }

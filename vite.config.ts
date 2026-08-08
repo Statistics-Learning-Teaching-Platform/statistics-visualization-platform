@@ -3,6 +3,14 @@ import react from "@vitejs/plugin-react";
 
 export default defineConfig({
   plugins: [react()],
+  server: {
+    proxy: {
+      "/st-qselector": {
+        target: "http://127.0.0.1:3200",
+        changeOrigin: true,
+      },
+    },
+  },
   build: {
     target: "es2020",
     sourcemap: true,

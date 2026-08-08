@@ -88,7 +88,8 @@ function cleanLine(s: string): string {
     .replace(/\s+$/g, "");
 }
 
-const IMG_TOKEN = /\[IMG:([^\]]+)\]/g;
+// 支持 [IMG:file] 与 [IMG:file|替代文字]；导出时图片文件名只取竖线前部分。
+const IMG_TOKEN = /\[IMG:([^|\]]+)(?:\|([^\]]+))?\]/g;
 
 // 把一段文本（含 [IMG:x] 占位符）转成 docx 段落数组。
 function textToParagraphs(chapterId: string, text: string): Paragraph[] {

@@ -60,6 +60,56 @@
     {
       "id": "ch01_q16",
       "answer": "d.  How do the percentages of the 100 waiting times in Table 1.8 that actually fall into the intervals\\[$\\overline{x}$$\\pm$s\\], \\[$\\overline{x}$$\\pm$`<!-- -->`{=html}2s\\], \\[$\\overline{x}$$\\pm$`<!-- -->`{=html}3s\\] compare to those given by the Empirical Rule? Do these comparisons indicate that the statistical inferences you made in parts b and c are reasonably valid ?\n\n**Figure 2.16**\n\n[IMG:ch01_q04_ans_f01_image2.jpeg]\n\n**Table 1.8 Waiting Times (in Minutes) for the Bank Customer Waiting Time Case**\n\n[IMG:ch01_q04_ans_f02_image3.jpeg]"
+    },
+    {
+      "id": "rotel_ch01_variables_01",
+      "answer": "选择 **B、C、D**。\n\n国籍、发色类别以及是否属于低出生体重都是分类变量；电脑数量是离散型定量变量。",
+      "review_status": "答案已独立推导并审核"
+    },
+    {
+      "id": "rotel_ch01_variables_02",
+      "answer": "选择 **B、D**。\n\n每年吸烟支数和体质指数都表示可进行算术运算的数值测量。年龄组以及剂型编码虽然包含数字，但本质上仍是分类变量。",
+      "review_status": "答案已独立推导并审核"
+    },
+    {
+      "id": "rotel_ch01_sampling_01",
+      "answer": "**具有代表性。**\n\n抽样总体与目标总体都是西雅图居民，而且采用简单随机抽样，因此在抽样框覆盖充分的前提下，每名居民都有被抽中的机会。",
+      "review_status": "答案已独立推导并审核"
+    },
+    {
+      "id": "rotel_ch01_sampling_02",
+      "answer": "**具有代表性。**\n\n题设将成年人定义为18岁以上人群，抽样总体与目标总体一致，并采用简单随机抽样。",
+      "review_status": "答案已独立推导并审核"
+    },
+    {
+      "id": "rotel_ch01_sampling_03",
+      "answer": "**不具有代表性。**\n\n只在工作日白天联系受访者，容易系统性遗漏正在上班、无法接听电话或没有可用电话的人群，存在覆盖偏差和时间选择偏差。",
+      "review_status": "答案已独立推导并审核"
+    },
+    {
+      "id": "rotel_ch01_sampling_04",
+      "answer": "**不具有代表性。**\n\n一家医院的患者不是全体美国公民的随机样本，患者的健康状况、地区和就医行为都可能与目标总体不同，因此不能据此外推全国平均值。",
+      "review_status": "答案已独立推导并审核"
+    },
+    {
+      "id": "rotel_ch01_measurement_01",
+      "answer": "选择 **A，名义尺度**。\n\n回答通常是“是/否”等没有自然大小次序的类别。",
+      "review_status": "答案已独立推导并审核"
+    },
+    {
+      "id": "rotel_ch01_measurement_02",
+      "answer": "选择 **D，比率尺度**。\n\n工资具有有意义的绝对零点，差值和倍数比较都有意义。",
+      "review_status": "答案已独立推导并审核"
+    },
+    {
+      "id": "rotel_ch01_measurement_03",
+      "answer": "选择 **B，序数尺度**。\n\n三种类别具有自然顺序，但相邻类别之间的差距不能解释为等距数值。",
+      "review_status": "答案已独立推导并审核"
+    },
+    {
+      "id": "rotel_ch01_design_01",
+      "answer": "a. **解释变量：电影类型。**\n\nb. **响应变量：儿童吃掉的薯片数量。**\n\nc. **混杂变量：电影播放时间。**\n\n电影类型和播放时间同时发生变化，因此无法区分薯片数量的差异究竟来自电影类型，还是来自8:00与11:00时儿童饥饿程度的差异。",
+      "review_status": "答案已独立推导并审核"
     }
   ]
 }

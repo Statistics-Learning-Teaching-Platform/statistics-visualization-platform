@@ -112,6 +112,21 @@
     {
       "id": "ch02_q29",
       "answer": "coefficient of variation=$\\frac{\\text{standard deviation}}{\\text{mean}} \\ast \\text{100}$\n\nThe coefficient of variation of fidelity Stock is = (10.02/17.98)\\*100=55.7\n\nThe coefficient of variation of baron stock is= (12.23/16.43)\\*100=74.4\n\nThe baron stock is riskier than fidelity Stock. I will buy fidelity Stock."
+    },
+    {
+      "id": "rotel_ch02_histogram_01",
+      "answer": "教师总数为\n\n$$3+11+10+11+3+12=50.$$\n\n服务年限少于10年的教师有\n\n$$3+11=14.$$\n\n因此所占百分比为\n\n$$\\frac{14}{50}\\times100\\%=28\\%.$$",
+      "review_status": "答案已独立推导并审核"
+    },
+    {
+      "id": "rotel_ch02_boxplot_01",
+      "answer": "最小值为 **24**，第一四分位数为 **37**，中位数为 **46**。",
+      "review_status": "答案已独立推导并审核"
+    },
+    {
+      "id": "rotel_ch02_boxplot_02",
+      "answer": "约 **50%**。\n\n从最小值到中位数覆盖第一、第二两个四分位区间，每个区间约包含25%的观测值，因此合计约为 $25\\%+25\\%=50\\%$。",
+      "review_status": "答案已独立推导并审核"
     }
   ]
 }

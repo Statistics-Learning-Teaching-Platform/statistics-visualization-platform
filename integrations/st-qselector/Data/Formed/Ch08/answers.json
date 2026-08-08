@@ -132,6 +132,26 @@
     {
       "id": "ch08_q33",
       "answer": "a\\. $d_{1}$=-126, $d_{2}$=-25, $d_{3}$=101, $d_{4}$=126, $d_{5}$=126, $d_{6}$=250, $d_{7}$=151\n\n: $\\mu_{d}$$$``{=html}0 : $\\mu_{d}$\\>0\n\n$\\overline{d}$=86.14 $s_{d}$=123.7\n\n$t_{7 - 1}$=$\\frac{\\overline{d} - \\mu_{d}}{\\frac{s_{d}}{\\sqrt{n}}}$=$\\frac{\\text{86.14} - 0}{\\frac{\\text{123.}7}{\\sqrt{7}}}$=1.842\n\nCritical value: $t_{6,0\\text{.05}}$=1.943\n\nSince 1.842\\<1.943, we can't reject at 0.05 level of significance and there is not enough evidence that the mean bone marrow microvessel density is higher before the stem cell transplant than after that.\n\nb\\. p-value=p($\\overline{d} > \\text{86.14}$)=p($t_{6}$\\>1.842)\\>0.05\n\nSo we can't reject at 0.05 significance level and get the same conclusion as in a.\n\nc.95% confidence interval estimate of the mean difference is\n\n\\[$\\overline{d} \\pm t_{6,0\\text{.}\\frac{\\text{05}}{2}}\\frac{s_{d}}{\\sqrt{n}}$\\]=\\[86.14$\\pm$``{=html}2.447$\\frac{\\text{123.}7}{\\sqrt{7}}$\\]=\\[-28.27,200.55\\]\n\nWe can be 95% confident that the mean of all possible difference in bone marrow mocrovessel density before and after the transplant is between -28.27 and 200.55.\n\n**Regression Analysis**"
+    },
+    {
+      "id": "rotel_ch08_ci_01",
+      "answer": "a. 下限为 $24-4=20$ mmHg。\n\nb. 取 $z_{0.975}=1.96$，样本量需满足\n\n$$n>\\left(\\frac{1.96\\times9}{2}\\right)^2=77.79.$$\n\n样本量必须向上取整，因此至少需要 **78人**。",
+      "review_status": "答案已独立推导并审核"
+    },
+    {
+      "id": "rotel_ch08_ci_02",
+      "answer": "a. 标准误为 $300/\\sqrt{30}\\approx54.7723$，99%置信区间使用 $z^*\\approx2.576$，误差限为\n\n$$E=2.576\\times54.7723\\approx141.09.$$\n\n因此置信区间为 **$(1858.91,2141.09)$ 美元**。\n\nb. 可以表述为：我们有99%的置信度认为总体平均成交价位于该区间。若用同样方法重复抽样并构造区间，长期来看约99%的这些区间会覆盖真实总体均值。该区间不是对单辆汽车价格的范围说明。",
+      "review_status": "答案已独立推导并审核"
+    },
+    {
+      "id": "rotel_ch08_ci_03",
+      "answer": "样本统计量为\n\n$$n=15,\\qquad \\bar{x}=36337.4,\\qquad s\\approx5948.61.$$\n\n自由度为14，双侧94%区间使用 $t_{0.97,14}\\approx2.04617$。误差限为\n\n$$E=2.04617\\frac{5948.61}{\\sqrt{15}}\\approx3142.76.$$\n\n因此94%置信区间为\n\n$$36337.4\\pm3142.76=(33194.64,39480.16).$$",
+      "review_status": "答案已独立推导并审核"
+    },
+    {
+      "id": "rotel_ch08_proportion_n_01",
+      "answer": "没有先验估计时取最保守的 $\\hat p=0.5$。99%置信水平取 $z^*=2.576$，于是\n\n$$n>\\frac{(2.576)^2(0.5)(0.5)}{(0.01)^2}=16589.44.$$\n\n向上取整，至少需要 **16590名学生**。",
+      "review_status": "答案已独立推导并审核"
     }
   ]
 }

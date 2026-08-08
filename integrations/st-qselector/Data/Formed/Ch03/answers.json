@@ -136,6 +136,16 @@
     {
       "id": "ch03_q35",
       "answer": "a.** $P(X \\geq 40) \\approx P(Z \\geq \\frac{39.5 - 12.5}{\\sqrt{11.875}}) = P(Z \\geq 7.84) \\approx 0$ (using normal approximation with continuity correction, $\\mu=np=250(0.05)=12.5$, $\\sigma=\\sqrt{np(1-p)}=\\sqrt{11.875}$) ![formula](ass-formed/ch03_q49_ans_f01_image5.png)\n\n(approximately)\n\n**b.** No, if the claim is true, then $P(X \\geq 40) \\approx 0$ is too small."
+    },
+    {
+      "id": "rotel_ch03_center_01",
+      "answer": "均值为\n\n$$\\bar{x}=\\frac{8+17+14+17}{4}=14.$$\n\n排序后为 $8,14,17,17$，所以中位数为\n\n$$\\frac{14+17}{2}=15.5.$$",
+      "review_status": "答案已独立推导并审核"
+    },
+    {
+      "id": "rotel_ch03_center_02",
+      "answer": "a. 住宿生均值为\n\n$$\\bar{x}=\\frac{22+13+16+13}{4}=16.$$\n\n排序后为 $13,13,16,22$，中位数为\n\n$$\\frac{13+16}{2}=14.5.$$\n\nb. 应比较**均值**。两组都有相同的四个学期，均值乘以4就是总人数。住宿生均值为16，通勤生均值为14，因此住宿生总人数较多。",
+      "review_status": "答案已独立推导并审核"
     }
   ]
 }

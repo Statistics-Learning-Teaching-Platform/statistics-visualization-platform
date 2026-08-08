@@ -413,6 +413,25 @@
       "keywords": [],
       "formula_refs": [],
       "data_refs": []
+    },
+    {
+      "id": "rotel_ch06_normal_01",
+      "content": "成年男性身高 $X$（英寸）服从正态分布 $N(66,2.5^2)$。\n\na. 求 $P(65<X<70)$；\n\nb. 求身高超过71.5英寸的百分比。",
+      "source": "ROTEL Statistical Problem Sets in WeBWorK — 6.1-6.2 Problem 1 — https://rotel.pressbooks.pub/statsproblemsets/chapter/assignment-6-1-6-2-normal-dist/",
+      "source_url": "https://rotel.pressbooks.pub/statsproblemsets/chapter/assignment-6-1-6-2-normal-dist/",
+      "source_problem": "6.1-6.2 Problem 1",
+      "license": "CC BY-NC-SA 4.0",
+      "attribution": "Rachael Norton and Peter Staab, 2023",
+      "review_status": "答案已独立推导并审核",
+      "type": "综合题",
+      "difficulty": 2,
+      "keywords": [
+        "正态分布",
+        "标准化",
+        "尾概率"
+      ],
+      "formula_refs": [],
+      "data_refs": []
     }
   ]
 }

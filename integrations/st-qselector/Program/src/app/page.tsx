@@ -11,6 +11,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import QuestionContent from "@/components/QuestionContent";
 import { useSelection } from "@/lib/selection";
 import type { QuestionsResponse, Question } from "@/lib/types";
+import { withBasePath } from "@/lib/base-path";
 
 function diffLabel(d: number) {
   return ["", "★", "★★", "★★★", "★★★★", "★★★★★"][d] || `难度${d}`;
@@ -27,7 +28,7 @@ export default function Home() {
   const { selected, isSelected, toggle, add, clear } = useSelection();
 
   useEffect(() => {
-    fetch("/api/questions")
+    fetch(withBasePath("/api/questions"))
       .then(async (r) => {
         if (!r.ok) throw new Error((await r.json()).error || "加载失败");
         return r.json();
@@ -103,11 +104,18 @@ export default function Home() {
       {/* 顶部标题 */}
       <header className="border-b border-slate-200 bg-white">
         <div className="mx-auto flex max-w-5xl items-center justify-between px-4 py-3">
-          <div>
-            <h1 className="text-lg font-bold">统计学组卷系统</h1>
-            <p className="text-xs text-slate-500">
-              {data ? `共 ${data.questions.length} 题 · ${data.chapters.length} 章` : "加载中…"}
-            </p>
+          <div className="flex items-center gap-3">
+            {/* Cross-app navigation intentionally leaves the Next.js basePath. */}
+            {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
+            <a href="/" className="rounded-full border border-slate-200 px-3 py-1.5 text-xs font-medium text-slate-600 hover:border-emerald-300 hover:text-emerald-700">
+              ← 返回主界面
+            </a>
+            <div>
+              <h1 className="text-lg font-bold">统计学组卷系统</h1>
+              <p className="text-xs text-slate-500">
+                {data ? `共 ${data.questions.length} 题 · ${data.chapters.length} 章` : "加载中…"}
+              </p>
+            </div>
           </div>
           <Link href="/paper">
             <Button variant="outline" size="sm">

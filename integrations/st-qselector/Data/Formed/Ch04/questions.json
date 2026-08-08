@@ -404,6 +404,100 @@
       "keywords": [],
       "formula_refs": [],
       "data_refs": []
+    },
+    {
+      "id": "rotel_ch04_probability_01",
+      "content": "袋中有12张卡片：7张灰色卡片编号1至7，5张黄色卡片编号1至5。随机抽取一张。令 $G$ 表示“抽到灰色卡片”，$E$ 表示“编号为偶数”。求 $P(G)$、$P(E)$、$P(G\\cap E)$、$P(G\\cup E)$、$P(G\\mid E)$ 和 $P(E\\mid G)$。",
+      "source": "ROTEL Statistical Problem Sets in WeBWorK — 3 Probability Problem 1 — https://rotel.pressbooks.pub/statsproblemsets/chapter/assignment-3-probability/",
+      "source_url": "https://rotel.pressbooks.pub/statsproblemsets/chapter/assignment-3-probability/",
+      "source_problem": "3 Probability Problem 1",
+      "license": "CC BY-NC-SA 4.0",
+      "attribution": "Rachael Norton and Peter Staab, 2023",
+      "review_status": "答案已独立推导并审核",
+      "type": "综合题",
+      "difficulty": 2,
+      "keywords": [
+        "条件概率",
+        "并集",
+        "交集"
+      ],
+      "formula_refs": [],
+      "data_refs": []
+    },
+    {
+      "id": "rotel_ch04_probability_02",
+      "content": "袋中有15张卡片，其中9张灰色、6张黄色。有放回地连续抽取两次。令 $G_1$、$G_2$ 分别表示第一次、第二次抽到灰色，$A$ 表示“两次中至少一次抽到灰色”。求 $P(G_1\\cap G_2)$、$P(A)$ 和 $P(G_2\\mid G_1)$。",
+      "source": "ROTEL Statistical Problem Sets in WeBWorK — 3 Probability Problem 2 — https://rotel.pressbooks.pub/statsproblemsets/chapter/assignment-3-probability/",
+      "source_url": "https://rotel.pressbooks.pub/statsproblemsets/chapter/assignment-3-probability/",
+      "source_problem": "3 Probability Problem 2",
+      "license": "CC BY-NC-SA 4.0",
+      "attribution": "Rachael Norton and Peter Staab, 2023",
+      "review_status": "答案已独立推导并审核",
+      "type": "综合题",
+      "difficulty": 2,
+      "keywords": [
+        "独立事件",
+        "有放回抽样",
+        "补事件"
+      ],
+      "formula_refs": [],
+      "data_refs": []
+    },
+    {
+      "id": "rotel_ch04_probability_03",
+      "content": "某种饼干含巧克力的概率为0.43，含坚果的概率为0.12，同时含巧克力和坚果的概率为0.03。求饼干含巧克力或坚果的概率，以及两者均不含的概率。",
+      "source": "ROTEL Statistical Problem Sets in WeBWorK — 3 Probability Problem 3 — https://rotel.pressbooks.pub/statsproblemsets/chapter/assignment-3-probability/",
+      "source_url": "https://rotel.pressbooks.pub/statsproblemsets/chapter/assignment-3-probability/",
+      "source_problem": "3 Probability Problem 3",
+      "license": "CC BY-NC-SA 4.0",
+      "attribution": "Rachael Norton and Peter Staab, 2023",
+      "review_status": "答案已独立推导并审核",
+      "type": "计算题",
+      "difficulty": 1,
+      "keywords": [
+        "加法公式",
+        "补事件"
+      ],
+      "formula_refs": [],
+      "data_refs": []
+    },
+    {
+      "id": "rotel_ch04_probability_04",
+      "content": "某店共售出226份冰淇淋，销售记录如下。\n\n| 容器 | 巧克力 | 香草 | 旋涡口味 | 草莓 | 合计 |\n| --- | ---: | ---: | ---: | ---: | ---: |\n| 杯装 | 20 | 6 | 17 | 4 | 47 |\n| 蛋筒 | 82 | 12 | 70 | 15 | 179 |\n| 合计 | 102 | 18 | 87 | 19 | 226 |\n\n求：a. 杯装的概率；b. 巧克力或旋涡口味的概率；c. 巧克力且杯装的概率；d. 已知为蛋筒时是草莓味的概率；e. 不是巧克力味的概率。",
+      "source": "ROTEL Statistical Problem Sets in WeBWorK — 3 Probability Problem 4 — https://rotel.pressbooks.pub/statsproblemsets/chapter/assignment-3-probability/",
+      "source_url": "https://rotel.pressbooks.pub/statsproblemsets/chapter/assignment-3-probability/",
+      "source_problem": "3 Probability Problem 4",
+      "license": "CC BY-NC-SA 4.0",
+      "attribution": "Rachael Norton and Peter Staab, 2023",
+      "review_status": "答案已独立推导并审核",
+      "type": "综合题",
+      "difficulty": 3,
+      "keywords": [
+        "列联表",
+        "条件概率",
+        "边际概率"
+      ],
+      "formula_refs": [],
+      "data_refs": []
+    },
+    {
+      "id": "rotel_ch04_probability_05",
+      "content": "调查100名护士的居住情况：独居且租房29人，独居且自有住房21人；非独居且租房35人，非独居且自有住房15人。求：a. 租房或独居；b. 自有住房或非独居；c. 租房或非独居的概率。",
+      "source": "ROTEL Statistical Problem Sets in WeBWorK — 3 Probability Problem 5 — https://rotel.pressbooks.pub/statsproblemsets/chapter/assignment-3-probability/",
+      "source_url": "https://rotel.pressbooks.pub/statsproblemsets/chapter/assignment-3-probability/",
+      "source_problem": "3 Probability Problem 5",
+      "license": "CC BY-NC-SA 4.0",
+      "attribution": "Rachael Norton and Peter Staab, 2023",
+      "review_status": "答案已独立推导并审核",
+      "type": "综合题",
+      "difficulty": 2,
+      "keywords": [
+        "列联表",
+        "并集",
+        "补事件"
+      ],
+      "formula_refs": [],
+      "data_refs": []
     }
   ]
 }

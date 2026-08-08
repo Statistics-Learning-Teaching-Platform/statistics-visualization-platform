@@ -5,9 +5,11 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import remarkMath from "remark-math";
 import rehypeKatex from "rehype-katex";
+import { withBasePath } from "@/lib/base-path";
 
 // 把题目/答案原文中的自定义占位符转换成标准 markdown：
 //   [IMG:file]      -> 图片（经 /api/asset 提供）
+//   [IMG:file|alt]  -> 带替代文字的图片
 //   [FORMULA:file]  -> 公式图片（多为 wmf/emf，交给 img 渲染器兜底显示）
 // 同时清理 pandoc 转换残留标记，减少视觉噪音。
 function preprocess(raw: string, chapterId: string): string {
@@ -19,11 +21,14 @@ function preprocess(raw: string, chapterId: string): string {
   s = s.replace(/\{\.underline\}/g, "");
 
   const toAsset = (file: string, label: string) =>
-    `![${label}](/api/asset?chapter=${encodeURIComponent(chapterId)}&file=${encodeURIComponent(
+    `![${label}](${withBasePath("/api/asset")}?chapter=${encodeURIComponent(chapterId)}&file=${encodeURIComponent(
       file.trim()
     )})`;
 
-  s = s.replace(/\[IMG:([^\]]+)\]/g, (_m, f) => toAsset(f, "图片"));
+  s = s.replace(
+    /\[IMG:([^|\]]+)(?:\|([^\]]+))?\]/g,
+    (_m, f, alt) => toAsset(f, alt?.trim() || "题目图片")
+  );
   s = s.replace(/\[FORMULA:([^\]]+)\]/g, (_m, f) => toAsset(f, "公式"));
   return s;
 }
@@ -63,7 +68,7 @@ function SmartImg({ src, alt }: { src?: string | Blob; alt?: string }) {
       className={
         isFormula
           ? "inline-block align-middle max-h-[2.2em] w-auto"
-          : "my-2 max-w-full rounded border border-slate-200"
+          : "mx-auto my-3 block h-auto max-h-[420px] w-auto max-w-full rounded-xl border border-slate-200 bg-transparent object-contain"
       }
     />
   );

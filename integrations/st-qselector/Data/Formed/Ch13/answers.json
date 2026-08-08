@@ -12,6 +12,31 @@
     {
       "id": "ch13_q03",
       "answer": "The estimated slope is [FORMULA:ch13_q10_ans_f06_image30.wmf]\n\nThe estimated y-intercept is[FORMULA:ch13_q10_ans_f07_image31.wmf]\n\nThe equation is [FORMULA:ch13_q10_ans_f08_image32.wmf] = 48.024+ 5.7003*x*\n\nb\\)\n\nSince [FORMULA:ch13_q10_ans_f09_image33.wmf], we estimate that the sales price of a house increases by 5.7003 dollars when the home size increases by 1 hundred square feet. [FORMULA:ch13_q10_ans_f10_image34.wmf] is the estimated average value of Y when the value of X is zero (if X = 0 is in the range of observed X values). But, no houses had 0 square feet, so [FORMULA:ch13_q10_ans_f11_image35.wmf]just indicates that, for houses within the range of sizes observed, \\$48.024 is the portion of the house price not explained by square feet."
+    },
+    {
+      "id": "rotel_ch13_line_01",
+      "answer": "斜率为\n\n$$m=\\frac{5-3}{1-0}=2.$$\n\n纵截距为3，因此直线方程为\n\n$$y=2x+3.$$",
+      "review_status": "答案已独立推导并审核"
+    },
+    {
+      "id": "rotel_ch13_line_02",
+      "answer": "斜率为\n\n$$m=\\frac{-5-1}{9-0}=-\\frac23.$$\n\n因此直线方程为\n\n$$y=-\\frac23x+1.$$",
+      "review_status": "答案已独立推导并审核"
+    },
+    {
+      "id": "rotel_ch13_causation_01",
+      "answer": "不能仅凭相关关系断定因果关系。**室外温度或季节**是合理的潜在变量：天气炎热时，两种商品的销量都可能上升。若要建立因果关系，需要能够控制其他因素并实施随机分配的良好实验；现实中若实验不可行，则需要更严谨的准实验或因果推断设计，而不能只依赖简单相关系数。",
+      "review_status": "答案已独立推导并审核"
+    },
+    {
+      "id": "rotel_ch13_slope_01",
+      "answer": "在该模型适用的身高范围内，身高每增加1 cm，预测的平均体重增加 **0.99 kg**。斜率描述的是预测均值的变化，不表示每个人的体重都会恰好增加0.99 kg。",
+      "review_status": "答案已独立推导并审核"
+    },
+    {
+      "id": "rotel_ch13_regression_01",
+      "answer": "由数据得到 $\\bar{x}=287.5$、$\\bar{y}=41.5$。记\n\n$$S_{xx}=\\sum(x_i-\\bar{x})^2,\\quad S_{yy}=\\sum(y_i-\\bar{y})^2,\\quad S_{xy}=\\sum(x_i-\\bar{x})(y_i-\\bar{y}).$$\n\n代入8组数据可得\n\n$$r=\\frac{S_{xy}}{\\sqrt{S_{xx}S_{yy}}}\\approx-0.8074.$$\n\n回归斜率和截距为\n\n$$b_1=\\frac{S_{xy}}{S_{xx}}\\approx-0.20973,$$\n\n$$b_0=\\bar{y}-b_1\\bar{x}\\approx101.7968.$$\n\n因此最小二乘回归方程为\n\n$$\\hat{y}=101.7968-0.20973x.$$\n\n这组数据呈较强负相关。",
+      "review_status": "答案已独立推导并审核"
     }
   ]
 }

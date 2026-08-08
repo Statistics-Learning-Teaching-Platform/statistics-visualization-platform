@@ -337,6 +337,66 @@
       "keywords": [],
       "formula_refs": [],
       "data_refs": []
+    },
+    {
+      "id": "rotel_ch02_histogram_01",
+      "content": "某生物系教师服务年限按区间分组，六个区间 $0$–$4.9$、$5$–$9.9$、$10$–$14.9$、$15$–$19.9$、$20$–$24.9$、$25$–$29.9$ 的频数依次为 $3,11,10,11,3,12$。求服务年限少于10年的教师所占百分比。",
+      "source": "ROTEL Statistical Problem Sets in WeBWorK — 2.1-2.2 Problem 2 — https://rotel.pressbooks.pub/statsproblemsets/chapter/assignment-2-1-2-2-graphs-and-percentages/",
+      "source_url": "https://rotel.pressbooks.pub/statsproblemsets/chapter/assignment-2-1-2-2-graphs-and-percentages/",
+      "source_problem": "2.1-2.2 Problem 2",
+      "license": "CC BY-NC-SA 4.0",
+      "attribution": "Rachael Norton and Peter Staab, 2023",
+      "review_status": "答案已独立推导并审核",
+      "type": "计算题",
+      "difficulty": 1,
+      "keywords": [
+        "直方图",
+        "频数",
+        "百分比"
+      ],
+      "formula_refs": [],
+      "data_refs": []
+    },
+    {
+      "id": "rotel_ch02_boxplot_01",
+      "content": "观察下列箱线图，填写该数据的最小值、第一四分位数和中位数。\n\n[IMG:Assests/rotel-boxplot-five-number.png|箱线图：左须端点24，第一四分位数37，中位数46，第三四分位数78，右须端点91]",
+      "source": "ROTEL Statistical Problem Sets in WeBWorK — 2.4 Problem 2 (adapted to text) — https://rotel.pressbooks.pub/statsproblemsets/chapter/assignment-2-4-box-plots/",
+      "source_url": "https://rotel.pressbooks.pub/statsproblemsets/chapter/assignment-2-4-box-plots/",
+      "source_problem": "2.4 Problem 2 (adapted to text)",
+      "license": "CC BY-NC-SA 4.0",
+      "attribution": "Rachael Norton and Peter Staab, 2023",
+      "review_status": "答案已独立推导并审核",
+      "type": "填空题",
+      "difficulty": 1,
+      "keywords": [
+        "箱线图",
+        "五数概括"
+      ],
+      "formula_refs": [],
+      "data_refs": [
+        "Assests/rotel-boxplot-five-number.png"
+      ]
+    },
+    {
+      "id": "rotel_ch02_boxplot_02",
+      "content": "下图给出洛杉矶律师年薪的箱线图（单位：千美元）。约有百分之多少的律师年薪位于152,000美元至252,000美元之间？说明理由。\n\n[IMG:Assests/rotel-boxplot-salary.png|律师年薪箱线图：最小值152，第一四分位数195，中位数252，第三四分位数308，最大值351]",
+      "source": "ROTEL Statistical Problem Sets in WeBWorK — 2.4 Problem 4 (adapted to text) — https://rotel.pressbooks.pub/statsproblemsets/chapter/assignment-2-4-box-plots/",
+      "source_url": "https://rotel.pressbooks.pub/statsproblemsets/chapter/assignment-2-4-box-plots/",
+      "source_problem": "2.4 Problem 4 (adapted to text)",
+      "license": "CC BY-NC-SA 4.0",
+      "attribution": "Rachael Norton and Peter Staab, 2023",
+      "review_status": "答案已独立推导并审核",
+      "type": "简答题",
+      "difficulty": 1,
+      "keywords": [
+        "箱线图",
+        "四分位数",
+        "百分位"
+      ],
+      "formula_refs": [],
+      "data_refs": [
+        "Assests/rotel-boxplot-salary.png"
+      ]
     }
   ]
 }

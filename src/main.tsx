@@ -2,6 +2,7 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { LanguageProvider } from "@stats-viz/shared/i18n";
 import { AppShell } from "./shell/AppShell";
+import { PortalHome } from "./PortalHome";
 import "./styles.css";
 
 const container = document.querySelector<HTMLElement>("#app");
@@ -12,7 +13,7 @@ if (!container) {
 createRoot(container).render(
   <StrictMode>
     <LanguageProvider>
-      <AppShell />
+      {window.location.pathname === "/" ? <PortalHome /> : <AppShell />}
     </LanguageProvider>
   </StrictMode>,
 );

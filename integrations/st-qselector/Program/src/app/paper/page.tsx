@@ -8,6 +8,7 @@ import { Input } from "@/components/ui/input";
 import QuestionContent from "@/components/QuestionContent";
 import { useSelection } from "@/lib/selection";
 import type { QuestionsResponse, Question } from "@/lib/types";
+import { withBasePath } from "@/lib/base-path";
 
 export default function PaperPage() {
   const { selected, remove, clear, ready } = useSelection();
@@ -18,7 +19,7 @@ export default function PaperPage() {
   const [downloading, setDownloading] = useState(false);
 
   useEffect(() => {
-    fetch("/api/questions")
+    fetch(withBasePath("/api/questions"))
       .then(async (r) => {
         if (!r.ok) throw new Error((await r.json()).error || "加载失败");
         return r.json();
@@ -37,7 +38,7 @@ export default function PaperPage() {
   async function downloadDocx() {
     setDownloading(true);
     try {
-      const res = await fetch("/api/export/docx", {
+      const res = await fetch(withBasePath("/api/export/docx"), {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ ids: selected, withAnswer, title }),
@@ -157,7 +158,7 @@ export default function PaperPage() {
                           ) : q.answerIsImage ? (
                             // eslint-disable-next-line @next/next/no-img-element
                             <img
-                              src={`/api/asset?chapter=${encodeURIComponent(
+                              src={`${withBasePath("/api/asset")}?chapter=${encodeURIComponent(
                                 q.chapterId
                               )}&file=${encodeURIComponent(q.answer.trim())}`}
                               alt="答案"

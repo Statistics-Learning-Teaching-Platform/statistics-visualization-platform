@@ -382,6 +382,25 @@
       "keywords": [],
       "formula_refs": [],
       "data_refs": []
+    },
+    {
+      "id": "rotel_ch05_expectation_01",
+      "content": "一个转盘落在A、B、C、D区域的概率分别为 $4/12,3/12,1/12,4/12$。每次游戏收费4美元；落在B区获得10美元奖金，落在D区获得0.10美元奖金，落在A或C区没有奖金。求玩家每局净收益的期望。",
+      "source": "ROTEL Statistical Problem Sets in WeBWorK — 4.1-4.2 Problem 1 (adapted to text) — https://rotel.pressbooks.pub/statsproblemsets/chapter/assignment-4-1-4-2-random-variables/",
+      "source_url": "https://rotel.pressbooks.pub/statsproblemsets/chapter/assignment-4-1-4-2-random-variables/",
+      "source_problem": "4.1-4.2 Problem 1 (adapted to text)",
+      "license": "CC BY-NC-SA 4.0",
+      "attribution": "Rachael Norton and Peter Staab, 2023",
+      "review_status": "答案已独立推导并审核",
+      "type": "计算题",
+      "difficulty": 3,
+      "keywords": [
+        "离散型随机变量",
+        "期望",
+        "净收益"
+      ],
+      "formula_refs": [],
+      "data_refs": []
     }
   ]
 }

@@ -138,6 +138,7 @@ export function AppShell() {
       className="platform-shell"
       style={sidebarWidth ? ({ "--platform-sidebar-width": sidebarWidth } as React.CSSProperties) : undefined}
     >
+      <a className="platform-home-link" href="/">← 返回主界面</a>
       <LanguageTabs />
       <Sidebar activeId={activeId} onNavigate={handleNavigate} />
       <ResizeHandle onResize={handleSidebarResize} ariaLabel={copy.resizeLabel} />

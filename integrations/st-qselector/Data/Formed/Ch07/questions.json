@@ -331,6 +331,25 @@
       "keywords": [],
       "formula_refs": [],
       "data_refs": []
+    },
+    {
+      "id": "rotel_ch07_sampling_mean_01",
+      "content": "金枪鱼罐头重量服从正态分布，均值为5.95盎司、标准差为0.2盎司。原样本量为42，现在将样本量加倍为84。\n\na. 样本均值的标准差如何变化？\n\nb. 样本均值的期望如何变化？\n\nc. 样本均值服从正态分布是否必须依赖中心极限定理？",
+      "source": "ROTEL Statistical Problem Sets in WeBWorK — 7 Central Limit Theorem Problem 1 — https://rotel.pressbooks.pub/statsproblemsets/chapter/7-central-limit-theorem/",
+      "source_url": "https://rotel.pressbooks.pub/statsproblemsets/chapter/7-central-limit-theorem/",
+      "source_problem": "7 Central Limit Theorem Problem 1",
+      "license": "CC BY-NC-SA 4.0",
+      "attribution": "Rachael Norton and Peter Staab, 2023",
+      "review_status": "答案已独立推导并审核",
+      "type": "综合题",
+      "difficulty": 3,
+      "keywords": [
+        "样本均值",
+        "标准误",
+        "中心极限定理"
+      ],
+      "formula_refs": [],
+      "data_refs": []
     }
   ]
 }
