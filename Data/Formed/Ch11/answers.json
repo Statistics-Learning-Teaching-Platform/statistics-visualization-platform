@@ -1,0 +1,13 @@
+{
+  "chapter": 11,
+  "answers": [
+    {
+      "id": "ch11_q01",
+      "answer": "a) A linear regression model is given as follows:\n\n$$\\widehat{y} = 8.946 + 0.839x$$\n\nb\\) When x=5, the predicted number of abusive customers is Y=8.946+0.839\\*5=13.141.\n\nc\\) The simple correlation coefficient, r, =0.648. There is positive correlation between x and y."
+    },
+    {
+      "id": "ch11_q02",
+      "answer": "r=-0.957. The sample correlation is very closed to -1, indicating that there is very strong linear relationship between the age of a car and its price. The minus sign indicates that as age increases, price decreases-Which is what we would expect for second-hand cars.\n\n3\\.\n\nThe data giving the amount spent on advertising and the sales volume in the first month of 8 new products are given below\n\n+----------------+--------------------------+--------------------+\n| Product number | X Advertising (\\$10,000) | Y                  |\n|                |                          |                    |\n|                |                          | Sales (1000 units) |\n+:==============:+:========================:+:==================:+\n| 1              | 50                       | 157                |\n+----------------+--------------------------+--------------------+\n| 2              | 25                       | 152                |\n+----------------+--------------------------+--------------------+\n| 3              | 21                       | 69                 |\n+----------------+--------------------------+--------------------+\n| 4              | 65                       | 218                |\n+----------------+--------------------------+--------------------+\n| 5              | 30                       | 134                |\n+----------------+--------------------------+--------------------+\n| 6              | 40                       | 173                |\n+----------------+--------------------------+--------------------+\n| 7              | 25                       | 81                 |\n+----------------+--------------------------+--------------------+\n| 8              | 40                       | 113                |\n+----------------+--------------------------+--------------------+\n\na)  Fit the least squares line that expresses sales in terms of advertising.\n\nb)  Predict the level of sales when \\$350,000 is spent on advertising.\n\nc)  Find correlation coefficient for the data.\n\nSolution: a) The least squares line is y=38.592+2.663x.\n\nb\\) When x=35, y=131.797.\n\nc\\) The correlation coefficient for the data is r=0.812."
+    }
+  ]
+}

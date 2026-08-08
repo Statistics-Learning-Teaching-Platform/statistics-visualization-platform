@@ -1,0 +1,346 @@
+{
+  "chapter": 9,
+  "questions": [
+    {
+      "id": "ch09_q01",
+      "content": "The managers at Hunter Chemical Company claim that their major product contains on average $\\mu = 0.4$ fluid ounces of caustic material per gallon. They further state that the distribution of caustic material is normal with a standard deviation of $\\sigma = 1.3$ fluid ounces. If there is too much caustic material, the product will be dangerous. A government inspector is brought in to test the product. She randomly selects a sample of 100 gallon-size containers of the product and finds that their mean weight of caustic materials is $\\overline{X} = 4.5\\$fluid ounces per gallon.\n\n> \\(a\\) What are the null and alternative hypotheses that the inspector is exploring? Give them both mathematically and in English and explain your reasoning.\n>\n> \\(b\\) Conduct the hypothesis test using test statistics and state your conclusion.\n>\n> \\(c\\) Find the probability of getting a sample mean $\\overline{X}$ , as high as or higher than 4.5 if the production process was working as normal. Based on this probability would you be inclined to accept or reject the null hypothesis? What conclusions would you draw about the amount of caustic material being produced? Explain briefly.",
+      "source": "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment_Chapter 9 Hypothesis Testing Questions.docx",
+      "type": "unknown",
+      "difficulty": 1,
+      "keywords": [],
+      "formula_refs": [
+        "ch09_q01_ans_f01_image1.emf",
+        "ch09_q01_ans_f02_image2.emf",
+        "ch09_q01_ans_f03_image3.emf"
+      ],
+      "data_refs": []
+    },
+    {
+      "id": "ch09_q02",
+      "content": "The American Hospital Association reports in Hospital Stat that the mean cost to community hospitals per patient per day in U.S. hospitals was \\$931 in 1994. In that same year, a random sample of 30 daily costs in Massachusetts hospitals yielded a mean of \\$1131. Assuming a population standard deviation of \\$333 for Massachusetts hospitals, do the data provide sufficient evidence to conclude that in 1994 the mean cost in Massachusetts hospitals exceeded the national mean of \\$931? Perform the required hypothesis test at the 5% significance level.",
+      "source": "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment_Chapter 9 Hypothesis Testing Questions.docx",
+      "type": "unknown",
+      "difficulty": 1,
+      "keywords": [],
+      "formula_refs": [],
+      "data_refs": []
+    },
+    {
+      "id": "ch09_q03",
+      "content": "In 1990 the average passenger vehicle was driven 10.3 thousand miles, as reported by the U.S. Federal Highway Administration in Highway Statistics. A random sample of 500 passenger vehicles had a mean of 10.1 thousand miles driven for last year. Let $\\mu$ denote last year\\'s mean distance for all vehicles.\n\na)  Perform the hypothesis test\n\n> Ho: $\\mu$=10.3 thousand miles\n>\n> Ha: $\\mu$≠10.3 thousand miles\n>\n> at the 5% significance level. Assume last year\\'s standard deviation of distances driven for all passenger vehicles is 6.0 thousand miles.\n\nb)  Find a 95% confidence interval for$\\ \\mu$",
+      "source": "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment_Chapter 9 Hypothesis Testing Questions.docx",
+      "type": "unknown",
+      "difficulty": 1,
+      "keywords": [],
+      "formula_refs": [],
+      "data_refs": []
+    },
+    {
+      "id": "ch09_q04",
+      "content": "Last year the mean price of apartments in Zhuhai was 8650 RMB/m2 with a standard deviation 735 RMB/m2. A sample of 42 recent deals revealed that the mean was 8950 RMB/m2. Is there sufficient evidence to claim that the mean price of apartments in Zhuhai has moved higher this year with α = 0.01?",
+      "source": "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment_Chapter 9 Hypothesis Testing Questions.docx",
+      "type": "unknown",
+      "difficulty": 1,
+      "keywords": [],
+      "formula_refs": [
+        "ch09_q04_ans_f01_image4.wmf",
+        "ch09_q04_ans_f02_image5.wmf",
+        "ch09_q04_ans_f03_image6.wmf",
+        "ch09_q04_ans_f04_image7.wmf",
+        "ch09_q04_ans_f05_image8.wmf"
+      ],
+      "data_refs": []
+    },
+    {
+      "id": "ch09_q05",
+      "content": "The Watch Corporation of Switzerland claims that their watches on average will neither gain nor lose time during a week. A sample of 18 watches provided the following gains(+) or losses(-) in seconds per week.\n\n  -------------------------------------------------------------------------------------------------------------\n  -0.38 -0.20 -0.38 -0.32 +0.32 -0.23 +0.30 +0.25 -0.10 -0.37 -0.61 -0.48 -0.47 -0.64 -0.04 -0.20 -0.68 +0.05\n  -------------------------------------------------------------------------------------------------------------\n\n  -------------------------------------------------------------------------------------------------------------\n\nIs it reasonable to conclude the mean gain or loss in time for the watches is 0? Use the 0.05 significance level. Estimate the p-value.",
+      "source": "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment_Chapter 9 Hypothesis Testing Questions.docx",
+      "type": "unknown",
+      "difficulty": 1,
+      "keywords": [],
+      "formula_refs": [
+        "ch09_q05_f01_image9.wmf",
+        "ch09_q05_f02_image10.wmf",
+        "ch09_q05_f03_image11.wmf",
+        "ch09_q05_f04_image12.wmf",
+        "ch09_q05_f05_image13.wmf",
+        "ch09_q05_f06_image14.wmf",
+        "ch09_q05_f07_image15.wmf",
+        "ch09_q05_f08_image16.wmf",
+        "ch09_q05_f09_image17.wmf",
+        "ch09_q05_f10_image9.wmf",
+        "ch09_q05_f11_image18.wmf",
+        "ch09_q05_f12_image19.wmf",
+        "ch09_q05_f13_image20.wmf",
+        "ch09_q05_f14_image21.wmf",
+        "ch09_q05_f15_image9.wmf"
+      ],
+      "data_refs": []
+    },
+    {
+      "id": "ch09_q06",
+      "content": "A manufacturer of light bulbs claims that its light bulbs have a mean life of 1520 hours with an unknown standard deviation. A random sample of 25 such bulbs is selected for testing. If the sample produces a mean value of 1505 hours and a sample standard deviation of 86, is there sufficient evidence to claim that the mean life is significantly less than the manufacturer claimed? Assume that light bulb lifetimes are normally distributed and use a significance level of alpha=0.05.",
+      "source": "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment_Chapter 9 Hypothesis Testing Questions.docx",
+      "type": "unknown",
+      "difficulty": 1,
+      "keywords": [],
+      "formula_refs": [
+        "ch09_q06_ans_f01_image22.wmf",
+        "ch09_q06_ans_f02_image23.wmf",
+        "ch09_q06_ans_f03_image24.wmf",
+        "ch09_q06_ans_f04_image25.wmf"
+      ],
+      "data_refs": []
+    },
+    {
+      "id": "ch09_q07",
+      "content": "A large mail-order company has placed an order for 5,000 electric can openers with a supplier on the condition that no more than 2% of the devices will be defective. To check the shipment, the company tests a random sample of 400(n=400) of the can openers and finds that 11 (sample proportion= 11/400 = .0275) are defective.\n\na)  Does this provide sufficient evidence to indicate that the proportion of defective can openers in the shipment exceeds 2%? Test using a = .05.\n\nb)  Find and interpret the observed significance level for the hypothesis test.",
+      "source": "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment_Chapter 9 Hypothesis Testing Questions.docx",
+      "type": "unknown",
+      "difficulty": 1,
+      "keywords": [],
+      "formula_refs": [],
+      "data_refs": []
+    },
+    {
+      "id": "ch09_q08",
+      "content": "Paul's housemate Miranda is trying to convince Paul to get a piercing. Paul is very sensitive to popular opinion, however, and will only get one if \"everyone else is doing it\". Of course, everyone is unrealistic, so Paul will settle on getting the piercing if Miranda can show that more than 60% of people at Harvard have one. Miranda wastes no time in taking a sample of 60 people from Adam's House and performing the appropriate hypothesis test. Her sample revealed 44 people who admitted to having a piercing.\n\na)  Test the hypothesis $H_{0}:P \\leq 0.6\\ vs\\ H_{\\alpha}:p > 0.6$ at $\\alpha = 0.05.\\$Will Paul end up getting a piercing?\n\nb)  Do you have any criticisms of Miranda's sample?",
+      "source": "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment_Chapter 9 Hypothesis Testing Questions.docx",
+      "type": "unknown",
+      "difficulty": 1,
+      "keywords": [],
+      "formula_refs": [
+        "ch09_q08_ans_f01_image26.emf",
+        "ch09_q08_ans_f02_image27.emf"
+      ],
+      "data_refs": []
+    },
+    {
+      "id": "ch09_q09",
+      "content": "\\\"Take the Pepsi Challenge\\\" was a marketing campaign used recently by the Pepsi-Cola Company. Coca-Cola drinkers participated in a blind taste test where they were asked to taste unmarked cups of Pepsi and Coke and were asked to select their favorite. In one Pepsi television commercial, an announcer states that \\\"in recent blind taste tests, more than half the Diet Coke drinkers surveyed said they preferred the taste of Diet Pepsi\\\". Suppose 100 Diet Coke drinkers took the Pepsi Challenge and 56 preferred the taste of Diet Pepsi. Test the hypothesis that more than half of all Diet Coke drinkers will select Diet Pepsi in the blind taste test. Use alpha = .05. What are the consequences of the results from Coca-Cola\\'s perspective?",
+      "source": "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment_Chapter 9 Hypothesis Testing Questions.docx",
+      "type": "unknown",
+      "difficulty": 1,
+      "keywords": [],
+      "formula_refs": [],
+      "data_refs": []
+    },
+    {
+      "id": "ch09_q10",
+      "content": "The Department of Transportation in Georgia did a study a number of years ago\n\n> that showed that the proportion of cars tested which failed to meet the state pollution standard was .37. The department would like to be able to say that the cars have improved since then. In a sample of n=100 cars more recently, the proportion not meeting the standards was .28. Are the cars better at meeting the standards than they used to be? Clearly state the null and alternative hypotheses, both in English and mathematically. Perform the hypothesis test at level a = .01, both by computing the test statistic and the p-value and explain the meaning of your conclusion in words.",
+      "source": "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment_Chapter 9 Hypothesis Testing Questions.docx",
+      "type": "unknown",
+      "difficulty": 1,
+      "keywords": [],
+      "formula_refs": [
+        "ch09_q10_ans_f01_image28.emf"
+      ],
+      "data_refs": []
+    },
+    {
+      "id": "ch09_q11",
+      "content": "The production managers at ABZ Chemical Company claim that their major product contains no more than **4.0** fluid ounces of caustic material per gallon on average. They further state that the distribution of caustic material is normal with a standard deviation of [IMG:ch09_q01_f01_image1.png] fluid ounces. If there is too much caustic material, the product will be dangerous. A government inspector is brought in to test the product. She randomly selects a sample of 100 gallon-size containers of the product and finds that their mean weight of caustic materials is [IMG:ch09_q01_f02_image2.png]fluid ounces per gallon.\n\n\\(a\\) What are the null and alternative hypotheses that the inspector should make? Give them both mathematically and in English.\n\n\\(b\\) Conduct the hypothesis test with a level of significance=1%. Can the inspector conclude the ABZ Chemical Company's claim is wrong?\n\n[FORMULA:ch09_q01_f03_image3.emf]",
+      "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter09_Hypothesis Testing.doc",
+      "type": "unknown",
+      "difficulty": 1,
+      "keywords": [],
+      "formula_refs": [
+        "ch09_q01_f03_image3.emf"
+      ],
+      "data_refs": []
+    },
+    {
+      "id": "ch09_q12",
+      "content": "The American Hospital Association stated in its annual report that the mean cost to community hospitals per patient per day in U.S. hospitals was \\$1231 in 2007. In that same year, a random sample of 25 daily costs in the state of Utah hospitals yielded a mean of \\$1103. Assuming a population standard deviation of \\$252 for all Utah hospitals, do the data provide sufficient evidence to conclude that in 2007 the mean cost in Utah hospitals is below the national mean of \\$1231? Perform the required hypothesis test at the 5% significance level.\n\n[FORMULA:ch09_q02_f01_image4.emf]",
+      "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter09_Hypothesis Testing.doc",
+      "type": "unknown",
+      "difficulty": 1,
+      "keywords": [],
+      "formula_refs": [
+        "ch09_q02_f01_image4.emf"
+      ],
+      "data_refs": []
+    },
+    {
+      "id": "ch09_q13",
+      "content": "Suppose that scores on the Scholastic Achievement Test (SAT) form a normal distribution with mean = 500 and **σ** = 100. A high school counselor has developed a special course designed to boost SAT scores. A random sample 25 students is selected to take the course and then the SAT. The sample had an average score of 554. Does the course have an effect on SAT scores? Perform the hypothesis test using **α** = 5%. If **α** = 1% were used instead, what is the conclusion?\n\n[FORMULA:ch09_q03_f01_image5.emf]",
+      "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter09_Hypothesis Testing.doc",
+      "type": "unknown",
+      "difficulty": 1,
+      "keywords": [],
+      "formula_refs": [
+        "ch09_q03_f01_image5.emf"
+      ],
+      "data_refs": []
+    },
+    {
+      "id": "ch09_q14",
+      "content": "To test if UIC students have higher IQ score than average college students, John conducted a sample survey of 122 UIC students and found a mean IQ score of 116. If we assume both the IQ scores of the population of all college students follow normal distributions with a mean of 109 and standard deviation=15. At a significance level **α=**0.05, test if the average IQ of UIC students is greater than the average IQ of the population of all college students.\n\n> [FORMULA:ch09_q04_f01_image6.emf]",
+      "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter09_Hypothesis Testing.doc",
+      "type": "unknown",
+      "difficulty": 1,
+      "keywords": [],
+      "formula_refs": [
+        "ch09_q04_f01_image6.emf"
+      ],
+      "data_refs": []
+    },
+    {
+      "id": "ch09_q15",
+      "content": "Last year the mean price of apartments in Zhuhai was 9450 RMB/m2 with a standard deviation 1035 RMB/m2. A sample of 47 recent deals revealed that the mean was 9850 RMB/m2. Is there sufficient evidence to claim that the mean price of apartments in Zhuhai has moved higher this year with α = 0.01, both by computing the test statistic and the p-value? What test statistic should be used?\n\n[FORMULA:ch09_q05_f01_image7.emf]\n\n**σ Unknown (t test) One or Two -Tail Test**",
+      "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter09_Hypothesis Testing.doc",
+      "type": "unknown",
+      "difficulty": 1,
+      "keywords": [],
+      "formula_refs": [
+        "ch09_q05_f01_image7.emf"
+      ],
+      "data_refs": []
+    },
+    {
+      "id": "ch09_q16",
+      "content": "Last year the mean price of apartments in Zhuhai was 9450 RMB/m2 with unknown standard deviation. A sample of 25 recent deals revealed that the sample mean was 9850 RMB/m2 and a standard deviation 1035 RMB/m2. Is there sufficient evidence to claim that the mean price of apartments in Zhuhai has moved higher this year with α = 0.01, both by computing the test statistic and the p-value? What test statistic should be used?\n\n[FORMULA:ch09_q06_f01_image8.emf]",
+      "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter09_Hypothesis Testing.doc",
+      "type": "unknown",
+      "difficulty": 1,
+      "keywords": [],
+      "formula_refs": [
+        "ch09_q06_f01_image8.emf"
+      ],
+      "data_refs": []
+    },
+    {
+      "id": "ch09_q17",
+      "content": "A manufacturer of light bulbs claims that its light bulbs have a mean life of 1520 hours with an unknown standard deviation. A random sample of 40 such bulbs is selected for testing. If the sample produces a mean value of 1505 hours and a sample standard deviation of 86 hours, is there sufficient evidence to claim that the mean life is significantly less than the manufacturer claimed? Assume that light bulb lifetimes are normally distributed and use a significance level of **α**=0.05.\n\n> Step 1 Null hypothesis: mean life = 1520 hours\n>\n> Alternative hypothesis: mean life \\> or \\< 1520 hours\n>\n> ${\\overline{X}}_{\\text{40}}\\text{\\textasciitilde}t_{\\text{39}}(\\text{1520},\\text{ s}_{\\overline{X}} = \\frac{\\text{86}}{\\sqrt{\\text{40}}} = \\text{13.}5)$Step 2 Since we have to estimate **σ**, we need to decide from a T-curve with 39 degrees of freedom.\n>\n> Step 3 critical t=[+]{.underline}2.04 with **α**=0.05\n>\n> $\\begin{array}{r}\n> t_{\\text{39}} = \\frac{\\text{1505} - \\text{1520}}{\\text{13.}5} = - 1\\text{.}\\text{11} \\\\\n> p - \\text{value} = P(t_{\\text{39}} < - 1\\text{.}\\text{11}) = \\text{.}\\text{137}\n> \\end{array}$Not sufficient evidence to reject the null hypothesis.",
+      "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter09_Hypothesis Testing.doc",
+      "type": "unknown",
+      "difficulty": 1,
+      "keywords": [],
+      "formula_refs": [],
+      "data_refs": []
+    },
+    {
+      "id": "ch09_q18",
+      "content": "In 2005 the average passenger vehicle on the road was driven 15.3 thousand miles, as reported by the U.S. Federal Highway Administration in Highway Statistics. A random sample of 50 passenger vehicles in 2010 had a mean of 23.1 thousand miles driven on them with a standard deviation of 7.2 thousand miles. Let μ denote the mean mileage driven on all passenger vehicles.\n\na)  Perform the hypothesis test to determine if μ in 2010 is different from μ in 2005, at 5% significance level.\n\nHo: μ =15.3 thousand miles\n\nHa: μ ≠15.3 thousand miles\n\nb)  Find a 95% confidence interval for μ in 2005.\n\n[FORMULA:ch09_q08_f01_image9.emf]",
+      "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter09_Hypothesis Testing.doc",
+      "type": "unknown",
+      "difficulty": 1,
+      "keywords": [],
+      "formula_refs": [
+        "ch09_q08_f01_image9.emf"
+      ],
+      "data_refs": []
+    },
+    {
+      "id": "ch09_q19",
+      "content": "A researcher would like to evaluate the effect of a new cold medication on reaction time. It is known that under regular circumstances the distribution of reaction times is normal with mean = 200 ms. A random sample of 14 persons is selected, and each of them is given the new cold medication. One hour later reaction time is measured for each individual. The average reaction time for this sample is 221 ms with variance = 300 ms^2^. On the basis of these data, can the researcher conclude that the cold medication has an effect on reaction time? Test at the .05 level of significance.\n\n[FORMULA:ch09_q09_f01_image10.emf]",
+      "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter09_Hypothesis Testing.doc",
+      "type": "unknown",
+      "difficulty": 1,
+      "keywords": [],
+      "formula_refs": [
+        "ch09_q09_f01_image10.emf"
+      ],
+      "data_refs": []
+    },
+    {
+      "id": "ch09_q20",
+      "content": "A college professor has noted that this year's freshman class appears to be smarter than classes from previous years. The professor obtains a sample of 36 freshmen and computes an average IQ of 114.5 with a variance of 324 for this group. College records indicate that the mean IQ for entering freshmen from earlier years is 110.3. On the basis of the sample data, can the professor conclude that this year's students have IQs that are significantly different from those of previous students? Use a two-tailed test with α = 5%.\n\n[FORMULA:ch09_q10_f01_image11.emf]\n\n**Population Proportion**",
+      "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter09_Hypothesis Testing.doc",
+      "type": "unknown",
+      "difficulty": 1,
+      "keywords": [],
+      "formula_refs": [
+        "ch09_q10_f01_image11.emf"
+      ],
+      "data_refs": []
+    },
+    {
+      "id": "ch09_q21",
+      "content": "In one Coca-Cola television commercial, an announcer states that \\\"in recent blind taste tests, more than half of the drinkers surveyed said they preferred the taste of Diet Coke\\\". Suppose in a sample of 100 randomly selected drinkers to take the test, 56 preferred the taste of Diet Coke. Test the hypothesis that more than half of all drinkers will select Diet Coke in the blind taste test by computing the test statistic and the p-value (using α = .02).\n\n[FORMULA:ch09_q11_f01_image12.emf]",
+      "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter09_Hypothesis Testing.doc",
+      "type": "unknown",
+      "difficulty": 1,
+      "keywords": [],
+      "formula_refs": [
+        "ch09_q11_f01_image12.emf"
+      ],
+      "data_refs": []
+    },
+    {
+      "id": "ch09_q22",
+      "content": "An airline's public relations department says that the airline rarely loses passengers' luggage. It further claims that on those occasions when luggage is lost, over 90% is recovered and delivered to its owner within 24 hours. A consumer group who surveyed a large number of air travelers found that only 103 out of 122 people who lost luggage on that airline were reunited with the missing items by the next day. What do you think about the airline's claim? Test whether the airline has overstated its record with α = 0.05. Estimate the p-value.\n\nStep 1:\n\np = proportion of people who lost their luggage and had it returned within 24 hours\n\n- H~O~: p [\\>]{.underline} 0.9\n\n- H~A~: p \\< 0.9\n\n$\\begin{array}{r}\nN\\left( 0\\text{.}9,\\sqrt{\\frac{0\\text{.}9(0\\text{.}1)}{\\text{122}}} \\right) \\\\\nN(0\\text{.}9,0\\text{.}\\text{027})\n\\end{array}$Step 2:\n\n- Assumptions\n\n  - 122(0.9) = 109.8\n\n  - 122(0.1) = 12.2\n\n- $z = \\frac{\\hat{p} - p_{o}}{\\sqrt{\\frac{p_{o}(1 - p_{o})}{n}}} = \\frac{0\\text{.844} - 0\\text{.}9}{0\\text{.027}} = - 2\\text{.07}$sample proportion =103/122=0.844\n\n- Test Statistic\n\nStep 3:\n\n- Decision: 1-tail test, critical z=-1.65\n\n- reject H~O~\n\n- Conclusion: The population proportion of people who lost their luggage that have it returned within 24 hours on this airline is less than 90%. The airline's claim is not true.",
+      "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter09_Hypothesis Testing.doc",
+      "type": "unknown",
+      "difficulty": 1,
+      "keywords": [],
+      "formula_refs": [],
+      "data_refs": []
+    },
+    {
+      "id": "ch09_q23",
+      "content": "A coffee manufacture is interested in whether the mean daily consumption of regular coffee drinker is less than that of decaffeinated-coffee drinkers. A random sample of 50 regular-coffee drinkers showed a mean of 4.35 cups per day, with a standard deviation of 1.20 cups per day. A sample of 40 decaffeinated-coffee drinkers showed a mean of 5.84 cups per day, with a standard of 1.36 cups per day. Use the 0.01 significance level. Compute the p-value.",
+      "source": "Assignment Prof Lv/assignment9-Lu.doc",
+      "type": "unknown",
+      "difficulty": 1,
+      "keywords": [],
+      "formula_refs": [
+        "ch09_q01_f01_image1.emf"
+      ],
+      "data_refs": []
+    },
+    {
+      "id": "ch09_q24",
+      "content": "An Ohio university wishes to demonstrate that car ownership is detrimental to academic achievement. A random sample of 100 students who do not own cars had a mean grade point average (GPA) of 2.68, while a random sample of 100 students who own cars had a mean GPA of 2.55.\n\na\\. Set up the null and alternative hypotheses that should be used to attempt to justify that the mean GPA for non-car owners is higher than the mean GPA for car owners.\n\nb\\. Test the hypotheses that you set up in part *a* with 0.05 level of significance. Again assume that $\\sigma_{1} = 0\\text{.}7$ and $\\sigma_{2} = 0\\text{.}6$. Interpret the results of this test. That is, what do your results say about whether the university can statistically justify that car ownership hurts academic achievement?",
+      "source": "Assignment Prof Lv/assignment9-Lu.doc",
+      "type": "unknown",
+      "difficulty": 1,
+      "keywords": [],
+      "formula_refs": [
+        "ch09_q02_f01_image2.emf",
+        "ch09_q02_f02_image3.emf"
+      ],
+      "data_refs": []
+    },
+    {
+      "id": "ch09_q25",
+      "content": "The Computer Anxiety Rating Scale (CARS) measures an individual's level of computer anxiety on a scale from 20 (no anxiety) to 100 (highest level of anxiety). Researchers at Miami University administered CARS to 172 business students. One of the objectives of the study was to determine if there is a difference between the level of computer anxiety experienced by female and male business students. We assume that variances of two populations are equal.\n\n  ------------------ ------------ -------------\n                     Males        Females\n\n  $$\\overline{x}$$   40.26        36.85\n\n  s                  13.35        9.42\n\n  n                  100          72\n  ------------------ ------------ -------------\n\na.  At the 0.05 level of significance, is there evidence of a difference in the mean computer anxiety experienced by female and male business students?\n\nb.  Determine the p-value and interpret its meaning.\n\nc.  What assumptions do you have to make about the two populations in order to justify the use of the *t* test?",
+      "source": "Assignment Prof Lv/assignment9-Lu.doc | Assignments for STAT 2010/Assignment 9.doc",
+      "type": "unknown",
+      "difficulty": 1,
+      "keywords": [],
+      "formula_refs": [],
+      "data_refs": []
+    },
+    {
+      "id": "ch09_q26",
+      "content": "Multiple myeloma or blood plasma cancer is characterized by increased blood vessel formulation (angiogenesis) in the bone marrow that is a prognostic factor in survival. One treatment approach used for multiple myeloma is stem cell transplantation with the patient's own stem cells. The following data MYELOMA represent the bone marrow microvessel density for patients who had a complete response to the stem cell transplant as measured by blood and urine tests. The measurements were taken immediately prior to the stem cell transplant and at the time of the complete response.\n\n  ------------------ ------------------ ------------------\n       Patient             Before             After\n\n          1                 158                284\n\n          2                 189                214\n\n          3                 202                101\n\n          4                 353                227\n\n          5                 416                290\n\n          6                 426                176\n\n          7                 441                290\n  ------------------ ------------------ ------------------\n\na.  At the 0.05 level of significance, is there evidence that the mean bone marrow microvessel density is higher before the stem cell transplant than after the stem cell transplant?\n\nb.  Interpret the meaning of the *p*-value in (a).\n\nc.  Construct and interpret a 95% confidence interval estimate of the mean difference in bone marrow microvessel density before and after the stem cell transplant.\nA number of minor automobile accidents occur at various high-risk intersections in Teton County despite traffic lights. The Traffic Department claims that a modification in the type of light will reduce these accidents. The county commissioners have agreed to a proposed experiment. Eight intersections were chosen at random, and the lights at those intersections were modified. The numbers of minor accidents during a six-month period before and after the modifications were:\n\n+:------:+:---------:+:---------:+:---------:+:---------:+:---------:+:---------:+:---------:+:---------:+\n|        | Number of Accidents                                                                           |\n+--------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+\n|        | A         | B         | C         | D         | E         | F         | G         | H         |\n+--------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+\n| Before | 5         | 7         | 6         | 4         | 8         | 9         | 8         | 10        |\n+--------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+\n| After  | 3         | 7         | 7         | 0         | 4         | 6         | 8         | 2         |\n+--------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+\n\nAt the 0.05 level of significance, is there evidence that the modification in the type of light will reduce the accidents?",
+      "source": "Assignment Prof Lv/assignment9-Lu.doc",
+      "type": "unknown",
+      "difficulty": 1,
+      "keywords": [],
+      "formula_refs": [],
+      "data_refs": []
+    },
+    {
+      "id": "ch09_q27",
+      "content": "In recent years the interest rate on home mortgages has declined to less than 6.0 percent. However, according to a study by Federal Reserve Board the rate charge on credit card debit is more than 14 percent. Listed below is the interest rate charged on a sample of 10 credit cards.\n\n  -----------------------------------------------------------------------\n16.7 17.4 17.0 17.8 15.4 13.1 15.8 14.3 14.5\n\n  -----------------------------------------------------------------------\n\nIs it reasonable to conclude the mean rate charged is greater than 14 percent? Use the 0.01 significance level.",
+      "source": "Assignments for STAT 2010/Assignment 9.doc",
+      "type": "unknown",
+      "difficulty": 1,
+      "keywords": [],
+      "formula_refs": [],
+      "data_refs": []
+    },
+    {
+      "id": "ch09_q28",
+      "content": "A number of minor automobile accidents occur at various high-risk intersections in Teton County despite traffic lights. The Traffic Department claims that a modification in the type of light will reduce these accidents. The county commissioners have agreed to a proposed experiment. Eight intersections were chosen at random, and the lights at those intersections were modified. The numbers of minor accidents during a six-month period before and after the modifications were:\n\n+:------:+:---------:+:---------:+:---------:+:---------:+:---------:+:---------:+:---------:+:---------:+\n|        | Number of Accidents                                                                           |\n+--------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+\n|        | A         | B         | C         | D         | E         | F         | G         | H         |\n+--------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+\n| Before | 5         | 7         | 6         | 4         | 8         | 9         | 8         | 10        |\n+--------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+\n| After  | 3         | 7         | 7         | 0         | 4         | 6         | 8         | 2         |\n+--------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+\n\nAt the 0.05 level of significance, is there evidence that the modification in the type of light will reduce the accidents?",
+      "source": "Assignments for STAT 2010/Assignment 9.doc",
+      "type": "unknown",
+      "difficulty": 1,
+      "keywords": [],
+      "formula_refs": [],
+      "data_refs": []
+    }
+  ]
+}

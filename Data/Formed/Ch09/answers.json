@@ -1,0 +1,61 @@
+{
+  "chapter": 9,
+  "answers": [
+    {
+      "id": "ch09_q01",
+      "answer": "Answer/Q1.png"
+    },
+    {
+      "id": "ch09_q02",
+      "answer": "Answer/Q2.png"
+    },
+    {
+      "id": "ch09_q03",
+      "answer": "Answer/Q3.png"
+    },
+    {
+      "id": "ch09_q04",
+      "answer": "> [FORMULA:ch09_q04_ans_f01_image4.wmf], [FORMULA:ch09_q04_ans_f02_image5.wmf]\n>\n> From the question, we know $\\overline{x} = 8950$, n=42 [FORMULA:ch09_q04_ans_f03_image6.wmf] is known. This is a z-test.\n>\n> [FORMULA:ch09_q04_ans_f04_image7.wmf]\n>\n> [FORMULA:ch09_q04_ans_f05_image8.wmf]\n>\n> We can reject $H_{0}$, i.e. there is sufficient evidence to claim that the mean price of apartments in Zhuhai has moved higher this year with α = 0.01."
+    },
+    {
+      "id": "ch09_q05",
+      "answer": "SOLUTION**:**\n\n> [FORMULA:ch09_q05_f01_image9.wmf]: *μ* =0 [FORMULA:ch09_q05_f02_image10.wmf]: *μ* [FORMULA:ch09_q05_f03_image11.wmf]0\n>\n> [FORMULA:ch09_q05_f04_image12.wmf]=-0.232 s=0.312\n>\n> t[FORMULA:ch09_q05_f05_image13.wmf]=[FORMULA:ch09_q05_f06_image14.wmf]=-3.155\n>\n> critical value: [FORMULA:ch09_q05_f07_image15.wmf]t[FORMULA:ch09_q05_f08_image16.wmf]=[FORMULA:ch09_q05_f09_image17.wmf]2.11\n\nSince -3.155\\<-2.11, reject [FORMULA:ch09_q05_f10_image9.wmf] at 0.05 significance level and conclude the mean gain or loss in time for the watches is not 0. P-value=2p([FORMULA:ch09_q05_f11_image18.wmf][FORMULA:ch09_q05_f12_image19.wmf]-0.232)=2p(t[FORMULA:ch09_q05_f13_image20.wmf]-3.155)\\<2[FORMULA:ch09_q05_f14_image21.wmf]0.005=0.01. Since 0.01\\<0.05, so we reject [FORMULA:ch09_q05_f15_image9.wmf] and get the same conclusion."
+    },
+    {
+      "id": "ch09_q06",
+      "answer": "> [FORMULA:ch09_q06_ans_f01_image22.wmf], [FORMULA:ch09_q06_ans_f02_image23.wmf]\n>\n> This is a t-test, df=25-1=24, [FORMULA:ch09_q06_ans_f03_image24.wmf], the rejection region is {t: t\\<-1.711 }.\n>\n> [FORMULA:ch09_q06_ans_f04_image25.wmf]\n>\n> We can not reject$H_{0}$, i.e. there is not sufficient evidence to claim that the mean life is significantly less than the manufacturer claimed."
+    },
+    {
+      "id": "ch09_q07",
+      "answer": "a)  1). H0: p$\\leq$.02 vs. Ha: p\\>.02"
+    },
+    {
+      "id": "ch09_q08",
+      "answer": "[FORMULA:ch09_q08_ans_f01_image26.emf]\n\n[FORMULA:ch09_q08_ans_f02_image27.emf]"
+    },
+    {
+      "id": "ch09_q09",
+      "answer": "1). Ho: p=.5 vs. Ha: p\\>.5"
+    },
+    {
+      "id": "ch09_q10",
+      "answer": "[FORMULA:ch09_q10_ans_f01_image28.emf]"
+    },
+    {
+      "id": "ch09_q23",
+      "answer": "A coffee manufacture is interested in whether the mean daily consumption of regular coffee drinker is less than that of decaffeinated-coffee drinkers. A random sample of 50 regular-coffee drinkers showed a mean of 4.35 cups per day, with a standard deviation of 1.20 cups per day. A sample of 40 decaffeinated-coffee drinkers showed a mean of 5.84 cups per day, with a standard of 1.36 cups per day. Use the 0.01 significance level. Compute the p-value.\n\n[FORMULA:ch09_q01_f01_image1.emf]"
+    },
+    {
+      "id": "ch09_q24",
+      "answer": "An Ohio university wishes to demonstrate that car ownership is detrimental to academic achievement. A random sample of 100 students who do not own cars had a mean grade point average (GPA) of 2.68, while a random sample of 100 students who own cars had a mean GPA of 2.55.\n\na\\. Set up the null and alternative hypotheses that should be used to attempt to justify that the mean GPA for non-car owners is higher than the mean GPA for car owners.\n\nb\\. Test the hypotheses that you set up in part *a* with 0.05 level of significance. Again assume that $\\sigma_{1} = 0\\text{.}7$ and $\\sigma_{2} = 0\\text{.}6$. Interpret the results of this test. That is, what do your results say about whether the university can statistically justify that car ownership hurts academic achievement?\n\n[FORMULA:ch09_q02_f01_image2.emf]\n\n[FORMULA:ch09_q02_f02_image3.emf]\n\n--- (from solution) ---\n\nSamples are randomly and independently drawn."
+    },
+    {
+      "id": "ch09_q25",
+      "answer": "The Computer Anxiety Rating Scale (CARS) measures an individual's level of computer anxiety on a scale from 20 (no anxiety) to 100 (highest level of anxiety). Researchers at Miami University administered CARS to 172 business students. One of the objectives of the study was to determine if there is a difference between the level of computer anxiety experienced by female and male business students. We assume that variances of two populations are equal.\n\n  ------------------ ----------- -------------\n                     Males       Females\n\n  $$\\overline{x}$$   40.26       36.85\n\n  s                  13.35       9.42\n\n  n                  100         72\n  ------------------ ----------- -------------\n\na.  At the 0.05 level of significance, is there evidence of a difference in the mean computer anxiety experienced by female and male business students?\n\nb.  Determine the p-value and interpret its meaning.\n\nc.  What assumptions do you have to make about the two populations in order to justify the use of the *t* test?\n\n[IMG:ch09_q03_f01_image4.png]\n\n[IMG:ch09_q03_f02_image5.png]\n\n[IMG:ch09_q03_f03_image6.png]"
+    },
+    {
+      "id": "ch09_q26",
+      "answer": "a\\. $d_{1}$=-126, $d_{2}$=-25, $d_{3}$=101, $d_{4}$=126, $d_{5}$=126, $d_{6}$=250, $d_{7}$=151\n\n: $\\mu_{d}$$$``{=html}0 : $\\mu_{d}$\\>0\n\n$\\overline{d}$=86.14 $s_{d}$=123.7\n\n$t_{7 - 1}$=$\\frac{\\overline{d} - \\mu_{d}}{\\frac{s_{d}}{\\sqrt{n}}}$=$\\frac{\\text{86.14} - 0}{\\frac{\\text{123.}7}{\\sqrt{7}}}$=1.842\n\nCritical value: $t_{6,0\\text{.05}}$=1.943\n\nSince 1.842\\<1.943, we can't reject at 0.05 level of significance and there is not enough evidence that the mean bone marrow microvessel density is higher before the stem cell transplant than after that.\n\nb\\. p-value=p($\\overline{d} > \\text{86.14}$)=p($t_{6}$\\>1.842)\\>0.05\n\nSo we can't reject at 0.05 significance level and get the same conclusion as in a.\n\nc\\. 95% confidence interval estimate of the mean difference is\n\n\\[$\\overline{d} \\pm t_{6,0\\text{.}\\frac{\\text{05}}{2}}\\frac{s_{d}}{\\sqrt{n}}$\\]=\\[86.14$\\pm$``{=html}2.447$\\frac{\\text{123.}7}{\\sqrt{7}}$\\]=\\[-28.27,200.55\\]\n\nWe can be 95% confident that the mean of all possible difference in bone marrow mocrovessel density before and after the transplant is between -28.27 and 200.55."
+    }
+  ]
+}

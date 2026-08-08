@@ -1,0 +1,336 @@
+{
+  "chapter": 7,
+  "questions": [
+    {
+      "id": "ch07_q01",
+      "content": "What does the Central Limit Theorem tell us about the sampling distribution of the sample mean?",
+      "source": "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment and solution_chap7&13_ Sampling distribution_regression.docx",
+      "type": "unknown",
+      "difficulty": 1,
+      "keywords": [],
+      "formula_refs": [],
+      "data_refs": []
+    },
+    {
+      "id": "ch07_q02",
+      "content": "The diameter of small Nerf balls manufactured at a factory in China is expected to be approximately normally distributed with a mean of 5.2 inches and a standard deviation of .08 inches. Suppose a random sample of 20 balls is selected. Find the interval that contains 95.44 percent of the sample means.",
+      "source": "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment and solution_chap7&13_ Sampling distribution_regression.docx",
+      "type": "unknown",
+      "difficulty": 1,
+      "keywords": [],
+      "formula_refs": [
+        "ch07_q02_ans_f01_image1.wmf"
+      ],
+      "data_refs": []
+    },
+    {
+      "id": "ch07_q03",
+      "content": "Suppose that we will randomly select a sample of 64 measurements from a population having a mean equal to 20 and a standard deviation equal to 4.\n\na.  Describe the shape of the sampling distribution of the sample mean[FORMULA:ch07_q03_f01_image3.wmf]. Do we need to make any assumption about the shape of population? Why or why not?\n\nb.  Find the mean and the standard deviation of the sampling distribution of the sample mean[FORMULA:ch07_q03_f02_image3.wmf].\n\nc.  Calculate the probability that we will obtain a sample mean greater than 21.\n\nd.  Calculate the probability that we will obtain a sample mean less than 19.385.",
+      "source": "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment and solution_chap7&13_ Sampling distribution_regression.docx",
+      "type": "unknown",
+      "difficulty": 1,
+      "keywords": [],
+      "formula_refs": [
+        "ch07_q03_ans_f03_image4.wmf",
+        "ch07_q03_ans_f04_image5.wmf",
+        "ch07_q03_ans_f05_image6.wmf",
+        "ch07_q03_f01_image3.wmf",
+        "ch07_q03_f02_image3.wmf"
+      ],
+      "data_refs": []
+    },
+    {
+      "id": "ch07_q04",
+      "content": "A computer supply house receives a large shipment of flash drives each week. Past experience has shown that the number of flaws (bad sectors) per flash drive is either 0, 1, 2 or 3 with probabilities 0.65, 0.2, 0.1 and 0.05, respectively.\n\nThe supply house's managers are worried that the flash drives being received have an excessive number of flaws. Because of this, a random sample of 100 flash drives is drawn from each shipment and the shipment is rejected (sent back to the supplier) if the average number of flaws per flash drive for the 100 sample drives is greater than 0.75. Suppose that the mean number of flaws per flash drive for this week's entire shipment is actually 0.55. What is the probability that this shipment will be rejected and sent back to the supplier?",
+      "source": "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment and solution_chap7&13_ Sampling distribution_regression.docx",
+      "type": "unknown",
+      "difficulty": 1,
+      "keywords": [],
+      "formula_refs": [
+        "ch07_q04_ans_f01_image7.gif",
+        "ch07_q04_ans_f02_image8.gif",
+        "ch07_q04_ans_f03_image9.gif"
+      ],
+      "data_refs": []
+    },
+    {
+      "id": "ch07_q05",
+      "content": "Suppose that we will randomly select a sample of *n* units from a population and that we will compute the sample proportion $\\widehat{p}$ of these units that fall into a category of interest. If the sample size *n* is large, the sampling distribution of $\\widehat{p}$ is approximately a normal distribution. What condition must be satisfied to guarantee that *n* is large enough to say that $\\widehat{p}$ is approximately normally distributed? Describe the effect of increasing the sample size on the population of all possible sample proportions.",
+      "source": "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment and solution_chap7&13_ Sampling distribution_regression.docx",
+      "type": "unknown",
+      "difficulty": 1,
+      "keywords": [],
+      "formula_refs": [],
+      "data_refs": []
+    },
+    {
+      "id": "ch07_q06",
+      "content": "Quality progress, February, 2005, reports on improvements in customer satisfaction and loyalty made by bank of America. A key measure of customer satisfaction is the response (on a scale from 1 to 10) to the question: 'Considering all the business you do with Bank of America, what is your overall satisfaction with Bank of America?' Here, a response of 9 or 10 represents 'customer delight'.\n\na\\. Historically, the percentage of Bank of America customers expressing customer delight has been 48%. Suppose that we wish to use the results of a survey of 350 Bank of America customers to justify the claim that more than 48% of all current Bank of America customers would express customer delight. The survey finds that 189 of 350 randomly selected Bank of America customers express customer delight. If, for the sake of argument, we assume that the proportion of customer delight is *p*=0.48, calculate the probability of observing a sample proportion greater than or equal to 189/350=0.54. That is, calculate *P*($\\widehat{p} \\geq 0.54$).\n\nb\\. Based on the probability you computed in part *a*, would you conclude that more than 48 percent of current Bank of America customers express customer delight? Explain.",
+      "source": "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment and solution_chap7&13_ Sampling distribution_regression.docx",
+      "type": "unknown",
+      "difficulty": 1,
+      "keywords": [],
+      "formula_refs": [
+        "ch07_q06_ans_f01_image10.wmf"
+      ],
+      "data_refs": []
+    },
+    {
+      "id": "ch07_q07",
+      "content": "In the upcoming governor\\'s election, the most recent poll based on 900 respondents predicts that the incumbent will be reelected with 55% of the votes. For the sake of argument, assume that 51% of the actual voters in the state support the incumbent governor (*p* = 0.51). Calculate the probability of observing a sample proportion of voters 0.55 or higher supporting the incumbent governor.",
+      "source": "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment and solution_chap7&13_ Sampling distribution_regression.docx",
+      "type": "unknown",
+      "difficulty": 1,
+      "keywords": [],
+      "formula_refs": [
+        "ch07_q07_ans_f01_image11.wmf",
+        "ch07_q07_ans_f02_image12.wmf",
+        "ch07_q07_ans_f03_image13.wmf"
+      ],
+      "data_refs": []
+    },
+    {
+      "id": "ch07_q08",
+      "content": "Given a normal distribution with $\\mu = 50$ and $\\sigma = 5\\$, if a sample of $n = 100\\$is selected. What is the probability that $\\overline{X}$\n\n(a) Is less than 47?\n\n(b) Is between 47 and 49.5?\n\n(c) There is a 35% chance that $\\overline{X}$ will be above what value?",
+      "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter07_Sample Mean.docx",
+      "type": "unknown",
+      "difficulty": 1,
+      "keywords": [],
+      "formula_refs": [],
+      "data_refs": []
+    },
+    {
+      "id": "ch07_q09",
+      "content": "A soft-drink machine is regulated so that the amount dispensed is normally distributed with $\\mu = 7$ ounces and $\\sigma = .5\\$ounce. If samples of nine cups are taken, what value will be exceeded by 95% of the sample means?",
+      "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter07_Sample Mean.docx",
+      "type": "unknown",
+      "difficulty": 1,
+      "keywords": [],
+      "formula_refs": [],
+      "data_refs": []
+    },
+    {
+      "id": "ch07_q10",
+      "content": "The following data represent the number of days absent per year in a population of six employees of a small company:\n\n> 1, 3, 6, 7, 7, 12. Assuming that you sample without replacement\n\n(a) Select all possible samples of size 3 and set up the sampling distribution of the mean.\n\n(b) Computer the mean of all the sample means and also compute the population mean. Are they equal?",
+      "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter07_Sample Mean.docx",
+      "type": "unknown",
+      "difficulty": 1,
+      "keywords": [],
+      "formula_refs": [],
+      "data_refs": []
+    },
+    {
+      "id": "ch07_q11",
+      "content": "Time spent using e-mail per session is normally distributed with$\\ \\mu = 8$ minutes and$\\ \\sigma = 2$ minutes. If random samples of 25 sessions were selected.\n\n(a) Compute$\\ \\sigma_{\\overline{x}}$\n\n(b) What proportion of the sample means would be between 7.8 and 8.2 minutes?\n\n(c) If random samples of 100 sessions were selected, what proportion of the sample means would be between 7.8 and 8.2 minutes?\n\n(d) Explain the difference in the results of (b) and (d).\n\n(e) Which is more likely to occur-a particular session of e-mail for more than 11 minutes, a sample mean above 9 minutes in a sample of 25 sessions, or a sample mean above 8.6 minutes in a sample of 100 sessions? Explain.",
+      "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter07_Sample Mean.docx",
+      "type": "unknown",
+      "difficulty": 1,
+      "keywords": [],
+      "formula_refs": [],
+      "data_refs": []
+    },
+    {
+      "id": "ch07_q12",
+      "content": "The amount of time a bank teller spends with each customer has a population mean$\\ \\mu = 3.10$ minutes and standard deviation$\\ \\sigma = 0.40$ minute. If a random sample of 16 customers is selected.\n\n(a) What is the probability that the average time spent per customer will be at least 3 minutes?\n\n(b) There is an 85% chance that the sample mean will be below how many minutes?\n\n(c) What assumption must be made in order to solve (a) and (b)?",
+      "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter07_Sample Mean.docx",
+      "type": "unknown",
+      "difficulty": 1,
+      "keywords": [],
+      "formula_refs": [],
+      "data_refs": []
+    },
+    {
+      "id": "ch07_q13",
+      "content": "Toby's Trucking Company determined that on an annual basis, the distance traveled per truck is normally distributed with a mean of 50.0 thousand miles and a standard deviation of 12.0 thousand miles. If a sample of 64 trucks is selected.\n\n(a) There is a 95% chance that the sample mean will be below how many miles?\n\n(b) What assumption must be made in order to solve (a)",
+      "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter07_Sample Mean.docx",
+      "type": "unknown",
+      "difficulty": 1,
+      "keywords": [],
+      "formula_refs": [],
+      "data_refs": []
+    },
+    {
+      "id": "ch07_q14",
+      "content": "Historical data shows that 70% of people is classified as \"successful\". In a random sample of 64 people, 48 were classified as \"successful\"\n\n(a) Determine the sample proportion${\\ p}_{s}$ of \"successful\" people.\n\n(b) Determine the standard error of the sample proportion${\\ \\sigma}_{p}$",
+      "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter07_Sample Mean.docx",
+      "type": "unknown",
+      "difficulty": 1,
+      "keywords": [],
+      "formula_refs": [],
+      "data_refs": []
+    },
+    {
+      "id": "ch07_q15",
+      "content": "Historically, 10% of a large shipment of machine parts are defective. If random samples of 400 parts are selected, What proportion of the samples will have\n\n(a) Between 9% and 10% defective parts?\n\n(b) Less than 8% defective parts?",
+      "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter07_Sample Mean.docx",
+      "type": "unknown",
+      "difficulty": 1,
+      "keywords": [],
+      "formula_refs": [],
+      "data_refs": []
+    },
+    {
+      "id": "ch07_q16",
+      "content": "Based on past data, 30% of the credit card purchase at a large department store are for amounts above \\$100. If random samples of 100 credit card purchases are selected.\n\n(a) What proportion of samples are likely to have between 20% and 30% of the purchases over \\$100?\n\n(b) Within what symmetrical limits of the population percentage will 95% of the sample percentages fall?",
+      "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter07_Sample Mean.docx",
+      "type": "unknown",
+      "difficulty": 1,
+      "keywords": [],
+      "formula_refs": [],
+      "data_refs": []
+    },
+    {
+      "id": "ch07_q17",
+      "content": "Suppose a marking experiment is to be conducted in which students are to taste two different brands of soft drink. Their task is to correctly identify the brand tasted. Random samples of 200 students are selected and it is assumed that the students have no ability to distinguish between the two brands.\n\n> (*Hint:* If an individual has no ability to distinguish between the two soft drinks, then each one is equally likely to be selected.)\n\n(a) What proportion of samples will have between 50% and 60% of the identifications correct?\n\n(b) Within that symmetrical limits of the population percentage will 90% of the sample percentage fall?\n\n(c) What is the probability of obtaining a sample percentage of correct identifications in excess of 65%?\n\n(d) Which is more likely to occur---more than 60% correct identifications in the sample of 200 or more than 55% correct identifications in a sample of 1000? Explain.",
+      "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter07_Sample Mean.docx",
+      "type": "unknown",
+      "difficulty": 1,
+      "keywords": [],
+      "formula_refs": [],
+      "data_refs": []
+    },
+    {
+      "id": "ch07_q18",
+      "content": "Explain why it is important to calculate a confidence interval in addition to calculating a point estimate of a population parameter.",
+      "source": "Assignment Prof Lv/Assignment7-lu.doc",
+      "type": "unknown",
+      "difficulty": 1,
+      "keywords": [],
+      "formula_refs": [],
+      "data_refs": []
+    },
+    {
+      "id": "ch07_q19",
+      "content": "For each of the following changes, indicate whether a confidence interval for $\\mu$ will have a larger or smaller margin of error:\n\na\\. An increase in the level of confidence.\n\nb .An increase in the sample size.\n\nc\\. A decrease in the level of confidence.\n\nd\\. A decrease in the sample size.",
+      "source": "Assignment Prof Lv/Assignment7-lu.doc",
+      "type": "unknown",
+      "difficulty": 1,
+      "keywords": [],
+      "formula_refs": [],
+      "data_refs": []
+    },
+    {
+      "id": "ch07_q20",
+      "content": "THE BANK CUSTOMER WAITING TIME CASE**\n\nRecall that a bank manager has developed a new system to reduce the time customers spend waiting to be served by tellers during peak business hours. The mean waiting time during peak business hours under the current system is roughly 9 to 10 minutes. The bank manager hopes that the new system will have a mean waiting time that is less than six minutes. The mean of the sample of 100 bank customer waiting times in Table 1.8 is $\\overline{x}$=5.46. If we let $\\mu$ denote the mean of all possible bank customer waiting times using the new system and assume that $\\sigma$ equals 2.47.\n\na.  Calculate 95 percent and 99 percent confidence intervals for$\\mu$.\n\nb.  Using the 95 percent confidence interval, can the bank manager be 95 percent confident that $\\mu$ is less than six minutes? Explain.\n\nc.  Using the 99 percent confidence interval, can the bank manager be 99 percent confident that $\\mu$ is less than six minutes? Explain.\n\nd.  Based on your answers to parts *b* and *c*, how convinced are you that the new mean waiting time is less than six minutes?",
+      "source": "Assignment Prof Lv/Assignment7-lu.doc",
+      "type": "unknown",
+      "difficulty": 1,
+      "keywords": [],
+      "formula_refs": [],
+      "data_refs": []
+    },
+    {
+      "id": "ch07_q21",
+      "content": "Explain how each of the following changes as *the **number of degrees of freedom*** describing a ***t*** curve increases:\n\na\\. The standard deviation of the *t* curve.\n\nb\\. The point $t_{\\alpha}$ and $t_{\\frac{\\alpha}{2}}$.",
+      "source": "Assignment Prof Lv/Assignment7-lu.doc",
+      "type": "unknown",
+      "difficulty": 1,
+      "keywords": [],
+      "formula_refs": [],
+      "data_refs": []
+    },
+    {
+      "id": "ch07_q22",
+      "content": "Discuss when it is appropriate to use the *t-based* confidence interval for $\\mu$.",
+      "source": "Assignment Prof Lv/Assignment7-lu.doc",
+      "type": "unknown",
+      "difficulty": 1,
+      "keywords": [],
+      "formula_refs": [],
+      "data_refs": []
+    },
+    {
+      "id": "ch07_q23",
+      "content": "Whole Foods is an all-natural grocery chain that has 50,000 square foot stores, up from the industry average of 34,000 square feet. Sales per square foot of supermarkets average just under \\$400 per square foot, as reported by *USA Today* in an article on \"A whole new ballgame in grocery shopping.\" Suppose that sales per square foot in the most recent fiscal year are recorded for a random sample of 10 Whole Foods supermarkets. The data (sales dollars per square foot) are as follows: 854,858,801,892,849,807,894,863,829,815. Using the fact that $\\overline{x}$=846.2 and s=32.866. Find a 95 percent confidence interval for the true mean sales dollars per square foot for all Whole Foods supermarkets during the most recent fiscal year. Are we 95 percent confident that this mean is greater than \\$800, the historical average for Whole Foods?",
+      "source": "Assignment Prof Lv/Assignment7-lu.doc",
+      "type": "unknown",
+      "difficulty": 1,
+      "keywords": [],
+      "formula_refs": [],
+      "data_refs": []
+    },
+    {
+      "id": "ch07_q24",
+      "content": "Consider a population having a standard deviation equal to 10. We wish to estimate the mean of this population.\n\na\\. How large a random sample is needed to construct a 95 percent confidence interval for the mean of this population with a margin of error equal to 1?\n\nb\\. Suppose that we now take a random sample of the size we have determined in part a. If we obtain a sample mean equal to 295, calculate the 95 percent confidence interval for the population mean. What is the interval's margin of error?",
+      "source": "Assignment Prof Lv/Assignment7-lu.doc",
+      "type": "unknown",
+      "difficulty": 1,
+      "keywords": [],
+      "formula_refs": [],
+      "data_refs": []
+    },
+    {
+      "id": "ch07_q25",
+      "content": "Referring to Exercise 8.20, regard the sample of 10 sales figures for which s=32.866 as a preliminary sample. How large a sample of sales figures is needed to make us 95 percent confident that[FORMULA:ch07_q32_f01_image1.wmf] , the sample mean sales dollars per square foot, is within a margin of error of \\$10 of[FORMULA:ch07_q32_f02_image2.wmf], the true mean sales dollars per square foot for all Whole Foods supermarkets.",
+      "source": "Assignment Prof Lv/Assignment7-lu.doc",
+      "type": "unknown",
+      "difficulty": 1,
+      "keywords": [],
+      "formula_refs": [
+        "ch07_q32_f01_image1.wmf",
+        "ch07_q32_f02_image2.wmf"
+      ],
+      "data_refs": []
+    },
+    {
+      "id": "ch07_q26",
+      "content": "THE VIDEO GAME SATISFACTION RATING CASE\n\n> The mean of the sample of 65 customer satisfaction rating in Table 1.7 is $\\overline{x}$=42.95. If we let $\\mu$denote the mean of all possible customer satisfaction rating for the XYZ Box video game system, and assume that $\\sigma$ equals 2.64:\n\na.  Calculate 95 percent and 99 percent confidence intervals for$\\mu$.\n\nb.  Using the 95 percent confidence interval, can we be 95 percent confident that $\\mu$is at least 42 (recall that a very satisfied customer gives a rating of at least 42)? Explain.\n\nc.  Using the 99 percent confidence interval, can we be 99 percent confident that $\\mu$is at least 42? Explain.\n\nd.  Based on your answers to parts b and c, how convinced are you that the mean satisfaction rating is at least 42?\n\nTable 1.7 Composite Scores for the Video Game Satisfaction Rating Case\n\n> [IMG:ch07_q01_f01_image1.jpeg]",
+      "source": "Assignments for STAT 2010/solution-assign7.doc",
+      "type": "unknown",
+      "difficulty": 1,
+      "keywords": [],
+      "formula_refs": [],
+      "data_refs": []
+    },
+    {
+      "id": "ch07_q27",
+      "content": "Referring to Exercise 8.20(page320), regard the sample of 10 sales figures for which s=32.866 as a preliminary sample. How large a sample of sales figures is needed to make us 95 percent confident that$\\overline{x}$, the sample mean sales dollars per square foot, is within a margin of error of \\$10 of $\\mu$, the true mean sales dollars per square foot for all Whole Foods supermarkets.",
+      "source": "Assignments for STAT 2010/solution-assign7.doc",
+      "type": "unknown",
+      "difficulty": 1,
+      "keywords": [],
+      "formula_refs": [],
+      "data_refs": []
+    },
+    {
+      "id": "ch07_q28",
+      "content": "THE CAR MILEAGE CASE\n\nSuppose the federal government proposes to give a substantial tax break to automakers producing midsize cars that get a mean mileage exceeding 31 mpg. Letting $\\mu$ be a midsize car's mean mileage, the government will award the tax credit if an automaker is able to reject $H_{0}:\\mu \\leq \\text{31}$ in favour of $H_{a}:\\mu > \\text{31}$ at the .05 level of significance. Recall that the sample of 49 mileages has mean $\\overline{x} = \\text{31.5531}$. Assuming that $\\sigma$ equals 0.8, use these sample results and a rejection point to test the null hypothesis versus the alternative hypothesis at the 0.05 level of significance . Will the automaker be awarded the tax break? Calculate p value. Would the tax break have been awarded if the federal government had set $\\alpha$ equal to 0.01? Justify your",
+      "source": "Assignments for STAT 2012/Assignment-7.doc",
+      "type": "unknown",
+      "difficulty": 1,
+      "keywords": [],
+      "formula_refs": [],
+      "data_refs": []
+    },
+    {
+      "id": "ch07_q29",
+      "content": "In recent years the interest rate on home mortgages has declined to less than 6.0 percent. However, according to a study by Federal Reserve Board the rate charge on credit card debit is more than 14 percent. Listed below is the interest rate charged on a sample of 10 credit cards.\n\n  ---------------------------------------------------------------------\n16.7 17.4 17.0 17.8 15.4 13.1 15.8 14.3 14.5\n\n  ---------------------------------------------------------------------\n\nIs it reasonable to conclude the mean rate charged is greater than 14 percent? Use the 0.01 significance level.",
+      "source": "Assignments for STAT 2012/Assignment-7.doc",
+      "type": "unknown",
+      "difficulty": 1,
+      "keywords": [],
+      "formula_refs": [],
+      "data_refs": []
+    },
+    {
+      "id": "ch07_q30",
+      "content": "The Watch Corporation of Switzerland claims that their watches on average will neither gain nor lose time during a week. A sample of 18 watches provided the following gains(+) or losses(-) in seconds per week.\n\n+:-----------------------------------------------------------------------------------------------:+\n| -0.38 -0.20 -0.38 -0.32 +0.32 -0.23 +0.30 +0.25 -0.10 -0.37 -0.61 -0.48 -0.47 -0.64 -0.04 -0.20 |\n|                                                                                                 |\n| -0.68 +0.05                                                                                     |\n+-------------------------------------------------------------------------------------------------+\n\nIs it reasonable to conclude the mean gain or loss in time for the watches is 0? Use the 0.05 significance level. Estimate the p-value.",
+      "source": "Assignments for STAT 2012/Assignment-7.doc",
+      "type": "unknown",
+      "difficulty": 1,
+      "keywords": [],
+      "formula_refs": [],
+      "data_refs": []
+    },
+    {
+      "id": "ch07_q31",
+      "content": "An urban planner claims that, nationally, 20 percent of all families renting condominiums move during a given year. A random sample of 200 families renting condominiums in Dallas Metroplex reveal that 56 had moved during the past year. At the 0.1 significance level, does this evidence suggest that a large proportion of condominium owners moved in the Dallas area? Determine the p-value.",
+      "source": "Assignments for STAT 2012/Assignment-7.doc",
+      "type": "unknown",
+      "difficulty": 1,
+      "keywords": [],
+      "formula_refs": [],
+      "data_refs": []
+    }
+  ]
+}

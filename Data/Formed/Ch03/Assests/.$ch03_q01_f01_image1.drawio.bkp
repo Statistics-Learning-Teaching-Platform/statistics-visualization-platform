@@ -1,0 +1,133 @@
+<mxfile host="app.diagrams.net" type="device">
+  <diagram id="tree01" name="Cola Tree">
+    <mxGraphModel dx="800" dy="600" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="620" pageHeight="820" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="vl1" style="endArrow=none;startArrow=none;dashed=1;html=1;strokeWidth=2;dashPattern=8 8;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="210" y="20" as="sourcePoint" />
+            <mxPoint x="210" y="745" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="vl2" style="endArrow=none;startArrow=none;dashed=1;html=1;strokeWidth=2;dashPattern=8 8;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="405" y="20" as="sourcePoint" />
+            <mxPoint x="405" y="745" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="root" value="" style="ellipse;whiteSpace=wrap;html=1;fillColor=#000000;strokeColor=#000000;" vertex="1" parent="1">
+          <mxGeometry x="9" y="389" width="12" height="12" as="geometry" />
+        </mxCell>
+        <mxCell id="nA" value="" style="ellipse;whiteSpace=wrap;html=1;fillColor=#000000;strokeColor=#000000;" vertex="1" parent="1">
+          <mxGeometry x="204" y="141" width="12" height="12" as="geometry" />
+        </mxCell>
+        <mxCell id="nB" value="" style="ellipse;whiteSpace=wrap;html=1;fillColor=#000000;strokeColor=#000000;" vertex="1" parent="1">
+          <mxGeometry x="204" y="389" width="12" height="12" as="geometry" />
+        </mxCell>
+        <mxCell id="nC" value="" style="ellipse;whiteSpace=wrap;html=1;fillColor=#000000;strokeColor=#000000;" vertex="1" parent="1">
+          <mxGeometry x="204" y="641" width="12" height="12" as="geometry" />
+        </mxCell>
+        <mxCell id="oAA" value="" style="ellipse;whiteSpace=wrap;html=1;fillColor=#000000;strokeColor=#000000;" vertex="1" parent="1">
+          <mxGeometry x="399" y="51" width="12" height="12" as="geometry" />
+        </mxCell>
+        <mxCell id="oAB" value="" style="ellipse;whiteSpace=wrap;html=1;fillColor=#000000;strokeColor=#000000;" vertex="1" parent="1">
+          <mxGeometry x="399" y="141" width="12" height="12" as="geometry" />
+        </mxCell>
+        <mxCell id="oAC" value="" style="ellipse;whiteSpace=wrap;html=1;fillColor=#000000;strokeColor=#000000;" vertex="1" parent="1">
+          <mxGeometry x="399" y="229" width="12" height="12" as="geometry" />
+        </mxCell>
+        <mxCell id="oBA" value="" style="ellipse;whiteSpace=wrap;html=1;fillColor=#000000;strokeColor=#000000;" vertex="1" parent="1">
+          <mxGeometry x="399" y="299" width="12" height="12" as="geometry" />
+        </mxCell>
+        <mxCell id="oBB" value="" style="ellipse;whiteSpace=wrap;html=1;fillColor=#000000;strokeColor=#000000;" vertex="1" parent="1">
+          <mxGeometry x="399" y="389" width="12" height="12" as="geometry" />
+        </mxCell>
+        <mxCell id="oBC" value="" style="ellipse;whiteSpace=wrap;html=1;fillColor=#000000;strokeColor=#000000;" vertex="1" parent="1">
+          <mxGeometry x="399" y="477" width="12" height="12" as="geometry" />
+        </mxCell>
+        <mxCell id="oCA" value="" style="ellipse;whiteSpace=wrap;html=1;fillColor=#000000;strokeColor=#000000;" vertex="1" parent="1">
+          <mxGeometry x="399" y="549" width="12" height="12" as="geometry" />
+        </mxCell>
+        <mxCell id="oCB" value="" style="ellipse;whiteSpace=wrap;html=1;fillColor=#000000;strokeColor=#000000;" vertex="1" parent="1">
+          <mxGeometry x="399" y="641" width="12" height="12" as="geometry" />
+        </mxCell>
+        <mxCell id="oCC" value="" style="ellipse;whiteSpace=wrap;html=1;fillColor=#000000;strokeColor=#000000;" vertex="1" parent="1">
+          <mxGeometry x="399" y="711" width="12" height="12" as="geometry" />
+        </mxCell>
+        <mxCell id="tAA" value="AA" style="text;html=1;align=left;verticalAlign=middle;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="420" y="47" width="60" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="tAB" value="AB" style="text;html=1;align=left;verticalAlign=middle;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="420" y="137" width="60" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="tAC" value="AC" style="text;html=1;align=left;verticalAlign=middle;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="420" y="225" width="60" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="tBA" value="BA" style="text;html=1;align=left;verticalAlign=middle;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="420" y="295" width="60" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="tBB" value="BB" style="text;html=1;align=left;verticalAlign=middle;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="420" y="385" width="60" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="tBC" value="BC" style="text;html=1;align=left;verticalAlign=middle;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="420" y="473" width="60" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="tCA" value="CA" style="text;html=1;align=left;verticalAlign=middle;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="420" y="545" width="60" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="tCB" value="CB" style="text;html=1;align=left;verticalAlign=middle;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="420" y="637" width="60" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="tCC" value="CC" style="text;html=1;align=left;verticalAlign=middle;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="420" y="707" width="60" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="e_rA" value="Cola A" style="endArrow=none;startArrow=none;html=1;strokeWidth=2;fontSize=16;" edge="1" parent="1" source="root" target="nA">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_rB" value="Cola B" style="endArrow=none;startArrow=none;html=1;strokeWidth=2;fontSize=16;" edge="1" parent="1" source="root" target="nB">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_rC" value="Cola C" style="endArrow=none;startArrow=none;html=1;strokeWidth=2;fontSize=16;" edge="1" parent="1" source="root" target="nC">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_AAA" value="Cola A" style="endArrow=none;startArrow=none;html=1;strokeWidth=2;fontSize=16;" edge="1" parent="1" source="nA" target="oAA">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_AAB" value="Cola B" style="endArrow=none;startArrow=none;html=1;strokeWidth=2;fontSize=16;" edge="1" parent="1" source="nA" target="oAB">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_AAC" value="Cola C" style="endArrow=none;startArrow=none;html=1;strokeWidth=2;fontSize=16;" edge="1" parent="1" source="nA" target="oAC">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_BBA" value="Cola A" style="endArrow=none;startArrow=none;html=1;strokeWidth=2;fontSize=16;" edge="1" parent="1" source="nB" target="oBA">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_BBB" value="Cola B" style="endArrow=none;startArrow=none;html=1;strokeWidth=2;fontSize=16;" edge="1" parent="1" source="nB" target="oBB">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_BBC" value="Cola C" style="endArrow=none;startArrow=none;html=1;strokeWidth=2;fontSize=16;" edge="1" parent="1" source="nB" target="oBC">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_CCA" value="Cola A" style="endArrow=none;startArrow=none;html=1;strokeWidth=2;fontSize=16;" edge="1" parent="1" source="nC" target="oCA">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_CCB" value="Cola B" style="endArrow=none;startArrow=none;html=1;strokeWidth=2;fontSize=16;" edge="1" parent="1" source="nC" target="oCB">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_CCC" value="Cola C" style="endArrow=none;startArrow=none;html=1;strokeWidth=2;fontSize=16;" edge="1" parent="1" source="nC" target="oCC">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="lbl1" value="Patron 1" style="text;html=1;align=center;verticalAlign=middle;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="150" y="755" width="120" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="lbl2" value="Patron 2" style="text;html=1;align=center;verticalAlign=middle;fontSize=16;" vertex="1" parent="1">
+          <mxGeometry x="345" y="755" width="120" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="lbl3" value="Sample space&#10;outcome" style="text;html=1;align=center;verticalAlign=top;fontSize=16;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="425" y="755" width="120" height="48" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

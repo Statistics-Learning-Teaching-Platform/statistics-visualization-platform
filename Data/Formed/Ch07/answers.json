@@ -1,0 +1,121 @@
+{
+  "chapter": 7,
+  "answers": [
+    {
+      "id": "ch07_q01",
+      "answer": "The central limit theorem states that the sampling distribution of the sample mean is approximately a normal distribution if the sample size n is sufficiently large, regardless of the distribution of the sampled population. Furthermore, the larger the sample size n is, the more nearly normally distributed is the distribution of the sample mean."
+    },
+    {
+      "id": "ch07_q02",
+      "answer": "As the population is normally distributed with a mean of 5.2 inches and a standard deviation of .08 inches, the distribution of the sample mean is still a normal distribution and has mean $\\mu_{\\overline{x}} = \\mu = 5.2$, [FORMULA:ch07_q02_ans_f01_image1.wmf].\\\nTherefore the interval that contains 95.44 percent of the sample mean should be $\\mu_{\\overline{x}} \\pm 2 =$ 5.2 ± 2(.0179) = \\[5.1642, 5.2358\\]."
+    },
+    {
+      "id": "ch07_q03",
+      "answer": "a\\. The sampling distribution of the sample mean is approximately bell shaped. No need to make any assumption, because the sample size is large (n≥ 30).\n\nb\\. According to central limit theorem, the sampling distribution of the sample mean is\n\nnormally distributed with mean equal to $\\mu_{\\overline{x}} = \\mu = 20$ and standard deviation equal\n\nto[FORMULA:ch07_q03_ans_f03_image4.wmf]\n\nc\\. The probability that we will obtain a sample mean greater than 21 is:[FORMULA:ch07_q03_ans_f04_image5.wmf]\n\nd\\. The probability that we will obtain a sample mean less than 19.385 is:[FORMULA:ch07_q03_ans_f05_image6.wmf]"
+    },
+    {
+      "id": "ch07_q04",
+      "answer": "According to past experience, the mean, variance and standard deviation of the number of flaws per flash drive are\n\n$\\mu =$`<!-- -->`{=html}0.65$\\times$`<!-- -->`{=html}0 + 0.2$\\times$`<!-- -->`{=html}1 + 0.1$\\times$`<!-- -->`{=html}2+ 0.05$\\times$`<!-- -->`{=html}3 = 0.55\n\n$\\sigma^{2} = 0.65 \\times 0^{2}$+0.2$\\times 1^{2} + 0.1 \\times 2^{2} + 0.05 \\times 3^{2} - {0.55}^{2} = 0.7475\\$\n\n$$\\sigma = 0.8646.$$\n\nMoreover, according to central limit theorem, the distribution of the sample mean is normally distributed with mean equal to [FORMULA:ch07_q04_ans_f01_image7.gif]and standard deviation equal\n\n[FORMULA:ch07_q04_ans_f02_image8.gif].\n\nSo, the probability that this shipment will be rejected is\n\n[FORMULA:ch07_q04_ans_f03_image9.gif]."
+    },
+    {
+      "id": "ch07_q05",
+      "answer": "The condition is: *np* ≥ 5 and *n*(1 -- *p*) ≥ 5.\n\nThe increasing the sample size will decreases the spread of all possible $\\widehat{p}\\$values."
+    },
+    {
+      "id": "ch07_q06",
+      "answer": "**a.** If *p*=0.48, the sampling distribution of $\\widehat{p}$ is approximate a normal distribution because *np*=350(0.48)= 168 and *n*(*1-p*)=350(1-0.48)=182 are both greater than 5. Furthermore, the mean and standard deviation of the sampling distribution of $\\widehat{p}$ are\n\n[FORMULA:ch07_q06_ans_f01_image10.wmf]\n\n**b.** Yes, we can conclude that more than 48 percent of current Bank of America customers express customer delight because the probability of observing this sample is very small if *p* = .48. The true *p* is more likely more than .48."
+    },
+    {
+      "id": "ch07_q07",
+      "answer": "If *p*=0.48, the sampling distribution of $\\widehat{p}$ is approximate a normal distribution because *np* and *n*(*1-p*) are both much larger than 5. Furthermore, the mean and standard deviation of the sampling distribution of $\\widehat{p}$ are\n\n[FORMULA:ch07_q07_ans_f01_image11.wmf] [FORMULA:ch07_q07_ans_f02_image12.wmf]\n\n[FORMULA:ch07_q07_ans_f03_image13.wmf]"
+    },
+    {
+      "id": "ch07_q08",
+      "answer": "As the population is a normal distribution with $\\mu = 50$ and $\\sigma = 5$, the distribution of the sample mean is still a normal distribution and has mean${\\ \\mu}_{\\overline{x}} = \\mu = 50,\\ {\\ \\sigma}_{\\overline{x}} = \\ \\frac{\\sigma}{\\sqrt{n}} = \\frac{5}{\\sqrt{100}} = 0.5$\n\n(a) $P\\left( \\overline{x} < 47 \\right) = P\\left( z < \\frac{\\overline{x} - {\\ \\mu}_{\\overline{x}}}{{\\ \\sigma}_{\\overline{x}}} \\right) = P\\left( z < \\frac{47 - 50}{0.5} \\right) = P(z < - 6) \\approx 0$\n\n(b) $P\\left( 47 \\leq \\overline{x} \\leq 49.5 \\right) = P\\left( \\frac{\\overline{x} - {\\ \\mu}_{\\overline{x}}}{{\\ \\sigma}_{\\overline{x}}} < z < \\frac{\\overline{x} - {\\ \\mu}_{\\overline{x}}}{{\\ \\sigma}_{\\overline{x}}} \\right) = P\\left( \\frac{47 - 50}{0.5} \\leq z \\leq \\frac{49.5 - 50}{0.5} \\right) = P( - 6 \\leq z \\leq - 1)$\n\n> $$= P(z \\leq - 1) - P(z \\geq - 6) = 1 - P(z \\leq 1) = 0.1587$$\n\n(c) Let k be the value above which a 35% chance that $\\overline{X}$ will be then we have\n\n> $$P\\left( \\overline{x} \\geq k \\right) = P\\left( z \\geq \\frac{k - 50}{0.5} \\right) = 0.35,\\ \\ \\ \\ \\ \\ \\ \\ \\ thus\\ P\\left( z \\leq \\frac{k - 50}{0.5} \\right) = 1 - 0.35 = 0.65$$\n>\n> $$which\\ gives\\ \\frac{k - 50}{0.5} = - Z_{0.65} = - \\frac{0.38 + 0.39}{2}0.385\\ \\ \\ \\ \\ \\ \\ \\ k = 50.1925$$"
+    },
+    {
+      "id": "ch07_q09",
+      "answer": "As the population is normally distributed with $\\mu = 7$ and$\\ \\sigma = .5$, the distribution of the sample mean is still a normal distribution and has mean${\\ \\mu}_{\\overline{x}} = \\mu = 7,\\ {\\ \\sigma}_{\\overline{x}} = \\ \\frac{\\sigma}{\\sqrt{n}} = \\frac{.5}{\\sqrt{9}} = 0.1667$\n\n> $$P\\left( \\overline{x} > k \\right) = \\ P\\left( z \\geq \\frac{k - 7}{0.1667} \\right) = 0.95\\ \\ \\ $$\n>\n> $$which\\ gives\\ \\frac{k - 7}{0.1667} = - Z_{0.95} = - \\frac{1.64 + 1.65}{2} = - 0.\\ 1.645,\\ \\ k = 6.7258$$"
+    },
+    {
+      "id": "ch07_q10",
+      "answer": "(a) Every employ has the same probability to be selected. There are $C_{6}^{3} = 20$ ways for sampling\n\n  ----------------------------------------------\n   Sample mean   Frequency   Relative Frequency\n  ------------- ----------- --------------------\n      10/3           1              1/20\n\n      15/3           1              1/20\n\n      17/3           1              1/20\n\n      11/3           2              2/20\n\n      14/3           2              2/20\n\n      16/3           3              3/20\n\n      20/3           3              3/20\n\n      22/3           2              2/20\n\n      25/3           2              2/20\n\n      19/3           1              1/20\n\n      21/3           1              1/20\n\n      26/3           1              1/20\n  ----------------------------------------------\n\n(b) The population mean is: $\\mu = \\frac{1 + 3 + 6 + 7 + 7 + 12}{6} = 6$\n\n> The sample means is ${\\ \\mu}_{\\overline{x}} = \\frac{\\frac{10}{3} \\times 1 + \\frac{15}{3} \\times 1 + \\frac{17}{3} \\times 1 + \\frac{11}{3} \\times 2 + \\cdots\\cdots + \\frac{26}{3} \\times 1}{20} = 6$\n\nTherefore, the mean of all the sample means is the same with population mean."
+    },
+    {
+      "id": "ch07_q11",
+      "answer": "(a) As the population is normally distributed with $\\mu = 8$ and$\\ \\sigma = 2$ the distribution of the sample mean is still a normal distribution and has mean${\\ \\mu}_{\\overline{x}} = \\mu = 8,\\ {\\ \\sigma}_{\\overline{x}} = \\ \\frac{\\sigma}{\\sqrt{n}} = \\frac{2}{\\sqrt{25}} = 0.4$\n\n(b)$\\ P\\left( 7.8 \\leq \\overline{x} \\leq 8.2 \\right) = P\\left( \\frac{7.8 - 8}{0.4} \\leq z \\leq \\frac{8.2 - 8}{0.4} \\right) = P( - 0.5 \\leq z \\leq 0.5) = P(z \\leq 0.5) - P(z \\leq - 0.5) = 0.383$\n\nThus 38.3% of sample means would be between 7.8 and 8.2 minutes.\n\n\\(c\\) If random sample of 100 sessions were selected, the ${\\ \\mu}_{\\overline{x}} = \\mu = 8,\\ {\\ \\sigma}_{\\overline{x}} = \\ \\frac{\\sigma}{\\sqrt{n}} = \\frac{2}{\\sqrt{100}} = 0.2$\n\n> $$P\\left( 7.8 \\leq \\overline{x} \\leq 8.2 \\right) = P\\left( \\frac{7.8 - 8}{0.2} \\leq z \\leq \\frac{8.2 - 8}{0.2} \\right) = P( - 1 \\leq z \\leq 1) = P(z \\leq 1) - P(z \\leq - 1) = 0.6826$$\n\n(d) Since ${\\ \\sigma}_{\\overline{x}} = \\ \\frac{\\sigma}{\\sqrt{n}},\\$ Large sample size implies small standard deviation for the sample mean distribution, which means sample means are more concentrated around the population mean.\n\n(e) ${\\ \\mu}_{\\overline{x}} = \\mu = 8,\\ {\\ \\sigma}_{\\overline{x}} = \\ \\frac{\\sigma}{\\sqrt{n}} = \\frac{2}{\\sqrt{1}} = 2\\$ $P\\left( \\overline{x} > 11 \\right) = P\\left( z > \\frac{11 - 8}{2} \\right) = P(z > 1.5) = 1 - 0.9332 = .0668$\n\n> ${\\ \\mu}_{\\overline{x}} = \\mu = 8,\\ {\\ \\sigma}_{\\overline{x}} = \\ \\frac{\\sigma}{\\sqrt{n}} = \\frac{2}{\\sqrt{25}} = .4$ $P\\left( \\overline{x} > 9 \\right) = P\\left( z > \\frac{9 - 8}{.4} \\right) = P(z > 2.5) = 1 - .9938 = .0062.$\n>\n> ${\\ \\mu}_{\\overline{x}} = \\mu = 8,\\ {\\ \\sigma}_{\\overline{x}} = \\ \\frac{\\sigma}{\\sqrt{n}} = \\frac{2}{\\sqrt{100}} = .2\\$ $P\\left( \\overline{x} > 8.6 \\right) = P\\left( z > \\frac{8.6 - 8}{.2} \\right) = P(z > 3) = 1 - .99865 = .00135$\n\nThus, a particular session of e-mail for more than 11 minutes is more likely to occur."
+    },
+    {
+      "id": "ch07_q12",
+      "answer": "(a) ${\\ \\mu}_{\\overline{x}} = \\mu = 3.10,\\ {\\ \\sigma}_{\\overline{x}} = \\ \\frac{\\sigma}{\\sqrt{n}} = \\frac{.4}{\\sqrt{16}} = 0.1$\n\n> $$P\\left( \\overline{x} \\geq 3 \\right) = P\\left( z \\geq \\frac{3 - 3.1}{0.1} \\right) = P(z \\geq - 1) = P(z \\leq 1) = 0.8413$$\n\n\\(b\\) $P\\left( \\overline{x} < k \\right)\\ P\\left( z < \\frac{k - 3.10}{0.1} \\right) = 0.85\\ which\\ gives\\ \\frac{k - 3.10}{0.1} = 1.0435\\ k = 3.2035$\n\n\\(c\\) The population should be normally distributed"
+    },
+    {
+      "id": "ch07_q13",
+      "answer": "(a) ${\\ \\mu}_{\\overline{x}} = \\mu = 50,\\ {\\ \\sigma}_{\\overline{x}} = \\ \\frac{\\sigma}{\\sqrt{n}} = \\frac{12}{\\sqrt{64}} = 1.5$\n\n$$P\\left( \\overline{x} < k \\right) = P\\left( z < \\frac{k - 50}{1.5} \\right) = 0.95\\ which\\ gives\\ \\frac{k - 50}{1.5} = 1.645\\ \\ k = 52.4675$$\n\n> \\(b\\) Since the sample size$\\ n \\geq 30$, the sampling distribution of the sample mean is approximately normally distributed. Thus, it is unnecessary to make any assumption."
+    },
+    {
+      "id": "ch07_q14",
+      "answer": "(a) the sample proportion ${\\ p}_{s} = \\frac{48}{64} = 0.75$\n\n(b) Based on $np \\geq 5$ and $n(1 - p) \\geq 5$. The standard error ${\\ \\sigma}_{p} = \\sqrt{\\frac{pq}{n}} = \\sqrt{\\frac{.7 \\times .3}{64}} = 0.0573$"
+    },
+    {
+      "id": "ch07_q15",
+      "answer": "The sampling distribution of $\\widehat{p}$ is approximately a normal distribution since *np* and *n*(*1-p*) are both much larger than 5 when *p*=0.1. Furthermore, the mean and standard deviation of the sampling distribution of $\\widehat{p}$ are\n\n$$\\mu_{\\widehat{p}} = p = 0.1\\ \\ \\ \\ \\ \\ \\ \\sigma_{\\widehat{p}} = \\sqrt{\\frac{(.1)(.9)}{400}} = 0.015$$\n\nTherefore (a) $P\\left( 0.09 \\leq \\widehat{p} \\leq 0.1 \\right) = \\ P\\left( \\frac{0.09 - 0.1}{0.015} \\leq z \\leq \\frac{0.1 - 0.1}{0.015} \\right) = P(z \\leq 0) - P(z \\leq - 0.67)$\n\n$$= 0.5 - (1 - 0.7486) = 0.2486$$\n\n$$(b)\\ P\\left( \\widehat{p} < 0.08 \\right) = \\ P\\left( z < \\frac{0.08 - 0.1}{0.03} \\right) = P(z < - 1.33) = 1 - P(z < 1.33) = 1 - 0.9082 = 0.0918$$\n\n--- (from solution) ---\n\nWhen σ is unknown, and the population you are sampling from is normal or approximately normal."
+    },
+    {
+      "id": "ch07_q16",
+      "answer": "The sampling distribution of $\\widehat{p}$ is approximately a normal distribution since *np* and *n*(*1-p*) are both much larger than 5 when *p*=0.3. Furthermore, the mean and standard deviation of the sampling distribution of $\\widehat{p}$ are\n\n$$\\mu_{\\widehat{p}} = p = 0.3\\ \\ \\ \\ \\ \\ \\sigma_{\\widehat{p}} = \\sqrt{\\frac{(.3)(.7)}{100}} = 0.0458$$\n\nTherefore, (a) $P\\left( 0.2 \\leq \\widehat{p} \\leq 0.3 \\right) = \\ P\\left( \\frac{0.2 - 0.3}{0.0458} \\leq z \\leq \\frac{0.3 - 0.3}{0.0458} \\right) = P(z \\leq 0) - P(z \\leq - 2.18)$\n\n> $$= 0.5 - (1 - 0.0146) = 0.4854 = 0.0871$$\n\n\\(b\\) $P\\left( - k \\leq \\widehat{p} \\leq k \\right) = \\ P\\left( \\widehat{p} \\leq k \\right) - P\\left( \\widehat{p} \\leq - k \\right) = P\\left( \\widehat{p} \\leq k \\right) - \\left\\lbrack 1 - P\\left( \\widehat{p} \\geq k \\right) \\right\\rbrack = 2 \\times P\\left( \\widehat{p} \\leq k \\right) - 1 = 0.95$\n\n$P\\left( \\widehat{p} \\leq k \\right) = P\\left( \\widehat{p} \\leq \\frac{k - 0.3}{0.0458} \\right) = \\frac{1.95}{2} = 0.975\\$ which gives $\\frac{k - 0.3}{0.0458} = 1.96,\\ \\ \\ \\ k = 0.3898$"
+    },
+    {
+      "id": "ch07_q17",
+      "answer": "The sampling distribution of $\\widehat{p}$ is approximately a normal distribution since *np* and *n*(*1-p*) are both much larger than 5 when *p*=0.5. Furthermore, the mean and standard deviation of the sampling distribution of $\\widehat{p}$ are\n\n$$\\mu_{\\widehat{p}} = p = 0.5\\ \\ \\ \\ \\ \\ \\sigma_{\\widehat{p}} = \\sqrt{\\frac{(.5)(.5)}{200}} = 0.0354$$\n\n(a) $P\\left( 0.5 \\leq \\widehat{p} \\leq 0.6 \\right) = \\ P\\left( \\frac{0.5 - 0.5}{0.0354} \\leq z \\leq \\frac{0.6 - 0.5}{0.0354} \\right) = P(z \\leq 2.83) - P(z \\leq 0)$\n\n$$= 0.9977 - (1 - 0.5) = 0.4977$$\n\n(b) $P\\left( - k \\leq \\widehat{p} \\leq k \\right) = \\ P\\left( \\widehat{p} \\leq k \\right) - P\\left( \\widehat{p} \\leq - k \\right) = 2 \\times P\\left( \\widehat{p} \\leq k \\right) - 1 = 0.90$\n\n> $P\\left( \\widehat{p} \\leq k \\right) = P\\left( \\widehat{p} \\leq \\frac{k - 0.5}{0.0354} \\right) = \\frac{1.90}{2} = 0.95$ which gives $\\frac{k - 0.5}{0.0354} = 1.645,\\ \\ \\ \\ k = 0.5582$\n\n(c)$\\ P\\left( \\widehat{p} \\geq 0.65 \\right) = \\ P\\left( z \\geq \\frac{0.65 - 0.5}{0.0354} \\right) = P(z \\geq 1.41) = 1 - .9207 = 0.0793$\n\n\\(d\\) If sample size is 200 $\\mu_{\\widehat{p}} = p = 0.5\\ \\ \\ \\ \\ \\ \\sigma_{\\widehat{p}} = \\sqrt{\\frac{(.5)(.5)}{200}} = 0.0354$\n\n$$P\\left( \\widehat{p} \\geq 0.60 \\right) = \\ P\\left( z \\geq \\frac{0.60 - 0.5}{0.0354} \\right) = P(z \\geq 2.83) = 1 - .9977 = .0023$$\n\n$${\\ \\ \\ \\ \\ If\\ sample\\ size\\ is\\ 1000,\\ \\mu}_{\\widehat{p}} = p = 0.5\\ \\ \\ \\ \\ \\ \\sigma_{\\widehat{p}} = \\sqrt{\\frac{(.5)(.5)}{1000}} = 0.0158$$\n\n$$\\ \\ P\\left( \\widehat{p} \\geq 0.55 \\right) = \\ P\\left( z \\geq \\frac{0.55 - 0.5}{0.0158} \\right) = P(z \\geq 3.16) = 1 - .99921 = .00079$$\n\nTherefore, more than 60% correct identification is the sample of 200 is more likely to occur."
+    },
+    {
+      "id": "ch07_q18",
+      "answer": "(Explanation will vary.) There is an entire population of possible sample means. A confidence interval is constructed to be confident that the true value of μ is contained in that interval."
+    },
+    {
+      "id": "ch07_q19",
+      "answer": "The higher the confidence level, the wider the confidence interval. The larger the sample size, the shorter the confidence interval.\n\na\\. larger\n\nb\\. smaller\n\nc\\. smaller\n\nd\\. larger"
+    },
+    {
+      "id": "ch07_q20",
+      "answer": "a.** $\\left\\lbrack 5\\text{.}\\text{46} \\pm 1\\text{.}\\text{96}\\left( \\frac{2\\text{.47}}{\\sqrt{\\text{100}}} \\right) \\right\\rbrack = \\lbrack 4\\text{.976},\\text{}5\\text{.944}\\rbrack$\n\n**b.** Yes, 95% interval is below 6.\n\nc.  No, 99% interval extends above 6.\n\nd.  Fairly confident since 95% CI is below 6 while 99% CI contains 6."
+    },
+    {
+      "id": "ch07_q21",
+      "answer": "a.** Decreases\n\n**b.** Decreases"
+    },
+    {
+      "id": "ch07_q23",
+      "answer": "a.**\n\n**b.** We are at least 95% confident the mean is greater than 800 because the interval is above 800.\n28**\n\n**a.** ^units^\n\n**b.**\\\nmargin of error = 1"
+    },
+    {
+      "id": "ch07_q25",
+      "answer": "^sales\\ figures\\`^"
+    },
+    {
+      "id": "ch07_q26",
+      "answer": "**a.**\n\n**b.** Yes, 95% interval is above 42.\n\nc.  Yes, 99% interval is above 42.\n\nd.  Very confident based on the 99% confidence interval being above 42.\n\n<!-- -->\n\n1.  THE VIDEO GAME SATISFACTION RATING CASE\n\n> The mean and the standard deviation of the sample of n=65 customer satisfaction ratings in Table1.7 are $\\overline{x}$=42.95 and s=2.6424. Calculate a t-based 95 percent confidence interval for$\\mu$, the mean of all possible customer satisfaction ratings for the XYZ Box video game system. Are we 95 percent confident that $\\mu$is at least 42, the minimal rating given by a very satisfied customer?\n\n**Solution:**\n\nt-based: \\[42.308, 43.592\\]\n\nYes, because interval is greater than 42."
+    },
+    {
+      "id": "ch07_q27",
+      "answer": "So, we need 56 samples figures to make us 95 percent confident that $\\overline{x}$is within a margin\n\nof error of \\$10 of$\\mu$."
+    },
+    {
+      "id": "ch07_q28",
+      "answer": "[IMG:ch07_q03_ans_f01_image1.png]\n\n[IMG:ch07_q03_ans_f02_image2.png]"
+    },
+    {
+      "id": "ch07_q29",
+      "answer": "In recent years the interest rate on home mortgages has declined to less than 6.0 percent. However, according to a study by Federal Reserve Board the rate charge on credit card debit is more than 14 percent. Listed below is the interest rate charged on a sample of 10 credit cards.\n\n  ---------------------------------------------------------------------\n16.7 17.4 17.0 17.8 15.4 13.1 15.8 14.3 14.5\n\n  ---------------------------------------------------------------------\n\nIs it reasonable to conclude the mean rate charged is greater than 14 percent? Use the 0.01 significance level.\n\n[IMG:ch07_q04_f01_image3.png]"
+    },
+    {
+      "id": "ch07_q30",
+      "answer": "The Watch Corporation of Switzerland claims that their watches on average will neither gain nor lose time during a week. A sample of 18 watches provided the following gains(+) or losses(-) in seconds per week.\n\n+:-----------------------------------------------------------------------------------------------:+\n| -0.38 -0.20 -0.38 -0.32 +0.32 -0.23 +0.30 +0.25 -0.10 -0.37 -0.61 -0.48 -0.47 -0.64 -0.04 -0.20 |\n|                                                                                                 |\n| -0.68 +0.05                                                                                     |\n+-------------------------------------------------------------------------------------------------+\n\nIs it reasonable to conclude the mean gain or loss in time for the watches is 0? Use the 0.05 significance level. Estimate the p-value.\n\n[IMG:ch07_q05_f01_image4.png]"
+    },
+    {
+      "id": "ch07_q31",
+      "answer": "An urban planner claims that, nationally, 20 percent of all families renting condominiums move during a given year. A random sample of 200 families renting condominiums in Dallas Metroplex reveal that 56 had moved during the past year. At the 0.1 significance level, does this evidence suggest that a large proportion of condominium owners moved in the Dallas area? Determine the p-value.\n\n[IMG:ch07_q06_f01_image5.png]"
+    }
+  ]
+}

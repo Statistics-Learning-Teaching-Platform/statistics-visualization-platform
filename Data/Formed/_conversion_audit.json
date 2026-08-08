@@ -1,0 +1,30 @@
+{
+  "missing_sources": [],
+  "conversion_warnings": [],
+  "unmatched_answers": [
+    {
+      "chapter": 9,
+      "qid": "ch09_q05",
+      "source": "Assignment Prof Lv/Solution of assignment9.doc"
+    },
+    {
+      "chapter": 9,
+      "qid": "ch09_q05",
+      "source": "Assignment Prof Lv/Solution_of_assignment9.doc"
+    }
+  ],
+  "unconverted_pdf_sources": [
+    {
+      "chapter": 8,
+      "source": "Assigments for Speaking of Statistics-Semester1-2014-2015/Solutions_Chapter8 Confidence interval.pdf",
+      "asset": "Solutions_Chapter8 Confidence interval.pdf",
+      "reason": "scanned/empty-text PDF copied as asset; OCR is required for answer text"
+    },
+    {
+      "chapter": 9,
+      "source": "Assignments for STAT 2010/Solution-assign9.pdf",
+      "asset": "Solution-assign9.pdf",
+      "reason": "scanned/empty-text PDF copied as asset; OCR is required for answer text"
+    }
+  ]
+}

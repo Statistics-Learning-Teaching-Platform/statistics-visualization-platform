@@ -1,0 +1,418 @@
+{
+  "chapter": 6,
+  "questions": [
+    {
+      "id": "ch06_q01",
+      "content": "Consider the figure given below. Find the value *c* that makes the function f(x) a valid continuous probability distribution.\n\n[IMG:ch06_q01_f01_image1.jpeg]",
+      "source": "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment and solution_Chap_6_Continuous Random Variable.doc",
+      "type": "unknown",
+      "difficulty": 1,
+      "keywords": [],
+      "formula_refs": [
+        "ch06_q01_ans_f02_image2.wmf",
+        "ch06_q01_ans_f03_image3.wmf"
+      ],
+      "data_refs": []
+    },
+    {
+      "id": "ch06_q02",
+      "content": "The amount of sales tax paid on a purchase is rounded to the nearest cent. Assume that the round-off is uniformly distributed in the interval [IMG:ch06_q02_f01_image4.png] cent.\n\na.  Write the formula for the probability curve describing the round-off error.\n\nb.  Graph the probability curve describing the round-off error.\n\nc.  What is the probability that the round-off error exceeds .3 cent or is less than [IMG:ch06_q02_f02_image5.png] cent?\n\nd.  Find the mean and the standard deviation of the round-off error.\n\ne.  Find the probability that the round-off error will be within one standard deviation of the mean.",
+      "source": "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment and solution_Chap_6_Continuous Random Variable.doc",
+      "type": "unknown",
+      "difficulty": 1,
+      "keywords": [],
+      "formula_refs": [
+        "ch06_q02_ans_f03_image6.wmf"
+      ],
+      "data_refs": []
+    },
+    {
+      "id": "ch06_q03",
+      "content": "Suppose the times required for a cable company to fix cable problems in its customers' home are uniformly distributed between 10 minutes and 25 minutes.\n\na.  What is the probability that a randomly selected cable repair visit will take at least 15 minutes?\n\nb.  What is the probability that a cable repair visit will take over 20 minutes given that it takes over 15 minutes?",
+      "source": "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment and solution_Chap_6_Continuous Random Variable.doc",
+      "type": "unknown",
+      "difficulty": 1,
+      "keywords": [],
+      "formula_refs": [
+        "ch06_q03_ans_f01_image8.wmf",
+        "ch06_q03_ans_f02_image9.wmf"
+      ],
+      "data_refs": []
+    },
+    {
+      "id": "ch06_q04",
+      "content": "Let *x* be a normally distributed random variable having mean [IMG:ch06_q04_f01_image10.png] and standard deviation [IMG:ch06_q04_f02_image11.png].\n\n    a.  Find the z value for each of the following observed values of x and explain what the z value tells us about how the observed value of x compares to the mean, [IMG:ch06_q04_f03_image12.png].\n\n0\n\n2.  800\n\n    a.  What is the value of x that has a z value of 0.0? (You should be able to figure this out without doing any calculations.)",
+      "source": "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment and solution_Chap_6_Continuous Random Variable.doc",
+      "type": "unknown",
+      "difficulty": 1,
+      "keywords": [],
+      "formula_refs": [
+        "ch06_q04_ans_f04_image13.wmf",
+        "ch06_q04_ans_f05_image14.wmf"
+      ],
+      "data_refs": []
+    },
+    {
+      "id": "ch06_q05",
+      "content": "Suppose that the random variable z has a standard normal distribution.\n\na.  Sketch and find each of the following probabilities using the normal table.\n\n1.  *P*(*z* ≥ --1)\n\n2.  *P*(--2.5 ≤ *z* ≤ .5)\n\nb.  Sketch each of the following z values, and use the normal table to find each z value.\n\n1.  [IMG:ch06_q05_f01_image16.png]\n\n2.  [IMG:ch06_q05_f02_image17.png]",
+      "source": "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment and solution_Chap_6_Continuous Random Variable.doc",
+      "type": "unknown",
+      "difficulty": 1,
+      "keywords": [],
+      "formula_refs": [
+        "ch06_q05_ans_f03_image18.wmf",
+        "ch06_q05_ans_f04_image19.wmf"
+      ],
+      "data_refs": []
+    },
+    {
+      "id": "ch06_q06",
+      "content": "An investment broker reports that the yearly returns on common stocks are approximately normally distributed with a mean return of 12.4 percent and a standard deviation of 20.6 percent.\n\n    a.  Find the probability that a randomly selected\n\n1.  Common stock will give a positive yearly return.\n\n2.  Common stock will give more than a 10 percent return.\n\n3.  Common stock will give a loss of at least 10 percent.\n\n    a.  What percent of yearly returns are at or below the 10^th^ percentile of the distribution of yearly returns? What percentage are at or above the 10^th^ percentile? Find the 10^th^ percentile of the distribution of yearly returns.",
+      "source": "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment and solution_Chap_6_Continuous Random Variable.doc",
+      "type": "unknown",
+      "difficulty": 1,
+      "keywords": [],
+      "formula_refs": [],
+      "data_refs": []
+    },
+    {
+      "id": "ch06_q07",
+      "content": "A tire company has developed a new type of steel-belted radial tire. Extensive testing indicates the population of mileages obtained by all tires of this new type is normally distributed with a mean of 40,000 miles and a standard deviation of 4,000 miles. The company wishes to offer a guarantee providing a discount on a new set of tires if the original tires purchased do not exceed the mileage stated in the guarantee. What should the guaranteed mileage be if the tire company desires that no more than 2 percent of the tires will fail to meet the guaranteed mileage?",
+      "source": "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment and solution_Chap_6_Continuous Random Variable.doc",
+      "type": "unknown",
+      "difficulty": 1,
+      "keywords": [],
+      "formula_refs": [
+        "ch06_q07_ans_f01_image26.wmf"
+      ],
+      "data_refs": []
+    },
+    {
+      "id": "ch06_q08",
+      "content": "In the movie Forrest Gump, the public school required an IQ of at least 80 for admittance.\n\n    a.  If IQ test scores are normally distributed with mean 100 and standard deviation 16, what percentage of people would qualify for admittance to the school.\n\n    b.  If the public school wishes 95 percent of all children to qualify for admittance, what minimum IQ test score should be required for admittance?",
+      "source": "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment and solution_Chap_6_Continuous Random Variable.doc",
+      "type": "unknown",
+      "difficulty": 1,
+      "keywords": [],
+      "formula_refs": [
+        "ch06_q08_ans_f01_image27.wmf"
+      ],
+      "data_refs": []
+    },
+    {
+      "id": "ch06_q09",
+      "content": "Net interest margin-often referred to as spread-is the difference between the rate banks pay on deposits and the rate they charge for loans. Suppose that the net interest margins for all U.S. banks are normally distributed with a mean of 4.15 percent and a standard deviation of .5 percent.\n\n    a.  Find the probability that a randomly selected U.S. bank will have a net interest margin that exceeds 5.40 percent.\n\n    b.  Find the probability that a randomly selected U.S. bank will have a net interest margin less than 4.40 percent.\n\n    c.  A bank wants its net interest margin to be less than the net interest margins of 15 percent of all U.S. banks. Where should the bank's net interest margin be set?",
+      "source": "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment and solution_Chap_6_Continuous Random Variable.doc",
+      "type": "unknown",
+      "difficulty": 1,
+      "keywords": [],
+      "formula_refs": [
+        "ch06_q09_ans_f01_image28.wmf"
+      ],
+      "data_refs": []
+    },
+    {
+      "id": "ch06_q10",
+      "content": "In order to gain additional information about respondents, some marketing researchers have used ultraviolet ink to precode questionnaires that promise confidentiality to respondents. Of 205 randomly selected marketing researchers who participated in an actual survey, 117 said that they disapprove of this practice. Suppose that, before the survey was taken, a marketing manager claimed that at least 65 percent of all marketing researchers would disapprove of the practice.\n\na.  Assuming that the manager's claim is correct:\n\n    1.  Verify that we may use the normal approximation to the binomial.\n\n    2.  Use the normal approximation to the binomial to calculate the probability that 117or fewer of 205 randomly selected marketing researchers would disapprove of the practice.\n\na.  Based on your result of part a\\[2\\], do you believe the marketing manager's claim? Explain.",
+      "source": "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment and solution_Chap_6_Continuous Random Variable.doc | Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter06_Continuous Random Variables.docx",
+      "type": "unknown",
+      "difficulty": 1,
+      "keywords": [],
+      "formula_refs": [
+        "ch06_q10_ans_f01_image18.wmf",
+        "ch06_q10_ans_f02_image19.wmf",
+        "ch06_q10_ans_f04_image32.wmf"
+      ],
+      "data_refs": []
+    },
+    {
+      "id": "ch06_q11",
+      "content": "A motel accepts 325 reservations for 300 rooms on July 1, expecting 10 percent no-shows on average from past records. Use the normal approximation to the binomial to find the probability that all guests who arrive on July 1 will receive a room.",
+      "source": "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment and solution_Chap_6_Continuous Random Variable.doc",
+      "type": "unknown",
+      "difficulty": 1,
+      "keywords": [],
+      "formula_refs": [],
+      "data_refs": []
+    },
+    {
+      "id": "ch06_q12",
+      "content": "Suppose we wish to justify the claim that fewer than 50 percent of adults in Germany have purchased blue jeans in the past three months. The survey reported by Giges found that 45 percent of 400 randomly selected respondents in Germany had purchased blue jeans in the past three months.\n\na.  Use the normal approximation to the binomial distribution to calculate the probability that 45 percent or fewer of 400 randomly selected German adults would have purchased blue jeans in the past three months.\n\nb.  Based on the probability you computed in part a, would you conclude that fewer than 50 percent of adults in Germany have purchased blue jeans in the past three months.",
+      "source": "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment and solution_Chap_6_Continuous Random Variable.doc",
+      "type": "unknown",
+      "difficulty": 1,
+      "keywords": [],
+      "formula_refs": [
+        "ch06_q12_ans_f04_image38.wmf"
+      ],
+      "data_refs": []
+    },
+    {
+      "id": "ch06_q13",
+      "content": "It is Saturday morning at Starbucks. Is each random variable discrete (D) or continuous (C)？\n\na\\. Temperature of the coffee served to a randomly chosen customer.\n\nb\\. Number of customers who order only coffee with no food.\n\nc\\. Waiting time before a randomly chosen customer is handed the order.",
+      "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter06_Continuous Random Variables.docx",
+      "type": "unknown",
+      "difficulty": 1,
+      "keywords": [],
+      "formula_refs": [],
+      "data_refs": []
+    },
+    {
+      "id": "ch06_q14",
+      "content": "Which of the following could *not* be probability density functions for a continuous random variable? Explain. *Hint:* Find the area under the function *f* (*x*).\n\n[FORMULA:ch06_q02_f01_image1.emf]",
+      "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter06_Continuous Random Variables.docx",
+      "type": "unknown",
+      "difficulty": 1,
+      "keywords": [],
+      "formula_refs": [
+        "ch06_q02_f01_image1.emf"
+      ],
+      "data_refs": []
+    },
+    {
+      "id": "ch06_q15",
+      "content": "Customers experiencing technical difficulty with their internet cable hookup may call an 800 number for technical support. It takes the technical between 30 seconds and 10 minutes to resolve the problem. The distribution of this support time follows the uniform distribution.\n\na\\. What are the values for end points of the uniform distribution (in minutes)?\n\nb\\. what is the mean time to resolve the problem? What is the standard deviation of the time?\n\nc\\. What is the probability of taking more than 5 minutes to resolve problems?\n\nd\\. Suppose we wish to find the middle 50 percent of the problem-solving times. What are the end points of these two times?",
+      "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter06_Continuous Random Variables.docx",
+      "type": "unknown",
+      "difficulty": 1,
+      "keywords": [],
+      "formula_refs": [
+        "ch06_q03_ans_f01_image2.wmf"
+      ],
+      "data_refs": []
+    },
+    {
+      "id": "ch06_q16",
+      "content": "According to the Insurance Institute of America, a family spends between \\$400 and \\$3,800 per year on all types of insurance. Suppose the money spent is uniformly distributed between these amounts.\n\na\\. What is the mean amount spent on insurance?\n\nb\\. What is the standard deviation of the amount spent?\n\n> c\\. If we select a family at random, what is the probability they spend less than \\$2,000 per year on insurance per year?\n\nd\\. What is the probability a family spends more than \\$3,000 per year?\n\ne\\. What is the probability a family spends between \\$1500 and \\$2500?\n\n[IMG:ch06_q04_f01_image3.png]\n\na.  The mean is given by\n\n> [FORMULA:ch06_q04_f02_image4.wmf]\n\nb\\. The standard deviation is given by\n\n[FORMULA:ch06_q04_f03_image5.wmf]\n\nc\\. The probability they spend less than \\$2,000 per year on insurance per year is given by\n\n[FORMULA:ch06_q04_f04_image6.wmf]\n\nd\\. The probability a family spends more than \\$3,000 per year is given by\n\n[FORMULA:ch06_q04_f05_image7.wmf]\n\ne\\. The probability a family spends between \\$1500 and \\$2500 is\n\n[FORMULA:ch06_q04_f06_image8.wmf]",
+      "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter06_Continuous Random Variables.docx",
+      "type": "unknown",
+      "difficulty": 1,
+      "keywords": [],
+      "formula_refs": [
+        "ch06_q04_f02_image4.wmf",
+        "ch06_q04_f03_image5.wmf",
+        "ch06_q04_f04_image6.wmf",
+        "ch06_q04_f05_image7.wmf",
+        "ch06_q04_f06_image8.wmf"
+      ],
+      "data_refs": []
+    },
+    {
+      "id": "ch06_q17",
+      "content": "The distribution of weekly incomes of shift foremen in the glass industry follows the normal distribution, with a mean of \\$1000 and a standard deviation of \\$100. What is the probability of selecting a shift foreman in the glass industry whose income is:\n\n1\\. Between \\$790 and \\$1000?\n\n2\\. Less than \\$790?",
+      "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter06_Continuous Random Variables.docx",
+      "type": "unknown",
+      "difficulty": 1,
+      "keywords": [],
+      "formula_refs": [
+        "ch06_q05_ans_f01_image9.wmf",
+        "ch06_q05_ans_f02_image10.wmf"
+      ],
+      "data_refs": []
+    },
+    {
+      "id": "ch06_q18",
+      "content": "The amounts of money requested on home loan applications at down River Federal Savings follow the normal distribution, with a mean of \\$70,000 and a standard deviation of \\$20,000. A loan application is received this morning. What is the probability?\n\na\\. The amount requested is \\$80,000 or more?\n\nb\\. The amount requested is between \\$65,000 and \\$80,000?\n\nc\\. The amount requested is \\$65,000 or more?",
+      "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter06_Continuous Random Variables.docx",
+      "type": "unknown",
+      "difficulty": 1,
+      "keywords": [],
+      "formula_refs": [
+        "ch06_q06_ans_f01_image11.wmf",
+        "ch06_q06_ans_f02_image12.wmf",
+        "ch06_q06_ans_f03_image13.wmf"
+      ],
+      "data_refs": []
+    },
+    {
+      "id": "ch06_q19",
+      "content": "The Layton Tire and Rubber Company wishes to set a minimum mileage guarantee on its new MX100 tire. Tests reveal the mean mileage is 67,900 with a standard deviation of 2,050 miles and the distribution of miles follows the normal distribution. They want to set the minimum guaranteed mileage so that no more than 4 percent of the tires will have to be replaced. What minimum guaranteed mileage should Layton announced?",
+      "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter06_Continuous Random Variables.docx",
+      "type": "unknown",
+      "difficulty": 1,
+      "keywords": [],
+      "formula_refs": [
+        "ch06_q07_ans_f02_image15.wmf"
+      ],
+      "data_refs": []
+    },
+    {
+      "id": "ch06_q20",
+      "content": "Weekly demand at a grocery store for a brand of breakfast cereal is normally distributed with a mean of 800 boxes and a standard deviation of 75 boxes.\n\na\\. what is the probability that weekly demand is\n\n\\(1\\) 959 boxes or less?\n\n\\(2\\) More than 1004 boxes?\n\n\\(3\\) Less than 650 boxes or greater than 950 boxes?\n\nb\\. The store orders cereal from a distributor weekly. How many boxes should the store order for a week to have only a 2.5 percent chance of running short of this brand of cereal during the week?",
+      "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter06_Continuous Random Variables.docx",
+      "type": "unknown",
+      "difficulty": 1,
+      "keywords": [],
+      "formula_refs": [
+        "ch06_q08_ans_f01_image16.wmf",
+        "ch06_q08_ans_f02_image17.wmf"
+      ],
+      "data_refs": []
+    },
+    {
+      "id": "ch06_q21",
+      "content": "What does the Central Limit Theorem tell us about the sampling distribution of the sample mean?",
+      "source": "Assignment Prof Lv/Assignment 6-lu.doc",
+      "type": "unknown",
+      "difficulty": 1,
+      "keywords": [],
+      "formula_refs": [],
+      "data_refs": []
+    },
+    {
+      "id": "ch06_q22",
+      "content": "Suppose that we will take a random sample of size n from a population having mean $\\mu$ and standard deviation $\\sigma$. For each of the following situations, find the mean, variance, and standard deviation of the sampling distribution of the sample mean $\\overline{x}$:\n\na $\\mu = \\text{10}$,$\\sigma = 2$, n=25\n\nb $\\mu = 3$,$\\sigma = 0\\text{.}1$, n=4\n\nc $\\mu = \\text{500}$,$\\sigma = 0\\text{.}5$, n=100\n\nd $\\mu = \\text{100}$,$\\sigma = 1$, n=1,600",
+      "source": "Assignment Prof Lv/Assignment 6-lu.doc",
+      "type": "unknown",
+      "difficulty": 1,
+      "keywords": [],
+      "formula_refs": [],
+      "data_refs": []
+    },
+    {
+      "id": "ch06_q23",
+      "content": "THE BANK CUSTOMER WAITING TIME CASE**\n\nRecall that the bank manager wants to show that the new system reduces typical customer waiting times to less than 6 minutes. One way to do this is to demonstrate that mean of the population of all customer waiting times is less than 6. Letting this mean be$\\mu$, in this exercise we wish to investigate whether the sample of 100 waiting times provides evidence to support the claim that $\\mu$ is less than 6.\n\nFor the sake of argument, we will begin by assuming that $\\mu$ equals 6, and we will then attempt to use the sample to contradict this assumption in favour of the conclusion that $\\mu$ is less than 6. Recall that the mean of the sample of 100 waiting times is $\\overline{x}$=5.46 and assume that$\\sigma$, the standard deviation of the population of all customer waiting times, is known to be 2.47.\n\na.  Consider the population of all possible sample means obtained from random samples of 100 waiting times. What is the shape of this population of sample means? That is, what is the shape of the sampling distribution of $\\overline{x}$? Why is this true?\n\nb.  Find the mean and standard deviation of the population of all possible sample means when we assume that $\\mu$ equals 6.\n\nc.  The sample mean that we have actually observed is $\\overline{x}$=5.46. Assuming that $\\mu$ equals 6, find the probability of observing a sample mean that is less than or equal to $\\overline{x}$=5.46.\n\nd.  If $\\mu$equals 6 , what percentage of all possible sample means are less than or equal to 5.46? Since we have actually observed a sample mean of $\\overline{x}$=5.46, is it more reasonable to believe that (1) $\\mu$equals 6 and we have observed one of the sample means that is less than or equal to 5.46 when $\\mu$equals 6, or (2) that we have observed a sample mean less than or equal to 5.46 because $\\mu$ is less than 6? Explain. What do you conclude about whether the new system has reduced the typical customer waiting time to less than six minutes?",
+      "source": "Assignment Prof Lv/Assignment 6-lu.doc",
+      "type": "unknown",
+      "difficulty": 1,
+      "keywords": [],
+      "formula_refs": [],
+      "data_refs": []
+    },
+    {
+      "id": "ch06_q24",
+      "content": "Suppose that we will randomly select a sample of n units from a population and that we will compute the sample proportion $\\overset{\\hat{}}{p}$ of these units that fall into a category of interest. If we consider the sampling distribution of $\\overset{\\hat{}}{p}$:\n\na If the sample size n is large, the sampling distribution of $\\overset{\\hat{}}{p}$ is approximately a normal distribution. What condition must be satisfied to guarantee that n is large enough to say that $\\overset{\\hat{}}{p}$ is normally distributed?\n\nb Write formulas that express the central tendency and variability of the population of all possible sample proportions. Explain what each of these formulas means in your own words.",
+      "source": "Assignment Prof Lv/Assignment 6-lu.doc",
+      "type": "unknown",
+      "difficulty": 1,
+      "keywords": [],
+      "formula_refs": [],
+      "data_refs": []
+    },
+    {
+      "id": "ch06_q25",
+      "content": "In each of the following cases, determine whether the sample size n is large enough to say that the sampling distribution of$\\overset{\\hat{}}{p}$ is a normal distribution.\n\na p=0.4, n=100 b p=0.1, n=10 c p=0.1, n=50\n\nd p=0.8, n=400 e p=0.98, n=1,000 f p=0.99, n=400",
+      "source": "Assignment Prof Lv/Assignment 6-lu.doc",
+      "type": "unknown",
+      "difficulty": 1,
+      "keywords": [],
+      "formula_refs": [],
+      "data_refs": []
+    },
+    {
+      "id": "ch06_q26",
+      "content": "In the July 29,2001, issue of *The Journal News* (Hamilton, Ohio)Lynn Elber of the Associated Press reported on a study conducted by the Kaiser Family regarding parents' use of television set V-chips for controlling their children' TV viewing. The study asked parents who own TVs equipped with V-chips whether they use the devices to block programs with objectionable content.\n\na.  Suppose that we wish to use the study results to justify the claim that fewer than 20 percent of parents who own TV sets with V-chips use the devices. The study actually found that 17 percent of the parents polled used their V-chips. If the poll surveyed 1,000 parents, and if for the sake of argument we assume that 20 percent of parents who own V-chips actually use the devices (that is, p=0.2), calculate the probability of observing a sample proportion of 0.17 or less. That is, calculate $P(\\overset{\\hat{} \\leq 0\\text{.17})}{p}$.\n\nb.  Based on the probability you computed in part a, would you conclude that fewer than 20 percent of parents who own TV sets equipped with V-chips actually use the devices? Explain.",
+      "source": "Assignment Prof Lv/Assignment 6-lu.doc",
+      "type": "unknown",
+      "difficulty": 1,
+      "keywords": [],
+      "formula_refs": [],
+      "data_refs": []
+    },
+    {
+      "id": "ch06_q27",
+      "content": "On January 7,2000, the Gallup Organization released the results of a poll comparing lifestyles of today with those of yesteryear. The poll results were based on telephone interviews with a randomly selected national sample of 1,031 adults, 18 years and older, conducted December 20-21,1999. One question asked if the respondent had vacationed for six days or longer within the last 12 months.\n\na Suppose that we will attempt to use the polls results to justify the claim that more than 40 percent of U.S. adults have vacationed for six days or longer within the last 12 months. The poll actually found that 42 percent of the respondents had done so. If, for the sake of argument, we assume that 40 percent of U.S. adults have vacationed for six days or longer within the last 12 months( that is, p=0.4), calculate the probability of observing a sample proportion of 0.42 or more; that is, calculate $P(\\overset{\\hat{} \\geq 0\\text{.42})}{p}$.\n\nb Based on the probability you computed in a, would you conclude that more than 40 percent of U.S. adults have vacationed for six days or longer within the last 12 months? Explain.",
+      "source": "Assignment Prof Lv/Assignment 6-lu.doc",
+      "type": "unknown",
+      "difficulty": 1,
+      "keywords": [],
+      "formula_refs": [],
+      "data_refs": []
+    },
+    {
+      "id": "ch06_q28",
+      "content": "Suppose that yearly health care expenses for a family of four are normally distributed with a mean expense equal to \\$3,000 and a standard deviation of \\$500. An insurance company has decided to offer a health insurance premium reduction if a policyholder's health care expenses do not exceed a specified dollar amount. What dollar amount should be established if the insurance company wants families having the lowest 33 percent of yearly health care expenses to be eligible for the premium reduction?",
+      "source": "Assignments for STAT 2010/assign6.doc",
+      "type": "unknown",
+      "difficulty": 1,
+      "keywords": [],
+      "formula_refs": [
+        "ch06_q01_ans_f01_image1.wmf"
+      ],
+      "data_refs": []
+    },
+    {
+      "id": "ch06_q29",
+      "content": "A department store will place a sale item in a special display for a one-day sale. Previous experience suggests that 20 percent of all customers who pass such a special display will purchase the item. If 2,000 customers will pass the display on the day of the sale, and if a one-item-per-customer limit is placed on the sale item, how many units of the sale item should the store stock in order to have at most a 1 percent chance of running short of the item on the day of the sale? Assume here that customers make independent purchase decisions.",
+      "source": "Assignments for STAT 2010/assign6.doc",
+      "type": "unknown",
+      "difficulty": 1,
+      "keywords": [],
+      "formula_refs": [],
+      "data_refs": []
+    },
+    {
+      "id": "ch06_q30",
+      "content": "In the July 29, 2001, issue of The Journal News(Hamilton, Ohio) Lynn Elber of the Associated Press reported on a study conducted by the Kaiser Family Foundation regarding parent's use of television set V-chips for controlling their childrens'TV viewing. The study asked parents who own TVs equipped with V-chips whether they use the devices to block programs with objectionable content.\n\n    a.  Suppose that we wish to use the study results to justify the claim that fewer than 20 percent of parents who own TV sets with V-chips use the devices. The study actually found that 17 percent of the parents polled used their V-chips. If the poll surveyed 1,000 parents, and if for the sake of argument we assume that 20 percent of parents who own V-chips actually use the devices (that is, = 0.2), calculate the probability of observing a sample proportion of 0.17 or less. That is, calculate P ($\\hat{p}$$$``{=html}0.17) .\n\n    b.  Based on the probability you computed in part a, would you conclude that fewer than 20 percent of parents who own TV sets equipped with V-chips actually use the devices? Explain.",
+      "source": "Assignments for STAT 2010/assign6.doc",
+      "type": "unknown",
+      "difficulty": 1,
+      "keywords": [],
+      "formula_refs": [],
+      "data_refs": []
+    },
+    {
+      "id": "ch06_q31",
+      "content": "For each of the following changes, indicate whether a confidence interval for $\\mu$ will have a larger or smaller margin of error:\n\na\\. An increase in the level of confidence.\n\nb .An increase in the sample size.\n\nc\\. A decrease in the level of confidence.\n\nd\\. A decrease in the sample size.",
+      "source": "Assignments for STAT 2012/Assignment_6.doc",
+      "type": "unknown",
+      "difficulty": 1,
+      "keywords": [],
+      "formula_refs": [],
+      "data_refs": []
+    },
+    {
+      "id": "ch06_q32",
+      "content": "THE BANK CUSTOMER WAITING TIME CASE**\n\nRecall that a bank manager has developed a new system to reduce the time customers spend waiting to be served by tellers during peak business hours. The mean waiting time during peak business hours under the current system is roughly 9 to 10 minutes. The bank manager hopes that the new system will have a mean waiting time that is less than six minutes. The mean of the sample of 100 bank customer waiting times in Table 1.8 is $\\overline{x}$=5.46. If we let $\\mu$ denote the mean of all possible bank customer waiting times using the new system and assume that $\\sigma$ equals 2.47.\n\na.  Calculate 95 percent and 99 percent confidence intervals for$\\mu$.\n\nb.  Using the 95 percent confidence interval, can the bank manager be 95 percent confident that $\\mu$ is less than six minutes? Explain.\n\nc.  Using the 99 percent confidence interval, can the bank manager be 99 percent confident that $\\mu$ is less than six minutes? Explain.\n\nd.  Based on your answers to parts *b* and *c*, how convinced are you that the new mean waiting time is less than six minutes?",
+      "source": "Assignments for STAT 2012/Assignment_6.doc",
+      "type": "unknown",
+      "difficulty": 1,
+      "keywords": [],
+      "formula_refs": [],
+      "data_refs": []
+    },
+    {
+      "id": "ch06_q33",
+      "content": "Whole Foods is an all-natural grocery chain that has 50,000 square foot stores, up from the industry average of 34,000 square feet. Sales per square foot of supermarkets average just under \\$400 per square foot, as reported by *USA Today* in an article on \"A whole new ballgame in grocery shopping.\" Suppose that sales per square foot in the most recent fiscal year are recorded for a random sample of 10 Whole Foods supermarkets. The data (sales dollars per square foot) are as follows: 854,858,801,892,849,807,894,863,829,815. Using the fact that $\\overline{x}$=846.2 and s=32.866. Find a 95 percent confidence interval for the true mean sales dollars per square foot for all Whole Foods supermarkets during the most recent fiscal year. Are we 95 percent confident that this mean is greater than \\$800, the historical average for Whole Foods?",
+      "source": "Assignments for STAT 2012/Assignment_6.doc",
+      "type": "unknown",
+      "difficulty": 1,
+      "keywords": [],
+      "formula_refs": [],
+      "data_refs": []
+    },
+    {
+      "id": "ch06_q34",
+      "content": "Consider a population having a standard deviation equal to 10. We wish to estimate the mean of this population.\n\na\\. How large a random sample is needed to construct a 95 percent confidence interval for the mean of this population with a margin of error equal to 1?\n\nb\\. Suppose that we now take a random sample of the size we have determined in part a. If we obtain a sample mean equal to 295, calculate the 95 percent confidence interval for the population mean. What is the interval's margin of error?",
+      "source": "Assignments for STAT 2012/Assignment_6.doc",
+      "type": "unknown",
+      "difficulty": 1,
+      "keywords": [],
+      "formula_refs": [],
+      "data_refs": []
+    },
+    {
+      "id": "ch06_q35",
+      "content": "Referring to Exercise 8.20, regard the sample of 10 sales figures for which s=32.866 as a preliminary sample. How large a sample of sales figures is needed to make us 95 percent confident that[FORMULA:ch06_q32_f01_image1.wmf] , the sample mean sales dollars per square foot, is within a margin of error of \\$10 of[FORMULA:ch06_q32_f02_image2.wmf], the true mean sales dollars per square foot for all Whole Foods supermarkets.",
+      "source": "Assignments for STAT 2012/Assignment_6.doc",
+      "type": "unknown",
+      "difficulty": 1,
+      "keywords": [],
+      "formula_refs": [
+        "ch06_q32_f01_image1.wmf",
+        "ch06_q32_f02_image2.wmf"
+      ],
+      "data_refs": []
+    },
+    {
+      "id": "ch06_q36",
+      "content": "There are 20000 eligible voters in York County, South Carolina. A random sample of 500 York County voters revealed 350 plan to vote to return Louella Miller to the state senate. Construct a 99 percent confidence interval for the proportion of voters in the county who plan to vote for Ms.Miller. From this sample information, can you confirm she will be reelected?",
+      "source": "Assignments for STAT 2012/Assignment_6.doc",
+      "type": "unknown",
+      "difficulty": 1,
+      "keywords": [],
+      "formula_refs": [],
+      "data_refs": []
+    }
+  ]
+}

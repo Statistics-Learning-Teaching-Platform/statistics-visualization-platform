@@ -1,0 +1,25 @@
+{
+  "chapter": 11,
+  "questions": [
+    {
+      "id": "ch11_q01",
+      "content": "Suppose that the xs are the number of staff working in a pub during an evening shift and y is the number of abusive customers encountered that evening for 5 consecutive Monday evenings\n\n+-------------------+----------------------+\n| X Number of staff | Y                    |\n|                   |                      |\n|                   | Abusive customers    |\n+:=================:+:====================:+\n| 3                 | 10                   |\n+-------------------+----------------------+\n| 4                 | 11                   |\n+-------------------+----------------------+\n| 2                 | 13                   |\n+-------------------+----------------------+\n| 6                 | 15                   |\n+-------------------+----------------------+\n| 2                 | 10                   |\n+-------------------+----------------------+\n\na)  Fit a linear regression model that endeavors to explain the number of abusive customers in terms of the number of staff.\n\nb)  Use the model to predict the number of abusive customers when there are 5 staff working.\n\nc)  Find r, the simple correlation coefficient, for the data.",
+      "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter11_Simple Regression Models.docx",
+      "type": "unknown",
+      "difficulty": 1,
+      "keywords": [],
+      "formula_refs": [],
+      "data_refs": []
+    },
+    {
+      "id": "ch11_q02",
+      "content": "The following data shows the age in years, x, and the second-hand price (\\$100), y, of a sample of 11 cars advertised in a local paper. What is the sample correlation between the age and the price, and how do you interpret it?\n\n+--------------------+----------------------+\n| X                  | Y                    |\n|                    |                      |\n| Age of Car (Years) | Price (\\$100)        |\n+:==================:+:====================:+\n| 5                  | 80                   |\n+--------------------+----------------------+\n| 7                  | 57                   |\n+--------------------+----------------------+\n| 6                  | 58                   |\n+--------------------+----------------------+\n| 6                  | 55                   |\n+--------------------+----------------------+\n| 5                  | 70                   |\n+--------------------+----------------------+\n| 4                  | 88                   |\n+--------------------+----------------------+\n| 7                  | 43                   |\n+--------------------+----------------------+\n| 6                  | 60                   |\n+--------------------+----------------------+\n| 5                  | 69                   |\n+--------------------+----------------------+\n| 5                  | 63                   |\n+--------------------+----------------------+\n| 2                  | 118                  |\n+--------------------+----------------------+",
+      "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter11_Simple Regression Models.docx",
+      "type": "unknown",
+      "difficulty": 1,
+      "keywords": [],
+      "formula_refs": [],
+      "data_refs": []
+    }
+  ]
+}

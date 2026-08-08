@@ -1,0 +1,241 @@
+{
+  "chapter": 10,
+  "questions": [
+    {
+      "id": "ch10_q01",
+      "content": "> **Problem 1.** Is there a difference between the life of batteries made by Duracell and Eveready? Let $\\mu_{1}$ be the mean lifetime (in days) for Duracell batteries, and $\\mu_{2}$ be that of Eveready batteries. Perform a 5% level of test.\n\n  ------------------ ----------------------- -----------------------\n                            Duracell                Eveready\n\n    n (batteries)               8                      10\n\n   $$\\overline{x}$$            41                      45\n\n      Sample SDs               18                      20\n  ------------------ ----------------------- -----------------------\n\n**Suggested",
+      "source": "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment and solution_Chap10_Two sample testing.doc",
+      "type": "unknown",
+      "difficulty": 1,
+      "keywords": [],
+      "formula_refs": [
+        "ch10_q01_ans_f01_image15.wmf",
+        "ch10_q01_ans_f02_image16.wmf",
+        "ch10_q01_ans_f03_image17.wmf",
+        "ch10_q01_ans_f04_image18.wmf",
+        "ch10_q01_ans_f05_image19.wmf",
+        "ch10_q01_ans_f06_image13.wmf",
+        "ch10_q01_ans_f07_image19.wmf",
+        "ch10_q01_ans_f08_image14.wmf",
+        "ch10_q01_ans_f09_image19.wmf"
+      ],
+      "data_refs": []
+    },
+    {
+      "id": "ch10_q02",
+      "content": "> **Problem 2** The efficacy of a treatment for hypertension (high blood pressure) is to be studied using a small clinical trial. Thirty-eight hypertensive patients were randomly allocated to either Group 0 (placebo control) or Group 1 (treatment) and a three-month follow-up study was carried out. At the end of the study, the difference in blood pressure was measured for patients in each group and recorded. A summary of the results is presented below:\n>\n> [IMG:ch10_q02_f01_image20.png]\n>\n> Is there evidence of significant improvement in the treatment group? Use a significance level of $\\alpha$= 0.05.\n\n**Suggested",
+      "source": "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment and solution_Chap10_Two sample testing.doc",
+      "type": "unknown",
+      "difficulty": 1,
+      "keywords": [],
+      "formula_refs": [
+        "ch10_q02_ans_f05_image24.emf"
+      ],
+      "data_refs": []
+    },
+    {
+      "id": "ch10_q03",
+      "content": "**Problem 3:** Twelve cars were equipped with radial tires and driven over a test course. Then the same 12 cars (with the same drivers) were equipped with regular belted tires and driven over the same course. After each run, the cars' gas economy (in km/l) was measured. Is there evidence that radial tires produce better fuel economy? (Assume normality of data and use $\\alpha$=0.05.)\n\n[IMG:ch10_q03_f01_image26.png]\n\nFind a 95% CI for the mean difference in gas economy between radial tires and belted tires.\n[Hypotheses]{.underline}**\n\n> [FORMULA:ch10_q03_f02_image27.emf]\n>\n> [FORMULA:ch10_q03_f03_image28.emf]\n\n2.  [**Significance level**]{.underline} $\\alpha$[=0.05]{.underline}\n\n3.  **[Test statistic]{.underline}**\n\n[FORMULA:ch10_q03_f04_image29.emf], with [FORMULA:ch10_q03_f05_image30.emf]\n\nsince[FORMULA:ch10_q03_f06_image31.emf] , p-Value is 0.02\\<0.05, we reject [FORMULA:ch10_q03_f07_image27.emf] and draw conclusion that there is evidence that radial tires produce better fuel economy.\n\n4.  the 95% confidence interval:\n\n[FORMULA:ch10_q03_f08_image32.emf]\n\n> so the 95% confidence interval is (0.03, 0.25).",
+      "source": "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment and solution_Chap10_Two sample testing.doc",
+      "type": "unknown",
+      "difficulty": 1,
+      "keywords": [],
+      "formula_refs": [
+        "ch10_q03_f02_image27.emf",
+        "ch10_q03_f03_image28.emf",
+        "ch10_q03_f04_image29.emf",
+        "ch10_q03_f05_image30.emf",
+        "ch10_q03_f06_image31.emf",
+        "ch10_q03_f07_image27.emf",
+        "ch10_q03_f08_image32.emf"
+      ],
+      "data_refs": []
+    },
+    {
+      "id": "ch10_q04",
+      "content": "**Problem 4** Many people take Ginkgo supplements advertised to improve memory. Are these over-the-counter supplements effective? In a study, elderly adults were assigned to the treatment group or control group. The 104 participants who were assigned to the treatment group took 40 mg of Ginkgo 3 times a day for 6 weeks. The 115 participants assigned to the control group took a placebo pill 3 times a day for 6 weeks. At the end of 6 weeks, the Wechsler Memory Scale was administered. Higher scores indicate better memory function. Summary values are given in the following table:\n\n  --------------- --------------- ------------------ ---------------\n                  N               $$\\overline{x}$$   s\n\n  Ginkgo          104             5.7                0.6\n\n  Placebo         115             5.5                0.5\n  --------------- --------------- ------------------ ---------------\n\n> Based on these results, is there evidence that taking 40mg of Ginkgo 3 times a day is effective in increasing mean performance on the Wechsler Memory Scale?\n>\n> **[Step 1:]{.underline}** parameters of interest = [FORMULA:ch10_q04_f01_image33.wmf], the average memory score using Ginkgo, and [FORMULA:ch10_q04_f02_image34.wmf], the average memory score using placebo.\n>\n> [FORMULA:ch10_q04_f03_image35.wmf]\n>\n> **[Step 2:]{.underline}** significance level is usually taken to be $\\alpha$=0.05\n>\n> **[Step 3:]{.underline}** test statistic =\n>\n> [FORMULA:ch10_q04_f04_image36.emf]\n>\n> **[Step 4:]{.underline}** [FORMULA:ch10_q04_f05_image37.wmf] and thus p-value = [FORMULA:ch10_q04_f06_image38.wmf]\n>\n> **[Step 5:]{.underline}** Conclusion: Since the p-value \\< significance level, we reject [FORMULA:ch10_q04_f07_image39.wmf] and conclude that Ginkgo does improve the memory score.\n\n**Example 5** Assume that Peet's Coffee is looking at two possible locations for a new shop. To help make a decision they look at the number of pedestrians that go by each of the two locations in one-hour segments. The results of the random sample are shown below:\n\n>  [Location A Location B]{.underline}\n>\n> Mean number of pedestrians 421 347\n>\n> Sample standard deviation 122 85\n>\n> Number of hours sampled 35 50\n\nAssume the two population variances are not known but equal. Complete the steps required to test the null and alternative hypothesis at the 1% level of significance that both sites have the same number of pedestrians and calculate the 95% confidence interval.\n\n**[Step 1]{.underline}** H~0~: µ~1~ = µ~2~ , H~a~: µ~1~ ≠ µ~2~\n\n**[Step 2]{.underline}** Using an α = .01, reject if the t test statistic is ≥2.576 =[FORMULA:ch10_q04_f08_image40.wmf] or if the p-Value is ≤ 0.01.\n\n**[STEP 3]{.underline}** Since our t test statistic 3.30 \\>[FORMULA:ch10_q04_f09_image41.emf]=2.576 and since our p-Value is .0014 \\< α, we reject [FORMULA:ch10_q04_f10_image42.emf] . In addition, our hypothesized difference of 0 is not contained in the 95% confidence interval, but the mean difference of 74 is included in the confidence interval which confirms that we are correct in rejecting the null hypothesis. Thus, the difference in the means is statistically significant.\n\n**[STEP 4]{.underline}** Given that our p-value is .0014, there is a overwhelming evidence or a highly statistically significant difference between the two sites. Thus, Peet's should use Location A for their new coffee shop.\n\n**[Example 6]{.underline}** Assume that an English comprehension test is given to a random sample of 12 students before and after they complete an English course. Their scores are shown below before the course and after the course. Complete an hypothesis test to determine if the course improved the test score.\n\n  ----------- ------------\n   **After**   **Before**\n\n      115         111\n\n      115         108\n\n      119         114\n\n      117         105\n\n      114         102\n\n      114         106\n\n      109         100\n\n      110         103\n\n      106         101\n\n      112         105\n\n      115         107\n\n      111         107\n  ----------- ------------\n\n**[Step 1]{.underline}** H~0~: D~0~ = 0, H~a~: D~0~ \\> 0\n\n**[Step 2]{.underline}** Using an α = .05, reject [FORMULA:ch10_q04_f11_image42.emf] if the t test statistic is 2.201=[FORMULA:ch10_q04_f12_image43.wmf]01, 11) or if the p-Value is ≤ 0.05.\n\n**[STEP 3]{.underline}** Since our t test statistic 9.38 \\> [FORMULA:ch10_q04_f13_image43.wmf]=2.201 and since our p-Value is 6.97E-07 \\< α = .05, we reject H0. In addition, our hypothesized difference of 0 is not contained in the 95% confidence interval, but the mean difference of 7.333 is included in the 95% confidence interval which confirms that we are correct in rejecting the null hypothesis.\n\n**[STEP 4]{.underline}** Given that our p-value is 6.97E-07 and we are rejecting H0, there is a statistically significant difference between the after course test scores compared to the before course test scores. Thus, there is overwhelming evidence that the course improves students English test scores.\n\n**[Example 7]{.underline}** In a market research study conduct by Marilyn Merlot Winery on red wine preference, the following results were found. Of a sample of 500 men, 210 preferred red wine and of a sample of 500 women, 120 preferred red wine. Perform an hypothesis test to determine if the proportion of men preferring red wine is 25% higher than for women.\n\n**[Step 1]{.underline}** H~0~: π~m~ -- π~w~ = 0, H~a~: π~m~ -- π~w~ \\> .25\n\n**[Step 2]{.underline}** Using an α = .05, reject H0 if the z test statistic is ≥ 1.645 or if the p-Value is ≤ 0.05.\n\n**[Step 3]{.underline}** Select Hypothesis Tests, Compare Two Proportions, enter the data given the above problem, and click OK. Your dialogue box should look like the one shown below.\n\n**[STEP 3]{.underline}** Since our z test statistic 6.05 \\>[FORMULA:ch10_q04_f14_image44.emf] =1.645 and since our p-Value is 7.12E-10 \\< α = .05, we reject H0. In addition, our hypothesized difference of 0 is not contained in the 95% confidence interval, but the sample mean difference 0.18 is contained within the 95% confidence interval which confirms that we are correct in rejecting the null hypothesis.\n\n**[STEP 4]{.underline}** Given that we are rejecting H0, there is a statistically significant difference between the proportion of men who prefer red wine compared to women. There is overwhelming evidence that the proportion of men who prefer red wine is greater than 25% compared to the proportion of women.\n\n**[Example 8]{.underline}** A random sample of 10 hot drinks from Mexin A had a mean volume of 203 ml and a standard deviation of 3 ml. A random sample of 15 hot drinks from Mexin B gave corresponding values of 206ml and 5ml. The amount dispensed by each machine may be assumed to be normally distributed. Test, at the 5%significance level, the hypothesis that there is no difference in the variability of the volume dispensed by the two machines.\n\n**[Step 1]{.underline}** H~0~: [FORMULA:ch10_q04_f15_image45.wmf] , H~a~: [FORMULA:ch10_q04_f16_image46.wmf]\n\n**[Step 2]{.underline}** Using an α = .05, [FORMULA:ch10_q04_f17_image47.wmf]and by linear interpolation\n\n[FORMULA:ch10_q04_f18_image48.wmf]\n\n**[Step 3]{.underline}** Test statics is [FORMULA:ch10_q04_f19_image49.wmf]\n\n**[STEP 3]{.underline}** The critical region is [FORMULA:ch10_q04_f20_image50.wmf]\n\n**[STEP 4]{.underline}** This value does not lie in the critical region. Thus there is no evidence, at the 5% significance, of a difference in the variability of the volume dispensed by the two machines.\n\n**[Example 9]{.underline}** DST of UIC decides to test the effect of using a statistics software to aid in teaching. The teacher wishes to determine whether using the software will result in an improvement in one\\'s understanding of the topic. The teacher randomly assigns the student into two groups, a control group receiving standard lessons and an experimental group using the software. The students are selected to pairs of equal mathematical ability, with one from each pair assigned at random to the control group and the other to the experimental group. A test is finally conducted to measure their understanding and the results are shown in bellow. Assuming marks to be normally distributed, investigate the claim that the educational computer software produces an improvement in student\\'s understudying of Statistics.\n\n  ------------------ ------ ------ ------ ------ ------ ------ ------ ------ ------ ------\n  **Pair**           1      2      3      4      5      6      7      8      9      10\n\n  **Control**        72     82     93     65     76     89     81     58     95     91\n\n  **Experimental**   75     79     84     71     82     91     85     68     90     92\n  ------------------ ------ ------ ------ ------ ------ ------ ------ ------ ------ ------\n\n**Suggested",
+      "source": "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment and solution_Chap10_Two sample testing.doc",
+      "type": "unknown",
+      "difficulty": 1,
+      "keywords": [],
+      "formula_refs": [
+        "ch10_q04_ans_f21_image51.wmf",
+        "ch10_q04_ans_f22_image52.wmf",
+        "ch10_q04_ans_f23_image53.wmf",
+        "ch10_q04_ans_f24_image54.wmf",
+        "ch10_q04_ans_f25_image55.wmf",
+        "ch10_q04_ans_f26_image56.wmf",
+        "ch10_q04_ans_f27_image57.wmf",
+        "ch10_q04_ans_f28_image58.wmf",
+        "ch10_q04_ans_f29_image59.wmf",
+        "ch10_q04_ans_f30_image42.emf",
+        "ch10_q04_ans_f31_image42.emf",
+        "ch10_q04_f01_image33.wmf",
+        "ch10_q04_f02_image34.wmf",
+        "ch10_q04_f03_image35.wmf",
+        "ch10_q04_f04_image36.emf",
+        "ch10_q04_f05_image37.wmf",
+        "ch10_q04_f06_image38.wmf",
+        "ch10_q04_f07_image39.wmf",
+        "ch10_q04_f08_image40.wmf",
+        "ch10_q04_f09_image41.emf",
+        "ch10_q04_f10_image42.emf",
+        "ch10_q04_f11_image42.emf",
+        "ch10_q04_f12_image43.wmf",
+        "ch10_q04_f13_image43.wmf",
+        "ch10_q04_f14_image44.emf",
+        "ch10_q04_f15_image45.wmf",
+        "ch10_q04_f16_image46.wmf",
+        "ch10_q04_f17_image47.wmf",
+        "ch10_q04_f18_image48.wmf",
+        "ch10_q04_f19_image49.wmf",
+        "ch10_q04_f20_image50.wmf"
+      ],
+      "data_refs": []
+    },
+    {
+      "id": "ch10_q05",
+      "content": "When we test$H_{O}:\\mu_{1} \\leq \\mu_{2},H_{a}:\\mu > \\mu_{2}$at $\\alpha = 0\\text{.10}$, where  [IMG:ch10_q01_f01_image1.png] = 77.4,  [IMG:ch10_q01_f02_image2.png] = 72.2, $s_{1} = 3\\text{.}3$, $s_{1} = 2\\text{.}1$, n~1~= 6, n~2~ = 6, can we reject the null hypothesis? **(Assume equal variances) **",
+      "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter10_Two sample testing.doc",
+      "type": "unknown",
+      "difficulty": 1,
+      "keywords": [],
+      "formula_refs": [
+        "ch10_q01_ans_f03_image3.wmf",
+        "ch10_q01_ans_f04_image5.wmf"
+      ],
+      "data_refs": []
+    },
+    {
+      "id": "ch10_q06",
+      "content": "Testing the equality of means at $\\alpha = 0\\text{.05}$, where sample 1 has data: 16, 14, 19, 18, 19, 20, 15, 18, 17, 18; and sample 2 has data: 13, 19, 14, 17, 21, 14, 15, 10, 13, 15, can we reject the null hypothesis? **(Assume equal population variances.) **",
+      "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter10_Two sample testing.doc",
+      "type": "unknown",
+      "difficulty": 1,
+      "keywords": [],
+      "formula_refs": [
+        "ch10_q02_ans_f01_image7.wmf",
+        "ch10_q02_ans_f02_image8.wmf"
+      ],
+      "data_refs": []
+    },
+    {
+      "id": "ch10_q07",
+      "content": "A manufacturer claims that the calling range(in miles) of its 900-MHz cordless telephone is greater than that of its leading competitor. You perform a study using 14 randomly selected phones from the manufacturer and 16 randomly selected similar phones from its competitor. The results are shown below. At $\\alpha = 0\\text{.05}$, is there enough evidence to support the manufacturer\\`s claim? (**Assume the populations are normally distributed and population variances are equal.)**\n\n  ----------------------------- ------------------------------------\n        **manufacturer**                   **competitor**\n\n   $\\overline{x_{1}}$**=1275**   $$\\overline{x_{2}} = \\text{1250}$$\n\n           **S~1~=45**                      **S~2~=30**\n\n           **n~1~=14**                      **n~2~=16**\n  ----------------------------- ------------------------------------",
+      "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter10_Two sample testing.doc",
+      "type": "unknown",
+      "difficulty": 1,
+      "keywords": [],
+      "formula_refs": [
+        "ch10_q03_ans_f01_image7.wmf"
+      ],
+      "data_refs": []
+    },
+    {
+      "id": "ch10_q08",
+      "content": "A personnel director claims that the mean annual wage is greater in Allegheny County than it is in Erie County. In Allegheny County, a random sample of 19 residents has a mean annual income of 30.8 and a standard deviation of 8.6. In Erie County, a random sample of 15 residents has a mean annual income of 25.7 and a standard deviation of 5.5. At $\\alpha = 0\\text{.10}$,can you support the personnel director\\`s claim?**(unit:\\$1000)**",
+      "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter10_Two sample testing.doc",
+      "type": "unknown",
+      "difficulty": 1,
+      "keywords": [],
+      "formula_refs": [
+        "ch10_q04_f01_image11.wmf",
+        "ch10_q04_f02_image12.wmf"
+      ],
+      "data_refs": []
+    },
+    {
+      "id": "ch10_q09",
+      "content": "To test whether a fuel additive improves gas mileage, the gas mileage of nine cars was measured with and without the fuel additive. The results are given below. At $\\alpha = 0\\text{.10}$, can you conclude that the fuel additive improved gas mileage?\n\n  ------------------------------ ------ ------ ------ ------ ------ ------ ------ ------ ------\n  Car                              1      2      3      4      5      6      7      8      9\n\n  gas mileage with additive       34.5   36.7   34.4   39.8   33.6   35.4   38.4   35.3   37.9\n\n  gas mileage without additive    36.4   38.8   36.1   40.1   34.7   38.3   40.2   37.2   38.7\n  ------------------------------ ------ ------ ------ ------ ------ ------ ------ ------ ------",
+      "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter10_Two sample testing.doc",
+      "type": "unknown",
+      "difficulty": 1,
+      "keywords": [],
+      "formula_refs": [
+        "ch10_q05_ans_f01_image13.wmf",
+        "ch10_q05_ans_f02_image11.wmf"
+      ],
+      "data_refs": []
+    },
+    {
+      "id": "ch10_q10",
+      "content": "A random sample of 8 pairs of identical 12-year-old twins took part in a study to see if vitamins helped their attention spans. For each pair, twin A was given a placebo, and twin B received a special vitamin supplement. A psychologist then determined the length of time (in minute) each remained with a puzzle. The results were\n\n  -------- ------- ------- ------- ------- ------- ------- ------- -------\n  Twin A     34      18      39      31      28      26      28      22\n\n  Twin B     29      42      33      40      38      40      27      15\n  -------- ------- ------- ------- ------- ------- ------- ------- -------\n\n(a).Use a paired t procedure to test the hypothesis at the 0.05 level that the vitamin supplement gives recipients a longer attention span.\n\n(b).Construct 95% confidence interval for the difference in the population means of the attention spans of twins given the placebo and the vitamin supplement.",
+      "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter10_Two sample testing.doc",
+      "type": "unknown",
+      "difficulty": 1,
+      "keywords": [],
+      "formula_refs": [
+        "ch10_q06_ans_f01_image7.wmf",
+        "ch10_q06_ans_f02_image15.wmf"
+      ],
+      "data_refs": []
+    },
+    {
+      "id": "ch10_q11",
+      "content": "A test of driving ability is given to a random sample of 10 student drivers before and after they complete a formal driver education course. Results follow.\n\n  ------------- ------------------ -----------------\n   **Student**   **Before class**   **After class**\n\n      **1**            100                136\n\n      **2**            121                129\n\n      **3**             93                125\n\n      **4**            146                150\n\n      **5**            101                110\n\n      **6**            109                138\n\n      **7**            149                136\n\n      **8**            130                130\n\n      **9**            127                125\n\n     **10**            120                129\n  ------------- ------------------ -----------------\n\nTest the hypothesis that there is no difference between the before class scores and the after-class scores at $\\alpha = 0\\text{.05}$",
+      "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter10_Two sample testing.doc",
+      "type": "unknown",
+      "difficulty": 1,
+      "keywords": [],
+      "formula_refs": [
+        "ch10_q07_ans_f01_image7.wmf"
+      ],
+      "data_refs": []
+    },
+    {
+      "id": "ch10_q12",
+      "content": "A medical research team studied patients using an antidepressant drug to recover from chronic depression. Of 77 patients who used the drug for two years, 5 suffered a new bout of depression. Of 84 patients who used the drug for seven months, 19 suffered a new bout of depression. AT $\\alpha = 0\\text{.10}$, can you reject the claim that the proportion of patients suffering new bouts of depression are the same for the both groups?",
+      "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter10_Two sample testing.doc",
+      "type": "unknown",
+      "difficulty": 1,
+      "keywords": [],
+      "formula_refs": [
+        "ch10_q08_ans_f03_image11.wmf"
+      ],
+      "data_refs": []
+    },
+    {
+      "id": "ch10_q13",
+      "content": "In a random survey of 1500 adults in California and 1000 adults in Oregon, you find the percent who are smokers are 18.4% and 20.7%, respectively. At $\\alpha = 0\\text{.05}$, is there enough evidence to conclude that the proportion of adults who are smokers is lower in California than in Oregon?",
+      "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter10_Two sample testing.doc",
+      "type": "unknown",
+      "difficulty": 1,
+      "keywords": [],
+      "formula_refs": [
+        "ch10_q09_ans_f03_image21.wmf"
+      ],
+      "data_refs": []
+    },
+    {
+      "id": "ch10_q14",
+      "content": "Of a random sample of 148 accounting majors, 75 rated a sense of humor as a very important trait to their career performance. This same view was held by 81 of an independent random of 178 finance majors.\n\na\\. Test, at the 5% level, the null hypothesis that at least one-half of all finance majors rate a sense of humor as very important.\n\nb\\. Test, at the 5% level against a two-sided alternative, the null hypothesis that the population proportions of accounting and finance majors who rate a sense of humor as very important are the same.",
+      "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter10_Two sample testing.doc",
+      "type": "unknown",
+      "difficulty": 1,
+      "keywords": [],
+      "formula_refs": [
+        "ch10_q10_ans_f03_image22.wmf",
+        "ch10_q10_ans_f04_image21.wmf",
+        "ch10_q10_ans_f05_image21.wmf"
+      ],
+      "data_refs": []
+    },
+    {
+      "id": "ch10_q15",
+      "content": "The production department of NDB Electronics wants to explore the relationship between the number of employees who assemble a subassembly and the number produced. As an experiment, two employees were assigned to assemble the subassemblies. They produced 15 during a one-hour period. Then four employees assembled them. They produced 25 during a one-hour period. The complete set of paired observations follows.\n\n+:-----------------:+:---------------------------:+\n| Number of         | One-Hour Production (units) |\n|                   |                             |\n| Assemblers        |                             |\n+-------------------+-----------------------------+\n| 2                 | 15                          |\n+-------------------+-----------------------------+\n| 4                 | 25                          |\n+-------------------+-----------------------------+\n| 1                 | 10                          |\n+-------------------+-----------------------------+\n| 5                 | 40                          |\n+-------------------+-----------------------------+\n| 3                 | 30                          |\n+-------------------+-----------------------------+\n\nThe dependent variable is production; that is, it is assumed that the level of production depends upon the number of employee.\n\na.  Based on scatter diagram, does there appear to be any linear relationship between the number of assemblers and production? Explain.\n\nb.  Determine the regression equation.\n\nc.  Compute the coefficient of correlation.\n\nd.  Predict the production of 6 employee.",
+      "source": "Assignment Prof Lv/assignment10-Lu.doc",
+      "type": "unknown",
+      "difficulty": 1,
+      "keywords": [],
+      "formula_refs": [
+        "ch10_q01_f01_image1.wmf",
+        "ch10_q01_f02_image2.wmf",
+        "ch10_q01_f03_image3.wmf",
+        "ch10_q01_f04_image4.wmf",
+        "ch10_q01_f05_image5.wmf",
+        "ch10_q01_f06_image6.wmf"
+      ],
+      "data_refs": []
+    }
+  ]
+}

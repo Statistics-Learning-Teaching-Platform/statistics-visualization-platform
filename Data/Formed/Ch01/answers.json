@@ -1,0 +1,65 @@
+{
+  "chapter": 1,
+  "answers": [
+    {
+      "id": "ch01_q01",
+      "answer": "a. Population b. Sample c. Sample d. Population e. Sample"
+    },
+    {
+      "id": "ch01_q02",
+      "answer": "a. Quantitative b. Qualitative c. Quantitative d. Quantitative e. Quantitative"
+    },
+    {
+      "id": "ch01_q03",
+      "answer": "a. Discrete b.\\-\\-\\-- c. Continuous d. Continuous e. Discrete~~"
+    },
+    {
+      "id": "ch01_q04",
+      "answer": "a. Cross-section b. Cross-section c. Time-series d. Time-series"
+    },
+    {
+      "id": "ch01_q05",
+      "answer": "]{.underline}** a. TRUE b. FALSE c. FALSE d. TRUE e. FALSE"
+    },
+    {
+      "id": "ch01_q06",
+      "answer": "Below we list several variables. Which of these variables are quantitative and which are qualitative?\n\na\\. The dollar amount on an accounts receivable invoice.\n\nb\\. The net profit for a company in 2005.\n\nc\\. The stock exchange on which a company's stock is traded.\n\nd\\. The national debt of the United States in 2005.\n\ne\\. The advertising medium (radio, television, or print) used to promote a product.\n\n**[Ans]{.underline}**： a. Quantitative; dollar amounts correspond to values on the real number line.\n\nb\\. Quantitative; net profit is a dollar amount.\n\nc\\. Qualitative; which stock exchange is a category.\n\nd\\. Quantitative; national debt is a dollar amount.\n\ne\\. Qualitative; media is categorized into radio, television, or print."
+    },
+    {
+      "id": "ch01_q07",
+      "answer": "a. Quantitative; dollar amounts correspond to values on the real number line.\n\nb\\. Quantitative; net profit is a dollar amount.\n\nc\\. Qualitative; which stock exchange is a category.\n\nd\\. Quantitative; national debt is a dollar amount.\n\ne\\. Qualitative; media is categorized into radio, television, or print."
+    },
+    {
+      "id": "ch01_q08",
+      "answer": "Ordinal, nominative, nominative, ordinal, and nominative.\n\nNote：Ordinal: There is a meaningful ordering of the categories.\n\nNominative: There is no meaningful ordering of the categories."
+    },
+    {
+      "id": "ch01_q09",
+      "answer": "Divide 1853 by 100 and round down to 18. Select a random number between 1 and 18. This is the first unit sampled. Take every 18^th^ unit by successively counting down 18 from the 1^st^ chosen unit."
+    },
+    {
+      "id": "ch01_q10",
+      "answer": "In order to select a stratified random sample, divide the population into nonoverlapping groups of similar units (people, object, etc.) called strata. Then a random sample is selected from each stratum, and these samples are combined to form the full sample.\nList all cities with population \\> 10,000.\n\nStage 1: Randomly select a sample of cities from all listed cities.\n\nStage 2: Randomly select a sample of city blocks from each city selected in stage 1.\n\nLastly, randomly select a sample of consumers from each city block selected in Stage 2."
+    },
+    {
+      "id": "ch01_q12",
+      "answer": "Not in statistical control, because the ATM Time doesn't exhibit a relatively constant amount of variation.\n\n(Any solution is Ok, if you can give an reasonable explanation)."
+    },
+    {
+      "id": "ch01_q13",
+      "answer": "Caculate the mean, median, and mode for each of the following populations of numbers:\n\n    a.  17, 23, 19, 20 ,25, 18, 22, 15, 21, 20\n\n    b.  505, 497, 501, 500, 507, 510, 501\n\nSoluton:\n\nN MEAN MEDIAN MODE\n\na 10 20 20 20\n\nb 7 503 501 501"
+    },
+    {
+      "id": "ch01_q14",
+      "answer": "Lauren is a college sophomore majoring in business. This semester Lauren is taking courses in accounting, economics, management information systems, public speaking, and statistics. The sizes of these classes are, respectively, 350, 45, 35, 25, and 40. Find the mean and the median of the class sizes. What is a better measure of Lauren's \"typical class size\"- the mean or the median?\n\nSoluton:\n\nMean = 99 and the median = 40. Median is better measure of typical because of the high outlier (350)."
+    },
+    {
+      "id": "ch01_q15",
+      "answer": "Table 3.4 gives the percentage of homes sold during the fourth quarter of 2006 that a median income household could afford to purchase at the prevailing mortgage interest rate for six Texas metropolitan areas. The data were compiled by the National Association of Home Builders. Calculate the range, variance, and standard deviation of this population of affordability percentages.\n\n**Table 3.4**\n\n[IMG:ch01_q03_f01_image1.jpeg]\n\nSoluton:\n\n+------+:---------------:+-------------------------+------------------------------+---------------------------------+---------------------------+------------------------+--------+\n|      | [x]{.underline} | [(x -- 54)]{.underline} | [(x -- 54)\\*\\*2]{.underline} | [sum(x -- 54)\\*\\*2]{.underline} | [PopVariance]{.underline} | [PopStDev]{.underline} |        |\n+------+-----------------+-------------------------+------------------------------+---------------------------------+---------------------------+------------------------+--------+\n|      | 57.5            | 3.5                     | 12.25                        | 739.28                          | 123.21                    | 11.10                  |        |\n+------+-----------------+-------------------------+------------------------------+---------------------------------+---------------------------+------------------------+--------+\n|      | 61.7            | 7.7                     | 59.29                        |                                 |                           |                        |        |\n+------+-----------------+-------------------------+------------------------------+---------------------------------+---------------------------+------------------------+--------+\n|      | 32.5            | --21.5                  | 462.25                       |                                 |                           |                        |        |\n+------+-----------------+-------------------------+------------------------------+---------------------------------+---------------------------+------------------------+--------+\n|      | 67.4            | 13.4                    | 179.56                       |                                 |                           |                        |        |\n+------+-----------------+-------------------------+------------------------------+---------------------------------+---------------------------+------------------------+--------+\n|      | 55.7            | 1.7                     | 2.89                         |                                 |                           |                        |        |\n+------+-----------------+-------------------------+------------------------------+---------------------------------+---------------------------+------------------------+--------+\n|      | 49.2            | -4.8                    | 23.04                        |                                 |                           | Mean = 54                       |\n+------+-----------------+-------------------------+------------------------------+---------------------------------+---------------------------+---------------------------------+\n\nRange = 67.4 -- 32.5 = 34.9\n\nVariance = 123.21\n\nStd Deviation = 11.10"
+    },
+    {
+      "id": "ch01_q16",
+      "answer": "d.  How do the percentages of the 100 waiting times in Table 1.8 that actually fall into the intervals\\[$\\overline{x}$$\\pm$s\\], \\[$\\overline{x}$$\\pm$`<!-- -->`{=html}2s\\], \\[$\\overline{x}$$\\pm$`<!-- -->`{=html}3s\\] compare to those given by the Empirical Rule? Do these comparisons indicate that the statistical inferences you made in parts b and c are reasonably valid ?\n\n**Figure 2.16**\n\n[IMG:ch01_q04_ans_f01_image2.jpeg]\n\n**Table 1.8 Waiting Times (in Minutes) for the Bank Customer Waiting Time Case**\n\n[IMG:ch01_q04_ans_f02_image3.jpeg]"
+    }
+  ]
+}

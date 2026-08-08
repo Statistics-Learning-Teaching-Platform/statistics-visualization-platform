@@ -1,0 +1,342 @@
+{
+  "chapter": 2,
+  "questions": [
+    {
+      "id": "ch02_q01",
+      "content": "The 17^th^ hole at the TPC Sawgrass golf course may be the most famous golf hole in the world due to its island green and the large number of shorts that go in the water. The following table contains the number of strokes various players in the 2011 Players Championship needed to complete the hole. In the table, the frequency row represents the number of players.\n\n  ---------------------------------------------------------\n  Number of Strokes($m$)   2    3     4    5    6   7   8\n  ------------------------ ---- ----- ---- ---- --- --- ---\n  Frequency($f$)           82   278   43   16   6   3   1\n\n  ---------------------------------------------------------\n\n> Calculate\n\na.  $\\sum_{}^{}m$ b. $\\sum_{}^{}f$ c. $\\sum_{}^{}m^{2}$ d. $\\sum_{}^{}{mf}$ e. $\\sum_{}^{}{m^{2}f}$ f. $\\left( \\sum_{}^{}f \\right)^{2}$",
+      "source": "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment and solution_Chap 1&2.docx",
+      "type": "unknown",
+      "difficulty": 1,
+      "keywords": [],
+      "formula_refs": [],
+      "data_refs": []
+    },
+    {
+      "id": "ch02_q02",
+      "content": "The following data show the method of payment by 20 customers in a supermarket checkout line. Here, C refers to cash, CK to check, CC to credit card, and D to debit card, and O stands for other.\n\n> C CK CK C CC D O CC D\n>\n> CK CC D CC C CK CK O D\n\na.  Construct a frequency distribution table.\n\nb.  Calculate the relative frequencies and percentages for all categories.\n\nc.  Draw a pie chart for the percentage distribution.",
+      "source": "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment and solution_Chap 1&2.docx",
+      "type": "unknown",
+      "difficulty": 1,
+      "keywords": [],
+      "formula_refs": [],
+      "data_refs": []
+    },
+    {
+      "id": "ch02_q03",
+      "content": "The following table gives the frequency distribution of the gallons of gasoline purchased by all customers on one day at a certain gas station.\n\n  ------------------------------------------\n  Number of Gallons     Number of Customers\n  -------------------- ---------------------\n  0 to less than 4              31\n\n  4 to less than 8              78\n\n  8 to less than 12             49\n\n  12 to less than 16            81\n\n  16 to less than 20            117\n\n  20 to less than 24            13\n  ------------------------------------------\n\na.  Prepare a cumulative frequency distribution.\n\nb.  Calculate the cumulative relative frequency and cumulative percentage for each class.\n\nc.  Find the percentage of customers who purchased less than 16 gallons.",
+      "source": "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment and solution_Chap 1&2.docx",
+      "type": "unknown",
+      "difficulty": 1,
+      "keywords": [],
+      "formula_refs": [],
+      "data_refs": []
+    },
+    {
+      "id": "ch02_q04",
+      "content": "% 29.5% 42.8% 64.8% 96.5% 100%\n>\n> c\\. 64.8%\n>\n> d\\.\n\ne\\. around 45%",
+      "source": "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment and solution_Chap 1&2.docx",
+      "type": "unknown",
+      "difficulty": 1,
+      "keywords": [],
+      "formula_refs": [],
+      "data_refs": []
+    },
+    {
+      "id": "ch02_q05",
+      "content": "Consider the following stem-and-leaf display.\n\n  ------------------------------------------------------------\n  2-3   18   45   56   \\*   29   67   83   97             \n  ----- ---- ---- ---- ---- ---- ---- ---- ---- ---- ---- ----\n  4-5   04   27   33   71   \\*   23   37   51   63   81   92\n\n  6-7   22   36   47   55   78   89   \\*   \\*   10   41   \n  ------------------------------------------------------------\n\n> Write the data set that is represented by this display.",
+      "source": "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment and solution_Chap 1&2.docx",
+      "type": "unknown",
+      "difficulty": 1,
+      "keywords": [],
+      "formula_refs": [],
+      "data_refs": []
+    },
+    {
+      "id": "ch02_q06",
+      "content": "The following data give the time (in minutes) that each of 20 students waited in line at their bookstore to pay for their textbooks in the beginning of Spring 2009 semester. (*Note*: To prepare a stem-and-leaf display, each number in this data set can be written as a two-digit number. For Example, 8 can be written as 08, for which the stem is 0 and the leaf is 8.)\n\n> 15 8 23 21 4 17 31 22 31 6\n>\n> 5 6 14 17 16 25 27 3 31 8\n>\n> Construct a stem-and-leaf display for these data. Arrange the leaves for each stem in increasing order.\n>",
+      "source": "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment and solution_Chap 1&2.docx",
+      "type": "unknown",
+      "difficulty": 1,
+      "keywords": [],
+      "formula_refs": [],
+      "data_refs": []
+    },
+    {
+      "id": "ch02_q07",
+      "content": "The following data give the number of times each of the 30 randomly selected account holders at a bank used that bank's ATM during a 60-day period.\n\n> 3 2 3 2 2 5 0 4 1 3\n>\n> 2 3 3 5 9 0 3 2 2 15\n>\n> 1 3 2 7 9 3 0 4 2 2\n>\n> Create a dotplot for these data and point out any clusters or outliers.\n>",
+      "source": "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment and solution_Chap 1&2.docx",
+      "type": "unknown",
+      "difficulty": 1,
+      "keywords": [],
+      "formula_refs": [],
+      "data_refs": []
+    },
+    {
+      "id": "ch02_q08",
+      "content": "The following table gives the seven most common first names among girls born in the United States during 2010 along with their frequencies (in thousands).\n\n+-----------+-----------------+\n| Name      | Number of girls |\n|           |                 |\n|           | (in thousands)  |\n+:==========+:===============:+\n| Isabella  | 22.7            |\n+-----------+-----------------+\n| Sophia    | 20.5            |\n+-----------+-----------------+\n| Emma      | 17.2            |\n+-----------+-----------------+\n| Oliver    | 16.9            |\n+-----------+-----------------+\n| Ava       | 15.3            |\n+-----------+-----------------+\n| Emily     | 14.2            |\n+-----------+-----------------+\n| Abigail   | 14.1            |\n+-----------+-----------------+\n\n> Draw two bar graphs for these data, the first without truncating the frequency axis, and the second by truncating this axis. In the second graph, mark the number of girls on the vertical axis starting with 13.0. Briefly comment on the two bar graphs.\n>",
+      "source": "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment and solution_Chap 1&2.docx",
+      "type": "unknown",
+      "difficulty": 1,
+      "keywords": [],
+      "formula_refs": [],
+      "data_refs": []
+    },
+    {
+      "id": "ch02_q09",
+      "content": "Back-to-back stem-and-leaf displays can be used to compare the distribution of a variable for two different groups. Consider the following data, which give the alcohol content by volume (%) for different beers produced by the Flying Dog Brewery and the Sierra Nevada Brewery, followed by a back-to-back stem-and leaf display.\n\n> Flying Dog Brewery:\n>\n4.7 4.8 5.1 5.5 5.5 5.6 6.0 7.1\n>\n> 7.4 7.8 8.3 8.3 9.2 9.9 10.2 11.5\n>\n> Sierra Nevada Brewery:\n>\n> 4.4 5.0 5.0 5.6 5.6 5.8 5.9 5.9 6.7 6.8 6.9\n>\n> 7.0 9.6\n>\n> Leaf units at 0.1\n\n  --------------------------------------------\n       8   7   7   4    4                  \n  --- --- --- --- ---- --- --- --- --- --- ---\n   6   5   5   1   5    0   0   6   8   9   9\n\n               0   6    7   8   9          \n\n       8   4   1   7    0                  \n\n           3   3   8                       \n\n           9   2   9    6                  \n\n               2   10                      \n\n               5   11                      \n  --------------------------------------------\n\n> a\\. What would you consider to be a typical alcohol content of beers made by each of the two breweries?\n>\n> b\\. Does one brewery tend to have higher alcohol content in its beer than the other brewery? If so, which one? Explain how you reach this conclusion by using the stem-and-leaf display.\n>\n> c\\. Does alcohol content distributions for the two breweries appear to have the same levels of variability? Explain how you reach this conclusion by using the stem-and-leaf display.\n>",
+      "source": "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment and solution_Chap 1&2.docx",
+      "type": "unknown",
+      "difficulty": 1,
+      "keywords": [],
+      "formula_refs": [],
+      "data_refs": []
+    },
+    {
+      "id": "ch02_q10",
+      "content": "The National Automobile Dealers Association (NADA) publishes *AutoExec* magazine, which annually reports on new vehicle sales and market shares by manufacturer. As given on the *AutoExec* magazine website in May 2006, new vehicle market shares in the United States for 2005 were as follows:\n\n  -----------------------------------------------------------\n  **Company**                      **2005 Market Share (%)**\n  ------------------------------- ---------------------------\n  Chrysler/Dodge/Jeep                        13.6%\n\n  Ford                                       18.3%\n\n  GM                                         26.3%\n\n  Japanese(Toyota/Honda/Nissan)              28.3%\n\n  Other                                      13.5%\n  -----------------------------------------------------------\n\n> Please use **software** to construct a percent frequency bar chart and a percentage pie chart for 2005 auto market shares.",
+      "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter01-02/Assignment-Chapter01-02.docx",
+      "type": "unknown",
+      "difficulty": 1,
+      "keywords": [],
+      "formula_refs": [],
+      "data_refs": [
+        "Data-Chapter01-02.xlsx"
+      ]
+    },
+    {
+      "id": "ch02_q11",
+      "content": "Figure 2.5 gives a percentage pie chart of new vehicle market shares in the U.S. for 2010 as given by GoodBadCar.net. Use this pie chart and your results from Exercise 3 to write an analysis explaining how new vehicle market shares in the Unities States have changed from 2005 to 2010.\\\n    [IMG:ch02_q04_f01_image1.jpeg]\n\n> **THE MARKETING RESEARCH CASE\\**\n> 60 randomly selected shoppers have rated a new bottle design for a popular soft drink. The data are given below.\n\n  ---------------------------------------------------------------------\n      34     33     33     29     26     33     28     25     32     33\n  ------ ------ ------ ------ ------ ------ ------ ------ ------ ------\n      32     25     27     33     22     27     32     33     32     29\n\n      24     30     20     34     31     32     30     35     33     31\n\n      32     28     30     31     31     33     29     27     34     31\n\n      31     28     33     31     32     28     26     29     32     34\n\n      32     30     34     32     30     30     32     31     29     33\n  ---------------------------------------------------------------------\n\nUse these data to work with Exercises 5 and 6.",
+      "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter01-02/Assignment-Chapter01-02.docx",
+      "type": "unknown",
+      "difficulty": 1,
+      "keywords": [],
+      "formula_refs": [],
+      "data_refs": [
+        "Data-Chapter01-02.xlsx"
+      ]
+    },
+    {
+      "id": "ch02_q12",
+      "content": "a\\. Find the number of classes that should be used to construct a frequency distribution and histogram for the bottle design ratings.\\\n    b. If we round up to the nearest whole rating point, show that we should employ a class length equal to 3.\\\n    c. Define the nonoverlapping classes for a frequency distribution, tally the number of ratings in each class and develop a frequency distribution.\\\n    d. Draw the frequency histogram for the ratings data, and describe the distribution shape.\n\nDistribution shape is skewed left.",
+      "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter01-02/Assignment-Chapter01-02.docx",
+      "type": "unknown",
+      "difficulty": 1,
+      "keywords": [],
+      "formula_refs": [
+        "ch02_q05_ans_f01_image2.emf"
+      ],
+      "data_refs": [
+        "Data-Chapter01-02.xlsx"
+      ]
+    },
+    {
+      "id": "ch02_q13",
+      "content": "Use a **software** to draw a frequency histogram for the bottle design ratings.",
+      "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter01-02/Assignment-Chapter01-02.docx",
+      "type": "unknown",
+      "difficulty": 1,
+      "keywords": [],
+      "formula_refs": [],
+      "data_refs": [
+        "Data-Chapter01-02.xlsx"
+      ]
+    },
+    {
+      "id": "ch02_q14",
+      "content": "Fill in the missing components of the following frequency distribution constructed for a sample size of 50.\n\n>  [IMG:ch02_q07_f01_image2.png]",
+      "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter01-02/Assignment-Chapter01-02.docx",
+      "type": "unknown",
+      "difficulty": 1,
+      "keywords": [],
+      "formula_refs": [],
+      "data_refs": [
+        "Data-Chapter01-02.xlsx"
+      ]
+    },
+    {
+      "id": "ch02_q15",
+      "content": "The following data consist of sales figures (in millions of dollars) for a group of 20 firms. Construct a stem-and-leaf display for these data. Use a leaf unit equal to 100.\n\n  -------------------------------------------------------------------------------\n     6835    3517    1973    1449    2820    2384    5358    1376    1233    1725\n  ------- ------- ------- ------- ------- ------- ------- ------- ------- -------\n     3291    6047    2707    7903    3291    4616    2675    1541    3707    4189\n\n  -------------------------------------------------------------------------------",
+      "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter01-02/Assignment-Chapter01-02.docx",
+      "type": "unknown",
+      "difficulty": 1,
+      "keywords": [],
+      "formula_refs": [],
+      "data_refs": [
+        "Data-Chapter01-02.xlsx"
+      ]
+    },
+    {
+      "id": "ch02_q16",
+      "content": "[IMG:ch02_q09_f01_image3.jpeg]**THE TRASH BAG CASE** Figure 2.22 gives a stem-and-leaf display of 40 breaking strengths in the trash bag case. **\\\n    a.** Use the stem-and-leaf display to describe the distribution of breaking strengths.\\\n    b. Write out the 5 smallest breaking strengths as they would be expressed in the original data.\\\n    [IMG:ch02_q09_f02_image4.jpeg]",
+      "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter01-02/Assignment-Chapter01-02.docx",
+      "type": "unknown",
+      "difficulty": 1,
+      "keywords": [],
+      "formula_refs": [],
+      "data_refs": [
+        "Data-Chapter01-02.xlsx"
+      ]
+    },
+    {
+      "id": "ch02_q17",
+      "content": "Figure 2.38 was used in various Chevrolet magazine advertisements in 1997 to compare the overall resale values of Chevrolet, Dodge, and Ford trucks in the years from 1990 to 1997. What is somewhat misleading about this graph?",
+      "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter01-02/Assignment-Chapter01-02.docx",
+      "type": "unknown",
+      "difficulty": 1,
+      "keywords": [],
+      "formula_refs": [],
+      "data_refs": [
+        "Data-Chapter01-02.xlsx"
+      ]
+    },
+    {
+      "id": "ch02_q18",
+      "content": "*Forbes* magazine publishes the *Forbes* Platinum 400 --a list of the \"Best Big Companies in America\" as selected by the magazine's writers and editors. Table above gives the best companies in the retailing industry as given in this list on the *Forbes* website on March 16, 2005**.(Data in the last page**).\n>\n> a\\. Construct a stem-and-leaf display of the profit margin percentages for the best performing retailers as given in Table. Use the whole numbers from 1 to 24 as the stems. Then describe the distribution of profit margins.\n>\n> b\\. Construct a stem-and leaf display of the return on capital percentages for the retailers in Table. Use the whole numbers from 0 to 33 as the stems. Then describe the distribution of the return.\n>\n> c\\. Compare the distributions of the profit margins and return on capital percentages.\n>\n> d\\. Organize data of the profit margin percentages into a frequency distribution.\n>\n> e\\. Construct a histogram of the profit margin percentages.\n>",
+      "source": "Assignment Prof Lv/assignment2-Lu.doc | Assignments for STAT 2012/Assignment_1.doc",
+      "type": "unknown",
+      "difficulty": 1,
+      "keywords": [],
+      "formula_refs": [],
+      "data_refs": [
+        "Assignment2  Data.xls"
+      ]
+    },
+    {
+      "id": "ch02_q19",
+      "content": "Calculate the mean, median and mode of each of the following populations of numbers:\n>\n> a\\. 9, 8, 10, 10, 12, 6, 11, 10, 12, 8\n>\n> b\\. 110, 120, 70, 90, 90, 100, 80, 130, 140\n>",
+      "source": "Assignment Prof Lv/assignment2-Lu.doc",
+      "type": "unknown",
+      "difficulty": 1,
+      "keywords": [],
+      "formula_refs": [
+        "ch02_q15_f01_image2.wmf",
+        "ch02_q15_f03_image4.wmf",
+        "ch02_q15_f04_image5.emf",
+        "ch02_q15_f05_image6.emf",
+        "ch02_q15_f06_image7.emf"
+      ],
+      "data_refs": []
+    },
+    {
+      "id": "ch02_q20",
+      "content": "The BANK CUSTOMER WAITING TIME CASE (WaitTime Data)(Data in the last page).\n>\n> The following table presents the waiting times for teller service during peak business hours of 100 randomly selected bank customers.\n\na)  Does the sample mean $\\overline{x} = 5\\text{.46}$provide evidence that the mean of the population of all possible customer waiting times during peak business hours is less than six minutes (as is desired by the bank manager)? Explain your",
+      "source": "Assignment Prof Lv/assignment2-Lu.doc",
+      "type": "unknown",
+      "difficulty": 1,
+      "keywords": [],
+      "formula_refs": [],
+      "data_refs": [
+        "Assignment2  Data.xls"
+      ]
+    },
+    {
+      "id": "ch02_q21",
+      "content": "In order to control costs, a company wishes to study the amount of money its sales force spends entertaining clients. The following is a random sample of six entertaining expenses (dinner costs for four people) from expense reports submitted by members of the sales force\n\n\\$157 \\$132 \\$109 \\$145 \\$125 \\$139\n\na.  Calculate $\\overline{x}$, $s^{2}$, and *s* for the expense data. In addition, show that the two different formulas for calculating $s^{2}$ give the same result.\n\nb.  Assuming that the distribution of entertainment expenses is approximately normally distributed, calculate estimates of tolerance intervals containing 68.26 percent, 95.44 percent, and 99.73 percent of all entertainment expenses by the sales force.\n\nc.  If a member of the sales force submits an entertaining expense (dinner cost for four) of \\$190, should this expense be considered unusually high( and possibly worthy of investigation by the company)? Explain your",
+      "source": "Assignment Prof Lv/assignment2-Lu.doc | Assignments for STAT 2012/Assignment_1.doc",
+      "type": "unknown",
+      "difficulty": 1,
+      "keywords": [],
+      "formula_refs": [
+        "ch02_q04_ans_f03_image4.wmf",
+        "ch02_q36_ans_f01_image2.wmf"
+      ],
+      "data_refs": []
+    },
+    {
+      "id": "ch02_q22",
+      "content": "THE BANK CUSTOMER WAITING TIME CASE (waiting time case) **(Data in** **the last page).**\n\nThe mean and the standard deviation of the sample of 100 bank customer waiting times are $\\overline{x}$=5.46 and *s*=2.475.\n\na.  Construct the histogram for WaitingTime data. What do the histogram say about whether the Empirical Rule should be used to describe the bank customer waiting times?\n\nb.  Use the Empirical Rule to calculate estimates of tolerance intervals containing 68.26 percent, 95.44 percent and 99.73 percent of all possible bank customer waiting times.\n\nc.  Does the estimate of a tolerance interval containing 68.26 percent of all waiting times provide evidence that at least two-thirds of all customers will have to wait less than eight minutes for service? Explain your",
+      "source": "Assignment Prof Lv/assignment2-Lu.doc",
+      "type": "unknown",
+      "difficulty": 1,
+      "keywords": [],
+      "formula_refs": [
+        "ch02_q38_ans_f01_image3.emf",
+        "ch02_q38_ans_f02_image4.wmf"
+      ],
+      "data_refs": [
+        "Assignment2  Data.xls"
+      ]
+    },
+    {
+      "id": "ch02_q23",
+      "content": "Considering ForbesPlat Data concerning the best performing retailers from the *Forbes* Platinum 400 as listed on the *Forbes* magazine website on March 16, 2005. **(Data in the last page).**\n\na\\. Construct a box-and-whiskers display for the return on capital percentages of the best performing retailers.\n\nb\\. Using the box-and-whiskers display, describe the distribution of the return on capital percentages with respect to central tendency, skewness and outliers.",
+      "source": "Assignment Prof Lv/assignment2-Lu.doc",
+      "type": "unknown",
+      "difficulty": 1,
+      "keywords": [],
+      "formula_refs": [
+        "ch02_q46_ans_f01_image5.emf"
+      ],
+      "data_refs": [
+        "Assignment2  Data.xls"
+      ]
+    },
+    {
+      "id": "ch02_q24",
+      "content": "On March 11, 2005, the Gallup Organization released the results of a CNN/USA Today/Gallup national poll regarding Internet usage in the United States. Each of 1,008 randomly selected adults was asked to respond to the following question:\n\n\"As you may know, there are Web sites known as 'blogs' or 'Web logs', where people sometimes post their thoughts. How familiar are you with 'blogs'-very familiar, somewhat familiar, not too familiar, or not at all familiar?\"\n\n> The poll's results were as follows: Very familiar (7%); Somewhat familiar (19%); Not too familiar (18%); Not at all familiar (56%). Use these data to construct a bar chart and a pie chart.\n>\n> **Waiting Times (in minutes)**\n>\n6 6.6 5.6 5.1 3.9 4.6 6.5 6.4 8.6 4.2 5.8 3.4 9.3\n>\n> 7.4 1.8 6.2 5.4 4.9 5.4 0.8 2.5 8.3 6.1 6.3\n>\n> 6.8 9.8 2.9 10.9 4.7 3.9 3.2 6.5 2.3 8.7 4.7\n>\n> 3.6 2.7 3.7 0.4 10.2 2.8 11.6 4.3 3.1 5.8 5.6\n>\n> 4.4 4.5 6.7 8.1 4.3 2.2 5.8 8.6 2 8 9.5\n>\n> 1.3 4.8 9.9 7.9 1.1 7.2 2.9 9.1 7.7 4 1.4\n>\n> 7.8 5.2 8.4 6.3 4.4 5.2 7.4 6.1 3.8 10.7 7.5\n>\n> 7 5.3 4.5 4.5 1.8 3.7 4 5.7 2.4 9.2 5\n>\n> 7.2 7.3 4.1 6.7 3.5 6.3 4.3 3.8 5.1 5.5\n\nThe Forbes platinum list: Best-performing retailers as listed at Forbes.com on March 16, 2005\n\n  -------------------------- ---------------- ---------------------------\n  **Company**                   **Profit**     **Return on Capital (%)**\n\n                              **Margin (%)**      **Last 12 Months**\n\n  Abercrombie & Fitch              10.9                  25.7\n\n  Advance Auto Parts               5.0                   17.0\n\n  Amer Eagle Outfitters            6.1                   14.7\n\n  AnnTaylor Stores                 5.9                   11.6\n\n  Bed Bath & Beyond                9.2                   22.8\n\n  Best Buy                         3.3                   21.7\n\n  CDW                              4.0                   20.6\n\n  Charming Shoppes                 3.1                    8.3\n\n  Claire\\'s Stores                 11.2                  20.3\n\n  Costco Wholesale                 1.8                    0.0\n\n  CVS                              3.2                   11.2\n\n  Dollar General                   4.4                   18.3\n\n  Ebay                             24.0                  13.1\n\n  Electronics Boutique             2.9                   19.2\n\n  Family Dollar Stores             5.0                   19.7\n\n  Foot Locker                      5.3                   12.8\n\n  Fred\\'s                          2.2                    9.2\n\n  Guitar Center                    3.9                   15.9\n\n  Home Depot                       6.9                   19.8\n\n  Kohl\\'s                          5.9                   11.5\n\n  Lowe\\'s Cos                      5.9                   14.7\n\n  Michaels Stores                  5.9                   14.4\n\n  Neiman Marcus Group              5.8                   12.7\n\n  O\\'Reilly Automotive             7.0                   12.6\n\n  Pacific Sunwear                  8.6                   25.1\n\n  Petsmart                         5.0                   15.4\n\n  Regis                            5.4                   11.0\n\n  SCP Pool                         5.2                   20.8\n\n  Staples                          4.7                   15.2\n\n  Target                           6.8                    8.6\n\n  TJX Cos                          4.9                   33.4\n\n  Tractor Supply                   3.6                   16.5\n\n  United Auto Group                1.1                    4.0\n\n  Walgreen                         3.6                   17.6\n\n  Williams-Sonoma                  5.9                   21.1\n  -------------------------- ---------------- ---------------------------",
+      "source": "Assignment Prof Lv/assignment2-Lu.doc",
+      "type": "unknown",
+      "difficulty": 1,
+      "keywords": [],
+      "formula_refs": [
+        "ch02_q54_ans_f01_image6.emf",
+        "ch02_q54_ans_f02_image7.emf"
+      ],
+      "data_refs": [
+        "Assignment2  Data.xls"
+      ]
+    },
+    {
+      "id": "ch02_q25",
+      "content": "On February 15, 2005, the Gallup Organization released the results of a Gallup UK poll regarding Internet usage in Great Britain. Each of 1,009 randomly selected UK adults was asked to respond to the following question:\n\n> How much time, if at all, do you personally spend using the Internet-more than an hour a day, up to one hour a day, a few times a week, a few times a month or less, or never?\n>\n> The poll's results were as follows: More than an hour a day (22%); Up to an hour a day (14%); A few times a week (15%); A few times a month or less (10%); Never (39%). Use these data to construct a bar chart and a pie chart.",
+      "source": "Assignments for STAT 2010/assign2.doc | Assignments for STAT 2012/Assignment_2.doc",
+      "type": "unknown",
+      "difficulty": 1,
+      "keywords": [],
+      "formula_refs": [],
+      "data_refs": []
+    },
+    {
+      "id": "ch02_q26",
+      "content": "Thirteen internists in the Midwest are randomly selected, and each internist is asked to report last year's income. The incomes obtained (in thousands of dollars) are 152, 144, 162,154, 146, 241, 127, 141, 171, 177, 138, 132, 192, 188, 101 . Find :\n\n    a.  The 90^th^ percentile.\n\n    b.  The median.\n\n    c.  The first quartile.\n\n    d.  The third quartile\n\n    e.  The 10^th^ percentile.\n\n    f.  The interquartile range.\n\n    g.  Develop a five-number summary and a box-and-whiskers display.",
+      "source": "Assignments for STAT 2010/assign2.doc | Assignments for STAT 2012/Assignment_2.doc",
+      "type": "unknown",
+      "difficulty": 1,
+      "keywords": [],
+      "formula_refs": [
+        "ch02_q02_ans_f01_image3.emf"
+      ],
+      "data_refs": []
+    },
+    {
+      "id": "ch02_q27",
+      "content": "According to the Morningstar.com website, the 2004 total return percentages for several popular funds were as follow:\n\n+------------------------------+------------------------------+\n| **Fund**                     | **2004**                     |\n|                              |                              |\n|                              | **Total Return%**            |\n+------------------------------+------------------------------+\n| Vanguard 500 Index           | 10.7                         |\n+------------------------------+------------------------------+\n| Wasatch Core Growth          | 21.7                         |\n+------------------------------+------------------------------+\n| Fidelity Stock Selector      | 9.9                          |\n+------------------------------+------------------------------+\n| Fidelity Dividend Growth     | 6.0                          |\n+------------------------------+------------------------------+\n| Janus Worldwide              | 5.2                          |\n+------------------------------+------------------------------+\n\nSuppose that an investor had \\$100,000 invested in the Vanguard 500 Index fund, \\$500,000 invested in the Wasatch Core Growth fund, \\$500,000 invested in the Fidelity Stock Selector fund, \\$200,000 invested in the Fidelity Dividend Growth fund, and \\$50,000 invested in the Janus Worldwide fund.\n\na\\. Compute a weighted mean that measures the 2004 average total return for the investor's portfolio.\n\nb.  Compare your weighted mean with the unweighted mean of the five total return percentages. Explain why they differ.",
+      "source": "Assignments for STAT 2010/assign2.doc | Assignments for STAT 2012/Assignment_2.doc",
+      "type": "unknown",
+      "difficulty": 1,
+      "keywords": [],
+      "formula_refs": [],
+      "data_refs": []
+    },
+    {
+      "id": "ch02_q28",
+      "content": "A group of 13 students is studying in Istanbul, Tukey, for five weeks. As part of their study of the local\n\neconomy, they each purchased an Oriental rug and arranged for its shipment back to the United States. The\n\nshipping time, in days, For each rug was\n\n31 31 42 39 42 43 34\n\n30 28 36 37 35 40\n\nEstimate the percentage of days that are within two standard deviations of the Mean. Is it likely to take 2\n\nmonths for a delivery?\n\n+---------------------------------+---------------------------------+---------------------------------+\n| **Table for question 3:**                                                                           |\n|                                                                                                     |\n| The Forbes platinum list: Best-performing retailers as listed at Forbes.com on March 16, 2005       |\n+---------------------------------+---------------------------------+---------------------------------+\n| **Company**                     | **Profit**                      | **Return on Capital (%)**       |\n+---------------------------------+---------------------------------+---------------------------------+\n|                                 | **Margin (%)**                  | **Last 12 Months**              |\n+---------------------------------+---------------------------------+---------------------------------+\n| Abercrombie & Fitch             | 10.9                            | 25.7                            |\n+---------------------------------+---------------------------------+---------------------------------+\n| Advance Auto Parts              | 5.0                             | 17.0                            |\n+---------------------------------+---------------------------------+---------------------------------+\n| Amer Eagle Outfitters           | 6.1                             | 14.7                            |\n+---------------------------------+---------------------------------+---------------------------------+\n| AnnTaylor Stores                | 5.9                             | 11.6                            |\n+---------------------------------+---------------------------------+---------------------------------+\n| Bed Bath & Beyond               | 9.2                             | 22.8                            |\n+---------------------------------+---------------------------------+---------------------------------+\n| Best Buy                        | 3.3                             | 21.7                            |\n+---------------------------------+---------------------------------+---------------------------------+\n| CDW                             | 4.0                             | 20.6                            |\n+---------------------------------+---------------------------------+---------------------------------+\n| Charming Shoppes                | 3.1                             | 8.3                             |\n+---------------------------------+---------------------------------+---------------------------------+\n| Claire\\'s Stores                | 11.2                            | 20.3                            |\n+---------------------------------+---------------------------------+---------------------------------+\n| Costco Wholesale                | 1.8                             | 0.0                             |\n+---------------------------------+---------------------------------+---------------------------------+\n| CVS                             | 3.2                             | 11.2                            |\n+---------------------------------+---------------------------------+---------------------------------+\n| Dollar General                  | 4.4                             | 18.3                            |\n+---------------------------------+---------------------------------+---------------------------------+\n| Ebay                            | 24.0                            | 13.1                            |\n+---------------------------------+---------------------------------+---------------------------------+\n| Electronics Boutique            | 2.9                             | 19.2                            |\n+---------------------------------+---------------------------------+---------------------------------+\n| Family Dollar Stores            | 5.0                             | 19.7                            |\n+---------------------------------+---------------------------------+---------------------------------+\n| Foot Locker                     | 5.3                             | 12.8                            |\n+---------------------------------+---------------------------------+---------------------------------+\n| Fred\\'s                         | 2.2                             | 9.2                             |\n+---------------------------------+---------------------------------+---------------------------------+\n| Guitar Center                   | 3.9                             | 15.9                            |\n+---------------------------------+---------------------------------+---------------------------------+\n| Home Depot                      | 6.9                             | 19.8                            |\n+---------------------------------+---------------------------------+---------------------------------+\n| Kohl\\'s                         | 5.9                             | 11.5                            |\n+---------------------------------+---------------------------------+---------------------------------+\n| Lowe\\'s Cos                     | 5.9                             | 14.7                            |\n+---------------------------------+---------------------------------+---------------------------------+\n| Michaels Stores                 | 5.9                             | 14.4                            |\n+---------------------------------+---------------------------------+---------------------------------+\n| Neiman Marcus Group             | 5.8                             | 12.7                            |\n+---------------------------------+---------------------------------+---------------------------------+\n| O\\'Reilly Automotive            | 7.0                             | 12.6                            |\n+---------------------------------+---------------------------------+---------------------------------+\n| Pacific Sunwear                 | 8.6                             | 25.1                            |\n+---------------------------------+---------------------------------+---------------------------------+\n| Petsmart                        | 5.0                             | 15.4                            |\n+---------------------------------+---------------------------------+---------------------------------+\n| Regis                           | 5.4                             | 11.0                            |\n+---------------------------------+---------------------------------+---------------------------------+\n| SCP Pool                        | 5.2                             | 20.8                            |\n+---------------------------------+---------------------------------+---------------------------------+\n| Staples                         | 4.7                             | 15.2                            |\n+---------------------------------+---------------------------------+---------------------------------+\n| Target                          | 6.8                             | 8.6                             |\n+---------------------------------+---------------------------------+---------------------------------+\n| TJX Cos                         | 4.9                             | 33.4                            |\n+---------------------------------+---------------------------------+---------------------------------+\n| Tractor Supply                  | 3.6                             | 16.5                            |\n+---------------------------------+---------------------------------+---------------------------------+\n| United Auto Group               | 1.1                             | 4.0                             |\n+---------------------------------+---------------------------------+---------------------------------+\n| Walgreen                        | 3.6                             | 17.6                            |\n+---------------------------------+---------------------------------+---------------------------------+\n| Williams-Sonoma                 | 5.9                             | 21.1                            |\n+---------------------------------+---------------------------------+---------------------------------+",
+      "source": "Assignments for STAT 2012/Assignment_1.doc",
+      "type": "unknown",
+      "difficulty": 1,
+      "keywords": [],
+      "formula_refs": [],
+      "data_refs": []
+    },
+    {
+      "id": "ch02_q29",
+      "content": "As given on the Morningstar website, the mean return for Fidelity Leveraged Company Stock is 17.98 percent with a standard deviation of 10.02 percent, while the mean return for Baron Opportunity Retail Stock is 16.43 percent with a standard deviation of 12.23 percent. Which stock do you buy? (Which is riskier than the other one?)",
+      "source": "Assignments for STAT 2012/Assignment_2.doc",
+      "type": "unknown",
+      "difficulty": 1,
+      "keywords": [],
+      "formula_refs": [],
+      "data_refs": []
+    }
+  ]
+}
