@@ -1,0 +1,327 @@
+{
+  "schema_version": 1,
+  "pack_id": "ch02-review-v1",
+  "chapter": "Ch02",
+  "baseline_records": 31,
+  "summary": {
+    "reviewed_and_retained": 28,
+    "deleted": 3
+  },
+  "records": [
+    {
+      "id": "ch02_q01",
+      "chapter": "Ch02",
+      "decision": "rewrite",
+      "question_type": "计算题",
+      "difficulty": 2,
+      "keywords": ["frequency distribution", "weighted sum"],
+      "clean_question": "The table shows the number of strokes needed to complete a golf hole and the corresponding number of players.\n\n| Number of strokes, $m$ | 2 | 3 | 4 | 5 | 6 | 7 | 8 |\n|---:|---:|---:|---:|---:|---:|---:|---:|\n| Frequency, $f$ | 82 | 278 | 43 | 16 | 6 | 3 | 1 |\n\nCalculate each quantity.\n\na. $\\sum m$\n\nb. $\\sum f$\n\nc. $\\sum m^2$\n\nd. $\\sum mf$\n\ne. $\\sum m^2f$\n\nf. $(\\sum f)^2$",
+      "clean_answer": "a. $\\sum m=2+3+4+5+6+7+8=35$.\n\nb. $\\sum f=82+278+43+16+6+3+1=429$.\n\nc. $\\sum m^2=2^2+3^2+4^2+5^2+6^2+7^2+8^2=203$.\n\nd. $\\sum mf=2(82)+3(278)+4(43)+5(16)+6(6)+7(3)+8(1)=1315$.\n\ne. $\\sum m^2f=2^2(82)+3^2(278)+4^2(43)+5^2(16)+6^2(6)+7^2(3)+8^2(1)=4345$.\n\nf. $(\\sum f)^2=429^2=184041$."
+    },
+    {
+      "id": "ch02_q02",
+      "chapter": "Ch02",
+      "decision": "rewrite",
+      "question_type": "综合题",
+      "difficulty": 2,
+      "keywords": ["frequency distribution", "relative frequency", "pie chart"],
+      "clean_question": "The following data show the payment methods used by 18 customers in a supermarket checkout line. Here, C means cash, CK check, CC credit card, D debit card, and O other.\n\n```text\nC  CK  CK  C  CC  D  O  CC  D\nCK CC  D   CC C   CK CK O   D\n```\n\na. Construct a frequency distribution.\n\nb. Calculate each relative frequency and percentage.\n\nc. Give the central angle for each category in a pie chart.",
+      "clean_answer": "| Method | Frequency | Relative frequency | Percentage | Pie angle |\n|---|---:|---:|---:|---:|\n| C | 3 | $3/18=0.1667$ | $16.67\\%$ | $60^\\circ$ |\n| CK | 5 | $5/18=0.2778$ | $27.78\\%$ | $100^\\circ$ |\n| CC | 4 | $4/18=0.2222$ | $22.22\\%$ | $80^\\circ$ |\n| D | 4 | $4/18=0.2222$ | $22.22\\%$ | $80^\\circ$ |\n| O | 2 | $2/18=0.1111$ | $11.11\\%$ | $40^\\circ$ |\n| **Total** | **18** | **1.0000** | **100%** | **$360^\\circ$** |"
+    },
+    {
+      "id": "ch02_q03",
+      "chapter": "Ch02",
+      "decision": "rewrite",
+      "question_type": "计算题",
+      "difficulty": 2,
+      "keywords": ["cumulative frequency", "cumulative relative frequency"],
+      "clean_question": "The table gives the frequency distribution of gasoline purchased by all customers at a station on one day.\n\n| Gallons purchased | Number of customers |\n|---|---:|\n| 0 to less than 4 | 31 |\n| 4 to less than 8 | 78 |\n| 8 to less than 12 | 49 |\n| 12 to less than 16 | 81 |\n| 16 to less than 20 | 117 |\n| 20 to less than 24 | 13 |\n\na. Construct a cumulative-frequency distribution.\n\nb. Calculate the cumulative relative frequency and cumulative percentage for each class.\n\nc. Find the percentage of customers who purchased fewer than 16 gallons.",
+      "clean_answer": "There are $31+78+49+81+117+13=369$ customers.\n\n| Gallons purchased | Cumulative frequency | Cumulative relative frequency | Cumulative percentage |\n|---|---:|---:|---:|\n| Less than 4 | 31 | 0.0840 | $8.40\\%$ |\n| Less than 8 | 109 | 0.2954 | $29.54\\%$ |\n| Less than 12 | 158 | 0.4282 | $42.82\\%$ |\n| Less than 16 | 239 | 0.6477 | $64.77\\%$ |\n| Less than 20 | 356 | 0.9648 | $96.48\\%$ |\n| Less than 24 | 369 | 1.0000 | $100.00\\%$ |\n\nThus, the percentage who purchased fewer than 16 gallons is\n\n$$\\frac{239}{369}\\times100\\%\\approx64.77\\%.$$"
+    },
+    {
+      "id": "ch02_q05",
+      "chapter": "Ch02",
+      "decision": "rewrite",
+      "question_type": "简答题",
+      "difficulty": 2,
+      "keywords": ["stem-and-leaf plot", "data reconstruction"],
+      "clean_question": "The stem-and-leaf display below uses two-digit leaves. The key is $2\\mid18=218$. Write the represented data set in increasing order.\n\n```text\n2 | 18 45 56\n3 | 29 67 83 97\n4 | 04 27 33 71\n5 | 23 37 51 63 81 92\n6 | 22 36 47 55 78 89\n7 |\n8 | 10 41\n```",
+      "clean_answer": "$218,245,256,329,367,383,397,404,427,433,471,523,537,551,563,581,592,622,636,647,655,678,689,810,841$."
+    },
+    {
+      "id": "ch02_q06",
+      "chapter": "Ch02",
+      "decision": "rewrite",
+      "question_type": "计算题",
+      "difficulty": 2,
+      "keywords": ["stem-and-leaf plot"],
+      "clean_question": "The following data are the waiting times, in minutes, of 20 students at a bookstore checkout.\n\n$$15,8,23,21,4,17,31,22,31,6,5,6,14,17,16,25,27,3,31,8.$$\n\nConstruct a stem-and-leaf display using the tens digit as the stem and arrange the leaves in increasing order.",
+      "clean_answer": "Using the tens digit as the stem and the ones digit as the leaf gives:\n\n```text\n0 | 3 4 5 6 6 8 8\n1 | 4 5 6 7 7\n2 | 1 2 3 5 7\n3 | 1 1 1\n```\n\nKey: $1\\mid5=15$ minutes. The leaves are in increasing order within each stem."
+    },
+    {
+      "id": "ch02_q07",
+      "chapter": "Ch02",
+      "decision": "rewrite",
+      "question_type": "综合题",
+      "difficulty": 2,
+      "keywords": ["dotplot", "cluster", "outlier"],
+      "clean_question": "The following data give the number of ATM uses by each of 30 randomly selected bank customers during a 60-day period.\n\n$$3,2,3,2,2,5,0,4,1,3,2,3,3,5,9,0,3,2,2,15,1,3,2,7,9,3,0,4,2,2.$$\n\nConstruct a dotplot and identify any clusters or outliers.",
+      "clean_answer": "The dot counts are:\n\n| ATM uses | 0 | 1 | 2 | 3 | 4 | 5 | 7 | 9 | 15 |\n|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|\n| Frequency | 3 | 2 | 9 | 8 | 2 | 2 | 1 | 2 | 1 |\n\nThe main cluster is from 0 through 5 uses, especially at 2 and 3. The value 15 is isolated from the rest and is an outlier. Values 7 and 9 are high but are not as isolated as 15."
+    },
+    {
+      "id": "ch02_q08",
+      "chapter": "Ch02",
+      "decision": "rewrite",
+      "question_type": "简答题",
+      "difficulty": 2,
+      "keywords": ["bar chart", "truncated axis", "misleading graph"],
+      "clean_question": "The table gives seven common first names among girls born in the United States in 2010, with frequencies in thousands.\n\n| Name | Isabella | Sophia | Emma | Olivia | Ava | Emily | Abigail |\n|---|---:|---:|---:|---:|---:|---:|---:|\n| Frequency (thousands) | 22.7 | 20.5 | 17.2 | 16.9 | 15.3 | 14.2 | 14.1 |\n\nCompare a bar chart whose vertical axis starts at 0 with one whose vertical axis starts at 13.0. Explain why the second chart can be misleading.",
+      "clean_answer": "Both charts use the same bar heights, but the chart starting at 13.0 visually magnifies the differences. For example, Ava has 15.3 thousand births and Emily has 14.2 thousand, so Ava's frequency is only about $15.3/14.2\\approx1.08$ times Emily's, not several times as large. For ordinary bar charts, a zero baseline gives a more faithful visual comparison."
+    },
+    {
+      "id": "ch02_q09",
+      "chapter": "Ch02",
+      "decision": "rewrite",
+      "question_type": "综合题",
+      "difficulty": 3,
+      "keywords": ["back-to-back stem-and-leaf plot", "median", "variability"],
+      "clean_question": "The alcohol contents by volume, in percent, of beers from two breweries are shown below.\n\n**Flying Dog:**\n\n$$4.7,4.8,5.1,5.5,5.5,5.6,6.0,7.1,7.4,7.8,8.3,8.3,9.2,9.9,10.2,11.5.$$\n\n**Sierra Nevada:**\n\n$$4.4,5.0,5.0,5.6,5.6,5.8,5.9,5.9,6.7,6.8,6.9,7.0,9.6.$$\n\na. Give a suitable typical alcohol content for each brewery.\n\nb. Determine whether one brewery tends to produce beers with higher alcohol content.\n\nc. Compare the variability of the two distributions. Support each conclusion with the data.",
+      "clean_answer": "a. A suitable typical value is the median. Flying Dog has median\n\n$$\\frac{6.0+7.1}{2}=6.55\\%,$$\n\nwhereas Sierra Nevada has median $5.9\\%$.\n\nb. Flying Dog generally has the higher alcohol content: its median is larger, and more of its observations lie above $7\\%$.\n\nc. Flying Dog is also more variable. Its values range from $4.7\\%$ to $11.5\\%$, compared with $4.4\\%$ to $9.6\\%$ for Sierra Nevada, and its observations are more dispersed across the stems."
+    },
+    {
+      "id": "ch02_q10",
+      "chapter": "Ch02",
+      "decision": "rewrite",
+      "question_type": "综合题",
+      "difficulty": 2,
+      "keywords": ["bar chart", "pie chart", "market share"],
+      "formula_refs": [],
+      "data_refs": [],
+      "clean_question": "The 2005 U.S. new-vehicle market shares were:\n\n| Manufacturer group | Market share |\n|---|---:|\n| Chrysler/Dodge/Jeep | $13.6\\%$ |\n| Ford | $18.3\\%$ |\n| GM | $26.3\\%$ |\n| Japanese manufacturers | $28.3\\%$ |\n| Other | $13.5\\%$ |\n\nGive the bar heights for a percent-frequency bar chart and the sector angles for a percentage pie chart.",
+      "clean_answer": "The percent-frequency bar chart has bar heights $13.6,18.3,26.3,28.3,$ and $13.5$. The corresponding pie-chart angles are:\n\n| Category | Percentage | Angle |\n|---|---:|---:|\n| Chrysler/Dodge/Jeep | $13.6\\%$ | $48.96^\\circ$ |\n| Ford | $18.3\\%$ | $65.88^\\circ$ |\n| GM | $26.3\\%$ | $94.68^\\circ$ |\n| Japanese manufacturers | $28.3\\%$ | $101.88^\\circ$ |\n| Other | $13.5\\%$ | $48.60^\\circ$ |\n| **Total** | **$100\\%$** | **$360^\\circ$** |"
+    },
+    {
+      "id": "ch02_q11",
+      "chapter": "Ch02",
+      "decision": "rewrite",
+      "question_type": "简答题",
+      "difficulty": 3,
+      "keywords": ["pie chart", "market share", "comparative analysis"],
+      "clean_question": "The 2005 U.S. vehicle market shares were Chrysler/Dodge/Jeep $13.6\\%$, Ford $18.3\\%$, GM $26.3\\%$, Japanese manufacturers $28.3\\%$, and other manufacturers $13.5\\%$. The figure shows the 2010 shares by manufacturer group. Compare the major changes from 2005 to 2010.\n\n[IMG:ch02_q04_f01_image1.jpeg|Pie chart of U.S. automobile sales shares in 2010]",
+      "clean_answer": "Chrysler/Dodge/Jeep fell from $13.6\\%$ to $9.4\\%$, Ford fell from $18.3\\%$ to $16.7\\%$, and GM fell from $26.3\\%$ to $19.1\\%$. Combining Honda/Acura, Mazda, Nissan/Infiniti, Subaru, and Toyota/Lexus/Scion gives a 2010 Japanese-manufacturer share of\n\n$$10.6+2.0+7.8+2.3+15.2=37.9\\%,$$\n\nup from $28.3\\%$ in 2005. Thus, the largest clear change is the loss of share by the three U.S. groups and the gain by Japanese manufacturers. The residual categories are not perfectly comparable because the 2010 chart reports more manufacturer groups separately.",
+      "data_refs": ["Assests/ch02_q04_f01_image1.jpeg"]
+    },
+    {
+      "id": "ch02_q12",
+      "chapter": "Ch02",
+      "decision": "rewrite",
+      "question_type": "综合题",
+      "difficulty": 3,
+      "keywords": ["frequency distribution", "histogram", "skewness"],
+      "formula_refs": [],
+      "data_refs": [],
+      "clean_question": "Sixty shoppers rated a bottle design.\n\n```text\n34 33 33 29 26 33 28 25 32 33\n32 25 27 33 22 27 32 33 32 29\n24 30 20 34 31 32 30 35 33 31\n32 28 30 31 31 33 29 27 34 31\n31 28 33 31 32 28 26 29 32 34\n32 30 34 32 30 30 32 31 29 33\n```\n\na. Using the rule that the smallest integer $k$ should satisfy $2^k\\ge n$, determine the number of classes.\n\nb. Determine a convenient class width.\n\nc. Construct a frequency and cumulative-frequency distribution.\n\nd. Describe the histogram's shape.",
+      "clean_answer": "a. Since $2^5=32<60$ and $2^6=64\\ge60$, use 6 classes.\n\nb. The range is $35-20=15$, so $15/6=2.5$; rounding up gives a class width of 3.\n\nc.\n\n| Rating class | Frequency | Percentage | Cumulative frequency | Cumulative percentage |\n|---|---:|---:|---:|---:|\n| $20$ to $22$ | 2 | $3.33\\%$ | 2 | $3.33\\%$ |\n| $23$ to $25$ | 3 | $5.00\\%$ | 5 | $8.33\\%$ |\n| $26$ to $28$ | 9 | $15.00\\%$ | 14 | $23.33\\%$ |\n| $29$ to $31$ | 19 | $31.67\\%$ | 33 | $55.00\\%$ |\n| $32$ to $34$ | 26 | $43.33\\%$ | 59 | $98.33\\%$ |\n| $35$ to $37$ | 1 | $1.67\\%$ | 60 | $100.00\\%$ |\n\nd. A histogram with these class frequencies is **left-skewed**: most ratings are near the high end, with a longer tail toward the lower ratings."
+    },
+    {
+      "id": "ch02_q13",
+      "chapter": "Ch02",
+      "decision": "delete",
+      "reason": "This is a software-only duplicate of ch02_q12 and provides no additional independently assessable task."
+    },
+    {
+      "id": "ch02_q14",
+      "chapter": "Ch02",
+      "decision": "rewrite",
+      "question_type": "计算题",
+      "difficulty": 2,
+      "keywords": ["frequency distribution", "relative frequency", "cumulative frequency"],
+      "formula_refs": [],
+      "data_refs": [],
+      "clean_question": "A sample of 50 observations has the class frequencies shown below. Complete the relative-frequency and cumulative-frequency columns.\n\n| Class | Frequency |\n|---|---:|\n| $7.85$ to less than $7.95$ | 6 |\n| $7.95$ to less than $8.05$ | 18 |\n| $8.05$ to less than $8.15$ | 12 |\n| $8.15$ to less than $8.25$ | 5 |\n| $8.25$ to less than $8.35$ | 9 |",
+      "clean_answer": "| Class | Frequency | Relative frequency | Cumulative frequency | Cumulative relative frequency |\n|---|---:|---:|---:|---:|\n| $7.85$ to less than $7.95$ | 6 | 0.12 | 6 | 0.12 |\n| $7.95$ to less than $8.05$ | 18 | 0.36 | 24 | 0.48 |\n| $8.05$ to less than $8.15$ | 12 | 0.24 | 36 | 0.72 |\n| $8.15$ to less than $8.25$ | 5 | 0.10 | 41 | 0.82 |\n| $8.25$ to less than $8.35$ | 9 | 0.18 | 50 | 1.00 |"
+    },
+    {
+      "id": "ch02_q15",
+      "chapter": "Ch02",
+      "decision": "rewrite",
+      "question_type": "计算题",
+      "difficulty": 2,
+      "keywords": ["stem-and-leaf plot", "rounding"],
+      "formula_refs": [],
+      "data_refs": [],
+      "clean_question": "The following sales figures, in millions of dollars, are reported for 20 firms.\n\n$$6835,3517,1973,1449,2820,2384,5358,1376,1233,1725,$$\n\n$$3291,6047,2707,7903,3291,4616,2675,1541,3707,4189.$$\n\nRound each value to the nearest hundred and construct a stem-and-leaf display with a leaf unit of 100.",
+      "clean_answer": "Rounding each value to the nearest hundred and using thousands as stems gives:\n\n```text\n1 | 2 4 4 5 7\n2 | 0 4 7 7 8\n3 | 3 3 5 7\n4 | 2 6\n5 | 4\n6 | 0 8\n7 | 9\n```\n\nKey: $1\\mid2$ represents approximately $1{,}200$ million dollars. There are 20 leaves, one for each firm."
+    },
+    {
+      "id": "ch02_q16",
+      "chapter": "Ch02",
+      "decision": "rewrite",
+      "question_type": "简答题",
+      "difficulty": 2,
+      "keywords": ["stem-and-leaf plot", "distribution shape"],
+      "clean_question": "The figure gives a stem-and-leaf display of 40 trash-bag breaking strengths.\n\n[IMG:ch02_q09_f02_image4.jpeg|Stem-and-leaf display of 40 breaking strengths]\n\na. Describe the shape of the distribution.\n\nb. Write the five smallest breaking strengths in the original measurement units.",
+      "clean_answer": "a. The distribution is approximately symmetric.\n\nb. Reading the first leaves with the plot's key gives $46.8,47.5,48.2,48.3,$ and $48.5$.",
+      "data_refs": ["Assests/ch02_q09_f02_image4.jpeg"]
+    },
+    {
+      "id": "ch02_q17",
+      "chapter": "Ch02",
+      "decision": "rewrite",
+      "question_type": "简答题",
+      "difficulty": 2,
+      "keywords": ["misleading graph", "truncated axis"],
+      "clean_question": "The graph compares the resale-value percentages of Chevrolet, Dodge, and Ford trucks. What is misleading about the display?\n\n[IMG:ch02_q09_f01_image3.jpeg|Bar graph of truck resale values with a vertical axis beginning near 55 percent]",
+      "clean_answer": "The vertical axis begins near $55\\%$ rather than 0. This truncation visually exaggerates the differences and makes Chevrolet's resale value appear much larger than Ford's and Dodge's, even though the numerical gaps are only several percentage points.",
+      "data_refs": ["Assests/ch02_q09_f01_image3.jpeg"]
+    },
+    {
+      "id": "ch02_q18",
+      "chapter": "Ch02",
+      "decision": "rewrite",
+      "question_type": "综合题",
+      "difficulty": 4,
+      "keywords": ["stem-and-leaf plot", "frequency distribution", "histogram", "comparative distribution"],
+      "formula_refs": [],
+      "data_refs": [],
+      "clean_question": "The following are profit-margin percentages and return-on-capital percentages for 35 retailers.\n\n**Profit margins:**\n\n```text\n10.9 5.0 6.1 5.9 9.2 3.3 4.0 3.1 11.2 1.8 3.2 4.4\n24.0 2.9 5.0 5.3 2.2 3.9 6.9 5.9 5.9 5.9 5.8 7.0\n8.6 5.0 5.4 5.2 4.7 6.8 4.9 3.6 1.1 3.6 5.9\n```\n\n**Returns on capital:**\n\n```text\n25.7 17.0 14.7 11.6 22.8 21.7 20.6 8.3 20.3 0.0 11.2 18.3\n13.1 19.2 19.7 12.8 9.2 15.9 19.8 11.5 14.7 14.4 12.7 12.6\n25.1 15.4 11.0 20.8 15.2 8.6 33.4 16.5 4.0 17.6 21.1\n```\n\na. Construct a stem-and-leaf display for profit margin, using the whole-number part as the stem and the tenths digit as the leaf. Describe its shape.\n\nb. Construct the analogous display for return on capital and describe its shape.\n\nc. Compare the two distributions.\n\nd. Group the profit margins into the intervals $[1.05,4.95)$, $[4.95,8.85)$, $[8.85,12.75)$, $[12.75,16.65)$, $[16.65,20.55)$, and $[20.55,24.45)$; give the class frequencies.\n\ne. State the corresponding histogram bar heights.",
+      "clean_answer": "a. Profit margin, with key $5\\mid9=5.9\\%$:\n\n```text\n1  | 1 8\n2  | 2 9\n3  | 1 2 3 6 6 9\n4  | 0 4 7 9\n5  | 0 0 0 2 3 4 8 9 9 9 9 9\n6  | 1 8 9\n7  | 0\n8  | 6\n9  | 2\n10 | 9\n11 | 2\n24 | 0\n```\n\nThe distribution is strongly right-skewed because of the isolated value $24.0\\%$.\n\nb. Return on capital, with key $15\\mid4=15.4\\%$:\n\n```text\n0  | 0\n4  | 0\n8  | 3 6\n9  | 2\n11 | 0 2 5 6\n12 | 6 7 8\n13 | 1\n14 | 4 7 7\n15 | 2 4 9\n16 | 5\n17 | 0 6\n18 | 3\n19 | 2 7 8\n20 | 3 6 8\n21 | 1 7\n22 | 8\n25 | 1 7\n33 | 4\n```\n\nThis distribution is roughly symmetric around the mid-teens but is widely spread.\n\nc. Profit margin has median $5.2\\%$ and sample standard deviation about $3.88\\%$; return on capital has median $15.4\\%$ and sample standard deviation about $6.39\\%$. Return on capital is centered higher and is more variable, while profit margin is more strongly right-skewed.\n\nd.\n\n| Profit-margin interval | Frequency |\n|---|---:|\n| $[1.05,4.95)$ | 14 |\n| $[4.95,8.85)$ | 17 |\n| $[8.85,12.75)$ | 3 |\n| $[12.75,16.65)$ | 0 |\n| $[16.65,20.55)$ | 0 |\n| $[20.55,24.45)$ | 1 |\n\ne. The histogram bar heights, in the listed class order, are $14,17,3,0,0,1$."
+    },
+    {
+      "id": "ch02_q19",
+      "chapter": "Ch02",
+      "decision": "rewrite",
+      "question_type": "计算题",
+      "difficulty": 2,
+      "keywords": ["mean", "median", "mode"],
+      "formula_refs": [],
+      "data_refs": [],
+      "clean_question": "Calculate the mean, median, and mode of each population.\n\na. $9,8,10,10,12,6,11,10,12,8$\n\nb. $110,120,70,90,90,100,80,130,140$",
+      "clean_answer": "a. The sum is 96 and $n=10$, so the mean is $96/10=9.6$. The sorted data are $6,8,8,9,10,10,10,11,12,12$, so the median is 10 and the mode is 10.\n\nb. The sum is 930 and $n=9$, so the mean is $930/9\\approx103.33$. The sorted data are $70,80,90,90,100,110,120,130,140$, so the median is 100 and the mode is 90."
+    },
+    {
+      "id": "ch02_q20",
+      "chapter": "Ch02",
+      "decision": "rewrite",
+      "question_type": "综合题",
+      "difficulty": 4,
+      "keywords": ["one-sample t test", "empirical rule", "mean", "median"],
+      "formula_refs": [],
+      "data_refs": [],
+      "clean_question": "The following waiting times, in minutes, were recorded for 100 randomly selected bank customers during peak hours.\n\n```text\n1.6 6.6 5.6 5.1 3.9 4.6 6.5 6.4 8.6 4.2 5.8 3.4 9.3\n7.4 1.8 6.2 5.4 4.9 5.4 0.8 2.5 8.3 6.1 6.3\n6.8 9.8 2.9 10.9 4.7 3.9 3.2 6.5 2.3 8.7 4.7\n3.6 2.7 3.7 0.4 10.2 2.8 11.6 4.3 3.1 5.8 5.6\n4.4 4.5 6.7 8.1 4.3 2.2 5.8 8.6 2.0 8.0 9.5\n1.3 4.8 9.9 7.9 1.1 7.2 2.9 9.1 7.7 4.0 1.4\n7.8 5.2 8.4 6.3 4.4 5.2 7.4 6.1 3.8 10.7 7.5\n7.0 5.3 4.5 4.5 1.8 3.7 4.0 5.7 2.4 9.2 5.0\n7.2 7.3 4.1 6.7 3.5 6.3 4.3 3.8 5.1 5.5\n```\n\na. At $\\alpha=0.05$, test $H_0:\\mu=6$ against $H_a:\\mu<6$.\n\nb. Find the median and compare it with the mean.\n\nc. Calculate the intervals $\\bar{x}\\pm s$, $\\bar{x}\\pm2s$, and $\\bar{x}\\pm3s$.\n\nd. Find the observed percentage of waiting times in each interval and compare the results with the Empirical Rule.\n\ne. Do the results support the claim that at least two-thirds of customers wait less than 8 minutes?",
+      "clean_answer": "From the data, $n=100$, $\\bar{x}=5.46$, the median is $5.25$, and $s=2.4755$.\n\na. The test statistic is\n\n$$t=\\frac{5.46-6}{2.4755/\\sqrt{100}}=-2.181,$$\n\nwith $df=99$. The left-tail p-value is approximately $0.0158$. Since $0.0158<0.05$, reject $H_0$. The sample provides evidence that the population mean waiting time is less than 6 minutes.\n\nb. The median is $5.25$ minutes. The mean is slightly larger, consistent with a mildly right-skewed distribution.\n\nc.\n\n$$\\bar{x}\\pm s=[2.985,7.935],$$\n\n$$\\bar{x}\\pm2s=[0.509,10.411],$$\n\n$$\\bar{x}\\pm3s=[-1.966,12.886].$$\n\nd. The observed percentages are $66\\%$, $96\\%$, and $100\\%$, respectively. These are close to the Empirical Rule values $68.26\\%$, $95.44\\%$, and $99.73\\%$, so the rule is a reasonable approximation here.\n\ne. Yes. The upper endpoint of $\\bar{x}\\pm s$ is about $7.94<8$, and 66 of the 100 observed times lie in that interval. The data therefore support the practical conclusion that approximately two-thirds of customers wait less than 8 minutes."
+    },
+    {
+      "id": "ch02_q21",
+      "chapter": "Ch02",
+      "decision": "rewrite",
+      "question_type": "综合题",
+      "difficulty": 4,
+      "keywords": ["sample variance", "sample standard deviation", "z-score", "empirical rule"],
+      "formula_refs": [],
+      "data_refs": [],
+      "clean_question": "A random sample of six client-entertainment expenses, in dollars, is\n\n$$157,132,109,145,125,139.$$\n\na. Calculate $\\bar{x}$, $s^2$, and $s$. Verify $s^2$ using both the deviation formula and the computational formula.\n\nb. Assuming an approximately normal distribution, estimate the intervals containing $68.26\\%$, $95.44\\%$, and $99.73\\%$ of expenses.\n\nc. Is an expense of $190$ unusually high?\n\nd. Compute the z-score of each sampled expense.",
+      "clean_answer": "a. The sum is 807, so\n\n$$\\bar{x}=807/6=134.5.$$\n\nThe sum of squared deviations is $1383.5$, hence\n\n$$s^2=\\frac{1383.5}{5}=276.7,\\qquad s=\\sqrt{276.7}\\approx16.634.$$\n\nThe computational formula gives the same result:\n\n$$s^2=\\frac{\\sum x_i^2-(\\sum x_i)^2/n}{n-1}=\\frac{109925-807^2/6}{5}=276.7.$$\n\nb. The estimated intervals are\n\n$$\\bar{x}\\pm s=[117.866,151.134],$$\n\n$$\\bar{x}\\pm2s=[101.232,167.768],$$\n\n$$\\bar{x}\\pm3s=[84.598,184.402].$$\n\nc. Yes. Since $190>184.402$, it lies more than three sample standard deviations above the mean and is unusually high under the normal model.\n\nd. In the data order, the z-scores are approximately\n\n$$1.353,-0.150,-1.533,0.631,-0.571,0.271.$$"
+    },
+    {
+      "id": "ch02_q22",
+      "chapter": "Ch02",
+      "decision": "delete",
+      "reason": "Its data are external and its tasks duplicate the now self-contained, fully solved ch02_q20."
+    },
+    {
+      "id": "ch02_q23",
+      "chapter": "Ch02",
+      "decision": "delete",
+      "reason": "It depends on an external table and duplicates the return-on-capital analysis already included in ch02_q18."
+    },
+    {
+      "id": "ch02_q24",
+      "chapter": "Ch02",
+      "decision": "rewrite",
+      "question_type": "综合题",
+      "difficulty": 2,
+      "keywords": ["bar chart", "pie chart", "survey data"],
+      "formula_refs": [],
+      "data_refs": [],
+      "clean_question": "A poll of 1,009 randomly selected adults in Great Britain reported the following Internet-use frequencies: more than one hour a day $22\\%$, up to one hour a day $14\\%$, a few times a week $15\\%$, a few times a month or less $10\\%$, and never $39\\%$. Give the bar heights and the sector angles required to construct a percentage bar chart and a pie chart.",
+      "clean_question": "A national poll of 1,008 adults asked how familiar they were with blogs. The results were: very familiar $7\\%$, somewhat familiar $19\\%$, not too familiar $18\\%$, and not at all familiar $56\\%$. Give the bar heights and the sector angles required to construct a percentage bar chart and a pie chart.",
+      "clean_answer": "| Response | Bar height | Pie angle |\n|---|---:|---:|\n| Very familiar | $7\\%$ | $0.07(360^\\circ)=25.2^\\circ$ |\n| Somewhat familiar | $19\\%$ | $68.4^\\circ$ |\n| Not too familiar | $18\\%$ | $64.8^\\circ$ |\n| Not at all familiar | $56\\%$ | $201.6^\\circ$ |\n| **Total** | **$100\\%$** | **$360^\\circ$** |"
+    },
+    {
+      "id": "ch02_q25",
+      "chapter": "Ch02",
+      "decision": "rewrite",
+      "question_type": "综合题",
+      "difficulty": 2,
+      "keywords": ["bar chart", "pie chart", "survey data"],
+      "clean_answer": "| Internet-use category | Bar height | Pie angle |\n|---|---:|---:|\n| More than one hour a day | $22\\%$ | $79.2^\\circ$ |\n| Up to one hour a day | $14\\%$ | $50.4^\\circ$ |\n| A few times a week | $15\\%$ | $54.0^\\circ$ |\n| A few times a month or less | $10\\%$ | $36.0^\\circ$ |\n| Never | $39\\%$ | $140.4^\\circ$ |\n| **Total** | **$100\\%$** | **$360^\\circ$** |"
+    },
+    {
+      "id": "ch02_q26",
+      "chapter": "Ch02",
+      "decision": "rewrite",
+      "question_type": "综合题",
+      "difficulty": 3,
+      "keywords": ["percentile", "quartile", "interquartile range", "five-number summary"],
+      "formula_refs": [],
+      "data_refs": [],
+      "clean_question": "Fifteen internists report the following annual incomes, in thousands of dollars:\n\n$$152,144,162,154,146,241,127,141,171,177,138,132,192,188,101.$$\n\nUsing the nearest-rank method, find: (a) the 90th percentile, (b) the median, (c) the first quartile, (d) the third quartile, (e) the 10th percentile, (f) the interquartile range, and (g) the five-number summary.",
+      "clean_answer": "The ordered data are\n\n$$101,127,132,138,141,144,146,152,154,162,171,177,188,192,241.$$\n\na. $P_{90}$ is observation $\\lceil0.90(15)\\rceil=14$, so $P_{90}=192$.\n\nb. The median is observation 8, so the median is 152.\n\nc. $Q_1$ is observation $\\lceil0.25(15)\\rceil=4$, so $Q_1=138$.\n\nd. $Q_3$ is observation $\\lceil0.75(15)\\rceil=12$, so $Q_3=177$.\n\ne. $P_{10}$ is observation $\\lceil0.10(15)\\rceil=2$, so $P_{10}=127$.\n\nf. $IQR=177-138=39$.\n\ng. The five-number summary is $(101,138,152,177,241)$."
+    },
+    {
+      "id": "ch02_q27",
+      "chapter": "Ch02",
+      "decision": "rewrite",
+      "question_type": "计算题",
+      "difficulty": 3,
+      "keywords": ["weighted mean", "portfolio return"],
+      "clean_question": "An investor holds the following five funds.\n\n| Fund | Amount invested | 2004 return |\n|---|---:|---:|\n| Vanguard 500 Index | $100{,}000 dollars | $10.7\\%$ |\n| Wasatch Core Growth | $500{,}000 dollars | $21.7\\%$ |\n| Fidelity Stock Selector | $500{,}000 dollars | $9.9\\%$ |\n| Fidelity Dividend Growth | $200{,}000 dollars | $6.0\\%$ |\n| Janus Worldwide | $50{,}000 dollars | $5.2\\%$ |\n\na. Compute the portfolio's weighted mean return.\n\nb. Compare it with the unweighted mean of the five returns and explain the difference.",
+      "clean_answer": "The total investment is $1{,}350{,}000$ dollars. The portfolio-weighted return is\n\n$$\\bar r_w=\\frac{100000(10.7)+500000(21.7)+500000(9.9)+200000(6.0)+50000(5.2)}{1350000}\\approx13.58\\%.$$\n\nThe unweighted mean is\n\n$$\\bar r=\\frac{10.7+21.7+9.9+6.0+5.2}{5}=10.70\\%.$$\n\nThe weighted mean is larger because the investor placed a large amount in Wasatch Core Growth, which had the highest return."
+    },
+    {
+      "id": "ch02_q28",
+      "chapter": "Ch02",
+      "decision": "rewrite",
+      "question_type": "计算题",
+      "difficulty": 3,
+      "keywords": ["mean", "sample standard deviation", "empirical rule", "z-score"],
+      "clean_question": "Thirteen students shipped rugs from Istanbul, Turkey, to the United States. Their shipping times, in days, were\n\n$$31,31,42,39,42,43,34,30,28,36,37,35,40.$$\n\na. Calculate the mean and sample standard deviation.\n\nb. What percentage of the observed times are within two sample standard deviations of the mean? How does this compare with the Empirical Rule?\n\nc. Is a 60-day shipping time likely under this model?",
+      "clean_answer": "a. The mean is $\\bar{x}=36$ days and the sample standard deviation is $s\\approx5.0166$ days.\n\nb. The two-standard-deviation interval is\n\n$$36\\pm2(5.0166)=[25.967,46.033].$$\n\nAll 13 observations lie in this interval, so the observed percentage is $100\\%$. For an approximately normal population, the Empirical Rule predicts about $95.44\\%$; the difference is plausible for a sample of only 13 observations.\n\nc. A 60-day time has\n\n$$z=\\frac{60-36}{5.0166}\\approx4.78.$$\n\nIt is therefore extremely unusual under the approximate normal model, although not logically impossible."
+    },
+    {
+      "id": "ch02_q29",
+      "chapter": "Ch02",
+      "decision": "rewrite",
+      "question_type": "计算题",
+      "difficulty": 3,
+      "keywords": ["coefficient of variation", "risk", "return"],
+      "clean_question": "Fidelity Leveraged Company Stock has mean return $17.98\\%$ and standard deviation $10.02\\%$. Baron Opportunity Retail Stock has mean return $16.43\\%$ and standard deviation $12.23\\%$. Compare their relative risk using the coefficient of variation. If an investor prefers lower relative risk, which stock should the investor choose?",
+      "clean_answer": "The coefficient of variation is $CV=(s/\\bar{x})\\times100\\%$. Thus,\n\n$$CV_{\\text{Fidelity}}=\\frac{10.02}{17.98}\\times100\\%\\approx55.73\\%,$$\n\n$$CV_{\\text{Baron}}=\\frac{12.23}{16.43}\\times100\\%\\approx74.44\\%.$$\n\nBaron has greater variability relative to its mean return and is therefore riskier by this measure. An investor whose stated objective is lower relative risk should choose Fidelity. This comparison alone does not determine the best choice for every investor because preferences and other risk measures may differ."
+    },
+    {
+      "id": "rotel_ch02_histogram_01",
+      "chapter": "Ch02",
+      "decision": "keep",
+      "question_type": "计算题",
+      "difficulty": 1,
+      "keywords": ["histogram", "frequency", "percentage"]
+    },
+    {
+      "id": "rotel_ch02_boxplot_01",
+      "chapter": "Ch02",
+      "decision": "keep",
+      "question_type": "填空题",
+      "difficulty": 1,
+      "keywords": ["box plot", "five-number summary"]
+    },
+    {
+      "id": "rotel_ch02_boxplot_02",
+      "chapter": "Ch02",
+      "decision": "keep",
+      "question_type": "简答题",
+      "difficulty": 1,
+      "keywords": ["box plot", "quartiles", "percentile"]
+    }
+  ]
+}
