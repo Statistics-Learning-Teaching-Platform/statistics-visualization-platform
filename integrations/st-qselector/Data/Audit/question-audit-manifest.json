@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-08-08T03:21:27.686891+00:00",
+  "generated_at": "2026-08-08T03:28:38.190357+00:00",
   "source_roots": {
     "origin": "Data/Origin",
     "formed": "Data/Formed"
@@ -12,9 +12,9 @@
     "source_files_are_read_only": true
   },
   "summary": {
-    "total_questions": 334,
+    "total_questions": 331,
     "chapters": {
-      "Ch01": 26,
+      "Ch01": 23,
       "Ch02": 31,
       "Ch03": 37,
       "Ch04": 42,
@@ -28,27 +28,25 @@
       "Ch13": 8
     },
     "question_languages": {
-      "en": 334
+      "en": 331
     },
     "answer_languages": {
-      "en": 334
+      "en": 331
     },
     "grouping_candidates": {
-      "atomic_candidate": 229,
+      "atomic_candidate": 226,
       "multi_part_candidate": 105
     },
     "issue_counts": {
       "escaped_line_end": 79,
       "legacy_subscript": 2,
-      "legacy_superscript": 9,
+      "legacy_superscript": 8,
       "multi_part_requires_alignment_review": 105,
-      "pandoc_html": 13,
-      "pandoc_underline": 21,
-      "question_type_unclassified": 274,
-      "references_missing_figure": 4,
-      "references_previous_exercise": 1,
-      "references_unprovided_context": 4,
-      "strikethrough_residue": 1
+      "pandoc_html": 12,
+      "pandoc_underline": 18,
+      "question_type_unclassified": 259,
+      "references_missing_figure": 3,
+      "references_unprovided_context": 4
     },
     "eligible_for_paper": 0
   },
@@ -68,13 +66,16 @@
       },
       "original": {
         "question_hash": "1d541557cc5bbdaca54a2d98ae69898f34f30721ad3fcff107f55765eafee470",
-        "answer_hash": "c91b10932ee5f464a8ac3c4f91bc3e79bc4baea70c6942a765532217ce93eefe",
-        "type": "unknown",
+        "answer_hash": "48e35570c5dda3b7ec469242a5f0d62fa058796b0acc6acffa60dcfec6c92062",
+        "type": "简答题",
         "difficulty": 1,
-        "keywords": [],
+        "keywords": [
+          "population",
+          "sample"
+        ],
         "formula_refs": [],
         "data_refs": [],
-        "review_status": null
+        "review_status": "independently solved and reviewed"
       },
       "diagnostics": {
         "question_language": "en",
@@ -86,10 +87,9 @@
         "context_findings": [],
         "detected_part_count": 5,
         "grouping_status": "multi_part_candidate",
-        "previously_reviewed": false,
+        "previously_reviewed": true,
         "issue_codes": [
-          "multi_part_requires_alignment_review",
-          "question_type_unclassified"
+          "multi_part_requires_alignment_review"
         ]
       },
       "workflow": {
@@ -120,13 +120,16 @@
       },
       "original": {
         "question_hash": "b8320da655f3856e37131735470dbc2fcc82f59ddd64765ac8c24f1229770814",
-        "answer_hash": "c93cec4510740d0c3264d7a9f3ff17907def7aaf86a5ef8e79fedf1fe6342ddb",
-        "type": "unknown",
+        "answer_hash": "d6cee2b16092610d1f1d500215b23ec5fbd656ad5f2cab3db11e1f6d588c7942",
+        "type": "简答题",
         "difficulty": 1,
-        "keywords": [],
+        "keywords": [
+          "quantitative variable",
+          "qualitative variable"
+        ],
         "formula_refs": [],
         "data_refs": [],
-        "review_status": null
+        "review_status": "independently solved and reviewed"
       },
       "diagnostics": {
         "question_language": "en",
@@ -138,67 +141,9 @@
         "context_findings": [],
         "detected_part_count": 5,
         "grouping_status": "multi_part_candidate",
-        "previously_reviewed": false,
+        "previously_reviewed": true,
         "issue_codes": [
-          "multi_part_requires_alignment_review",
-          "question_type_unclassified"
-        ]
-      },
-      "workflow": {
-        "decision": "pending",
-        "english_status": "passed",
-        "source_recovery_status": "not_needed",
-        "grouping_review_status": "pending",
-        "independent_solution_status": "pending",
-        "verification_status": "pending",
-        "metadata_status": "pending",
-        "render_status": "pending",
-        "eligible_for_paper": false
-      },
-      "audit_notes": []
-    },
-    {
-      "id": "ch01_q03",
-      "chapter": "Ch01",
-      "source": {
-        "raw": "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment and solution_Chap 1&2.docx",
-        "kind": "local",
-        "local_paths": [
-          "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment and solution_Chap 1&2.docx"
-        ],
-        "external_urls": [],
-        "missing_paths": [],
-        "resolvable": true
-      },
-      "original": {
-        "question_hash": "37ff894a2374b38a1f6bdf207b7597ee63a49b34a51d69f00c013e8017c582fd",
-        "answer_hash": "e682876c954b07a45c85deac2ff1fc6a75c8965c7633260b0a75d9f7808b1ba9",
-        "type": "unknown",
-        "difficulty": 1,
-        "keywords": [],
-        "formula_refs": [],
-        "data_refs": [],
-        "review_status": null
-      },
-      "diagnostics": {
-        "question_language": "en",
-        "answer_language": "en",
-        "answer_present": true,
-        "source_resolvable": true,
-        "assets": [],
-        "format_findings": [
-          "strikethrough_residue"
-        ],
-        "context_findings": [
-          "references_previous_exercise"
-        ],
-        "detected_part_count": 0,
-        "grouping_status": "atomic_candidate",
-        "previously_reviewed": false,
-        "issue_codes": [
-          "question_type_unclassified",
-          "references_previous_exercise",
-          "strikethrough_residue"
+          "multi_part_requires_alignment_review"
         ]
       },
       "workflow": {
@@ -229,13 +174,16 @@
       },
       "original": {
         "question_hash": "40751b71b8f8c018817da79522fb46e0ba7ee830f84298787fdf1f106b80bb23",
-        "answer_hash": "f8e5fd71b9acbbe8c0987686ff1ee83ee7eb9037839bf0adf03f9f13b3607bdb",
-        "type": "unknown",
+        "answer_hash": "86eb6f78d64d08d349f3935683391e7023357139a9c21800939339032ac35588",
+        "type": "简答题",
         "difficulty": 1,
-        "keywords": [],
+        "keywords": [
+          "cross-sectional data",
+          "time-series data"
+        ],
         "formula_refs": [],
         "data_refs": [],
-        "review_status": null
+        "review_status": "independently solved and reviewed"
       },
       "diagnostics": {
         "question_language": "en",
@@ -247,10 +195,9 @@
         "context_findings": [],
         "detected_part_count": 4,
         "grouping_status": "multi_part_candidate",
-        "previously_reviewed": false,
+        "previously_reviewed": true,
         "issue_codes": [
-          "multi_part_requires_alignment_review",
-          "question_type_unclassified"
+          "multi_part_requires_alignment_review"
         ]
       },
       "workflow": {
@@ -280,16 +227,21 @@
         "resolvable": true
       },
       "original": {
-        "question_hash": "3d4a99d13f7874a1324762fb712587d657bc3ef54b6bb303cfdd8201a9f83192",
-        "answer_hash": "acebfdd1fa369d46cb35ac0b84aeb51159c27142e5f68cfabf6125ba78aaf21b",
-        "type": "unknown",
+        "question_hash": "42dcbb146b6a432906e619cb4f5977aef0c600e0a65da546c4652a704e523467",
+        "answer_hash": "884756364c165dfd2995e5a79f1218f0dbb6c522b9ef82c278fa347601a39b42",
+        "type": "判断题",
         "difficulty": 1,
-        "keywords": [],
+        "keywords": [
+          "population",
+          "census",
+          "descriptive statistics",
+          "statistical inference"
+        ],
         "formula_refs": [],
         "data_refs": [
           "Data-Chapter01-02.xlsx"
         ],
-        "review_status": null
+        "review_status": "independently solved and reviewed"
       },
       "diagnostics": {
         "question_language": "en",
@@ -303,79 +255,13 @@
             "available": true
           }
         ],
-        "format_findings": [
-          "pandoc_underline"
-        ],
+        "format_findings": [],
         "context_findings": [],
         "detected_part_count": 5,
         "grouping_status": "multi_part_candidate",
-        "previously_reviewed": false,
+        "previously_reviewed": true,
         "issue_codes": [
-          "multi_part_requires_alignment_review",
-          "pandoc_underline",
-          "question_type_unclassified"
-        ]
-      },
-      "workflow": {
-        "decision": "pending",
-        "english_status": "passed",
-        "source_recovery_status": "not_needed",
-        "grouping_review_status": "pending",
-        "independent_solution_status": "pending",
-        "verification_status": "pending",
-        "metadata_status": "pending",
-        "render_status": "pending",
-        "eligible_for_paper": false
-      },
-      "audit_notes": []
-    },
-    {
-      "id": "ch01_q06",
-      "chapter": "Ch01",
-      "source": {
-        "raw": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter01-02/Assignment-Chapter01-02.docx",
-        "kind": "local",
-        "local_paths": [
-          "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter01-02/Assignment-Chapter01-02.docx"
-        ],
-        "external_urls": [],
-        "missing_paths": [],
-        "resolvable": true
-      },
-      "original": {
-        "question_hash": "2b923f1fd93f4f2c35994d0f0d3fe3ffb027aa519f30faedc3e331ea682c44a0",
-        "answer_hash": "1cdfcd9af16408896ba15c91f2cf420399fb1e277364ee1c63fd70ea924c2861",
-        "type": "unknown",
-        "difficulty": 1,
-        "keywords": [],
-        "formula_refs": [],
-        "data_refs": [
-          "Data-Chapter01-02.xlsx"
-        ],
-        "review_status": null
-      },
-      "diagnostics": {
-        "question_language": "en",
-        "answer_language": "en",
-        "answer_present": true,
-        "source_resolvable": true,
-        "assets": [
-          {
-            "reference": "Data-Chapter01-02.xlsx",
-            "resolved_path": "Assests/Data-Chapter01-02.xlsx",
-            "available": true
-          }
-        ],
-        "format_findings": [
-          "pandoc_underline"
-        ],
-        "context_findings": [],
-        "detected_part_count": 0,
-        "grouping_status": "atomic_candidate",
-        "previously_reviewed": false,
-        "issue_codes": [
-          "pandoc_underline",
-          "question_type_unclassified"
+          "multi_part_requires_alignment_review"
         ]
       },
       "workflow": {
@@ -407,13 +293,16 @@
       },
       "original": {
         "question_hash": "e54c31fefcff79c0c81cf13eb8f304cc71ccdbb1454a201a9cbae671a4e0ed81",
-        "answer_hash": "688dc9e596b4a3bb120c11355434e1ef3e290f5cd1ce832baf0f56f92d8297ff",
-        "type": "unknown",
+        "answer_hash": "b914744d82f9945bcd180be7eb2fbdd344edf6ab4942d09ccb9e160c128a9b0e",
+        "type": "简答题",
         "difficulty": 1,
-        "keywords": [],
+        "keywords": [
+          "quantitative variable",
+          "qualitative variable"
+        ],
         "formula_refs": [],
         "data_refs": [],
-        "review_status": null
+        "review_status": "independently solved and reviewed"
       },
       "diagnostics": {
         "question_language": "en",
@@ -425,10 +314,8 @@
         "context_findings": [],
         "detected_part_count": 0,
         "grouping_status": "atomic_candidate",
-        "previously_reviewed": false,
-        "issue_codes": [
-          "question_type_unclassified"
-        ]
+        "previously_reviewed": true,
+        "issue_codes": []
       },
       "workflow": {
         "decision": "pending",
@@ -458,14 +345,17 @@
         "resolvable": true
       },
       "original": {
-        "question_hash": "113270082d0f91760178f86497d726e60af099a6729c4af53c5d4ef054bfcdde",
-        "answer_hash": "ef174685727a38c699fc4e3fa86250e4f77ffa3ce8334dd6d345a4e07aaa8c7c",
-        "type": "unknown",
-        "difficulty": 1,
-        "keywords": [],
+        "question_hash": "56ca39b7aa1fa290e00f07280e2c3b0aff60adb48c19045cb36d2008e9b8e1dc",
+        "answer_hash": "92927480e26e741750af32ec26c4a4160f382535b4e088f8f0105b6e76240110",
+        "type": "简答题",
+        "difficulty": 2,
+        "keywords": [
+          "nominal variable",
+          "ordinal variable"
+        ],
         "formula_refs": [],
         "data_refs": [],
-        "review_status": null
+        "review_status": "independently solved and reviewed"
       },
       "diagnostics": {
         "question_language": "en",
@@ -475,11 +365,11 @@
         "assets": [],
         "format_findings": [],
         "context_findings": [],
-        "detected_part_count": 0,
-        "grouping_status": "atomic_candidate",
-        "previously_reviewed": false,
+        "detected_part_count": 5,
+        "grouping_status": "multi_part_candidate",
+        "previously_reviewed": true,
         "issue_codes": [
-          "question_type_unclassified"
+          "multi_part_requires_alignment_review"
         ]
       },
       "workflow": {
@@ -509,14 +399,17 @@
         "resolvable": true
       },
       "original": {
-        "question_hash": "a4a7c0b8115e01a6b0904ff02a9dd6445acb1ef88293e28652a07e0daa9802d0",
-        "answer_hash": "398ee85905cbe50bcf5b76571dc42e6ebe04b5c985b49fe0f5415464588eb4ff",
-        "type": "unknown",
-        "difficulty": 1,
-        "keywords": [],
+        "question_hash": "4673a7b2b689cfba6cfe1363b6423774bdeed08cc97482aab35b9a0bce87a3f2",
+        "answer_hash": "e9d561b4197cbd07b364e1e8ca86105182cf7c97d72ccf217311a51a68869c2f",
+        "type": "简答题",
+        "difficulty": 2,
+        "keywords": [
+          "systematic sampling",
+          "sampling interval"
+        ],
         "formula_refs": [],
         "data_refs": [],
-        "review_status": null
+        "review_status": "independently solved and reviewed"
       },
       "diagnostics": {
         "question_language": "en",
@@ -524,17 +417,12 @@
         "answer_present": true,
         "source_resolvable": true,
         "assets": [],
-        "format_findings": [
-          "legacy_superscript"
-        ],
+        "format_findings": [],
         "context_findings": [],
         "detected_part_count": 0,
         "grouping_status": "atomic_candidate",
-        "previously_reviewed": false,
-        "issue_codes": [
-          "legacy_superscript",
-          "question_type_unclassified"
-        ]
+        "previously_reviewed": true,
+        "issue_codes": []
       },
       "workflow": {
         "decision": "pending",
@@ -564,13 +452,16 @@
       },
       "original": {
         "question_hash": "aeccd2defa969e942445639e2cbc3230a0dfa98406255af689c54a9beb6b85bd",
-        "answer_hash": "128bfd30a3d0295444db11dda88d17eee887dee23299cb1cc5a04c488a37b683",
-        "type": "unknown",
+        "answer_hash": "1f470eccf5b1c40f10294fbd82eaf568066da7132a8decd263ec3e9b4a0304c9",
+        "type": "简答题",
         "difficulty": 1,
-        "keywords": [],
+        "keywords": [
+          "stratified random sampling",
+          "strata"
+        ],
         "formula_refs": [],
         "data_refs": [],
-        "review_status": null
+        "review_status": "independently solved and reviewed"
       },
       "diagnostics": {
         "question_language": "en",
@@ -582,10 +473,8 @@
         "context_findings": [],
         "detected_part_count": 0,
         "grouping_status": "atomic_candidate",
-        "previously_reviewed": false,
-        "issue_codes": [
-          "question_type_unclassified"
-        ]
+        "previously_reviewed": true,
+        "issue_codes": []
       },
       "workflow": {
         "decision": "pending",
@@ -667,13 +556,16 @@
       },
       "original": {
         "question_hash": "b36c6d5bbb24ebd430849974df93b2bfcffd3dbe5d44d0c9dae81566a44eaa4a",
-        "answer_hash": "2ca65c8e105e4551e02d8f5e00254953052c5e0255bd2978adfb5deb6089154a",
-        "type": "unknown",
-        "difficulty": 1,
-        "keywords": [],
+        "answer_hash": "8b75d295ac1af30c28fb1da81f5c1496f9f2634b3d8f7c4a226ce2eb57db7fd2",
+        "type": "简答题",
+        "difficulty": 2,
+        "keywords": [
+          "runs plot",
+          "statistical control"
+        ],
         "formula_refs": [],
         "data_refs": [],
-        "review_status": null
+        "review_status": "independently solved and reviewed"
       },
       "diagnostics": {
         "question_language": "en",
@@ -685,10 +577,8 @@
         "context_findings": [],
         "detected_part_count": 0,
         "grouping_status": "atomic_candidate",
-        "previously_reviewed": false,
-        "issue_codes": [
-          "question_type_unclassified"
-        ]
+        "previously_reviewed": true,
+        "issue_codes": []
       },
       "workflow": {
         "decision": "pending",
@@ -717,14 +607,18 @@
         "resolvable": true
       },
       "original": {
-        "question_hash": "dfea9c9e76567e4da20c99061a63631d7674b088b4ea9f4f31e79117f78721b5",
-        "answer_hash": "841dfae8725f0ff3dd6d537bcdd3908e85116308ba88f09c96c034643c5f87eb",
-        "type": "unknown",
+        "question_hash": "d2a4fa1ccf0e72e183e28e056b85d11569d9aa80414e4c249036686038032412",
+        "answer_hash": "7bb3dcea2cef17ca2599999b5f49f71ef65481ceb0181af66791242cddf36dca",
+        "type": "计算题",
         "difficulty": 1,
-        "keywords": [],
+        "keywords": [
+          "mean",
+          "median",
+          "mode"
+        ],
         "formula_refs": [],
         "data_refs": [],
-        "review_status": null
+        "review_status": "independently solved and reviewed"
       },
       "diagnostics": {
         "question_language": "en",
@@ -736,10 +630,9 @@
         "context_findings": [],
         "detected_part_count": 2,
         "grouping_status": "multi_part_candidate",
-        "previously_reviewed": false,
+        "previously_reviewed": true,
         "issue_codes": [
-          "multi_part_requires_alignment_review",
-          "question_type_unclassified"
+          "multi_part_requires_alignment_review"
         ]
       },
       "workflow": {
@@ -769,14 +662,18 @@
         "resolvable": true
       },
       "original": {
-        "question_hash": "76bab29fa4940e9df1f93f118e84be919f8572e6980e6a9d9b048e6ef9fe42de",
-        "answer_hash": "a0140b181c20ed216efe9c98f2960a29a51346f93b9128e4914555ecf04575ce",
-        "type": "unknown",
-        "difficulty": 1,
-        "keywords": [],
+        "question_hash": "1387a1d6e5aef77000497bff9d3d8a01ddc1f30bb8664a865f0a95ed7fb5dc87",
+        "answer_hash": "d46bfed3349c4b3b362cf2e27db931b514762bbdb98cea7e3e82697a8bcb8988",
+        "type": "计算题",
+        "difficulty": 2,
+        "keywords": [
+          "mean",
+          "median",
+          "outlier"
+        ],
         "formula_refs": [],
         "data_refs": [],
-        "review_status": null
+        "review_status": "independently solved and reviewed"
       },
       "diagnostics": {
         "question_language": "en",
@@ -788,10 +685,8 @@
         "context_findings": [],
         "detected_part_count": 0,
         "grouping_status": "atomic_candidate",
-        "previously_reviewed": false,
-        "issue_codes": [
-          "question_type_unclassified"
-        ]
+        "previously_reviewed": true,
+        "issue_codes": []
       },
       "workflow": {
         "decision": "pending",
@@ -820,14 +715,18 @@
         "resolvable": true
       },
       "original": {
-        "question_hash": "2640aa767b54e14f574f176a5a347931af0ab93a1108094671f3e58bff5c246f",
-        "answer_hash": "7a469c20950c9c1b8a95920ee08e13416495927882e9a46b8463ecb7e19b4bef",
-        "type": "unknown",
-        "difficulty": 1,
-        "keywords": [],
+        "question_hash": "b428556478af37e4aee7224b19059cc975912a54b12b3dbfebe64ac59acd70fe",
+        "answer_hash": "e47aa2bd1971612d3c1059255f87103d5272908d2cdb003c9e56eb78ad265f01",
+        "type": "计算题",
+        "difficulty": 2,
+        "keywords": [
+          "range",
+          "population variance",
+          "population standard deviation"
+        ],
         "formula_refs": [],
         "data_refs": [],
-        "review_status": null
+        "review_status": "independently solved and reviewed"
       },
       "diagnostics": {
         "question_language": "en",
@@ -835,75 +734,12 @@
         "answer_present": true,
         "source_resolvable": true,
         "assets": [],
-        "format_findings": [
-          "pandoc_underline"
-        ],
-        "context_findings": [
-          "references_missing_figure"
-        ],
+        "format_findings": [],
+        "context_findings": [],
         "detected_part_count": 0,
         "grouping_status": "atomic_candidate",
-        "previously_reviewed": false,
-        "issue_codes": [
-          "pandoc_underline",
-          "question_type_unclassified",
-          "references_missing_figure"
-        ]
-      },
-      "workflow": {
-        "decision": "pending",
-        "english_status": "passed",
-        "source_recovery_status": "not_needed",
-        "grouping_review_status": "pending",
-        "independent_solution_status": "pending",
-        "verification_status": "pending",
-        "metadata_status": "pending",
-        "render_status": "pending",
-        "eligible_for_paper": false
-      },
-      "audit_notes": []
-    },
-    {
-      "id": "ch01_q16",
-      "chapter": "Ch01",
-      "source": {
-        "raw": "Assignments for STAT 2010/assignment01.doc",
-        "kind": "local",
-        "local_paths": [
-          "Assignments for STAT 2010/assignment01.doc"
-        ],
-        "external_urls": [],
-        "missing_paths": [],
-        "resolvable": true
-      },
-      "original": {
-        "question_hash": "cdaa2b82163b3acd4ebb92e4a1a5500e227f93666d4f06ddb8cbfb7abed415d2",
-        "answer_hash": "63fb385775df759626e8fa7a5d5aad7b1cc6a38af552ba597faf75b4b0c2ac0a",
-        "type": "unknown",
-        "difficulty": 1,
-        "keywords": [],
-        "formula_refs": [],
-        "data_refs": [],
-        "review_status": null
-      },
-      "diagnostics": {
-        "question_language": "en",
-        "answer_language": "en",
-        "answer_present": true,
-        "source_resolvable": true,
-        "assets": [],
-        "format_findings": [
-          "pandoc_html"
-        ],
-        "context_findings": [],
-        "detected_part_count": 3,
-        "grouping_status": "multi_part_candidate",
-        "previously_reviewed": false,
-        "issue_codes": [
-          "multi_part_requires_alignment_review",
-          "pandoc_html",
-          "question_type_unclassified"
-        ]
+        "previously_reviewed": true,
+        "issue_codes": []
       },
       "workflow": {
         "decision": "pending",
@@ -942,7 +778,7 @@
         ],
         "formula_refs": [],
         "data_refs": [],
-        "review_status": "independently solved, translated, and reviewed"
+        "review_status": "independently solved and reviewed"
       },
       "diagnostics": {
         "question_language": "en",
@@ -999,7 +835,7 @@
         ],
         "formula_refs": [],
         "data_refs": [],
-        "review_status": "independently solved, translated, and reviewed"
+        "review_status": "independently solved and reviewed"
       },
       "diagnostics": {
         "question_language": "en",
@@ -1053,7 +889,7 @@
         ],
         "formula_refs": [],
         "data_refs": [],
-        "review_status": "independently solved, translated, and reviewed"
+        "review_status": "independently solved and reviewed"
       },
       "diagnostics": {
         "question_language": "en",
@@ -1105,7 +941,7 @@
         ],
         "formula_refs": [],
         "data_refs": [],
-        "review_status": "independently solved, translated, and reviewed"
+        "review_status": "independently solved and reviewed"
       },
       "diagnostics": {
         "question_language": "en",
@@ -1157,7 +993,7 @@
         ],
         "formula_refs": [],
         "data_refs": [],
-        "review_status": "independently solved, translated, and reviewed"
+        "review_status": "independently solved and reviewed"
       },
       "diagnostics": {
         "question_language": "en",
@@ -1209,7 +1045,7 @@
         ],
         "formula_refs": [],
         "data_refs": [],
-        "review_status": "independently solved, translated, and reviewed"
+        "review_status": "independently solved and reviewed"
       },
       "diagnostics": {
         "question_language": "en",
@@ -1261,7 +1097,7 @@
         ],
         "formula_refs": [],
         "data_refs": [],
-        "review_status": "independently solved, translated, and reviewed"
+        "review_status": "independently solved and reviewed"
       },
       "diagnostics": {
         "question_language": "en",
@@ -1315,7 +1151,7 @@
         ],
         "formula_refs": [],
         "data_refs": [],
-        "review_status": "independently solved, translated, and reviewed"
+        "review_status": "independently solved and reviewed"
       },
       "diagnostics": {
         "question_language": "en",
@@ -1369,7 +1205,7 @@
         ],
         "formula_refs": [],
         "data_refs": [],
-        "review_status": "independently solved, translated, and reviewed"
+        "review_status": "independently solved and reviewed"
       },
       "diagnostics": {
         "question_language": "en",
@@ -1415,7 +1251,7 @@
       "original": {
         "question_hash": "8b0fad09c3d84551511c43972ac5d79fddab93f4400bbfacf73e95498a1f0dff",
         "answer_hash": "9c77220ef73e16ae13ba98707386c4d3d7bc6c799b5870569f4481e3aff1fe26",
-        "type": "综合题",
+        "type": "简答题",
         "difficulty": 3,
         "keywords": [
           "experimental design",
@@ -1425,7 +1261,7 @@
         ],
         "formula_refs": [],
         "data_refs": [],
-        "review_status": "independently solved, translated, and reviewed"
+        "review_status": "independently solved and reviewed"
       },
       "diagnostics": {
         "question_language": "en",

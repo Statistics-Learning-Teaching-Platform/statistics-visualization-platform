@@ -1,0 +1,235 @@
+{
+  "schema_version": 1,
+  "pack_id": "ch01-review-v1",
+  "chapter": "Ch01",
+  "baseline_records": 26,
+  "summary": {
+    "reviewed_and_retained": 23,
+    "deleted": 3
+  },
+  "records": [
+    {
+      "id": "ch01_q01",
+      "chapter": "Ch01",
+      "decision": "rewrite",
+      "question_type": "简答题",
+      "difficulty": 1,
+      "keywords": ["population", "sample"],
+      "clean_answer": "a. **Population**, because all adults in the city are included.\n\nb. **Sample**, because only 35 gas stations are observed.\n\nc. **Sample**, because only 100 selected families are observed.\n\nd. **Population**, because all registered voters in every state are included.\n\ne. **Sample**, because only 50 selected classes are observed."
+    },
+    {
+      "id": "ch01_q02",
+      "chapter": "Ch01",
+      "decision": "rewrite",
+      "question_type": "简答题",
+      "difficulty": 1,
+      "keywords": ["quantitative variable", "qualitative variable"],
+      "clean_answer": "a. **Quantitative**: number of children.\n\nb. **Qualitative**: car color.\n\nc. **Quantitative**: salary.\n\nd. **Quantitative**: commute time.\n\ne. **Quantitative**: number of credit-report errors."
+    },
+    {
+      "id": "ch01_q03",
+      "chapter": "Ch01",
+      "decision": "delete",
+      "reason": "The stem depends on Exercise 2, is struck through, and duplicates ch01_q02; the answer is corrupted."
+    },
+    {
+      "id": "ch01_q04",
+      "chapter": "Ch01",
+      "decision": "rewrite",
+      "question_type": "简答题",
+      "difficulty": 1,
+      "keywords": ["cross-sectional data", "time-series data"],
+      "clean_answer": "a. **Cross-sectional data**: prices are measured across 100 cities.\n\nb. **Cross-sectional data**: salaries are measured across 50 employees.\n\nc. **Time-series data**: annual sales are measured over 1980–2012.\n\nd. **Time-series data**: annual employee counts are measured over 1985–2012."
+    },
+    {
+      "id": "ch01_q05",
+      "chapter": "Ch01",
+      "decision": "rewrite",
+      "question_type": "判断题",
+      "difficulty": 1,
+      "keywords": ["population", "census", "descriptive statistics", "statistical inference"],
+      "clean_question": "Classify each statement as true or false.\n\na. A population is the complete set of units about which a study seeks information.\n\nb. Examining only some population units constitutes a census.\n\nc. A quantitative variable is also called a categorical variable.\n\nd. Statistical inference uses sample measurements to generalize about a population.\n\ne. Describing the important features of a set of measurements is called statistical inference.",
+      "clean_answer": "a. **True.**\n\nb. **False.** A census examines every unit in the population.\n\nc. **False.** A categorical variable is qualitative, not quantitative.\n\nd. **True.**\n\ne. **False.** That task is descriptive statistics."
+    },
+    {
+      "id": "ch01_q06",
+      "chapter": "Ch01",
+      "decision": "delete",
+      "reason": "It duplicates ch01_q07 and its answer repeats the full stem with conversion residue."
+    },
+    {
+      "id": "ch01_q07",
+      "chapter": "Ch01",
+      "decision": "rewrite",
+      "question_type": "简答题",
+      "difficulty": 1,
+      "keywords": ["quantitative variable", "qualitative variable"],
+      "clean_answer": "a. **Quantitative**, because an invoice amount is a numerical measurement.\n\nb. **Quantitative**, because net profit is a numerical amount.\n\nc. **Qualitative**, because the stock exchange is a category.\n\nd. **Quantitative**, because national debt is a numerical amount.\n\ne. **Qualitative**, because advertising medium identifies a category."
+    },
+    {
+      "id": "ch01_q08",
+      "chapter": "Ch01",
+      "decision": "rewrite",
+      "question_type": "简答题",
+      "difficulty": 2,
+      "keywords": ["nominal variable", "ordinal variable"],
+      "clean_question": "Classify each qualitative variable as nominal or ordinal, and explain briefly.\n\na. Statistics course letter grade: A, B, C, D, or F\n\nb. Door choice on a game show: Door 1 or Door 2\n\nc. Personal computer ownership: yes or no\n\nd. Restaurant rating: one to five stars\n\ne. Income-tax filing status: married filing jointly, married filing separately, single, head of household, or qualifying widow(er)",
+      "clean_answer": "a. **Ordinal**, because letter grades have a meaningful order.\n\nb. **Nominal**, because door numbers are labels with no ranking.\n\nc. **Nominal**, because yes and no are unordered categories.\n\nd. **Ordinal**, because higher star ratings indicate a higher rank.\n\ne. **Nominal**, because filing-status categories have no natural order."
+    },
+    {
+      "id": "ch01_q09",
+      "chapter": "Ch01",
+      "decision": "rewrite",
+      "question_type": "简答题",
+      "difficulty": 2,
+      "keywords": ["systematic sampling", "sampling interval"],
+      "clean_question": "Describe a systematic procedure for selecting a sample of 100 companies from an ordered list of 1,853 companies in an industry trade association.",
+      "clean_answer": "Compute the sampling interval\n\n$$k=\\frac{1853}{100}=18.53.$$\n\nChoose a random start $r$ uniformly from the interval $(0,k]$. For $j=0,1,\\ldots,99$, select the company at position $\\lceil r+jk\\rceil$ on the ordered list. This procedure selects exactly 100 companies while spreading the sample across the full list."
+    },
+    {
+      "id": "ch01_q10",
+      "chapter": "Ch01",
+      "decision": "rewrite",
+      "question_type": "简答题",
+      "difficulty": 1,
+      "keywords": ["stratified random sampling", "strata"],
+      "clean_answer": "Divide the population into mutually exclusive, collectively exhaustive strata whose units are similar with respect to a relevant characteristic. Independently select a random sample from every stratum, using either proportional allocation or another prespecified allocation rule. Combine the selected units from all strata to form the final sample."
+    },
+    {
+      "id": "ch01_q11",
+      "chapter": "Ch01",
+      "decision": "keep",
+      "question_type": "简答题",
+      "difficulty": 2,
+      "keywords": ["cluster sampling", "multistage sampling"]
+    },
+    {
+      "id": "ch01_q12",
+      "chapter": "Ch01",
+      "decision": "rewrite",
+      "question_type": "简答题",
+      "difficulty": 2,
+      "keywords": ["runs plot", "statistical control"],
+      "clean_answer": "The process does **not** appear to be in statistical control. The runs plot shows that the transaction-time variability is not approximately constant; several abrupt spikes and changes in spread indicate nonrandom process behavior.",
+      "data_refs": []
+    },
+    {
+      "id": "ch01_q13",
+      "chapter": "Ch01",
+      "decision": "rewrite",
+      "question_type": "计算题",
+      "difficulty": 1,
+      "keywords": ["mean", "median", "mode"],
+      "clean_question": "Calculate the mean, median, and mode for each population.\n\na. $17,23,19,20,25,18,22,15,21,20$\n\nb. $505,497,501,500,507,510,501$",
+      "clean_answer": "a. The sum is 200 and $N=10$, so the mean is 20. The sorted data are $15,17,18,19,20,20,21,22,23,25$, so the median is 20 and the mode is 20.\n\nb. The sum is 3,521 and $N=7$, so the mean is 503. The sorted data are $497,500,501,501,505,507,510$, so the median is 501 and the mode is 501."
+    },
+    {
+      "id": "ch01_q14",
+      "chapter": "Ch01",
+      "decision": "rewrite",
+      "question_type": "计算题",
+      "difficulty": 2,
+      "keywords": ["mean", "median", "outlier"],
+      "clean_question": "Lauren is taking five college courses with class sizes $350,45,35,25,40$. Find the mean and median class size. Which measure better represents her typical class size, and why?",
+      "clean_answer": "The mean is\n\n$$\\bar{x}=\\frac{350+45+35+25+40}{5}=99.$$\n\nThe sorted sizes are $25,35,40,45,350$, so the median is 40. The **median** better represents a typical class because the unusually large class of 350 is an outlier that pulls the mean upward."
+    },
+    {
+      "id": "ch01_q15",
+      "chapter": "Ch01",
+      "decision": "rewrite",
+      "question_type": "计算题",
+      "difficulty": 2,
+      "keywords": ["range", "population variance", "population standard deviation"],
+      "clean_question": "The affordability percentages for six Texas metropolitan areas are shown below.\n\n[IMG:ch01_q03_f01_image1.jpeg]\n\nTreating the six percentages as a population, calculate the range, population variance, and population standard deviation.",
+      "clean_answer": "The six percentages are $57.5,61.7,32.5,67.4,55.7,49.2$, with population mean 54.0.\n\nThe range is\n\n$$67.4-32.5=34.9.$$\n\nThe sum of squared deviations from 54.0 is $739.28$, so the population variance is\n\n$$\\sigma^2=\\frac{739.28}{6}\\approx123.21.$$\n\nThe population standard deviation is\n\n$$\\sigma=\\sqrt{123.21}\\approx11.10.$$",
+      "formula_refs": [],
+      "data_refs": []
+    },
+    {
+      "id": "ch01_q16",
+      "chapter": "Ch01",
+      "decision": "delete",
+      "reason": "The stem is truncated, the required histogram is not available in the question record, and the answer addresses a different subpart."
+    },
+    {
+      "id": "rotel_ch01_variables_01",
+      "chapter": "Ch01",
+      "decision": "keep",
+      "question_type": "选择题",
+      "difficulty": 2,
+      "keywords": ["categorical data", "variable types"]
+    },
+    {
+      "id": "rotel_ch01_variables_02",
+      "chapter": "Ch01",
+      "decision": "keep",
+      "question_type": "选择题",
+      "difficulty": 2,
+      "keywords": ["quantitative variables", "clinical trials"]
+    },
+    {
+      "id": "rotel_ch01_sampling_01",
+      "chapter": "Ch01",
+      "decision": "keep",
+      "question_type": "判断题",
+      "difficulty": 1,
+      "keywords": ["simple random sampling", "representativeness"]
+    },
+    {
+      "id": "rotel_ch01_sampling_02",
+      "chapter": "Ch01",
+      "decision": "keep",
+      "question_type": "判断题",
+      "difficulty": 1,
+      "keywords": ["simple random sampling", "target population"]
+    },
+    {
+      "id": "rotel_ch01_sampling_03",
+      "chapter": "Ch01",
+      "decision": "keep",
+      "question_type": "判断题",
+      "difficulty": 2,
+      "keywords": ["sampling bias", "telephone survey"]
+    },
+    {
+      "id": "rotel_ch01_sampling_04",
+      "chapter": "Ch01",
+      "decision": "keep",
+      "question_type": "判断题",
+      "difficulty": 2,
+      "keywords": ["sampling bias", "extrapolation"]
+    },
+    {
+      "id": "rotel_ch01_measurement_01",
+      "chapter": "Ch01",
+      "decision": "keep",
+      "question_type": "选择题",
+      "difficulty": 1,
+      "keywords": ["level of measurement", "nominal data"]
+    },
+    {
+      "id": "rotel_ch01_measurement_02",
+      "chapter": "Ch01",
+      "decision": "keep",
+      "question_type": "选择题",
+      "difficulty": 2,
+      "keywords": ["level of measurement", "ratio scale"]
+    },
+    {
+      "id": "rotel_ch01_measurement_03",
+      "chapter": "Ch01",
+      "decision": "keep",
+      "question_type": "选择题",
+      "difficulty": 1,
+      "keywords": ["level of measurement", "ordinal scale"]
+    },
+    {
+      "id": "rotel_ch01_design_01",
+      "chapter": "Ch01",
+      "decision": "keep",
+      "question_type": "简答题",
+      "difficulty": 3,
+      "keywords": ["experimental design", "explanatory variable", "response variable", "confounding variable"]
+    }
+  ]
+}

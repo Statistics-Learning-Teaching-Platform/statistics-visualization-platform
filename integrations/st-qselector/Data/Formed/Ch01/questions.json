@@ -5,105 +5,125 @@
       "id": "ch01_q01",
       "content": "Explain whether each of the following constitutes data collected from population or a sample.\n\na.  Opinions on a certain issue obtained from all adults living in a city.\n\nb.  The price a gallon of regular unleaded gasoline on a given day at each of 35 gas stations in the Miami, Florida, metropolitan area.\n\nc.  Credit card debts of 100 families selected from San Antonio, Texas.\n\nd.  The percentage of all U.S. registered voters in each state who voted in 2012 Presidential election.\n\ne.  The number of left-handed students in each of 50 classes selected from a given university.",
       "source": "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment and solution_Chap 1&2.docx",
-      "type": "unknown",
+      "type": "简答题",
       "difficulty": 1,
-      "keywords": [],
+      "keywords": [
+        "population",
+        "sample"
+      ],
       "formula_refs": [],
-      "data_refs": []
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch01-review-v1"
     },
     {
       "id": "ch01_q02",
       "content": "Indicate which of the following variables are quantitative and which are qualitative.\n\na.  Number of children under 18 years of age in a family\n\nb.  Colors of cars\n\nc.  Salaries of Football Players\n\nd.  Time to commute from home to work\n\ne.  Number of errors in a person's credit report",
       "source": "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment and solution_Chap 1&2.docx",
-      "type": "unknown",
+      "type": "简答题",
       "difficulty": 1,
-      "keywords": [],
+      "keywords": [
+        "quantitative variable",
+        "qualitative variable"
+      ],
       "formula_refs": [],
-      "data_refs": []
-    },
-    {
-      "id": "ch01_q03",
-      "content": "~~Classify the **quantitative** variables in Exercise 2 above as discrete or continuous.~~\n\n~~",
-      "source": "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment and solution_Chap 1&2.docx",
-      "type": "unknown",
-      "difficulty": 1,
-      "keywords": [],
-      "formula_refs": [],
-      "data_refs": []
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch01-review-v1"
     },
     {
       "id": "ch01_q04",
       "content": "Classify the following as cross-section or time-series data.\n\na.  Average prices of houses in 100 cities\n\nb.  Salaries of 50 employees\n\nc.  Number of cars sold each year by General Motors from 1980 to 2012\n\nd.  Number of employees employed by a company each year from 1985 to 2012",
       "source": "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment and solution_Chap 1&2.docx",
-      "type": "unknown",
+      "type": "简答题",
       "difficulty": 1,
-      "keywords": [],
+      "keywords": [
+        "cross-sectional data",
+        "time-series data"
+      ],
       "formula_refs": [],
-      "data_refs": []
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch01-review-v1"
     },
     {
       "id": "ch01_q05",
-      "content": "True / False Questions\n\na.  A population is a set of existing units. ( )\n\nb.  If we examine some of the population measurements, we are conducting a census of the population. ( )\n\nc.  A quantitative variable can also be referred to as a categorical variable. ( )\n\nd.  Statistical inference is the science of using a sample of measurements to make generalizations about the important aspects of a population of measurements. ( )\n\ne.  The science of describing the important aspects of a set of measures is called statistical inference. ( )",
+      "content": "Classify each statement as true or false.\n\na. A population is the complete set of units about which a study seeks information.\n\nb. Examining only some population units constitutes a census.\n\nc. A quantitative variable is also called a categorical variable.\n\nd. Statistical inference uses sample measurements to generalize about a population.\n\ne. Describing the important features of a set of measurements is called statistical inference.",
       "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter01-02/Assignment-Chapter01-02.docx",
-      "type": "unknown",
+      "type": "判断题",
       "difficulty": 1,
-      "keywords": [],
+      "keywords": [
+        "population",
+        "census",
+        "descriptive statistics",
+        "statistical inference"
+      ],
       "formula_refs": [],
       "data_refs": [
         "Data-Chapter01-02.xlsx"
-      ]
-    },
-    {
-      "id": "ch01_q06",
-      "content": "Below we list several variables. Which of these variables are quantitative and which are qualitative?\n\na\\. The dollar amount on an accounts receivable invoice.\n\nb\\. The net profit for a company in 2005.\n\nc\\. The stock exchange on which a company's stock is traded.\n\nd\\. The national debt of the United States in 2005.\n\ne\\. The advertising medium (radio, television, or print) used to promote a product.",
-      "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter01-02/Assignment-Chapter01-02.docx",
-      "type": "unknown",
-      "difficulty": 1,
-      "keywords": [],
-      "formula_refs": [],
-      "data_refs": [
-        "Data-Chapter01-02.xlsx"
-      ]
+      ],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch01-review-v1"
     },
     {
       "id": "ch01_q07",
       "content": "Below we list several variables. Which of these variables are quantitative and which are qualitative? Explain.\n\na\\. The dollar amount on an accounts receivable invoice.\n\nb\\. The net profit for a company in 2005.\n\nc\\. The stock exchange on which a company's stock is traded.\n\nd\\. The national debt of the United States in 2005.\n\ne\\. The advertising medium (radio, television, or print) used to promote a product.",
       "source": "Assignment Prof Lv/assignment1-Lu.doc | Assignments for STAT 2012/Assignment_1.doc",
-      "type": "unknown",
+      "type": "简答题",
       "difficulty": 1,
-      "keywords": [],
+      "keywords": [
+        "quantitative variable",
+        "qualitative variable"
+      ],
       "formula_refs": [],
-      "data_refs": []
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch01-review-v1"
     },
     {
       "id": "ch01_q08",
-      "content": "Classify each of the following qualitative variables as ordinal or nominative. Explain your answers.\n\nQualitative Variables Categories\n\nStatistics course letter grade A B C D F\n\nDoor choice on *Let's Make A De al* Door﹟1 Door﹟2\n\nPersonal computer ownership Yes No\n\nRestaurant rating \\*\\*\\*\\*\\* \\*\\*\\*\\* \\*\\*\\* \\*\\* \\*\n\nIncoming tax filing status Married filing jointly; Married filing separately; Single; Head of household; Qualifying widow(er)",
+      "content": "Classify each qualitative variable as nominal or ordinal, and explain briefly.\n\na. Statistics course letter grade: A, B, C, D, or F\n\nb. Door choice on a game show: Door 1 or Door 2\n\nc. Personal computer ownership: yes or no\n\nd. Restaurant rating: one to five stars\n\ne. Income-tax filing status: married filing jointly, married filing separately, single, head of household, or qualifying widow(er)",
       "source": "Assignment Prof Lv/assignment1-Lu.doc | Assignments for STAT 2012/Assignment_1.doc",
-      "type": "unknown",
-      "difficulty": 1,
-      "keywords": [],
+      "type": "简答题",
+      "difficulty": 2,
+      "keywords": [
+        "nominal variable",
+        "ordinal variable"
+      ],
       "formula_refs": [],
-      "data_refs": []
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch01-review-v1"
     },
     {
       "id": "ch01_q09",
-      "content": "Explain how to take a systematic sample of 100 companies from the 1,853 companies that are\n\nmembers of an industry trade association.",
+      "content": "Describe a systematic procedure for selecting a sample of 100 companies from an ordered list of 1,853 companies in an industry trade association.",
       "source": "Assignment Prof Lv/assignment1-Lu.doc",
-      "type": "unknown",
-      "difficulty": 1,
-      "keywords": [],
+      "type": "简答题",
+      "difficulty": 2,
+      "keywords": [
+        "systematic sampling",
+        "sampling interval"
+      ],
       "formula_refs": [],
-      "data_refs": []
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch01-review-v1"
     },
     {
       "id": "ch01_q10",
       "content": "Explain how a stratified random sample is selected.",
       "source": "Assignment Prof Lv/assignment1-Lu.doc",
-      "type": "unknown",
+      "type": "简答题",
       "difficulty": 1,
-      "keywords": [],
+      "keywords": [
+        "stratified random sampling",
+        "strata"
+      ],
       "formula_refs": [],
-      "data_refs": []
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch01-review-v1"
     },
     {
       "id": "ch01_q11",
@@ -118,57 +138,70 @@
       "formula_refs": [],
       "data_refs": [],
       "review_status": "independently solved and reviewed",
-      "audit_pack": "missing-answer-recovery-v1"
+      "audit_pack": "ch01-review-v1"
     },
     {
       "id": "ch01_q12",
       "content": "A bank wishes to study the amount of time it takes to complete a withdrawal transaction from one of its ATMs (automated teller machines). On a particular day, 63 withdrawal transactions are observed between 10 A.M. and noon. Figure below shows an Excel runs plot of the 63 transaction times. Do the transaction times seem to be in statistical control? Why or why not?\n>\n> [IMG:ch01_q33_f01_image1.jpeg]",
       "source": "Assignment Prof Lv/assignment1-Lu.doc",
-      "type": "unknown",
-      "difficulty": 1,
-      "keywords": [],
+      "type": "简答题",
+      "difficulty": 2,
+      "keywords": [
+        "runs plot",
+        "statistical control"
+      ],
       "formula_refs": [],
-      "data_refs": []
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch01-review-v1"
     },
     {
       "id": "ch01_q13",
-      "content": "Caculate the mean, median, and mode for each of the following populations of numbers:\n\n    a.  17, 23, 19, 20 ,25, 18, 22, 15, 21, 20\n\n    b.  505, 497, 501, 500, 507, 510, 501",
+      "content": "Calculate the mean, median, and mode for each population.\n\na. $17,23,19,20,25,18,22,15,21,20$\n\nb. $505,497,501,500,507,510,501$",
       "source": "Assignments for STAT 2010/assignment01.doc",
-      "type": "unknown",
+      "type": "计算题",
       "difficulty": 1,
-      "keywords": [],
+      "keywords": [
+        "mean",
+        "median",
+        "mode"
+      ],
       "formula_refs": [],
-      "data_refs": []
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch01-review-v1"
     },
     {
       "id": "ch01_q14",
-      "content": "Lauren is a college sophomore majoring in business. This semester Lauren is taking courses in accounting, economics, management information systems, public speaking, and statistic. The sizes of these classes are, respectively, 350, 45, 35, 25, and 40. Find the mean and the median of the class sizes. What is a better measure of Lauren's \"typical class size\"- the mean or the median?",
+      "content": "Lauren is taking five college courses with class sizes $350,45,35,25,40$. Find the mean and median class size. Which measure better represents her typical class size, and why?",
       "source": "Assignments for STAT 2010/assignment01.doc",
-      "type": "unknown",
-      "difficulty": 1,
-      "keywords": [],
+      "type": "计算题",
+      "difficulty": 2,
+      "keywords": [
+        "mean",
+        "median",
+        "outlier"
+      ],
       "formula_refs": [],
-      "data_refs": []
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch01-review-v1"
     },
     {
       "id": "ch01_q15",
-      "content": "Table 3.4 gives the percentage of homes sold during the fourth quarter of 2006 that a median income household could afford to purchase at the prevailing mortgage interest rate for six Texas metropolitan areas. The data were compiled by the National Association of Home Builders. Calculate the range, variance, and standard deviation of this population of affordability percentages.\n\n**Table 3.4**\n\n[IMG:ch01_q03_f01_image1.jpeg]",
+      "content": "The affordability percentages for six Texas metropolitan areas are shown below.\n\n[IMG:ch01_q03_f01_image1.jpeg]\n\nTreating the six percentages as a population, calculate the range, population variance, and population standard deviation.",
       "source": "Assignments for STAT 2010/assignment01.doc",
-      "type": "unknown",
-      "difficulty": 1,
-      "keywords": [],
+      "type": "计算题",
+      "difficulty": 2,
+      "keywords": [
+        "range",
+        "population variance",
+        "population standard deviation"
+      ],
       "formula_refs": [],
-      "data_refs": []
-    },
-    {
-      "id": "ch01_q16",
-      "content": "THE BANK CUSTOMER WAITING TIME CASE\n\n> The mean and the standard deviation of the sample of 100 bank customer waiting times are c=5.46 and s=2.475.\n\na.  What does the histogram in Figure 2.16 say about whether the Empirical Rule should be used to describe the bank customer waiting times?\n\nb.  Use the Empirical Rule to calculate estimates of tolerance intervals containing 68.26 percent, 95.44 percent, and 99.73 percent of all possible bank customer waiting times.\n\nc.  Does the estimate of a tolerance interval containing 68.26 percent of all waiting times provide evidence that at least two-thirds of all customers will have to wait less than eight minutes for service? Explain your",
-      "source": "Assignments for STAT 2010/assignment01.doc",
-      "type": "unknown",
-      "difficulty": 1,
-      "keywords": [],
-      "formula_refs": [],
-      "data_refs": []
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch01-review-v1"
     },
     {
       "id": "rotel_ch01_variables_01",
@@ -178,7 +211,7 @@
       "source_problem": "1.1 Problem 1",
       "license": "CC BY-NC-SA 4.0",
       "attribution": "Rachael Norton and Peter Staab, 2023",
-      "review_status": "independently solved, translated, and reviewed",
+      "review_status": "independently solved and reviewed",
       "type": "选择题",
       "difficulty": 2,
       "keywords": [
@@ -187,7 +220,7 @@
       ],
       "formula_refs": [],
       "data_refs": [],
-      "audit_pack": "english-normalization-v1"
+      "audit_pack": "ch01-review-v1"
     },
     {
       "id": "rotel_ch01_variables_02",
@@ -197,7 +230,7 @@
       "source_problem": "1.1 Problem 2",
       "license": "CC BY-NC-SA 4.0",
       "attribution": "Rachael Norton and Peter Staab, 2023",
-      "review_status": "independently solved, translated, and reviewed",
+      "review_status": "independently solved and reviewed",
       "type": "选择题",
       "difficulty": 2,
       "keywords": [
@@ -206,7 +239,7 @@
       ],
       "formula_refs": [],
       "data_refs": [],
-      "audit_pack": "english-normalization-v1"
+      "audit_pack": "ch01-review-v1"
     },
     {
       "id": "rotel_ch01_sampling_01",
@@ -216,7 +249,7 @@
       "source_problem": "1.2 Problem 3(a)",
       "license": "CC BY-NC-SA 4.0",
       "attribution": "Rachael Norton and Peter Staab, 2023",
-      "review_status": "independently solved, translated, and reviewed",
+      "review_status": "independently solved and reviewed",
       "type": "判断题",
       "difficulty": 1,
       "keywords": [
@@ -225,7 +258,7 @@
       ],
       "formula_refs": [],
       "data_refs": [],
-      "audit_pack": "english-normalization-v1"
+      "audit_pack": "ch01-review-v1"
     },
     {
       "id": "rotel_ch01_sampling_02",
@@ -235,7 +268,7 @@
       "source_problem": "1.2 Problem 3(b)",
       "license": "CC BY-NC-SA 4.0",
       "attribution": "Rachael Norton and Peter Staab, 2023",
-      "review_status": "independently solved, translated, and reviewed",
+      "review_status": "independently solved and reviewed",
       "type": "判断题",
       "difficulty": 1,
       "keywords": [
@@ -244,7 +277,7 @@
       ],
       "formula_refs": [],
       "data_refs": [],
-      "audit_pack": "english-normalization-v1"
+      "audit_pack": "ch01-review-v1"
     },
     {
       "id": "rotel_ch01_sampling_03",
@@ -254,7 +287,7 @@
       "source_problem": "1.2 Problem 3(c)",
       "license": "CC BY-NC-SA 4.0",
       "attribution": "Rachael Norton and Peter Staab, 2023",
-      "review_status": "independently solved, translated, and reviewed",
+      "review_status": "independently solved and reviewed",
       "type": "判断题",
       "difficulty": 2,
       "keywords": [
@@ -263,7 +296,7 @@
       ],
       "formula_refs": [],
       "data_refs": [],
-      "audit_pack": "english-normalization-v1"
+      "audit_pack": "ch01-review-v1"
     },
     {
       "id": "rotel_ch01_sampling_04",
@@ -273,7 +306,7 @@
       "source_problem": "1.2 Problem 3(d)",
       "license": "CC BY-NC-SA 4.0",
       "attribution": "Rachael Norton and Peter Staab, 2023",
-      "review_status": "independently solved, translated, and reviewed",
+      "review_status": "independently solved and reviewed",
       "type": "判断题",
       "difficulty": 2,
       "keywords": [
@@ -282,7 +315,7 @@
       ],
       "formula_refs": [],
       "data_refs": [],
-      "audit_pack": "english-normalization-v1"
+      "audit_pack": "ch01-review-v1"
     },
     {
       "id": "rotel_ch01_measurement_01",
@@ -292,7 +325,7 @@
       "source_problem": "1.3 Problem 1(1)",
       "license": "CC BY-NC-SA 4.0",
       "attribution": "Rachael Norton and Peter Staab, 2023",
-      "review_status": "independently solved, translated, and reviewed",
+      "review_status": "independently solved and reviewed",
       "type": "选择题",
       "difficulty": 1,
       "keywords": [
@@ -301,7 +334,7 @@
       ],
       "formula_refs": [],
       "data_refs": [],
-      "audit_pack": "english-normalization-v1"
+      "audit_pack": "ch01-review-v1"
     },
     {
       "id": "rotel_ch01_measurement_02",
@@ -311,7 +344,7 @@
       "source_problem": "1.3 Problem 2(2)",
       "license": "CC BY-NC-SA 4.0",
       "attribution": "Rachael Norton and Peter Staab, 2023",
-      "review_status": "independently solved, translated, and reviewed",
+      "review_status": "independently solved and reviewed",
       "type": "选择题",
       "difficulty": 2,
       "keywords": [
@@ -320,7 +353,7 @@
       ],
       "formula_refs": [],
       "data_refs": [],
-      "audit_pack": "english-normalization-v1"
+      "audit_pack": "ch01-review-v1"
     },
     {
       "id": "rotel_ch01_measurement_03",
@@ -330,7 +363,7 @@
       "source_problem": "1.3 Problem 2(4)",
       "license": "CC BY-NC-SA 4.0",
       "attribution": "Rachael Norton and Peter Staab, 2023",
-      "review_status": "independently solved, translated, and reviewed",
+      "review_status": "independently solved and reviewed",
       "type": "选择题",
       "difficulty": 1,
       "keywords": [
@@ -339,7 +372,7 @@
       ],
       "formula_refs": [],
       "data_refs": [],
-      "audit_pack": "english-normalization-v1"
+      "audit_pack": "ch01-review-v1"
     },
     {
       "id": "rotel_ch01_design_01",
@@ -349,8 +382,8 @@
       "source_problem": "1.4 Problem 1",
       "license": "CC BY-NC-SA 4.0",
       "attribution": "Rachael Norton and Peter Staab, 2023",
-      "review_status": "independently solved, translated, and reviewed",
-      "type": "综合题",
+      "review_status": "independently solved and reviewed",
+      "type": "简答题",
       "difficulty": 3,
       "keywords": [
         "experimental design",
@@ -360,7 +393,7 @@
       ],
       "formula_refs": [],
       "data_refs": [],
-      "audit_pack": "english-normalization-v1"
+      "audit_pack": "ch01-review-v1"
     }
   ]
 }
