@@ -1,0 +1,17 @@
+{
+  "chapter": 13,
+  "answers": [
+    {
+      "id": "ch13_q01",
+      "answer": "> a.[FORMULA:ch13_q08_ans_f01_image14.wmf]\n\nb\\. Yes, as the number of assemblers increases, so does the production.\n\nc\\. The coefficient of correlation: r=0.9272\n\n[FORMULA:ch13_q08_ans_f02_image15.wmf]\n\nd.  [FORMULA:ch13_q08_ans_f03_image16.wmf]**=**[FORMULA:ch13_q08_ans_f04_image17.wmf]**=**[FORMULA:ch13_q08_ans_f05_image18.wmf]**=**[FORMULA:ch13_q08_ans_f06_image19.wmf]**=7**\n\n[FORMULA:ch13_q08_ans_f07_image20.wmf]=[FORMULA:ch13_q08_ans_f08_image21.wmf]=24-7[FORMULA:ch13_q08_ans_f09_image22.wmf]3=3\n\nSo the regression equation is: [FORMULA:ch13_q08_ans_f10_image23.wmf]=3+7x.\n\ne.  x=6, [FORMULA:ch13_q08_ans_f11_image23.wmf]=3+7\\*6=45."
+    },
+    {
+      "id": "ch13_q02",
+      "answer": "a.  SSE measures the quality or \"goodness\" of the fit of the least squares line to the observed data. The least squares regression line is the \"best\" fitted line that minimizes the sum of squared residuals.\n\nb.  The intercept is the estimated average value of Y when the value of X is zero. So it indicates that if the metal is not heated, the estimated average metal strength is 1lb. per sq. inch. According to the estimated slope, we estimate that the average metal strength increases by 1lb.per sq. inch for each additional minute of heat application to the metal. When x=4 the predicted values is [FORMULA:ch13_q09_ans_f02_image24.wmf] = 1 + 1(4) = 5."
+    },
+    {
+      "id": "ch13_q03",
+      "answer": "The estimated slope is [FORMULA:ch13_q10_ans_f06_image30.wmf]\n\nThe estimated y-intercept is[FORMULA:ch13_q10_ans_f07_image31.wmf]\n\nThe equation is [FORMULA:ch13_q10_ans_f08_image32.wmf] = 48.024+ 5.7003*x*\n\nb\\)\n\nSince [FORMULA:ch13_q10_ans_f09_image33.wmf], we estimate that the sales price of a house increases by 5.7003 dollars when the home size increases by 1 hundred square feet. [FORMULA:ch13_q10_ans_f10_image34.wmf] is the estimated average value of Y when the value of X is zero (if X = 0 is in the range of observed X values). But, no houses had 0 square feet, so [FORMULA:ch13_q10_ans_f11_image35.wmf]just indicates that, for houses within the range of sizes observed, \\$48.024 is the portion of the house price not explained by square feet."
+    }
+  ]
+}

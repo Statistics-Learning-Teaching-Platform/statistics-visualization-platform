@@ -1,0 +1,137 @@
+{
+  "chapter": 4,
+  "answers": [
+    {
+      "id": "ch04_q01",
+      "answer": "Multiple Choice Questions** (For every question there is only one correct choice. Please circle it.)\\\n    (1) Two mutually exclusive events having positive probabilities are \\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_ dependent. \\\n    **[A.]{.underline}** Always\\\n    B. Sometimes\\\n    C. Never\\\n    \\\n    (2)  \\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_ is a measure of the chance that an uncertain event will occur. \\\n    A. Random experiment\\\n    B. Sample Space\\\n    **[C.]{.underline}** Probability\\\n    D. A complement\\\n    E. A population\\\n    \\\n    (3)  In which of the following are the two events A and B, always independent? \\\n    A. A and B are mutually exclusive\\\n    B. The probability of event A is not influenced by the probability of event B\\\n    C. The intersection of A and B is zero\\\n    D. P(A\\|B)=P(A)\\\n    **[E.]{.underline}** B and D\\\n    \\\n    (4) If two events are independent, we can \\_\\_\\_\\_\\_ their probabilities to determine the intersection probability. \\\n    A. Divide\\\n    B. Add\\\n    **[C.]{.underline}** Multiply\\\n    D. Subtract\\\n    \\\n    (5) Events that have no sample space outcomes in common and therefore, cannot occur simultaneously are: \\\n    A. Independent\\\n    **[B.]{.underline}** Mutually Exclusive\\\n    C. Intersections\\\n    D. Unions\\\n    \\\n    (6)  If events A and B are independent, then the probability of simultaneous occurrence of event A and event B can be found with: \\\n    A. *P(A)·P(B)*\\\n    B. *P(A)·P*(*B\\|A*)\\\n    C. *P(B)·P*(*A\\|B*)\\\n    **[D.]{.underline}** All of the above are correct"
+    },
+    {
+      "id": "ch04_q02",
+      "answer": "]{.mark}\\\n    (a)\\\n    [IMG:ch04_q02_ans_f01_image1.png]\\\n    (b) (1) *AA\\*\n    (2) *AB*, *AC*, *BA*, *BC*, *CA*, *CB*\\\n    (3) *AA*, *AB*, *AC*, *BA*, *CA*\\\n    (4) *AA*, *AB*, *BA*, *BB*\\\n    (c) Each outcome has probability [FORMULA:ch04_q02_ans_f02_image2.wmf]\\\n    (1) Pr(*AA*)=[FORMULA:ch04_q02_ans_f03_image3.wmf]\\\n    (2) Pr(*AB*, *AC*, *BA*, *BC*, *CA*, *CB*)=[FORMULA:ch04_q02_ans_f04_image4.wmf]\\\n    (3) Pr(*AA*, *AB*, *AC*, *BA*, *CA*)=[FORMULA:ch04_q02_ans_f05_image5.wmf]\\\n    (4) Pr(*AA*, *AB*, *BA*, *BB*)=[FORMULA:ch04_q02_ans_f06_image6.wmf]"
+    },
+    {
+      "id": "ch04_q03",
+      "answer": "]{.mark}\\\nProbability = (11410 + 7535 + 11197) / 75998 = 30142 / 75998 = 0.397"
+    },
+    {
+      "id": "ch04_q04",
+      "answer": "]{.mark}\\\n    (a) Let T and U denote *Time* and *U.S. News and World Report* respectively.\\\n    P(T or U) =P(T) +P(U) -- P(T∩U)=0.35+0.40 -- 0.10=0.65\\\n    (b) It is the joint probability.\\\n    (c) No, an executive could read more than one magazine."
+    },
+    {
+      "id": "ch04_q05",
+      "answer": "]{.mark} Denote the events of observing a head on the coin, an ace on the card and a five on the die as A, B, and C respectively. Then A, B and C are independent. Thus,\\\n    Pr(A∩B∩C)= P(A) P(B)P(C)\n\n> **=1/2\\*4/52\\*1/6=1/156**[\\\n> ]{.mark}"
+    },
+    {
+      "id": "ch04_q06",
+      "answer": "ne the following events:\\\n    S= Joe will be accepted at least by one of the two, or {$\\text{AB},\\overline{A}B,A\\overline{B}$}\\\n    F= Joe will not be accepted by any universities, or {$\\overline{A}\\overline{B}$}\\\n    Obviously, F is the complement of S.\\\n    P(S)=1-P(F)=1-P($\\overline{A}\\overline{B}$)=1 -- P($\\overline{A}$)P($\\overline{B}$)=1 --\\[1- P(A)\\]\\[1-P(B)\\]= 1-\\[(.75)(.60)\\]=0.55"
+    },
+    {
+      "id": "ch04_q07",
+      "answer": "]{.mark}\\\n(a) P(Violent)=82/150=0.5467\\\n(b) P(Violent or less than 20 years old)= 82/150+39/150-27/150=0.6267 (Additional rule)\\\n(c) P(Under 20 \\|Violent)= P(Under 20 ∩Violent)/ P(Violent)=27/82=0.3293\\\n(d) P(1^st^ Violent and 2^nd^ Violent)= P(1^st^ Violent )P(2^nd^ Violent\\|1^st^ Violent)\\\n= (82/150)(81/149)=0.2972"
+    },
+    {
+      "id": "ch04_q08",
+      "answer": "]{.mark}(a) Fire $\\overline{\\text{FIRE}}$ Total\n\nFraud 16 24 40\n\n$\\overline{\\text{FRAUD}}$ 24 36 60\n\nTotal 40 60 100\n\n\\(b\\) [FORMULA:ch04_q08_ans_f01_image7.wmf][FORMULA:ch04_q08_ans_f02_image8.wmf]\\\n(c) Yes; [FORMULA:ch04_q08_ans_f03_image7.wmf][FORMULA:ch04_q08_ans_f04_image8.wmf]= *P*(Fraud)"
+    },
+    {
+      "id": "ch04_q09",
+      "answer": "Suppose that A1, A2, and B are events where A1 and A2 are mutually exclusive and\\\n    P(A1)=0.8, P(B\\|A1)= 0.1, P(A2)=0.2, P(B\\|A2)=0.3.\\\n    Use this information to find P(B), P(A1\\|B) and P(A2\\|B).\\\n    [Ans]{.mark}: P(B)= P(A1)P(B\\|A1)+P(A2)P(B\\|A2)= (0.8)( 0.1)+(0.2)(0.3)=0.14,\\\n    [FORMULA:ch04_q09_f01_image9.wmf][FORMULA:ch04_q09_f02_image10.wmf][FORMULA:ch04_q09_f03_image11.wmf][FORMULA:ch04_q09_f04_image12.wmf]"
+    },
+    {
+      "id": "ch04_q10",
+      "answer": "]{.mark}\\\n    (a) P(defaultlate) [FORMULA:ch04_q10_ans_f01_image13.wmf]\\\n    (b) No. Too many paying customers would lose credit."
+    },
+    {
+      "id": "ch04_q11",
+      "answer": "If events A and B are independent, then the probability of simultaneous occurrence of event A and event B can be found with: \\\nA. *P(A)·P(B)*\\\nB. *P(A)·P*(*A\\|B*)\\\nC. *P(B)·P*(*A\\|B*)\\\n**[D.]{.underline}** All of the above are correct\n\n \n\n*AACSB: Reflective thinking skills\\\nDifficulty: Hard\\\n *"
+    },
+    {
+      "id": "ch04_q12",
+      "answer": "A(n) \\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_ is the probability that one event will occur given that we know that another event already has occurred. \\\nA. Sample space outcome\\\nB. Subjective Probability\\\nC. Complement of events\\\nD. Long-run relative frequency\\\n**[E.]{.underline}** Conditional probability\n\n \n\n*AACSB: Reflective thinking skills\\\nDifficulty: Medium\\\n *"
+    },
+    {
+      "id": "ch04_q13",
+      "answer": "In which of the following are the two events A and B, always independent? \\\nA. A and B are mutually exclusive\\\nB. The probability of event A is not influenced by the probability of event B\\\nC. The intersection of A and B is zero\\\nD. P(A\\|B)=P(A)\\\n**[E.]{.underline}** B and D\n\n \n\n*AACSB: Reflective thinking skills\\\nDifficulty: Hard\\\n *"
+    },
+    {
+      "id": "ch04_q16",
+      "answer": "Given the standard deck of cards, what is the probability of drawing a red card, given that it is a face card? \n\n.5\\\n [FORMULA:ch04_q55_f01_image1.wmf] \n\n \n\n*AACSB: Analytic Skills\\\nDifficulty: Medium\\\n *"
+    },
+    {
+      "id": "ch04_q17",
+      "answer": "Given a standard deck of cards, what is the probability of drawing a face card, given that it is a red card? \n\n3/13\\\n [FORMULA:ch04_q56_f01_image2.wmf] \n\n \n\n*AACSB: Analytic Skills\\\nDifficulty: Medium\\\n *"
+    },
+    {
+      "id": "ch04_q18",
+      "answer": "A machine is made up of 3 components: an upper part, a mid part and a lower part. The machine is then assembled. 5 percent of the upper parts are defective; 4 percent of the mid parts are defective; 1 percent of the lower parts are defective. What is the probability that a machine is non-defective? \n\n.9029\\\n(.95)(.96)(.99)=.9029\n\n \n\n*AACSB: Analytic Skills\\\nDifficulty: Hard\\\n *"
+    },
+    {
+      "id": "ch04_q19",
+      "answer": "A machine is produced by a sequence of operations. Typically one defective machine is produced per 1000 parts. What is the probability of two non-defective independent machines being produced? \n\n.998\\\n(.999)(.999)=.998\n\n \n\n*AACSB: Analytic Skills\\\nDifficulty: Medium\\\n *"
+    },
+    {
+      "id": "ch04_q20",
+      "answer": "A family has two children. What is the probability that both are girls, given that at least one is a girl? \n\n1/3\n\n132. In a major Midwestern university, 55% of all undergraduates are female, 25% belong to a Greek organization (fraternity or sorority) and 40% of all males belong to a Greek organization. What is the probability that one randomly selected undergraduate will be either a female or belong to a Greek organization? \n\n73%\\\nP(G [FORMULA:ch04_q63_f01_image3.wmf]  F)=.55+.25-.07=.73\n\n \n\n*AACSB: Analytic Skills\\\nDifficulty: Hard\\\n *\n\n133. In a major Midwestern university, 55% of all undergraduates are female, 25% belong to a Greek organization (fraternity or sorority) and 40% of all males belong to a Greek organization. What is the probability that an undergraduate is in a Greek organization given that the undergraduate is a female? \n\n.127\\\nP(G\\|F)=.07/.55=.127\n\n \n\n*AACSB: Analytic Skills\\\nDifficulty: Hard\\\n *\n\n134. In a major Midwestern university, 55% of all undergraduates are female, 25% belong to a Greek organization (fraternity or sorority) and 40% of all males belong to a Greek organization. Are the events \\\"female/not female\\\" and \\\"belongs to a Greek organization\\\" independent? \n\nNo\\\nP(G\\|F)  [FORMULA:ch04_q63_f02_image4.wmf]  P(G)\n\n \n\n*AACSB: Analytic Skills\\\nDifficulty: Hard\\\n *\n\n135. At a certain university, 30% of the students major in zoology. Of the students majoring in zoology, 60% are males. Of all the students at the university, 70% are males. What percentage of the students are males majoring in zoology? \n\n18%\\\n [FORMULA:ch04_q63_f03_image5.wmf] \n\n \n\n*AACSB: Analytic Skills\\\nDifficulty: Hard\\\n *\n\n139. An advertising campaign is being developed to promote a new bookstore opening in the newest mall development. To develop an appropriate mailing list it has been decided to purchase lists of credit card holders from MasterCard and American Express. Combining the lists they find the following: 40% of the people on the list have only a MasterCard and 10% have only an American Express card. Another 20% hold both MasterCard and American Express. Finally, 30% of those on the list have neither card. Suppose a person on the list is known to have a MasterCard. What is the probability that person also has an American Express Card? \n\n.33\\\nP(AE\\|MC)=.20/.60=.33\\\n [FORMULA:ch04_q63_f04_image6.wmf] \n\n \n\n*AACSB: Analytic Skills\\\nDifficulty: Medium\\\n *\n\n139. An advertising campaign is being developed to promote a new bookstore opening in the newest mall development. To develop an appropriate mailing list it has been decided to purchase lists of credit card holders from MasterCard and American Express. Combining the lists they find the following: 40% of the people on the list have only a MasterCard and 10% have only an American Express card. Another 20% hold both MasterCard and American Express. Finally, 30% of those on the list have neither card. Suppose a person on the list is known to have a MasterCard. What is the probability that person also has an American Express Card? \n\n.33\\\nP(AE\\|MC)=.20/.60=.33\\\n [FORMULA:ch04_q63_f05_image6.wmf] \n\n \n\n*AACSB: Analytic Skills\\\nDifficulty: Medium\\\n *"
+    },
+    {
+      "id": "ch04_q21",
+      "answer": "Two mutually exclusive events having positive probabilities are \\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_ dependent. \\\n**[A.]{.underline}** Always\\\nB. Sometimes\\\nC. Never\n\n \n\n*AACSB: Reflective thinking skills\\\nDifficulty: Hard\\\n *"
+    },
+    {
+      "id": "ch04_q22",
+      "answer": "\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_ is a measure of the chance that an uncertain event will occur. \\\nA. Random experiment\\\nB. Sample Space\\\n**[C.]{.underline}** Probability\\\nD. A complement\\\nE. A population\n\n \n\n*AACSB: Reflective thinking skills\\\nDifficulty: Medium\\\n *"
+    },
+    {
+      "id": "ch04_q25",
+      "answer": "Suppose P(A)=.45, P(B)=.20, P(C)=.35, P(E\\|A)=.10, P(E\\|B)=.05 and P(E\\|C)=0. What is P(E)? \n\n.055\\\nP(E)=(.45)(.10)+(.20)(.05)+(.35)(0)=.055\n\n \n\n*AACSB: Analytic Skills\\\nDifficulty: Hard*"
+    },
+    {
+      "id": "ch04_q26",
+      "answer": "a.** Discrete\n\n**b.** Discrete\n\n**c.** Continuous\n\n**d.** Discrete\n\n**f.** Continuous\n\n**g.** Continuous"
+    },
+    {
+      "id": "ch04_q27",
+      "answer": "a.** *x* 1 2 3 4 5\n\n*p*(*x*) $\\frac{1}{\\text{15}}$ $\\frac{2}{\\text{15}}$ $\\frac{1}{5}$ $\\frac{4}{\\text{15}}$ $\\frac{1}{3}$\n\n**b.** *p*(*x*) ≥ 0 for each value of *x*.\\\n[FORMULA:ch04_q12_f01_image1.emf]\n\n**c.**\n\n**d.**"
+    },
+    {
+      "id": "ch04_q28",
+      "answer": "**a.**\n\n**b.** (1) *P*(*x* = 5) = .0102\n\n\\(2\\) *P*(*x* ≥ 3) = 1 -- *P*(*x* ≤ 2) = 1 -- .7443 = .2557\n\n\\(3\\) *P*(*x* ≤ 2) = .7443\n\n\\(4\\) *P*(*x* ≥ 1) = 1 -- *P*(*x* = 0) = 1 -- .1176 = .8824"
+    },
+    {
+      "id": "ch04_q29",
+      "answer": "a.** $P(x = 0) = \\frac{e^{- 1\\text{.}5}(1\\text{.}5^{0})}{0!} = \\text{.2231}$\n\n**b.** P(x \\< 4) = P(x ≤ 3) = .9344\n\n**c.** Poisson with *μ = 6*\n\n*P*(*x* ≤ 12) = .9912\n\n**d.** Poisson with *μ = 6*\n\n*P*(*x* = 0) = .0025"
+    },
+    {
+      "id": "ch04_q30",
+      "answer": "**a.** *x* 1 2 3 4 5\n\n*p*(*x*) $\\frac{1}{\\text{15}}$ $\\frac{2}{\\text{15}}$ $\\frac{1}{5}$ $\\frac{4}{\\text{15}}$ $\\frac{1}{3}$\n\n**b.** *p*(*x*) ≥ 0 for each value of *x*.\\\n[FORMULA:ch04_q01_ans_f01_image1.emf]\n\n**c.**\n\n**d.**"
+    },
+    {
+      "id": "ch04_q31",
+      "answer": "**a.** *P*(*x* = 0) = .7857\n\n**b.** *P*(*x* ≥ 1) = 1 -- *P*(*x* = 0) = 1 -- .7857 = .2143\n\n**c.** *P*(*x* ≤ 3) = .7857 + .1905 + .0221 + .0016 = .9999\n\n**d.** *P*(*x* ≥ 2) = 1 -- *P*(*x* ≤ 1) = 1 -- .9762 = .0238\n\n**e.** No, the probability of this result is small if the claim is true."
+    },
+    {
+      "id": "ch04_q32",
+      "answer": "**a.**\\\n*P*(*x* ≤ 4) = .9891\n\n**b.**\\\n*P*(*x* ≥ 12) = .9444\n\n**c.**\\\n[FORMULA:ch04_q03_ans_f01_image3.emf] *P*(*x* ≤ 1) = .9761"
+    },
+    {
+      "id": "ch04_q33",
+      "answer": "Compute the pdf in MINITAB with *μ* = 3.\n\n**a.** *P*(*x* = 0) = .0498\n\n**b.** Perhaps not; if the agency's claim is true, the probability of no patrol cars is quite small.\n\n**c.**"
+    },
+    {
+      "id": "ch04_q34",
+      "answer": "(a)$f(x) = \\left\\{ \\begin{matrix}\n\\frac{1}{6} & 0 \\leq x \\leq 6 \\\\\n0 & \\text{otherwise}\n\\end{matrix} \\right.\\$\n\n**b.** f(x)\n\n1/6\n\n0 6 min\n\n**c.**\n\n**d.**\n\n**e.**"
+    },
+    {
+      "id": "ch04_q35",
+      "answer": "a.**\n\n**b.**"
+    },
+    {
+      "id": "ch04_q36",
+      "answer": "a.**\n\n**b.**\n\n**c.**\n\n**d.**\n\n**e.**"
+    },
+    {
+      "id": "ch04_q37",
+      "answer": "a.**\n\n**b.**\n\n**c.** (1) *P*(*x* \\> 140) = *P*(*z* \\> 2.5) = 1 -- .9938 = .0062\\\n(2) *P*(*x* \\< 88) = *P*(*z* \\< --.75) = .2266\\\n(3) *P*(72 \\< *x* \\< 128) = *P*(--1.75 \\< *z* \\< 1.75) = .9599 -- .0401= .9198\\\n(4) *P*(--1.5 ≤ *z* ≤ 1.5) = .9332 -- .0668 = .8664\n\n**d.** *P*(*x* \\> 136) = *P*(*z* \\> 2.25) = 1 -- .9878 = .0122; 1.22%"
+    }
+  ]
+}

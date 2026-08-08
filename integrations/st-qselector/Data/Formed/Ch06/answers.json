@@ -1,0 +1,145 @@
+{
+  "chapter": 6,
+  "answers": [
+    {
+      "id": "ch06_q01",
+      "answer": "***f(x)* is a valid continuous probability distribution, then for any value of *x*, *f(x)*≥0, and the total area under the furve *f(x)* is equal to 1*.***\n\n**That is:** [FORMULA:ch06_q01_ans_f02_image2.wmf]**, gives** [FORMULA:ch06_q01_ans_f03_image3.wmf]"
+    },
+    {
+      "id": "ch06_q02",
+      "answer": "a.  **Let x be the random variable of round-off error.**\n\n[FORMULA:ch06_q02_ans_f03_image6.wmf]\n\n**b.**\n\n**f(x)**\n\n**1**\n\n**--.5 .5 cents**\n\n**c. P({x \\> .3}** [IMG:ch06_q02_ans_f04_image7.png] **{x \\< --.3}) = .2 + .2 = .4**\n\n**d.** $\\begin{array}{r}\nu_{x} = \\frac{c + d}{2} = \\frac{- \\text{.}5 + \\text{.}5}{2} = 0 \\\\\n\\sigma_{x} = \\sqrt{\\frac{(d - c)^{2}}{\\text{12}}} = \\sqrt{\\frac{(\\text{.}5 - ( - \\text{.}5))^{2}}{\\text{12}}} = \\text{.}\\text{2887}\n\\end{array}$\n\n**e.** $\\begin{array}{r}\n\\lbrack\\mu_{x} \\pm \\sigma_{x}\\rbrack = \\lbrack 0 \\pm \\text{.}\\text{2887}\\rbrack = \\lbrack - \\text{.}\\text{2887},\\text{.}\\text{2887}\\rbrack \\\\\nP( - \\text{.}\\text{2887} \\leq x \\leq \\text{.}\\text{2887}) = (\\text{.}\\text{2887} - ( - \\text{.}\\text{2887}))(1) = \\text{.}\\text{5774}\n\\end{array}$"
+    },
+    {
+      "id": "ch06_q03",
+      "answer": "**a.Let x be the amount of time that a randomly selected cable repair visit will take.**\n\n[FORMULA:ch06_q03_ans_f01_image8.wmf]\n\n**b.The conditional probability that a cable repair visit will take over 20 minutes given that it takes over 15 minutes is**\n\n[FORMULA:ch06_q03_ans_f02_image9.wmf]"
+    },
+    {
+      "id": "ch06_q04",
+      "answer": "**a.\\[1\\]**\n\n[FORMULA:ch06_q04_ans_f04_image13.wmf]**;**\n\n**The z value of 1 indicates that x is one standard deviation above the mean.**\n\n**a.\\[2\\]**\n\n[FORMULA:ch06_q04_ans_f05_image14.wmf]**;**\n\n**The z value of -2 indicates that x is two standard deviations below the mean.**\n\nb.  **If x=**[IMG:ch06_q04_ans_f06_image15.png] **, z value is 0. So the desired value of x is 1000.**\n\n<!-- -->"
+    },
+    {
+      "id": "ch06_q05",
+      "answer": "> [FORMULA:ch06_q05_ans_f03_image18.wmf]**a.\\[1\\]**\n>\n> **P(z ≥ --1) = P(z ≤ 1) =.8413**\n>\n> **a.\\[2\\]**\n>\n> [FORMULA:ch06_q05_ans_f04_image19.wmf]\n>\n> **P(--2.5 ≤ z ≤ .5) = P( z ≤ .5) -- P(z ≤ --2.5)= P( z ≤ .5) -- (1-- P(z ≤ 2.5))=.5199 -- (1-- .9938) = .5137**\n>\n> **b.\\[1\\]**\n>\n> [IMG:ch06_q05_ans_f05_image20.png]\n>\n> [IMG:ch06_q05_ans_f06_image21.png]\n>\n> **b.\\[2\\]**\n\n[IMG:ch06_q05_ans_f07_image22.png]\n\n> [IMG:ch06_q05_ans_f08_image23.png]"
+    },
+    {
+      "id": "ch06_q06",
+      "answer": "**Let x be the yearly return on a randomly selected common stock.**\n\n**Given μ = 12.4, σ = 20.6**\n\n**a.\\[1\\] P(x \\> 0) = P(z \\>** [IMG:ch06_q06_ans_f01_image24.png]**)= P(z \\> --.60) =P(z \\< .60) = .7257**\n\n**a.\\[2\\] P(x \\> 10) = P(z \\> --.12) = .5478**\n\n**a.\\[3\\] P(x ≤ --10) = P(z ≤ --1.09) = 1-- P(z ≤ 1.09)=1--.8621 = .1379**\n\n**b. According to the definition of percentile, we know that 10 percent of yearly returns are at or below the 10th percentile of the distribution of yearly returns; 90 percent are at or above the 10th percentile.**\n\n**Let k be the 10th percentile of the distribution of yearly returns.**\n\n**Then P(x ≤ k) = 0.1 i.e.** [IMG:ch06_q06_ans_f02_image25.png] **which gives (k--12.4)/20.6= --1.28, thus k=-13.968.**"
+    },
+    {
+      "id": "ch06_q07",
+      "answer": "**Let x be the mileage obtained by a randomly selected tire of this new type; k be the desired guaranteed mileage if the tire company desires that no more than 2 percent of the tires will fail to meet the guaranteed mileage. Hence, we must choose k such that**\n\n> [FORMULA:ch06_q07_ans_f01_image26.wmf]"
+    },
+    {
+      "id": "ch06_q08",
+      "answer": "> **Let x be the random variable of IQ test score.**\n\na.  **People having an IQ of at least 80 would qualify for admittance to the school.**\n\n> $$P(x \\geq \\text{80}) = P(z \\geq \\frac{\\text{80} - \\text{100}}{\\text{16}}) = P(z \\geq - 1\\text{.25}) = 1 - \\text{.1056} = \\text{.8944}$$\n>\n> **b. Let k be the minimum IQ test score required for admittance if the public school wishes 95 percent of all children to qualify for admittance. Here, we want 95 percent of all children to have scores greater than or equal to k. Hence, we must choose k such that**\n\n[FORMULA:ch06_q08_ans_f01_image27.wmf]"
+    },
+    {
+      "id": "ch06_q09",
+      "answer": "**Let x be the net interest margin that a randomly selected U.S. bank will have.**\n\na\\.\n\n$$P(x > 5\\text{.}4) = P(z > \\frac{5\\text{.}4 - 4\\text{.15}}{\\text{.}5}) = P(z > 2\\text{.}5) = 1 - \\text{.9983} = \\text{.0062}$$\n\n**b.**\n\n$$P(x < 4\\text{.}4) = P(z < \\frac{4\\text{.}4 - 4\\text{.15}}{\\text{.}5}) = P(z < \\text{.}5) = \\text{.6915}$$\n\n**c. Let k be the bank's net interest margin so that it will be less than the net interest margins of 15 percent of all U.S. banks. Here, we want 15 percent of all U.S. banks to have the net interest margins greater than k. Hence, we must choose k such that**\n\n[FORMULA:ch06_q09_ans_f01_image28.wmf]"
+    },
+    {
+      "id": "ch06_q10",
+      "answer": "**Let x be the number of marketing researchers who would disapprove of the practice in a random sample of 205. x has a binomial distribution with** [IMG:ch06_q10_ans_f01_image29.png]**.**\n\n**a.\\[1\\] Since both np=133.25 and n(1 -- p)=71.75 exceed 5, we may use the normal approximation to the binomial.**\n\n**a.\\[2\\] x is approximately normal with parameters** [IMG:ch06_q10_ans_f02_image30.png]**and**[IMG:ch06_q10_ans_f03_image31.png]\n\n**The probability that 117or fewer of 205 randomly selected marketing researchers would disapprove of the practice is approximated by the normal probability as follows**\n\n[FORMULA:ch06_q10_ans_f04_image32.wmf]\n\n**b.**\n\n**Of 205 randomly selected marketing researchers who participated in an actual survey, 117 said that they disapprove of this practice. This is a rare event since the probability that 117or fewer of 205 randomly selected marketing researchers would disapprove of the practice is less than 0.05. Thus I don't believe the marketing manager's claim that at least 65 percent of all marketing researchers would disapprove of the practice.**\n\n--- (merged dup) ---\n\n**a.** [FORMULA:ch06_q10_ans_f01_image18.wmf]\\\n[FORMULA:ch06_q10_ans_f02_image19.wmf], rounding *z* to 2 decimal places gives .010\n\n**b.** No"
+    },
+    {
+      "id": "ch06_q11",
+      "answer": "**Let x be the number of guests who arrive on July 1.**\n\n**x is approximately normal with parameters** [IMG:ch06_q11_ans_f01_image33.png]**and**[IMG:ch06_q11_ans_f02_image34.png]\n\n[IMG:ch06_q11_ans_f03_image35.png]\n\n**All guests who arrive on July 1 will receive a room implies that x is less than or equal to 300.**\n\n**So the probability that all guests who arrive on July 1 will receive a room with continuity correction is**\n\n$P(x \\leq \\text{300.}5) = P\\left( z \\leq \\frac{\\text{300.}5 - \\text{292.}5}{5\\text{.40833}} \\right) = \\text{}P(z \\leq 1\\text{.48}) = \\text{.9306}$"
+    },
+    {
+      "id": "ch06_q12",
+      "answer": "**Let x be the number of German adults who had purchased blue jeans in the past three months in a random sample of 400 respondents.**\n\na.  **x is approximately normal with parameters** [IMG:ch06_q12_ans_f01_image36.png]**and**[IMG:ch06_q12_ans_f02_image34.png]\n\n[IMG:ch06_q12_ans_f03_image37.png]\n\n**The probability that 45 percent (400\\*0.45=180) or fewer of 400 randomly selected German adults would have purchased blue jeans in the past three months with continuity correction is**\n\n[FORMULA:ch06_q12_ans_f04_image38.wmf]**b. It is found that 45 percent of 400 randomly selected respondents in Germany had purchased blue jeans in the past three months. This is a rare event since the probability that 45 percent (400\\*0.45=180) or fewer of 400 randomly selected German adults would have purchased blue jeans in the past three months is less than 0.05. Thus I don't believe that at least 50 percent of adults in Germany have purchased blue jeans in the past three months. That is, we would conclude that fewer than 50 percent of adults in Germany have purchased blue jeans in the past three months.**"
+    },
+    {
+      "id": "ch06_q13",
+      "answer": "a: continuous, b: discrete, c: continuous"
+    },
+    {
+      "id": "ch06_q14",
+      "answer": "a. and c. could *not* be probability density functions for a continuous random since the total area under the curve *f(x)* is not equal to 1*.*"
+    },
+    {
+      "id": "ch06_q15",
+      "answer": "a\\. End points are: c = 0.5, d = 10.0 (using minutes as the units)\n\nb\\. Mean is 5.25, found by (0.5 + 10)/2\n\nStandard deviation is 2.74, found by [FORMULA:ch06_q03_ans_f01_image2.wmf]\n\nc\\. 0.5263, found by \\[1/(10 -- 0.5)\\]\\*(10 -- 5)\n\nd\\. 2.875, found from \\[1/(10 -- 0.5)\\]\\*(*x* -- 5) = 0.25 and 7.625 found from \\[1/(10 -- 0.5)\\]\\*(10 -- *x*) = 0.25"
+    },
+    {
+      "id": "ch06_q17",
+      "answer": "Let x be the random variable of weekly incomes\n\n1.  [FORMULA:ch06_q05_ans_f01_image9.wmf]\n\n2\\. [FORMULA:ch06_q05_ans_f02_image10.wmf]"
+    },
+    {
+      "id": "ch06_q18",
+      "answer": "a.  The probability that the amount requested is \\$80,000 or more is\n\n[FORMULA:ch06_q06_ans_f01_image11.wmf]\n\nb.  [FORMULA:ch06_q06_ans_f02_image12.wmf]The probability that the amount requested is between \\$65,000 and \\$80,000 is given by\n\nc.  [FORMULA:ch06_q06_ans_f03_image13.wmf]The probability that the amount requested is \\$65,000 or more is given by"
+    },
+    {
+      "id": "ch06_q19",
+      "answer": "The fact of this case is shown in the following diagram, where *k* represents the minimum guaranteed mileage.\n\n[IMG:ch06_q07_ans_f01_image14.png]\n\nSo we have\n\n[FORMULA:ch06_q07_ans_f02_image15.wmf]"
+    },
+    {
+      "id": "ch06_q20",
+      "answer": "a.  \\(1\\) *P*(*x* ≤ 959) = *P*(*z* ≤ 2.12) = .5 + .4830 = .9830 OR\n\nUsing Cum. Normal Table *P*(*z* ≤ 2.12) = .9830\\\n(2) *P*(*x* \\> 1004) = *P*(*z* \\> 2.72) = .5 -- .4967 = .0033 OR\n\nUsing Cum. Normal Table *P*(*z* \\> 2.72) = 1 -- .9967 = .0033\\\n(3) *P*(*x* \\< 650) + *P*(*x* \\> 950) = *P*(*z* \\< --2) + *P*(*z* \\> 2) = 2(.0228) = .0456 OR\n\nUsing Cum. Normal Table *P*(*z* \\< --2) + *P*(*z* \\> 2) = .0228 + (1 -- .9772) = .0456\n\n[FORMULA:ch06_q08_ans_f01_image16.wmf]\n\nb.  *P*(*x* \\> 947) = *P*(*z* \\> 1.96) = .025\n\n> [FORMULA:ch06_q08_ans_f02_image17.wmf]\n>\n> *order =* 947 boxes of cereal\n\n+:----+:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+\n| 9\\. | The binomial random variable *x* consists of *n* = 60 trials and has the probability of failure *q* = 0.4. Using the normal approximation, compute the probability of 32 successes. \\ |\n|     | \\                                                                                                                                                                                     |\n|     | Solution: µ = np = (60)(.6) = 36                                                                                                                                                      |\n|     |                                                                                                                                                                                       |\n|     | σ = √(n)(p)(q) = √(36)(.4) = √14.4 = 3.795\\                                                                                                                                           |\n|     | P(31.5 ≤ x ≤ 32.5) = P(-1.186 ≤ z ≤ -0.9223) = .0618                                                                                                                                  |\n+-----+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+"
+    },
+    {
+      "id": "ch06_q21",
+      "answer": "If the sample size n is sufficiently large, then the population of all sample means is approximately normal."
+    },
+    {
+      "id": "ch06_q22",
+      "answer": "**a.** $\\mu_{\\overline{x}} = \\text{10}$\n\n**b.**\n\n**c.**\n\n**d.**"
+    },
+    {
+      "id": "ch06_q23",
+      "answer": "a.** Normal because the sample is large (*n* ≥ 30)\n\n**b.**\n\n**c.**\n\n**d.** 1.43%; conclude that $\\mu$ is less than 6."
+    },
+    {
+      "id": "ch06_q24",
+      "answer": "a.** *np* ≥ 5\n\n*n*(1 -- *p*) ≥ 5\n\n**b.**"
+    },
+    {
+      "id": "ch06_q25",
+      "answer": "**a.** np = (100)(.4) = 40 : n(1--p) = (100)(.6) = 60: Yes, sample is large enough\n\n**b.** np = (10)(.1) = 1 : n(1--p) = (10)(.9) = 9: No, sample is not large enough\n\n**c.** np = (50)(.1) = 5 : n(1--p) = (50)(.9) = 45: Yes, sample is large enough\n\n**d.** np = (400)(.8) = 320 : n(1--p) = (400)(.2) = 80: Yes, sample is large enough\n\n**e.** np = (1000)(.98) = 980 : n(1--p) = (1000)(.02) = 20: Yes, sample is large enough\n\n**f.** np = (400)(.99) = 396 : n(1--p) = (400)(.01) = 4: No, sample is not large enough"
+    },
+    {
+      "id": "ch06_q26",
+      "answer": "**a.**\n\n$\\begin{array}{r}\n\\mu_{\\hat{p}} = p = \\text{.}\\text{20} \\\\\n\\sigma_{\\hat{p}} = \\sqrt{\\frac{(\\text{.20})(1 - \\text{.20})}{\\text{1000}}} = \\text{.}\\text{01265} \\\\\nP(\\hat{p} \\leq \\text{.}\\text{17}) = P(z \\leq \\frac{\\text{.17} - \\text{.20}}{\\text{.01265}}) = P(z \\leq - 2\\text{.}\\text{37}) = \\text{.}\\text{0089}\n\\end{array}$\n\n**b.** Yes, the probability of observing this sample is very small if *p* = .20. The true *p* is likely less than .20."
+    },
+    {
+      "id": "ch06_q27",
+      "answer": "a.**\n\n**b.** Perhaps, but the evidence is not terribly strong"
+    },
+    {
+      "id": "ch06_q28",
+      "answer": "[FORMULA:ch06_q01_ans_f01_image1.wmf] *P*(*x* ≤ *k*) = 0.33\\\n$z = \\frac{k - \\mu}{\\sigma}$\\\n\\\n*k* = 2780\\\n\\$2780"
+    },
+    {
+      "id": "ch06_q29",
+      "answer": "*P*(*x* ≥ *st*) = .99\\\n\\\n\\\n*st* = 441.7\\\n442 units"
+    },
+    {
+      "id": "ch06_q30",
+      "answer": "**a.**\n\n$\\begin{array}{r}\n\\mu_{\\hat{p}} = p = \\text{.}\\text{20} \\\\\n\\sigma_{\\hat{p}} = \\sqrt{\\frac{(\\text{.20})(1 - \\text{.20})}{\\text{1000}}} = \\text{.}\\text{01265} \\\\\nP(\\hat{p} \\leq \\text{.}\\text{17}) = P(z \\leq \\frac{\\text{.17} - \\text{.20}}{\\text{.01265}}) = P(z \\leq - 2\\text{.}\\text{37}) = \\text{.}\\text{0089}\n\\end{array}$\n\n**b.** Yes, the probability of observing this sample is very small if *p* = .20. The true *p* is likely less than .20."
+    },
+    {
+      "id": "ch06_q31",
+      "answer": ">\n> **a.** longer\n>\n> **b.** shorter\n>\n> **c.** shorter\n>\n> **d.** longer"
+    },
+    {
+      "id": "ch06_q32",
+      "answer": "a.**\n\n**b.** Yes, 95% interval is below 6.\n\nc.  No, 99% interval extends above 6.\n\nd.  Fairly confident since 95% CI is below 6 while 99% CI contains 6."
+    },
+    {
+      "id": "ch06_q33",
+      "answer": "a.**\n\n**b.** We are at least 95% confident the mean is greater than 800 because the interval is above"
+    },
+    {
+      "id": "ch06_q34",
+      "answer": "**a.** ^units^\n\n**b.**\\\nmargin of error = 1"
+    },
+    {
+      "id": "ch06_q35",
+      "answer": "^sales\\ figures^"
+    },
+    {
+      "id": "ch06_q36",
+      "answer": "$\\begin{array}{r}\n\\hat{p} = \\frac{\\text{350}}{\\text{500}} = 0\\text{.}7 \\\\\n\\hat{\\sigma} = |\\overline{\\frac{0\\text{.}7(1 - 0\\text{.}7)}{\\text{500}}} = 0\\text{.}\\text{0205} \\\\\nn\\hat{p} = \\text{500} \\ast 0\\text{.}7 = \\text{350} \\geq 5 \\\\\nn(1 - \\hat{p}) = \\text{500}(1 - 0\\text{.}7) = \\text{150} \\geq 5 \\\\\n\\lbrack\\hat{p} - z_{\\frac{\\alpha}{2}}\\hat{\\sigma},\\hat{p} + z_{\\frac{\\alpha}{2}}\\hat{\\sigma}\\rbrack = \\lbrack 0\\text{.}7 - z_{0\\text{.005}} \\ast 0\\text{.}\\text{0205},0\\text{.}7 + z_{0\\text{.005}} \\ast 0\\text{.}\\text{0205}\\rbrack = \\lbrack 0\\text{.}\\text{647,0}\\text{.}\\text{753}\\rbrack\n\\end{array}$"
+    }
+  ]
+}
