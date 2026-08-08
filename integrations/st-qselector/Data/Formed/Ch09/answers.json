@@ -76,6 +76,84 @@
       "id": "rotel_ch09_ttest_01",
       "answer": "设\n\n$$H_0:\\mu=77,\\qquad H_a:\\mu>77.$$\n\n总体标准差未知，使用单样本 $t$ 检验：\n\n$$t=\\frac{81.09-77}{0.91/\\sqrt{14}}\\approx16.817,\\qquad df=13.$$\n\n右侧临界值 $t_{0.90,13}\\approx1.350$。由于 $16.817>1.350$，拒绝 $H_0$。在10%的显著性水平下，有充分证据认为该地区总体平均寿命高于77岁。",
       "review_status": "答案已独立推导并审核"
+    },
+    {
+      "id": "ch09_q11",
+      "answer": "a. Let $\\mu$ be the population mean amount of caustic material per gallon. Use\n\n$$H_0:\\mu\\le4.0\\quad\\text{versus}\\quad H_a:\\mu>4.0.$$\n\nThe null represents the company's claim; the alternative represents an unsafe mean amount above 4.0 fluid ounces.\n\nb. Because $\\sigma$ is known, use a one-sample $z$ test at the boundary value $\\mu_0=4.0$:\n\n$$z=\\frac{4.5-4.0}{1.3/\\sqrt{100}}\\approx3.8462.$$\n\nThe right-tail p-value is\n\n$$P(Z\\ge3.8462)\\approx0.000060.$$\n\nSince $0.000060<0.01$, reject $H_0$. There is sufficient evidence that the mean exceeds 4.0 fluid ounces per gallon, so the inspector can reject the company's claim.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "missing-answer-recovery-v1"
+    },
+    {
+      "id": "ch09_q12",
+      "answer": "Let $\\mu$ be Utah's population mean daily cost. Test\n\n$$H_0:\\mu=1231\\quad\\text{versus}\\quad H_a:\\mu<1231.$$\n\nThe test statistic is\n\n$$z=\\frac{1103-1231}{252/\\sqrt{25}}=\\frac{-128}{50.4}\\approx-2.5397.$$\n\nThe left-tail p-value is approximately $0.00555$. Since $0.00555<0.05$, reject $H_0$. The data provide sufficient evidence that Utah's 2007 mean daily cost was below $\\$1{,}231$.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "missing-answer-recovery-v1"
+    },
+    {
+      "id": "ch09_q13",
+      "answer": "Test\n\n$$H_0:\\mu=500\\quad\\text{versus}\\quad H_a:\\mu\\ne500.$$\n\nThe test statistic is\n\n$$z=\\frac{554-500}{100/\\sqrt{25}}=2.70.$$\n\nThe two-sided p-value is\n\n$$2P(Z\\ge2.70)\\approx0.00693.$$\n\na. Because $0.00693<0.05$, reject $H_0$.\n\nb. Because $0.00693<0.01$, also reject $H_0$ at the 1% level.\n\nAt both significance levels, there is evidence that the course changes mean SAT scores; the observed change is upward.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "missing-answer-recovery-v1"
+    },
+    {
+      "id": "ch09_q14",
+      "answer": "Test\n\n$$H_0:\\mu=109\\quad\\text{versus}\\quad H_a:\\mu>109.$$\n\nThe test statistic is\n\n$$z=\\frac{116-109}{15/\\sqrt{122}}\\approx5.159.$$\n\nThe right-tail p-value is approximately $1.27\\times10^{-7}$. Since this is far below $0.05$, reject $H_0$. There is sufficient evidence that UIC students have a population mean IQ greater than 109.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "missing-answer-recovery-v1"
+    },
+    {
+      "id": "ch09_q15",
+      "answer": "Because the population standard deviation is known, use a one-sample $z$ test:\n\n$$H_0:\\mu=9450\\quad\\text{versus}\\quad H_a:\\mu>9450.$$\n\n$$z=\\frac{9850-9450}{1035/\\sqrt{47}}\\approx2.648.$$\n\nThe right-tail p-value is approximately $0.00403$. Since $0.00403<0.01$, reject $H_0$. There is sufficient evidence that the population mean apartment price has increased.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "missing-answer-recovery-v1"
+    },
+    {
+      "id": "ch09_q16",
+      "answer": "Because $\\sigma$ is unknown, use a one-sample $t$ test:\n\n$$H_0:\\mu=9450\\quad\\text{versus}\\quad H_a:\\mu>9450.$$\n\nWith $df=25-1=24$,\n\n$$t=\\frac{9850-9450}{1035/\\sqrt{25}}\\approx1.9324.$$\n\nThe right-tail p-value is approximately $0.0326$. Since $0.0326>0.01$, fail to reject $H_0$. At the 1% level, there is insufficient evidence that the population mean apartment price has increased.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "missing-answer-recovery-v1"
+    },
+    {
+      "id": "ch09_q17",
+      "answer": "Test\n\n$$H_0:\\mu=1520\\quad\\text{versus}\\quad H_a:\\mu<1520.$$\n\nBecause $\\sigma$ is unknown, use a one-sample $t$ statistic with $df=39$:\n\n$$t=\\frac{1505-1520}{86/\\sqrt{40}}\\approx-1.1031.$$\n\nThe left-tail p-value is approximately $0.1384$. Since $0.1384>0.05$, fail to reject $H_0$. There is insufficient evidence that the population mean lifetime is less than 1,520 hours.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "missing-answer-recovery-v1"
+    },
+    {
+      "id": "ch09_q18",
+      "answer": "a. Test\n\n$$H_0:\\mu=15.3\\quad\\text{versus}\\quad H_a:\\mu\\ne15.3.$$\n\nBecause $\\sigma$ is unknown, use a one-sample $t$ test with $df=49$:\n\n$$t=\\frac{23.1-15.3}{7.2/\\sqrt{50}}\\approx7.6603.$$\n\nThe two-sided p-value is approximately $6.34\\times10^{-10}$. Reject $H_0$; the 2010 population mean differs from 15.3 thousand miles.\n\nb. With $t_{0.975,49}\\approx2.0096$,\n\n$$23.1\\pm2.0096\\frac{7.2}{\\sqrt{50}}=23.1\\pm2.0463.$$\n\nThe 95% confidence interval is approximately **$(21.054,25.146)$ thousand miles**.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "missing-answer-recovery-v1"
+    },
+    {
+      "id": "ch09_q19",
+      "answer": "Test\n\n$$H_0:\\mu=200\\quad\\text{versus}\\quad H_a:\\mu\\ne200.$$\n\nThe sample standard deviation is $s=\\sqrt{300}\\approx17.3205$ ms. With $df=13$,\n\n$$t=\\frac{221-200}{\\sqrt{300}/\\sqrt{14}}\\approx4.5365.$$\n\nThe two-sided p-value is approximately $0.000559$. Since this is below $0.05$, reject $H_0$. There is sufficient evidence that the medication changes mean reaction time; the observed change is an increase.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "missing-answer-recovery-v1"
+    },
+    {
+      "id": "ch09_q20",
+      "answer": "Test\n\n$$H_0:\\mu=110.3\\quad\\text{versus}\\quad H_a:\\mu\\ne110.3.$$\n\nSince $s=\\sqrt{324}=18$ and $df=35$,\n\n$$t=\\frac{114.5-110.3}{18/\\sqrt{36}}=1.40.$$\n\nThe two-sided p-value is approximately $0.1703$. Since $0.1703>0.05$, fail to reject $H_0$. The sample does not provide sufficient evidence that the current population mean IQ differs from 110.3.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "missing-answer-recovery-v1"
+    },
+    {
+      "id": "ch09_q21",
+      "answer": "Let $p$ be the population proportion who prefer Diet Coke. Test\n\n$$H_0:p=0.50\\quad\\text{versus}\\quad H_a:p>0.50.$$\n\nHere $\\hat p=56/100=0.56$. The null standard error is\n\n$$\\sqrt{\\frac{0.50(0.50)}{100}}=0.05,$$\n\nso\n\n$$z=\\frac{0.56-0.50}{0.05}=1.20.$$\n\nThe right-tail p-value is approximately $0.1151$. Since $0.1151>0.02$, fail to reject $H_0$. There is insufficient evidence that more than half of all drinkers prefer Diet Coke.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "missing-answer-recovery-v1"
+    },
+    {
+      "id": "ch09_q22",
+      "answer": "Let $p$ be the population proportion of lost luggage recovered within 24 hours. Test\n\n$$H_0:p=0.90\\quad\\text{versus}\\quad H_a:p<0.90.$$\n\nThe sample proportion is\n\n$$\\hat p=\\frac{103}{122}\\approx0.84426.$$\n\nUnder $H_0$, the standard error is\n\n$$\\sqrt{\\frac{0.90(0.10)}{122}}\\approx0.027160.$$\n\nThus\n\n$$z=\\frac{0.84426-0.90}{0.027160}\\approx-2.0521.$$\n\nThe left-tail p-value is approximately $0.02008$. Since $0.02008<0.05$, reject $H_0$. There is sufficient evidence that the 24-hour recovery rate is below 90%, so the airline has overstated its record.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "missing-answer-recovery-v1"
+    },
+    {
+      "id": "ch09_q28",
+      "answer": "Use paired differences $d=\\text{Before}-\\text{After}$. The differences are\n\n$$2,\\ 0,\\ -1,\\ 4,\\ 4,\\ 3,\\ 0,\\ 8.$$\n\nTest\n\n$$H_0:\\mu_d=0\\quad\\text{versus}\\quad H_a:\\mu_d>0.$$\n\nThe sample statistics are $\\bar d=2.5$ and $s_d\\approx2.9277$. With $df=7$,\n\n$$t=\\frac{2.5}{2.9277/\\sqrt{8}}\\approx2.4152.$$\n\nThe right-tail p-value is approximately $0.0232$. Since $0.0232<0.05$, reject $H_0$. There is sufficient evidence that the modification reduces the mean number of accidents.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "missing-answer-recovery-v1"
     }
   ]
 }

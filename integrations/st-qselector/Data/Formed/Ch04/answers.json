@@ -157,6 +157,30 @@
       "id": "rotel_ch04_probability_05",
       "answer": "a. 其补事件是“自有住房且非独居”，所以 $1-15/100=0.85$。\n\nb. 其补事件是“租房且独居”，所以 $1-29/100=0.71$。\n\nc. 其补事件是“自有住房且独居”，所以 $1-21/100=0.79$。",
       "review_status": "答案已独立推导并审核"
+    },
+    {
+      "id": "ch04_q14",
+      "answer": "**A. They are always dependent.**\n\nMutual exclusivity gives $P(A\\cap B)=0$. Because $P(A)>0$ and $P(B)>0$, we have $P(A)P(B)>0$. Therefore $P(A\\cap B)\\ne P(A)P(B)$, so the events are not independent.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "missing-answer-recovery-v1"
+    },
+    {
+      "id": "ch04_q15",
+      "answer": "**C. Probability.**\n\nA probability is a number from 0 to 1 that quantifies the likelihood of an event.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "missing-answer-recovery-v1"
+    },
+    {
+      "id": "ch04_q23",
+      "answer": "Let $F$ denote female, $M$ denote male, and $G$ denote Greek-organization membership. Then\n\n$$P(F)=0.55,\\qquad P(M)=0.45,\\qquad P(G)=0.25,$$\n\nand\n\n$$P(G\\cap M)=P(G\\mid M)P(M)=0.40(0.45)=0.18.$$\n\nTherefore\n\n$$P(G\\cap F)=P(G)-P(G\\cap M)=0.25-0.18=0.07,$$\n\nso\n\n$$P(G\\mid F)=\\frac{0.07}{0.55}\\approx0.1273.$$\n\nBecause $P(G\\mid F)\\ne P(G)$, gender and Greek-organization membership are **not independent**.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "missing-answer-recovery-v1"
+    },
+    {
+      "id": "ch04_q24",
+      "answer": "The probability of having a MasterCard is\n\n$$P(M)=0.40+0.20=0.60.$$\n\nThe probability of having both cards is $P(A\\cap M)=0.20$. Hence\n\n$$P(A\\mid M)=\\frac{P(A\\cap M)}{P(M)}=\\frac{0.20}{0.60}=\\frac13\\approx0.3333.$$\n\nThe required probability is therefore about **33.33%**.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "missing-answer-recovery-v1"
     }
   ]
 }

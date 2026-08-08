@@ -145,6 +145,12 @@
       "id": "rotel_ch06_normal_01",
       "answer": "a. 标准化得到 $z_1=(65-66)/2.5=-0.4$，$z_2=(70-66)/2.5=1.6$。因此\n\n$$P(65<X<70)=\\Phi(1.6)-\\Phi(-0.4)\\approx0.6006.$$\n\nb. $z=(71.5-66)/2.5=2.2$，所以\n\n$$P(X>71.5)=1-\\Phi(2.2)\\approx0.0139.$$\n\n百分比约为 **1.39%**。",
       "review_status": "答案已独立推导并审核"
+    },
+    {
+      "id": "ch06_q16",
+      "answer": "For $X\\sim U(a,b)$ with $a=400$ and $b=3800$:\n\na. The mean is\n\n$$E(X)=\\frac{a+b}{2}=\\frac{400+3800}{2}=2100.$$\n\nb. The standard deviation is\n\n$$\\sigma=\\frac{b-a}{\\sqrt{12}}=\\frac{3400}{\\sqrt{12}}\\approx981.50.$$\n\nc.\n\n$$P(X<2000)=\\frac{2000-400}{3800-400}=\\frac{1600}{3400}\\approx0.4706.$$\n\nd.\n\n$$P(X>3000)=\\frac{3800-3000}{3400}=\\frac{800}{3400}\\approx0.2353.$$\n\ne.\n\n$$P(1500<X<2500)=\\frac{2500-1500}{3400}=\\frac{1000}{3400}\\approx0.2941.$$",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "missing-answer-recovery-v1"
     }
   ]
 }

@@ -187,15 +187,19 @@
     },
     {
       "id": "ch03_q18",
-      "content": "What are some of the applications of the box-and-whisker plot?\n\n> **Ans**: finding the median, interquartile range, highest and lowest values, and outliers. Putting box-and-whisker plots of different groups within a sample next to each other also allows comparison of the groups.\n\n**Technology Assignment**",
+      "content": "What information does a box-and-whisker plot display, and how can side-by-side boxplots be used?",
       "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter03/GCNU1003 Sp of Stat_assignment ch3 sem2 2014-2015.docx",
-      "type": "unknown",
+      "type": "简答题",
       "difficulty": 1,
-      "keywords": [],
+      "keywords": [
+        "boxplot",
+        "five-number summary",
+        "outliers"
+      ],
       "formula_refs": [],
-      "data_refs": [
-        "dataset_10K.xls"
-      ]
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "missing-answer-recovery-v1"
     },
     {
       "id": "ch03_q19",

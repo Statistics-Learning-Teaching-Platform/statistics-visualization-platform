@@ -151,23 +151,33 @@
     },
     {
       "id": "ch04_q14",
-      "content": "Two mutually exclusive events having positive probabilities are \\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_ dependent. \\\nA. Always\\\nB. Sometimes\\\nC. Never",
+      "content": "Two mutually exclusive events $A$ and $B$ both have positive probabilities. Which statement is correct?\n\nA. They are always dependent.\n\nB. They are sometimes dependent.\n\nC. They are never dependent.",
       "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter04.docx",
-      "type": "unknown",
+      "type": "选择题",
       "difficulty": 1,
-      "keywords": [],
+      "keywords": [
+        "mutually exclusive events",
+        "independence"
+      ],
       "formula_refs": [],
-      "data_refs": []
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "missing-answer-recovery-v1"
     },
     {
       "id": "ch04_q15",
-      "content": "\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_ is a measure of the chance that an uncertain event will occur. \\\nA. Random experiment\\\nB. Sample Space\\\nC. Probability\\\nD. A complement\\\nE. A population",
+      "content": "Which term denotes a numerical measure of the chance that an uncertain event will occur?\n\nA. Random experiment\n\nB. Sample space\n\nC. Probability\n\nD. Complement\n\nE. Population",
       "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter04.docx",
-      "type": "unknown",
+      "type": "选择题",
       "difficulty": 1,
-      "keywords": [],
+      "keywords": [
+        "probability",
+        "definition"
+      ],
       "formula_refs": [],
-      "data_refs": []
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "missing-answer-recovery-v1"
     },
     {
       "id": "ch04_q16",
@@ -251,23 +261,33 @@
     },
     {
       "id": "ch04_q23",
-      "content": "In a major Midwestern university, 55% of all undergraduates are female, 25% belong to a Greek organization (fraternity or sorority) and 40% of all males belong to a Greek organization. Are the events \\\"female/not female\\\" and \\\"belongs to a Greek organization\\\" independent? \n\n* *14. At a certain university, 30% of the students major in zoology. Of the students majoring in zoology, 60% are males. Of all the students at the university, 70% are males. What percentage of the students are males majoring in zoology?",
+      "content": "At a university, 55% of undergraduates are female, 25% belong to a Greek organization, and 40% of male undergraduates belong to a Greek organization. Are gender (female or male) and Greek-organization membership independent? Show your reasoning.",
       "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter04.docx",
-      "type": "unknown",
-      "difficulty": 1,
-      "keywords": [],
+      "type": "计算题",
+      "difficulty": 2,
+      "keywords": [
+        "independence",
+        "conditional probability"
+      ],
       "formula_refs": [],
-      "data_refs": []
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "missing-answer-recovery-v1"
     },
     {
       "id": "ch04_q24",
-      "content": "An advertising campaign is being developed to promote a new bookstore opening in the newest mall development. To develop an appropriate mailing list it has been decided to purchase lists of credit card holders from MasterCard and American Express. Combining the lists they find the following: 40% of the people on the list have only a MasterCard and 10% have only an American Express card. Another 20% hold both MasterCard and American Express. Finally, 30% of those on the list have neither card. Suppose a person on the list is known to have a MasterCard. What is the probability that person also has an American Express Card?",
+      "content": "A mailing list is classified as follows: 40% of people have only a MasterCard, 10% have only an American Express card, 20% have both cards, and 30% have neither card. Given that a randomly selected person has a MasterCard, what is the probability that the person also has an American Express card?",
       "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter04.docx",
-      "type": "unknown",
-      "difficulty": 1,
-      "keywords": [],
+      "type": "计算题",
+      "difficulty": 2,
+      "keywords": [
+        "conditional probability",
+        "two-way classification"
+      ],
       "formula_refs": [],
-      "data_refs": []
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "missing-answer-recovery-v1"
     },
     {
       "id": "ch04_q25",

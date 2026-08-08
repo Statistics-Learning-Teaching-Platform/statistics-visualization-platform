@@ -231,13 +231,18 @@
     },
     {
       "id": "ch07_q22",
-      "content": "Discuss when it is appropriate to use the *t-based* confidence interval for $\\mu$.",
+      "content": "When is a one-sample $t$ confidence interval appropriate for estimating a population mean $\\mu$?",
       "source": "Assignment Prof Lv/Assignment7-lu.doc",
-      "type": "unknown",
-      "difficulty": 1,
-      "keywords": [],
+      "type": "简答题",
+      "difficulty": 2,
+      "keywords": [
+        "t confidence interval",
+        "conditions"
+      ],
       "formula_refs": [],
-      "data_refs": []
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "missing-answer-recovery-v1"
     },
     {
       "id": "ch07_q23",
@@ -251,13 +256,19 @@
     },
     {
       "id": "ch07_q24",
-      "content": "Consider a population having a standard deviation equal to 10. We wish to estimate the mean of this population.\n\na\\. How large a random sample is needed to construct a 95 percent confidence interval for the mean of this population with a margin of error equal to 1?\n\nb\\. Suppose that we now take a random sample of the size we have determined in part a. If we obtain a sample mean equal to 295, calculate the 95 percent confidence interval for the population mean. What is the interval's margin of error?",
+      "content": "A population has known standard deviation $\\sigma=10$.\n\na. What minimum random-sample size is needed for a 95% confidence interval for the population mean with margin of error at most 1?\n\nb. Using that sample size and a sample mean of $\\bar{x}=295$, compute the 95% confidence interval and its actual margin of error.",
       "source": "Assignment Prof Lv/Assignment7-lu.doc",
-      "type": "unknown",
-      "difficulty": 1,
-      "keywords": [],
+      "type": "综合题",
+      "difficulty": 3,
+      "keywords": [
+        "confidence interval",
+        "sample size",
+        "margin of error"
+      ],
       "formula_refs": [],
-      "data_refs": []
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "missing-answer-recovery-v1"
     },
     {
       "id": "ch07_q25",

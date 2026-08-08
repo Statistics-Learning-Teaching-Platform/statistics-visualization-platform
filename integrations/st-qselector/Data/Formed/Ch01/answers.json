@@ -110,6 +110,12 @@
       "id": "rotel_ch01_design_01",
       "answer": "a. **解释变量：电影类型。**\n\nb. **响应变量：儿童吃掉的薯片数量。**\n\nc. **混杂变量：电影播放时间。**\n\n电影类型和播放时间同时发生变化，因此无法区分薯片数量的差异究竟来自电影类型，还是来自8:00与11:00时儿童饥饿程度的差异。",
       "review_status": "答案已独立推导并审核"
+    },
+    {
+      "id": "ch01_q11",
+      "answer": "One valid design is:\n\na. List all cities in the state whose populations exceed 10,000, and randomly select a sample of those cities.\n\nb. Within each selected city, list the city blocks and randomly select a sample of blocks.\n\nc. Within each selected block, list the eligible consumers or households and randomly select consumers to survey.\n\nRandom selection must be used at every stage. If clusters have unequal selection probabilities, the final analysis should use the corresponding sampling weights.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "missing-answer-recovery-v1"
     }
   ]
 }

@@ -121,6 +121,18 @@
       "id": "rotel_ch07_sampling_mean_01",
       "answer": "a. 样本均值的标准误为 $\\sigma/\\sqrt n$，所以\n\n$$\\frac{SE_{84}}{SE_{42}}=\\sqrt{\\frac{42}{84}}=\\frac1{\\sqrt2}.$$\n\n标准误缩小为原来的 $1/\\sqrt2$。\n\nb. $E(\\bar X)=\\mu=5.95$，不随样本量改变。\n\nc. 不必须依赖中心极限定理。由于总体本身服从正态分布，任意样本量下样本均值都精确服从正态分布；中心极限定理主要用于总体非正态或未知时的大样本近似。",
       "review_status": "答案已独立推导并审核"
+    },
+    {
+      "id": "ch07_q22",
+      "answer": "Use the one-sample $t$ interval\n\n$$\\bar{x}\\pm t_{\\alpha/2,n-1}\\frac{s}{\\sqrt{n}}$$\n\nwhen the population standard deviation $\\sigma$ is unknown and is estimated by the sample standard deviation $s$. The data should come from a random, independent sample of a quantitative variable. For a small sample, the population distribution should be approximately normal with no strong outliers; for a sufficiently large sample, the central limit theorem makes the method more robust to nonnormality. If $\\sigma$ is known, a $z$ interval is used instead.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "missing-answer-recovery-v1"
+    },
+    {
+      "id": "ch07_q24",
+      "answer": "a. For a known population standard deviation,\n\n$$n\\ge\\left(\\frac{z_{0.975}\\sigma}{E}\\right)^2=\\left(\\frac{1.96(10)}{1}\\right)^2=384.16.$$\n\nThe sample size must be rounded up, so **$n=385$**.\n\nb. The actual margin of error is\n\n$$E=1.96\\frac{10}{\\sqrt{385}}\\approx0.99896.$$\n\nThus the 95% confidence interval is\n\n$$295\\pm0.99896=(294.00104,\\ 295.99896),$$\n\nor approximately **$(294.00,296.00)$**, with margin of error approximately **$0.999$**.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "missing-answer-recovery-v1"
     }
   ]
 }

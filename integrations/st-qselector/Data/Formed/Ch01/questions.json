@@ -107,13 +107,18 @@
     },
     {
       "id": "ch01_q11",
-      "content": "Marketing researchers often use city blocks as clusters in cluster sampling. Using this fact, explain how a market researcher might use multistage cluster sampling to select a sample of consumers from all cities having a population of more than 10,000 in a large state having many such cities.\n>",
+      "content": "A large state contains many cities with populations greater than 10,000. Describe how a market researcher could use multistage cluster sampling, with city blocks as clusters, to select a sample of consumers from these cities.",
       "source": "Assignment Prof Lv/assignment1-Lu.doc",
-      "type": "unknown",
-      "difficulty": 1,
-      "keywords": [],
+      "type": "简答题",
+      "difficulty": 2,
+      "keywords": [
+        "cluster sampling",
+        "multistage sampling"
+      ],
       "formula_refs": [],
-      "data_refs": []
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "missing-answer-recovery-v1"
     },
     {
       "id": "ch01_q12",

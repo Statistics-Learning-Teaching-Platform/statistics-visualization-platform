@@ -35,21 +35,19 @@
     },
     {
       "id": "ch10_q03",
-      "content": "**Problem 3:** Twelve cars were equipped with radial tires and driven over a test course. Then the same 12 cars (with the same drivers) were equipped with regular belted tires and driven over the same course. After each run, the cars' gas economy (in km/l) was measured. Is there evidence that radial tires produce better fuel economy? (Assume normality of data and use $\\alpha$=0.05.)\n\n[IMG:ch10_q03_f01_image26.png]\n\nFind a 95% CI for the mean difference in gas economy between radial tires and belted tires.\n[Hypotheses]{.underline}**\n\n> [FORMULA:ch10_q03_f02_image27.emf]\n>\n> [FORMULA:ch10_q03_f03_image28.emf]\n\n2.  [**Significance level**]{.underline} $\\alpha$[=0.05]{.underline}\n\n3.  **[Test statistic]{.underline}**\n\n[FORMULA:ch10_q03_f04_image29.emf], with [FORMULA:ch10_q03_f05_image30.emf]\n\nsince[FORMULA:ch10_q03_f06_image31.emf] , p-Value is 0.02\\<0.05, we reject [FORMULA:ch10_q03_f07_image27.emf] and draw conclusion that there is evidence that radial tires produce better fuel economy.\n\n4.  the 95% confidence interval:\n\n[FORMULA:ch10_q03_f08_image32.emf]\n\n> so the 95% confidence interval is (0.03, 0.25).",
+      "content": "The same 12 cars and drivers complete a test course using radial tires and then regular belted tires. Fuel economy, in km/L, is recorded below. Assume the paired differences are approximately normal.\n\n| Car | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 |\n|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|\n| Radial | 4.2 | 4.7 | 6.6 | 7.0 | 6.7 | 4.5 | 5.7 | 6.0 | 7.4 | 4.9 | 6.1 | 5.2 |\n| Belted | 4.1 | 4.9 | 6.2 | 6.9 | 6.8 | 4.4 | 5.7 | 5.8 | 6.9 | 4.7 | 6.0 | 4.9 |\n\na. At $\\alpha=0.05$, test whether radial tires produce better population mean fuel economy.\n\nb. Construct a 95% confidence interval for the population mean paired difference, defined as radial minus belted fuel economy.",
       "source": "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment and solution_Chap10_Two sample testing.doc",
-      "type": "unknown",
-      "difficulty": 1,
-      "keywords": [],
-      "formula_refs": [
-        "ch10_q03_f02_image27.emf",
-        "ch10_q03_f03_image28.emf",
-        "ch10_q03_f04_image29.emf",
-        "ch10_q03_f05_image30.emf",
-        "ch10_q03_f06_image31.emf",
-        "ch10_q03_f07_image27.emf",
-        "ch10_q03_f08_image32.emf"
+      "type": "综合题",
+      "difficulty": 4,
+      "keywords": [
+        "paired t test",
+        "confidence interval",
+        "fuel economy"
       ],
-      "data_refs": []
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "missing-answer-recovery-v1"
     },
     {
       "id": "ch10_q04",

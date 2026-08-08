@@ -139,143 +139,185 @@
     },
     {
       "id": "ch09_q11",
-      "content": "The production managers at ABZ Chemical Company claim that their major product contains no more than **4.0** fluid ounces of caustic material per gallon on average. They further state that the distribution of caustic material is normal with a standard deviation of [IMG:ch09_q01_f01_image1.png] fluid ounces. If there is too much caustic material, the product will be dangerous. A government inspector is brought in to test the product. She randomly selects a sample of 100 gallon-size containers of the product and finds that their mean weight of caustic materials is [IMG:ch09_q01_f02_image2.png]fluid ounces per gallon.\n\n\\(a\\) What are the null and alternative hypotheses that the inspector should make? Give them both mathematically and in English.\n\n\\(b\\) Conduct the hypothesis test with a level of significance=1%. Can the inspector conclude the ABZ Chemical Company's claim is wrong?\n\n[FORMULA:ch09_q01_f03_image3.emf]",
+      "content": "ABZ Chemical Company claims that its product contains no more than 4.0 fluid ounces of caustic material per gallon on average. The amount is normally distributed with known standard deviation $\\sigma=1.3$ fluid ounces. An inspector randomly samples 100 gallon-size containers and obtains $\\bar{x}=4.5$ fluid ounces per gallon.\n\na. State the null and alternative hypotheses mathematically and in words.\n\nb. At $\\alpha=0.01$, test whether the company's claim is false.",
       "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter09_Hypothesis Testing.doc",
-      "type": "unknown",
-      "difficulty": 1,
-      "keywords": [],
-      "formula_refs": [
-        "ch09_q01_f03_image3.emf"
+      "type": "综合题",
+      "difficulty": 3,
+      "keywords": [
+        "one-sample z test",
+        "right-tailed test",
+        "p-value"
       ],
-      "data_refs": []
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "missing-answer-recovery-v1"
     },
     {
       "id": "ch09_q12",
-      "content": "The American Hospital Association stated in its annual report that the mean cost to community hospitals per patient per day in U.S. hospitals was \\$1231 in 2007. In that same year, a random sample of 25 daily costs in the state of Utah hospitals yielded a mean of \\$1103. Assuming a population standard deviation of \\$252 for all Utah hospitals, do the data provide sufficient evidence to conclude that in 2007 the mean cost in Utah hospitals is below the national mean of \\$1231? Perform the required hypothesis test at the 5% significance level.\n\n[FORMULA:ch09_q02_f01_image4.emf]",
+      "content": "In 2007, the national mean daily hospital cost per patient was $\\$1{,}231$. A random sample of 25 daily costs from Utah hospitals produced $\\bar{x}=\\$1{,}103$. Assume the Utah population standard deviation is known to be $\\sigma=\\$252$. At $\\alpha=0.05$, test whether Utah's population mean daily cost was below the national mean.",
       "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter09_Hypothesis Testing.doc",
-      "type": "unknown",
-      "difficulty": 1,
-      "keywords": [],
-      "formula_refs": [
-        "ch09_q02_f01_image4.emf"
+      "type": "计算题",
+      "difficulty": 3,
+      "keywords": [
+        "one-sample z test",
+        "left-tailed test"
       ],
-      "data_refs": []
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "missing-answer-recovery-v1"
     },
     {
       "id": "ch09_q13",
-      "content": "Suppose that scores on the Scholastic Achievement Test (SAT) form a normal distribution with mean = 500 and **σ** = 100. A high school counselor has developed a special course designed to boost SAT scores. A random sample 25 students is selected to take the course and then the SAT. The sample had an average score of 554. Does the course have an effect on SAT scores? Perform the hypothesis test using **α** = 5%. If **α** = 1% were used instead, what is the conclusion?\n\n[FORMULA:ch09_q03_f01_image5.emf]",
+      "content": "SAT scores are normally distributed with population mean $\\mu_0=500$ and known standard deviation $\\sigma=100$. A random sample of 25 students takes a special preparation course and then obtains mean score $\\bar{x}=554$.\n\na. At $\\alpha=0.05$, test whether the course has an effect on mean SAT scores.\n\nb. Would the conclusion change at $\\alpha=0.01$?",
       "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter09_Hypothesis Testing.doc",
-      "type": "unknown",
-      "difficulty": 1,
-      "keywords": [],
-      "formula_refs": [
-        "ch09_q03_f01_image5.emf"
+      "type": "综合题",
+      "difficulty": 3,
+      "keywords": [
+        "one-sample z test",
+        "two-tailed test",
+        "significance level"
       ],
-      "data_refs": []
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "missing-answer-recovery-v1"
     },
     {
       "id": "ch09_q14",
-      "content": "To test if UIC students have higher IQ score than average college students, John conducted a sample survey of 122 UIC students and found a mean IQ score of 116. If we assume both the IQ scores of the population of all college students follow normal distributions with a mean of 109 and standard deviation=15. At a significance level **α=**0.05, test if the average IQ of UIC students is greater than the average IQ of the population of all college students.\n\n> [FORMULA:ch09_q04_f01_image6.emf]",
+      "content": "The mean IQ among all college students is 109 with known population standard deviation $\\sigma=15$. A random sample of 122 UIC students has mean IQ $\\bar{x}=116$. At $\\alpha=0.05$, test whether UIC students have a higher population mean IQ.",
       "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter09_Hypothesis Testing.doc",
-      "type": "unknown",
-      "difficulty": 1,
-      "keywords": [],
-      "formula_refs": [
-        "ch09_q04_f01_image6.emf"
+      "type": "计算题",
+      "difficulty": 3,
+      "keywords": [
+        "one-sample z test",
+        "right-tailed test"
       ],
-      "data_refs": []
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "missing-answer-recovery-v1"
     },
     {
       "id": "ch09_q15",
-      "content": "Last year the mean price of apartments in Zhuhai was 9450 RMB/m2 with a standard deviation 1035 RMB/m2. A sample of 47 recent deals revealed that the mean was 9850 RMB/m2. Is there sufficient evidence to claim that the mean price of apartments in Zhuhai has moved higher this year with α = 0.01, both by computing the test statistic and the p-value? What test statistic should be used?\n\n[FORMULA:ch09_q05_f01_image7.emf]\n\n**σ Unknown (t test) One or Two -Tail Test**",
+      "content": "Last year, apartment prices in Zhuhai had population mean $\\mu_0=9{,}450$ RMB/m² and known population standard deviation $\\sigma=1{,}035$ RMB/m². Assume the population standard deviation is unchanged. A random sample of 47 recent sales has mean price $\\bar{x}=9{,}850$ RMB/m². At $\\alpha=0.01$, test whether the population mean price has increased. Identify the test statistic and report the p-value.",
       "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter09_Hypothesis Testing.doc",
-      "type": "unknown",
-      "difficulty": 1,
-      "keywords": [],
-      "formula_refs": [
-        "ch09_q05_f01_image7.emf"
+      "type": "计算题",
+      "difficulty": 3,
+      "keywords": [
+        "one-sample z test",
+        "right-tailed test"
       ],
-      "data_refs": []
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "missing-answer-recovery-v1"
     },
     {
       "id": "ch09_q16",
-      "content": "Last year the mean price of apartments in Zhuhai was 9450 RMB/m2 with unknown standard deviation. A sample of 25 recent deals revealed that the sample mean was 9850 RMB/m2 and a standard deviation 1035 RMB/m2. Is there sufficient evidence to claim that the mean price of apartments in Zhuhai has moved higher this year with α = 0.01, both by computing the test statistic and the p-value? What test statistic should be used?\n\n[FORMULA:ch09_q06_f01_image8.emf]",
+      "content": "Last year, the mean apartment price in Zhuhai was $\\mu_0=9{,}450$ RMB/m². The population standard deviation is unknown. A random sample of 25 recent sales has mean $\\bar{x}=9{,}850$ RMB/m² and sample standard deviation $s=1{,}035$ RMB/m². Assuming the price distribution is approximately normal, test at $\\alpha=0.01$ whether the population mean price has increased. Identify the test statistic and report the p-value.",
       "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter09_Hypothesis Testing.doc",
-      "type": "unknown",
-      "difficulty": 1,
-      "keywords": [],
-      "formula_refs": [
-        "ch09_q06_f01_image8.emf"
+      "type": "计算题",
+      "difficulty": 3,
+      "keywords": [
+        "one-sample t test",
+        "right-tailed test"
       ],
-      "data_refs": []
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "missing-answer-recovery-v1"
     },
     {
       "id": "ch09_q17",
-      "content": "A manufacturer of light bulbs claims that its light bulbs have a mean life of 1520 hours with an unknown standard deviation. A random sample of 40 such bulbs is selected for testing. If the sample produces a mean value of 1505 hours and a sample standard deviation of 86 hours, is there sufficient evidence to claim that the mean life is significantly less than the manufacturer claimed? Assume that light bulb lifetimes are normally distributed and use a significance level of **α**=0.05.\n\n> Step 1 Null hypothesis: mean life = 1520 hours\n>\n> Alternative hypothesis: mean life \\> or \\< 1520 hours\n>\n> ${\\overline{X}}_{\\text{40}}\\text{\\textasciitilde}t_{\\text{39}}(\\text{1520},\\text{ s}_{\\overline{X}} = \\frac{\\text{86}}{\\sqrt{\\text{40}}} = \\text{13.}5)$Step 2 Since we have to estimate **σ**, we need to decide from a T-curve with 39 degrees of freedom.\n>\n> Step 3 critical t=[+]{.underline}2.04 with **α**=0.05\n>\n> $\\begin{array}{r}\n> t_{\\text{39}} = \\frac{\\text{1505} - \\text{1520}}{\\text{13.}5} = - 1\\text{.}\\text{11} \\\\\n> p - \\text{value} = P(t_{\\text{39}} < - 1\\text{.}\\text{11}) = \\text{.}\\text{137}\n> \\end{array}$Not sufficient evidence to reject the null hypothesis.",
+      "content": "A manufacturer claims that its light bulbs have mean lifetime $\\mu=1{,}520$ hours. The population standard deviation is unknown. A random sample of 40 bulbs has $\\bar{x}=1{,}505$ hours and $s=86$ hours. Assuming lifetimes are normally distributed, test at $\\alpha=0.05$ whether the population mean lifetime is less than 1,520 hours.",
       "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter09_Hypothesis Testing.doc",
-      "type": "unknown",
-      "difficulty": 1,
-      "keywords": [],
+      "type": "计算题",
+      "difficulty": 3,
+      "keywords": [
+        "one-sample t test",
+        "left-tailed test"
+      ],
       "formula_refs": [],
-      "data_refs": []
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "missing-answer-recovery-v1"
     },
     {
       "id": "ch09_q18",
-      "content": "In 2005 the average passenger vehicle on the road was driven 15.3 thousand miles, as reported by the U.S. Federal Highway Administration in Highway Statistics. A random sample of 50 passenger vehicles in 2010 had a mean of 23.1 thousand miles driven on them with a standard deviation of 7.2 thousand miles. Let μ denote the mean mileage driven on all passenger vehicles.\n\na)  Perform the hypothesis test to determine if μ in 2010 is different from μ in 2005, at 5% significance level.\n\nHo: μ =15.3 thousand miles\n\nHa: μ ≠15.3 thousand miles\n\nb)  Find a 95% confidence interval for μ in 2005.\n\n[FORMULA:ch09_q08_f01_image9.emf]",
+      "content": "In 2005, the mean mileage driven by a passenger vehicle was 15.3 thousand miles. A random sample of 50 passenger vehicles in 2010 has mean mileage $\\bar{x}=23.1$ thousand miles and sample standard deviation $s=7.2$ thousand miles. Let $\\mu$ be the 2010 population mean mileage.\n\na. At $\\alpha=0.05$, test whether the 2010 mean differs from 15.3 thousand miles.\n\nb. Construct a 95% confidence interval for the 2010 population mean mileage.",
       "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter09_Hypothesis Testing.doc",
-      "type": "unknown",
-      "difficulty": 1,
-      "keywords": [],
-      "formula_refs": [
-        "ch09_q08_f01_image9.emf"
+      "type": "综合题",
+      "difficulty": 3,
+      "keywords": [
+        "one-sample t test",
+        "confidence interval"
       ],
-      "data_refs": []
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "missing-answer-recovery-v1"
     },
     {
       "id": "ch09_q19",
-      "content": "A researcher would like to evaluate the effect of a new cold medication on reaction time. It is known that under regular circumstances the distribution of reaction times is normal with mean = 200 ms. A random sample of 14 persons is selected, and each of them is given the new cold medication. One hour later reaction time is measured for each individual. The average reaction time for this sample is 221 ms with variance = 300 ms^2^. On the basis of these data, can the researcher conclude that the cold medication has an effect on reaction time? Test at the .05 level of significance.\n\n[FORMULA:ch09_q09_f01_image10.emf]",
+      "content": "Under ordinary conditions, reaction times are normally distributed with mean $\\mu_0=200$ ms. Fourteen randomly selected people take a new cold medication. One hour later, their mean reaction time is $\\bar{x}=221$ ms with sample variance $s^2=300$ ms². At $\\alpha=0.05$, test whether the medication changes the population mean reaction time.",
       "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter09_Hypothesis Testing.doc",
-      "type": "unknown",
-      "difficulty": 1,
-      "keywords": [],
-      "formula_refs": [
-        "ch09_q09_f01_image10.emf"
+      "type": "计算题",
+      "difficulty": 3,
+      "keywords": [
+        "one-sample t test",
+        "two-tailed test"
       ],
-      "data_refs": []
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "missing-answer-recovery-v1"
     },
     {
       "id": "ch09_q20",
-      "content": "A college professor has noted that this year's freshman class appears to be smarter than classes from previous years. The professor obtains a sample of 36 freshmen and computes an average IQ of 114.5 with a variance of 324 for this group. College records indicate that the mean IQ for entering freshmen from earlier years is 110.3. On the basis of the sample data, can the professor conclude that this year's students have IQs that are significantly different from those of previous students? Use a two-tailed test with α = 5%.\n\n[FORMULA:ch09_q10_f01_image11.emf]\n\n**Population Proportion**",
+      "content": "The historical mean IQ of entering freshmen is 110.3. A random sample of 36 current freshmen has mean IQ $\\bar{x}=114.5$ and sample variance $s^2=324$. At $\\alpha=0.05$, use a two-tailed test to determine whether the current population mean IQ differs from the historical mean.",
       "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter09_Hypothesis Testing.doc",
-      "type": "unknown",
-      "difficulty": 1,
-      "keywords": [],
-      "formula_refs": [
-        "ch09_q10_f01_image11.emf"
+      "type": "计算题",
+      "difficulty": 3,
+      "keywords": [
+        "one-sample t test",
+        "two-tailed test"
       ],
-      "data_refs": []
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "missing-answer-recovery-v1"
     },
     {
       "id": "ch09_q21",
-      "content": "In one Coca-Cola television commercial, an announcer states that \\\"in recent blind taste tests, more than half of the drinkers surveyed said they preferred the taste of Diet Coke\\\". Suppose in a sample of 100 randomly selected drinkers to take the test, 56 preferred the taste of Diet Coke. Test the hypothesis that more than half of all drinkers will select Diet Coke in the blind taste test by computing the test statistic and the p-value (using α = .02).\n\n[FORMULA:ch09_q11_f01_image12.emf]",
+      "content": "In a random sample of 100 drinkers participating in a blind taste test, 56 prefer Diet Coke. At $\\alpha=0.02$, test whether more than half of all drinkers would prefer Diet Coke. Report the test statistic and p-value.",
       "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter09_Hypothesis Testing.doc",
-      "type": "unknown",
-      "difficulty": 1,
-      "keywords": [],
-      "formula_refs": [
-        "ch09_q11_f01_image12.emf"
+      "type": "计算题",
+      "difficulty": 3,
+      "keywords": [
+        "one-proportion z test",
+        "right-tailed test"
       ],
-      "data_refs": []
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "missing-answer-recovery-v1"
     },
     {
       "id": "ch09_q22",
-      "content": "An airline's public relations department says that the airline rarely loses passengers' luggage. It further claims that on those occasions when luggage is lost, over 90% is recovered and delivered to its owner within 24 hours. A consumer group who surveyed a large number of air travelers found that only 103 out of 122 people who lost luggage on that airline were reunited with the missing items by the next day. What do you think about the airline's claim? Test whether the airline has overstated its record with α = 0.05. Estimate the p-value.\n\nStep 1:\n\np = proportion of people who lost their luggage and had it returned within 24 hours\n\n- H~O~: p [\\>]{.underline} 0.9\n\n- H~A~: p \\< 0.9\n\n$\\begin{array}{r}\nN\\left( 0\\text{.}9,\\sqrt{\\frac{0\\text{.}9(0\\text{.}1)}{\\text{122}}} \\right) \\\\\nN(0\\text{.}9,0\\text{.}\\text{027})\n\\end{array}$Step 2:\n\n- Assumptions\n\n  - 122(0.9) = 109.8\n\n  - 122(0.1) = 12.2\n\n- $z = \\frac{\\hat{p} - p_{o}}{\\sqrt{\\frac{p_{o}(1 - p_{o})}{n}}} = \\frac{0\\text{.844} - 0\\text{.}9}{0\\text{.027}} = - 2\\text{.07}$sample proportion =103/122=0.844\n\n- Test Statistic\n\nStep 3:\n\n- Decision: 1-tail test, critical z=-1.65\n\n- reject H~O~\n\n- Conclusion: The population proportion of people who lost their luggage that have it returned within 24 hours on this airline is less than 90%. The airline's claim is not true.",
+      "content": "An airline claims that more than 90% of lost luggage is recovered and delivered within 24 hours. In a consumer group's sample, 103 of 122 travelers who lost luggage received it within 24 hours. At $\\alpha=0.05$, test whether the airline has overstated its recovery rate. Report the p-value.",
       "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter09_Hypothesis Testing.doc",
-      "type": "unknown",
-      "difficulty": 1,
-      "keywords": [],
+      "type": "计算题",
+      "difficulty": 3,
+      "keywords": [
+        "one-proportion z test",
+        "left-tailed test"
+      ],
       "formula_refs": [],
-      "data_refs": []
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "missing-answer-recovery-v1"
     },
     {
       "id": "ch09_q23",
@@ -323,24 +365,19 @@
       "data_refs": []
     },
     {
-      "id": "ch09_q27",
-      "content": "In recent years the interest rate on home mortgages has declined to less than 6.0 percent. However, according to a study by Federal Reserve Board the rate charge on credit card debit is more than 14 percent. Listed below is the interest rate charged on a sample of 10 credit cards.\n\n  -----------------------------------------------------------------------\n16.7 17.4 17.0 17.8 15.4 13.1 15.8 14.3 14.5\n\n  -----------------------------------------------------------------------\n\nIs it reasonable to conclude the mean rate charged is greater than 14 percent? Use the 0.01 significance level.",
-      "source": "Assignments for STAT 2010/Assignment 9.doc",
-      "type": "unknown",
-      "difficulty": 1,
-      "keywords": [],
-      "formula_refs": [],
-      "data_refs": []
-    },
-    {
       "id": "ch09_q28",
-      "content": "A number of minor automobile accidents occur at various high-risk intersections in Teton County despite traffic lights. The Traffic Department claims that a modification in the type of light will reduce these accidents. The county commissioners have agreed to a proposed experiment. Eight intersections were chosen at random, and the lights at those intersections were modified. The numbers of minor accidents during a six-month period before and after the modifications were:\n\n+:------:+:---------:+:---------:+:---------:+:---------:+:---------:+:---------:+:---------:+:---------:+\n|        | Number of Accidents                                                                           |\n+--------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+\n|        | A         | B         | C         | D         | E         | F         | G         | H         |\n+--------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+\n| Before | 5         | 7         | 6         | 4         | 8         | 9         | 8         | 10        |\n+--------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+\n| After  | 3         | 7         | 7         | 0         | 4         | 6         | 8         | 2         |\n+--------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+\n\nAt the 0.05 level of significance, is there evidence that the modification in the type of light will reduce the accidents?",
+      "content": "Eight high-risk intersections were selected at random, and their traffic lights were modified. The numbers of minor accidents during six-month periods before and after the modification were:\n\n| Intersection | A | B | C | D | E | F | G | H |\n|---|---:|---:|---:|---:|---:|---:|---:|---:|\n| Before | 5 | 7 | 6 | 4 | 8 | 9 | 8 | 10 |\n| After | 3 | 7 | 7 | 0 | 4 | 6 | 8 | 2 |\n\nAt $\\alpha=0.05$, test whether the modification reduces the population mean number of accidents.",
       "source": "Assignments for STAT 2010/Assignment 9.doc",
-      "type": "unknown",
-      "difficulty": 1,
-      "keywords": [],
+      "type": "计算题",
+      "difficulty": 4,
+      "keywords": [
+        "paired t test",
+        "before-and-after study"
+      ],
       "formula_refs": [],
-      "data_refs": []
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "missing-answer-recovery-v1"
     },
     {
       "id": "rotel_ch09_hypothesis_01",

@@ -141,6 +141,12 @@
       "id": "rotel_ch05_expectation_01",
       "answer": "各结果的净收益分别为：B区 $10-4=6$ 美元，D区 $0.10-4=-3.90$ 美元，A或C区 $-4$ 美元。因此\n\n$$E(X)=\\frac3{12}(6)+\\frac4{12}(-3.9)+\\frac5{12}(-4)=-1.4667.$$\n\n玩家平均每局约损失 **1.47美元**。",
       "review_status": "答案已独立推导并审核"
+    },
+    {
+      "id": "ch05_q24",
+      "answer": "Let $X$ be yearly health-care expense. The cutoff $c$ satisfies\n\n$$P(X\\le c)=0.33.$$\n\nThe 33rd standard-normal percentile is $z_{0.33}\\approx-0.4399$. Therefore\n\n$$c=\\mu+z_{0.33}\\sigma=3000+(-0.4399)(500)\\approx2780.05.$$\n\nA practical cutoff is approximately **2,780 dollars**.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "missing-answer-recovery-v1"
     }
   ]
 }

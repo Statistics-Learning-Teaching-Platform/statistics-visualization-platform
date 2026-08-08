@@ -263,13 +263,18 @@
     },
     {
       "id": "ch05_q24",
-      "content": "Suppose that yearly health care expenses for a family of four are normally distributed with a mean expense equal to \\$3,000 and a standard deviation of \\$500. An insurance company has decides to offer a health insurance premium reduction if a policyholder's health care expenses do not exceed a specified dollar amount. What dollar amount should be established if the insurance company wants families having the lowest 33 percent of yearly health care expenses to be eligible for the premium reduction.",
+      "content": "Yearly health-care expenses for a family of four are normally distributed with mean $\\mu=\\$3{,}000$ and standard deviation $\\sigma=\\$500$. An insurer will reduce the premium for families whose yearly expenses are among the lowest 33%. What expense cutoff should the insurer use?",
       "source": "Assignment Prof Lv/assignment5-lu.doc",
-      "type": "unknown",
-      "difficulty": 1,
-      "keywords": [],
+      "type": "计算题",
+      "difficulty": 2,
+      "keywords": [
+        "normal distribution",
+        "percentile"
+      ],
       "formula_refs": [],
-      "data_refs": []
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "missing-answer-recovery-v1"
     },
     {
       "id": "ch05_q25",

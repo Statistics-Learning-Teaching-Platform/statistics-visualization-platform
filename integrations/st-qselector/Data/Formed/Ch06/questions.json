@@ -183,19 +183,20 @@
     },
     {
       "id": "ch06_q16",
-      "content": "According to the Insurance Institute of America, a family spends between \\$400 and \\$3,800 per year on all types of insurance. Suppose the money spent is uniformly distributed between these amounts.\n\na\\. What is the mean amount spent on insurance?\n\nb\\. What is the standard deviation of the amount spent?\n\n> c\\. If we select a family at random, what is the probability they spend less than \\$2,000 per year on insurance per year?\n\nd\\. What is the probability a family spends more than \\$3,000 per year?\n\ne\\. What is the probability a family spends between \\$1500 and \\$2500?\n\n[IMG:ch06_q04_f01_image3.png]\n\na.  The mean is given by\n\n> [FORMULA:ch06_q04_f02_image4.wmf]\n\nb\\. The standard deviation is given by\n\n[FORMULA:ch06_q04_f03_image5.wmf]\n\nc\\. The probability they spend less than \\$2,000 per year on insurance per year is given by\n\n[FORMULA:ch06_q04_f04_image6.wmf]\n\nd\\. The probability a family spends more than \\$3,000 per year is given by\n\n[FORMULA:ch06_q04_f05_image7.wmf]\n\ne\\. The probability a family spends between \\$1500 and \\$2500 is\n\n[FORMULA:ch06_q04_f06_image8.wmf]",
+      "content": "Let $X$ be a family's yearly spending on all types of insurance. Assume $X$ is uniformly distributed from $\\$400$ to $\\$3{,}800$.\n\na. Find the mean of $X$.\n\nb. Find the standard deviation of $X$.\n\nc. Find $P(X<2000)$.\n\nd. Find $P(X>3000)$.\n\ne. Find $P(1500<X<2500)$.",
       "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter06_Continuous Random Variables.docx",
-      "type": "unknown",
-      "difficulty": 1,
-      "keywords": [],
-      "formula_refs": [
-        "ch06_q04_f02_image4.wmf",
-        "ch06_q04_f03_image5.wmf",
-        "ch06_q04_f04_image6.wmf",
-        "ch06_q04_f05_image7.wmf",
-        "ch06_q04_f06_image8.wmf"
+      "type": "综合题",
+      "difficulty": 2,
+      "keywords": [
+        "uniform distribution",
+        "expected value",
+        "standard deviation",
+        "probability"
       ],
-      "data_refs": []
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "missing-answer-recovery-v1"
     },
     {
       "id": "ch06_q17",
