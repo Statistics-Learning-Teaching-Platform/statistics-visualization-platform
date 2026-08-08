@@ -25,6 +25,9 @@ export interface Question {
   attachments: { name: string; available: boolean }[];
   answer: string | null;
   answerIsImage: boolean; // answer 是否为图片相对路径
+  isComplete: boolean;
+  isReviewed: boolean;
+  reviewStatus: string | null;
 }
 
 export interface QuestionsResponse {

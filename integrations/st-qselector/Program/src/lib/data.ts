@@ -69,6 +69,36 @@ interface RawQuestion {
   difficulty?: number;
   keywords?: string[];
   data_refs?: string[];
+  review_status?: string;
+}
+
+interface RawAnswer {
+  id?: string;
+  answer?: string | null;
+  review_status?: string;
+}
+
+const QUESTION_TYPES = new Set(["选择题", "判断题", "填空题", "计算题", "简答题", "综合题"]);
+
+function inferQuestionType(rawType: string | undefined, content: string): string {
+  if (rawType && QUESTION_TYPES.has(rawType)) return rawType;
+  const text = content.toLowerCase();
+  if (/true\s*\/\s*false|true or false|判断下列|判断题/.test(text)) return "判断题";
+  if (/fill in|填空|____+/.test(text)) return "填空题";
+  if (/which of the following|select (all|the)|选择正确|options?:/.test(text)) return "选择题";
+  if (/calculate|compute|find the (mean|median|variance|standard deviation|probability|interval)|求|计算/.test(text)) return "计算题";
+  if (/construct|draw|plot|analy[sz]e|compare the distributions|分别回答|完成下列各问/.test(text)) return "综合题";
+  return "简答题";
+}
+
+function questionIsComplete(content: string, attachments: { available: boolean }[]): boolean {
+  const text = content.trim();
+  if (!text || attachments.some((item) => !item.available)) return false;
+  if (/无法预览|\[图片[^\]]*\]|!\[[^\]]*\]\(\/api\/asset/i.test(text)) return false;
+  const referencesMissingContext =
+    /exercise\s+\d+\s+above|the (?:following|above) (?:figure|table|graph)|figure\s+\d+(?:\.\d+)?\s+(?:above|below|gives)|下图|上表|下表/i.test(text);
+  const hasEmbeddedContext = /\[IMG:|\|\s*[-:]+\s*\||```text/i.test(text) || attachments.length > 0;
+  return !referencesMissingContext || hasEmbeddedContext;
 }
 
 let _questionsCache: Question[] | null = null;
@@ -88,12 +118,17 @@ export function loadAllQuestions(): Question[] {
     const chapterNum = parseInt(ch.id.replace(/\D/g, ""), 10) || 0;
 
     // 答案先建索引
-    const answerMap = new Map<string, string>();
+    const answerMap = new Map<string, { answer: string | null; reviewStatus: string | null }>();
     if (fs.existsSync(aFile)) {
       try {
         const aData = JSON.parse(fs.readFileSync(aFile, "utf8"));
-        for (const a of aData.answers || []) {
-          if (a && a.id) answerMap.set(a.id, a.answer ?? null);
+        for (const a of (aData.answers || []) as RawAnswer[]) {
+          if (a && a.id) {
+            answerMap.set(a.id, {
+              answer: a.answer ?? null,
+              reviewStatus: a.review_status ? String(a.review_status) : null,
+            });
+          }
         }
       } catch {
         // 忽略损坏的答案文件，题目仍可加载
@@ -104,25 +139,34 @@ export function loadAllQuestions(): Question[] {
       const qData = JSON.parse(fs.readFileSync(qFile, "utf8"));
       for (const q of (qData.questions || []) as RawQuestion[]) {
         if (!q || !q.id) continue;
-        const answer = answerMap.has(q.id) ? answerMap.get(q.id)! : null;
+        const answerRecord = answerMap.get(q.id);
+        const answer = answerRecord?.answer ?? null;
         const dataRefs = Array.isArray(q.data_refs) ? q.data_refs : [];
+        const attachments = dataRefs.map((name) => ({
+          name,
+          available: attachmentExists(dir, name),
+        }));
+        const reviewStatus = q.review_status
+          ? String(q.review_status)
+          : answerRecord?.reviewStatus ?? null;
+        const content = q.content ?? "";
         all.push({
           id: q.id,
           chapterId: ch.id,
           chapterTitle: ch.title,
           chapterNum,
-          content: q.content ?? "",
+          content,
           source: q.source ?? "",
-          type: q.type ?? "unknown",
+          type: inferQuestionType(q.type, content),
           difficulty: typeof q.difficulty === "number" ? q.difficulty : 1,
           keywords: Array.isArray(q.keywords) ? q.keywords : [],
           dataRefs,
-          attachments: dataRefs.map((name) => ({
-            name,
-            available: attachmentExists(dir, name),
-          })),
+          attachments,
           answer,
           answerIsImage: detectAnswerImage(answer),
+          isComplete: questionIsComplete(content, attachments),
+          isReviewed: Boolean(reviewStatus && /审核|审校|reviewed/i.test(reviewStatus)),
+          reviewStatus,
         });
       }
     } catch {
