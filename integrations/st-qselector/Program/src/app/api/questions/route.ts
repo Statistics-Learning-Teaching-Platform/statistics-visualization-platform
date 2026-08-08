@@ -24,7 +24,12 @@ export async function GET() {
       (a, b) => a - b
     );
 
-    const body: QuestionsResponse = { chapters, difficulties, questions };
+    const body: QuestionsResponse = {
+      totalCount: questions.length,
+      chapters,
+      difficulties,
+      questions,
+    };
     const response = NextResponse.json(body);
     response.headers.set("Cache-Control", "public, max-age=60, stale-while-revalidate=3600");
     return response;

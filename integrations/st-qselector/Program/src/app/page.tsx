@@ -48,7 +48,7 @@ export default function Home() {
   const [difficultySel, setDifficultySel] = useState<Set<number>>(new Set());
   const [typeSel, setTypeSel] = useState<Set<string>>(new Set());
   const [knowledgeSel, setKnowledgeSel] = useState<Set<string>>(new Set());
-  const [reviewedOnly, setReviewedOnly] = useState(true);
+  const [reviewedOnly, setReviewedOnly] = useState(false);
   const [expanded, setExpanded] = useState<Set<string>>(new Set());
   const [page, setPage] = useState(1);
   const [fullDataLoaded, setFullDataLoaded] = useState(false);
@@ -101,7 +101,7 @@ export default function Home() {
     if (fullDataLoaded || fullDataLoading || fullDataError) return;
     const timer = window.setTimeout(() => {
       void loadFullData().catch(() => undefined);
-    }, 900);
+    }, 0);
     return () => window.clearTimeout(timer);
   }, [data, fullDataError, fullDataLoaded, fullDataLoading, loadFullData]);
 
@@ -186,7 +186,9 @@ export default function Home() {
         <div>
           <div className="qb-brand"><span>▥</span> STATMIND</div>
           <h1>统计学组卷系统</h1>
-          <p>已审核 {reviewedQuestions.length} 题 · {data.chapters.length} 章</p>
+          <p>
+            题库 {data.totalCount ?? data.questions.length} 题 · 已审核 {reviewedQuestions.length} 题 · {data.chapters.length} 章
+          </p>
         </div>
         <nav className="qb-header__actions">
           {/* Cross-app navigation intentionally leaves the Next.js basePath. */}
@@ -229,10 +231,10 @@ export default function Home() {
             </button>
             <span>
               {fullDataLoading
-                ? "已审核题目可立即使用，完整题库正在后台加载"
+                ? "正在后台载入 bank of assignments 的其余题目"
                 : fullDataError
                   ? "完整题库暂不可用，点击筛选开关可重试"
-                  : "未通过审核的题目不会进入组卷"}
+                  : "默认显示全部题目，可切换为只看已审核题目"}
             </span>
           </div>
 

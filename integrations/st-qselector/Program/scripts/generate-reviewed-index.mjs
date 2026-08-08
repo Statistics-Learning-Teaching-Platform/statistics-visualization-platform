@@ -13,6 +13,7 @@ const imagePathPattern = /^[\w./\- ]+\.(png|jpe?g|gif|webp)$/i;
 const config = yamlLoad(fs.readFileSync(path.join(dataDir, "config.yaml"), "utf8"));
 const root = path.resolve(dataDir, config.dataRoot || ".");
 const questions = [];
+let totalCount = 0;
 
 function attachmentExists(chapterDir, name) {
   return [path.resolve(chapterDir, name), path.resolve(chapterDir, "Assests", name)].some(
@@ -39,6 +40,7 @@ for (const chapter of config.chapters || []) {
 
   const questionData = JSON.parse(fs.readFileSync(questionFile, "utf8"));
   for (const question of questionData.questions || []) {
+    totalCount += 1;
     const answerRecord = answerMap.get(question.id);
     const reviewStatus = question.review_status || answerRecord?.review_status || null;
     if (!reviewStatus || !/审核|审校|reviewed/i.test(reviewStatus)) continue;
@@ -78,6 +80,7 @@ for (const question of questions) {
 }
 
 const body = {
+  totalCount,
   chapters: (config.chapters || []).map((chapter) => ({
     id: String(chapter.id),
     title: String(chapter.title || chapter.id),

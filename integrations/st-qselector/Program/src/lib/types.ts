@@ -31,6 +31,7 @@ export interface Question {
 }
 
 export interface QuestionsResponse {
+  totalCount?: number;
   chapters: { id: string; title: string; num: number; count: number }[];
   difficulties: number[];
   questions: Question[];
