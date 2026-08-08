@@ -19,6 +19,7 @@ import QuestionContent from "@/components/QuestionContent";
 import { useSelection } from "@/lib/selection";
 import type { QuestionsResponse, Question } from "@/lib/types";
 import { withBasePath } from "@/lib/base-path";
+import { reviewedQuestionIndex } from "@/generated/reviewed-questions";
 
 const PAGE_SIZE = 8;
 const TYPE_ORDER = ["计算题", "选择题", "综合题", "填空题", "简答题", "判断题"];
@@ -41,8 +42,7 @@ function normalizeForDuplicate(value: string) {
 }
 
 export default function Home() {
-  const [data, setData] = useState<QuestionsResponse | null>(null);
-  const [error, setError] = useState<string | null>(null);
+  const [data, setData] = useState<QuestionsResponse>(() => reviewedQuestionIndex);
   const [search, setSearch] = useState("");
   const [chapterSel, setChapterSel] = useState<Set<string>>(new Set());
   const [difficultySel, setDifficultySel] = useState<Set<number>>(new Set());
@@ -98,31 +98,7 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
-    const controller = new AbortController();
-    const timeout = window.setTimeout(() => controller.abort(), 4_000);
-
-    fetch(withBasePath("/data/reviewed-questions.json"), {
-      signal: controller.signal,
-      cache: "force-cache",
-    })
-      .then(async (response) => {
-        if (!response.ok) throw new Error("已审核题库索引不可用");
-        return (await response.json()) as QuestionsResponse;
-      })
-      .then((result) => {
-        setData(result);
-        setError(null);
-      })
-      .catch(() => {
-        void loadFullData().catch((reason: Error) => setError(reason.message));
-      })
-      .finally(() => window.clearTimeout(timeout));
-
-    return () => controller.abort();
-  }, [loadFullData]);
-
-  useEffect(() => {
-    if (!data || fullDataLoaded || fullDataLoading || fullDataError) return;
+    if (fullDataLoaded || fullDataLoading || fullDataError) return;
     const timer = window.setTimeout(() => {
       void loadFullData().catch(() => undefined);
     }, 900);
@@ -204,22 +180,13 @@ export default function Home() {
     setPage(1);
   }
 
-  if (error) {
-    return (
-      <div className="qb-state">
-        <h2>题库加载失败</h2>
-        <p>{error}</p>
-      </div>
-    );
-  }
-
   return (
     <div className="qb-app">
       <header className="qb-header">
         <div>
           <div className="qb-brand"><span>▥</span> STATMIND</div>
           <h1>统计学组卷系统</h1>
-          <p>{data ? `已审核 ${reviewedQuestions.length} 题 · ${data.chapters.length} 章` : "正在读取题库…"}</p>
+          <p>已审核 {reviewedQuestions.length} 题 · {data.chapters.length} 章</p>
         </div>
         <nav className="qb-header__actions">
           {/* Cross-app navigation intentionally leaves the Next.js basePath. */}

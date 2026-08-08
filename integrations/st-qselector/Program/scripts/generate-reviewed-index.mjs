@@ -7,6 +7,7 @@ const scriptDir = path.dirname(fileURLToPath(import.meta.url));
 const programDir = path.resolve(scriptDir, "..");
 const dataDir = path.resolve(programDir, "..", "Data", "Formed");
 const outputFile = path.resolve(programDir, "public", "data", "reviewed-questions.json");
+const outputModule = path.resolve(programDir, "src", "generated", "reviewed-questions.ts");
 const imagePathPattern = /^[\w./\- ]+\.(png|jpe?g|gif|webp)$/i;
 
 const config = yamlLoad(fs.readFileSync(path.join(dataDir, "config.yaml"), "utf8"));
@@ -87,6 +88,12 @@ const body = {
   questions,
 };
 
+const serialized = JSON.stringify(body);
 fs.mkdirSync(path.dirname(outputFile), { recursive: true });
-fs.writeFileSync(outputFile, JSON.stringify(body));
+fs.mkdirSync(path.dirname(outputModule), { recursive: true });
+fs.writeFileSync(outputFile, serialized);
+fs.writeFileSync(
+  outputModule,
+  `import type { QuestionsResponse } from "@/lib/types";\n\nexport const reviewedQuestionIndex: QuestionsResponse = ${serialized};\n`
+);
 console.log(`Generated ${questions.length} reviewed questions at ${outputFile}`);
