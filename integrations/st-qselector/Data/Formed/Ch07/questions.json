@@ -334,7 +334,7 @@
     },
     {
       "id": "ch07_q30",
-      "content": "Weekly gains or losses (seconds) for 18 watches are $-0.38,-0.20,-0.38,-0.32,0.32,-0.23,0.30,0.25,-0.10,-0.37,-0.61,-0.48,-0.47,-0.64,-0.04,-0.20,-0.68,0.05$. Test $H_0:\\mu=0$ against $H_a:\\mu\\ne0$ at $\\alpha=0.05$ and estimate the p-value.",
+      "content": "Weekly gains or losses for 18 watches, measured in seconds, are:\n\n-0.38, -0.20, -0.38, -0.32, 0.32, -0.23,\n\n0.30, 0.25, -0.10, -0.37, -0.61, -0.48,\n\n-0.47, -0.64, -0.04, -0.20, -0.68, 0.05.\n\nTest $H_0:\\mu=0$ against $H_a:\\mu\\ne0$ at $\\alpha=0.05$ and estimate the p-value.",
       "source": "Assignments for STAT 2012/Assignment-7.doc",
       "type": "计算题",
       "difficulty": 3,

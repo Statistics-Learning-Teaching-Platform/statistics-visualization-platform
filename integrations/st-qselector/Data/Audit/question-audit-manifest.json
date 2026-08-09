@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-08-09T11:23:14.138878+00:00",
+  "generated_at": "2026-08-09T12:23:31.803714+00:00",
   "source_roots": {
     "origin": "Data/Origin",
     "formed": "Data/Formed"
@@ -10361,7 +10361,7 @@
         "resolvable": true
       },
       "original": {
-        "question_hash": "082183bf657deb9a460602fd2a1b017bded5ce9c1827921a7e63ef936f52fc60",
+        "question_hash": "155b7c270a79aa14171a1bc8721b19902416c66e939dd4b960d604b531acb0d4",
         "answer_hash": "d032b58e28bbbb41dd4a151e7a7d1c3f80b6d69f2aed101dda1111da8b8c30f1",
         "type": "计算题",
         "difficulty": 3,
