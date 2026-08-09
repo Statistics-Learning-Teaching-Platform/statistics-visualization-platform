@@ -3,45 +3,45 @@
   "answers": [
     {
       "id": "ch13_q01",
-      "answer": "> a.[FORMULA:ch13_q08_ans_f01_image14.wmf]\n\nb\\. Yes, as the number of assemblers increases, so does the production.\n\nc\\. The coefficient of correlation: r=0.9272\n\n[FORMULA:ch13_q08_ans_f02_image15.wmf]\n\nd.  [FORMULA:ch13_q08_ans_f03_image16.wmf]**=**[FORMULA:ch13_q08_ans_f04_image17.wmf]**=**[FORMULA:ch13_q08_ans_f05_image18.wmf]**=**[FORMULA:ch13_q08_ans_f06_image19.wmf]**=7**\n\n[FORMULA:ch13_q08_ans_f07_image20.wmf]=[FORMULA:ch13_q08_ans_f08_image21.wmf]=24-7[FORMULA:ch13_q08_ans_f09_image22.wmf]3=3\n\nSo the regression equation is: [FORMULA:ch13_q08_ans_f10_image23.wmf]=3+7x.\n\ne.  x=6, [FORMULA:ch13_q08_ans_f11_image23.wmf]=3+7\\*6=45."
+      "answer": "a. The points show a strong positive, approximately linear association.\n\nb. $r\\approx0.9272$.\n\nc. $\\bar x=3$, $\\bar y=24$, slope $b_1=7$, intercept $b_0=3$, so $\\hat y=3+7x$.\n\nd. At $x=6$, $\\hat y=45$ units.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch13-review-v1"
     },
     {
       "id": "ch13_q02",
-      "answer": "a.  SSE measures the quality or \"goodness\" of the fit of the least squares line to the observed data. The least squares regression line is the \"best\" fitted line that minimizes the sum of squared residuals.\n\nb.  The intercept is the estimated average value of Y when the value of X is zero. So it indicates that if the metal is not heated, the estimated average metal strength is 1lb. per sq. inch. According to the estimated slope, we estimate that the average metal strength increases by 1lb.per sq. inch for each additional minute of heat application to the metal. When x=4 the predicted values is [FORMULA:ch13_q09_ans_f02_image24.wmf] = 1 + 1(4) = 5."
-    },
-    {
-      "id": "ch13_q03",
-      "answer": "The estimated slope is [FORMULA:ch13_q10_ans_f06_image30.wmf]\n\nThe estimated y-intercept is[FORMULA:ch13_q10_ans_f07_image31.wmf]\n\nThe equation is [FORMULA:ch13_q10_ans_f08_image32.wmf] = 48.024+ 5.7003*x*\n\nb\\)\n\nSince [FORMULA:ch13_q10_ans_f09_image33.wmf], we estimate that the sales price of a house increases by 5.7003 dollars when the home size increases by 1 hundred square feet. [FORMULA:ch13_q10_ans_f10_image34.wmf] is the estimated average value of Y when the value of X is zero (if X = 0 is in the range of observed X values). But, no houses had 0 square feet, so [FORMULA:ch13_q10_ans_f11_image35.wmf]just indicates that, for houses within the range of sizes observed, \\$48.024 is the portion of the house price not explained by square feet."
+      "answer": "a. SSE is $\\sum(y_i-\\hat y_i)^2$, the total squared residual error; the least-squares line is the line that minimizes SSE among all straight lines.\n\nb. The intercept 1 is the predicted mean strength at zero heating time (if zero is meaningful). The slope 1 means predicted mean strength increases by 1 psi per additional minute of heating. At $x=4$, $\\hat y=1+4=5$ psi.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch13-review-v1"
     },
     {
       "id": "rotel_ch13_line_01",
-      "answer": "The slope is\n\n$$m=\\frac{5-3}{1-0}=2.$$\n\nSince the y-intercept is 3, the line is\n\n$$y=2x+3.$$",
-      "review_status": "independently solved, translated, and reviewed",
-      "audit_pack": "english-normalization-v1"
+      "answer": "The slope is $m=(5-3)/(1-0)=2$. Therefore $y=2x+3$.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch13-review-v1"
     },
     {
       "id": "rotel_ch13_line_02",
-      "answer": "The slope is\n\n$$m=\\frac{-5-1}{9-0}=-\\frac23.$$\n\nTherefore, the line is\n\n$$y=-\\frac23x+1.$$",
-      "review_status": "independently solved, translated, and reviewed",
-      "audit_pack": "english-normalization-v1"
+      "answer": "The slope is $m=(-5-1)/(9-0)=-2/3$. Therefore $y=-(2/3)x+1$.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch13-review-v1"
     },
     {
       "id": "rotel_ch13_causation_01",
-      "answer": "No. Association alone does not establish causation. Outdoor temperature or season is a plausible lurking variable: when the weather is hot, sales of both products may rise. To establish causation, use a well-controlled randomized experiment that controls other factors. If an experiment is infeasible, use a rigorous quasi-experimental or causal-inference design rather than relying only on a simple correlation coefficient.",
-      "review_status": "independently solved, translated, and reviewed",
-      "audit_pack": "english-normalization-v1"
+      "answer": "No. Outdoor temperature or season could raise both sales and create the association. A randomized controlled experiment would best establish causation; if that is infeasible, use a well-designed quasi-experimental study and adjust for confounders.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch13-review-v1"
     },
     {
       "id": "rotel_ch13_slope_01",
-      "answer": "Within the range of heights for which this model is appropriate, each 1-centimeter increase in height is associated with a 0.99-kilogram increase in predicted mean weight. The slope describes a change in the predicted mean; it does not mean every individual's weight increases by exactly 0.99 kilograms.",
-      "review_status": "independently solved, translated, and reviewed",
-      "audit_pack": "english-normalization-v1"
+      "answer": "Within the range where the model is appropriate, each additional centimeter of height is associated with a 0.99 kg increase in predicted mean weight. It describes the fitted mean, not an exact change for every individual.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch13-review-v1"
     },
     {
       "id": "rotel_ch13_regression_01",
-      "answer": "The means are $\\bar{x}=287.5$ and $\\bar{y}=41.5$. Let\n\n$$S_{xx}=\\sum(x_i-\\bar{x})^2,\\quad S_{yy}=\\sum(y_i-\\bar{y})^2,\\quad S_{xy}=\\sum(x_i-\\bar{x})(y_i-\\bar{y}).$$\n\na. The correlation coefficient is\n\n$$r=\\frac{S_{xy}}{\\sqrt{S_{xx}S_{yy}}}\\approx-0.8074.$$\n\nb. The slope and intercept are\n\n$$b_1=\\frac{S_{xy}}{S_{xx}}\\approx-0.20973,$$\n\n$$b_0=\\bar{y}-b_1\\bar{x}\\approx101.7968.$$\n\nThus the regression equation is\n\n$$\\hat{y}=101.7968-0.20973x.$$\n\nThe data show a fairly strong negative association.",
-      "review_status": "independently solved, translated, and reviewed",
-      "audit_pack": "english-normalization-v1"
+      "answer": "With $\\bar x=287.5$ and $\\bar y=41.5$, $r\\approx-0.8074$. The least-squares coefficients are $b_1=S_{xy}/S_{xx}\\approx-0.20973$ and $b_0=\\bar y-b_1\\bar x\\approx101.7968$. Thus $\\hat y=101.7968-0.20973x$.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch13-review-v1"
     }
   ]
 }

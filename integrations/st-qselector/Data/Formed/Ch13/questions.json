@@ -3,60 +3,35 @@
   "questions": [
     {
       "id": "ch13_q01",
-      "content": "The production department of NDB Electronics wants to explore the relationship between the number of employees who assemble a subassembly and the number produced. As an experiment, two employees were assigned to assemble the subassemblies. They produced 15 during a one-hour period. Then four employees assembled them. They produced 25 during a one-hour period. The complete set of paired observations follows.\n\n+------------+-----------------------------+\n| Number of  | One-Hour Production (units) |\n|            |                             |\n| Assemblers |                             |\n+:==========:+:===========================:+\n| 2          | 15                          |\n+------------+-----------------------------+\n| 4          | 25                          |\n+------------+-----------------------------+\n| 1          | 10                          |\n+------------+-----------------------------+\n| 5          | 40                          |\n+------------+-----------------------------+\n| 3          | 30                          |\n+------------+-----------------------------+\n\nThe dependent variable is production; that is, it is assumed that the level of production depends upon the number of employee.\n\na.  Drew a scatter diagram.\n\nb.  Based on the scatter diagram, does there appear to be any relationship between the number of assemblers and production? Explain.\n\nc.  Compute the coefficient of correlation.\n\nd.  Determine the regression equation.\n\ne.  Predict the production of 6 employees.",
+      "content": "For five one-hour trials, assemblers $x$ and units produced $y$ were $(1,10),(2,15),(3,30),(4,25),(5,40)$.\n\na. Describe the scatterplot.\n\nb. Compute the correlation coefficient.\n\nc. Find the least-squares regression line.\n\nd. Predict production with six assemblers.",
       "source": "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment and solution_chap7&13_ Sampling distribution_regression.docx",
-      "type": "unknown",
-      "difficulty": 1,
-      "keywords": [],
-      "formula_refs": [
-        "ch13_q08_ans_f01_image14.wmf",
-        "ch13_q08_ans_f02_image15.wmf",
-        "ch13_q08_ans_f03_image16.wmf",
-        "ch13_q08_ans_f04_image17.wmf",
-        "ch13_q08_ans_f05_image18.wmf",
-        "ch13_q08_ans_f06_image19.wmf",
-        "ch13_q08_ans_f07_image20.wmf",
-        "ch13_q08_ans_f08_image21.wmf",
-        "ch13_q08_ans_f09_image22.wmf",
-        "ch13_q08_ans_f10_image23.wmf",
-        "ch13_q08_ans_f11_image23.wmf"
+      "type": "综合题",
+      "difficulty": 3,
+      "keywords": [
+        "linear regression",
+        "correlation"
       ],
-      "data_refs": []
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch13-review-v1"
     },
     {
       "id": "ch13_q02",
-      "content": "a. What does SSE measure? What is the least squares regression line?\n\nb\\. An experiment was performed on a certain metal to determine if the strength is a function of heating time. The simple linear regression equation is [FORMULA:ch13_q09_f01_image24.wmf] = 1 + 1*X*. The time is in minutes and the strength is measured in pounds per square inch. Provide a managerial interpretation of the Y-intercept and slope. Determine the predicted value of y when x = 4.",
+      "content": "a. What does the sum of squared errors (SSE) measure, and what is the least-squares regression line?\n\nb. For the model $\\hat y=1+x$, where $x$ is heating time in minutes and $y$ is metal strength in pounds per square inch, interpret the intercept and slope and predict strength at $x=4$.",
       "source": "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment and solution_chap7&13_ Sampling distribution_regression.docx",
-      "type": "unknown",
-      "difficulty": 1,
-      "keywords": [],
-      "formula_refs": [
-        "ch13_q09_ans_f02_image24.wmf",
-        "ch13_q09_f01_image24.wmf"
+      "type": "综合题",
+      "difficulty": 2,
+      "keywords": [
+        "least-squares regression",
+        "slope",
+        "intercept",
+        "SSE"
       ],
-      "data_refs": []
-    },
-    {
-      "id": "ch13_q03",
-      "content": "A real estate agency collects data concerning *y*=the sales price of a house (in thousands of dollars), and *x*=the home size (in hundreds of square feet). The data are given in the table below\n\n[FORMULA:ch13_q10_f01_image25.emf]\n\n[FORMULA:ch13_q10_f02_image26.wmf] [FORMULA:ch13_q10_f03_image27.wmf] [FORMULA:ch13_q10_f04_image28.wmf] [FORMULA:ch13_q10_f05_image29.wmf]\\\n \\\na) Find the estimated y-intercept *b*~0~ and slope *b*~1~ and write the equation of the least squares regression line.\n\nb\\) Interpret *b*~0~ and *b*~1~.",
-      "source": "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment and solution_chap7&13_ Sampling distribution_regression.docx",
-      "type": "unknown",
-      "difficulty": 1,
-      "keywords": [],
-      "formula_refs": [
-        "ch13_q10_ans_f06_image30.wmf",
-        "ch13_q10_ans_f07_image31.wmf",
-        "ch13_q10_ans_f08_image32.wmf",
-        "ch13_q10_ans_f09_image33.wmf",
-        "ch13_q10_ans_f10_image34.wmf",
-        "ch13_q10_ans_f11_image35.wmf",
-        "ch13_q10_f01_image25.emf",
-        "ch13_q10_f02_image26.wmf",
-        "ch13_q10_f03_image27.wmf",
-        "ch13_q10_f04_image28.wmf",
-        "ch13_q10_f05_image29.wmf"
-      ],
-      "data_refs": []
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch13-review-v1"
     },
     {
       "id": "rotel_ch13_line_01",
@@ -66,17 +41,16 @@
       "source_problem": "12.1-12.2 Problem 1 (adapted to text)",
       "license": "CC BY-NC-SA 4.0",
       "attribution": "Rachael Norton and Peter Staab, 2023",
-      "review_status": "independently solved, translated, and reviewed",
+      "review_status": "independently solved and reviewed",
       "type": "计算题",
       "difficulty": 1,
       "keywords": [
-        "line equation",
-        "slope",
-        "intercept"
+        "linear equation",
+        "slope"
       ],
       "formula_refs": [],
       "data_refs": [],
-      "audit_pack": "english-normalization-v1"
+      "audit_pack": "ch13-review-v1"
     },
     {
       "id": "rotel_ch13_line_02",
@@ -86,75 +60,74 @@
       "source_problem": "12.1-12.2 Problem 2 (adapted to text)",
       "license": "CC BY-NC-SA 4.0",
       "attribution": "Rachael Norton and Peter Staab, 2023",
-      "review_status": "independently solved, translated, and reviewed",
+      "review_status": "independently solved and reviewed",
       "type": "计算题",
       "difficulty": 1,
       "keywords": [
-        "line equation",
-        "slope from a point and intercept"
+        "linear equation",
+        "slope"
       ],
       "formula_refs": [],
       "data_refs": [],
-      "audit_pack": "english-normalization-v1"
+      "audit_pack": "ch13-review-v1"
     },
     {
       "id": "rotel_ch13_causation_01",
-      "content": "Beer sales and ice-cream sales in a region show a strong positive association. Can we conclude that increasing beer sales causes ice-cream sales to increase? Identify one plausible lurking variable and explain what study design would be more appropriate for establishing causation.",
+      "content": "Beer sales and ice-cream sales show a strong positive association. Can we conclude that increasing beer sales causes ice-cream sales to increase? Give one plausible lurking variable and a design that would better establish causation.",
       "source": "ROTEL Statistical Problem Sets in WeBWorK — 12.3-12.4 Problem 1 (adapted) — https://rotel.pressbooks.pub/statsproblemsets/chapter/12-3-12-4-linear-regression/",
       "source_url": "https://rotel.pressbooks.pub/statsproblemsets/chapter/12-3-12-4-linear-regression/",
       "source_problem": "12.3-12.4 Problem 1 (adapted)",
       "license": "CC BY-NC-SA 4.0",
       "attribution": "Rachael Norton and Peter Staab, 2023",
-      "review_status": "independently solved, translated, and reviewed",
+      "review_status": "independently solved and reviewed",
       "type": "简答题",
-      "difficulty": 2,
+      "difficulty": 1,
       "keywords": [
-        "association",
+        "correlation",
         "causation",
         "lurking variable"
       ],
       "formula_refs": [],
       "data_refs": [],
-      "audit_pack": "english-normalization-v1"
+      "audit_pack": "ch13-review-v1"
     },
     {
       "id": "rotel_ch13_slope_01",
-      "content": "A regression equation predicting weight $Y$, in kilograms, from height $X$, in centimeters, is $\\hat Y=0.99X-101.24$. Interpret the slope 0.99 in context.",
+      "content": "A regression predicting weight $Y$ (kg) from height $X$ (cm) is $\\hat Y=0.99X-101.24$. Interpret the slope.",
       "source": "ROTEL Statistical Problem Sets in WeBWorK — 12.3-12.4 Problem 4 — https://rotel.pressbooks.pub/statsproblemsets/chapter/12-3-12-4-linear-regression/",
       "source_url": "https://rotel.pressbooks.pub/statsproblemsets/chapter/12-3-12-4-linear-regression/",
       "source_problem": "12.3-12.4 Problem 4",
       "license": "CC BY-NC-SA 4.0",
       "attribution": "Rachael Norton and Peter Staab, 2023",
-      "review_status": "independently solved, translated, and reviewed",
+      "review_status": "independently solved and reviewed",
       "type": "简答题",
-      "difficulty": 2,
+      "difficulty": 1,
       "keywords": [
-        "least-squares regression",
-        "slope interpretation"
+        "regression slope",
+        "interpretation"
       ],
       "formula_refs": [],
       "data_refs": [],
-      "audit_pack": "english-normalization-v1"
+      "audit_pack": "ch13-review-v1"
     },
     {
       "id": "rotel_ch13_regression_01",
-      "content": "For 8 baseball teams, batting average $x$, recorded in thousandths, and number of wins $y$ are $(272,40),(262,45),(317,30),(304,41),(276,44),(286,45),(263,50),(320,37)$.\n\na. Compute Pearson's correlation coefficient.\n\nb. Find the least-squares regression equation for predicting wins from batting average.",
+      "content": "For eight baseball teams, batting average $x$ (thousandths) and wins $y$ are $(272,40),(262,45),(317,30),(304,41),(276,44),(286,45),(263,50),(320,37)$.\n\na. Compute Pearson's correlation coefficient.\n\nb. Find the least-squares line predicting wins from batting average.",
       "source": "ROTEL Statistical Problem Sets in WeBWorK — 12.3-12.4 Problem 5 (independently recalculated) — https://rotel.pressbooks.pub/statsproblemsets/chapter/12-3-12-4-linear-regression/",
       "source_url": "https://rotel.pressbooks.pub/statsproblemsets/chapter/12-3-12-4-linear-regression/",
       "source_problem": "12.3-12.4 Problem 5 (independently recalculated)",
       "license": "CC BY-NC-SA 4.0",
       "attribution": "Rachael Norton and Peter Staab, 2023",
-      "review_status": "independently solved, translated, and reviewed",
+      "review_status": "independently solved and reviewed",
       "type": "计算题",
-      "difficulty": 5,
+      "difficulty": 3,
       "keywords": [
-        "correlation coefficient",
-        "least-squares regression",
-        "regression equation"
+        "linear regression",
+        "correlation"
       ],
       "formula_refs": [],
       "data_refs": [],
-      "audit_pack": "english-normalization-v1"
+      "audit_pack": "ch13-review-v1"
     }
   ]
 }

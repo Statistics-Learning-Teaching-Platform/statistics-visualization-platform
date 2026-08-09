@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-08-09T10:58:02.955699+00:00",
+  "generated_at": "2026-08-09T11:00:46.537335+00:00",
   "source_roots": {
     "origin": "Data/Origin",
     "formed": "Data/Formed"
@@ -12,7 +12,7 @@
     "source_files_are_read_only": true
   },
   "summary": {
-    "total_questions": 274,
+    "total_questions": 273,
     "chapters": {
       "Ch01": 23,
       "Ch02": 28,
@@ -25,23 +25,22 @@
       "Ch09": 26,
       "Ch10": 13,
       "Ch11": 2,
-      "Ch13": 8
+      "Ch13": 7
     },
     "question_languages": {
-      "en": 274
+      "en": 273
     },
     "answer_languages": {
-      "en": 274
+      "en": 273
     },
     "grouping_candidates": {
-      "atomic_candidate": 166,
-      "multi_part_candidate": 108
+      "atomic_candidate": 164,
+      "multi_part_candidate": 109
     },
     "issue_counts": {
-      "escaped_line_end": 1,
       "legacy_superscript": 2,
-      "multi_part_requires_alignment_review": 108,
-      "question_type_unclassified": 4,
+      "multi_part_requires_alignment_review": 109,
+      "question_type_unclassified": 1,
       "references_unprovided_context": 2
     },
     "eligible_for_paper": 0
@@ -14263,97 +14262,31 @@
         "resolvable": true
       },
       "original": {
-        "question_hash": "52672a059dbab3a3f2e42f4b86331c1869dc0cadbe012e8fef66a6d6f4f27fe9",
-        "answer_hash": "0a9d000b61b46f6505c07f475ca315a1bb8e6075d733327595967a1e7da1f795",
-        "type": "unknown",
-        "difficulty": 1,
-        "keywords": [],
-        "formula_refs": [
-          "ch13_q08_ans_f01_image14.wmf",
-          "ch13_q08_ans_f02_image15.wmf",
-          "ch13_q08_ans_f03_image16.wmf",
-          "ch13_q08_ans_f04_image17.wmf",
-          "ch13_q08_ans_f05_image18.wmf",
-          "ch13_q08_ans_f06_image19.wmf",
-          "ch13_q08_ans_f07_image20.wmf",
-          "ch13_q08_ans_f08_image21.wmf",
-          "ch13_q08_ans_f09_image22.wmf",
-          "ch13_q08_ans_f10_image23.wmf",
-          "ch13_q08_ans_f11_image23.wmf"
+        "question_hash": "82b53aa00796af3b8e04a5f1c5e2c7b6540e474de9a2033a8080cc6537e20ab9",
+        "answer_hash": "83bc2ea372c69cbf88ed17c2470dd5810b48ca1cb6358f018c1789215002ef86",
+        "type": "综合题",
+        "difficulty": 3,
+        "keywords": [
+          "linear regression",
+          "correlation"
         ],
+        "formula_refs": [],
         "data_refs": [],
-        "review_status": null
+        "review_status": "independently solved and reviewed"
       },
       "diagnostics": {
         "question_language": "en",
         "answer_language": "en",
         "answer_present": true,
         "source_resolvable": true,
-        "assets": [
-          {
-            "reference": "ch13_q08_ans_f01_image14.wmf",
-            "resolved_path": "Assests/ch13_q08_ans_f01_image14.wmf",
-            "available": true
-          },
-          {
-            "reference": "ch13_q08_ans_f02_image15.wmf",
-            "resolved_path": "Assests/ch13_q08_ans_f02_image15.wmf",
-            "available": true
-          },
-          {
-            "reference": "ch13_q08_ans_f03_image16.wmf",
-            "resolved_path": "Assests/ch13_q08_ans_f03_image16.wmf",
-            "available": true
-          },
-          {
-            "reference": "ch13_q08_ans_f04_image17.wmf",
-            "resolved_path": "Assests/ch13_q08_ans_f04_image17.wmf",
-            "available": true
-          },
-          {
-            "reference": "ch13_q08_ans_f05_image18.wmf",
-            "resolved_path": "Assests/ch13_q08_ans_f05_image18.wmf",
-            "available": true
-          },
-          {
-            "reference": "ch13_q08_ans_f06_image19.wmf",
-            "resolved_path": "Assests/ch13_q08_ans_f06_image19.wmf",
-            "available": true
-          },
-          {
-            "reference": "ch13_q08_ans_f07_image20.wmf",
-            "resolved_path": "Assests/ch13_q08_ans_f07_image20.wmf",
-            "available": true
-          },
-          {
-            "reference": "ch13_q08_ans_f08_image21.wmf",
-            "resolved_path": "Assests/ch13_q08_ans_f08_image21.wmf",
-            "available": true
-          },
-          {
-            "reference": "ch13_q08_ans_f09_image22.wmf",
-            "resolved_path": "Assests/ch13_q08_ans_f09_image22.wmf",
-            "available": true
-          },
-          {
-            "reference": "ch13_q08_ans_f10_image23.wmf",
-            "resolved_path": "Assests/ch13_q08_ans_f10_image23.wmf",
-            "available": true
-          },
-          {
-            "reference": "ch13_q08_ans_f11_image23.wmf",
-            "resolved_path": "Assests/ch13_q08_ans_f11_image23.wmf",
-            "available": true
-          }
-        ],
+        "assets": [],
         "format_findings": [],
         "context_findings": [],
-        "detected_part_count": 5,
+        "detected_part_count": 4,
         "grouping_status": "multi_part_candidate",
-        "previously_reviewed": false,
+        "previously_reviewed": true,
         "issue_codes": [
-          "multi_part_requires_alignment_review",
-          "question_type_unclassified"
+          "multi_part_requires_alignment_review"
         ]
       },
       "workflow": {
@@ -14383,164 +14316,33 @@
         "resolvable": true
       },
       "original": {
-        "question_hash": "73c0ee8ac1c6261c6656b4d929ed250d0ea44dda211fb6ec447135377eeb47f7",
-        "answer_hash": "4b539f500f8646893111302ce299af6a59782cc20e27a4fce01cfaf7f19a3d4c",
-        "type": "unknown",
-        "difficulty": 1,
-        "keywords": [],
-        "formula_refs": [
-          "ch13_q09_ans_f02_image24.wmf",
-          "ch13_q09_f01_image24.wmf"
+        "question_hash": "3a628938f609f675ff12ad80c2df696b657b83ee1c110e4fb71047d9743020fd",
+        "answer_hash": "ae1d6ed263ef50927d3035237d8d377c1113462e5eb3cffaaff1001fe23e9d64",
+        "type": "综合题",
+        "difficulty": 2,
+        "keywords": [
+          "least-squares regression",
+          "slope",
+          "intercept",
+          "SSE"
         ],
+        "formula_refs": [],
         "data_refs": [],
-        "review_status": null
+        "review_status": "independently solved and reviewed"
       },
       "diagnostics": {
         "question_language": "en",
         "answer_language": "en",
         "answer_present": true,
         "source_resolvable": true,
-        "assets": [
-          {
-            "reference": "ch13_q09_ans_f02_image24.wmf",
-            "resolved_path": "Assests/ch13_q09_ans_f02_image24.wmf",
-            "available": true
-          },
-          {
-            "reference": "ch13_q09_f01_image24.wmf",
-            "resolved_path": "Assests/ch13_q09_f01_image24.wmf",
-            "available": true
-          }
-        ],
+        "assets": [],
         "format_findings": [],
         "context_findings": [],
-        "detected_part_count": 1,
-        "grouping_status": "atomic_candidate",
-        "previously_reviewed": false,
+        "detected_part_count": 2,
+        "grouping_status": "multi_part_candidate",
+        "previously_reviewed": true,
         "issue_codes": [
-          "question_type_unclassified"
-        ]
-      },
-      "workflow": {
-        "decision": "pending",
-        "english_status": "passed",
-        "source_recovery_status": "not_needed",
-        "grouping_review_status": "pending",
-        "independent_solution_status": "pending",
-        "verification_status": "pending",
-        "metadata_status": "pending",
-        "render_status": "pending",
-        "eligible_for_paper": false
-      },
-      "audit_notes": []
-    },
-    {
-      "id": "ch13_q03",
-      "chapter": "Ch13",
-      "source": {
-        "raw": "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment and solution_chap7&13_ Sampling distribution_regression.docx",
-        "kind": "local",
-        "local_paths": [
-          "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment and solution_chap7&13_ Sampling distribution_regression.docx"
-        ],
-        "external_urls": [],
-        "missing_paths": [],
-        "resolvable": true
-      },
-      "original": {
-        "question_hash": "f1c52b34cac1d19302986783400ad589923d4c184d51e3517aed0de986953283",
-        "answer_hash": "5075558c0cb47f30ddf7559ab95dc1169cbcc3660143260a085fc7de48297eb6",
-        "type": "unknown",
-        "difficulty": 1,
-        "keywords": [],
-        "formula_refs": [
-          "ch13_q10_ans_f06_image30.wmf",
-          "ch13_q10_ans_f07_image31.wmf",
-          "ch13_q10_ans_f08_image32.wmf",
-          "ch13_q10_ans_f09_image33.wmf",
-          "ch13_q10_ans_f10_image34.wmf",
-          "ch13_q10_ans_f11_image35.wmf",
-          "ch13_q10_f01_image25.emf",
-          "ch13_q10_f02_image26.wmf",
-          "ch13_q10_f03_image27.wmf",
-          "ch13_q10_f04_image28.wmf",
-          "ch13_q10_f05_image29.wmf"
-        ],
-        "data_refs": [],
-        "review_status": null
-      },
-      "diagnostics": {
-        "question_language": "en",
-        "answer_language": "en",
-        "answer_present": true,
-        "source_resolvable": true,
-        "assets": [
-          {
-            "reference": "ch13_q10_ans_f06_image30.wmf",
-            "resolved_path": "Assests/ch13_q10_ans_f06_image30.wmf",
-            "available": true
-          },
-          {
-            "reference": "ch13_q10_ans_f07_image31.wmf",
-            "resolved_path": "Assests/ch13_q10_ans_f07_image31.wmf",
-            "available": true
-          },
-          {
-            "reference": "ch13_q10_ans_f08_image32.wmf",
-            "resolved_path": "Assests/ch13_q10_ans_f08_image32.wmf",
-            "available": true
-          },
-          {
-            "reference": "ch13_q10_ans_f09_image33.wmf",
-            "resolved_path": "Assests/ch13_q10_ans_f09_image33.wmf",
-            "available": true
-          },
-          {
-            "reference": "ch13_q10_ans_f10_image34.wmf",
-            "resolved_path": "Assests/ch13_q10_ans_f10_image34.wmf",
-            "available": true
-          },
-          {
-            "reference": "ch13_q10_ans_f11_image35.wmf",
-            "resolved_path": "Assests/ch13_q10_ans_f11_image35.wmf",
-            "available": true
-          },
-          {
-            "reference": "ch13_q10_f01_image25.emf",
-            "resolved_path": "Assests/ch13_q10_f01_image25.emf",
-            "available": true
-          },
-          {
-            "reference": "ch13_q10_f02_image26.wmf",
-            "resolved_path": "Assests/ch13_q10_f02_image26.wmf",
-            "available": true
-          },
-          {
-            "reference": "ch13_q10_f03_image27.wmf",
-            "resolved_path": "Assests/ch13_q10_f03_image27.wmf",
-            "available": true
-          },
-          {
-            "reference": "ch13_q10_f04_image28.wmf",
-            "resolved_path": "Assests/ch13_q10_f04_image28.wmf",
-            "available": true
-          },
-          {
-            "reference": "ch13_q10_f05_image29.wmf",
-            "resolved_path": "Assests/ch13_q10_f05_image29.wmf",
-            "available": true
-          }
-        ],
-        "format_findings": [
-          "escaped_line_end"
-        ],
-        "context_findings": [],
-        "detected_part_count": 1,
-        "grouping_status": "atomic_candidate",
-        "previously_reviewed": false,
-        "issue_codes": [
-          "escaped_line_end",
-          "question_type_unclassified"
+          "multi_part_requires_alignment_review"
         ]
       },
       "workflow": {
@@ -14571,17 +14373,16 @@
       },
       "original": {
         "question_hash": "7d7eb8316b2a9518388ae24d66b595ebf3d1673ac11a03004d5f25fb201c8840",
-        "answer_hash": "af1dc9c0ebaaf0bedbbabbd12ca05e35321190afe820dfc7fcb22ddc032078ad",
+        "answer_hash": "ed41d5ca1c67b403e928b45ccc450f745dd05356ebdabecbb90f6c906da39ae8",
         "type": "计算题",
         "difficulty": 1,
         "keywords": [
-          "line equation",
-          "slope",
-          "intercept"
+          "linear equation",
+          "slope"
         ],
         "formula_refs": [],
         "data_refs": [],
-        "review_status": "independently solved, translated, and reviewed"
+        "review_status": "independently solved and reviewed"
       },
       "diagnostics": {
         "question_language": "en",
@@ -14624,16 +14425,16 @@
       },
       "original": {
         "question_hash": "71e0347e3c5de8fcd98e1436fa85920d3b79010b938aa79edc604aee4f166aa1",
-        "answer_hash": "512b1cf9321b5f18d4063fa946c1d7a58d00638e5a53f470eb842d7543cc2429",
+        "answer_hash": "84fdd663a45b6fa388bc643c7c959067175c292a86e31c00750aa6ccd27a03fb",
         "type": "计算题",
         "difficulty": 1,
         "keywords": [
-          "line equation",
-          "slope from a point and intercept"
+          "linear equation",
+          "slope"
         ],
         "formula_refs": [],
         "data_refs": [],
-        "review_status": "independently solved, translated, and reviewed"
+        "review_status": "independently solved and reviewed"
       },
       "diagnostics": {
         "question_language": "en",
@@ -14675,18 +14476,18 @@
         "resolvable": true
       },
       "original": {
-        "question_hash": "532b6f655be1eb6ce30ef50bafb05c8b231e2b1f438241f63c24537592e844d8",
-        "answer_hash": "0abd50753dc8be69ff003ff8161ccd11ef60b137780af438396848ef97692cd7",
+        "question_hash": "c51a99c534fd0657721f49f8a5590af1ad46b098845a9457580682e1d54b89b3",
+        "answer_hash": "d2d52729058b60b42fed0e37b5c1c4e8dfbca8f4c0ecc8cbffb3348cda46bf33",
         "type": "简答题",
-        "difficulty": 2,
+        "difficulty": 1,
         "keywords": [
-          "association",
+          "correlation",
           "causation",
           "lurking variable"
         ],
         "formula_refs": [],
         "data_refs": [],
-        "review_status": "independently solved, translated, and reviewed"
+        "review_status": "independently solved and reviewed"
       },
       "diagnostics": {
         "question_language": "en",
@@ -14728,17 +14529,17 @@
         "resolvable": true
       },
       "original": {
-        "question_hash": "665ca3690fe63363476a8275a67b203c80d1368ec06a6f55529db506ea2645d0",
-        "answer_hash": "50672d51c0383ae0fb546c66e2eb11bc62a1bc2e599cd89be6632da6381b0f1b",
+        "question_hash": "673b596800099516baf3ee8b7a1802fae7c4aac24fc33ed71352d92c2719421d",
+        "answer_hash": "224477707e53b831f3eebeb82f7d321d28dfe2b34144fdc0aec6fa98ed100893",
         "type": "简答题",
-        "difficulty": 2,
+        "difficulty": 1,
         "keywords": [
-          "least-squares regression",
-          "slope interpretation"
+          "regression slope",
+          "interpretation"
         ],
         "formula_refs": [],
         "data_refs": [],
-        "review_status": "independently solved, translated, and reviewed"
+        "review_status": "independently solved and reviewed"
       },
       "diagnostics": {
         "question_language": "en",
@@ -14780,18 +14581,17 @@
         "resolvable": true
       },
       "original": {
-        "question_hash": "563b2c0b58859bc107f42c5946f7dc4b695d4ed0914dd87eaf60475ede7f88ea",
-        "answer_hash": "d4662965318c5fb65ab14afe9c175741e7f78c8939b7d4f1ed8850aab4fddcbb",
+        "question_hash": "3712c48dedd0b7f6af9b3197a6085958e00969938eb7372b3726a026d9270cfa",
+        "answer_hash": "a51e3cfdce069de57013c4c606bd027eeb90b627604dbdb3f9098cd6556705bf",
         "type": "计算题",
-        "difficulty": 5,
+        "difficulty": 3,
         "keywords": [
-          "correlation coefficient",
-          "least-squares regression",
-          "regression equation"
+          "linear regression",
+          "correlation"
         ],
         "formula_refs": [],
         "data_refs": [],
-        "review_status": "independently solved, translated, and reviewed"
+        "review_status": "independently solved and reviewed"
       },
       "diagnostics": {
         "question_language": "en",
