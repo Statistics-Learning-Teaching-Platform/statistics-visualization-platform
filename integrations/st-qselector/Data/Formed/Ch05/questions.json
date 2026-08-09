@@ -3,390 +3,344 @@
   "questions": [
     {
       "id": "ch05_q01",
-      "content": "The J.O. Supplies Company buys calculators from a Korean supplier. The probability of a defective calculator is 10%. If 10 calculators are selected at random, what is the probability that 3 or more of the calculators will be defective?",
+      "content": "A calculator is defective with probability $0.10$. If 10 calculators are selected independently, find the probability that at least 3 are defective.",
       "source": "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment and solution_Chap_5_discrete random variable.docx",
-      "type": "unknown",
-      "difficulty": 1,
-      "keywords": [],
-      "formula_refs": [],
-      "data_refs": []
-    },
-    {
-      "id": "ch05_q02",
-      "content": "The J.O. Supplies Company buys calculators from a Korean supplier. The probability of a defective calculator is 10%. If 100 calculators are selected at random, what are the mean and the standard deviation of the number of defectives?",
-      "source": "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment and solution_Chap_5_discrete random variable.docx",
-      "type": "unknown",
-      "difficulty": 1,
-      "keywords": [],
-      "formula_refs": [
-        "ch05_q02_ans_f01_image1.wmf",
-        "ch05_q02_ans_f02_image2.wmf"
-      ],
-      "data_refs": []
-    },
-    {
-      "id": "ch05_q03",
-      "content": "Historical data shows that the average number of patient arrivals at the intensive care unit of General Hospital is 3 patients every 2 hours. Assume that the patient arrivals are distributed according to Poisson distribution.\\\n    Determine the probability of 6 patients arriving in a five-hour period.",
-      "source": "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment and solution_Chap_5_discrete random variable.docx",
-      "type": "unknown",
-      "difficulty": 1,
-      "keywords": [],
-      "formula_refs": [
-        "ch05_q03_ans_f01_image3.wmf"
-      ],
-      "data_refs": []
-    },
-    {
-      "id": "ch05_q04",
-      "content": "Historical data shows that the average number of patient arrivals at the intensive care unit of General Hospital is 3 patients every 2 hours. Assume that the patient arrivals are distributed according to Poisson distribution. Determine the probability of at least 4 but no more than 8 patients arriving in a three-hour period.",
-      "source": "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment and solution_Chap_5_discrete random variable.docx",
-      "type": "unknown",
-      "difficulty": 1,
-      "keywords": [],
-      "formula_refs": [],
-      "data_refs": []
-    },
-    {
-      "id": "ch05_q05",
-      "content": "If the probability distribution of X is:\\\n     [FORMULA:ch05_q05_f01_image4.wmf] \\\n    What are the expected value and the variance of X?",
-      "source": "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment and solution_Chap_5_discrete random variable.docx",
-      "type": "unknown",
-      "difficulty": 1,
-      "keywords": [],
-      "formula_refs": [
-        "ch05_q05_ans_f02_image5.wmf",
-        "ch05_q05_ans_f03_image6.wmf",
-        "ch05_q05_ans_f04_image7.wmf",
-        "ch05_q05_f01_image4.wmf"
-      ],
-      "data_refs": []
-    },
-    {
-      "id": "ch05_q06",
-      "content": "Your company\\'s internal auditor believes that exactly 10% of the company\\'s invoices contain errors. To check this theory, 20 invoices are randomly selected and 5 are found to have errors. Would you accept or reject the claim? Explain.",
-      "source": "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment and solution_Chap_5_discrete random variable.docx",
-      "type": "unknown",
-      "difficulty": 1,
-      "keywords": [],
-      "formula_refs": [],
-      "data_refs": []
-    },
-    {
-      "id": "ch05_q07",
-      "content": "The Post Office has established a record in a major Midwestern city for delivering 90% of its local mail the next working day. Calculate the standard deviation of the number delivered.",
-      "source": "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment and solution_Chap_5_discrete random variable.docx",
-      "type": "unknown",
-      "difficulty": 1,
-      "keywords": [],
-      "formula_refs": [
-        "ch05_q07_ans_f01_image8.wmf"
-      ],
-      "data_refs": []
-    },
-    {
-      "id": "ch05_q08",
-      "content": "The Post Office has established a record in a major Midwestern city for delivering 90% of its local mail the next working day. What is the probability that the number of delivered will be within 2 standard deviations of the mean",
-      "source": "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment and solution_Chap_5_discrete random variable.docx",
-      "type": "unknown",
-      "difficulty": 1,
-      "keywords": [],
-      "formula_refs": [],
-      "data_refs": []
-    },
-    {
-      "id": "ch05_q09",
-      "content": "An insurance company will insure a \\$75,000 Hummer for its full value against theft at a premium of \\$1500 per year. Suppose that the probability that the Hummer will be stolen is 0.0075. Calculate the insurance company\\'s expected net profit.",
-      "source": "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment and solution_Chap_5_discrete random variable.docx",
-      "type": "unknown",
-      "difficulty": 1,
-      "keywords": [],
-      "formula_refs": [
-        "ch05_q09_ans_f01_image9.wmf"
-      ],
-      "data_refs": []
-    },
-    {
-      "id": "ch05_q10",
-      "content": "An insurance company will insure a \\$75,000 Hummer for its full value against theft at a premium of \\$1500 per year. Suppose that the probability that the Hummer will be stolen is 0.0075.\\\n    Find the premium that the insurance company should charge if its wants its expected net profit to be \\$2000?",
-      "source": "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment and solution_Chap_5_discrete random variable.docx",
-      "type": "unknown",
-      "difficulty": 1,
-      "keywords": [],
-      "formula_refs": [],
-      "data_refs": []
-    },
-    {
-      "id": "ch05_q11",
-      "content": "X has the following probability distribution P(X) with an unknown probability P(X=4):\n\n  ----------------------------\n    X      1     2     3    4\n  ------ ----- ----- ----- ---\n   P(X)   0.1   0.5   0.2  \n\n  ----------------------------\n\n>   \\\n> a. Find P(X=4).\n>\n> b\\. Compute the expected value and variance value of X.",
-      "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter05.docx",
-      "type": "unknown",
-      "difficulty": 1,
-      "keywords": [],
-      "formula_refs": [],
-      "data_refs": []
-    },
-    {
-      "id": "ch05_q12",
-      "content": "A pharmaceutical company has determined that if a new cholesterol-reducing drug is manufactured (introduced to the market), the following probability distribution will describe this drug\\'s contribution to the company\\'s profits during the next six\n\n> months.\n\n  ----------------------------------------------------------\n  Profit Contribution   Probability of Profit contribution\n  --------------------- ------------------------------------\n  -\\$30,000             .2\n\n  \\$50,000              .5\n\n  \\$200,000             .3\n  ----------------------------------------------------------\n\n> The company management has decided to market this product if the expected contribution to profit for the next six months is more than \\$90,000. Based on the information given above, should the company begin manufacturing the new drug?\n>",
-      "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter05.docx",
-      "type": "unknown",
-      "difficulty": 1,
-      "keywords": [],
-      "formula_refs": [],
-      "data_refs": []
-    },
-    {
-      "id": "ch05_q13",
-      "content": "A lawyer believes that the probability is .3 that she can win a discrimination suit. If she wins the case she will make \\$40,000, but if she loses she gets nothing. Assume that she has to spend \\$5000 preparing the case. What is her expected gain?",
-      "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter05.docx",
-      "type": "unknown",
-      "difficulty": 1,
-      "keywords": [],
-      "formula_refs": [],
-      "data_refs": []
-    },
-    {
-      "id": "ch05_q14",
-      "content": "A vaccine is 95 percent effective. What is the probability that it is not effective for:\\\n    One and only one individual out of 20 individuals?",
-      "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter05.docx",
-      "type": "unknown",
-      "difficulty": 1,
-      "keywords": [],
-      "formula_refs": [],
-      "data_refs": []
-    },
-    {
-      "id": "ch05_q15",
-      "content": "A vaccine is 95 percent effective. What is the probability that it is not effective for:\\\n    More than one out of 20 individuals?",
-      "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter05.docx",
-      "type": "unknown",
-      "difficulty": 1,
-      "keywords": [],
-      "formula_refs": [],
-      "data_refs": []
-    },
-    {
-      "id": "ch05_q16",
-      "content": "An important part of the customer service responsibilities of a cable company relates to the speed with which trouble in service can be repaired. Historically, the data show that the likelihood is 0.75 that troubles in a residential service can be repaired on the same day. For the first five troubles reported on a given day, find the mean and standard deviation of the number of troubles repaired on the same day.",
-      "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter05.docx",
-      "type": "unknown",
-      "difficulty": 1,
-      "keywords": [],
-      "formula_refs": [],
-      "data_refs": []
-    },
-    {
-      "id": "ch05_q17",
-      "content": "A large disaster cleaning company estimates that 30% of the jobs it bids on are finished within the bid time. Looking at a random sample of 8 jobs that is has contracted:\\\n    Find the probability that x (number of jobs finished on time) is within one standard deviation of the mean.",
-      "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter05.docx",
-      "type": "unknown",
-      "difficulty": 1,
-      "keywords": [],
-      "formula_refs": [],
-      "data_refs": []
-    },
-    {
-      "id": "ch05_q18",
-      "content": "The manager of the local grocery store has determined that, on the average, 4 customers use the service desk every half-hour. Assume that the number of customers using the service desk has a Poisson distribution.\\\n    What is the probability that during a randomly selected half-hour period no more than 2 customers use the service desk?",
-      "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter05.docx",
-      "type": "unknown",
-      "difficulty": 1,
-      "keywords": [],
-      "formula_refs": [],
-      "data_refs": []
-    },
-    {
-      "id": "ch05_q19",
-      "content": "The manager of the local grocery store has determined that, on the average, 4 customers use the service desk every half-hour. Assume that the number of customers using the service desk has a Poisson distribution.\\\n    What is the probability that during a randomly selected one-hour period exactly 2 customers use the service desk?",
-      "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter05.docx",
-      "type": "unknown",
-      "difficulty": 1,
-      "keywords": [],
-      "formula_refs": [],
-      "data_refs": []
-    },
-    {
-      "id": "ch05_q20",
-      "content": "According to data from the state blood program, 40% of all individuals have group A blood.\\\n    Suppose that of the six randomly selected individuals, 3 have group A blood. Would you believe the data from the state blood program? Why or why not?",
-      "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter05.docx",
-      "type": "unknown",
-      "difficulty": 1,
-      "keywords": [],
-      "formula_refs": [],
-      "data_refs": []
-    },
-    {
-      "id": "ch05_q21",
-      "content": "Assume that the waiting time [FORMULA:ch05_q08_f01_image1.wmf] for an elevator is uniformly distributed between zero and six minutes.\n\na.  Write the formula for the probability curve of [FORMULA:ch05_q08_f02_image2.wmf].\n\nb.  Graph the probability curve of [FORMULA:ch05_q08_f03_image2.wmf].\n\nc.  Find [FORMULA:ch05_q08_f04_image3.wmf]\n\nd.  Find [FORMULA:ch05_q08_f05_image4.wmf]\n\ne.  Find [FORMULA:ch05_q08_f06_image5.wmf]",
-      "source": "Assignment Prof Lv/assignment5-lu.doc",
-      "type": "unknown",
-      "difficulty": 1,
-      "keywords": [],
-      "formula_refs": [
-        "ch05_q08_f01_image1.wmf",
-        "ch05_q08_f02_image2.wmf",
-        "ch05_q08_f03_image2.wmf",
-        "ch05_q08_f04_image3.wmf",
-        "ch05_q08_f05_image4.wmf",
-        "ch05_q08_f06_image5.wmf"
-      ],
-      "data_refs": []
-    },
-    {
-      "id": "ch05_q22",
-      "content": "Suppose that an airline quotes a flight time of 2 hours, 10 minutes between two cities. Furthermore, suppose that historical flight records indicate that the actual flight time between the two cities, [FORMULA:ch05_q11_f01_image1.wmf], is uniformly distributed between 2 hours and 2 hours, 20 minutes . Letting the time unit be one minute,\n\na.  Write the formula for the probability curve of [FORMULA:ch05_q11_f02_image1.wmf].\n\nb.  Graph the probability curve of [FORMULA:ch05_q11_f03_image1.wmf].\n\nc.  Find [FORMULA:ch05_q11_f04_image6.wmf]\n\nd.  Find the probability that a randomly selected flight between the two cities will be at least five minutes late.",
-      "source": "Assignment Prof Lv/assignment5-lu.doc",
-      "type": "unknown",
-      "difficulty": 1,
-      "keywords": [],
-      "formula_refs": [
-        "ch05_q11_f01_image1.wmf",
-        "ch05_q11_f02_image1.wmf",
-        "ch05_q11_f03_image1.wmf",
-        "ch05_q11_f04_image6.wmf"
-      ],
-      "data_refs": []
-    },
-    {
-      "id": "ch05_q23",
-      "content": "Two students take a college entrance exam known to have a normal distribution of scores. The students receive raw scores of 63 and 93, which correspond to [FORMULA:ch05_q36_f01_image7.wmf] scores (often called the standardized scores) of [FORMULA:ch05_q36_f02_image8.wmf] and 1.5, respectively. Find the mean and standard deviation of the distribution of raw exam scores.",
-      "source": "Assignment Prof Lv/assignment5-lu.doc",
-      "type": "unknown",
-      "difficulty": 1,
-      "keywords": [],
-      "formula_refs": [
-        "ch05_q36_f01_image1.wmf",
-        "ch05_q36_f01_image7.wmf",
-        "ch05_q36_f02_image8.wmf"
-      ],
-      "data_refs": []
-    },
-    {
-      "id": "ch05_q24",
-      "content": "Yearly health-care expenses for a family of four are normally distributed with mean $\\mu=\\$3{,}000$ and standard deviation $\\sigma=\\$500$. An insurer will reduce the premium for families whose yearly expenses are among the lowest 33%. What expense cutoff should the insurer use?",
-      "source": "Assignment Prof Lv/assignment5-lu.doc",
       "type": "计算题",
       "difficulty": 2,
       "keywords": [
-        "normal distribution",
-        "percentile"
+        "binomial distribution"
       ],
       "formula_refs": [],
       "data_refs": [],
       "review_status": "independently solved and reviewed",
-      "audit_pack": "missing-answer-recovery-v1"
+      "audit_pack": "ch05-review-v1"
     },
     {
-      "id": "ch05_q25",
-      "content": "When a store uses Electronic article surveillance(EAS) to combat shoplifting, it places a small sensor on an item of merchandise. When an item if legitimately purchased, the sales clerk remove the sensor to prevent the alarm from sounding as the customer exits the store to such false alarms. In an actual survey of 250 consumers, 40 said that if they were to set off an EAS alarm because store personnel (mistakenly) failed to deactivate the merchandise leaving the store, then they would never shop at that store again. A company marketing the alarm system claimed that no more than 5 percent of all consumers would say that they would never shop at that store again if they were subjected to a false alarm.\n\n> a\\. Assuming that the company's claim is valid, use the normal approximation to the binomial to calculate the probability that at least 40 of the 250 randomly selected consumers would say that they would never shop at that store again if they were subjected to a false alarm.\n>\n> b\\. Do you believe the company's claim based on your answer to part a? Explain.",
-      "source": "Assignment Prof Lv/assignment5-lu.doc",
-      "type": "unknown",
+      "id": "ch05_q02",
+      "content": "A calculator is defective with probability $0.10$. For 100 independently selected calculators, find the mean and standard deviation of the number of defectives.",
+      "source": "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment and solution_Chap_5_discrete random variable.docx",
+      "type": "计算题",
       "difficulty": 1,
-      "keywords": [],
-      "formula_refs": [],
-      "data_refs": []
-    },
-    {
-      "id": "ch05_q26",
-      "content": "Assume that the waiting time x for an elevator is uniformly distributed between zero and six minutes.\n\n> a\\. Write the formula for the probability curve of x.\n>\n> b\\. Graph the probability curve of x.\n>\n> c\\. Find P (2$x \\leq$``{=html}4)\n>\n> d\\. Find P (3$x \\leq$``{=html}6)\n>\n> e\\. Find P ({0$x \\leq$``{=html}2} or {5$x \\leq$``{=html}6}).",
-      "source": "Assignments for STAT 2010/assign5.doc",
-      "type": "unknown",
-      "difficulty": 1,
-      "keywords": [],
-      "formula_refs": [],
-      "data_refs": []
-    },
-    {
-      "id": "ch05_q27",
-      "content": "Refer to Exercise 1\n\na\\. Calculate the mean, $\\mu_{x}$.the variance, $\\sigma_{x}^{2}$, and the standard deviation, $\\sigma_{x}$.\n\nb\\. Find the probability that the waiting time of a randomly selected patron will be within one standard deviation of the mean.",
-      "source": "Assignments for STAT 2010/assign5.doc",
-      "type": "unknown",
-      "difficulty": 1,
-      "keywords": [],
-      "formula_refs": [],
-      "data_refs": []
-    },
-    {
-      "id": "ch05_q28",
-      "content": "Consider the figure given in the margin. Find the value k that makes the function f(x) a valid continuous probability distribution.",
-      "source": "Assignments for STAT 2010/assign5.doc",
-      "type": "unknown",
-      "difficulty": 1,
-      "keywords": [],
-      "formula_refs": [],
-      "data_refs": []
-    },
-    {
-      "id": "ch05_q29",
-      "content": "Suppose that the random variable z has a standard normal distribution. Sketch each of the following z points, and use the normal table to find each z point.\n\na\\. $z_{0\\text{.01}}$ b.$z_{0\\text{.05}}$ c.$z_{0\\text{.02}}$ d.$- z_{0\\text{.01}}$ e. $- z_{0\\text{.10}}$",
-      "source": "Assignments for STAT 2010/assign5.doc",
-      "type": "unknown",
-      "difficulty": 1,
-      "keywords": [],
-      "formula_refs": [],
-      "data_refs": []
-    },
-    {
-      "id": "ch05_q30",
-      "content": "Stanford-Binet IQ Test scores are normally distributed with a mean score of 100 and a standard deviation of 16.\n\na\\. Sketch the distribution of Stanford-Binet IQ test scores.\n\nb\\. Write the equation that gives the z score corresponding to a Stanford-Binet IQ test score. Sketch the distribution of such z scores.\n\nc\\. Find the probability that a randomly selected person has an IQ test score\n\n\\(1\\) Over 140.\n\n\\(2\\) Under 88.\n\n\\(3\\) Between 72 and 128.\n\n\\(4\\) Within 1.5 standard deviations of the mean.\n\nd\\. Suppose you take the Stanford-Binet IQ Test and receive a score of 136. What percentage of people would receive a score higher than yours?",
-      "source": "Assignments for STAT 2010/assign5.doc",
-      "type": "unknown",
-      "difficulty": 1,
-      "keywords": [],
-      "formula_refs": [
-        "ch05_q05_ans_f01_image1.wmf"
+      "keywords": [
+        "binomial mean",
+        "binomial standard deviation"
       ],
-      "data_refs": []
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch05-review-v1"
+    },
+    {
+      "id": "ch05_q03",
+      "content": "Patient arrivals follow a Poisson process averaging 3 patients every 2 hours. Find the probability of exactly 6 arrivals during a 5-hour period.",
+      "source": "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment and solution_Chap_5_discrete random variable.docx",
+      "type": "计算题",
+      "difficulty": 2,
+      "keywords": [
+        "Poisson distribution"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch05-review-v1"
+    },
+    {
+      "id": "ch05_q04",
+      "content": "Patient arrivals follow a Poisson process averaging 3 patients every 2 hours. Find the probability of at least 4 but no more than 8 arrivals during a 3-hour period.",
+      "source": "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment and solution_Chap_5_discrete random variable.docx",
+      "type": "计算题",
+      "difficulty": 2,
+      "keywords": [
+        "Poisson distribution"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch05-review-v1"
+    },
+    {
+      "id": "ch05_q06",
+      "content": "An auditor claims that exactly 10% of invoices contain errors. In a random sample of 20 invoices, 5 contain errors. Using $X\\sim\\operatorname{Binomial}(20,0.10)$, assess the claim with the one-sided probability $P(X\\ge5)$.",
+      "source": "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment and solution_Chap_5_discrete random variable.docx",
+      "type": "计算题",
+      "difficulty": 3,
+      "keywords": [
+        "binomial distribution",
+        "hypothesis assessment"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch05-review-v1"
+    },
+    {
+      "id": "ch05_q09",
+      "content": "An insurer charges a $\\$1,500$ annual premium for a $\\$75,000$ Hummer. The probability of theft is 0.0075. Find the insurer's expected net profit per policy.",
+      "source": "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment and solution_Chap_5_discrete random variable.docx",
+      "type": "计算题",
+      "difficulty": 2,
+      "keywords": [
+        "expected value",
+        "insurance"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch05-review-v1"
+    },
+    {
+      "id": "ch05_q10",
+      "content": "The probability of theft of a $\\$75,000$ Hummer is 0.0075. What premium should an insurer charge to obtain an expected net profit of $\\$2,000$ per policy?",
+      "source": "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment and solution_Chap_5_discrete random variable.docx",
+      "type": "计算题",
+      "difficulty": 2,
+      "keywords": [
+        "expected value",
+        "insurance premium"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch05-review-v1"
+    },
+    {
+      "id": "ch05_q11",
+      "content": "A random variable $X$ has probabilities $P(X=1)=0.1$, $P(X=2)=0.5$, $P(X=3)=0.2$, and an unknown $P(X=4)$. Find the missing probability, $E(X)$, and $\\operatorname{Var}(X)$. ",
+      "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter05.docx",
+      "type": "计算题",
+      "difficulty": 2,
+      "keywords": [
+        "discrete probability distribution",
+        "expected value",
+        "variance"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch05-review-v1"
+    },
+    {
+      "id": "ch05_q12",
+      "content": "A drug's six-month profit contribution is $-\\$30,000$ with probability 0.2, $\\$50,000$ with probability 0.5, and $\\$200,000$ with probability 0.3. Management will market the drug only if expected profit exceeds $\\$90,000$. Decide.",
+      "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter05.docx",
+      "type": "计算题",
+      "difficulty": 2,
+      "keywords": [
+        "expected value",
+        "decision analysis"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch05-review-v1"
+    },
+    {
+      "id": "ch05_q13",
+      "content": "A lawyer has probability 0.3 of winning a case and earns $\\$40,000$ if she wins and nothing if she loses. She must spend $\\$5,000 preparing the case in either outcome. Find her expected net gain.",
+      "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter05.docx",
+      "type": "计算题",
+      "difficulty": 2,
+      "keywords": [
+        "expected value",
+        "net gain"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch05-review-v1"
+    },
+    {
+      "id": "ch05_q14",
+      "content": "A vaccine is 95% effective. For 20 independent individuals, find the probability that it is ineffective for exactly one individual.",
+      "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter05.docx",
+      "type": "计算题",
+      "difficulty": 2,
+      "keywords": [
+        "binomial distribution",
+        "complement probability"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch05-review-v1"
+    },
+    {
+      "id": "ch05_q15",
+      "content": "A vaccine is 95% effective. For 20 independent individuals, find the probability that it is ineffective for more than one individual.",
+      "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter05.docx",
+      "type": "计算题",
+      "difficulty": 2,
+      "keywords": [
+        "binomial distribution",
+        "complement probability"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch05-review-v1"
+    },
+    {
+      "id": "ch05_q16",
+      "content": "The probability that a reported residential-service problem is repaired the same day is 0.75. For the first five reported problems, find the mean and standard deviation of the number repaired the same day.",
+      "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter05.docx",
+      "type": "计算题",
+      "difficulty": 2,
+      "keywords": [
+        "binomial mean",
+        "binomial standard deviation"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch05-review-v1"
+    },
+    {
+      "id": "ch05_q17",
+      "content": "Thirty percent of a cleaning company's jobs finish within the bid time. For a random sample of 8 jobs, find the probability that the number finished on time is within one standard deviation of its mean.",
+      "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter05.docx",
+      "type": "计算题",
+      "difficulty": 3,
+      "keywords": [
+        "binomial distribution",
+        "Empirical Rule"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch05-review-v1"
+    },
+    {
+      "id": "ch05_q18",
+      "content": "A grocery-store service desk serves an average of 4 customers per half-hour. Assuming a Poisson distribution, find the probability that at most 2 customers use the desk in a half-hour.",
+      "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter05.docx",
+      "type": "计算题",
+      "difficulty": 2,
+      "keywords": [
+        "Poisson distribution"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch05-review-v1"
+    },
+    {
+      "id": "ch05_q19",
+      "content": "A grocery-store service desk serves an average of 4 customers per half-hour. Assuming a Poisson process, find the probability that exactly 2 customers use the desk in a one-hour period.",
+      "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter05.docx",
+      "type": "计算题",
+      "difficulty": 2,
+      "keywords": [
+        "Poisson distribution"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch05-review-v1"
+    },
+    {
+      "id": "ch05_q20",
+      "content": "State blood-program data claim that 40% of individuals have group A blood. In a random sample of 6, exactly 3 have group A blood. Using the one-sided probability $P(X\\ge3)$ under $X\\sim\\operatorname{Binomial}(6,0.4)$, assess the claim.",
+      "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter05.docx",
+      "type": "计算题",
+      "difficulty": 2,
+      "keywords": [
+        "binomial distribution",
+        "hypothesis assessment"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch05-review-v1"
+    },
+    {
+      "id": "ch05_q22",
+      "content": "A flight's actual time $X$, in minutes, is uniformly distributed on $[120,140]$.\n\na. Give the density.\n\nb. Describe its graph.\n\nc. Find $P(125\\le X\\le135)$.\n\nd. Find the probability that a flight is at least 5 minutes late when the quoted time is 130 minutes.",
+      "source": "Assignment Prof Lv/assignment5-lu.doc",
+      "type": "综合题",
+      "difficulty": 2,
+      "keywords": [
+        "uniform distribution",
+        "probability density"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch05-review-v1"
     },
     {
       "id": "ch05_q31",
-      "content": "Suppose that we will take a random sample of size n from a population having mean $\\mu$ and standard deviation $\\sigma$. For each of the following situations, find the mean, variance, and standard deviation of the sampling distribution of the sample mean $\\overline{x}$:\n\na $\\mu = \\text{10}$,$\\sigma = 2$, n=25\n\nb $\\mu = 3$,$\\sigma = 0\\text{.}1$, n=4\n\nc $\\mu = \\text{500}$,$\\sigma = 0\\text{.}5$, n=100",
+      "content": "For a population with mean $\\mu$ and standard deviation $\\sigma$, find the mean, variance, and standard deviation of the sampling distribution of $\\bar X$ in each case.\n\na. $\\mu=10$, $\\sigma=2$, $n=25$\n\nb. $\\mu=3$, $\\sigma=0.1$, $n=4$\n\nc. $\\mu=500$, $\\sigma=0.5$, $n=100$",
       "source": "Assignments for STAT 2012/Assignment_5.doc",
-      "type": "unknown",
-      "difficulty": 1,
-      "keywords": [],
+      "type": "计算题",
+      "difficulty": 2,
+      "keywords": [
+        "sampling distribution of the mean"
+      ],
       "formula_refs": [],
-      "data_refs": []
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch05-review-v1"
     },
     {
       "id": "ch05_q32",
-      "content": "THE BANK CUSTOMER WAITING TIME CASE**\n\nRecall that the bank manager wants to show that the new system reduces typical customer waiting times to less than 6 minutes. One way to do this is to demonstrate that mean of the population of all customer waiting times is less than 6. Letting this mean be$\\mu$, in this exercise we wish to investigate whether the sample of 100 waiting times provides evidence to support the claim that $\\mu$ is less than 6.\n\nFor the sake of argument, we will begin by assuming that $\\mu$ equals 6, and we will then attempt to use the sample to contradict this assumption in favour of the conclusion that $\\mu$ is less than 6. Recall that the mean of the sample of 100 waiting times is $\\overline{x}$=5.46 and assume that$\\sigma$, the standard deviation of the population of all customer waiting times, is known to be 2.47.\n\na.  Consider the population of all possible sample means obtained from random samples of 100 waiting times. What is the shape of this population of sample means? That is, what is the shape of the sampling distribution of $\\overline{x}$? Why is this true?\n\nb.  Find the mean and standard deviation of the population of all possible sample means when we assume that $\\mu$ equals 6.\n\nc.  The sample mean that we have actually observed is $\\overline{x}$=5.46. Assuming that $\\mu$ equals 6, find the probability of observing a sample mean that is less than or equal to $\\overline{x}$=5.46.\n\nd.  If $\\mu$equals 6 , what percentage of all possible sample means are less than or equal to 5.46? Since we have actually observed a sample mean of $\\overline{x}$=5.46, is it more reasonable to believe that (1) $\\mu$equals 6 and we have observed one of the sample means that is less than or equal to 5.46 when $\\mu$equals 6, or (2) that we have observed a sample mean less than or equal to 5.46 because $\\mu$ is less than 6? Explain. What do you conclude about whether the new system has reduced the typical customer waiting time to less than six minutes?",
+      "content": "A bank's population waiting-time standard deviation is known to be $2.47$ minutes. For a random sample of 100 customers, $\\bar x=5.46$. Investigate $H_0:\\mu=6$ against $H_a:\\mu<6$.\n\na. Describe the sampling distribution of $\\bar X$.\n\nb. Find its mean and standard deviation under $H_0$.\n\nc. Find $P(\\bar X\\le5.46\\mid\\mu=6)$.\n\nd. State the conclusion.",
       "source": "Assignments for STAT 2012/Assignment_5.doc",
-      "type": "unknown",
-      "difficulty": 1,
-      "keywords": [],
+      "type": "综合题",
+      "difficulty": 3,
+      "keywords": [
+        "sampling distribution",
+        "z-test",
+        "central limit theorem"
+      ],
       "formula_refs": [],
-      "data_refs": []
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch05-review-v1"
     },
     {
       "id": "ch05_q33",
-      "content": "In each of the following cases, determine whether the sample size n is large enough to say that the sampling distribution of$\\overset{\\hat{}}{p}$ is a normal distribution.\n\na p=0.4, n=100 b p=0.1, n=10 c p=0.1, n=50\n\nd p=0.8, n=400 e p=0.98, n=1,000 f p=0.99, n=400",
+      "content": "Use the rule $np\\ge10$ and $n(1-p)\\ge10$ to decide whether the sampling distribution of $\\hat p$ can be treated as normal.\n\na. $p=0.4,n=100$\n\nb. $p=0.1,n=10$\n\nc. $p=0.1,n=50$\n\nd. $p=0.8,n=400$\n\ne. $p=0.98,n=1000$\n\nf. $p=0.99,n=400$",
       "source": "Assignments for STAT 2012/Assignment_5.doc",
-      "type": "unknown",
-      "difficulty": 1,
-      "keywords": [],
+      "type": "简答题",
+      "difficulty": 2,
+      "keywords": [
+        "sampling distribution of a proportion",
+        "normal approximation"
+      ],
       "formula_refs": [],
-      "data_refs": []
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch05-review-v1"
     },
     {
       "id": "ch05_q34",
-      "content": "In the July 29,2001, issue of *The Journal News* (Hamilton, Ohio)Lynn Elber of the Associated Press reported on a study conducted by the Kaiser Family regarding parents' use of television set V-chips for controlling their children' TV viewing. The study asked parents who own TVs equipped with V-chips whether they use the devices to block programs with objectionable content.\n\na.  Suppose that we wish to use the study results to justify the claim that fewer than 20 percent of parents who own TV sets with V-chips use the devices. The study actually found that 17 percent of the parents polled used their V-chips. If the poll surveyed 1,000 parents, and if for the sake of argument we assume that 20 percent of parents who own V-chips actually use the devices (that is, p=0.2), calculate the probability of observing a sample proportion of 0.17 or less. That is, calculate $P(\\overset{\\hat{} \\leq 0\\text{.17})}{p}$.\n\nb.  Based on the probability you computed in part a, would you conclude that fewer than 20 percent of parents who own TV sets equipped with V-chips actually use the devices? Explain.",
+      "content": "A poll of 1,000 parents found $\\hat p=0.17$ using V-chips. To test the claim $p<0.20$, assume $p=0.20$ and use a normal approximation to find $P(\\hat p\\le0.17)$.",
       "source": "Assignments for STAT 2012/Assignment_5.doc",
-      "type": "unknown",
-      "difficulty": 1,
-      "keywords": [],
+      "type": "计算题",
+      "difficulty": 3,
+      "keywords": [
+        "sampling distribution of a proportion",
+        "normal approximation"
+      ],
       "formula_refs": [],
-      "data_refs": []
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch05-review-v1"
     },
     {
       "id": "ch05_q35",
-      "content": "On January 7,2000, the Gallup Organization released the results of a poll comparing lifestyles of today with those of yesteryear. The poll results were based on telephone interviews with a randomly selected national sample of 1,031 adults, 18 years and older, conducted December 20-21,1999. One question asked if the respondent had vacationed for six days or longer within the last 12 months.\n\na Suppose that we will attempt to use the polls results to justify the claim that more than 40 percent of U.S. adults have vacationed for six days or longer within the last 12 months. The poll actually found that 42 percent of the respondents had done so. If, for the sake of argument, we assume that 40 percent of U.S. adults have vacationed for six days or longer within the last 12 months( that is, p=0.4), calculate the probability of observing a sample proportion of 0.42 or more; that is, calculate $P(\\overset{\\hat{} \\geq 0\\text{.42})}{p}$.\n\nb Based on the probability you computed in a, would you conclude that more than 40 percent of U.S. adults have vacationed for six days or longer within the last 12 months? Explain.",
+      "content": "In a random sample of 1,031 adults, $\\hat p=0.42$ had vacationed for at least six days. To assess $H_0:p=0.40$ versus $H_a:p>0.40$, use a normal approximation to find $P(\\hat p\\ge0.42)$.",
       "source": "Assignments for STAT 2012/Assignment_5.doc",
-      "type": "unknown",
-      "difficulty": 1,
-      "keywords": [],
+      "type": "计算题",
+      "difficulty": 3,
+      "keywords": [
+        "sampling distribution of a proportion",
+        "normal approximation"
+      ],
       "formula_refs": [],
-      "data_refs": []
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch05-review-v1"
     },
     {
       "id": "rotel_ch05_expectation_01",
@@ -396,17 +350,16 @@
       "source_problem": "4.1-4.2 Problem 1 (adapted to text)",
       "license": "CC BY-NC-SA 4.0",
       "attribution": "Rachael Norton and Peter Staab, 2023",
-      "review_status": "independently solved, translated, and reviewed",
+      "review_status": "independently solved and reviewed",
       "type": "计算题",
-      "difficulty": 3,
+      "difficulty": 2,
       "keywords": [
-        "discrete random variable",
         "expected value",
         "net payoff"
       ],
       "formula_refs": [],
       "data_refs": [],
-      "audit_pack": "english-normalization-v1"
+      "audit_pack": "ch05-review-v1"
     }
   ]
 }

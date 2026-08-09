@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-08-09T10:18:34.143652+00:00",
+  "generated_at": "2026-08-09T10:27:11.799553+00:00",
   "source_roots": {
     "origin": "Data/Origin",
     "formed": "Data/Formed"
@@ -12,13 +12,13 @@
     "source_files_are_read_only": true
   },
   "summary": {
-    "total_questions": 312,
+    "total_questions": 300,
     "chapters": {
       "Ch01": 23,
       "Ch02": 28,
       "Ch03": 31,
       "Ch04": 32,
-      "Ch05": 36,
+      "Ch05": 24,
       "Ch06": 37,
       "Ch07": 32,
       "Ch08": 37,
@@ -28,23 +28,23 @@
       "Ch13": 8
     },
     "question_languages": {
-      "en": 312
+      "en": 300
     },
     "answer_languages": {
-      "en": 312
+      "en": 300
     },
     "grouping_candidates": {
-      "atomic_candidate": 208,
+      "atomic_candidate": 196,
       "multi_part_candidate": 104
     },
     "issue_counts": {
-      "escaped_line_end": 36,
+      "escaped_line_end": 17,
       "legacy_subscript": 2,
-      "legacy_superscript": 4,
+      "legacy_superscript": 3,
       "multi_part_requires_alignment_review": 104,
-      "pandoc_html": 9,
+      "pandoc_html": 6,
       "pandoc_underline": 3,
-      "question_type_unclassified": 164,
+      "question_type_unclassified": 130,
       "references_unprovided_context": 3
     },
     "eligible_for_paper": 0
@@ -6235,1394 +6235,12 @@
         "resolvable": true
       },
       "original": {
-        "question_hash": "6b33d0a956004be863d1765dd95164ee70b0dbe5b6ab1597950a8845e45a68b0",
-        "answer_hash": "f58df726431953d6eb83337ff54894896fb3e4f05cfd41cc989639d24e4aa844",
-        "type": "unknown",
-        "difficulty": 1,
-        "keywords": [],
-        "formula_refs": [],
-        "data_refs": [],
-        "review_status": null
-      },
-      "diagnostics": {
-        "question_language": "en",
-        "answer_language": "en",
-        "answer_present": true,
-        "source_resolvable": true,
-        "assets": [],
-        "format_findings": [],
-        "context_findings": [],
-        "detected_part_count": 0,
-        "grouping_status": "atomic_candidate",
-        "previously_reviewed": false,
-        "issue_codes": [
-          "question_type_unclassified"
-        ]
-      },
-      "workflow": {
-        "decision": "pending",
-        "english_status": "passed",
-        "source_recovery_status": "not_needed",
-        "grouping_review_status": "pending",
-        "independent_solution_status": "pending",
-        "verification_status": "pending",
-        "metadata_status": "pending",
-        "render_status": "pending",
-        "eligible_for_paper": false
-      },
-      "audit_notes": []
-    },
-    {
-      "id": "ch05_q02",
-      "chapter": "Ch05",
-      "source": {
-        "raw": "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment and solution_Chap_5_discrete random variable.docx",
-        "kind": "local",
-        "local_paths": [
-          "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment and solution_Chap_5_discrete random variable.docx"
-        ],
-        "external_urls": [],
-        "missing_paths": [],
-        "resolvable": true
-      },
-      "original": {
-        "question_hash": "dac7c272e13203b3ced7257730cf97fccaf49ee2d926d0f1d98ad0390a37a2ae",
-        "answer_hash": "3c57b0576c502fc4bc01b5f72c08dc3fc19ed00a1b47a2a98e2f28ecc9e27c36",
-        "type": "unknown",
-        "difficulty": 1,
-        "keywords": [],
-        "formula_refs": [
-          "ch05_q02_ans_f01_image1.wmf",
-          "ch05_q02_ans_f02_image2.wmf"
-        ],
-        "data_refs": [],
-        "review_status": null
-      },
-      "diagnostics": {
-        "question_language": "en",
-        "answer_language": "en",
-        "answer_present": true,
-        "source_resolvable": true,
-        "assets": [
-          {
-            "reference": "ch05_q02_ans_f01_image1.wmf",
-            "resolved_path": "Assests/ch05_q02_ans_f01_image1.wmf",
-            "available": true
-          },
-          {
-            "reference": "ch05_q02_ans_f02_image2.wmf",
-            "resolved_path": "Assests/ch05_q02_ans_f02_image2.wmf",
-            "available": true
-          }
-        ],
-        "format_findings": [
-          "escaped_line_end"
-        ],
-        "context_findings": [],
-        "detected_part_count": 0,
-        "grouping_status": "atomic_candidate",
-        "previously_reviewed": false,
-        "issue_codes": [
-          "escaped_line_end",
-          "question_type_unclassified"
-        ]
-      },
-      "workflow": {
-        "decision": "pending",
-        "english_status": "passed",
-        "source_recovery_status": "not_needed",
-        "grouping_review_status": "pending",
-        "independent_solution_status": "pending",
-        "verification_status": "pending",
-        "metadata_status": "pending",
-        "render_status": "pending",
-        "eligible_for_paper": false
-      },
-      "audit_notes": []
-    },
-    {
-      "id": "ch05_q03",
-      "chapter": "Ch05",
-      "source": {
-        "raw": "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment and solution_Chap_5_discrete random variable.docx",
-        "kind": "local",
-        "local_paths": [
-          "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment and solution_Chap_5_discrete random variable.docx"
-        ],
-        "external_urls": [],
-        "missing_paths": [],
-        "resolvable": true
-      },
-      "original": {
-        "question_hash": "3a079dcc5f51bae2389b407ca8f5bce216a0447776ab9df10fa6d89c738ebfad",
-        "answer_hash": "81b57208668f46f47931bf9cb13f13764a616194f90bcc66371ead72a6c06210",
-        "type": "unknown",
-        "difficulty": 1,
-        "keywords": [],
-        "formula_refs": [
-          "ch05_q03_ans_f01_image3.wmf"
-        ],
-        "data_refs": [],
-        "review_status": null
-      },
-      "diagnostics": {
-        "question_language": "en",
-        "answer_language": "en",
-        "answer_present": true,
-        "source_resolvable": true,
-        "assets": [
-          {
-            "reference": "ch05_q03_ans_f01_image3.wmf",
-            "resolved_path": "Assests/ch05_q03_ans_f01_image3.wmf",
-            "available": true
-          }
-        ],
-        "format_findings": [
-          "escaped_line_end"
-        ],
-        "context_findings": [],
-        "detected_part_count": 0,
-        "grouping_status": "atomic_candidate",
-        "previously_reviewed": false,
-        "issue_codes": [
-          "escaped_line_end",
-          "question_type_unclassified"
-        ]
-      },
-      "workflow": {
-        "decision": "pending",
-        "english_status": "passed",
-        "source_recovery_status": "not_needed",
-        "grouping_review_status": "pending",
-        "independent_solution_status": "pending",
-        "verification_status": "pending",
-        "metadata_status": "pending",
-        "render_status": "pending",
-        "eligible_for_paper": false
-      },
-      "audit_notes": []
-    },
-    {
-      "id": "ch05_q04",
-      "chapter": "Ch05",
-      "source": {
-        "raw": "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment and solution_Chap_5_discrete random variable.docx",
-        "kind": "local",
-        "local_paths": [
-          "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment and solution_Chap_5_discrete random variable.docx"
-        ],
-        "external_urls": [],
-        "missing_paths": [],
-        "resolvable": true
-      },
-      "original": {
-        "question_hash": "aa79192906d827ac5e281d10d3986972da0ee23022d4b10fdba170b287d302af",
-        "answer_hash": "842dd8668ed79e79007ff61569581d15c00ff6989e877a0dfffa68a411ab942e",
-        "type": "unknown",
-        "difficulty": 1,
-        "keywords": [],
-        "formula_refs": [],
-        "data_refs": [],
-        "review_status": null
-      },
-      "diagnostics": {
-        "question_language": "en",
-        "answer_language": "en",
-        "answer_present": true,
-        "source_resolvable": true,
-        "assets": [],
-        "format_findings": [
-          "escaped_line_end"
-        ],
-        "context_findings": [],
-        "detected_part_count": 0,
-        "grouping_status": "atomic_candidate",
-        "previously_reviewed": false,
-        "issue_codes": [
-          "escaped_line_end",
-          "question_type_unclassified"
-        ]
-      },
-      "workflow": {
-        "decision": "pending",
-        "english_status": "passed",
-        "source_recovery_status": "not_needed",
-        "grouping_review_status": "pending",
-        "independent_solution_status": "pending",
-        "verification_status": "pending",
-        "metadata_status": "pending",
-        "render_status": "pending",
-        "eligible_for_paper": false
-      },
-      "audit_notes": []
-    },
-    {
-      "id": "ch05_q05",
-      "chapter": "Ch05",
-      "source": {
-        "raw": "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment and solution_Chap_5_discrete random variable.docx",
-        "kind": "local",
-        "local_paths": [
-          "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment and solution_Chap_5_discrete random variable.docx"
-        ],
-        "external_urls": [],
-        "missing_paths": [],
-        "resolvable": true
-      },
-      "original": {
-        "question_hash": "053f3d41dceb217bf2bac35e947394001c1e024cd953d4462f5f80409edfa19f",
-        "answer_hash": "ca5708dc7ab392196f649a326ec53b3891d17adc1d2308ffdfc521a92b16ddc7",
-        "type": "unknown",
-        "difficulty": 1,
-        "keywords": [],
-        "formula_refs": [
-          "ch05_q05_ans_f02_image5.wmf",
-          "ch05_q05_ans_f03_image6.wmf",
-          "ch05_q05_ans_f04_image7.wmf",
-          "ch05_q05_f01_image4.wmf"
-        ],
-        "data_refs": [],
-        "review_status": null
-      },
-      "diagnostics": {
-        "question_language": "en",
-        "answer_language": "en",
-        "answer_present": true,
-        "source_resolvable": true,
-        "assets": [
-          {
-            "reference": "ch05_q05_ans_f02_image5.wmf",
-            "resolved_path": "Assests/ch05_q05_ans_f02_image5.wmf",
-            "available": true
-          },
-          {
-            "reference": "ch05_q05_ans_f03_image6.wmf",
-            "resolved_path": "Assests/ch05_q05_ans_f03_image6.wmf",
-            "available": true
-          },
-          {
-            "reference": "ch05_q05_ans_f04_image7.wmf",
-            "resolved_path": "Assests/ch05_q05_ans_f04_image7.wmf",
-            "available": true
-          },
-          {
-            "reference": "ch05_q05_f01_image4.wmf",
-            "resolved_path": "Assests/ch05_q05_f01_image4.wmf",
-            "available": true
-          }
-        ],
-        "format_findings": [
-          "escaped_line_end"
-        ],
-        "context_findings": [],
-        "detected_part_count": 0,
-        "grouping_status": "atomic_candidate",
-        "previously_reviewed": false,
-        "issue_codes": [
-          "escaped_line_end",
-          "question_type_unclassified"
-        ]
-      },
-      "workflow": {
-        "decision": "pending",
-        "english_status": "passed",
-        "source_recovery_status": "not_needed",
-        "grouping_review_status": "pending",
-        "independent_solution_status": "pending",
-        "verification_status": "pending",
-        "metadata_status": "pending",
-        "render_status": "pending",
-        "eligible_for_paper": false
-      },
-      "audit_notes": []
-    },
-    {
-      "id": "ch05_q06",
-      "chapter": "Ch05",
-      "source": {
-        "raw": "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment and solution_Chap_5_discrete random variable.docx",
-        "kind": "local",
-        "local_paths": [
-          "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment and solution_Chap_5_discrete random variable.docx"
-        ],
-        "external_urls": [],
-        "missing_paths": [],
-        "resolvable": true
-      },
-      "original": {
-        "question_hash": "a98fd29cd35930cd78cf2a324949f282cff70f6e3a53d2c4fa5787f7ef431d65",
-        "answer_hash": "94a69ad2b15a31b03dbe613a67a3665263eec1fcbe9d9f99b19ae6eb96c7e6d4",
-        "type": "unknown",
-        "difficulty": 1,
-        "keywords": [],
-        "formula_refs": [],
-        "data_refs": [],
-        "review_status": null
-      },
-      "diagnostics": {
-        "question_language": "en",
-        "answer_language": "en",
-        "answer_present": true,
-        "source_resolvable": true,
-        "assets": [],
-        "format_findings": [
-          "legacy_superscript"
-        ],
-        "context_findings": [],
-        "detected_part_count": 0,
-        "grouping_status": "atomic_candidate",
-        "previously_reviewed": false,
-        "issue_codes": [
-          "legacy_superscript",
-          "question_type_unclassified"
-        ]
-      },
-      "workflow": {
-        "decision": "pending",
-        "english_status": "passed",
-        "source_recovery_status": "not_needed",
-        "grouping_review_status": "pending",
-        "independent_solution_status": "pending",
-        "verification_status": "pending",
-        "metadata_status": "pending",
-        "render_status": "pending",
-        "eligible_for_paper": false
-      },
-      "audit_notes": []
-    },
-    {
-      "id": "ch05_q07",
-      "chapter": "Ch05",
-      "source": {
-        "raw": "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment and solution_Chap_5_discrete random variable.docx",
-        "kind": "local",
-        "local_paths": [
-          "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment and solution_Chap_5_discrete random variable.docx"
-        ],
-        "external_urls": [],
-        "missing_paths": [],
-        "resolvable": true
-      },
-      "original": {
-        "question_hash": "cfed0a565ad0c06b94466bb05f0afeb817a1f026f275863a7bbd89ef006dae0f",
-        "answer_hash": "320d386996af960012bca2ab64b4c4125b2bb239b5c040c87ae3d26f88ed17ea",
-        "type": "unknown",
-        "difficulty": 1,
-        "keywords": [],
-        "formula_refs": [
-          "ch05_q07_ans_f01_image8.wmf"
-        ],
-        "data_refs": [],
-        "review_status": null
-      },
-      "diagnostics": {
-        "question_language": "en",
-        "answer_language": "en",
-        "answer_present": true,
-        "source_resolvable": true,
-        "assets": [
-          {
-            "reference": "ch05_q07_ans_f01_image8.wmf",
-            "resolved_path": "Assests/ch05_q07_ans_f01_image8.wmf",
-            "available": true
-          }
-        ],
-        "format_findings": [
-          "escaped_line_end"
-        ],
-        "context_findings": [],
-        "detected_part_count": 0,
-        "grouping_status": "atomic_candidate",
-        "previously_reviewed": false,
-        "issue_codes": [
-          "escaped_line_end",
-          "question_type_unclassified"
-        ]
-      },
-      "workflow": {
-        "decision": "pending",
-        "english_status": "passed",
-        "source_recovery_status": "not_needed",
-        "grouping_review_status": "pending",
-        "independent_solution_status": "pending",
-        "verification_status": "pending",
-        "metadata_status": "pending",
-        "render_status": "pending",
-        "eligible_for_paper": false
-      },
-      "audit_notes": []
-    },
-    {
-      "id": "ch05_q08",
-      "chapter": "Ch05",
-      "source": {
-        "raw": "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment and solution_Chap_5_discrete random variable.docx",
-        "kind": "local",
-        "local_paths": [
-          "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment and solution_Chap_5_discrete random variable.docx"
-        ],
-        "external_urls": [],
-        "missing_paths": [],
-        "resolvable": true
-      },
-      "original": {
-        "question_hash": "23502cd98a424ec59a1c54261314de795ab7d21e1a717299c7906c61d82a682b",
-        "answer_hash": "3359926d1231b4eb97b3b97c7d39dfc6cf534636a584ec405be933d89c014afa",
-        "type": "unknown",
-        "difficulty": 1,
-        "keywords": [],
-        "formula_refs": [],
-        "data_refs": [],
-        "review_status": null
-      },
-      "diagnostics": {
-        "question_language": "en",
-        "answer_language": "en",
-        "answer_present": true,
-        "source_resolvable": true,
-        "assets": [],
-        "format_findings": [
-          "escaped_line_end"
-        ],
-        "context_findings": [],
-        "detected_part_count": 0,
-        "grouping_status": "atomic_candidate",
-        "previously_reviewed": false,
-        "issue_codes": [
-          "escaped_line_end",
-          "question_type_unclassified"
-        ]
-      },
-      "workflow": {
-        "decision": "pending",
-        "english_status": "passed",
-        "source_recovery_status": "not_needed",
-        "grouping_review_status": "pending",
-        "independent_solution_status": "pending",
-        "verification_status": "pending",
-        "metadata_status": "pending",
-        "render_status": "pending",
-        "eligible_for_paper": false
-      },
-      "audit_notes": []
-    },
-    {
-      "id": "ch05_q09",
-      "chapter": "Ch05",
-      "source": {
-        "raw": "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment and solution_Chap_5_discrete random variable.docx",
-        "kind": "local",
-        "local_paths": [
-          "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment and solution_Chap_5_discrete random variable.docx"
-        ],
-        "external_urls": [],
-        "missing_paths": [],
-        "resolvable": true
-      },
-      "original": {
-        "question_hash": "e9b2727cff516453ca9110c82c26d7d0c168a14abe95cd35e264c073e51fded5",
-        "answer_hash": "e6587761f0340106c6de0281907c0a9d7d96dcab86e414d8cd1a1f874c816b91",
-        "type": "unknown",
-        "difficulty": 1,
-        "keywords": [],
-        "formula_refs": [
-          "ch05_q09_ans_f01_image9.wmf"
-        ],
-        "data_refs": [],
-        "review_status": null
-      },
-      "diagnostics": {
-        "question_language": "en",
-        "answer_language": "en",
-        "answer_present": true,
-        "source_resolvable": true,
-        "assets": [
-          {
-            "reference": "ch05_q09_ans_f01_image9.wmf",
-            "resolved_path": "Assests/ch05_q09_ans_f01_image9.wmf",
-            "available": true
-          }
-        ],
-        "format_findings": [
-          "escaped_line_end"
-        ],
-        "context_findings": [],
-        "detected_part_count": 0,
-        "grouping_status": "atomic_candidate",
-        "previously_reviewed": false,
-        "issue_codes": [
-          "escaped_line_end",
-          "question_type_unclassified"
-        ]
-      },
-      "workflow": {
-        "decision": "pending",
-        "english_status": "passed",
-        "source_recovery_status": "not_needed",
-        "grouping_review_status": "pending",
-        "independent_solution_status": "pending",
-        "verification_status": "pending",
-        "metadata_status": "pending",
-        "render_status": "pending",
-        "eligible_for_paper": false
-      },
-      "audit_notes": []
-    },
-    {
-      "id": "ch05_q10",
-      "chapter": "Ch05",
-      "source": {
-        "raw": "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment and solution_Chap_5_discrete random variable.docx",
-        "kind": "local",
-        "local_paths": [
-          "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment and solution_Chap_5_discrete random variable.docx"
-        ],
-        "external_urls": [],
-        "missing_paths": [],
-        "resolvable": true
-      },
-      "original": {
-        "question_hash": "de0c9fcd3c15af14acaf2dcb6c6a956bd6bcbb470f51d0fa73d106653d51f2a2",
-        "answer_hash": "26a0c0ada7c044a611691ec45a34b7c5d7cc1277c7d89c05266e4c11723e339d",
-        "type": "unknown",
-        "difficulty": 1,
-        "keywords": [],
-        "formula_refs": [],
-        "data_refs": [],
-        "review_status": null
-      },
-      "diagnostics": {
-        "question_language": "en",
-        "answer_language": "en",
-        "answer_present": true,
-        "source_resolvable": true,
-        "assets": [],
-        "format_findings": [
-          "escaped_line_end"
-        ],
-        "context_findings": [],
-        "detected_part_count": 0,
-        "grouping_status": "atomic_candidate",
-        "previously_reviewed": false,
-        "issue_codes": [
-          "escaped_line_end",
-          "question_type_unclassified"
-        ]
-      },
-      "workflow": {
-        "decision": "pending",
-        "english_status": "passed",
-        "source_recovery_status": "not_needed",
-        "grouping_review_status": "pending",
-        "independent_solution_status": "pending",
-        "verification_status": "pending",
-        "metadata_status": "pending",
-        "render_status": "pending",
-        "eligible_for_paper": false
-      },
-      "audit_notes": []
-    },
-    {
-      "id": "ch05_q11",
-      "chapter": "Ch05",
-      "source": {
-        "raw": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter05.docx",
-        "kind": "local",
-        "local_paths": [
-          "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter05.docx"
-        ],
-        "external_urls": [],
-        "missing_paths": [],
-        "resolvable": true
-      },
-      "original": {
-        "question_hash": "add7cc9208938d7e9cd9a8194e414905efb046a03e82bc5ac4791dbc687bb64f",
-        "answer_hash": "1aaf3cbbd1d10f7d8bee4c3f43dda21f701a255b9de12287aa7c3d244e9df4c0",
-        "type": "unknown",
-        "difficulty": 1,
-        "keywords": [],
-        "formula_refs": [],
-        "data_refs": [],
-        "review_status": null
-      },
-      "diagnostics": {
-        "question_language": "en",
-        "answer_language": "en",
-        "answer_present": true,
-        "source_resolvable": true,
-        "assets": [],
-        "format_findings": [
-          "escaped_line_end"
-        ],
-        "context_findings": [],
-        "detected_part_count": 0,
-        "grouping_status": "atomic_candidate",
-        "previously_reviewed": false,
-        "issue_codes": [
-          "escaped_line_end",
-          "question_type_unclassified"
-        ]
-      },
-      "workflow": {
-        "decision": "pending",
-        "english_status": "passed",
-        "source_recovery_status": "not_needed",
-        "grouping_review_status": "pending",
-        "independent_solution_status": "pending",
-        "verification_status": "pending",
-        "metadata_status": "pending",
-        "render_status": "pending",
-        "eligible_for_paper": false
-      },
-      "audit_notes": []
-    },
-    {
-      "id": "ch05_q12",
-      "chapter": "Ch05",
-      "source": {
-        "raw": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter05.docx",
-        "kind": "local",
-        "local_paths": [
-          "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter05.docx"
-        ],
-        "external_urls": [],
-        "missing_paths": [],
-        "resolvable": true
-      },
-      "original": {
-        "question_hash": "1e8357e6342a7954c7578c343e9e9c6470c6aeba624f5cae7bef859100d44521",
-        "answer_hash": "28c95ac5f6e65c5052f033349e29d62d8ebc56dab83891879a803c3d35d2b8ab",
-        "type": "unknown",
-        "difficulty": 1,
-        "keywords": [],
-        "formula_refs": [],
-        "data_refs": [],
-        "review_status": null
-      },
-      "diagnostics": {
-        "question_language": "en",
-        "answer_language": "en",
-        "answer_present": true,
-        "source_resolvable": true,
-        "assets": [],
-        "format_findings": [],
-        "context_findings": [],
-        "detected_part_count": 0,
-        "grouping_status": "atomic_candidate",
-        "previously_reviewed": false,
-        "issue_codes": [
-          "question_type_unclassified"
-        ]
-      },
-      "workflow": {
-        "decision": "pending",
-        "english_status": "passed",
-        "source_recovery_status": "not_needed",
-        "grouping_review_status": "pending",
-        "independent_solution_status": "pending",
-        "verification_status": "pending",
-        "metadata_status": "pending",
-        "render_status": "pending",
-        "eligible_for_paper": false
-      },
-      "audit_notes": []
-    },
-    {
-      "id": "ch05_q13",
-      "chapter": "Ch05",
-      "source": {
-        "raw": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter05.docx",
-        "kind": "local",
-        "local_paths": [
-          "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter05.docx"
-        ],
-        "external_urls": [],
-        "missing_paths": [],
-        "resolvable": true
-      },
-      "original": {
-        "question_hash": "567114fb4764786d375abcc677b8470b3bfe141d01b1a6d7eaf18a26a495f95e",
-        "answer_hash": "a684cb8c31a2089b848b4b58359c94844ae8f258bc9ffda74bb6726bab040541",
-        "type": "unknown",
-        "difficulty": 1,
-        "keywords": [],
-        "formula_refs": [],
-        "data_refs": [],
-        "review_status": null
-      },
-      "diagnostics": {
-        "question_language": "en",
-        "answer_language": "en",
-        "answer_present": true,
-        "source_resolvable": true,
-        "assets": [],
-        "format_findings": [],
-        "context_findings": [],
-        "detected_part_count": 0,
-        "grouping_status": "atomic_candidate",
-        "previously_reviewed": false,
-        "issue_codes": [
-          "question_type_unclassified"
-        ]
-      },
-      "workflow": {
-        "decision": "pending",
-        "english_status": "passed",
-        "source_recovery_status": "not_needed",
-        "grouping_review_status": "pending",
-        "independent_solution_status": "pending",
-        "verification_status": "pending",
-        "metadata_status": "pending",
-        "render_status": "pending",
-        "eligible_for_paper": false
-      },
-      "audit_notes": []
-    },
-    {
-      "id": "ch05_q14",
-      "chapter": "Ch05",
-      "source": {
-        "raw": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter05.docx",
-        "kind": "local",
-        "local_paths": [
-          "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter05.docx"
-        ],
-        "external_urls": [],
-        "missing_paths": [],
-        "resolvable": true
-      },
-      "original": {
-        "question_hash": "c3b454e4f7c8db8dd199dd31ee39bb2950b5b61afc38875ee3d4e766df4f1bbd",
-        "answer_hash": "c9047d5403f07bb97dc4e57b2291fff110b97eb7c108ad29d76b084e63166e82",
-        "type": "unknown",
-        "difficulty": 1,
-        "keywords": [],
-        "formula_refs": [],
-        "data_refs": [],
-        "review_status": null
-      },
-      "diagnostics": {
-        "question_language": "en",
-        "answer_language": "en",
-        "answer_present": true,
-        "source_resolvable": true,
-        "assets": [],
-        "format_findings": [
-          "escaped_line_end"
-        ],
-        "context_findings": [],
-        "detected_part_count": 0,
-        "grouping_status": "atomic_candidate",
-        "previously_reviewed": false,
-        "issue_codes": [
-          "escaped_line_end",
-          "question_type_unclassified"
-        ]
-      },
-      "workflow": {
-        "decision": "pending",
-        "english_status": "passed",
-        "source_recovery_status": "not_needed",
-        "grouping_review_status": "pending",
-        "independent_solution_status": "pending",
-        "verification_status": "pending",
-        "metadata_status": "pending",
-        "render_status": "pending",
-        "eligible_for_paper": false
-      },
-      "audit_notes": []
-    },
-    {
-      "id": "ch05_q15",
-      "chapter": "Ch05",
-      "source": {
-        "raw": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter05.docx",
-        "kind": "local",
-        "local_paths": [
-          "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter05.docx"
-        ],
-        "external_urls": [],
-        "missing_paths": [],
-        "resolvable": true
-      },
-      "original": {
-        "question_hash": "ae2689828a69bae25383b21010d266d5c6fbd2ab2ae4725907e25d27fda51fa9",
-        "answer_hash": "bcb08cd5fc4c3d0ffe357b95e109f7bc7453b1412dbf651d90fbac3a1ac3a2d2",
-        "type": "unknown",
-        "difficulty": 1,
-        "keywords": [],
-        "formula_refs": [],
-        "data_refs": [],
-        "review_status": null
-      },
-      "diagnostics": {
-        "question_language": "en",
-        "answer_language": "en",
-        "answer_present": true,
-        "source_resolvable": true,
-        "assets": [],
-        "format_findings": [
-          "escaped_line_end"
-        ],
-        "context_findings": [],
-        "detected_part_count": 0,
-        "grouping_status": "atomic_candidate",
-        "previously_reviewed": false,
-        "issue_codes": [
-          "escaped_line_end",
-          "question_type_unclassified"
-        ]
-      },
-      "workflow": {
-        "decision": "pending",
-        "english_status": "passed",
-        "source_recovery_status": "not_needed",
-        "grouping_review_status": "pending",
-        "independent_solution_status": "pending",
-        "verification_status": "pending",
-        "metadata_status": "pending",
-        "render_status": "pending",
-        "eligible_for_paper": false
-      },
-      "audit_notes": []
-    },
-    {
-      "id": "ch05_q16",
-      "chapter": "Ch05",
-      "source": {
-        "raw": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter05.docx",
-        "kind": "local",
-        "local_paths": [
-          "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter05.docx"
-        ],
-        "external_urls": [],
-        "missing_paths": [],
-        "resolvable": true
-      },
-      "original": {
-        "question_hash": "fc718931c0c408c21b4486ec7cf43ebf1dbb182cb20504625615a415e4873fbd",
-        "answer_hash": "40ad3b2888e2d9d3b79a46c7d93e7929fd8a4015257bc43e61f8d7a4b8b9e279",
-        "type": "unknown",
-        "difficulty": 1,
-        "keywords": [],
-        "formula_refs": [],
-        "data_refs": [],
-        "review_status": null
-      },
-      "diagnostics": {
-        "question_language": "en",
-        "answer_language": "en",
-        "answer_present": true,
-        "source_resolvable": true,
-        "assets": [],
-        "format_findings": [],
-        "context_findings": [],
-        "detected_part_count": 0,
-        "grouping_status": "atomic_candidate",
-        "previously_reviewed": false,
-        "issue_codes": [
-          "question_type_unclassified"
-        ]
-      },
-      "workflow": {
-        "decision": "pending",
-        "english_status": "passed",
-        "source_recovery_status": "not_needed",
-        "grouping_review_status": "pending",
-        "independent_solution_status": "pending",
-        "verification_status": "pending",
-        "metadata_status": "pending",
-        "render_status": "pending",
-        "eligible_for_paper": false
-      },
-      "audit_notes": []
-    },
-    {
-      "id": "ch05_q17",
-      "chapter": "Ch05",
-      "source": {
-        "raw": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter05.docx",
-        "kind": "local",
-        "local_paths": [
-          "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter05.docx"
-        ],
-        "external_urls": [],
-        "missing_paths": [],
-        "resolvable": true
-      },
-      "original": {
-        "question_hash": "290ad5556977027786813c25f937950d7dfa2d57a047a9d01d11e87ee51b5fbb",
-        "answer_hash": "d86f4d749b293c18d21e51f2096d8903de84f6b773b4037fdc4392930f243fa1",
-        "type": "unknown",
-        "difficulty": 1,
-        "keywords": [],
-        "formula_refs": [],
-        "data_refs": [],
-        "review_status": null
-      },
-      "diagnostics": {
-        "question_language": "en",
-        "answer_language": "en",
-        "answer_present": true,
-        "source_resolvable": true,
-        "assets": [],
-        "format_findings": [
-          "escaped_line_end",
-          "pandoc_html"
-        ],
-        "context_findings": [],
-        "detected_part_count": 0,
-        "grouping_status": "atomic_candidate",
-        "previously_reviewed": false,
-        "issue_codes": [
-          "escaped_line_end",
-          "pandoc_html",
-          "question_type_unclassified"
-        ]
-      },
-      "workflow": {
-        "decision": "pending",
-        "english_status": "passed",
-        "source_recovery_status": "not_needed",
-        "grouping_review_status": "pending",
-        "independent_solution_status": "pending",
-        "verification_status": "pending",
-        "metadata_status": "pending",
-        "render_status": "pending",
-        "eligible_for_paper": false
-      },
-      "audit_notes": []
-    },
-    {
-      "id": "ch05_q18",
-      "chapter": "Ch05",
-      "source": {
-        "raw": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter05.docx",
-        "kind": "local",
-        "local_paths": [
-          "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter05.docx"
-        ],
-        "external_urls": [],
-        "missing_paths": [],
-        "resolvable": true
-      },
-      "original": {
-        "question_hash": "e04bb46f4518ba0414b21d7a62fe1012e8d7b99c83892a0d6826df6eb87ed992",
-        "answer_hash": "ee481d1eb0a208cb8752e134ed57c8fdc55b6598a1fa0e5553445d8116ae7f98",
-        "type": "unknown",
-        "difficulty": 1,
-        "keywords": [],
-        "formula_refs": [],
-        "data_refs": [],
-        "review_status": null
-      },
-      "diagnostics": {
-        "question_language": "en",
-        "answer_language": "en",
-        "answer_present": true,
-        "source_resolvable": true,
-        "assets": [],
-        "format_findings": [
-          "escaped_line_end"
-        ],
-        "context_findings": [],
-        "detected_part_count": 0,
-        "grouping_status": "atomic_candidate",
-        "previously_reviewed": false,
-        "issue_codes": [
-          "escaped_line_end",
-          "question_type_unclassified"
-        ]
-      },
-      "workflow": {
-        "decision": "pending",
-        "english_status": "passed",
-        "source_recovery_status": "not_needed",
-        "grouping_review_status": "pending",
-        "independent_solution_status": "pending",
-        "verification_status": "pending",
-        "metadata_status": "pending",
-        "render_status": "pending",
-        "eligible_for_paper": false
-      },
-      "audit_notes": []
-    },
-    {
-      "id": "ch05_q19",
-      "chapter": "Ch05",
-      "source": {
-        "raw": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter05.docx",
-        "kind": "local",
-        "local_paths": [
-          "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter05.docx"
-        ],
-        "external_urls": [],
-        "missing_paths": [],
-        "resolvable": true
-      },
-      "original": {
-        "question_hash": "eaa9a4b939f33be0b82600d4e58cdda01a480f735ca57d385b6492825780fef6",
-        "answer_hash": "be296e5e054c5b5adcf3d8d8c8db17a73c1353e2fafe2eef76070880910f53e4",
-        "type": "unknown",
-        "difficulty": 1,
-        "keywords": [],
-        "formula_refs": [],
-        "data_refs": [],
-        "review_status": null
-      },
-      "diagnostics": {
-        "question_language": "en",
-        "answer_language": "en",
-        "answer_present": true,
-        "source_resolvable": true,
-        "assets": [],
-        "format_findings": [
-          "escaped_line_end",
-          "pandoc_html"
-        ],
-        "context_findings": [],
-        "detected_part_count": 0,
-        "grouping_status": "atomic_candidate",
-        "previously_reviewed": false,
-        "issue_codes": [
-          "escaped_line_end",
-          "pandoc_html",
-          "question_type_unclassified"
-        ]
-      },
-      "workflow": {
-        "decision": "pending",
-        "english_status": "passed",
-        "source_recovery_status": "not_needed",
-        "grouping_review_status": "pending",
-        "independent_solution_status": "pending",
-        "verification_status": "pending",
-        "metadata_status": "pending",
-        "render_status": "pending",
-        "eligible_for_paper": false
-      },
-      "audit_notes": []
-    },
-    {
-      "id": "ch05_q20",
-      "chapter": "Ch05",
-      "source": {
-        "raw": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter05.docx",
-        "kind": "local",
-        "local_paths": [
-          "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter05.docx"
-        ],
-        "external_urls": [],
-        "missing_paths": [],
-        "resolvable": true
-      },
-      "original": {
-        "question_hash": "75346cb6861b6b95dbdb7bc6690b12f584157844a271e3cf9a32c993e43189bf",
-        "answer_hash": "cf36aa36c11f20028b1cfe749f125dbdcdc28d42eb3317180e519212ac761f5e",
-        "type": "unknown",
-        "difficulty": 1,
-        "keywords": [],
-        "formula_refs": [],
-        "data_refs": [],
-        "review_status": null
-      },
-      "diagnostics": {
-        "question_language": "en",
-        "answer_language": "en",
-        "answer_present": true,
-        "source_resolvable": true,
-        "assets": [],
-        "format_findings": [
-          "escaped_line_end"
-        ],
-        "context_findings": [],
-        "detected_part_count": 0,
-        "grouping_status": "atomic_candidate",
-        "previously_reviewed": false,
-        "issue_codes": [
-          "escaped_line_end",
-          "question_type_unclassified"
-        ]
-      },
-      "workflow": {
-        "decision": "pending",
-        "english_status": "passed",
-        "source_recovery_status": "not_needed",
-        "grouping_review_status": "pending",
-        "independent_solution_status": "pending",
-        "verification_status": "pending",
-        "metadata_status": "pending",
-        "render_status": "pending",
-        "eligible_for_paper": false
-      },
-      "audit_notes": []
-    },
-    {
-      "id": "ch05_q21",
-      "chapter": "Ch05",
-      "source": {
-        "raw": "Assignment Prof Lv/assignment5-lu.doc",
-        "kind": "local",
-        "local_paths": [
-          "Assignment Prof Lv/assignment5-lu.doc"
-        ],
-        "external_urls": [],
-        "missing_paths": [],
-        "resolvable": true
-      },
-      "original": {
-        "question_hash": "81b8afaeb8866341260506951f81c75a88b9afb9d0a852687d9233117171c6e6",
-        "answer_hash": "74c7b8909e0cb231c77f6e43c20f4d8f15041ac26cf88b97ab85cf2fb2348982",
-        "type": "unknown",
-        "difficulty": 1,
-        "keywords": [],
-        "formula_refs": [
-          "ch05_q08_f01_image1.wmf",
-          "ch05_q08_f02_image2.wmf",
-          "ch05_q08_f03_image2.wmf",
-          "ch05_q08_f04_image3.wmf",
-          "ch05_q08_f05_image4.wmf",
-          "ch05_q08_f06_image5.wmf"
-        ],
-        "data_refs": [],
-        "review_status": null
-      },
-      "diagnostics": {
-        "question_language": "en",
-        "answer_language": "en",
-        "answer_present": true,
-        "source_resolvable": true,
-        "assets": [
-          {
-            "reference": "ch05_q08_f01_image1.wmf",
-            "resolved_path": "Assests/ch05_q08_f01_image1.wmf",
-            "available": true
-          },
-          {
-            "reference": "ch05_q08_f02_image2.wmf",
-            "resolved_path": "Assests/ch05_q08_f02_image2.wmf",
-            "available": true
-          },
-          {
-            "reference": "ch05_q08_f03_image2.wmf",
-            "resolved_path": "Assests/ch05_q08_f03_image2.wmf",
-            "available": true
-          },
-          {
-            "reference": "ch05_q08_f04_image3.wmf",
-            "resolved_path": "Assests/ch05_q08_f04_image3.wmf",
-            "available": true
-          },
-          {
-            "reference": "ch05_q08_f05_image4.wmf",
-            "resolved_path": "Assests/ch05_q08_f05_image4.wmf",
-            "available": true
-          },
-          {
-            "reference": "ch05_q08_f06_image5.wmf",
-            "resolved_path": "Assests/ch05_q08_f06_image5.wmf",
-            "available": true
-          }
-        ],
-        "format_findings": [
-          "escaped_line_end"
-        ],
-        "context_findings": [],
-        "detected_part_count": 5,
-        "grouping_status": "multi_part_candidate",
-        "previously_reviewed": false,
-        "issue_codes": [
-          "escaped_line_end",
-          "multi_part_requires_alignment_review",
-          "question_type_unclassified"
-        ]
-      },
-      "workflow": {
-        "decision": "pending",
-        "english_status": "passed",
-        "source_recovery_status": "not_needed",
-        "grouping_review_status": "pending",
-        "independent_solution_status": "pending",
-        "verification_status": "pending",
-        "metadata_status": "pending",
-        "render_status": "pending",
-        "eligible_for_paper": false
-      },
-      "audit_notes": []
-    },
-    {
-      "id": "ch05_q22",
-      "chapter": "Ch05",
-      "source": {
-        "raw": "Assignment Prof Lv/assignment5-lu.doc",
-        "kind": "local",
-        "local_paths": [
-          "Assignment Prof Lv/assignment5-lu.doc"
-        ],
-        "external_urls": [],
-        "missing_paths": [],
-        "resolvable": true
-      },
-      "original": {
-        "question_hash": "b8687876c96be09968cdf699c671765d76617c8d39958777859ced64805ba1b1",
-        "answer_hash": "fa8e6a08616c8e20d8c05f671f1c646f34448630a548dd1900550442a195e58d",
-        "type": "unknown",
-        "difficulty": 1,
-        "keywords": [],
-        "formula_refs": [
-          "ch05_q11_f01_image1.wmf",
-          "ch05_q11_f02_image1.wmf",
-          "ch05_q11_f03_image1.wmf",
-          "ch05_q11_f04_image6.wmf"
-        ],
-        "data_refs": [],
-        "review_status": null
-      },
-      "diagnostics": {
-        "question_language": "en",
-        "answer_language": "en",
-        "answer_present": true,
-        "source_resolvable": true,
-        "assets": [
-          {
-            "reference": "ch05_q11_f01_image1.wmf",
-            "resolved_path": "Assests/ch05_q11_f01_image1.wmf",
-            "available": true
-          },
-          {
-            "reference": "ch05_q11_f02_image1.wmf",
-            "resolved_path": "Assests/ch05_q11_f02_image1.wmf",
-            "available": true
-          },
-          {
-            "reference": "ch05_q11_f03_image1.wmf",
-            "resolved_path": "Assests/ch05_q11_f03_image1.wmf",
-            "available": true
-          },
-          {
-            "reference": "ch05_q11_f04_image6.wmf",
-            "resolved_path": "Assests/ch05_q11_f04_image6.wmf",
-            "available": true
-          }
-        ],
-        "format_findings": [],
-        "context_findings": [],
-        "detected_part_count": 4,
-        "grouping_status": "multi_part_candidate",
-        "previously_reviewed": false,
-        "issue_codes": [
-          "multi_part_requires_alignment_review",
-          "question_type_unclassified"
-        ]
-      },
-      "workflow": {
-        "decision": "pending",
-        "english_status": "passed",
-        "source_recovery_status": "not_needed",
-        "grouping_review_status": "pending",
-        "independent_solution_status": "pending",
-        "verification_status": "pending",
-        "metadata_status": "pending",
-        "render_status": "pending",
-        "eligible_for_paper": false
-      },
-      "audit_notes": []
-    },
-    {
-      "id": "ch05_q23",
-      "chapter": "Ch05",
-      "source": {
-        "raw": "Assignment Prof Lv/assignment5-lu.doc",
-        "kind": "local",
-        "local_paths": [
-          "Assignment Prof Lv/assignment5-lu.doc"
-        ],
-        "external_urls": [],
-        "missing_paths": [],
-        "resolvable": true
-      },
-      "original": {
-        "question_hash": "9478e83b54db5377f80934c30c67d86070e54385f729434fa5e3694a5a604e11",
-        "answer_hash": "d38dc3d1b326b848a22d0694ce38767fb0bfa500581601cae6634927fe1f4b9c",
-        "type": "unknown",
-        "difficulty": 1,
-        "keywords": [],
-        "formula_refs": [
-          "ch05_q36_f01_image1.wmf",
-          "ch05_q36_f01_image7.wmf",
-          "ch05_q36_f02_image8.wmf"
-        ],
-        "data_refs": [],
-        "review_status": null
-      },
-      "diagnostics": {
-        "question_language": "en",
-        "answer_language": "en",
-        "answer_present": true,
-        "source_resolvable": true,
-        "assets": [
-          {
-            "reference": "ch05_q36_f01_image1.wmf",
-            "resolved_path": "Assests/ch05_q36_f01_image1.wmf",
-            "available": true
-          },
-          {
-            "reference": "ch05_q36_f01_image7.wmf",
-            "resolved_path": "Assests/ch05_q36_f01_image7.wmf",
-            "available": true
-          },
-          {
-            "reference": "ch05_q36_f02_image8.wmf",
-            "resolved_path": "Assests/ch05_q36_f02_image8.wmf",
-            "available": true
-          }
-        ],
-        "format_findings": [
-          "escaped_line_end"
-        ],
-        "context_findings": [],
-        "detected_part_count": 0,
-        "grouping_status": "atomic_candidate",
-        "previously_reviewed": false,
-        "issue_codes": [
-          "escaped_line_end",
-          "question_type_unclassified"
-        ]
-      },
-      "workflow": {
-        "decision": "pending",
-        "english_status": "passed",
-        "source_recovery_status": "not_needed",
-        "grouping_review_status": "pending",
-        "independent_solution_status": "pending",
-        "verification_status": "pending",
-        "metadata_status": "pending",
-        "render_status": "pending",
-        "eligible_for_paper": false
-      },
-      "audit_notes": []
-    },
-    {
-      "id": "ch05_q24",
-      "chapter": "Ch05",
-      "source": {
-        "raw": "Assignment Prof Lv/assignment5-lu.doc",
-        "kind": "local",
-        "local_paths": [
-          "Assignment Prof Lv/assignment5-lu.doc"
-        ],
-        "external_urls": [],
-        "missing_paths": [],
-        "resolvable": true
-      },
-      "original": {
-        "question_hash": "e81004e8f97a65107b757fdfe696b0175c5feabce3ea18285a187157410d09ac",
-        "answer_hash": "a9a72359cbda1b2802aefbb8933985d53dcab0a8e423d85b955e9fedfd76b44b",
+        "question_hash": "10bf3e00548bce6497a27a31a03989ae785033501a378cd4a40ddf8759d2f8cc",
+        "answer_hash": "7fdabbf10acfbbf0dab6fedc48330f01c31e1a543d9899a5a1d6b507f4b6d02c",
         "type": "计算题",
         "difficulty": 2,
         "keywords": [
-          "normal distribution",
-          "percentile"
+          "binomial distribution"
         ],
         "formula_refs": [],
         "data_refs": [],
@@ -7655,7 +6273,836 @@
       "audit_notes": []
     },
     {
-      "id": "ch05_q25",
+      "id": "ch05_q02",
+      "chapter": "Ch05",
+      "source": {
+        "raw": "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment and solution_Chap_5_discrete random variable.docx",
+        "kind": "local",
+        "local_paths": [
+          "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment and solution_Chap_5_discrete random variable.docx"
+        ],
+        "external_urls": [],
+        "missing_paths": [],
+        "resolvable": true
+      },
+      "original": {
+        "question_hash": "d0e944421ba9dad52dc5d97884bb99dcef58e616f4c4103af06e4e3ea9be1269",
+        "answer_hash": "21fee2972ee74c938bb5f18431e49fc0a3baef774e4b587f7b169d85a5d46ad8",
+        "type": "计算题",
+        "difficulty": 1,
+        "keywords": [
+          "binomial mean",
+          "binomial standard deviation"
+        ],
+        "formula_refs": [],
+        "data_refs": [],
+        "review_status": "independently solved and reviewed"
+      },
+      "diagnostics": {
+        "question_language": "en",
+        "answer_language": "en",
+        "answer_present": true,
+        "source_resolvable": true,
+        "assets": [],
+        "format_findings": [],
+        "context_findings": [],
+        "detected_part_count": 0,
+        "grouping_status": "atomic_candidate",
+        "previously_reviewed": true,
+        "issue_codes": []
+      },
+      "workflow": {
+        "decision": "pending",
+        "english_status": "passed",
+        "source_recovery_status": "not_needed",
+        "grouping_review_status": "pending",
+        "independent_solution_status": "pending",
+        "verification_status": "pending",
+        "metadata_status": "pending",
+        "render_status": "pending",
+        "eligible_for_paper": false
+      },
+      "audit_notes": []
+    },
+    {
+      "id": "ch05_q03",
+      "chapter": "Ch05",
+      "source": {
+        "raw": "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment and solution_Chap_5_discrete random variable.docx",
+        "kind": "local",
+        "local_paths": [
+          "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment and solution_Chap_5_discrete random variable.docx"
+        ],
+        "external_urls": [],
+        "missing_paths": [],
+        "resolvable": true
+      },
+      "original": {
+        "question_hash": "8f9167de2d6b1500b4d841ceb3f8c58a605a952d655c7bf301b483866940d015",
+        "answer_hash": "730fd2b4a673ccb31caa56af43fb01be223ad5135e54406f48821ab0f79dad40",
+        "type": "计算题",
+        "difficulty": 2,
+        "keywords": [
+          "Poisson distribution"
+        ],
+        "formula_refs": [],
+        "data_refs": [],
+        "review_status": "independently solved and reviewed"
+      },
+      "diagnostics": {
+        "question_language": "en",
+        "answer_language": "en",
+        "answer_present": true,
+        "source_resolvable": true,
+        "assets": [],
+        "format_findings": [],
+        "context_findings": [],
+        "detected_part_count": 0,
+        "grouping_status": "atomic_candidate",
+        "previously_reviewed": true,
+        "issue_codes": []
+      },
+      "workflow": {
+        "decision": "pending",
+        "english_status": "passed",
+        "source_recovery_status": "not_needed",
+        "grouping_review_status": "pending",
+        "independent_solution_status": "pending",
+        "verification_status": "pending",
+        "metadata_status": "pending",
+        "render_status": "pending",
+        "eligible_for_paper": false
+      },
+      "audit_notes": []
+    },
+    {
+      "id": "ch05_q04",
+      "chapter": "Ch05",
+      "source": {
+        "raw": "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment and solution_Chap_5_discrete random variable.docx",
+        "kind": "local",
+        "local_paths": [
+          "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment and solution_Chap_5_discrete random variable.docx"
+        ],
+        "external_urls": [],
+        "missing_paths": [],
+        "resolvable": true
+      },
+      "original": {
+        "question_hash": "7a6363f83e5a0955fc0abd7ef6e6f1474d09f478fb030b351e4442a545e9ee92",
+        "answer_hash": "852bf820a190a568e807f946411cdd83156c8d4661018ed1922a78196b3712ca",
+        "type": "计算题",
+        "difficulty": 2,
+        "keywords": [
+          "Poisson distribution"
+        ],
+        "formula_refs": [],
+        "data_refs": [],
+        "review_status": "independently solved and reviewed"
+      },
+      "diagnostics": {
+        "question_language": "en",
+        "answer_language": "en",
+        "answer_present": true,
+        "source_resolvable": true,
+        "assets": [],
+        "format_findings": [],
+        "context_findings": [],
+        "detected_part_count": 0,
+        "grouping_status": "atomic_candidate",
+        "previously_reviewed": true,
+        "issue_codes": []
+      },
+      "workflow": {
+        "decision": "pending",
+        "english_status": "passed",
+        "source_recovery_status": "not_needed",
+        "grouping_review_status": "pending",
+        "independent_solution_status": "pending",
+        "verification_status": "pending",
+        "metadata_status": "pending",
+        "render_status": "pending",
+        "eligible_for_paper": false
+      },
+      "audit_notes": []
+    },
+    {
+      "id": "ch05_q06",
+      "chapter": "Ch05",
+      "source": {
+        "raw": "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment and solution_Chap_5_discrete random variable.docx",
+        "kind": "local",
+        "local_paths": [
+          "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment and solution_Chap_5_discrete random variable.docx"
+        ],
+        "external_urls": [],
+        "missing_paths": [],
+        "resolvable": true
+      },
+      "original": {
+        "question_hash": "c846503721a13d36710924334abe29d51c0c08cad06f42e397b76578f1eec1db",
+        "answer_hash": "f0e576f185fbf2052e5cc16140126515b1d03dbabb6402531eb07c4a9a1ad908",
+        "type": "计算题",
+        "difficulty": 3,
+        "keywords": [
+          "binomial distribution",
+          "hypothesis assessment"
+        ],
+        "formula_refs": [],
+        "data_refs": [],
+        "review_status": "independently solved and reviewed"
+      },
+      "diagnostics": {
+        "question_language": "en",
+        "answer_language": "en",
+        "answer_present": true,
+        "source_resolvable": true,
+        "assets": [],
+        "format_findings": [],
+        "context_findings": [],
+        "detected_part_count": 0,
+        "grouping_status": "atomic_candidate",
+        "previously_reviewed": true,
+        "issue_codes": []
+      },
+      "workflow": {
+        "decision": "pending",
+        "english_status": "passed",
+        "source_recovery_status": "not_needed",
+        "grouping_review_status": "pending",
+        "independent_solution_status": "pending",
+        "verification_status": "pending",
+        "metadata_status": "pending",
+        "render_status": "pending",
+        "eligible_for_paper": false
+      },
+      "audit_notes": []
+    },
+    {
+      "id": "ch05_q09",
+      "chapter": "Ch05",
+      "source": {
+        "raw": "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment and solution_Chap_5_discrete random variable.docx",
+        "kind": "local",
+        "local_paths": [
+          "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment and solution_Chap_5_discrete random variable.docx"
+        ],
+        "external_urls": [],
+        "missing_paths": [],
+        "resolvable": true
+      },
+      "original": {
+        "question_hash": "586b9799da2cdfa6aca6f1d7186a037378b913bb02ba588406caee36736fc30d",
+        "answer_hash": "537f41769e3cbab5af0d3957fd8f57e7540b0621e1b463b28000e5905a09e2f2",
+        "type": "计算题",
+        "difficulty": 2,
+        "keywords": [
+          "expected value",
+          "insurance"
+        ],
+        "formula_refs": [],
+        "data_refs": [],
+        "review_status": "independently solved and reviewed"
+      },
+      "diagnostics": {
+        "question_language": "en",
+        "answer_language": "en",
+        "answer_present": true,
+        "source_resolvable": true,
+        "assets": [],
+        "format_findings": [],
+        "context_findings": [],
+        "detected_part_count": 0,
+        "grouping_status": "atomic_candidate",
+        "previously_reviewed": true,
+        "issue_codes": []
+      },
+      "workflow": {
+        "decision": "pending",
+        "english_status": "passed",
+        "source_recovery_status": "not_needed",
+        "grouping_review_status": "pending",
+        "independent_solution_status": "pending",
+        "verification_status": "pending",
+        "metadata_status": "pending",
+        "render_status": "pending",
+        "eligible_for_paper": false
+      },
+      "audit_notes": []
+    },
+    {
+      "id": "ch05_q10",
+      "chapter": "Ch05",
+      "source": {
+        "raw": "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment and solution_Chap_5_discrete random variable.docx",
+        "kind": "local",
+        "local_paths": [
+          "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment and solution_Chap_5_discrete random variable.docx"
+        ],
+        "external_urls": [],
+        "missing_paths": [],
+        "resolvable": true
+      },
+      "original": {
+        "question_hash": "f03dc6819f3617dd2b9a5fdbb153a2479edf87688b6c696308afbe41ebfcf3c1",
+        "answer_hash": "22265c76e89d639d64fdf042db6d314d58c84e8b92b573e54a5d8c9474a1f57a",
+        "type": "计算题",
+        "difficulty": 2,
+        "keywords": [
+          "expected value",
+          "insurance premium"
+        ],
+        "formula_refs": [],
+        "data_refs": [],
+        "review_status": "independently solved and reviewed"
+      },
+      "diagnostics": {
+        "question_language": "en",
+        "answer_language": "en",
+        "answer_present": true,
+        "source_resolvable": true,
+        "assets": [],
+        "format_findings": [],
+        "context_findings": [],
+        "detected_part_count": 0,
+        "grouping_status": "atomic_candidate",
+        "previously_reviewed": true,
+        "issue_codes": []
+      },
+      "workflow": {
+        "decision": "pending",
+        "english_status": "passed",
+        "source_recovery_status": "not_needed",
+        "grouping_review_status": "pending",
+        "independent_solution_status": "pending",
+        "verification_status": "pending",
+        "metadata_status": "pending",
+        "render_status": "pending",
+        "eligible_for_paper": false
+      },
+      "audit_notes": []
+    },
+    {
+      "id": "ch05_q11",
+      "chapter": "Ch05",
+      "source": {
+        "raw": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter05.docx",
+        "kind": "local",
+        "local_paths": [
+          "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter05.docx"
+        ],
+        "external_urls": [],
+        "missing_paths": [],
+        "resolvable": true
+      },
+      "original": {
+        "question_hash": "45c443f4bad1eb458973115ceb633efdba28b3e9d9850bd5e24f9fd99ddf8b8a",
+        "answer_hash": "46ece23ecda3f077853ea3cd23e42f0f912313ab4880ce97ae646a38ff9e6a28",
+        "type": "计算题",
+        "difficulty": 2,
+        "keywords": [
+          "discrete probability distribution",
+          "expected value",
+          "variance"
+        ],
+        "formula_refs": [],
+        "data_refs": [],
+        "review_status": "independently solved and reviewed"
+      },
+      "diagnostics": {
+        "question_language": "en",
+        "answer_language": "en",
+        "answer_present": true,
+        "source_resolvable": true,
+        "assets": [],
+        "format_findings": [],
+        "context_findings": [],
+        "detected_part_count": 0,
+        "grouping_status": "atomic_candidate",
+        "previously_reviewed": true,
+        "issue_codes": []
+      },
+      "workflow": {
+        "decision": "pending",
+        "english_status": "passed",
+        "source_recovery_status": "not_needed",
+        "grouping_review_status": "pending",
+        "independent_solution_status": "pending",
+        "verification_status": "pending",
+        "metadata_status": "pending",
+        "render_status": "pending",
+        "eligible_for_paper": false
+      },
+      "audit_notes": []
+    },
+    {
+      "id": "ch05_q12",
+      "chapter": "Ch05",
+      "source": {
+        "raw": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter05.docx",
+        "kind": "local",
+        "local_paths": [
+          "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter05.docx"
+        ],
+        "external_urls": [],
+        "missing_paths": [],
+        "resolvable": true
+      },
+      "original": {
+        "question_hash": "4f5baee34fef9d8ad6d6fb83656fb08fda06513490372e167ae2176a55a25d21",
+        "answer_hash": "dc19e469117221697cfad89044ac2100032012a24ae01c4e6fce14141d59ecb6",
+        "type": "计算题",
+        "difficulty": 2,
+        "keywords": [
+          "expected value",
+          "decision analysis"
+        ],
+        "formula_refs": [],
+        "data_refs": [],
+        "review_status": "independently solved and reviewed"
+      },
+      "diagnostics": {
+        "question_language": "en",
+        "answer_language": "en",
+        "answer_present": true,
+        "source_resolvable": true,
+        "assets": [],
+        "format_findings": [],
+        "context_findings": [],
+        "detected_part_count": 0,
+        "grouping_status": "atomic_candidate",
+        "previously_reviewed": true,
+        "issue_codes": []
+      },
+      "workflow": {
+        "decision": "pending",
+        "english_status": "passed",
+        "source_recovery_status": "not_needed",
+        "grouping_review_status": "pending",
+        "independent_solution_status": "pending",
+        "verification_status": "pending",
+        "metadata_status": "pending",
+        "render_status": "pending",
+        "eligible_for_paper": false
+      },
+      "audit_notes": []
+    },
+    {
+      "id": "ch05_q13",
+      "chapter": "Ch05",
+      "source": {
+        "raw": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter05.docx",
+        "kind": "local",
+        "local_paths": [
+          "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter05.docx"
+        ],
+        "external_urls": [],
+        "missing_paths": [],
+        "resolvable": true
+      },
+      "original": {
+        "question_hash": "52c6511033702620b821b0c2823a3c7a10708e3b37164ef7812e2814bade8dea",
+        "answer_hash": "2b59df8cb31e1c1eab3b18964dff20747f7ad040b6d61a817aaf80d4e25def67",
+        "type": "计算题",
+        "difficulty": 2,
+        "keywords": [
+          "expected value",
+          "net gain"
+        ],
+        "formula_refs": [],
+        "data_refs": [],
+        "review_status": "independently solved and reviewed"
+      },
+      "diagnostics": {
+        "question_language": "en",
+        "answer_language": "en",
+        "answer_present": true,
+        "source_resolvable": true,
+        "assets": [],
+        "format_findings": [],
+        "context_findings": [],
+        "detected_part_count": 0,
+        "grouping_status": "atomic_candidate",
+        "previously_reviewed": true,
+        "issue_codes": []
+      },
+      "workflow": {
+        "decision": "pending",
+        "english_status": "passed",
+        "source_recovery_status": "not_needed",
+        "grouping_review_status": "pending",
+        "independent_solution_status": "pending",
+        "verification_status": "pending",
+        "metadata_status": "pending",
+        "render_status": "pending",
+        "eligible_for_paper": false
+      },
+      "audit_notes": []
+    },
+    {
+      "id": "ch05_q14",
+      "chapter": "Ch05",
+      "source": {
+        "raw": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter05.docx",
+        "kind": "local",
+        "local_paths": [
+          "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter05.docx"
+        ],
+        "external_urls": [],
+        "missing_paths": [],
+        "resolvable": true
+      },
+      "original": {
+        "question_hash": "a0010d18165ba8b22476056fcf561a0896a7e10e3d2ba8da5fb1d792059bccf6",
+        "answer_hash": "f1f346937c6008edf5cf4358691b5aef1d5a1e0f365eeec65fb9146837948f7e",
+        "type": "计算题",
+        "difficulty": 2,
+        "keywords": [
+          "binomial distribution",
+          "complement probability"
+        ],
+        "formula_refs": [],
+        "data_refs": [],
+        "review_status": "independently solved and reviewed"
+      },
+      "diagnostics": {
+        "question_language": "en",
+        "answer_language": "en",
+        "answer_present": true,
+        "source_resolvable": true,
+        "assets": [],
+        "format_findings": [],
+        "context_findings": [],
+        "detected_part_count": 0,
+        "grouping_status": "atomic_candidate",
+        "previously_reviewed": true,
+        "issue_codes": []
+      },
+      "workflow": {
+        "decision": "pending",
+        "english_status": "passed",
+        "source_recovery_status": "not_needed",
+        "grouping_review_status": "pending",
+        "independent_solution_status": "pending",
+        "verification_status": "pending",
+        "metadata_status": "pending",
+        "render_status": "pending",
+        "eligible_for_paper": false
+      },
+      "audit_notes": []
+    },
+    {
+      "id": "ch05_q15",
+      "chapter": "Ch05",
+      "source": {
+        "raw": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter05.docx",
+        "kind": "local",
+        "local_paths": [
+          "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter05.docx"
+        ],
+        "external_urls": [],
+        "missing_paths": [],
+        "resolvable": true
+      },
+      "original": {
+        "question_hash": "006fd732f9a0c16aa4c67a9c8b47f0deb9bf7625e06ea8c6aa6cbff255c64ed6",
+        "answer_hash": "7ddc59c01a3c2aee3f3ffbad971ec90ab99396dca10dfe42c5769eda80b79aa9",
+        "type": "计算题",
+        "difficulty": 2,
+        "keywords": [
+          "binomial distribution",
+          "complement probability"
+        ],
+        "formula_refs": [],
+        "data_refs": [],
+        "review_status": "independently solved and reviewed"
+      },
+      "diagnostics": {
+        "question_language": "en",
+        "answer_language": "en",
+        "answer_present": true,
+        "source_resolvable": true,
+        "assets": [],
+        "format_findings": [],
+        "context_findings": [],
+        "detected_part_count": 0,
+        "grouping_status": "atomic_candidate",
+        "previously_reviewed": true,
+        "issue_codes": []
+      },
+      "workflow": {
+        "decision": "pending",
+        "english_status": "passed",
+        "source_recovery_status": "not_needed",
+        "grouping_review_status": "pending",
+        "independent_solution_status": "pending",
+        "verification_status": "pending",
+        "metadata_status": "pending",
+        "render_status": "pending",
+        "eligible_for_paper": false
+      },
+      "audit_notes": []
+    },
+    {
+      "id": "ch05_q16",
+      "chapter": "Ch05",
+      "source": {
+        "raw": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter05.docx",
+        "kind": "local",
+        "local_paths": [
+          "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter05.docx"
+        ],
+        "external_urls": [],
+        "missing_paths": [],
+        "resolvable": true
+      },
+      "original": {
+        "question_hash": "604d519ea2fb6140084f80554652cddb2cf51f385cb740c69d2701a12d4f97c8",
+        "answer_hash": "2836c42e6ec913bcf6a046b30d957d264047a1e9b889a16003c093450de14c6c",
+        "type": "计算题",
+        "difficulty": 2,
+        "keywords": [
+          "binomial mean",
+          "binomial standard deviation"
+        ],
+        "formula_refs": [],
+        "data_refs": [],
+        "review_status": "independently solved and reviewed"
+      },
+      "diagnostics": {
+        "question_language": "en",
+        "answer_language": "en",
+        "answer_present": true,
+        "source_resolvable": true,
+        "assets": [],
+        "format_findings": [],
+        "context_findings": [],
+        "detected_part_count": 0,
+        "grouping_status": "atomic_candidate",
+        "previously_reviewed": true,
+        "issue_codes": []
+      },
+      "workflow": {
+        "decision": "pending",
+        "english_status": "passed",
+        "source_recovery_status": "not_needed",
+        "grouping_review_status": "pending",
+        "independent_solution_status": "pending",
+        "verification_status": "pending",
+        "metadata_status": "pending",
+        "render_status": "pending",
+        "eligible_for_paper": false
+      },
+      "audit_notes": []
+    },
+    {
+      "id": "ch05_q17",
+      "chapter": "Ch05",
+      "source": {
+        "raw": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter05.docx",
+        "kind": "local",
+        "local_paths": [
+          "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter05.docx"
+        ],
+        "external_urls": [],
+        "missing_paths": [],
+        "resolvable": true
+      },
+      "original": {
+        "question_hash": "091e6f427fbf6480b460a4216e6d572b3a2a6c86db6d131dc7bbb8a9cc41e7ad",
+        "answer_hash": "d45c414b8594127602323978a0ec8dfa074185403fb374d7b0d93b0a0e09aead",
+        "type": "计算题",
+        "difficulty": 3,
+        "keywords": [
+          "binomial distribution",
+          "Empirical Rule"
+        ],
+        "formula_refs": [],
+        "data_refs": [],
+        "review_status": "independently solved and reviewed"
+      },
+      "diagnostics": {
+        "question_language": "en",
+        "answer_language": "en",
+        "answer_present": true,
+        "source_resolvable": true,
+        "assets": [],
+        "format_findings": [],
+        "context_findings": [],
+        "detected_part_count": 0,
+        "grouping_status": "atomic_candidate",
+        "previously_reviewed": true,
+        "issue_codes": []
+      },
+      "workflow": {
+        "decision": "pending",
+        "english_status": "passed",
+        "source_recovery_status": "not_needed",
+        "grouping_review_status": "pending",
+        "independent_solution_status": "pending",
+        "verification_status": "pending",
+        "metadata_status": "pending",
+        "render_status": "pending",
+        "eligible_for_paper": false
+      },
+      "audit_notes": []
+    },
+    {
+      "id": "ch05_q18",
+      "chapter": "Ch05",
+      "source": {
+        "raw": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter05.docx",
+        "kind": "local",
+        "local_paths": [
+          "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter05.docx"
+        ],
+        "external_urls": [],
+        "missing_paths": [],
+        "resolvable": true
+      },
+      "original": {
+        "question_hash": "f581e9b8850658d715abde26592ca5f617d6c4e5d13642998b3e0af18fafaccd",
+        "answer_hash": "9728d38d9246912f1e1cc8a79d3d41d29a0f19dc6ab09f53e3afbae9a829b000",
+        "type": "计算题",
+        "difficulty": 2,
+        "keywords": [
+          "Poisson distribution"
+        ],
+        "formula_refs": [],
+        "data_refs": [],
+        "review_status": "independently solved and reviewed"
+      },
+      "diagnostics": {
+        "question_language": "en",
+        "answer_language": "en",
+        "answer_present": true,
+        "source_resolvable": true,
+        "assets": [],
+        "format_findings": [],
+        "context_findings": [],
+        "detected_part_count": 0,
+        "grouping_status": "atomic_candidate",
+        "previously_reviewed": true,
+        "issue_codes": []
+      },
+      "workflow": {
+        "decision": "pending",
+        "english_status": "passed",
+        "source_recovery_status": "not_needed",
+        "grouping_review_status": "pending",
+        "independent_solution_status": "pending",
+        "verification_status": "pending",
+        "metadata_status": "pending",
+        "render_status": "pending",
+        "eligible_for_paper": false
+      },
+      "audit_notes": []
+    },
+    {
+      "id": "ch05_q19",
+      "chapter": "Ch05",
+      "source": {
+        "raw": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter05.docx",
+        "kind": "local",
+        "local_paths": [
+          "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter05.docx"
+        ],
+        "external_urls": [],
+        "missing_paths": [],
+        "resolvable": true
+      },
+      "original": {
+        "question_hash": "ee1684298de32c00f0184e024c88b45051b1748f2047b8256cb9979a94fc08f6",
+        "answer_hash": "749da0fe1e9b596c5029201892f45eb6b9a9b9cd4cf250a644798bcc97ff0b47",
+        "type": "计算题",
+        "difficulty": 2,
+        "keywords": [
+          "Poisson distribution"
+        ],
+        "formula_refs": [],
+        "data_refs": [],
+        "review_status": "independently solved and reviewed"
+      },
+      "diagnostics": {
+        "question_language": "en",
+        "answer_language": "en",
+        "answer_present": true,
+        "source_resolvable": true,
+        "assets": [],
+        "format_findings": [],
+        "context_findings": [],
+        "detected_part_count": 0,
+        "grouping_status": "atomic_candidate",
+        "previously_reviewed": true,
+        "issue_codes": []
+      },
+      "workflow": {
+        "decision": "pending",
+        "english_status": "passed",
+        "source_recovery_status": "not_needed",
+        "grouping_review_status": "pending",
+        "independent_solution_status": "pending",
+        "verification_status": "pending",
+        "metadata_status": "pending",
+        "render_status": "pending",
+        "eligible_for_paper": false
+      },
+      "audit_notes": []
+    },
+    {
+      "id": "ch05_q20",
+      "chapter": "Ch05",
+      "source": {
+        "raw": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter05.docx",
+        "kind": "local",
+        "local_paths": [
+          "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter05.docx"
+        ],
+        "external_urls": [],
+        "missing_paths": [],
+        "resolvable": true
+      },
+      "original": {
+        "question_hash": "b4a28a6e0d4c7b72d646435444abe313afde121cac5975b2d25486465890b570",
+        "answer_hash": "1fc0b12a3a18a8768ff27e0764ddcf517d200fc12ec06dba2168ab0a1c8c629d",
+        "type": "计算题",
+        "difficulty": 2,
+        "keywords": [
+          "binomial distribution",
+          "hypothesis assessment"
+        ],
+        "formula_refs": [],
+        "data_refs": [],
+        "review_status": "independently solved and reviewed"
+      },
+      "diagnostics": {
+        "question_language": "en",
+        "answer_language": "en",
+        "answer_present": true,
+        "source_resolvable": true,
+        "assets": [],
+        "format_findings": [],
+        "context_findings": [],
+        "detected_part_count": 0,
+        "grouping_status": "atomic_candidate",
+        "previously_reviewed": true,
+        "issue_codes": []
+      },
+      "workflow": {
+        "decision": "pending",
+        "english_status": "passed",
+        "source_recovery_status": "not_needed",
+        "grouping_review_status": "pending",
+        "independent_solution_status": "pending",
+        "verification_status": "pending",
+        "metadata_status": "pending",
+        "render_status": "pending",
+        "eligible_for_paper": false
+      },
+      "audit_notes": []
+    },
+    {
+      "id": "ch05_q22",
       "chapter": "Ch05",
       "source": {
         "raw": "Assignment Prof Lv/assignment5-lu.doc",
@@ -7668,122 +7115,17 @@
         "resolvable": true
       },
       "original": {
-        "question_hash": "973cd61cad1924c8a9ab2a93c6a27905a15373e1faab34dc2bec777c688296bb",
-        "answer_hash": "b04a4d0091fe1ae9f2e2ce50653d3c537ddef02ab6cc2aaa1646c9f24b8671c9",
-        "type": "unknown",
-        "difficulty": 1,
-        "keywords": [],
+        "question_hash": "2e22d4cabf7aae00c5fd2dffafaa6a991337e4d71469b703b2b9e5f27757cfa1",
+        "answer_hash": "1c243078c82c081c345405a8088e15acca9c595d7ff9ba1d94211b956151b528",
+        "type": "综合题",
+        "difficulty": 2,
+        "keywords": [
+          "uniform distribution",
+          "probability density"
+        ],
         "formula_refs": [],
         "data_refs": [],
-        "review_status": null
-      },
-      "diagnostics": {
-        "question_language": "en",
-        "answer_language": "en",
-        "answer_present": true,
-        "source_resolvable": true,
-        "assets": [],
-        "format_findings": [
-          "escaped_line_end"
-        ],
-        "context_findings": [],
-        "detected_part_count": 0,
-        "grouping_status": "atomic_candidate",
-        "previously_reviewed": false,
-        "issue_codes": [
-          "escaped_line_end",
-          "question_type_unclassified"
-        ]
-      },
-      "workflow": {
-        "decision": "pending",
-        "english_status": "passed",
-        "source_recovery_status": "not_needed",
-        "grouping_review_status": "pending",
-        "independent_solution_status": "pending",
-        "verification_status": "pending",
-        "metadata_status": "pending",
-        "render_status": "pending",
-        "eligible_for_paper": false
-      },
-      "audit_notes": []
-    },
-    {
-      "id": "ch05_q26",
-      "chapter": "Ch05",
-      "source": {
-        "raw": "Assignments for STAT 2010/assign5.doc",
-        "kind": "local",
-        "local_paths": [
-          "Assignments for STAT 2010/assign5.doc"
-        ],
-        "external_urls": [],
-        "missing_paths": [],
-        "resolvable": true
-      },
-      "original": {
-        "question_hash": "843ca3a23991ca404428dd9ff71262019f2a79490ce0b0f93767bfbcc45913d7",
-        "answer_hash": "4dd517b7c57bee2e08b3a9de178b10d5479aa50ccf0faef695db3858fc6c7972",
-        "type": "unknown",
-        "difficulty": 1,
-        "keywords": [],
-        "formula_refs": [],
-        "data_refs": [],
-        "review_status": null
-      },
-      "diagnostics": {
-        "question_language": "en",
-        "answer_language": "en",
-        "answer_present": true,
-        "source_resolvable": true,
-        "assets": [],
-        "format_findings": [
-          "pandoc_html"
-        ],
-        "context_findings": [],
-        "detected_part_count": 0,
-        "grouping_status": "atomic_candidate",
-        "previously_reviewed": false,
-        "issue_codes": [
-          "pandoc_html",
-          "question_type_unclassified"
-        ]
-      },
-      "workflow": {
-        "decision": "pending",
-        "english_status": "passed",
-        "source_recovery_status": "not_needed",
-        "grouping_review_status": "pending",
-        "independent_solution_status": "pending",
-        "verification_status": "pending",
-        "metadata_status": "pending",
-        "render_status": "pending",
-        "eligible_for_paper": false
-      },
-      "audit_notes": []
-    },
-    {
-      "id": "ch05_q27",
-      "chapter": "Ch05",
-      "source": {
-        "raw": "Assignments for STAT 2010/assign5.doc",
-        "kind": "local",
-        "local_paths": [
-          "Assignments for STAT 2010/assign5.doc"
-        ],
-        "external_urls": [],
-        "missing_paths": [],
-        "resolvable": true
-      },
-      "original": {
-        "question_hash": "53ed76548f6475b082373f8d60c2ad5550c736aa62b90d6527260e345d60bea2",
-        "answer_hash": "9869014c3a4b38ecdd6bfdbdcb854faaddddf249a4744202084c8775b2ea5b65",
-        "type": "unknown",
-        "difficulty": 1,
-        "keywords": [],
-        "formula_refs": [],
-        "data_refs": [],
-        "review_status": null
+        "review_status": "independently solved and reviewed"
       },
       "diagnostics": {
         "question_language": "en",
@@ -7793,175 +7135,11 @@
         "assets": [],
         "format_findings": [],
         "context_findings": [],
-        "detected_part_count": 0,
-        "grouping_status": "atomic_candidate",
-        "previously_reviewed": false,
+        "detected_part_count": 4,
+        "grouping_status": "multi_part_candidate",
+        "previously_reviewed": true,
         "issue_codes": [
-          "question_type_unclassified"
-        ]
-      },
-      "workflow": {
-        "decision": "pending",
-        "english_status": "passed",
-        "source_recovery_status": "not_needed",
-        "grouping_review_status": "pending",
-        "independent_solution_status": "pending",
-        "verification_status": "pending",
-        "metadata_status": "pending",
-        "render_status": "pending",
-        "eligible_for_paper": false
-      },
-      "audit_notes": []
-    },
-    {
-      "id": "ch05_q28",
-      "chapter": "Ch05",
-      "source": {
-        "raw": "Assignments for STAT 2010/assign5.doc",
-        "kind": "local",
-        "local_paths": [
-          "Assignments for STAT 2010/assign5.doc"
-        ],
-        "external_urls": [],
-        "missing_paths": [],
-        "resolvable": true
-      },
-      "original": {
-        "question_hash": "f2702339ce529e56e13c3a7ab8d47d087178a247ef58163d75f7c6ca7e603ffa",
-        "answer_hash": "ad98411e923af246f8b856fad1e0f449c0df95adc465f48eebb983549a3af562",
-        "type": "unknown",
-        "difficulty": 1,
-        "keywords": [],
-        "formula_refs": [],
-        "data_refs": [],
-        "review_status": null
-      },
-      "diagnostics": {
-        "question_language": "en",
-        "answer_language": "en",
-        "answer_present": true,
-        "source_resolvable": true,
-        "assets": [],
-        "format_findings": [],
-        "context_findings": [],
-        "detected_part_count": 0,
-        "grouping_status": "atomic_candidate",
-        "previously_reviewed": false,
-        "issue_codes": [
-          "question_type_unclassified"
-        ]
-      },
-      "workflow": {
-        "decision": "pending",
-        "english_status": "passed",
-        "source_recovery_status": "not_needed",
-        "grouping_review_status": "pending",
-        "independent_solution_status": "pending",
-        "verification_status": "pending",
-        "metadata_status": "pending",
-        "render_status": "pending",
-        "eligible_for_paper": false
-      },
-      "audit_notes": []
-    },
-    {
-      "id": "ch05_q29",
-      "chapter": "Ch05",
-      "source": {
-        "raw": "Assignments for STAT 2010/assign5.doc",
-        "kind": "local",
-        "local_paths": [
-          "Assignments for STAT 2010/assign5.doc"
-        ],
-        "external_urls": [],
-        "missing_paths": [],
-        "resolvable": true
-      },
-      "original": {
-        "question_hash": "6769957ae755e0134e065385627db33b8b736931bd0ed29b7456e17366f228fe",
-        "answer_hash": "9d1208c7ee35c2ae9136d09982271f601bbe6f36af3c391def0495e5064be7a7",
-        "type": "unknown",
-        "difficulty": 1,
-        "keywords": [],
-        "formula_refs": [],
-        "data_refs": [],
-        "review_status": null
-      },
-      "diagnostics": {
-        "question_language": "en",
-        "answer_language": "en",
-        "answer_present": true,
-        "source_resolvable": true,
-        "assets": [],
-        "format_findings": [],
-        "context_findings": [],
-        "detected_part_count": 0,
-        "grouping_status": "atomic_candidate",
-        "previously_reviewed": false,
-        "issue_codes": [
-          "question_type_unclassified"
-        ]
-      },
-      "workflow": {
-        "decision": "pending",
-        "english_status": "passed",
-        "source_recovery_status": "not_needed",
-        "grouping_review_status": "pending",
-        "independent_solution_status": "pending",
-        "verification_status": "pending",
-        "metadata_status": "pending",
-        "render_status": "pending",
-        "eligible_for_paper": false
-      },
-      "audit_notes": []
-    },
-    {
-      "id": "ch05_q30",
-      "chapter": "Ch05",
-      "source": {
-        "raw": "Assignments for STAT 2010/assign5.doc",
-        "kind": "local",
-        "local_paths": [
-          "Assignments for STAT 2010/assign5.doc"
-        ],
-        "external_urls": [],
-        "missing_paths": [],
-        "resolvable": true
-      },
-      "original": {
-        "question_hash": "28aa944b06aae82a4a711872e88227dffafec30db7d2d2a6ec41f5b383d8415e",
-        "answer_hash": "362404e9e0c9135629797c14deb86bef176ff40fa78e7eda175a12d06083da42",
-        "type": "unknown",
-        "difficulty": 1,
-        "keywords": [],
-        "formula_refs": [
-          "ch05_q05_ans_f01_image1.wmf"
-        ],
-        "data_refs": [],
-        "review_status": null
-      },
-      "diagnostics": {
-        "question_language": "en",
-        "answer_language": "en",
-        "answer_present": true,
-        "source_resolvable": true,
-        "assets": [
-          {
-            "reference": "ch05_q05_ans_f01_image1.wmf",
-            "resolved_path": "Assests/ch05_q05_ans_f01_image1.wmf",
-            "available": true
-          }
-        ],
-        "format_findings": [
-          "escaped_line_end"
-        ],
-        "context_findings": [],
-        "detected_part_count": 0,
-        "grouping_status": "atomic_candidate",
-        "previously_reviewed": false,
-        "issue_codes": [
-          "escaped_line_end",
-          "question_type_unclassified"
+          "multi_part_requires_alignment_review"
         ]
       },
       "workflow": {
@@ -7991,14 +7169,16 @@
         "resolvable": true
       },
       "original": {
-        "question_hash": "13a096cd81844d8681fc19ab5e19f6e4cdb3a3b36a59bf7f59c8d5bc142c8234",
-        "answer_hash": "f517424829d06484d5c99db2c3d2fed8fe1d5a209f19285ad256d688b1166cea",
-        "type": "unknown",
-        "difficulty": 1,
-        "keywords": [],
+        "question_hash": "a5fdbc230f322354f2e4eaab755c07bb0fd7d377dbd143a6b2a3b8e66fa725b9",
+        "answer_hash": "63d95faf97f695b91568493cc53e03059a4eb3855bb3280136d0a26f96041c89",
+        "type": "计算题",
+        "difficulty": 2,
+        "keywords": [
+          "sampling distribution of the mean"
+        ],
         "formula_refs": [],
         "data_refs": [],
-        "review_status": null
+        "review_status": "independently solved and reviewed"
       },
       "diagnostics": {
         "question_language": "en",
@@ -8008,11 +7188,11 @@
         "assets": [],
         "format_findings": [],
         "context_findings": [],
-        "detected_part_count": 0,
-        "grouping_status": "atomic_candidate",
-        "previously_reviewed": false,
+        "detected_part_count": 3,
+        "grouping_status": "multi_part_candidate",
+        "previously_reviewed": true,
         "issue_codes": [
-          "question_type_unclassified"
+          "multi_part_requires_alignment_review"
         ]
       },
       "workflow": {
@@ -8042,14 +7222,18 @@
         "resolvable": true
       },
       "original": {
-        "question_hash": "f7578d0600d349897a3c30d688685e0a70a71bb9267a8aa12079e1d66f1b106c",
-        "answer_hash": "aac7593038a5e9df3121d93ed88b524cc973d66189c996027aa7e2dfd9c4669b",
-        "type": "unknown",
-        "difficulty": 1,
-        "keywords": [],
+        "question_hash": "957b09257bf522e197e251304f8b0b824e99314c67f2c0737236cdefb5ca24bc",
+        "answer_hash": "e46d739cd6280855718ee841d1f47dee261972007c192a08b8635f3dd7b39053",
+        "type": "综合题",
+        "difficulty": 3,
+        "keywords": [
+          "sampling distribution",
+          "z-test",
+          "central limit theorem"
+        ],
         "formula_refs": [],
         "data_refs": [],
-        "review_status": null
+        "review_status": "independently solved and reviewed"
       },
       "diagnostics": {
         "question_language": "en",
@@ -8061,10 +7245,9 @@
         "context_findings": [],
         "detected_part_count": 4,
         "grouping_status": "multi_part_candidate",
-        "previously_reviewed": false,
+        "previously_reviewed": true,
         "issue_codes": [
-          "multi_part_requires_alignment_review",
-          "question_type_unclassified"
+          "multi_part_requires_alignment_review"
         ]
       },
       "workflow": {
@@ -8094,14 +7277,17 @@
         "resolvable": true
       },
       "original": {
-        "question_hash": "6b9176c7517289314715c5c71d16f422f8b5997ff8419c7343bbb2b6c6007db8",
-        "answer_hash": "0e3af22002d1e734c072370fb076bae68cac73d25cf8f490127f96b61040de9b",
-        "type": "unknown",
-        "difficulty": 1,
-        "keywords": [],
+        "question_hash": "03a3d5f47b96744a0dc26ad37922c7a8eac5d4cdf2cf604c9de768f2d003ebc9",
+        "answer_hash": "4d8eef192d6af6430558c296e07567f3314a53c6b0ba51048be486cb43c310e1",
+        "type": "简答题",
+        "difficulty": 2,
+        "keywords": [
+          "sampling distribution of a proportion",
+          "normal approximation"
+        ],
         "formula_refs": [],
         "data_refs": [],
-        "review_status": null
+        "review_status": "independently solved and reviewed"
       },
       "diagnostics": {
         "question_language": "en",
@@ -8111,11 +7297,11 @@
         "assets": [],
         "format_findings": [],
         "context_findings": [],
-        "detected_part_count": 0,
-        "grouping_status": "atomic_candidate",
-        "previously_reviewed": false,
+        "detected_part_count": 6,
+        "grouping_status": "multi_part_candidate",
+        "previously_reviewed": true,
         "issue_codes": [
-          "question_type_unclassified"
+          "multi_part_requires_alignment_review"
         ]
       },
       "workflow": {
@@ -8145,14 +7331,17 @@
         "resolvable": true
       },
       "original": {
-        "question_hash": "a565faa41bc3a7e347e329922bdd3eba620305c51decd388c4c0f5fb19e19981",
-        "answer_hash": "e55f5fd38a5f298a4879cee27311f699b9cd98912b30fd84798253a52c4f9e8f",
-        "type": "unknown",
-        "difficulty": 1,
-        "keywords": [],
+        "question_hash": "7a96f9cab779f973d2c0188c6b2417e29d74bdaf3e50aed6f2c2f5aa129f0b28",
+        "answer_hash": "d2543ed2e8a81a67c359e796bf29ecb4a89940211abfd643eaa567f8e737a6f4",
+        "type": "计算题",
+        "difficulty": 3,
+        "keywords": [
+          "sampling distribution of a proportion",
+          "normal approximation"
+        ],
         "formula_refs": [],
         "data_refs": [],
-        "review_status": null
+        "review_status": "independently solved and reviewed"
       },
       "diagnostics": {
         "question_language": "en",
@@ -8162,13 +7351,10 @@
         "assets": [],
         "format_findings": [],
         "context_findings": [],
-        "detected_part_count": 2,
-        "grouping_status": "multi_part_candidate",
-        "previously_reviewed": false,
-        "issue_codes": [
-          "multi_part_requires_alignment_review",
-          "question_type_unclassified"
-        ]
+        "detected_part_count": 0,
+        "grouping_status": "atomic_candidate",
+        "previously_reviewed": true,
+        "issue_codes": []
       },
       "workflow": {
         "decision": "pending",
@@ -8197,14 +7383,17 @@
         "resolvable": true
       },
       "original": {
-        "question_hash": "d2845c447c6dee8d3e847120b66312799ed105e8b5939054c056a366a34b188a",
-        "answer_hash": "2d4079d294b47ea99429e7b068633b55d15c215cd34b8bf7f69b44ef229bd631",
-        "type": "unknown",
-        "difficulty": 1,
-        "keywords": [],
+        "question_hash": "6612332e891616ca7d1f0857449dc6e084ea9a6b8992bd74f1478bf2430f924c",
+        "answer_hash": "dcd8d4e57b72d82410b9f7e5456916b030641d0fb454a5c8a9d80a14f2490ef9",
+        "type": "计算题",
+        "difficulty": 3,
+        "keywords": [
+          "sampling distribution of a proportion",
+          "normal approximation"
+        ],
         "formula_refs": [],
         "data_refs": [],
-        "review_status": null
+        "review_status": "independently solved and reviewed"
       },
       "diagnostics": {
         "question_language": "en",
@@ -8216,10 +7405,8 @@
         "context_findings": [],
         "detected_part_count": 0,
         "grouping_status": "atomic_candidate",
-        "previously_reviewed": false,
-        "issue_codes": [
-          "question_type_unclassified"
-        ]
+        "previously_reviewed": true,
+        "issue_codes": []
       },
       "workflow": {
         "decision": "pending",
@@ -8251,15 +7438,14 @@
         "question_hash": "827c00617a55950dd76c73ca9aebb911dc3c85ab3e7ed4e2e2a0f2dae5a0b777",
         "answer_hash": "a4462eb1e990a906eaba71848ac2c70cb4ef3f8a14ed284455f0808669c0e434",
         "type": "计算题",
-        "difficulty": 3,
+        "difficulty": 2,
         "keywords": [
-          "discrete random variable",
           "expected value",
           "net payoff"
         ],
         "formula_refs": [],
         "data_refs": [],
-        "review_status": "independently solved, translated, and reviewed"
+        "review_status": "independently solved and reviewed"
       },
       "diagnostics": {
         "question_language": "en",
