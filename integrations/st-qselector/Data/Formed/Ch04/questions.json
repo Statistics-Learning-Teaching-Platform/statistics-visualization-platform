@@ -3,268 +3,273 @@
   "questions": [
     {
       "id": "ch04_q01",
-      "content": "Multiple Choice Questions** (For every question there is only one correct choice. Please circle it.)\\\n    (1) Two mutually exclusive events having positive probabilities are \\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_ dependent. \\\n    A. Always\\\n    B. Sometimes\\\n    C. Never\\\n    \\\n    (2)  \\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_ is a measure of the chance that an uncertain event will occur. \\\n    A. Random experiment\\\n    B. Sample Space\\\n    C. Probability\\\n    D. A complement\\\n    E. A population\\\n    \\\n    (3)  In which of the following are the two events A and B, always independent? \\\n    A. A and B are mutually exclusive\\\n    B. The probability of event A is not influenced by the probability of event B\\\n    C. The intersection of A and B is zero\\\n    D. P(A\\|B)=P(A)\\\n    E. B and D\\\n    \\\n    (4) If two events are independent, we can \\_\\_\\_\\_\\_ their probabilities to determine the intersection probability. \\\n    A. Divide\\\n    B. Add\\\n    C. Multiply\\\n    D. Subtract\\\n    \\\n    (5) Events that have no sample space outcomes in common and therefore, cannot occur simultaneously are: \\\n    A. Independent\\\n    B. Mutually Exclusive\\\n    C. Intersections\\\n    D. Unions\\\n    \\\n    (6)  If events A and B are independent, then the probability of simultaneous occurrence of event A and event B can be found with: \\\n    A. *P(A)·P(B)*\\\n    B. *P(A)·P*(*B\\|A*)\\\n    C. *P(B)·P*(*A\\|B*)\\\n    D. All of the above are correct",
+      "content": "Choose the one correct answer for each item.\n\n1. Two mutually exclusive events with positive probabilities are ____ dependent.\nA. Always  B. Sometimes  C. Never\n\n2. ____ is a numerical measure of the chance that an uncertain event will occur.\nA. Random experiment  B. Sample space  C. Probability  D. Complement  E. Population\n\n3. Which condition guarantees that $A$ and $B$ are independent?\nA. They are mutually exclusive.  B. $P(A)$ is not influenced by $P(B)$.  C. $P(A\\cap B)=0$.  D. $P(A\\mid B)=P(A)$.  E. Both B and D.\n\n4. For independent events, ____ their probabilities to obtain the intersection probability.\nA. Divide  B. Add  C. Multiply  D. Subtract\n\n5. Events that cannot occur simultaneously are called _____.\nA. Independent  B. Mutually exclusive  C. Intersections  D. Unions\n\n6. If $A$ and $B$ are independent, which expression equals $P(A\\cap B)$?\nA. $P(A)P(B)$  B. $P(A)P(B\\mid A)$  C. $P(B)P(A\\mid B)$  D. All of the above",
       "source": "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment_Chapter4_Probability.doc",
-      "type": "unknown",
-      "difficulty": 1,
-      "keywords": [],
+      "type": "选择题",
+      "difficulty": 2,
+      "keywords": [
+        "independence",
+        "mutually exclusive events",
+        "conditional probability"
+      ],
       "formula_refs": [],
-      "data_refs": []
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch04-review-v1"
     },
     {
       "id": "ch04_q02",
-      "content": "Two randomly selected grocery store patrons are each asked to take a blind taste test and to then state which of the three diet colas (marked as *A*, *B*, or *C*) he or she prefers.\\\n    (a) (Optional) Draw a tree diagram depicting the sample space outcomes for the test results.\\\n    (b) List the sample space outcomes that corresponding to each of the following events.\\\n    (1) Both patrons prefer diet cola A.\\\n    (2) The two patrons prefer different diet colas.\\\n    (3) Diet cola A is preferred by at least one of the two patrons.\\\n    (4) Neither of the patrons prefers diet cola C.\\\n    (c) Assuming that all sample space outcomes are equally likely, find the probability of each of the events given in part *b*.",
+      "content": "Two patrons independently choose one of three diet colas, A, B, or C.\n\na. List the nine ordered outcomes.\n\nb. List the outcomes for (1) both choose A, (2) different colas, (3) at least one chooses A, and (4) neither chooses C.\n\nc. Assuming the nine outcomes are equally likely, find each probability.",
       "source": "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment_Chapter4_Probability.doc",
-      "type": "unknown",
-      "difficulty": 1,
-      "keywords": [],
-      "formula_refs": [
-        "ch04_q02_ans_f02_image2.wmf",
-        "ch04_q02_ans_f03_image3.wmf",
-        "ch04_q02_ans_f04_image4.wmf",
-        "ch04_q02_ans_f05_image5.wmf",
-        "ch04_q02_ans_f06_image6.wmf"
+      "type": "综合题",
+      "difficulty": 3,
+      "keywords": [
+        "sample space",
+        "tree diagram",
+        "equally likely outcomes"
       ],
-      "data_refs": []
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch04-review-v1"
     },
     {
       "id": "ch04_q03",
-      "content": "The U.S. Census Bureau compiles data on family income and summarizes it's findings in *Current Population Reports*. The table below is a frequency distribution of the annual incomes for a random sample of U.S. families. Find an estimate of the probability selected U.S. family has an income between \\$60,000 and \\$199, 999.\n\n  ------------------------------ ------------------------------\n  Income                         Frequency (in thousands)\n\n  Under \\$20,000                 11,470\n\n  \\$20,000-\\$39,999              17,572\n\n  \\$40,000-\\$59,999              14,534\n\n  \\$60,000-\\$79,999              11,410\n\n  \\$80,000-\\$99,999              7,535\n\n  \\$100,000-\\$199,999            11,197\n\n  \\$120,000 and above            2,280\n\n  Total                          75,998\n  ------------------------------ ------------------------------\n\n[]{.mark}\n\n[]{.mark}",
+      "content": "The following frequency table summarizes annual family income for 75,998 sampled U.S. families. Correct the final class to $\\$200,000$ and above so that the classes do not overlap. Estimate the probability that a randomly selected family has income from $\\$60,000$ through $\\$199,999$.\n\n| Income class | Frequency |\n|---|---:|\n| Under $\\$20,000$ | 11,470 |\n| $\\$20,000$–$39,999$ | 17,572 |\n| $\\$40,000$–$59,999$ | 14,534 |\n| $\\$60,000$–$79,999$ | 11,410 |\n| $\\$80,000$–$99,999$ | 7,535 |\n| $\\$100,000$–$199,999$ | 11,197 |\n| $\\$200,000$ and above | 2,280 |\n| **Total** | **75,998** |",
       "source": "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment_Chapter4_Probability.doc",
-      "type": "unknown",
-      "difficulty": 1,
-      "keywords": [],
+      "type": "计算题",
+      "difficulty": 2,
+      "keywords": [
+        "frequency distribution",
+        "probability"
+      ],
       "formula_refs": [],
-      "data_refs": []
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch04-review-v1"
     },
     {
       "id": "ch04_q04",
-      "content": "A survey of top executives revealed that 35 percent of them regularly read *Time* magazine, 20 percent read *Newsweek*, and 40 percent read *U.S. News and World Report.* Ten percent read both *Time* and *U.S. News and World Report*.\\\n    (a) What is the probability that a particular top executive reads either *Time* or *U.S. News and World Report*?\\\n    (b) What is the probability 0.10 called?\\\n    (c) Are the events mutually exclusive? Explain.",
+      "content": "Among executives, $P(T)=0.35$ read *Time*, $P(N)=0.20$ read *Newsweek*, and $P(U)=0.40$ read *U.S. News and World Report*. Also, $P(T\\cap U)=0.10$.\n\na. Find $P(T\\cup U)$.\n\nb. What is $P(T\\cap U)$ called?\n\nc. Are $T$ and $U$ mutually exclusive? Explain.",
       "source": "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment_Chapter4_Probability.doc",
-      "type": "unknown",
-      "difficulty": 1,
-      "keywords": [],
+      "type": "计算题",
+      "difficulty": 2,
+      "keywords": [
+        "addition rule",
+        "joint probability",
+        "mutually exclusive events"
+      ],
       "formula_refs": [],
-      "data_refs": []
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch04-review-v1"
     },
     {
       "id": "ch04_q05",
-      "content": "Independently** a coin is tossed, a card is drawn from a deck and a die is thrown. What is the probability of observing a head on the coin, an ace on the card and a five on the die? (Hint: There are total 52 cards in a deck.)",
+      "content": "A fair coin is tossed, one card is drawn from a standard 52-card deck, and a fair die is rolled. Find the probability of a head, an ace, and a five.",
       "source": "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment_Chapter4_Probability.doc",
-      "type": "unknown",
+      "type": "计算题",
       "difficulty": 1,
-      "keywords": [],
+      "keywords": [
+        "independence",
+        "multiplication rule"
+      ],
       "formula_refs": [],
-      "data_refs": []
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch04-review-v1"
     },
     {
       "id": "ch04_q06",
-      "content": "Joe is considering pursuing an MBA degree. He has applied to two different universities. The acceptance rate for applicants with similar qualifications is 25% for University A and 40% for University B. What is the probability that Joe will be accepted at least by one of the two universities?",
+      "content": "Joe has a $25\\%$ acceptance probability at University A and a $40\\%$ acceptance probability at University B. Assume the two admission decisions are independent. Find the probability that he is accepted by at least one university.",
       "source": "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment_Chapter4_Probability.doc",
-      "type": "unknown",
-      "difficulty": 1,
-      "keywords": [],
+      "type": "计算题",
+      "difficulty": 2,
+      "keywords": [
+        "independence",
+        "complement rule",
+        "union probability"
+      ],
       "formula_refs": [],
-      "data_refs": []
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch04-review-v1"
     },
     {
       "id": "ch04_q07",
-      "content": "The Wood County sheriff classifies crimes by age (in years) of the criminal and whether the crime is violent or nonviolent. As shown below, a total of 150 crimes were reported by the sheriff last year.\n\n+---------------+----------------+----------------+----------------+-------------+\n|               | Age (in years)                                   |             |\n+---------------+----------------+----------------+----------------+-------------+\n| Type of crime | Under 20       | 20 to 40       | Over 40        | Total       |\n+---------------+----------------+----------------+----------------+-------------+\n| Violent       | 27             | 41             | 14             | 82          |\n+---------------+----------------+----------------+----------------+-------------+\n| Nonviolent    | 12             | 34             | 22             | 68          |\n+---------------+----------------+----------------+----------------+-------------+\n| Total         | 39             | 75             | 36             | 150         |\n+---------------+----------------+----------------+----------------+-------------+\n\n\\(a\\) What is the probability of selecting a case to analyze and finding it involved a violent crime?\\\n(b) What is the probability of selecting a case that involved a violent crime or an offender less than 20 years old? Which rule of additional did you apply?\\\n(c) Given that a violent crime is selected for analysis, what is the probability the crime was committed by a person under 20 years old?\\\n(d) (**Optional**) Two crimes are selected for review by Judge Tybo. What is the probability that both are violent crimes?",
+      "content": "The Wood County sheriff recorded 150 crimes.\n\n| Crime type | Under 20 | Age 20–40 | Over 40 | Total |\n|---|---:|---:|---:|---:|\n| Violent | 27 | 41 | 14 | 82 |\n| Nonviolent | 12 | 34 | 22 | 68 |\n| Total | 39 | 75 | 36 | 150 |\n\nFind: (a) $P(\\text{violent})$; (b) $P(\\text{violent or under 20})$ and name the addition rule; (c) $P(\\text{under 20}\\mid\\text{violent})$; and (d) if two crimes are selected without replacement, the probability both are violent.",
       "source": "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment_Chapter4_Probability.doc",
-      "type": "unknown",
-      "difficulty": 1,
-      "keywords": [],
+      "type": "综合题",
+      "difficulty": 3,
+      "keywords": [
+        "contingency table",
+        "addition rule",
+        "conditional probability"
+      ],
       "formula_refs": [],
-      "data_refs": []
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch04-review-v1"
     },
     {
       "id": "ch04_q08",
-      "content": "In a survey of 100 insurance claims, 40 are fire claims (FIRE), 16 of which are fraudulent (FRAUD). Also, there are a total of 40 fraudulent claims.\\\n    (a) Construct a contingency table summarizing the claims data. Use the pairs of events FIRE and $\\overline{\\text{FIRE}}$, FRAUD and $\\overline{\\text{FRAUD}}$.\\\n    (b) What proportion of the fire claims are fraudulent?\\\n    (c) Are the events *a claim is fraudulent* and *a claim is fire claim* independent? Use your probability of part b to prove your answer?",
+      "content": "Among 100 insurance claims, 40 are fire claims, 16 of the fire claims are fraudulent, and 40 claims in total are fraudulent.\n\na. Construct the $2\\times2$ table for fire/nonfire and fraudulent/nonfraudulent.\n\nb. Find $P(\\text{fraudulent}\\mid\\text{fire})$.\n\nc. Determine whether fraud status and fire status are independent.",
       "source": "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment_Chapter4_Probability.doc",
-      "type": "unknown",
-      "difficulty": 1,
-      "keywords": [],
-      "formula_refs": [
-        "ch04_q08_ans_f01_image7.wmf",
-        "ch04_q08_ans_f02_image8.wmf",
-        "ch04_q08_ans_f03_image7.wmf",
-        "ch04_q08_ans_f04_image8.wmf"
-      ],
-      "data_refs": []
-    },
-    {
-      "id": "ch04_q09",
-      "content": "Suppose that A1, A2, and B are events where A1 and A2 are mutually exclusive and\\\n    P(A1)=0.8, P(B\\|A1)= 0.1, P(A2)=0.2, P(B\\|A2)=0.3.\\\n    Use this information to find P(B), P(A1\\|B) and P(A2\\|B).",
-      "source": "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment_Chapter4_Probability.doc",
-      "type": "unknown",
-      "difficulty": 1,
-      "keywords": [],
-      "formula_refs": [
-        "ch04_q09_f01_image9.wmf",
-        "ch04_q09_f02_image10.wmf",
-        "ch04_q09_f03_image11.wmf",
-        "ch04_q09_f04_image12.wmf"
-      ],
-      "data_refs": []
-    },
-    {
-      "id": "ch04_q10",
-      "content": "A department store is considering a new credit policy to reduce the number of customers defaulting in payments. A suggestion is made to discontinue credit to any customer who has been one week or more late with his/her payment at least twice. Past records show 95 percent of defaults were late at least twice. Also, 3 percent of all customers default, and 30 percent of those who have not defaulted had at least two late payments.\\\n    (a) Find the probability that a customer with at least twice late payments will default.\\\n    (b) Based on part *a*, should the policy be adopted? Explain.",
-      "source": "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment_Chapter4_Probability.doc",
-      "type": "unknown",
-      "difficulty": 1,
-      "keywords": [],
-      "formula_refs": [
-        "ch04_q10_ans_f01_image13.wmf"
-      ],
-      "data_refs": []
-    },
-    {
-      "id": "ch04_q11",
-      "content": "If events A and B are independent, then the probability of simultaneous occurrence of event A and event B can be found with: \\\nA. *P(A)·P(B)*\\\nB. *P(A)·P*(*A\\|B*)\\\nC. *P(B)·P*(*A\\|B*)\\\nD. All of the above are correct",
-      "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter04.docx",
-      "type": "unknown",
-      "difficulty": 1,
-      "keywords": [],
-      "formula_refs": [],
-      "data_refs": []
-    },
-    {
-      "id": "ch04_q12",
-      "content": "A(n) \\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_ is the probability that one event will occur given that we know that another event already has occurred. \\\nA. Sample space outcome\\\nB. Subjective Probability\\\nC. Complement of events\\\nD. Long-run relative frequency\\\nE. Conditional probability",
-      "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter04.docx",
-      "type": "unknown",
-      "difficulty": 1,
-      "keywords": [],
-      "formula_refs": [],
-      "data_refs": []
-    },
-    {
-      "id": "ch04_q13",
-      "content": "In which of the following are the two events A and B, always independent? \\\nA. A and B are mutually exclusive\\\nB. The probability of event A is not influenced by the probability of event B\\\nC. The intersection of A and B is zero\\\nD. P(A\\|B)=P(A)\\\nE. B and D",
-      "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter04.docx",
-      "type": "unknown",
-      "difficulty": 1,
-      "keywords": [],
-      "formula_refs": [],
-      "data_refs": []
-    },
-    {
-      "id": "ch04_q14",
-      "content": "Two mutually exclusive events $A$ and $B$ both have positive probabilities. Which statement is correct?\n\nA. They are always dependent.\n\nB. They are sometimes dependent.\n\nC. They are never dependent.",
-      "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter04.docx",
-      "type": "选择题",
-      "difficulty": 1,
+      "type": "综合题",
+      "difficulty": 2,
       "keywords": [
-        "mutually exclusive events",
+        "contingency table",
+        "conditional probability",
         "independence"
       ],
       "formula_refs": [],
       "data_refs": [],
       "review_status": "independently solved and reviewed",
-      "audit_pack": "missing-answer-recovery-v1"
+      "audit_pack": "ch04-review-v1"
     },
     {
-      "id": "ch04_q15",
-      "content": "Which term denotes a numerical measure of the chance that an uncertain event will occur?\n\nA. Random experiment\n\nB. Sample space\n\nC. Probability\n\nD. Complement\n\nE. Population",
-      "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter04.docx",
-      "type": "选择题",
-      "difficulty": 1,
+      "id": "ch04_q09",
+      "content": "Events $A_1$ and $A_2$ are mutually exclusive and exhaustive, with $P(A_1)=0.8$, $P(A_2)=0.2$, $P(B\\mid A_1)=0.1$, and $P(B\\mid A_2)=0.3$. Find $P(B)$, $P(A_1\\mid B)$, and $P(A_2\\mid B)$.",
+      "source": "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment_Chapter4_Probability.doc",
+      "type": "计算题",
+      "difficulty": 3,
       "keywords": [
-        "probability",
-        "definition"
+        "law of total probability",
+        "Bayes theorem"
       ],
       "formula_refs": [],
       "data_refs": [],
       "review_status": "independently solved and reviewed",
-      "audit_pack": "missing-answer-recovery-v1"
+      "audit_pack": "ch04-review-v1"
+    },
+    {
+      "id": "ch04_q10",
+      "content": "Three percent of customers default. Of those who default, 95% were at least twice late. Of those who do not default, 30% were at least twice late.\n\na. Find the probability that a customer who was at least twice late will default.\n\nb. Should a store discontinue credit for every customer with at least two late payments? Explain using the result.",
+      "source": "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment_Chapter4_Probability.doc",
+      "type": "计算题",
+      "difficulty": 3,
+      "keywords": [
+        "Bayes theorem",
+        "conditional probability",
+        "decision analysis"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch04-review-v1"
     },
     {
       "id": "ch04_q16",
-      "content": "Given the standard deck of cards, what is the probability of drawing a red card, given that it is a face card?",
+      "content": "From a standard 52-card deck, find the probability of drawing a red card given that the card is a face card.",
       "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter04.docx",
-      "type": "unknown",
+      "type": "计算题",
       "difficulty": 1,
-      "keywords": [],
-      "formula_refs": [
-        "ch04_q55_f01_image1.wmf"
+      "keywords": [
+        "conditional probability",
+        "cards"
       ],
-      "data_refs": []
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch04-review-v1"
     },
     {
       "id": "ch04_q17",
-      "content": "Given a standard deck of cards, what is the probability of drawing a face card, given that it is a red card? \n\n* *",
+      "content": "From a standard 52-card deck, find the probability of drawing a face card given that the card is red.",
       "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter04.docx",
-      "type": "unknown",
+      "type": "计算题",
       "difficulty": 1,
-      "keywords": [],
-      "formula_refs": [
-        "ch04_q56_f01_image2.wmf"
+      "keywords": [
+        "conditional probability",
+        "cards"
       ],
-      "data_refs": []
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch04-review-v1"
     },
     {
       "id": "ch04_q18",
-      "content": "A machine is made up of 3 components: an upper part, a mid part and a lower part. The machine is then assembled. 5 percent of the upper parts are defective; 4 percent of the mid parts are defective; 1 percent of the lower parts are defective. What is the probability that a machine is non-defective? \n\n* *",
-      "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter04.docx",
-      "type": "unknown",
-      "difficulty": 1,
-      "keywords": [],
-      "formula_refs": [],
-      "data_refs": []
-    },
-    {
-      "id": "ch04_q19",
-      "content": "A machine is produced by a sequence of operations. Typically one defective machine is produced per 1000 parts. What is the probability of two non-defective independent machines being produced?",
-      "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter04.docx",
-      "type": "unknown",
-      "difficulty": 1,
-      "keywords": [],
-      "formula_refs": [],
-      "data_refs": []
-    },
-    {
-      "id": "ch04_q20",
-      "content": "A family has two children. What is the probability that both are girls, given that at least one is a girl?",
-      "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter04.docx",
-      "type": "unknown",
-      "difficulty": 1,
-      "keywords": [],
-      "formula_refs": [
-        "ch04_q63_f01_image3.wmf",
-        "ch04_q63_f02_image4.wmf",
-        "ch04_q63_f03_image5.wmf",
-        "ch04_q63_f04_image6.wmf",
-        "ch04_q63_f05_image6.wmf"
-      ],
-      "data_refs": []
-    },
-    {
-      "id": "ch04_q21",
-      "content": "In a major Midwestern university, 55% of all undergraduates are female, 25% belong to a Greek organization (fraternity or sorority) and 40% of all males belong to a Greek organization. What is the probability that one randomly selected undergraduate will be either a female or belong to a Greek organization?",
-      "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter04.docx",
-      "type": "unknown",
-      "difficulty": 1,
-      "keywords": [],
-      "formula_refs": [],
-      "data_refs": []
-    },
-    {
-      "id": "ch04_q22",
-      "content": "In a major Midwestern university, 55% of all undergraduates are female, 25% belong to a Greek organization (fraternity or sorority) and 40% of all males belong to a Greek organization. What is the probability that an undergraduate is in a Greek organization given that the undergraduate is a female?",
-      "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter04.docx",
-      "type": "unknown",
-      "difficulty": 1,
-      "keywords": [],
-      "formula_refs": [],
-      "data_refs": []
-    },
-    {
-      "id": "ch04_q23",
-      "content": "At a university, 55% of undergraduates are female, 25% belong to a Greek organization, and 40% of male undergraduates belong to a Greek organization. Are gender (female or male) and Greek-organization membership independent? Show your reasoning.",
+      "content": "A machine has upper, middle, and lower components. Their defect probabilities are 0.05, 0.04, and 0.01, respectively. Assuming defects are independent, find the probability that a machine is non-defective.",
       "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter04.docx",
       "type": "计算题",
       "difficulty": 2,
+      "keywords": [
+        "independence",
+        "multiplication rule",
+        "reliability"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch04-review-v1"
+    },
+    {
+      "id": "ch04_q19",
+      "content": "A machine is defective with probability $0.001$. Assuming independent production, find the probability that two machines are both non-defective.",
+      "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter04.docx",
+      "type": "计算题",
+      "difficulty": 1,
+      "keywords": [
+        "independence",
+        "complement rule"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch04-review-v1"
+    },
+    {
+      "id": "ch04_q20",
+      "content": "Assume each child is independently and equally likely to be a boy or a girl. What is the probability that both children in a two-child family are girls, given that at least one is a girl?",
+      "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter04.docx",
+      "type": "计算题",
+      "difficulty": 1,
+      "keywords": [
+        "conditional probability",
+        "sample space"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch04-review-v1"
+    },
+    {
+      "id": "ch04_q21",
+      "content": "At a university, 55% of undergraduates are female, 25% belong to a Greek organization, and 40% of male undergraduates belong to one. Find the probability that a randomly selected undergraduate is female or belongs to a Greek organization.",
+      "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter04.docx",
+      "type": "计算题",
+      "difficulty": 3,
+      "keywords": [
+        "conditional probability",
+        "union probability"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch04-review-v1"
+    },
+    {
+      "id": "ch04_q22",
+      "content": "At a university, 55% of undergraduates are female, 25% belong to a Greek organization, and 40% of male undergraduates belong to one. Find $P(\\text{Greek membership}\\mid\\text{female})$.",
+      "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter04.docx",
+      "type": "计算题",
+      "difficulty": 3,
+      "keywords": [
+        "conditional probability",
+        "law of total probability"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch04-review-v1"
+    },
+    {
+      "id": "ch04_q23",
+      "content": "At a university, 55% of undergraduates are female, 25% belong to a Greek organization, and 40% of male undergraduates belong to one. Are gender and Greek-organization membership independent? Show your reasoning.",
+      "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter04.docx",
+      "type": "判断题",
+      "difficulty": 3,
       "keywords": [
         "independence",
         "conditional probability"
@@ -272,158 +277,145 @@
       "formula_refs": [],
       "data_refs": [],
       "review_status": "independently solved and reviewed",
-      "audit_pack": "missing-answer-recovery-v1"
+      "audit_pack": "ch04-review-v1"
     },
     {
       "id": "ch04_q24",
-      "content": "A mailing list is classified as follows: 40% of people have only a MasterCard, 10% have only an American Express card, 20% have both cards, and 30% have neither card. Given that a randomly selected person has a MasterCard, what is the probability that the person also has an American Express card?",
+      "content": "Among a mailing list, 40% have only a MasterCard, 10% have only an American Express card, 20% have both, and 30% have neither. Given that a person has a MasterCard, find the probability that the person also has an American Express card.",
       "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter04.docx",
       "type": "计算题",
       "difficulty": 2,
       "keywords": [
         "conditional probability",
-        "two-way classification"
+        "contingency table"
       ],
       "formula_refs": [],
       "data_refs": [],
       "review_status": "independently solved and reviewed",
-      "audit_pack": "missing-answer-recovery-v1"
+      "audit_pack": "ch04-review-v1"
     },
     {
       "id": "ch04_q25",
-      "content": "Suppose P(A)=.45, P(B)=.20, P(C)=.35, P(E\\|A)=.10, P(E\\|B)=.05 and P(E\\|C)=0. What is P(E)?",
+      "content": "Suppose $P(A)=0.45$, $P(B)=0.20$, $P(C)=0.35$, and $A,B,C$ are mutually exclusive and exhaustive. If $P(E\\mid A)=0.10$, $P(E\\mid B)=0.05$, and $P(E\\mid C)=0$, find $P(E)$.",
       "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter04.docx",
-      "type": "unknown",
-      "difficulty": 1,
-      "keywords": [],
+      "type": "计算题",
+      "difficulty": 2,
+      "keywords": [
+        "law of total probability"
+      ],
       "formula_refs": [],
-      "data_refs": []
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch04-review-v1"
     },
     {
       "id": "ch04_q26",
-      "content": "Classify each of the following random variables as discrete or continuous:\n\n**a**. x=the number of girls born to a couple who will have three children.\n\nb\\. x=the number of defects found on an automobile at final inspection.\n\nc\\. x=the weight (in ounces) of the sandwich meat placed on a submarine sandwich.\n\nd\\. x=the number of incorrect lab procedures conducted at a hospital during a particular week.\n\nf\\. x=the time needed by a clerk to complete a task.\n\ng\\. x=the temperature of a pizza oven at a particular time.",
+      "content": "Classify each random variable as discrete or continuous.\n\na. The number of girls born to a couple who has three children.\n\nb. The number of defects found on an automobile at final inspection.\n\nc. The weight of sandwich meat placed on a sandwich.\n\nd. The number of incorrect laboratory procedures at a hospital in one week.\n\ne. The time a clerk needs to complete a task.\n\nf. The temperature of a pizza oven at a particular time.",
       "source": "Assignment Prof Lv/Assignment4-Lu.doc",
-      "type": "unknown",
+      "type": "判断题",
       "difficulty": 1,
-      "keywords": [],
-      "formula_refs": [],
-      "data_refs": []
-    },
-    {
-      "id": "ch04_q27",
-      "content": "Suppose that the probability distribution of a random variable x can be described by the formula\n\n$p(x) = \\frac{x}{\\text{15}}$\n\nfor each of the values X=1,2,3,4, and 5. For example, then $P(X = 2) = p(2) = \\frac{2}{\\text{15}}$.\n\na\\. Write out the probability distribution of x.\n\nb\\. Show that the probability distribution of x satisfies the properties of a discrete probability distribution.\n\nc. Calculate the mean of x.\n\nd\\. Calculate the variance,$\\sigma_{x}^{2}$, and the standard deviation, $\\sigma_{x}$.",
-      "source": "Assignment Prof Lv/Assignment4-Lu.doc",
-      "type": "unknown",
-      "difficulty": 1,
-      "keywords": [],
-      "formula_refs": [
-        "ch04_q12_f01_image1.emf"
+      "keywords": [
+        "discrete random variable",
+        "continuous random variable"
       ],
-      "data_refs": []
-    },
-    {
-      "id": "ch04_q28",
-      "content": "Thirty percent of all customers who enter a store will make a purchase. Suppose that six customers enter the store and that these customers make independent purchase decisions.\n\na\\. Let x=the number of the six customers who will make a purchase. Write the binomial formula for this situation.\n\nb\\. Use the binomial formula to calculate.\n\n\\(1\\) The probability that exactly five customers make a purchase.\n\n\\(2\\) The probability that at least three customers make a purchase.\n\n\\(3\\) The probability that two or fewer customers make a purchase.\n\n\\(4\\) The probability that at least one customer make a purchase.",
-      "source": "Assignment Prof Lv/Assignment4-Lu.doc",
-      "type": "unknown",
-      "difficulty": 1,
-      "keywords": [],
       "formula_refs": [],
-      "data_refs": []
-    },
-    {
-      "id": "ch04_q29",
-      "content": "Suppose that the number of accident occurring in an industrial plant is described by a Poisson process with an average of 1.5 accidents every three months. During the last three months, four accidents occurred.\n\na\\. Find the probability that no accidents will occur during the current three-month period.\n\nb\\. Find the probability that fewer accidents will occur during the current three-month period than occurred during the last three-month period.\n\nc\\. Find the probability that no more than 12 accidents will occur during a particular year.\n\nd\\. Find the probability that no accidents will occur during a particular year.",
-      "source": "Assignment Prof Lv/Assignment4-Lu.doc",
-      "type": "unknown",
-      "difficulty": 1,
-      "keywords": [],
-      "formula_refs": [],
-      "data_refs": []
-    },
-    {
-      "id": "ch04_q30",
-      "content": "Suppose that the probability distribution of a random variable x can be describe by the formula\n\n$$p_{(x)} = \\frac{x}{\\text{15}}$$\n\nfor each of the value x =1, 2, 3, 4, and 5. For example, then, P(x)=p(2)=2/15.\n\na.  Write out the probability distribution of x.\n\nb.  Show that the probability distribution of x satisfies the properties of a discrete probability distribution.\n\nc.  Calculate the mean of x.\n\nd.  Calculate the variance, $\\sigma_{x}^{2}$, and the standard deviation, $\\sigma_{x}$.",
-      "source": "Assignments for STAT 2010/assign4.doc",
-      "type": "unknown",
-      "difficulty": 1,
-      "keywords": [],
-      "formula_refs": [
-        "ch04_q01_ans_f01_image1.emf"
-      ],
-      "data_refs": []
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch04-review-v1"
     },
     {
       "id": "ch04_q31",
-      "content": "The United States Golf Association requires that the weight of a golf ball must not exceed 1.62 oz. The association periodically checks golf balls sold in the United States by sampling specific brands stocked by pro shops. Suppose that a manufacturer claims that no more than 1 percent of its brand of golf balls exceed 1.62 oz. in weight. Suppose that 24 of this manufacturer's golf balls are randomly selected, and let x denote the number of the 24 randomly selected golf balls that exceed 1.62 oz. Figure 5.7 gives part of a MegaStat output of the binomial distribution with n=24, p=0.01 and q=0.99. (Note that, since P(X=x)=0.0000 for values of x from 6 to 24, we omit these probabilities). Use this output to\n\n    a.  Find P(x=0), that is, find the probability that none of the randomly selected golf balls exceeds 1.62 oz. in weight.\n\n    b.  Find the probability that at least one of the randomly selected golf balls exceeds 1.62 oz. in weight.\n\n    c.  Find P(x$$``{=html}3).\n\n    d.  Find P(x$$``{=html}2).\n\n    e.  Suppose that 2 of the 24 randomly selected golf balls are found to exceed 1.62 oz. Using your result from part d, do you believe the claim that no more than 1 percent of this brand of golf balls exceed 1.62 oz. in weight?\n\n. Figure 5.7\n\n[IMG:ch04_q02_f01_image1.jpeg]",
+      "content": "A manufacturer claims that at most 1% of its golf balls exceed the 1.62-ounce limit. Let $X$ be the number exceeding the limit in a random sample of 24 balls, assuming $X\\sim\\operatorname{Binomial}(24,0.01)$. Find $P(X=0)$, $P(X\\ge1)$, $P(X=3)$, and $P(X=2)$. If two balls exceed the limit, assess the claim.",
       "source": "Assignments for STAT 2010/assign4.doc",
-      "type": "unknown",
-      "difficulty": 1,
-      "keywords": [],
-      "formula_refs": [],
-      "data_refs": []
-    },
-    {
-      "id": "ch04_q32",
-      "content": "For each of the following, calculate $\\mu_{x}$, $\\sigma_{x}^{2}$, and $\\sigma_{x}$by using the formulas given in this section. Then (1) interpret the meaning of $\\mu_{x}$and (2) find the probability that x falls in the interval \\[$\\mu_{x} \\pm 2\\sigma_{x}$\\].\n\n    a.  The situation of Exercise 5.24(page225), where x= the number of the six customers who will make a purchase.\n\n    b.  The situation of Exercise 5.25(page225), where x= the number of 15 sampled customers whose complaints were resolved to the customer's satisfaction.\n\n    c.  The situation of Exercise 5.26(page225), where x= the number of the 24 randomly selected golf balls that exceed 1.62 oz. in weight.",
-      "source": "Assignments for STAT 2010/assign4.doc",
-      "type": "unknown",
-      "difficulty": 1,
-      "keywords": [],
-      "formula_refs": [
-        "ch04_q03_ans_f01_image3.emf"
+      "type": "综合题",
+      "difficulty": 3,
+      "keywords": [
+        "binomial distribution",
+        "rare-event probability",
+        "hypothesis assessment"
       ],
-      "data_refs": []
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch04-review-v1"
     },
     {
       "id": "ch04_q33",
-      "content": "A local law enforcement agency claims that the number of times that a patrol car passes through\n\na particular neighborhood follows a Poisson process with a mean of three times per nightly shift. Let x denote the number of times that no patrol cars passes through the neighborhood during a nightly shift.\n\na\\. Calculate the probability that no patrol cars pass through the neighborhood during a nightly shift.\n\nb\\. Suppose that during a randomly selected night shift no patrol cars pass through the neighborhood. Based on your answer in part a, do you believe the agency's claim? Explain.\n\nc\\. Assuming that nightly shifts are independent and assuming that the agency's claim is correct, find the probability that exactly one patrol car will pass through the neighborhood on each of four consecutive nights.",
+      "content": "A patrol car passes through a neighborhood according to a Poisson process with mean 3 passes per night. Let $X$ be the number of passes during one night.\n\na. Find $P(X=0)$.\n\nb. If one randomly selected night has no passes, assess the agency's claim.\n\nc. Assuming independent nights, find the probability of exactly one pass on each of four consecutive nights.",
       "source": "Assignments for STAT 2010/assign4.doc",
-      "type": "unknown",
-      "difficulty": 1,
-      "keywords": [],
+      "type": "综合题",
+      "difficulty": 3,
+      "keywords": [
+        "Poisson process",
+        "Poisson probability"
+      ],
       "formula_refs": [],
-      "data_refs": []
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch04-review-v1"
     },
     {
       "id": "ch04_q34",
-      "content": "Assume that the waiting time x for an elevator is uniformly distributed between zero and six minutes.\n\n> a\\. Write the formula for the probability curve of x.\n>\n> b\\. Graph the probability curve of x.\n>\n> c\\. Find P (2$x \\leq$``{=html}4)\n>\n> d\\. Find P (3$x \\leq$``{=html}6)\n>\n> e\\. Find P ({0$x \\leq$``{=html}2} or {5$x \\leq$``{=html}6}).",
+      "content": "Let the waiting time $X$ for an elevator be uniformly distributed on $[0,6]$ minutes.\n\na. Give the density function.\n\nb. Describe its graph.\n\nc. Find $P(2\\le X\\le4)$.\n\nd. Find $P(3\\le X\\le6)$.\n\ne. Find $P(0\\le X\\le2\\text{ or }5\\le X\\le6)$.",
       "source": "Assignments for STAT 2012/Assignment-4.doc",
-      "type": "unknown",
-      "difficulty": 1,
-      "keywords": [],
+      "type": "综合题",
+      "difficulty": 2,
+      "keywords": [
+        "uniform distribution",
+        "probability density"
+      ],
       "formula_refs": [],
-      "data_refs": []
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch04-review-v1"
     },
     {
       "id": "ch04_q35",
-      "content": "Refer to Exercise 1\n\na\\. Calculate the mean, $\\mu_{x}$.the variance, $\\sigma_{x}^{2}$, and the standard deviation, $\\sigma_{x}$.\n\nb\\. Find the probability that the waiting time of a randomly selected patron will be within one standard deviation of the mean.",
+      "content": "Let $X$ be uniformly distributed on $[0,6]$ minutes. Calculate $\\mu_X$, $\\sigma_X^2$, and $\\sigma_X$, and find the probability that $X$ is within one standard deviation of the mean.",
       "source": "Assignments for STAT 2012/Assignment-4.doc",
-      "type": "unknown",
-      "difficulty": 1,
-      "keywords": [],
+      "type": "计算题",
+      "difficulty": 2,
+      "keywords": [
+        "uniform distribution",
+        "mean",
+        "variance"
+      ],
       "formula_refs": [],
-      "data_refs": []
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch04-review-v1"
     },
     {
       "id": "ch04_q36",
-      "content": "Suppose that the random variable z has a standard normal distribution. Sketch each of the following z points, and use the normal table to find each z point.\n\na\\. $z_{0\\text{.01}}$ b.$z_{0\\text{.05}}$ c.$z_{0\\text{.02}}$ d.$- z_{0\\text{.01}}$ e. $- z_{0\\text{.10}}$",
+      "content": "For a standard normal random variable $Z$, use the convention $P(Z>z_\\alpha)=\\alpha$. Find $z_{0.01}$, $z_{0.05}$, $z_{0.02}$, $-z_{0.01}$, and $-z_{0.10}$.",
       "source": "Assignments for STAT 2012/Assignment-4.doc",
-      "type": "unknown",
-      "difficulty": 1,
-      "keywords": [],
+      "type": "计算题",
+      "difficulty": 2,
+      "keywords": [
+        "standard normal distribution",
+        "critical value",
+        "z-score"
+      ],
       "formula_refs": [],
-      "data_refs": []
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch04-review-v1"
     },
     {
       "id": "ch04_q37",
-      "content": "Stanford-Binet IQ Test scores are normally distributed with a mean score of 100 and a standard deviation of 16.\n\na\\. Sketch the distribution of Stanford-Binet IQ test scores.\n\nb\\. Write the equation that gives the z score corresponding to a Stanford-Binet IQ test score. Sketch the distribution of such z scores.\n\nc\\. Find the probability that a randomly selected person has an IQ test score\n\n\\(1\\) Over 140.\n\n\\(2\\) Under 88.\n\n\\(3\\) Between 72 and 128.\n\n\\(4\\) Within 1.5 standard deviations of the mean.\n\nd\\. Suppose you take the Stanford-Binet IQ Test and receive a score of 136. What percentage of people would receive a score higher than yours?",
+      "content": "Stanford–Binet IQ scores are normally distributed with mean 100 and standard deviation 16.\n\na. Give the z-score transformation.\n\nb. Find the probability of an IQ over 140, under 88, between 72 and 128, and within 1.5 standard deviations of the mean.\n\nc. If your score is 136, find the percentage scoring higher.",
       "source": "Assignments for STAT 2012/Assignment-4.doc",
-      "type": "unknown",
-      "difficulty": 1,
-      "keywords": [],
+      "type": "综合题",
+      "difficulty": 3,
+      "keywords": [
+        "normal distribution",
+        "z-score",
+        "standard normal probability"
+      ],
       "formula_refs": [],
-      "data_refs": []
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch04-review-v1"
     },
     {
       "id": "rotel_ch04_probability_01",
@@ -433,17 +425,16 @@
       "source_problem": "3 Probability Problem 1",
       "license": "CC BY-NC-SA 4.0",
       "attribution": "Rachael Norton and Peter Staab, 2023",
-      "review_status": "independently solved, translated, and reviewed",
-      "type": "综合题",
+      "review_status": "independently solved and reviewed",
+      "type": "计算题",
       "difficulty": 2,
       "keywords": [
         "conditional probability",
-        "union",
-        "intersection"
+        "union probability"
       ],
       "formula_refs": [],
       "data_refs": [],
-      "audit_pack": "english-normalization-v1"
+      "audit_pack": "ch04-review-v1"
     },
     {
       "id": "rotel_ch04_probability_02",
@@ -453,17 +444,16 @@
       "source_problem": "3 Probability Problem 2",
       "license": "CC BY-NC-SA 4.0",
       "attribution": "Rachael Norton and Peter Staab, 2023",
-      "review_status": "independently solved, translated, and reviewed",
-      "type": "综合题",
+      "review_status": "independently solved and reviewed",
+      "type": "计算题",
       "difficulty": 2,
       "keywords": [
-        "independent events",
-        "sampling with replacement",
-        "complement"
+        "independence",
+        "complement rule"
       ],
       "formula_refs": [],
       "data_refs": [],
-      "audit_pack": "english-normalization-v1"
+      "audit_pack": "ch04-review-v1"
     },
     {
       "id": "rotel_ch04_probability_03",
@@ -473,16 +463,16 @@
       "source_problem": "3 Probability Problem 3",
       "license": "CC BY-NC-SA 4.0",
       "attribution": "Rachael Norton and Peter Staab, 2023",
-      "review_status": "independently solved, translated, and reviewed",
+      "review_status": "independently solved and reviewed",
       "type": "计算题",
       "difficulty": 1,
       "keywords": [
         "addition rule",
-        "complement"
+        "complement rule"
       ],
       "formula_refs": [],
       "data_refs": [],
-      "audit_pack": "english-normalization-v1"
+      "audit_pack": "ch04-review-v1"
     },
     {
       "id": "rotel_ch04_probability_04",
@@ -492,17 +482,16 @@
       "source_problem": "3 Probability Problem 4",
       "license": "CC BY-NC-SA 4.0",
       "attribution": "Rachael Norton and Peter Staab, 2023",
-      "review_status": "independently solved, translated, and reviewed",
+      "review_status": "independently solved and reviewed",
       "type": "综合题",
-      "difficulty": 3,
+      "difficulty": 2,
       "keywords": [
         "contingency table",
-        "conditional probability",
-        "marginal probability"
+        "conditional probability"
       ],
       "formula_refs": [],
       "data_refs": [],
-      "audit_pack": "english-normalization-v1"
+      "audit_pack": "ch04-review-v1"
     },
     {
       "id": "rotel_ch04_probability_05",
@@ -512,17 +501,16 @@
       "source_problem": "3 Probability Problem 5",
       "license": "CC BY-NC-SA 4.0",
       "attribution": "Rachael Norton and Peter Staab, 2023",
-      "review_status": "independently solved, translated, and reviewed",
-      "type": "综合题",
+      "review_status": "independently solved and reviewed",
+      "type": "计算题",
       "difficulty": 2,
       "keywords": [
-        "contingency table",
-        "union",
-        "complement"
+        "addition rule",
+        "complement rule"
       ],
       "formula_refs": [],
       "data_refs": [],
-      "audit_pack": "english-normalization-v1"
+      "audit_pack": "ch04-review-v1"
     }
   ]
 }

@@ -3,189 +3,195 @@
   "answers": [
     {
       "id": "ch04_q01",
-      "answer": "Multiple Choice Questions** (For every question there is only one correct choice. Please circle it.)\\\n    (1) Two mutually exclusive events having positive probabilities are \\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_ dependent. \\\n    **[A.]{.underline}** Always\\\n    B. Sometimes\\\n    C. Never\\\n    \\\n    (2)  \\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_ is a measure of the chance that an uncertain event will occur. \\\n    A. Random experiment\\\n    B. Sample Space\\\n    **[C.]{.underline}** Probability\\\n    D. A complement\\\n    E. A population\\\n    \\\n    (3)  In which of the following are the two events A and B, always independent? \\\n    A. A and B are mutually exclusive\\\n    B. The probability of event A is not influenced by the probability of event B\\\n    C. The intersection of A and B is zero\\\n    D. P(A\\|B)=P(A)\\\n    **[E.]{.underline}** B and D\\\n    \\\n    (4) If two events are independent, we can \\_\\_\\_\\_\\_ their probabilities to determine the intersection probability. \\\n    A. Divide\\\n    B. Add\\\n    **[C.]{.underline}** Multiply\\\n    D. Subtract\\\n    \\\n    (5) Events that have no sample space outcomes in common and therefore, cannot occur simultaneously are: \\\n    A. Independent\\\n    **[B.]{.underline}** Mutually Exclusive\\\n    C. Intersections\\\n    D. Unions\\\n    \\\n    (6)  If events A and B are independent, then the probability of simultaneous occurrence of event A and event B can be found with: \\\n    A. *P(A)·P(B)*\\\n    B. *P(A)·P*(*B\\|A*)\\\n    C. *P(B)·P*(*A\\|B*)\\\n    **[D.]{.underline}** All of the above are correct"
+      "answer": "1. A. Always. For positive probabilities, $P(A\\cap B)=0$ but $P(A)P(B)>0$.\n\n2. C. Probability.\n\n3. E. Both B and D.\n\n4. C. Multiply.\n\n5. B. Mutually exclusive.\n\n6. D. All of the above; the multiplication rule gives the same intersection probability in each form.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch04-review-v1"
     },
     {
       "id": "ch04_q02",
-      "answer": "]{.mark}\\\n    (a)\\\n    [IMG:ch04_q02_ans_f01_image1.png]\\\n    (b) (1) *AA\\*\n    (2) *AB*, *AC*, *BA*, *BC*, *CA*, *CB*\\\n    (3) *AA*, *AB*, *AC*, *BA*, *CA*\\\n    (4) *AA*, *AB*, *BA*, *BB*\\\n    (c) Each outcome has probability [FORMULA:ch04_q02_ans_f02_image2.wmf]\\\n    (1) Pr(*AA*)=[FORMULA:ch04_q02_ans_f03_image3.wmf]\\\n    (2) Pr(*AB*, *AC*, *BA*, *BC*, *CA*, *CB*)=[FORMULA:ch04_q02_ans_f04_image4.wmf]\\\n    (3) Pr(*AA*, *AB*, *AC*, *BA*, *CA*)=[FORMULA:ch04_q02_ans_f05_image5.wmf]\\\n    (4) Pr(*AA*, *AB*, *BA*, *BB*)=[FORMULA:ch04_q02_ans_f06_image6.wmf]"
+      "answer": "The sample space is $\\{AA,AB,AC,BA,BB,BC,CA,CB,CC\\}$.\n\n| Event | Outcomes | Probability |\n|---|---|---:|\n| Both choose A | $AA$ | $1/9$ |\n| Different colas | $AB,AC,BA,BC,CA,CB$ | $6/9=2/3$ |\n| At least one chooses A | $AA,AB,AC,BA,CA$ | $5/9$ |\n| Neither chooses C | $AA,AB,BA,BB$ | $4/9$ |",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch04-review-v1"
     },
     {
       "id": "ch04_q03",
-      "answer": "]{.mark}\\\nProbability = (11410 + 7535 + 11197) / 75998 = 30142 / 75998 = 0.397"
+      "answer": "The relevant frequency is $11,410+7,535+11,197=30,142$. Therefore\n\n$$P(60{,}000\\le X<200{,}000)=\\frac{30,142}{75,998}\\approx0.3966.$$\n\nThe estimated probability is about $39.66\\%$.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch04-review-v1"
     },
     {
       "id": "ch04_q04",
-      "answer": "]{.mark}\\\n    (a) Let T and U denote *Time* and *U.S. News and World Report* respectively.\\\n    P(T or U) =P(T) +P(U) -- P(T∩U)=0.35+0.40 -- 0.10=0.65\\\n    (b) It is the joint probability.\\\n    (c) No, an executive could read more than one magazine."
+      "answer": "a. $P(T\\cup U)=P(T)+P(U)-P(T\\cap U)=0.35+0.40-0.10=0.65$.\n\nb. $P(T\\cap U)=0.10$ is the joint probability of reading both publications.\n\nc. No. Mutually exclusive events have intersection probability 0, but here the intersection probability is 0.10.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch04-review-v1"
     },
     {
       "id": "ch04_q05",
-      "answer": "]{.mark} Denote the events of observing a head on the coin, an ace on the card and a five on the die as A, B, and C respectively. Then A, B and C are independent. Thus,\\\n    Pr(A∩B∩C)= P(A) P(B)P(C)\n\n> **=1/2\\*4/52\\*1/6=1/156**[\\\n> ]{.mark}"
+      "answer": "The independent probabilities are $1/2$, $4/52$, and $1/6$. Thus\n\n$$P=\\frac12\\cdot\\frac4{52}\\cdot\\frac16=\\frac1{156}\\approx0.00641.$$",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch04-review-v1"
     },
     {
       "id": "ch04_q06",
-      "answer": "ne the following events:\\\n    S= Joe will be accepted at least by one of the two, or {$\\text{AB},\\overline{A}B,A\\overline{B}$}\\\n    F= Joe will not be accepted by any universities, or {$\\overline{A}\\overline{B}$}\\\n    Obviously, F is the complement of S.\\\n    P(S)=1-P(F)=1-P($\\overline{A}\\overline{B}$)=1 -- P($\\overline{A}$)P($\\overline{B}$)=1 --\\[1- P(A)\\]\\[1-P(B)\\]= 1-\\[(.75)(.60)\\]=0.55"
+      "answer": "The complement is rejection by both universities. Therefore\n\n$$P(\\text{at least one})=1-P(\\text{both rejected})=1-(0.75)(0.60)=0.55.$$",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch04-review-v1"
     },
     {
       "id": "ch04_q07",
-      "answer": "]{.mark}\\\n(a) P(Violent)=82/150=0.5467\\\n(b) P(Violent or less than 20 years old)= 82/150+39/150-27/150=0.6267 (Additional rule)\\\n(c) P(Under 20 \\|Violent)= P(Under 20 ∩Violent)/ P(Violent)=27/82=0.3293\\\n(d) P(1^st^ Violent and 2^nd^ Violent)= P(1^st^ Violent )P(2^nd^ Violent\\|1^st^ Violent)\\\n= (82/150)(81/149)=0.2972"
+      "answer": "a. $P(\\text{violent})=82/150\\approx0.5467$.\n\nb. $P(\\text{violent or under 20})=(82+39-27)/150=94/150\\approx0.6267$, using the general addition rule.\n\nc. $P(\\text{under 20}\\mid\\text{violent})=27/82\\approx0.3293$.\n\nd. Without replacement, $P(\\text{two violent})=(82/150)(81/149)\\approx0.2972$.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch04-review-v1"
     },
     {
       "id": "ch04_q08",
-      "answer": "]{.mark}(a) Fire $\\overline{\\text{FIRE}}$ Total\n\nFraud 16 24 40\n\n$\\overline{\\text{FRAUD}}$ 24 36 60\n\nTotal 40 60 100\n\n\\(b\\) [FORMULA:ch04_q08_ans_f01_image7.wmf][FORMULA:ch04_q08_ans_f02_image8.wmf]\\\n(c) Yes; [FORMULA:ch04_q08_ans_f03_image7.wmf][FORMULA:ch04_q08_ans_f04_image8.wmf]= *P*(Fraud)"
+      "answer": "| | Fire | Not fire | Total |\n|---|---:|---:|---:|\n| Fraudulent | 16 | 24 | 40 |\n| Not fraudulent | 24 | 36 | 60 |\n| Total | 40 | 60 | 100 |\n\na. The table is shown above.\n\nb. $P(\\text{fraudulent}\\mid\\text{fire})=16/40=0.40$.\n\nc. $P(\\text{fraudulent})=40/100=0.40$, equal to the conditional probability, so the events are independent.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch04-review-v1"
     },
     {
       "id": "ch04_q09",
-      "answer": "Suppose that A1, A2, and B are events where A1 and A2 are mutually exclusive and\\\n    P(A1)=0.8, P(B\\|A1)= 0.1, P(A2)=0.2, P(B\\|A2)=0.3.\\\n    Use this information to find P(B), P(A1\\|B) and P(A2\\|B).\\\n    [Ans]{.mark}: P(B)= P(A1)P(B\\|A1)+P(A2)P(B\\|A2)= (0.8)( 0.1)+(0.2)(0.3)=0.14,\\\n    [FORMULA:ch04_q09_f01_image9.wmf][FORMULA:ch04_q09_f02_image10.wmf][FORMULA:ch04_q09_f03_image11.wmf][FORMULA:ch04_q09_f04_image12.wmf]"
+      "answer": "$$P(B)=0.8(0.1)+0.2(0.3)=0.14.$$\n\nBy Bayes' theorem,\n\n$$P(A_1\\mid B)=\\frac{0.8(0.1)}{0.14}=\\frac47\\approx0.5714,$$\n\n$$P(A_2\\mid B)=\\frac{0.2(0.3)}{0.14}=\\frac37\\approx0.4286.$$",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch04-review-v1"
     },
     {
       "id": "ch04_q10",
-      "answer": "]{.mark}\\\n    (a) P(defaultlate) [FORMULA:ch04_q10_ans_f01_image13.wmf]\\\n    (b) No. Too many paying customers would lose credit."
-    },
-    {
-      "id": "ch04_q11",
-      "answer": "If events A and B are independent, then the probability of simultaneous occurrence of event A and event B can be found with: \\\nA. *P(A)·P(B)*\\\nB. *P(A)·P*(*A\\|B*)\\\nC. *P(B)·P*(*A\\|B*)\\\n**[D.]{.underline}** All of the above are correct\n\n \n\n*AACSB: Reflective thinking skills\\\nDifficulty: Hard\\\n *"
-    },
-    {
-      "id": "ch04_q12",
-      "answer": "A(n) \\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_ is the probability that one event will occur given that we know that another event already has occurred. \\\nA. Sample space outcome\\\nB. Subjective Probability\\\nC. Complement of events\\\nD. Long-run relative frequency\\\n**[E.]{.underline}** Conditional probability\n\n \n\n*AACSB: Reflective thinking skills\\\nDifficulty: Medium\\\n *"
-    },
-    {
-      "id": "ch04_q13",
-      "answer": "In which of the following are the two events A and B, always independent? \\\nA. A and B are mutually exclusive\\\nB. The probability of event A is not influenced by the probability of event B\\\nC. The intersection of A and B is zero\\\nD. P(A\\|B)=P(A)\\\n**[E.]{.underline}** B and D\n\n \n\n*AACSB: Reflective thinking skills\\\nDifficulty: Hard\\\n *"
+      "answer": "Let $D$ denote default and $L$ denote at least two late payments. Then $P(D)=0.03$, $P(L\\mid D)=0.95$, and $P(L\\mid D^c)=0.30$.\n\n$$P(D\\mid L)=\\frac{0.03(0.95)}{0.03(0.95)+0.97(0.30)}=\\frac{0.0285}{0.3195}\\approx0.0892.$$\n\nOnly about $8.92\\%$ of flagged customers default, so the policy would deny credit to many nondefaulters and should not be adopted without additional evidence.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch04-review-v1"
     },
     {
       "id": "ch04_q16",
-      "answer": "Given the standard deck of cards, what is the probability of drawing a red card, given that it is a face card? \n\n.5\\\n [FORMULA:ch04_q55_f01_image1.wmf] \n\n \n\n*AACSB: Analytic Skills\\\nDifficulty: Medium\\\n *"
+      "answer": "There are 12 face cards, 6 of which are red. Therefore $P(\\text{red}\\mid\\text{face})=6/12=1/2$.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch04-review-v1"
     },
     {
       "id": "ch04_q17",
-      "answer": "Given a standard deck of cards, what is the probability of drawing a face card, given that it is a red card? \n\n3/13\\\n [FORMULA:ch04_q56_f01_image2.wmf] \n\n \n\n*AACSB: Analytic Skills\\\nDifficulty: Medium\\\n *"
+      "answer": "There are 26 red cards and 6 red face cards. Therefore $P(\\text{face}\\mid\\text{red})=6/26=3/13$.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch04-review-v1"
     },
     {
       "id": "ch04_q18",
-      "answer": "A machine is made up of 3 components: an upper part, a mid part and a lower part. The machine is then assembled. 5 percent of the upper parts are defective; 4 percent of the mid parts are defective; 1 percent of the lower parts are defective. What is the probability that a machine is non-defective? \n\n.9029\\\n(.95)(.96)(.99)=.9029\n\n \n\n*AACSB: Analytic Skills\\\nDifficulty: Hard\\\n *"
+      "answer": "$$P(\\text{non-defective})=(0.95)(0.96)(0.99)=0.90288\\approx0.9029.$$",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch04-review-v1"
     },
     {
       "id": "ch04_q19",
-      "answer": "A machine is produced by a sequence of operations. Typically one defective machine is produced per 1000 parts. What is the probability of two non-defective independent machines being produced? \n\n.998\\\n(.999)(.999)=.998\n\n \n\n*AACSB: Analytic Skills\\\nDifficulty: Medium\\\n *"
+      "answer": "The non-defective probability is $0.999$, so\n\n$$P(\\text{two non-defective})=(0.999)^2=0.998001.$$",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch04-review-v1"
     },
     {
       "id": "ch04_q20",
-      "answer": "A family has two children. What is the probability that both are girls, given that at least one is a girl? \n\n1/3\n\n132. In a major Midwestern university, 55% of all undergraduates are female, 25% belong to a Greek organization (fraternity or sorority) and 40% of all males belong to a Greek organization. What is the probability that one randomly selected undergraduate will be either a female or belong to a Greek organization? \n\n73%\\\nP(G [FORMULA:ch04_q63_f01_image3.wmf]  F)=.55+.25-.07=.73\n\n \n\n*AACSB: Analytic Skills\\\nDifficulty: Hard\\\n *\n\n133. In a major Midwestern university, 55% of all undergraduates are female, 25% belong to a Greek organization (fraternity or sorority) and 40% of all males belong to a Greek organization. What is the probability that an undergraduate is in a Greek organization given that the undergraduate is a female? \n\n.127\\\nP(G\\|F)=.07/.55=.127\n\n \n\n*AACSB: Analytic Skills\\\nDifficulty: Hard\\\n *\n\n134. In a major Midwestern university, 55% of all undergraduates are female, 25% belong to a Greek organization (fraternity or sorority) and 40% of all males belong to a Greek organization. Are the events \\\"female/not female\\\" and \\\"belongs to a Greek organization\\\" independent? \n\nNo\\\nP(G\\|F)  [FORMULA:ch04_q63_f02_image4.wmf]  P(G)\n\n \n\n*AACSB: Analytic Skills\\\nDifficulty: Hard\\\n *\n\n135. At a certain university, 30% of the students major in zoology. Of the students majoring in zoology, 60% are males. Of all the students at the university, 70% are males. What percentage of the students are males majoring in zoology? \n\n18%\\\n [FORMULA:ch04_q63_f03_image5.wmf] \n\n \n\n*AACSB: Analytic Skills\\\nDifficulty: Hard\\\n *\n\n139. An advertising campaign is being developed to promote a new bookstore opening in the newest mall development. To develop an appropriate mailing list it has been decided to purchase lists of credit card holders from MasterCard and American Express. Combining the lists they find the following: 40% of the people on the list have only a MasterCard and 10% have only an American Express card. Another 20% hold both MasterCard and American Express. Finally, 30% of those on the list have neither card. Suppose a person on the list is known to have a MasterCard. What is the probability that person also has an American Express Card? \n\n.33\\\nP(AE\\|MC)=.20/.60=.33\\\n [FORMULA:ch04_q63_f04_image6.wmf] \n\n \n\n*AACSB: Analytic Skills\\\nDifficulty: Medium\\\n *\n\n139. An advertising campaign is being developed to promote a new bookstore opening in the newest mall development. To develop an appropriate mailing list it has been decided to purchase lists of credit card holders from MasterCard and American Express. Combining the lists they find the following: 40% of the people on the list have only a MasterCard and 10% have only an American Express card. Another 20% hold both MasterCard and American Express. Finally, 30% of those on the list have neither card. Suppose a person on the list is known to have a MasterCard. What is the probability that person also has an American Express Card? \n\n.33\\\nP(AE\\|MC)=.20/.60=.33\\\n [FORMULA:ch04_q63_f05_image6.wmf] \n\n \n\n*AACSB: Analytic Skills\\\nDifficulty: Medium\\\n *"
+      "answer": "Given at least one girl, the equally likely possibilities are $GG,GB,BG$. Only $GG$ has two girls, so the conditional probability is $1/3$.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch04-review-v1"
     },
     {
       "id": "ch04_q21",
-      "answer": "Two mutually exclusive events having positive probabilities are \\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_ dependent. \\\n**[A.]{.underline}** Always\\\nB. Sometimes\\\nC. Never\n\n \n\n*AACSB: Reflective thinking skills\\\nDifficulty: Hard\\\n *"
+      "answer": "Let $F$ be female and $G$ be Greek membership. Since $P(M)=0.45$, $P(G\\cap M)=0.40(0.45)=0.18$, so $P(G\\cap F)=0.25-0.18=0.07$. Therefore\n\n$$P(F\\cup G)=0.55+0.25-0.07=0.73.$$",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch04-review-v1"
     },
     {
       "id": "ch04_q22",
-      "answer": "\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_\\_ is a measure of the chance that an uncertain event will occur. \\\nA. Random experiment\\\nB. Sample Space\\\n**[C.]{.underline}** Probability\\\nD. A complement\\\nE. A population\n\n \n\n*AACSB: Reflective thinking skills\\\nDifficulty: Medium\\\n *"
+      "answer": "As above, $P(G\\cap F)=0.25-0.40(0.45)=0.07$. Hence\n\n$$P(G\\mid F)=\\frac{0.07}{0.55}\\approx0.1273.$$",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch04-review-v1"
     },
     {
       "id": "ch04_q25",
-      "answer": "Suppose P(A)=.45, P(B)=.20, P(C)=.35, P(E\\|A)=.10, P(E\\|B)=.05 and P(E\\|C)=0. What is P(E)? \n\n.055\\\nP(E)=(.45)(.10)+(.20)(.05)+(.35)(0)=.055\n\n \n\n*AACSB: Analytic Skills\\\nDifficulty: Hard*"
+      "answer": "$$P(E)=0.45(0.10)+0.20(0.05)+0.35(0)=0.055.$$",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch04-review-v1"
     },
     {
       "id": "ch04_q26",
-      "answer": "a.** Discrete\n\n**b.** Discrete\n\n**c.** Continuous\n\n**d.** Discrete\n\n**f.** Continuous\n\n**g.** Continuous"
-    },
-    {
-      "id": "ch04_q27",
-      "answer": "a.** *x* 1 2 3 4 5\n\n*p*(*x*) $\\frac{1}{\\text{15}}$ $\\frac{2}{\\text{15}}$ $\\frac{1}{5}$ $\\frac{4}{\\text{15}}$ $\\frac{1}{3}$\n\n**b.** *p*(*x*) ≥ 0 for each value of *x*.\\\n[FORMULA:ch04_q12_f01_image1.emf]\n\n**c.**\n\n**d.**"
-    },
-    {
-      "id": "ch04_q28",
-      "answer": "**a.**\n\n**b.** (1) *P*(*x* = 5) = .0102\n\n\\(2\\) *P*(*x* ≥ 3) = 1 -- *P*(*x* ≤ 2) = 1 -- .7443 = .2557\n\n\\(3\\) *P*(*x* ≤ 2) = .7443\n\n\\(4\\) *P*(*x* ≥ 1) = 1 -- *P*(*x* = 0) = 1 -- .1176 = .8824"
-    },
-    {
-      "id": "ch04_q29",
-      "answer": "a.** $P(x = 0) = \\frac{e^{- 1\\text{.}5}(1\\text{.}5^{0})}{0!} = \\text{.2231}$\n\n**b.** P(x \\< 4) = P(x ≤ 3) = .9344\n\n**c.** Poisson with *μ = 6*\n\n*P*(*x* ≤ 12) = .9912\n\n**d.** Poisson with *μ = 6*\n\n*P*(*x* = 0) = .0025"
-    },
-    {
-      "id": "ch04_q30",
-      "answer": "**a.** *x* 1 2 3 4 5\n\n*p*(*x*) $\\frac{1}{\\text{15}}$ $\\frac{2}{\\text{15}}$ $\\frac{1}{5}$ $\\frac{4}{\\text{15}}$ $\\frac{1}{3}$\n\n**b.** *p*(*x*) ≥ 0 for each value of *x*.\\\n[FORMULA:ch04_q01_ans_f01_image1.emf]\n\n**c.**\n\n**d.**"
+      "answer": "a. Discrete.\n\nb. Discrete.\n\nc. Continuous.\n\nd. Discrete.\n\ne. Continuous.\n\nf. Continuous.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch04-review-v1"
     },
     {
       "id": "ch04_q31",
-      "answer": "**a.** *P*(*x* = 0) = .7857\n\n**b.** *P*(*x* ≥ 1) = 1 -- *P*(*x* = 0) = 1 -- .7857 = .2143\n\n**c.** *P*(*x* ≤ 3) = .7857 + .1905 + .0221 + .0016 = .9999\n\n**d.** *P*(*x* ≥ 2) = 1 -- *P*(*x* ≤ 1) = 1 -- .9762 = .0238\n\n**e.** No, the probability of this result is small if the claim is true."
-    },
-    {
-      "id": "ch04_q32",
-      "answer": "**a.**\\\n*P*(*x* ≤ 4) = .9891\n\n**b.**\\\n*P*(*x* ≥ 12) = .9444\n\n**c.**\\\n[FORMULA:ch04_q03_ans_f01_image3.emf] *P*(*x* ≤ 1) = .9761"
+      "answer": "$P(X=0)=0.99^{24}\\approx0.7857$.\n\n$P(X\\ge1)=1-P(X=0)\\approx0.2143$.\n\n$P(X=3)=\\binom{24}{3}(0.01)^3(0.99)^{21}\\approx0.001639$.\n\n$P(X=2)=\\binom{24}{2}(0.01)^2(0.99)^{22}\\approx0.022125$.\n\nTwo exceedances have probability only about $2.21\\%$ under the claim, so the observation provides evidence against the claim, although it is not logically impossible.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch04-review-v1"
     },
     {
       "id": "ch04_q33",
-      "answer": "Compute the pdf in MINITAB with *μ* = 3.\n\n**a.** *P*(*x* = 0) = .0498\n\n**b.** Perhaps not; if the agency's claim is true, the probability of no patrol cars is quite small.\n\n**c.**"
+      "answer": "a. $P(X=0)=e^{-3}\\approx0.0498$.\n\nb. A no-pass night has probability about 4.98%, so it is unusual but not impossible; it gives some evidence against the claim, not conclusive proof.\n\nc. $P(X=1)=3e^{-3}$, so the probability for four consecutive nights is\n\n$$P=(3e^{-3})^4\\approx0.000498.$$",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch04-review-v1"
     },
     {
       "id": "ch04_q34",
-      "answer": "(a)$f(x) = \\left\\{ \\begin{matrix}\n\\frac{1}{6} & 0 \\leq x \\leq 6 \\\\\n0 & \\text{otherwise}\n\\end{matrix} \\right.\\$\n\n**b.** f(x)\n\n1/6\n\n0 6 min\n\n**c.**\n\n**d.**\n\n**e.**"
+      "answer": "a. $f(x)=1/6$ for $0\\le x\\le6$ and $f(x)=0$ otherwise.\n\nb. The density graph is a horizontal line at height $1/6$ from 0 to 6.\n\nc. $P(2\\le X\\le4)=2/6=1/3$.\n\nd. $P(3\\le X\\le6)=3/6=1/2$.\n\ne. The two intervals have total length $2+1=3$, so the probability is $3/6=1/2$.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch04-review-v1"
     },
     {
       "id": "ch04_q35",
-      "answer": "a.**\n\n**b.**"
+      "answer": "For $U(0,6)$, $\\mu_X=(0+6)/2=3$, $\\sigma_X^2=(6-0)^2/12=3$, and $\\sigma_X=\\sqrt3$. The one-standard-deviation interval is $[3-\\sqrt3,3+\\sqrt3]$, whose length is $2\\sqrt3$. Therefore\n\n$$P(|X-3|\\le\\sqrt3)=\\frac{2\\sqrt3}{6}=\\frac{\\sqrt3}{3}\\approx0.5774.$$",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch04-review-v1"
     },
     {
       "id": "ch04_q36",
-      "answer": "a.**\n\n**b.**\n\n**c.**\n\n**d.**\n\n**e.**"
+      "answer": "$z_{0.01}=2.326$, $z_{0.05}=1.645$, $z_{0.02}=2.054$, $-z_{0.01}=-2.326$, and $-z_{0.10}=-1.282$.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch04-review-v1"
     },
     {
       "id": "ch04_q37",
-      "answer": "a.**\n\n**b.**\n\n**c.** (1) *P*(*x* \\> 140) = *P*(*z* \\> 2.5) = 1 -- .9938 = .0062\\\n(2) *P*(*x* \\< 88) = *P*(*z* \\< --.75) = .2266\\\n(3) *P*(72 \\< *x* \\< 128) = *P*(--1.75 \\< *z* \\< 1.75) = .9599 -- .0401= .9198\\\n(4) *P*(--1.5 ≤ *z* ≤ 1.5) = .9332 -- .0668 = .8664\n\n**d.** *P*(*x* \\> 136) = *P*(*z* \\> 2.25) = 1 -- .9878 = .0122; 1.22%"
+      "answer": "The transformation is $z=(x-100)/16$.\n\n$P(X>140)=P(Z>2.5)\\approx0.0062$.\n\n$P(X<88)=P(Z<-0.75)\\approx0.2266$.\n\n$P(72<X<128)=P(-1.75<Z<1.75)\\approx0.9199$.\n\n$P(|Z|\\le1.5)\\approx0.8664$.\n\nFor $x=136$, $z=2.25$, so $P(X>136)=P(Z>2.25)\\approx0.0122$, or $1.22\\%$.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch04-review-v1"
     },
     {
       "id": "rotel_ch04_probability_01",
       "answer": "There are 5 even-numbered cards: gray 2, 4, 6 and yellow 2, 4; 3 are gray even cards. Therefore\n\n$$P(G)=\\frac7{12},\\qquad P(E)=\\frac5{12},$$\n\n$$P(G\\cap E)=\\frac3{12}=\\frac14,$$\n\n$$P(G\\cup E)=\\frac{7+5-3}{12}=\\frac34,$$\n\n$$P(G\\mid E)=\\frac35,\\qquad P(E\\mid G)=\\frac37.$$",
-      "review_status": "independently solved, translated, and reviewed",
-      "audit_pack": "english-normalization-v1"
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch04-review-v1"
     },
     {
       "id": "rotel_ch04_probability_02",
       "answer": "With replacement, the draws are independent.\n\n$$P(G_1\\cap G_2)=\\left(\\frac9{15}\\right)^2=0.36.$$\n\nThe complement of at least one gray is two yellows, so\n\n$$P(A)=1-\\left(\\frac6{15}\\right)^2=0.84.$$\n\nBy independence,\n\n$$P(G_2\\mid G_1)=P(G_2)=\\frac9{15}=0.6.$$",
-      "review_status": "independently solved, translated, and reviewed",
-      "audit_pack": "english-normalization-v1"
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch04-review-v1"
     },
     {
       "id": "rotel_ch04_probability_03",
       "answer": "By the addition rule,\n\n$$P(C\\cup N)=0.43+0.12-0.03=0.52.$$\n\nTherefore,\n\n$$P(\\text{neither})=1-P(C\\cup N)=1-0.52=0.48.$$",
-      "review_status": "independently solved, translated, and reviewed",
-      "audit_pack": "english-normalization-v1"
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch04-review-v1"
     },
     {
       "id": "rotel_ch04_probability_04",
       "answer": "a. $P(\\text{cup})=47/226\\approx0.2080$.\n\nb. The flavors are mutually exclusive, so $P(\\text{chocolate}\\cup\\text{swirl})=189/226\\approx0.8363$.\n\nc. $P(\\text{chocolate}\\cap\\text{cup})=20/226\\approx0.0885$.\n\nd. $P(\\text{strawberry}\\mid\\text{cone})=15/179\\approx0.0838$.\n\ne. $P(\\text{not chocolate})=124/226\\approx0.5487$.",
-      "review_status": "independently solved, translated, and reviewed",
-      "audit_pack": "english-normalization-v1"
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch04-review-v1"
     },
     {
       "id": "rotel_ch04_probability_05",
       "answer": "a. The complement is owning and not living alone, so $1-15/100=0.85$.\n\nb. The complement is renting and living alone, so $1-29/100=0.71$.\n\nc. The complement is owning and living alone, so $1-21/100=0.79$.",
-      "review_status": "independently solved, translated, and reviewed",
-      "audit_pack": "english-normalization-v1"
-    },
-    {
-      "id": "ch04_q14",
-      "answer": "**A. They are always dependent.**\n\nMutual exclusivity gives $P(A\\cap B)=0$. Because $P(A)>0$ and $P(B)>0$, we have $P(A)P(B)>0$. Therefore $P(A\\cap B)\\ne P(A)P(B)$, so the events are not independent.",
       "review_status": "independently solved and reviewed",
-      "audit_pack": "missing-answer-recovery-v1"
-    },
-    {
-      "id": "ch04_q15",
-      "answer": "**C. Probability.**\n\nA probability is a number from 0 to 1 that quantifies the likelihood of an event.",
-      "review_status": "independently solved and reviewed",
-      "audit_pack": "missing-answer-recovery-v1"
+      "audit_pack": "ch04-review-v1"
     },
     {
       "id": "ch04_q23",
-      "answer": "Let $F$ denote female, $M$ denote male, and $G$ denote Greek-organization membership. Then\n\n$$P(F)=0.55,\\qquad P(M)=0.45,\\qquad P(G)=0.25,$$\n\nand\n\n$$P(G\\cap M)=P(G\\mid M)P(M)=0.40(0.45)=0.18.$$\n\nTherefore\n\n$$P(G\\cap F)=P(G)-P(G\\cap M)=0.25-0.18=0.07,$$\n\nso\n\n$$P(G\\mid F)=\\frac{0.07}{0.55}\\approx0.1273.$$\n\nBecause $P(G\\mid F)\\ne P(G)$, gender and Greek-organization membership are **not independent**.",
+      "answer": "No. $P(G\\mid F)=0.1273$, while $P(G)=0.25$. Since the conditional probability is not equal to the marginal probability, the events are not independent.",
       "review_status": "independently solved and reviewed",
-      "audit_pack": "missing-answer-recovery-v1"
+      "audit_pack": "ch04-review-v1"
     },
     {
       "id": "ch04_q24",
-      "answer": "The probability of having a MasterCard is\n\n$$P(M)=0.40+0.20=0.60.$$\n\nThe probability of having both cards is $P(A\\cap M)=0.20$. Hence\n\n$$P(A\\mid M)=\\frac{P(A\\cap M)}{P(M)}=\\frac{0.20}{0.60}=\\frac13\\approx0.3333.$$\n\nThe required probability is therefore about **33.33%**.",
+      "answer": "$P(M)=0.40+0.20=0.60$ and $P(M\\cap A)=0.20$. Thus\n\n$$P(A\\mid M)=\\frac{0.20}{0.60}=\\frac13\\approx0.3333.$$",
       "review_status": "independently solved and reviewed",
-      "audit_pack": "missing-answer-recovery-v1"
+      "audit_pack": "ch04-review-v1"
     }
   ]
 }

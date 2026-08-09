@@ -1,0 +1,186 @@
+{
+  "schema_version": 1,
+  "pack_id": "ch04-review-v1",
+  "chapter": "Ch04",
+  "baseline_records": 42,
+  "summary": {"reviewed_and_retained": 32, "deleted": 10},
+  "records": [
+    {
+      "id":"ch04_q01","chapter":"Ch04","decision":"rewrite","question_type":"选择题","difficulty":2,
+      "keywords":["independence","mutually exclusive events","conditional probability"],
+      "clean_question":"Choose the one correct answer for each item.\n\n1. Two mutually exclusive events with positive probabilities are ____ dependent.\nA. Always  B. Sometimes  C. Never\n\n2. ____ is a numerical measure of the chance that an uncertain event will occur.\nA. Random experiment  B. Sample space  C. Probability  D. Complement  E. Population\n\n3. Which condition guarantees that $A$ and $B$ are independent?\nA. They are mutually exclusive.  B. $P(A)$ is not influenced by $P(B)$.  C. $P(A\\cap B)=0$.  D. $P(A\\mid B)=P(A)$.  E. Both B and D.\n\n4. For independent events, ____ their probabilities to obtain the intersection probability.\nA. Divide  B. Add  C. Multiply  D. Subtract\n\n5. Events that cannot occur simultaneously are called _____.\nA. Independent  B. Mutually exclusive  C. Intersections  D. Unions\n\n6. If $A$ and $B$ are independent, which expression equals $P(A\\cap B)$?\nA. $P(A)P(B)$  B. $P(A)P(B\\mid A)$  C. $P(B)P(A\\mid B)$  D. All of the above",
+      "clean_answer":"1. A. Always. For positive probabilities, $P(A\\cap B)=0$ but $P(A)P(B)>0$.\n\n2. C. Probability.\n\n3. E. Both B and D.\n\n4. C. Multiply.\n\n5. B. Mutually exclusive.\n\n6. D. All of the above; the multiplication rule gives the same intersection probability in each form."
+    },
+    {
+      "id":"ch04_q02","chapter":"Ch04","decision":"rewrite","question_type":"综合题","difficulty":3,
+      "keywords":["sample space","tree diagram","equally likely outcomes"], "formula_refs":[], "data_refs":[],
+      "clean_question":"Two patrons independently choose one of three diet colas, A, B, or C.\n\na. List the nine ordered outcomes.\n\nb. List the outcomes for (1) both choose A, (2) different colas, (3) at least one chooses A, and (4) neither chooses C.\n\nc. Assuming the nine outcomes are equally likely, find each probability.",
+      "clean_answer":"The sample space is $\\{AA,AB,AC,BA,BB,BC,CA,CB,CC\\}$.\n\n| Event | Outcomes | Probability |\n|---|---|---:|\n| Both choose A | $AA$ | $1/9$ |\n| Different colas | $AB,AC,BA,BC,CA,CB$ | $6/9=2/3$ |\n| At least one chooses A | $AA,AB,AC,BA,CA$ | $5/9$ |\n| Neither chooses C | $AA,AB,BA,BB$ | $4/9$ |"
+    },
+    {
+      "id":"ch04_q03","chapter":"Ch04","decision":"rewrite","question_type":"计算题","difficulty":2,
+      "keywords":["frequency distribution","probability"],
+      "clean_question":"The following frequency table summarizes annual family income for 75,998 sampled U.S. families. Correct the final class to $\\$200,000$ and above so that the classes do not overlap. Estimate the probability that a randomly selected family has income from $\\$60,000$ through $\\$199,999$.\n\n| Income class | Frequency |\n|---|---:|\n| Under $\\$20,000$ | 11,470 |\n| $\\$20,000$–$39,999$ | 17,572 |\n| $\\$40,000$–$59,999$ | 14,534 |\n| $\\$60,000$–$79,999$ | 11,410 |\n| $\\$80,000$–$99,999$ | 7,535 |\n| $\\$100,000$–$199,999$ | 11,197 |\n| $\\$200,000$ and above | 2,280 |\n| **Total** | **75,998** |",
+      "clean_answer":"The relevant frequency is $11,410+7,535+11,197=30,142$. Therefore\n\n$$P(60{,}000\\le X<200{,}000)=\\frac{30,142}{75,998}\\approx0.3966.$$\n\nThe estimated probability is about $39.66\\%$."
+    },
+    {
+      "id":"ch04_q04","chapter":"Ch04","decision":"rewrite","question_type":"计算题","difficulty":2,
+      "keywords":["addition rule","joint probability","mutually exclusive events"],
+      "clean_question":"Among executives, $P(T)=0.35$ read *Time*, $P(N)=0.20$ read *Newsweek*, and $P(U)=0.40$ read *U.S. News and World Report*. Also, $P(T\\cap U)=0.10$.\n\na. Find $P(T\\cup U)$.\n\nb. What is $P(T\\cap U)$ called?\n\nc. Are $T$ and $U$ mutually exclusive? Explain.",
+      "clean_answer":"a. $P(T\\cup U)=P(T)+P(U)-P(T\\cap U)=0.35+0.40-0.10=0.65$.\n\nb. $P(T\\cap U)=0.10$ is the joint probability of reading both publications.\n\nc. No. Mutually exclusive events have intersection probability 0, but here the intersection probability is 0.10."
+    },
+    {
+      "id":"ch04_q05","chapter":"Ch04","decision":"rewrite","question_type":"计算题","difficulty":1,
+      "keywords":["independence","multiplication rule"],
+      "clean_question":"A fair coin is tossed, one card is drawn from a standard 52-card deck, and a fair die is rolled. Find the probability of a head, an ace, and a five.",
+      "clean_answer":"The independent probabilities are $1/2$, $4/52$, and $1/6$. Thus\n\n$$P=\\frac12\\cdot\\frac4{52}\\cdot\\frac16=\\frac1{156}\\approx0.00641.$$"
+    },
+    {
+      "id":"ch04_q06","chapter":"Ch04","decision":"rewrite","question_type":"计算题","difficulty":2,
+      "keywords":["independence","complement rule","union probability"],
+      "clean_question":"Joe has a $25\\%$ acceptance probability at University A and a $40\\%$ acceptance probability at University B. Assume the two admission decisions are independent. Find the probability that he is accepted by at least one university.",
+      "clean_answer":"The complement is rejection by both universities. Therefore\n\n$$P(\\text{at least one})=1-P(\\text{both rejected})=1-(0.75)(0.60)=0.55.$$"
+    },
+    {
+      "id":"ch04_q07","chapter":"Ch04","decision":"rewrite","question_type":"综合题","difficulty":3,
+      "keywords":["contingency table","addition rule","conditional probability"],
+      "clean_question":"The Wood County sheriff recorded 150 crimes.\n\n| Crime type | Under 20 | Age 20–40 | Over 40 | Total |\n|---|---:|---:|---:|---:|\n| Violent | 27 | 41 | 14 | 82 |\n| Nonviolent | 12 | 34 | 22 | 68 |\n| Total | 39 | 75 | 36 | 150 |\n\nFind: (a) $P(\\text{violent})$; (b) $P(\\text{violent or under 20})$ and name the addition rule; (c) $P(\\text{under 20}\\mid\\text{violent})$; and (d) if two crimes are selected without replacement, the probability both are violent.",
+      "clean_answer":"a. $P(\\text{violent})=82/150\\approx0.5467$.\n\nb. $P(\\text{violent or under 20})=(82+39-27)/150=94/150\\approx0.6267$, using the general addition rule.\n\nc. $P(\\text{under 20}\\mid\\text{violent})=27/82\\approx0.3293$.\n\nd. Without replacement, $P(\\text{two violent})=(82/150)(81/149)\\approx0.2972$."
+    },
+    {
+      "id":"ch04_q08","chapter":"Ch04","decision":"rewrite","question_type":"综合题","difficulty":2,
+      "keywords":["contingency table","conditional probability","independence"], "formula_refs":[], "data_refs":[],
+      "clean_question":"Among 100 insurance claims, 40 are fire claims, 16 of the fire claims are fraudulent, and 40 claims in total are fraudulent.\n\na. Construct the $2\\times2$ table for fire/nonfire and fraudulent/nonfraudulent.\n\nb. Find $P(\\text{fraudulent}\\mid\\text{fire})$.\n\nc. Determine whether fraud status and fire status are independent.",
+      "clean_answer":"| | Fire | Not fire | Total |\n|---|---:|---:|---:|\n| Fraudulent | 16 | 24 | 40 |\n| Not fraudulent | 24 | 36 | 60 |\n| Total | 40 | 60 | 100 |\n\na. The table is shown above.\n\nb. $P(\\text{fraudulent}\\mid\\text{fire})=16/40=0.40$.\n\nc. $P(\\text{fraudulent})=40/100=0.40$, equal to the conditional probability, so the events are independent."
+    },
+    {
+      "id":"ch04_q09","chapter":"Ch04","decision":"rewrite","question_type":"计算题","difficulty":3,
+      "keywords":["law of total probability","Bayes theorem"], "formula_refs":[], "data_refs":[],
+      "clean_question":"Events $A_1$ and $A_2$ are mutually exclusive and exhaustive, with $P(A_1)=0.8$, $P(A_2)=0.2$, $P(B\\mid A_1)=0.1$, and $P(B\\mid A_2)=0.3$. Find $P(B)$, $P(A_1\\mid B)$, and $P(A_2\\mid B)$.",
+      "clean_answer":"$$P(B)=0.8(0.1)+0.2(0.3)=0.14.$$\n\nBy Bayes' theorem,\n\n$$P(A_1\\mid B)=\\frac{0.8(0.1)}{0.14}=\\frac47\\approx0.5714,$$\n\n$$P(A_2\\mid B)=\\frac{0.2(0.3)}{0.14}=\\frac37\\approx0.4286.$$"
+    },
+    {
+      "id":"ch04_q10","chapter":"Ch04","decision":"rewrite","question_type":"计算题","difficulty":3,
+      "keywords":["Bayes theorem","conditional probability","decision analysis"], "formula_refs":[], "data_refs":[],
+      "clean_question":"Three percent of customers default. Of those who default, 95% were at least twice late. Of those who do not default, 30% were at least twice late.\n\na. Find the probability that a customer who was at least twice late will default.\n\nb. Should a store discontinue credit for every customer with at least two late payments? Explain using the result.",
+      "clean_answer":"Let $D$ denote default and $L$ denote at least two late payments. Then $P(D)=0.03$, $P(L\\mid D)=0.95$, and $P(L\\mid D^c)=0.30$.\n\n$$P(D\\mid L)=\\frac{0.03(0.95)}{0.03(0.95)+0.97(0.30)}=\\frac{0.0285}{0.3195}\\approx0.0892.$$\n\nOnly about $8.92\\%$ of flagged customers default, so the policy would deny credit to many nondefaulters and should not be adopted without additional evidence."
+    },
+    {"id":"ch04_q11","chapter":"Ch04","decision":"delete","reason":"Duplicate of item 6 in ch04_q01."},
+    {"id":"ch04_q12","chapter":"Ch04","decision":"delete","reason":"Duplicate definition already covered in the reviewed multiple-choice block ch04_q01 and adds no new task."},
+    {"id":"ch04_q13","chapter":"Ch04","decision":"delete","reason":"Duplicate of item 3 in ch04_q01."},
+    {"id":"ch04_q14","chapter":"Ch04","decision":"delete","reason":"Duplicate of item 1 in ch04_q01."},
+    {"id":"ch04_q15","chapter":"Ch04","decision":"delete","reason":"Duplicate of item 2 in ch04_q01."},
+    {
+      "id":"ch04_q16","chapter":"Ch04","decision":"rewrite","question_type":"计算题","difficulty":1,
+      "keywords":["conditional probability","cards"], "formula_refs":[], "data_refs":[],
+      "clean_question":"From a standard 52-card deck, find the probability of drawing a red card given that the card is a face card.",
+      "clean_answer":"There are 12 face cards, 6 of which are red. Therefore $P(\\text{red}\\mid\\text{face})=6/12=1/2$."
+    },
+    {
+      "id":"ch04_q17","chapter":"Ch04","decision":"rewrite","question_type":"计算题","difficulty":1,
+      "keywords":["conditional probability","cards"], "formula_refs":[], "data_refs":[],
+      "clean_question":"From a standard 52-card deck, find the probability of drawing a face card given that the card is red.",
+      "clean_answer":"There are 26 red cards and 6 red face cards. Therefore $P(\\text{face}\\mid\\text{red})=6/26=3/13$."
+    },
+    {
+      "id":"ch04_q18","chapter":"Ch04","decision":"rewrite","question_type":"计算题","difficulty":2,
+      "keywords":["independence","multiplication rule","reliability"],
+      "clean_question":"A machine has upper, middle, and lower components. Their defect probabilities are 0.05, 0.04, and 0.01, respectively. Assuming defects are independent, find the probability that a machine is non-defective.",
+      "clean_answer":"$$P(\\text{non-defective})=(0.95)(0.96)(0.99)=0.90288\\approx0.9029.$$"
+    },
+    {
+      "id":"ch04_q19","chapter":"Ch04","decision":"rewrite","question_type":"计算题","difficulty":1,
+      "keywords":["independence","complement rule"],
+      "clean_question":"A machine is defective with probability $0.001$. Assuming independent production, find the probability that two machines are both non-defective.",
+      "clean_answer":"The non-defective probability is $0.999$, so\n\n$$P(\\text{two non-defective})=(0.999)^2=0.998001.$$"
+    },
+    {
+      "id":"ch04_q20","chapter":"Ch04","decision":"rewrite","question_type":"计算题","difficulty":1,
+      "keywords":["conditional probability","sample space"], "formula_refs":[], "data_refs":[],
+      "clean_question":"Assume each child is independently and equally likely to be a boy or a girl. What is the probability that both children in a two-child family are girls, given that at least one is a girl?",
+      "clean_answer":"Given at least one girl, the equally likely possibilities are $GG,GB,BG$. Only $GG$ has two girls, so the conditional probability is $1/3$."
+    },
+    {
+      "id":"ch04_q21","chapter":"Ch04","decision":"rewrite","question_type":"计算题","difficulty":3,
+      "keywords":["conditional probability","union probability"],
+      "clean_question":"At a university, 55% of undergraduates are female, 25% belong to a Greek organization, and 40% of male undergraduates belong to one. Find the probability that a randomly selected undergraduate is female or belongs to a Greek organization.",
+      "clean_answer":"Let $F$ be female and $G$ be Greek membership. Since $P(M)=0.45$, $P(G\\cap M)=0.40(0.45)=0.18$, so $P(G\\cap F)=0.25-0.18=0.07$. Therefore\n\n$$P(F\\cup G)=0.55+0.25-0.07=0.73.$$"
+    },
+    {
+      "id":"ch04_q22","chapter":"Ch04","decision":"rewrite","question_type":"计算题","difficulty":3,
+      "keywords":["conditional probability","law of total probability"],
+      "clean_question":"At a university, 55% of undergraduates are female, 25% belong to a Greek organization, and 40% of male undergraduates belong to one. Find $P(\\text{Greek membership}\\mid\\text{female})$.",
+      "clean_answer":"As above, $P(G\\cap F)=0.25-0.40(0.45)=0.07$. Hence\n\n$$P(G\\mid F)=\\frac{0.07}{0.55}\\approx0.1273.$$"
+    },
+    {
+      "id":"ch04_q23","chapter":"Ch04","decision":"rewrite","question_type":"判断题","difficulty":3,
+      "keywords":["independence","conditional probability"],
+      "clean_question":"At a university, 55% of undergraduates are female, 25% belong to a Greek organization, and 40% of male undergraduates belong to one. Are gender and Greek-organization membership independent? Show your reasoning.",
+      "clean_answer":"No. $P(G\\mid F)=0.1273$, while $P(G)=0.25$. Since the conditional probability is not equal to the marginal probability, the events are not independent."
+    },
+    {
+      "id":"ch04_q24","chapter":"Ch04","decision":"rewrite","question_type":"计算题","difficulty":2,
+      "keywords":["conditional probability","contingency table"],
+      "clean_question":"Among a mailing list, 40% have only a MasterCard, 10% have only an American Express card, 20% have both, and 30% have neither. Given that a person has a MasterCard, find the probability that the person also has an American Express card.",
+      "clean_answer":"$P(M)=0.40+0.20=0.60$ and $P(M\\cap A)=0.20$. Thus\n\n$$P(A\\mid M)=\\frac{0.20}{0.60}=\\frac13\\approx0.3333.$$"
+    },
+    {
+      "id":"ch04_q25","chapter":"Ch04","decision":"rewrite","question_type":"计算题","difficulty":2,
+      "keywords":["law of total probability"],
+      "clean_question":"Suppose $P(A)=0.45$, $P(B)=0.20$, $P(C)=0.35$, and $A,B,C$ are mutually exclusive and exhaustive. If $P(E\\mid A)=0.10$, $P(E\\mid B)=0.05$, and $P(E\\mid C)=0$, find $P(E)$.",
+      "clean_answer":"$$P(E)=0.45(0.10)+0.20(0.05)+0.35(0)=0.055.$$"
+    },
+    {
+      "id":"ch04_q26","chapter":"Ch04","decision":"rewrite","question_type":"判断题","difficulty":1,
+      "keywords":["discrete random variable","continuous random variable"],
+      "clean_question":"Classify each random variable as discrete or continuous.\n\na. The number of girls born to a couple who has three children.\n\nb. The number of defects found on an automobile at final inspection.\n\nc. The weight of sandwich meat placed on a sandwich.\n\nd. The number of incorrect laboratory procedures at a hospital in one week.\n\ne. The time a clerk needs to complete a task.\n\nf. The temperature of a pizza oven at a particular time.",
+      "clean_answer":"a. Discrete.\n\nb. Discrete.\n\nc. Continuous.\n\nd. Discrete.\n\ne. Continuous.\n\nf. Continuous."
+    },
+    {"id":"ch04_q27","chapter":"Ch04","decision":"delete","reason":"Duplicate of the fully solved and retained ch03_q30."},
+    {"id":"ch04_q28","chapter":"Ch04","decision":"delete","reason":"Duplicate of the fully solved and retained ch03_q31."},
+    {"id":"ch04_q29","chapter":"Ch04","decision":"delete","reason":"Duplicate of the fully solved and retained ch03_q32."},
+    {"id":"ch04_q30","chapter":"Ch04","decision":"delete","reason":"Duplicate of ch03_q30 and its answer is incomplete."},
+    {
+      "id":"ch04_q31","chapter":"Ch04","decision":"rewrite","question_type":"综合题","difficulty":3,
+      "keywords":["binomial distribution","rare-event probability","hypothesis assessment"],
+      "clean_question":"A manufacturer claims that at most 1% of its golf balls exceed the 1.62-ounce limit. Let $X$ be the number exceeding the limit in a random sample of 24 balls, assuming $X\\sim\\operatorname{Binomial}(24,0.01)$. Find $P(X=0)$, $P(X\\ge1)$, $P(X=3)$, and $P(X=2)$. If two balls exceed the limit, assess the claim.",
+      "clean_answer":"$P(X=0)=0.99^{24}\\approx0.7857$.\n\n$P(X\\ge1)=1-P(X=0)\\approx0.2143$.\n\n$P(X=3)=\\binom{24}{3}(0.01)^3(0.99)^{21}\\approx0.001639$.\n\n$P(X=2)=\\binom{24}{2}(0.01)^2(0.99)^{22}\\approx0.022125$.\n\nTwo exceedances have probability only about $2.21\\%$ under the claim, so the observation provides evidence against the claim, although it is not logically impossible."
+    },
+    {"id":"ch04_q32","chapter":"Ch04","decision":"delete","reason":"Every subpart refers to Exercises 5.24–5.26, whose distributions and parameters are not included in this record."},
+    {
+      "id":"ch04_q33","chapter":"Ch04","decision":"rewrite","question_type":"综合题","difficulty":3,
+      "keywords":["Poisson process","Poisson probability"],
+      "clean_question":"A patrol car passes through a neighborhood according to a Poisson process with mean 3 passes per night. Let $X$ be the number of passes during one night.\n\na. Find $P(X=0)$.\n\nb. If one randomly selected night has no passes, assess the agency's claim.\n\nc. Assuming independent nights, find the probability of exactly one pass on each of four consecutive nights.",
+      "clean_answer":"a. $P(X=0)=e^{-3}\\approx0.0498$.\n\nb. A no-pass night has probability about 4.98%, so it is unusual but not impossible; it gives some evidence against the claim, not conclusive proof.\n\nc. $P(X=1)=3e^{-3}$, so the probability for four consecutive nights is\n\n$$P=(3e^{-3})^4\\approx0.000498.$$"
+    },
+    {
+      "id":"ch04_q34","chapter":"Ch04","decision":"rewrite","question_type":"综合题","difficulty":2,
+      "keywords":["uniform distribution","probability density"],
+      "clean_question":"Let the waiting time $X$ for an elevator be uniformly distributed on $[0,6]$ minutes.\n\na. Give the density function.\n\nb. Describe its graph.\n\nc. Find $P(2\\le X\\le4)$.\n\nd. Find $P(3\\le X\\le6)$.\n\ne. Find $P(0\\le X\\le2\\text{ or }5\\le X\\le6)$.",
+      "clean_answer":"a. $f(x)=1/6$ for $0\\le x\\le6$ and $f(x)=0$ otherwise.\n\nb. The density graph is a horizontal line at height $1/6$ from 0 to 6.\n\nc. $P(2\\le X\\le4)=2/6=1/3$.\n\nd. $P(3\\le X\\le6)=3/6=1/2$.\n\ne. The two intervals have total length $2+1=3$, so the probability is $3/6=1/2$."
+    },
+    {
+      "id":"ch04_q35","chapter":"Ch04","decision":"rewrite","question_type":"计算题","difficulty":2,
+      "keywords":["uniform distribution","mean","variance"],
+      "clean_question":"Let $X$ be uniformly distributed on $[0,6]$ minutes. Calculate $\\mu_X$, $\\sigma_X^2$, and $\\sigma_X$, and find the probability that $X$ is within one standard deviation of the mean.",
+      "clean_answer":"For $U(0,6)$, $\\mu_X=(0+6)/2=3$, $\\sigma_X^2=(6-0)^2/12=3$, and $\\sigma_X=\\sqrt3$. The one-standard-deviation interval is $[3-\\sqrt3,3+\\sqrt3]$, whose length is $2\\sqrt3$. Therefore\n\n$$P(|X-3|\\le\\sqrt3)=\\frac{2\\sqrt3}{6}=\\frac{\\sqrt3}{3}\\approx0.5774.$$"
+    },
+    {
+      "id":"ch04_q36","chapter":"Ch04","decision":"rewrite","question_type":"计算题","difficulty":2,
+      "keywords":["standard normal distribution","critical value","z-score"],
+      "clean_question":"For a standard normal random variable $Z$, use the convention $P(Z>z_\\alpha)=\\alpha$. Find $z_{0.01}$, $z_{0.05}$, $z_{0.02}$, $-z_{0.01}$, and $-z_{0.10}$.",
+      "clean_answer":"$z_{0.01}=2.326$, $z_{0.05}=1.645$, $z_{0.02}=2.054$, $-z_{0.01}=-2.326$, and $-z_{0.10}=-1.282$."
+    },
+    {
+      "id":"ch04_q37","chapter":"Ch04","decision":"rewrite","question_type":"综合题","difficulty":3,
+      "keywords":["normal distribution","z-score","standard normal probability"],
+      "clean_question":"Stanford–Binet IQ scores are normally distributed with mean 100 and standard deviation 16.\n\na. Give the z-score transformation.\n\nb. Find the probability of an IQ over 140, under 88, between 72 and 128, and within 1.5 standard deviations of the mean.\n\nc. If your score is 136, find the percentage scoring higher.",
+      "clean_answer":"The transformation is $z=(x-100)/16$.\n\n$P(X>140)=P(Z>2.5)\\approx0.0062$.\n\n$P(X<88)=P(Z<-0.75)\\approx0.2266$.\n\n$P(72<X<128)=P(-1.75<Z<1.75)\\approx0.9199$.\n\n$P(|Z|\\le1.5)\\approx0.8664$.\n\nFor $x=136$, $z=2.25$, so $P(X>136)=P(Z>2.25)\\approx0.0122$, or $1.22\\%$."
+    },
+    {"id":"rotel_ch04_probability_01","chapter":"Ch04","decision":"keep","question_type":"计算题","difficulty":2,"keywords":["conditional probability","union probability"]},
+    {"id":"rotel_ch04_probability_02","chapter":"Ch04","decision":"keep","question_type":"计算题","difficulty":2,"keywords":["independence","complement rule"]},
+    {"id":"rotel_ch04_probability_03","chapter":"Ch04","decision":"keep","question_type":"计算题","difficulty":1,"keywords":["addition rule","complement rule"]},
+    {"id":"rotel_ch04_probability_04","chapter":"Ch04","decision":"keep","question_type":"综合题","difficulty":2,"keywords":["contingency table","conditional probability"]},
+    {"id":"rotel_ch04_probability_05","chapter":"Ch04","decision":"keep","question_type":"计算题","difficulty":2,"keywords":["addition rule","complement rule"]}
+  ]
+}
