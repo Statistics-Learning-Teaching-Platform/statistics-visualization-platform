@@ -18,7 +18,7 @@
 ## Priority findings
 
 - Missing answers: 0
-- Unclassified question types: 6
+- Unclassified question types: 4
 - Multi-part alignment candidates: 108
 - Unresolved sources: 0
 - Missing referenced assets: 0

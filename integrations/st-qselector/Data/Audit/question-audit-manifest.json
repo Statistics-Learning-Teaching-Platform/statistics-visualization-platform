@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-08-09T10:56:08.038746+00:00",
+  "generated_at": "2026-08-09T10:58:02.955699+00:00",
   "source_roots": {
     "origin": "Data/Origin",
     "formed": "Data/Formed"
@@ -41,7 +41,7 @@
       "escaped_line_end": 1,
       "legacy_superscript": 2,
       "multi_part_requires_alignment_review": 108,
-      "question_type_unclassified": 6,
+      "question_type_unclassified": 4,
       "references_unprovided_context": 2
     },
     "eligible_for_paper": 0
@@ -14157,14 +14157,17 @@
         "resolvable": true
       },
       "original": {
-        "question_hash": "cfbe33bbccda77bd26955a8131437e7e9826a403272efad5f479a8c14303deea",
-        "answer_hash": "b5067f3d09a3317a4e908b545bf617abac7f69e750d84095c1f99fd7d1cca44c",
-        "type": "unknown",
-        "difficulty": 1,
-        "keywords": [],
+        "question_hash": "bdd50939b6050265d532146a9ee5ee5d08d9dc0936cac027341c0e395c2a7d52",
+        "answer_hash": "f60b2c2375efcae04f6101731b5ca3efd422735a090d14a573b0101d66e52976",
+        "type": "综合题",
+        "difficulty": 2,
+        "keywords": [
+          "linear regression",
+          "correlation"
+        ],
         "formula_refs": [],
         "data_refs": [],
-        "review_status": null
+        "review_status": "independently solved and reviewed"
       },
       "diagnostics": {
         "question_language": "en",
@@ -14176,10 +14179,9 @@
         "context_findings": [],
         "detected_part_count": 3,
         "grouping_status": "multi_part_candidate",
-        "previously_reviewed": false,
+        "previously_reviewed": true,
         "issue_codes": [
-          "multi_part_requires_alignment_review",
-          "question_type_unclassified"
+          "multi_part_requires_alignment_review"
         ]
       },
       "workflow": {
@@ -14209,14 +14211,17 @@
         "resolvable": true
       },
       "original": {
-        "question_hash": "73d4faae5ab20e239c42a2f8cad8f25867de3de427b9df5aea76649c96ddfde9",
-        "answer_hash": "08b15cd239ae3139b671328b993489cc61a51b48cf1f45a91c7553717ba956e3",
-        "type": "unknown",
-        "difficulty": 1,
-        "keywords": [],
+        "question_hash": "d997d4d302df1a20a58141f5bc092a01a17aea7c6dddbefd272d022b43a47a46",
+        "answer_hash": "bce4991004bbfe19afac1d1ad1192172a9bcb76b1e1dd1acd3f9f06aa8811a3e",
+        "type": "简答题",
+        "difficulty": 2,
+        "keywords": [
+          "correlation",
+          "linear association"
+        ],
         "formula_refs": [],
         "data_refs": [],
-        "review_status": null
+        "review_status": "independently solved and reviewed"
       },
       "diagnostics": {
         "question_language": "en",
@@ -14228,10 +14233,8 @@
         "context_findings": [],
         "detected_part_count": 0,
         "grouping_status": "atomic_candidate",
-        "previously_reviewed": false,
-        "issue_codes": [
-          "question_type_unclassified"
-        ]
+        "previously_reviewed": true,
+        "issue_codes": []
       },
       "workflow": {
         "decision": "pending",
