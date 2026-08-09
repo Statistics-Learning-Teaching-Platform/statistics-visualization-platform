@@ -2,251 +2,234 @@
   "chapter": 9,
   "questions": [
     {
-      "id": "ch09_q01",
-      "content": "The managers at Hunter Chemical Company claim that their major product contains on average $\\mu = 0.4$ fluid ounces of caustic material per gallon. They further state that the distribution of caustic material is normal with a standard deviation of $\\sigma = 1.3$ fluid ounces. If there is too much caustic material, the product will be dangerous. A government inspector is brought in to test the product. She randomly selects a sample of 100 gallon-size containers of the product and finds that their mean weight of caustic materials is $\\overline{X} = 4.5\\$fluid ounces per gallon.\n\n> \\(a\\) What are the null and alternative hypotheses that the inspector is exploring? Give them both mathematically and in English and explain your reasoning.\n>\n> \\(b\\) Conduct the hypothesis test using test statistics and state your conclusion.\n>\n> \\(c\\) Find the probability of getting a sample mean $\\overline{X}$ , as high as or higher than 4.5 if the production process was working as normal. Based on this probability would you be inclined to accept or reject the null hypothesis? What conclusions would you draw about the amount of caustic material being produced? Explain briefly.",
-      "source": "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment_Chapter 9 Hypothesis Testing Questions.docx",
-      "type": "unknown",
-      "difficulty": 1,
-      "keywords": [],
-      "formula_refs": [
-        "ch09_q01_ans_f01_image1.emf",
-        "ch09_q01_ans_f02_image2.emf",
-        "ch09_q01_ans_f03_image3.emf"
-      ],
-      "data_refs": []
-    },
-    {
       "id": "ch09_q02",
-      "content": "The American Hospital Association reports in Hospital Stat that the mean cost to community hospitals per patient per day in U.S. hospitals was \\$931 in 1994. In that same year, a random sample of 30 daily costs in Massachusetts hospitals yielded a mean of \\$1131. Assuming a population standard deviation of \\$333 for Massachusetts hospitals, do the data provide sufficient evidence to conclude that in 1994 the mean cost in Massachusetts hospitals exceeded the national mean of \\$931? Perform the required hypothesis test at the 5% significance level.",
+      "content": "The 1994 national mean daily hospital cost was $\\$931$. A random sample of 30 Massachusetts hospital costs has mean $\\$1,131$. Assume $\\sigma=\\$333$. Test at $\\alpha=0.05$ whether the Massachusetts mean exceeded $\\$931$.",
       "source": "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment_Chapter 9 Hypothesis Testing Questions.docx",
-      "type": "unknown",
-      "difficulty": 1,
-      "keywords": [],
+      "type": "计算题",
+      "difficulty": 2,
+      "keywords": [
+        "one-sample z test",
+        "hypothesis testing"
+      ],
       "formula_refs": [],
-      "data_refs": []
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch09-review-v1"
     },
     {
       "id": "ch09_q03",
-      "content": "In 1990 the average passenger vehicle was driven 10.3 thousand miles, as reported by the U.S. Federal Highway Administration in Highway Statistics. A random sample of 500 passenger vehicles had a mean of 10.1 thousand miles driven for last year. Let $\\mu$ denote last year\\'s mean distance for all vehicles.\n\na)  Perform the hypothesis test\n\n> Ho: $\\mu$=10.3 thousand miles\n>\n> Ha: $\\mu$≠10.3 thousand miles\n>\n> at the 5% significance level. Assume last year\\'s standard deviation of distances driven for all passenger vehicles is 6.0 thousand miles.\n\nb)  Find a 95% confidence interval for$\\ \\mu$",
+      "content": "In 1990, mean annual passenger-vehicle mileage was 10.3 thousand miles. A random sample of 500 vehicles has mean 10.1 thousand miles; assume known $\\sigma=6.0$ thousand miles.\n\na. Test $H_0:\\mu=10.3$ versus $H_a:\\mu\\ne10.3$ at $\\alpha=0.05$.\n\nb. Construct a 95% confidence interval for $\\mu$.",
       "source": "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment_Chapter 9 Hypothesis Testing Questions.docx",
-      "type": "unknown",
-      "difficulty": 1,
-      "keywords": [],
+      "type": "综合题",
+      "difficulty": 2,
+      "keywords": [
+        "one-sample z test",
+        "confidence interval"
+      ],
       "formula_refs": [],
-      "data_refs": []
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch09-review-v1"
     },
     {
       "id": "ch09_q04",
-      "content": "Last year the mean price of apartments in Zhuhai was 8650 RMB/m2 with a standard deviation 735 RMB/m2. A sample of 42 recent deals revealed that the mean was 8950 RMB/m2. Is there sufficient evidence to claim that the mean price of apartments in Zhuhai has moved higher this year with α = 0.01?",
+      "content": "Last year's mean apartment price in Zhuhai was $\\$8,650$/m² with known $\\sigma=\\$735$/m². A sample of 42 recent deals has mean $\\$8,950$/m². At $\\alpha=0.01$, test whether the mean price has increased.",
       "source": "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment_Chapter 9 Hypothesis Testing Questions.docx",
-      "type": "unknown",
-      "difficulty": 1,
-      "keywords": [],
-      "formula_refs": [
-        "ch09_q04_ans_f01_image4.wmf",
-        "ch09_q04_ans_f02_image5.wmf",
-        "ch09_q04_ans_f03_image6.wmf",
-        "ch09_q04_ans_f04_image7.wmf",
-        "ch09_q04_ans_f05_image8.wmf"
+      "type": "计算题",
+      "difficulty": 2,
+      "keywords": [
+        "one-sample z test",
+        "hypothesis testing"
       ],
-      "data_refs": []
-    },
-    {
-      "id": "ch09_q05",
-      "content": "The Watch Corporation of Switzerland claims that their watches on average will neither gain nor lose time during a week. A sample of 18 watches provided the following gains(+) or losses(-) in seconds per week.\n\n  -------------------------------------------------------------------------------------------------------------\n  -0.38 -0.20 -0.38 -0.32 +0.32 -0.23 +0.30 +0.25 -0.10 -0.37 -0.61 -0.48 -0.47 -0.64 -0.04 -0.20 -0.68 +0.05\n  -------------------------------------------------------------------------------------------------------------\n\n  -------------------------------------------------------------------------------------------------------------\n\nIs it reasonable to conclude the mean gain or loss in time for the watches is 0? Use the 0.05 significance level. Estimate the p-value.",
-      "source": "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment_Chapter 9 Hypothesis Testing Questions.docx",
-      "type": "unknown",
-      "difficulty": 1,
-      "keywords": [],
-      "formula_refs": [
-        "ch09_q05_f01_image9.wmf",
-        "ch09_q05_f02_image10.wmf",
-        "ch09_q05_f03_image11.wmf",
-        "ch09_q05_f04_image12.wmf",
-        "ch09_q05_f05_image13.wmf",
-        "ch09_q05_f06_image14.wmf",
-        "ch09_q05_f07_image15.wmf",
-        "ch09_q05_f08_image16.wmf",
-        "ch09_q05_f09_image17.wmf",
-        "ch09_q05_f10_image9.wmf",
-        "ch09_q05_f11_image18.wmf",
-        "ch09_q05_f12_image19.wmf",
-        "ch09_q05_f13_image20.wmf",
-        "ch09_q05_f14_image21.wmf",
-        "ch09_q05_f15_image9.wmf"
-      ],
-      "data_refs": []
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch09-review-v1"
     },
     {
       "id": "ch09_q06",
-      "content": "A manufacturer of light bulbs claims that its light bulbs have a mean life of 1520 hours with an unknown standard deviation. A random sample of 25 such bulbs is selected for testing. If the sample produces a mean value of 1505 hours and a sample standard deviation of 86, is there sufficient evidence to claim that the mean life is significantly less than the manufacturer claimed? Assume that light bulb lifetimes are normally distributed and use a significance level of alpha=0.05.",
+      "content": "A manufacturer claims mean light-bulb life is 1,520 hours. A random sample of 25 bulbs has mean 1,505 hours and sample standard deviation 86 hours. Assuming normal lifetimes, test at $\\alpha=0.05$ whether the mean is less than 1,520 hours.",
       "source": "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment_Chapter 9 Hypothesis Testing Questions.docx",
-      "type": "unknown",
-      "difficulty": 1,
-      "keywords": [],
-      "formula_refs": [
-        "ch09_q06_ans_f01_image22.wmf",
-        "ch09_q06_ans_f02_image23.wmf",
-        "ch09_q06_ans_f03_image24.wmf",
-        "ch09_q06_ans_f04_image25.wmf"
+      "type": "计算题",
+      "difficulty": 2,
+      "keywords": [
+        "one-sample t test",
+        "hypothesis testing"
       ],
-      "data_refs": []
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch09-review-v1"
     },
     {
       "id": "ch09_q07",
-      "content": "A large mail-order company has placed an order for 5,000 electric can openers with a supplier on the condition that no more than 2% of the devices will be defective. To check the shipment, the company tests a random sample of 400(n=400) of the can openers and finds that 11 (sample proportion= 11/400 = .0275) are defective.\n\na)  Does this provide sufficient evidence to indicate that the proportion of defective can openers in the shipment exceeds 2%? Test using a = .05.\n\nb)  Find and interpret the observed significance level for the hypothesis test.",
+      "content": "A shipment may contain at most 2% defective electric can openers. In a random sample of 400, 11 are defective.\n\na. Test at $\\alpha=0.05$ whether the defect rate exceeds 2%.\n\nb. Report and interpret the observed significance level.",
       "source": "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment_Chapter 9 Hypothesis Testing Questions.docx",
-      "type": "unknown",
-      "difficulty": 1,
-      "keywords": [],
+      "type": "综合题",
+      "difficulty": 3,
+      "keywords": [
+        "one-sample proportion test",
+        "hypothesis testing"
+      ],
       "formula_refs": [],
-      "data_refs": []
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch09-review-v1"
     },
     {
       "id": "ch09_q08",
-      "content": "Paul's housemate Miranda is trying to convince Paul to get a piercing. Paul is very sensitive to popular opinion, however, and will only get one if \"everyone else is doing it\". Of course, everyone is unrealistic, so Paul will settle on getting the piercing if Miranda can show that more than 60% of people at Harvard have one. Miranda wastes no time in taking a sample of 60 people from Adam's House and performing the appropriate hypothesis test. Her sample revealed 44 people who admitted to having a piercing.\n\na)  Test the hypothesis $H_{0}:P \\leq 0.6\\ vs\\ H_{\\alpha}:p > 0.6$ at $\\alpha = 0.05.\\$Will Paul end up getting a piercing?\n\nb)  Do you have any criticisms of Miranda's sample?",
+      "content": "Miranda samples 60 people from Adam's House at Harvard and finds 44 with piercings.\n\na. Test $H_0:p\\le0.60$ versus $H_a:p>0.60$ at $\\alpha=0.05$.\n\nb. Identify a sampling concern.",
       "source": "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment_Chapter 9 Hypothesis Testing Questions.docx",
-      "type": "unknown",
-      "difficulty": 1,
-      "keywords": [],
-      "formula_refs": [
-        "ch09_q08_ans_f01_image26.emf",
-        "ch09_q08_ans_f02_image27.emf"
+      "type": "综合题",
+      "difficulty": 3,
+      "keywords": [
+        "one-sample proportion test",
+        "hypothesis testing",
+        "sampling bias"
       ],
-      "data_refs": []
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch09-review-v1"
     },
     {
       "id": "ch09_q09",
-      "content": "\\\"Take the Pepsi Challenge\\\" was a marketing campaign used recently by the Pepsi-Cola Company. Coca-Cola drinkers participated in a blind taste test where they were asked to taste unmarked cups of Pepsi and Coke and were asked to select their favorite. In one Pepsi television commercial, an announcer states that \\\"in recent blind taste tests, more than half the Diet Coke drinkers surveyed said they preferred the taste of Diet Pepsi\\\". Suppose 100 Diet Coke drinkers took the Pepsi Challenge and 56 preferred the taste of Diet Pepsi. Test the hypothesis that more than half of all Diet Coke drinkers will select Diet Pepsi in the blind taste test. Use alpha = .05. What are the consequences of the results from Coca-Cola\\'s perspective?",
+      "content": "In a blind taste test, 56 of 100 Diet Coke drinkers prefer Diet Pepsi. Test $H_0:p=0.50$ versus $H_a:p>0.50$ at $\\alpha=0.05$, and state the consequence for the advertising claim.",
       "source": "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment_Chapter 9 Hypothesis Testing Questions.docx",
-      "type": "unknown",
-      "difficulty": 1,
-      "keywords": [],
+      "type": "综合题",
+      "difficulty": 2,
+      "keywords": [
+        "one-sample proportion test",
+        "hypothesis testing"
+      ],
       "formula_refs": [],
-      "data_refs": []
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch09-review-v1"
     },
     {
       "id": "ch09_q10",
-      "content": "The Department of Transportation in Georgia did a study a number of years ago\n\n> that showed that the proportion of cars tested which failed to meet the state pollution standard was .37. The department would like to be able to say that the cars have improved since then. In a sample of n=100 cars more recently, the proportion not meeting the standards was .28. Are the cars better at meeting the standards than they used to be? Clearly state the null and alternative hypotheses, both in English and mathematically. Perform the hypothesis test at level a = .01, both by computing the test statistic and the p-value and explain the meaning of your conclusion in words.",
+      "content": "Historically, 37% of cars failed a pollution standard. In a recent sample of 100 cars, 28% failed. Test at $\\alpha=0.01$ whether cars have improved (a lower failure rate). State hypotheses in words and symbols, compute the statistic and p-value, and interpret the conclusion.",
       "source": "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment_Chapter 9 Hypothesis Testing Questions.docx",
-      "type": "unknown",
-      "difficulty": 1,
-      "keywords": [],
-      "formula_refs": [
-        "ch09_q10_ans_f01_image28.emf"
+      "type": "综合题",
+      "difficulty": 3,
+      "keywords": [
+        "one-sample proportion test",
+        "hypothesis testing"
       ],
-      "data_refs": []
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch09-review-v1"
     },
     {
       "id": "ch09_q11",
-      "content": "ABZ Chemical Company claims that its product contains no more than 4.0 fluid ounces of caustic material per gallon on average. The amount is normally distributed with known standard deviation $\\sigma=1.3$ fluid ounces. An inspector randomly samples 100 gallon-size containers and obtains $\\bar{x}=4.5$ fluid ounces per gallon.\n\na. State the null and alternative hypotheses mathematically and in words.\n\nb. At $\\alpha=0.01$, test whether the company's claim is false.",
+      "content": "ABZ Chemical Company claims its product contains no more than 4.0 fluid ounces of caustic material per gallon on average. The population standard deviation is known to be 1.3 ounces. A random sample of 100 containers has mean 4.5 ounces.\n\na. State $H_0$ and $H_a$ in symbols and words.\n\nb. At $\\alpha=0.01$, test whether the claim is false because the mean is too high.",
       "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter09_Hypothesis Testing.doc",
       "type": "综合题",
       "difficulty": 3,
       "keywords": [
         "one-sample z test",
-        "right-tailed test",
-        "p-value"
+        "hypothesis testing"
       ],
       "formula_refs": [],
       "data_refs": [],
       "review_status": "independently solved and reviewed",
-      "audit_pack": "missing-answer-recovery-v1"
+      "audit_pack": "ch09-review-v1"
     },
     {
       "id": "ch09_q12",
-      "content": "In 2007, the national mean daily hospital cost per patient was $\\$1{,}231$. A random sample of 25 daily costs from Utah hospitals produced $\\bar{x}=\\$1{,}103$. Assume the Utah population standard deviation is known to be $\\sigma=\\$252$. At $\\alpha=0.05$, test whether Utah's population mean daily cost was below the national mean.",
+      "content": "The 2007 national mean daily hospital cost was $\\$1,231$. A random sample of 25 Utah costs has mean $\\$1,103$, with known $\\sigma=\\$252$. At $\\alpha=0.05$, test whether Utah's mean was lower.",
       "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter09_Hypothesis Testing.doc",
       "type": "计算题",
-      "difficulty": 3,
+      "difficulty": 2,
       "keywords": [
         "one-sample z test",
-        "left-tailed test"
+        "hypothesis testing"
       ],
       "formula_refs": [],
       "data_refs": [],
       "review_status": "independently solved and reviewed",
-      "audit_pack": "missing-answer-recovery-v1"
+      "audit_pack": "ch09-review-v1"
     },
     {
       "id": "ch09_q13",
-      "content": "SAT scores are normally distributed with population mean $\\mu_0=500$ and known standard deviation $\\sigma=100$. A random sample of 25 students takes a special preparation course and then obtains mean score $\\bar{x}=554$.\n\na. At $\\alpha=0.05$, test whether the course has an effect on mean SAT scores.\n\nb. Would the conclusion change at $\\alpha=0.01$?",
+      "content": "SAT scores are normal with known $\\mu_0=500$ and $\\sigma=100$. A sample of 25 students after preparation has mean 554.\n\na. Test at $\\alpha=0.05$ whether the course changes the mean.\n\nb. Would the conclusion change at $\\alpha=0.01$?",
       "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter09_Hypothesis Testing.doc",
       "type": "综合题",
-      "difficulty": 3,
+      "difficulty": 2,
       "keywords": [
         "one-sample z test",
-        "two-tailed test",
-        "significance level"
+        "hypothesis testing"
       ],
       "formula_refs": [],
       "data_refs": [],
       "review_status": "independently solved and reviewed",
-      "audit_pack": "missing-answer-recovery-v1"
+      "audit_pack": "ch09-review-v1"
     },
     {
       "id": "ch09_q14",
-      "content": "The mean IQ among all college students is 109 with known population standard deviation $\\sigma=15$. A random sample of 122 UIC students has mean IQ $\\bar{x}=116$. At $\\alpha=0.05$, test whether UIC students have a higher population mean IQ.",
+      "content": "The mean IQ of all college students is 109 with known $\\sigma=15$. A random sample of 122 UIC students has mean 116. At $\\alpha=0.05$, test whether UIC students have a higher mean IQ.",
       "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter09_Hypothesis Testing.doc",
       "type": "计算题",
-      "difficulty": 3,
+      "difficulty": 2,
       "keywords": [
         "one-sample z test",
-        "right-tailed test"
+        "hypothesis testing"
       ],
       "formula_refs": [],
       "data_refs": [],
       "review_status": "independently solved and reviewed",
-      "audit_pack": "missing-answer-recovery-v1"
+      "audit_pack": "ch09-review-v1"
     },
     {
       "id": "ch09_q15",
-      "content": "Last year, apartment prices in Zhuhai had population mean $\\mu_0=9{,}450$ RMB/m² and known population standard deviation $\\sigma=1{,}035$ RMB/m². Assume the population standard deviation is unchanged. A random sample of 47 recent sales has mean price $\\bar{x}=9{,}850$ RMB/m². At $\\alpha=0.01$, test whether the population mean price has increased. Identify the test statistic and report the p-value.",
+      "content": "Last year's Zhuhai apartment price mean was $\\$9,450$/m² with known $\\sigma=\\$1,035$/m². A sample of 47 recent sales has mean $\\$9,850$/m². At $\\alpha=0.01$, test whether the mean increased.",
       "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter09_Hypothesis Testing.doc",
       "type": "计算题",
-      "difficulty": 3,
+      "difficulty": 2,
       "keywords": [
         "one-sample z test",
-        "right-tailed test"
+        "hypothesis testing"
       ],
       "formula_refs": [],
       "data_refs": [],
       "review_status": "independently solved and reviewed",
-      "audit_pack": "missing-answer-recovery-v1"
+      "audit_pack": "ch09-review-v1"
     },
     {
       "id": "ch09_q16",
-      "content": "Last year, the mean apartment price in Zhuhai was $\\mu_0=9{,}450$ RMB/m². The population standard deviation is unknown. A random sample of 25 recent sales has mean $\\bar{x}=9{,}850$ RMB/m² and sample standard deviation $s=1{,}035$ RMB/m². Assuming the price distribution is approximately normal, test at $\\alpha=0.01$ whether the population mean price has increased. Identify the test statistic and report the p-value.",
+      "content": "Last year's Zhuhai apartment price mean was $\\$9,450$/m². A sample of 25 recent sales has mean $\\$9,850$/m² and $s=\\$1,035$/m². Assuming approximate normality, test at $\\alpha=0.01$ whether the mean increased.",
       "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter09_Hypothesis Testing.doc",
       "type": "计算题",
-      "difficulty": 3,
+      "difficulty": 2,
       "keywords": [
         "one-sample t test",
-        "right-tailed test"
+        "hypothesis testing"
       ],
       "formula_refs": [],
       "data_refs": [],
       "review_status": "independently solved and reviewed",
-      "audit_pack": "missing-answer-recovery-v1"
+      "audit_pack": "ch09-review-v1"
     },
     {
       "id": "ch09_q17",
-      "content": "A manufacturer claims that its light bulbs have mean lifetime $\\mu=1{,}520$ hours. The population standard deviation is unknown. A random sample of 40 bulbs has $\\bar{x}=1{,}505$ hours and $s=86$ hours. Assuming lifetimes are normally distributed, test at $\\alpha=0.05$ whether the population mean lifetime is less than 1,520 hours.",
+      "content": "A manufacturer claims mean bulb life is 1,520 hours. A random sample of 40 bulbs has mean 1,505 hours and $s=86$ hours. Assuming normal lifetimes, test at $\\alpha=0.05$ whether the mean is less than 1,520 hours.",
       "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter09_Hypothesis Testing.doc",
       "type": "计算题",
-      "difficulty": 3,
+      "difficulty": 2,
       "keywords": [
         "one-sample t test",
-        "left-tailed test"
+        "hypothesis testing"
       ],
       "formula_refs": [],
       "data_refs": [],
       "review_status": "independently solved and reviewed",
-      "audit_pack": "missing-answer-recovery-v1"
+      "audit_pack": "ch09-review-v1"
     },
     {
       "id": "ch09_q18",
-      "content": "In 2005, the mean mileage driven by a passenger vehicle was 15.3 thousand miles. A random sample of 50 passenger vehicles in 2010 has mean mileage $\\bar{x}=23.1$ thousand miles and sample standard deviation $s=7.2$ thousand miles. Let $\\mu$ be the 2010 population mean mileage.\n\na. At $\\alpha=0.05$, test whether the 2010 mean differs from 15.3 thousand miles.\n\nb. Construct a 95% confidence interval for the 2010 population mean mileage.",
+      "content": "In 2005, mean vehicle mileage was 15.3 thousand miles. A random sample of 50 vehicles in 2010 has mean 23.1 and $s=7.2$ thousand miles.\n\na. Test at $\\alpha=0.05$ whether the 2010 mean differs from 15.3.\n\nb. Construct a 95% confidence interval for the 2010 mean.",
       "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter09_Hypothesis Testing.doc",
       "type": "综合题",
       "difficulty": 3,
@@ -257,207 +240,173 @@
       "formula_refs": [],
       "data_refs": [],
       "review_status": "independently solved and reviewed",
-      "audit_pack": "missing-answer-recovery-v1"
+      "audit_pack": "ch09-review-v1"
     },
     {
       "id": "ch09_q19",
-      "content": "Under ordinary conditions, reaction times are normally distributed with mean $\\mu_0=200$ ms. Fourteen randomly selected people take a new cold medication. One hour later, their mean reaction time is $\\bar{x}=221$ ms with sample variance $s^2=300$ ms². At $\\alpha=0.05$, test whether the medication changes the population mean reaction time.",
+      "content": "Reaction times are normal with mean 200 ms. Fourteen people taking a medication have mean reaction time 221 ms and sample variance $s^2=300$ ms². At $\\alpha=0.05$, test whether the medication changes the population mean.",
       "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter09_Hypothesis Testing.doc",
       "type": "计算题",
-      "difficulty": 3,
+      "difficulty": 2,
       "keywords": [
         "one-sample t test",
-        "two-tailed test"
+        "hypothesis testing"
       ],
       "formula_refs": [],
       "data_refs": [],
       "review_status": "independently solved and reviewed",
-      "audit_pack": "missing-answer-recovery-v1"
+      "audit_pack": "ch09-review-v1"
     },
     {
       "id": "ch09_q20",
-      "content": "The historical mean IQ of entering freshmen is 110.3. A random sample of 36 current freshmen has mean IQ $\\bar{x}=114.5$ and sample variance $s^2=324$. At $\\alpha=0.05$, use a two-tailed test to determine whether the current population mean IQ differs from the historical mean.",
+      "content": "The historical mean IQ of entering freshmen is 110.3. A random sample of 36 current freshmen has mean 114.5 and sample variance $s^2=324$. At $\\alpha=0.05$, test whether the current mean differs from 110.3.",
       "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter09_Hypothesis Testing.doc",
       "type": "计算题",
-      "difficulty": 3,
+      "difficulty": 2,
       "keywords": [
         "one-sample t test",
-        "two-tailed test"
+        "hypothesis testing"
       ],
       "formula_refs": [],
       "data_refs": [],
       "review_status": "independently solved and reviewed",
-      "audit_pack": "missing-answer-recovery-v1"
+      "audit_pack": "ch09-review-v1"
     },
     {
       "id": "ch09_q21",
-      "content": "In a random sample of 100 drinkers participating in a blind taste test, 56 prefer Diet Coke. At $\\alpha=0.02$, test whether more than half of all drinkers would prefer Diet Coke. Report the test statistic and p-value.",
+      "content": "In a blind taste test, 56 of 100 drinkers prefer Diet Coke. At $\\alpha=0.02$, test whether more than half of all drinkers prefer Diet Coke.",
       "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter09_Hypothesis Testing.doc",
       "type": "计算题",
-      "difficulty": 3,
+      "difficulty": 2,
       "keywords": [
-        "one-proportion z test",
-        "right-tailed test"
+        "one-sample proportion test",
+        "hypothesis testing"
       ],
       "formula_refs": [],
       "data_refs": [],
       "review_status": "independently solved and reviewed",
-      "audit_pack": "missing-answer-recovery-v1"
+      "audit_pack": "ch09-review-v1"
     },
     {
       "id": "ch09_q22",
-      "content": "An airline claims that more than 90% of lost luggage is recovered and delivered within 24 hours. In a consumer group's sample, 103 of 122 travelers who lost luggage received it within 24 hours. At $\\alpha=0.05$, test whether the airline has overstated its recovery rate. Report the p-value.",
+      "content": "An airline claims that more than 90% of lost luggage is recovered within 24 hours. In a sample of 122 travelers, 103 received luggage within 24 hours. At $\\alpha=0.05$, test whether the airline overstated its recovery rate.",
       "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter09_Hypothesis Testing.doc",
       "type": "计算题",
-      "difficulty": 3,
+      "difficulty": 2,
       "keywords": [
-        "one-proportion z test",
-        "left-tailed test"
+        "one-sample proportion test",
+        "hypothesis testing"
       ],
       "formula_refs": [],
       "data_refs": [],
       "review_status": "independently solved and reviewed",
-      "audit_pack": "missing-answer-recovery-v1"
+      "audit_pack": "ch09-review-v1"
     },
     {
       "id": "ch09_q23",
-      "content": "A coffee manufacture is interested in whether the mean daily consumption of regular coffee drinker is less than that of decaffeinated-coffee drinkers. A random sample of 50 regular-coffee drinkers showed a mean of 4.35 cups per day, with a standard deviation of 1.20 cups per day. A sample of 40 decaffeinated-coffee drinkers showed a mean of 5.84 cups per day, with a standard of 1.36 cups per day. Use the 0.01 significance level. Compute the p-value.",
+      "content": "A sample of 50 regular-coffee drinkers has mean 4.35 cups/day and $s=1.20$; a sample of 40 decaffeinated-coffee drinkers has mean 5.84 cups/day and $s=1.36$. Assuming independent populations, test at $\\alpha=0.01$ whether regular drinkers consume less and report the p-value.",
       "source": "Assignment Prof Lv/assignment9-Lu.doc",
-      "type": "unknown",
-      "difficulty": 1,
-      "keywords": [],
-      "formula_refs": [
-        "ch09_q01_f01_image1.emf"
-      ],
-      "data_refs": []
-    },
-    {
-      "id": "ch09_q24",
-      "content": "An Ohio university wishes to demonstrate that car ownership is detrimental to academic achievement. A random sample of 100 students who do not own cars had a mean grade point average (GPA) of 2.68, while a random sample of 100 students who own cars had a mean GPA of 2.55.\n\na\\. Set up the null and alternative hypotheses that should be used to attempt to justify that the mean GPA for non-car owners is higher than the mean GPA for car owners.\n\nb\\. Test the hypotheses that you set up in part *a* with 0.05 level of significance. Again assume that $\\sigma_{1} = 0\\text{.}7$ and $\\sigma_{2} = 0\\text{.}6$. Interpret the results of this test. That is, what do your results say about whether the university can statistically justify that car ownership hurts academic achievement?",
-      "source": "Assignment Prof Lv/assignment9-Lu.doc",
-      "type": "unknown",
-      "difficulty": 1,
-      "keywords": [],
-      "formula_refs": [
-        "ch09_q02_f01_image2.emf",
-        "ch09_q02_f02_image3.emf"
-      ],
-      "data_refs": []
-    },
-    {
-      "id": "ch09_q25",
-      "content": "The Computer Anxiety Rating Scale (CARS) measures an individual's level of computer anxiety on a scale from 20 (no anxiety) to 100 (highest level of anxiety). Researchers at Miami University administered CARS to 172 business students. One of the objectives of the study was to determine if there is a difference between the level of computer anxiety experienced by female and male business students. We assume that variances of two populations are equal.\n\n  ------------------ ------------ -------------\n                     Males        Females\n\n  $$\\overline{x}$$   40.26        36.85\n\n  s                  13.35        9.42\n\n  n                  100          72\n  ------------------ ------------ -------------\n\na.  At the 0.05 level of significance, is there evidence of a difference in the mean computer anxiety experienced by female and male business students?\n\nb.  Determine the p-value and interpret its meaning.\n\nc.  What assumptions do you have to make about the two populations in order to justify the use of the *t* test?",
-      "source": "Assignment Prof Lv/assignment9-Lu.doc | Assignments for STAT 2010/Assignment 9.doc",
-      "type": "unknown",
-      "difficulty": 1,
-      "keywords": [],
-      "formula_refs": [],
-      "data_refs": []
-    },
-    {
-      "id": "ch09_q26",
-      "content": "Multiple myeloma or blood plasma cancer is characterized by increased blood vessel formulation (angiogenesis) in the bone marrow that is a prognostic factor in survival. One treatment approach used for multiple myeloma is stem cell transplantation with the patient's own stem cells. The following data MYELOMA represent the bone marrow microvessel density for patients who had a complete response to the stem cell transplant as measured by blood and urine tests. The measurements were taken immediately prior to the stem cell transplant and at the time of the complete response.\n\n  ------------------ ------------------ ------------------\n       Patient             Before             After\n\n          1                 158                284\n\n          2                 189                214\n\n          3                 202                101\n\n          4                 353                227\n\n          5                 416                290\n\n          6                 426                176\n\n          7                 441                290\n  ------------------ ------------------ ------------------\n\na.  At the 0.05 level of significance, is there evidence that the mean bone marrow microvessel density is higher before the stem cell transplant than after the stem cell transplant?\n\nb.  Interpret the meaning of the *p*-value in (a).\n\nc.  Construct and interpret a 95% confidence interval estimate of the mean difference in bone marrow microvessel density before and after the stem cell transplant.\nA number of minor automobile accidents occur at various high-risk intersections in Teton County despite traffic lights. The Traffic Department claims that a modification in the type of light will reduce these accidents. The county commissioners have agreed to a proposed experiment. Eight intersections were chosen at random, and the lights at those intersections were modified. The numbers of minor accidents during a six-month period before and after the modifications were:\n\n+:------:+:---------:+:---------:+:---------:+:---------:+:---------:+:---------:+:---------:+:---------:+\n|        | Number of Accidents                                                                           |\n+--------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+\n|        | A         | B         | C         | D         | E         | F         | G         | H         |\n+--------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+\n| Before | 5         | 7         | 6         | 4         | 8         | 9         | 8         | 10        |\n+--------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+\n| After  | 3         | 7         | 7         | 0         | 4         | 6         | 8         | 2         |\n+--------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+-----------+\n\nAt the 0.05 level of significance, is there evidence that the modification in the type of light will reduce the accidents?",
-      "source": "Assignment Prof Lv/assignment9-Lu.doc",
-      "type": "unknown",
-      "difficulty": 1,
-      "keywords": [],
-      "formula_refs": [],
-      "data_refs": []
-    },
-    {
-      "id": "ch09_q28",
-      "content": "Eight high-risk intersections were selected at random, and their traffic lights were modified. The numbers of minor accidents during six-month periods before and after the modification were:\n\n| Intersection | A | B | C | D | E | F | G | H |\n|---|---:|---:|---:|---:|---:|---:|---:|---:|\n| Before | 5 | 7 | 6 | 4 | 8 | 9 | 8 | 10 |\n| After | 3 | 7 | 7 | 0 | 4 | 6 | 8 | 2 |\n\nAt $\\alpha=0.05$, test whether the modification reduces the population mean number of accidents.",
-      "source": "Assignments for STAT 2010/Assignment 9.doc",
       "type": "计算题",
-      "difficulty": 4,
+      "difficulty": 3,
       "keywords": [
-        "paired t test",
-        "before-and-after study"
+        "two-sample t test",
+        "hypothesis testing"
       ],
       "formula_refs": [],
       "data_refs": [],
       "review_status": "independently solved and reviewed",
-      "audit_pack": "missing-answer-recovery-v1"
+      "audit_pack": "ch09-review-v1"
+    },
+    {
+      "id": "ch09_q28",
+      "content": "At eight intersections, minor accidents before and after a traffic-light modification were:\n\n| Intersection | A | B | C | D | E | F | G | H |\n|---|---:|---:|---:|---:|---:|---:|---:|---:|\n| Before | 5 | 7 | 6 | 4 | 8 | 9 | 8 | 10 |\n| After | 3 | 7 | 7 | 0 | 4 | 6 | 8 | 2 |\n\nAt $\\alpha=0.05$, test whether the modification reduces the population mean number of accidents.",
+      "source": "Assignments for STAT 2010/Assignment 9.doc",
+      "type": "计算题",
+      "difficulty": 3,
+      "keywords": [
+        "paired t test",
+        "hypothesis testing"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch09-review-v1"
     },
     {
       "id": "rotel_ch09_hypothesis_01",
-      "content": "The target mean diameter of a component's spindle is 6 mm. A researcher wants to test whether the production process's mean diameter has deviated from the target. State the null and alternative hypotheses.",
+      "content": "The target mean spindle diameter is 6 mm. State hypotheses for testing whether the production mean has deviated from the target.",
       "source": "ROTEL Statistical Problem Sets in WeBWorK — 8.3-9.3 Problem 2(a) — https://rotel.pressbooks.pub/statsproblemsets/chapter/8-3-9-3-ci-and-hypothesis-testing/",
       "source_url": "https://rotel.pressbooks.pub/statsproblemsets/chapter/8-3-9-3-ci-and-hypothesis-testing/",
       "source_problem": "8.3-9.3 Problem 2(a)",
       "license": "CC BY-NC-SA 4.0",
       "attribution": "Rachael Norton and Peter Staab, 2023",
-      "review_status": "independently solved, translated, and reviewed",
+      "review_status": "independently solved and reviewed",
       "type": "填空题",
       "difficulty": 1,
       "keywords": [
         "null hypothesis",
-        "alternative hypothesis",
-        "two-sided test"
+        "alternative hypothesis"
       ],
       "formula_refs": [],
       "data_refs": [],
-      "audit_pack": "english-normalization-v1"
+      "audit_pack": "ch09-review-v1"
     },
     {
       "id": "rotel_ch09_hypothesis_02",
-      "content": "The national mean selling price of a product is 55 dollars. A researcher claims that the population mean selling price in a particular area is less than 55 dollars. State the null and alternative hypotheses.",
+      "content": "The national mean selling price is $\\$55$. State hypotheses for testing the claim that a particular area's population mean selling price is lower.",
       "source": "ROTEL Statistical Problem Sets in WeBWorK — 8.3-9.3 Problem 2(b) — https://rotel.pressbooks.pub/statsproblemsets/chapter/8-3-9-3-ci-and-hypothesis-testing/",
       "source_url": "https://rotel.pressbooks.pub/statsproblemsets/chapter/8-3-9-3-ci-and-hypothesis-testing/",
       "source_problem": "8.3-9.3 Problem 2(b)",
       "license": "CC BY-NC-SA 4.0",
       "attribution": "Rachael Norton and Peter Staab, 2023",
-      "review_status": "independently solved, translated, and reviewed",
+      "review_status": "independently solved and reviewed",
       "type": "填空题",
       "difficulty": 1,
       "keywords": [
         "null hypothesis",
-        "alternative hypothesis",
-        "left-tailed test"
+        "alternative hypothesis"
       ],
       "formula_refs": [],
       "data_refs": [],
-      "audit_pack": "english-normalization-v1"
+      "audit_pack": "ch09-review-v1"
     },
     {
       "id": "rotel_ch09_errors_01",
-      "content": "Test $H_0:\\mu=98.6^\\circ\\mathrm{F}$ versus $H_a:\\mu\\ne98.6^\\circ\\mathrm{F}$. Classify each outcome as a correct decision, Type I error, or Type II error.\n\na. $H_0$ is true but rejected.\n\nb. $H_0$ is false and rejected.\n\nc. $H_0$ is true and not rejected.\n\nd. $H_0$ is false but not rejected.",
+      "content": "For $H_0:\\mu=98.6^\\circ\\mathrm{F}$ versus $H_a:\\mu\\ne98.6^\\circ\\mathrm{F}$, classify each outcome as a correct decision, Type I error, or Type II error:\n\na. $H_0$ is true but rejected.\n\nb. $H_0$ is false and rejected.\n\nc. $H_0$ is true and not rejected.\n\nd. $H_0$ is false but not rejected.",
       "source": "ROTEL Statistical Problem Sets in WeBWorK — 8.3-9.3 Problem 3 — https://rotel.pressbooks.pub/statsproblemsets/chapter/8-3-9-3-ci-and-hypothesis-testing/",
       "source_url": "https://rotel.pressbooks.pub/statsproblemsets/chapter/8-3-9-3-ci-and-hypothesis-testing/",
       "source_problem": "8.3-9.3 Problem 3",
       "license": "CC BY-NC-SA 4.0",
       "attribution": "Rachael Norton and Peter Staab, 2023",
-      "review_status": "independently solved, translated, and reviewed",
+      "review_status": "independently solved and reviewed",
       "type": "综合题",
-      "difficulty": 2,
+      "difficulty": 1,
       "keywords": [
         "Type I error",
-        "Type II error",
-        "hypothesis testing"
+        "Type II error"
       ],
       "formula_refs": [],
       "data_refs": [],
-      "audit_pack": "english-normalization-v1"
+      "audit_pack": "ch09-review-v1"
     },
     {
       "id": "rotel_ch09_ttest_01",
-      "content": "A sample of lifespans from 14 obituaries in a rural area has mean 81.09 years and sample standard deviation 0.91 years. At $\\alpha=0.10$, test whether the population mean lifespan in this area exceeds 77 years.",
+      "content": "A sample of 14 lifespans has mean 81.09 years and sample standard deviation 0.91 years. At $\\alpha=0.10$, test whether the population mean lifespan exceeds 77 years.",
       "source": "ROTEL Statistical Problem Sets in WeBWorK — 9.4-9.5 Problem 1 — https://rotel.pressbooks.pub/statsproblemsets/chapter/9-4-9-5-hypothesis-testing/",
       "source_url": "https://rotel.pressbooks.pub/statsproblemsets/chapter/9-4-9-5-hypothesis-testing/",
       "source_problem": "9.4-9.5 Problem 1",
       "license": "CC BY-NC-SA 4.0",
       "attribution": "Rachael Norton and Peter Staab, 2023",
-      "review_status": "independently solved, translated, and reviewed",
+      "review_status": "independently solved and reviewed",
       "type": "计算题",
-      "difficulty": 3,
+      "difficulty": 2,
       "keywords": [
         "one-sample t test",
-        "right-tailed test",
-        "test statistic"
+        "hypothesis testing"
       ],
       "formula_refs": [],
       "data_refs": [],
-      "audit_pack": "english-normalization-v1"
+      "audit_pack": "ch09-review-v1"
     }
   ]
 }
