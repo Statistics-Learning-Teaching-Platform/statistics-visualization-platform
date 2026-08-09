@@ -111,7 +111,7 @@
       "difficulty": 2,
       "keywords": ["runs plot", "statistical control"],
       "clean_answer": "The process does **not** appear to be in statistical control. The runs plot shows that the transaction-time variability is not approximately constant; several abrupt spikes and changes in spread indicate nonrandom process behavior.",
-      "data_refs": []
+      "data_refs": ["Assests/ch01_q33_f01_image1.jpeg"]
     },
     {
       "id": "ch01_q13",
@@ -143,7 +143,7 @@
       "clean_question": "The affordability percentages for six Texas metropolitan areas are shown below.\n\n[IMG:ch01_q03_f01_image1.jpeg]\n\nTreating the six percentages as a population, calculate the range, population variance, and population standard deviation.",
       "clean_answer": "The six percentages are $57.5,61.7,32.5,67.4,55.7,49.2$, with population mean 54.0.\n\nThe range is\n\n$$67.4-32.5=34.9.$$\n\nThe sum of squared deviations from 54.0 is $739.28$, so the population variance is\n\n$$\\sigma^2=\\frac{739.28}{6}\\approx123.21.$$\n\nThe population standard deviation is\n\n$$\\sigma=\\sqrt{123.21}\\approx11.10.$$",
       "formula_refs": [],
-      "data_refs": []
+      "data_refs": ["Assests/ch01_q03_f01_image1.jpeg"]
     },
     {
       "id": "ch01_q16",

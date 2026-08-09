@@ -151,7 +151,9 @@
         "statistical control"
       ],
       "formula_refs": [],
-      "data_refs": [],
+      "data_refs": [
+        "Assests/ch01_q33_f01_image1.jpeg"
+      ],
       "review_status": "independently solved and reviewed",
       "audit_pack": "ch01-review-v1"
     },
@@ -199,7 +201,9 @@
         "population standard deviation"
       ],
       "formula_refs": [],
-      "data_refs": [],
+      "data_refs": [
+        "Assests/ch01_q03_f01_image1.jpeg"
+      ],
       "review_status": "independently solved and reviewed",
       "audit_pack": "ch01-review-v1"
     },

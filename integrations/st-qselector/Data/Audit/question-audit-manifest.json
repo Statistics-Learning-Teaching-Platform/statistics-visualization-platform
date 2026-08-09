@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-08-09T11:00:46.537335+00:00",
+  "generated_at": "2026-08-09T11:10:04.482259+00:00",
   "source_roots": {
     "origin": "Data/Origin",
     "formed": "Data/Formed"
@@ -40,7 +40,6 @@
     "issue_counts": {
       "legacy_superscript": 2,
       "multi_part_requires_alignment_review": 109,
-      "question_type_unclassified": 1,
       "references_unprovided_context": 2
     },
     "eligible_for_paper": 0
@@ -559,7 +558,9 @@
           "statistical control"
         ],
         "formula_refs": [],
-        "data_refs": [],
+        "data_refs": [
+          "Assests/ch01_q33_f01_image1.jpeg"
+        ],
         "review_status": "independently solved and reviewed"
       },
       "diagnostics": {
@@ -567,7 +568,13 @@
         "answer_language": "en",
         "answer_present": true,
         "source_resolvable": true,
-        "assets": [],
+        "assets": [
+          {
+            "reference": "Assests/ch01_q33_f01_image1.jpeg",
+            "resolved_path": "Assests/ch01_q33_f01_image1.jpeg",
+            "available": true
+          }
+        ],
         "format_findings": [],
         "context_findings": [],
         "detected_part_count": 0,
@@ -720,7 +727,9 @@
           "population standard deviation"
         ],
         "formula_refs": [],
-        "data_refs": [],
+        "data_refs": [
+          "Assests/ch01_q03_f01_image1.jpeg"
+        ],
         "review_status": "independently solved and reviewed"
       },
       "diagnostics": {
@@ -728,7 +737,13 @@
         "answer_language": "en",
         "answer_present": true,
         "source_resolvable": true,
-        "assets": [],
+        "assets": [
+          {
+            "reference": "Assests/ch01_q03_f01_image1.jpeg",
+            "resolved_path": "Assests/ch01_q03_f01_image1.jpeg",
+            "available": true
+          }
+        ],
         "format_findings": [],
         "context_findings": [],
         "detected_part_count": 0,
@@ -7970,7 +7985,7 @@
       "original": {
         "question_hash": "965b812f1b2175b0baade02a1e7409832c7bae273d139d94216f66731e6bdbec",
         "answer_hash": "cedf0d71cb7112b097a505279c5b7184deaba70a1e9643bcf60000576ae13d11",
-        "type": "unknown",
+        "type": "简答题",
         "difficulty": 1,
         "keywords": [
           "discrete and continuous variables"
@@ -7991,8 +8006,7 @@
         "grouping_status": "multi_part_candidate",
         "previously_reviewed": true,
         "issue_codes": [
-          "multi_part_requires_alignment_review",
-          "question_type_unclassified"
+          "multi_part_requires_alignment_review"
         ]
       },
       "workflow": {
