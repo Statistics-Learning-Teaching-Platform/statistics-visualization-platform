@@ -3,159 +3,183 @@
   "answers": [
     {
       "id": "ch08_q01",
-      "answer": "Answers/Q1.png"
+      "answer": "The margin of error is $1.96(8/\\sqrt{64})=1.96$. Therefore the 95% confidence interval is $85\\pm1.96=[83.04,86.96]$.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch08-review-v1"
     },
     {
       "id": "ch08_q02",
-      "answer": "Answers/Q2.png"
+      "answer": "The interval is $[\\$170{,}000,\\$200{,}000]$. In repeated sampling, about 95% of intervals constructed by this method would contain the fixed population mean. It is not correct to assign a 95% probability to this already-computed interval containing the mean.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch08-review-v1"
     },
     {
       "id": "ch08_q03",
-      "answer": "Answers/Q3.png"
+      "answer": "Both sample means are $4.5$. For Set 1, $s=3.7417$, so with $df=7$ the margin is $2.365(3.7417/\\sqrt8)\\approx3.128$ and the interval is $[1.372,7.628]$. For Set 2, $s=2.4495$, the margin is about $2.048$, and the interval is $[2.452,6.548]$. The intervals differ because their sample standard deviations differ.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch08-review-v1"
     },
     {
       "id": "ch08_q04",
-      "answer": "Answers/Q4.png"
-    },
-    {
-      "id": "ch08_q05",
-      "answer": "Answers/Q5.png"
+      "answer": "a. The 99% interval is $0.995\\pm2.576(0.02/\\sqrt{50})=[0.9877,1.0023]$ gallons.\n\nb. One gallon lies inside the interval, so the data do not show a statistically significant shortage at the 1% level.\n\nc. With $n=50$, the CLT makes the z interval reasonably robust; exact normality is not essential if the population is not extremely skewed.\n\nd. The 95% interval is $0.995\\pm1.96(0.02/\\sqrt{50})=[0.9895,1.0005]$, which also contains one gallon, so there is still no clear evidence of a shortage.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch08-review-v1"
     },
     {
       "id": "ch08_q06",
-      "answer": "Answers/Q6.png"
+      "answer": "a. With $df=19$, $t_{0.975,19}=2.093$ and the margin is $2.093(0.32/\\sqrt{20})\\approx0.150$. The interval is $[1.520,1.820]$ dollars.\n\nb. If the inventory contains $N$ cards, multiplying the endpoints by $N$ gives an interval estimate for the total inventory value (subject to the sampling assumptions).",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch08-review-v1"
     },
     {
       "id": "ch08_q07",
-      "answer": "Answers/Q7.png"
+      "answer": "$\\hat p=0.30$ and $\\operatorname{SE}=\\sqrt{0.3(0.7)/100}=0.0458$. With $z_{0.95}=1.645$, the margin is $0.0753$, giving $[0.2247,0.3753]$.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch08-review-v1"
     },
     {
       "id": "ch08_q08",
-      "answer": "Answers/Q8.png"
+      "answer": "a. $\\hat p=0.40$ and $\\operatorname{SE}=\\sqrt{0.4(0.6)/200}=0.0346$. With $z_{0.995}=2.576$, the interval is $0.40\\pm0.0892=[0.311,0.489]$.\n\nb. The entire interval is far below 0.90, so the company is not meeting the stated 90% performance target; the auditor should report this deficiency.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch08-review-v1"
     },
     {
       "id": "ch08_q09",
-      "answer": "Answers/Q9.png"
+      "answer": "$n=(1.96\\cdot400/50)^2=245.86$, so round up to $n=246$.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch08-review-v1"
     },
     {
       "id": "ch08_q10",
-      "answer": "Answers/Q10.png"
+      "answer": "Use $n=z_{0.995}^2p(1-p)/E^2$ with $z_{0.995}=2.576$.\n\na. $n=2.576^2(0.05)(0.95)/0.02^2=787.9$, so $n=788$.\n\nb. $n=2.576^2(0.10)(0.90)/0.02^2=1492.9$, so $n=1493$.\n\nc. $n=2.576^2(0.05)(0.95)/0.05^2=126.1$, so $n=127$ to ensure the stated precision.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch08-review-v1"
     },
     {
       "id": "ch08_q11",
-      "answer": "\\\nThere are three factors that may affect the width of the confidence interval (CI)**.** They are: sample size**,** confidence level and standard error. The smaller the sample size, the wider the CI; the higher the confidence level, the wider the CI; the larger the standard error, the wider the CI."
+      "answer": "For a fixed method, increasing the confidence level widens the interval, increasing the sample size narrows it, and increasing the standard error widens it. The margin of error is the critical value multiplied by the standard error.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch08-review-v1"
     },
     {
       "id": "ch08_q12",
-      "answer": "For a given confidence interval, which of the following is the interpretation of a 96% confidence level?\n\nA\\) 96% chance that the given interval includes the true value of the population parameter\n\nB\\) Approximately 96 out of 100 such intervals would include the true value of the population parameter\n\nC\\) 4% chance that the given interval does not include the true value of the population parameter\n\nD\\) Both \\\"a\\\" and \\\"c\\\" are true\n\n**Solution**: B"
+      "answer": "B. The confidence level describes the long-run coverage rate of the interval procedure, not a probability assigned to a fixed interval after it has been computed.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch08-review-v1"
     },
     {
       "id": "ch08_q13",
-      "answer": "a\\) Since the population distribution is normal and $\\sigma$ is known, the 95% *z*-based confidence interval estimate of $\\mu$ is:\n\n$\\left\\lbrack \\overline{x} - Z_{0.025}\\frac{\\sigma}{\\sqrt{n}}，\\overline{x} + Z_{0.025}\\frac{\\sigma}{\\sqrt{n}} \\right\\rbrack$\n\n$$= \\left\\lbrack 6.05 - 1.96 \\times \\frac{2.44}{\\sqrt{40}}，6.05 + 1.96 \\times \\frac{2.44}{\\sqrt{40}} \\right\\rbrack$$\n\n$= \\lbrack 5.29,\\ 6.81\\rbrack$\n\nb\\) The confidence interval in a) will not change much. In this case, although the population distribution is not normal, the sample size is large enough (\\>30) such that *t-*based confidence interval should be close to *z*-based confidence interval."
+      "answer": "a. $6.05\\pm1.96(2.44/\\sqrt{40})=6.05\\pm0.756$, giving $[5.294,6.806]$.\n\nb. With $n=40$, the CLT makes the interval reasonably robust to mild skewness, although severe skewness or outliers could affect it.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch08-review-v1"
     },
     {
       "id": "ch08_q14",
-      "answer": "a\\) It is known that $n = 25,\\ \\overline{x} = 3.2$ and $\\sigma = 1.2$. Let $\\mu$ denote the average number of soda cans required per student, since the population is normal, a 99% *z*-based interval estimation for $\\mu$ is:\n\n$\\left\\lbrack \\overline{x} - Z_{0.005}\\frac{\\sigma}{\\sqrt{n}}，\\overline{x} + Z_{0.025}\\frac{\\sigma}{\\sqrt{n}} \\right\\rbrack$\n\n$$\\ \\ \\ \\  = \\left\\lbrack 3.2 - 1.645 \\times \\frac{1.2}{\\sqrt{25}}，3.2 + 1.645 \\times \\frac{1.2}{\\sqrt{25}} \\right\\rbrack$$\n\n$\\ \\  = \\lbrack 2.58,\\ 3.82\\rbrack$\n\nb\\) From a) we know that on average, each student in the party will need at least 2.58 soda cans. Therefore, if 300 UIC students attend this party, the total number of soda cans required would be:\n\n$$300 \\times 2.58 = 774.$$"
-    },
-    {
-      "id": "ch08_q15",
-      "answer": "a\\) The 95% confidence interval for[FORMULA:ch08_q05_ans_f08_image2.wmf]is [FORMULA:ch08_q05_ans_f09_image5.wmf],\n\nthe 95% confidence interval for[FORMULA:ch08_q05_ans_f10_image2.wmf]is [FORMULA:ch08_q05_ans_f11_image6.wmf].\n\nb\\) Since 42 is less than 42.308, the lower bound of the 95% confidence interval for[FORMULA:ch08_q05_ans_f12_image2.wmf], we can be 95 percent confident that [FORMULA:ch08_q05_ans_f13_image2.wmf]is at least 42.\n\nc\\) Since 42 is also less than 42.107, the lower bound of the 99% confidence interval for[FORMULA:ch08_q05_ans_f14_image2.wmf], we can be 99 percent confident that [FORMULA:ch08_q05_ans_f15_image2.wmf]is at least 42.\n\nd\\) We are very (99% percent) confident that the mean satisfaction rating is at least 42."
+      "answer": "a. The 99% interval is $3.2\\pm2.576(1.2/\\sqrt{25})=3.2\\pm0.618$, or $[2.582,3.818]$ cans per student.\n\nb. Using the upper endpoint to plan for demand, $300(3.818)=1145.4$, so prepare at least 1,146 cans.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch08-review-v1"
     },
     {
       "id": "ch08_q16",
-      "answer": "a\\) The point estimate for the population mean is 20, the sample mean.\n\nb\\) The t-distribution is used when the population standard deviation is unknown and the sample size is small (\\<30). We have to assume the population is normally distributed.\n\nc\\) The 95% confidence interval for the mean number of eggs laid per chicken is:\n\n$$\\left\\lbrack \\overline{x} - t_{0.025}(19)\\frac{s}{\\sqrt{n}}，\\overline{x} + t_{0.025}(19)\\frac{s}{\\sqrt{n}} \\right\\rbrack$$\n\n$= \\left\\lbrack 20 - 2.093 \\times \\frac{2}{\\sqrt{20}}，20 + 2.093 \\times \\frac{2}{\\sqrt{20}} \\right\\rbrack$\n\n$\\  = \\lbrack 19.06,\\ 20.94\\rbrack\\ \\ \\$\n\nd\\) Neither of the two values is reasonable to be the population mean, because they are not inside the 95% confidence interval."
+      "answer": "a. The point estimate is $\\bar x=20$.\n\nb. Use a t interval because $\\sigma$ is unknown and $n=20$ is small; assume the population is approximately normal with no strong outliers.\n\nc. With $df=19$, $t_{0.975}=2.093$, so $20\\pm2.093(2/\\sqrt{20})=[19.064,20.936]$.\n\nd. 21 is just above the interval and is not supported by this 95% interval; 25 is far outside and is not plausible under this model.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch08-review-v1"
     },
     {
       "id": "ch08_q17",
-      "answer": "a\\) Since the population standard deviation is unknown, the *t*-based interval estimate will be calculated here. Firstly, we should calculate the sample mean $\\overline{x}$ and sample standard deviation $s$ for delivery time:\n\n$\\overline{x} = \\frac{22 + 15 + \\cdots + 32}{14} = \\frac{290}{14} \\approx 20.71$,\n\n$$s^{2} = \\frac{1}{n - 1}\\sum_{i = 1}^{n}{(x_{i} - \\overline{x})}^{2} \\approx 6.66\\ .\\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ $$\n\nThen, a 95% interval estimate for the mean delivery time is\n\n$$\\left\\lbrack \\overline{x} - t_{0.025}(13)\\frac{s}{\\sqrt{n}}，\\overline{x} + t_{0.025}(13)\\frac{s}{\\sqrt{n}} \\right\\rbrack$$\n\n$= \\left\\lbrack 20.72 - 2.16 \\times \\frac{6.66}{\\sqrt{14}}，20.72 + 2.16 \\times \\frac{6.66}{\\sqrt{14}} \\right\\rbrack$\n\n$\\  = \\lbrack 16.88,\\ 24.56\\rbrack\\ \\ \\ \\ \\ \\ \\$\n\nb\\) Since the interval estimate for the mean delivery time calculated in a) is less than 25, we have reasons to believe that the mean delivery time of his store is less than 25 minutes."
+      "answer": "The sample mean is $20.714$ and $s=6.661$. With $df=13$, $t_{0.975}=2.160$, the margin is $2.160(6.661/\\sqrt{14})\\approx3.847$. The interval is $[16.867,24.561]$ minutes. Its upper endpoint is below 25, so the interval supports the claim at the 95% confidence level.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch08-review-v1"
     },
     {
       "id": "ch08_q18",
-      "answer": "a\\) Since the sample proportion $\\widehat{p} = \\frac{18 - 8}{18} \\approx 0.44$, a 95% confidence interval for the proportion of UIC students willing to pay for this \"App\" is:\n\n$$\\left\\lbrack \\widehat{p} - Z_{\\frac{\\alpha}{2}}\\sigma_{\\widehat{p}}，\\widehat{p} + Z_{\\frac{\\alpha}{2}}\\sigma_{\\widehat{p}} \\right\\rbrack\\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ $$\n\n$$= \\left\\lbrack \\widehat{p} - Z_{\\frac{\\alpha}{2}}\\sqrt{\\frac{\\widehat{p}\\left( 1 - \\widehat{p} \\right)}{n}}，\\widehat{p} + Z_{\\frac{\\alpha}{2}}\\sqrt{\\frac{\\widehat{p}\\left( 1 - \\widehat{p} \\right)}{n}} \\right\\rbrack\\ \\ \\ \\ $$\n\n$= \\left\\lbrack 0.44 - 1.96 \\times \\sqrt{\\frac{0.44 \\times (1 - 0.44)}{18}}，0.44 + 1.96 \\times \\sqrt{\\frac{0.44 \\times (1 - 0.44)}{18}} \\right\\rbrack$\n\n$= \\lbrack 0.21，0.67\\rbrack$\n\nb\\) From the result of a), the proportion of UIC students willing to pay for this \"App\" ranged from 21% to 67%, which is less than 80%. Therefore, these students should stop developing this \"App\"."
+      "answer": "The sample proportion is $\\hat p=8/18=0.4444$. Because the sample is small, use the Wilson 95% interval: $[0.246,0.663]$. This interval is entirely below 0.80, so they should stop under the stated rule.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch08-review-v1"
     },
     {
       "id": "ch08_q19",
-      "answer": "In question 7, if the manager of this pizza store wants to 95 percent estimate the mean delivery time with a maximum tolerable error 5 minutes, how many pizza orders he should select as a minimum?\n\n**Solution**: Since the population standard deviation is unknown, *t*-distribution is used for the sample size determination. The investigation of 14 pizza orders in question 4 can be regarded as a previous study, so we have $s = 6.66$ and the degree of freedom is 14-1=13. Thus, the sample size needed is:\n\n$n = \\left( \\frac{t_{0.025}(13)s}{E} \\right)^{2} = \\left( \\frac{2.16 \\times 6.66}{5} \\right)^{2} \\approx 8.28$.\n\nThat is, at least 9 samples should be select."
+      "answer": "For planning, use $n=(1.96s/E)^2=(1.96\\cdot6.661/5)^2\\approx6.82$. Round up to $n=7$ orders. This is a planning approximation based on the pilot standard deviation.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch08-review-v1"
     },
     {
       "id": "ch08_q20",
-      "answer": "a\\) The 95% confidence interval for $p_{A}$ is:\n\n$$\\left\\lbrack {\\widehat{p}}_{A} - Z_{0.025}\\sigma_{{\\widehat{p}}_{A}}，{\\widehat{p}}_{A} + Z_{0.025}\\sigma_{{\\widehat{p}}_{A}} \\right\\rbrack\\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ $$\n\n$$= \\left\\lbrack {\\widehat{p}}_{A} - Z_{0.025}\\sqrt{\\frac{{\\widehat{p}}_{A}\\left( 1 - {\\widehat{p}}_{A} \\right)}{n}}，{\\widehat{p}}_{A} + Z_{0.025}\\sqrt{\\frac{{\\widehat{p}}_{A}\\left( 1 - {\\widehat{p}}_{A} \\right)}{n}} \\right\\rbrack\\ \\ \\ \\ $$\n\n$= \\left\\lbrack \\frac{16}{35} - 1.96 \\times \\sqrt{\\frac{\\frac{16}{35} \\times \\left( 1 - \\frac{16}{35} \\right)}{35}}，\\frac{16}{35} + 1.96 \\times \\sqrt{\\frac{\\frac{16}{35} \\times \\left( 1 - \\frac{16}{35} \\right)}{35}} \\right\\rbrack\\ \\ \\ \\$\n\n$= \\lbrack 0.29，0.62\\rbrack$\n\nb\\) The 95% confidence interval for $p_{B}$ is:\n\n$$\\left\\lbrack {\\widehat{p}}_{B} - Z_{0.025}\\sigma_{{\\widehat{p}}_{B}}，{\\widehat{p}}_{A} + Z_{0.025}\\sigma_{{\\widehat{p}}_{B}} \\right\\rbrack\\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ \\ $$\n\n$$= \\left\\lbrack {\\widehat{p}}_{B} - Z_{0.025}\\sqrt{\\frac{{\\widehat{p}}_{B}\\left( 1 - {\\widehat{p}}_{B} \\right)}{n}}，{\\widehat{p}}_{B} + Z_{0.025}\\sqrt{\\frac{{\\widehat{p}}_{B}\\left( 1 - {\\widehat{p}}_{B} \\right)}{n}} \\right\\rbrack\\ \\ \\ \\ $$\n\n$= \\left\\lbrack \\frac{11}{35} - 1.96 \\times \\sqrt{\\frac{\\frac{11}{35} \\times \\left( 1 - \\frac{11}{35} \\right)}{35}}，\\frac{16}{35} + 1.96 \\times \\sqrt{\\frac{\\frac{11}{35} \\times \\left( 1 - \\frac{11}{35} \\right)}{35}} \\right\\rbrack$\n\n$= \\lbrack 0.16，0.46\\rbrack$\n\nC\\) To estimate $p_{A}$ with a precision of $\\pm 5\\%$, the sample size should be:\n\n$n_{A} = {\\widehat{p}}_{A}\\left( 1 - {\\widehat{p}}_{A} \\right)\\left( \\frac{Z_{0.025}}{E} \\right)^{2}$\n\n$= \\frac{16}{35} \\times \\left( 1 - \\frac{16}{35} \\right){\\times \\left( \\frac{1.96}{0.05} \\right)}^{2}$\n\n$\\approx 381.33$.\n\nAt least 382 questionnaires should be collected.\n\nd\\) To estimate $p_{B}$ with a precision of $\\pm 5\\%$, the sample size should be:\n\n$n_{B} = {\\widehat{p}}_{B}\\left( 1 - {\\widehat{p}}_{B} \\right)\\left( \\frac{Z_{0.025}}{E} \\right)^{2}$\n\n$= \\frac{11}{35} \\times \\left( 1 - \\frac{11}{35} \\right){\\times \\left( \\frac{1.96}{0.05} \\right)}^{2}$\n\n$\\approx 331.16$.\n\nAt least 332 questionnaires should be collected."
+      "answer": "a. For A, $\\hat p_A=16/35=0.4571$, giving $[0.292,0.622]$. For B, $\\hat p_B=11/35=0.3143$, giving $[0.160,0.468]$.\n\nb. Using $n=z_{0.975}^2\\hat p(1-\\hat p)/0.05^2$, plan for $n_A=382$ and $n_B=332$ questionnaires.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch08-review-v1"
     },
     {
       "id": "ch08_q21",
-      "answer": "Explain what a critical value is, and explain how it is used to test a hypothesis.\n\nA rejection point is a point on the horizontal axis under the standard normal curve that defines an area equal to $\\alpha$, the probability of making a Type I error."
+      "answer": "A critical value is a cutoff for a test statistic chosen so that the probability of falling in the rejection region under $H_0$ equals the significance level $\\alpha$. Reject $H_0$ when the observed statistic lies beyond the cutoff in the direction specified by $H_a$.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch08-review-v1"
     },
     {
       "id": "ch08_q22",
-      "answer": "Explain what a p-value is, and explain how it is used to test a hypothesis.\n\nA p-value is the probability that we obtain a sample statistic that contradicts the null hypothesis as much as or more than the observed sample statistic."
-    },
-    {
-      "id": "ch08_q23",
-      "answer": "[IMG:ch08_q03_ans_f01_image1.png]"
-    },
-    {
-      "id": "ch08_q24",
-      "answer": "In recent years the interest rate on home mortgages has declined to less than 6.0 percent. However, according to a study by Federal Reserve Board the rate charge on credit card debit is more than 14 percent. Listed below is the interest rate charged on a sample of 10 credit cards.\n\n  ---------------------------------------------------------------------\n16.7 17.4 17.0 17.8 15.4 13.1 15.8 14.3 14.5\n\n  ---------------------------------------------------------------------\n\nIs it reasonable to conclude the mean rate charged is greater than 14 percent? Use the 0.01 significance level.\n\n4\\.\n\n[IMG:ch08_q04_f01_image2.png]"
-    },
-    {
-      "id": "ch08_q25",
-      "answer": "The Watch Corporation of Switzerland claims that their watches on average will neither gain nor lose time during a week. A sample of 18 watches provided the following gains(+) or losses(-) in seconds per week.\n\n+-------------------------------------------------------------------------------------------------+\n| -0.38 -0.20 -0.38 -0.32 +0.32 -0.23 +0.30 +0.25 -0.10 -0.37 -0.61 -0.48 -0.47 -0.64 -0.04 -0.20 |\n|                                                                                                 |\n| -0.68 +0.05                                                                                     |\n+-------------------------------------------------------------------------------------------------+\n\nIs it reasonable to conclude the mean gain or loss in time for the watches is 0? Use the 0.05 significance level. Estimate the p-value.\n\n5\\.\n\n[IMG:ch08_q05_f01_image3.png]"
-    },
-    {
-      "id": "ch08_q26",
-      "answer": "An urban planner claims that, nationally, 20 percent of all families renting condominiums move during a given year. A random sample of 200 families renting condominiums in Dallas Metroplex reveal that 56 had moved during the past year. At the 0.1 significance level, does this evidence suggest that a large proportion of condominium owners moved in the Dallas area? Determine the p-value.\n\n[IMG:ch08_q06_f01_image4.png]"
+      "answer": "A p-value is the probability, assuming $H_0$ is true, of observing a test statistic at least as extreme as the one obtained in the direction of $H_a$. Reject $H_0$ when the p-value is at most the chosen significance level $\\alpha$.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch08-review-v1"
     },
     {
       "id": "ch08_q27",
-      "answer": "$$\\begin{array}{r}\n\\text{.}\\text{20} \\pm 1\\text{.}\\text{96}\\sqrt{\\frac{(\\text{.20})(\\text{.80})}{\\text{2221}}} = \\text{.}\\text{20} \\pm \\text{.}\\text{0166} = \\lbrack\\text{.}\\text{1834},\\text{.}\\text{2166}\\rbrack \\\\\n\\text{Yes,}\\ \\text{entire}\\ \\text{interval}\\ \\text{is}\\ \\text{below}\\ \\text{.}\\text{25}\n\\end{array}$$"
-    },
-    {
-      "id": "ch08_q28",
-      "answer": "**a.** : *μ* ≤ 60 versus : *μ* \\> 60.\n\n**b.**\n\nSince 2.41 \\> 1.645 we reject for α = 0.05. p-value = 1 -- 0.9920 = 0.0080 and since 0.0080 \\< 0.05 we draw the same conclusion so the plant should be shut down and the cooling system repaired."
+      "answer": "With $\\hat p=0.20$, $\\operatorname{SE}=\\sqrt{0.2(0.8)/2221}\\approx0.00847$. The 95% interval is $0.20\\pm1.96(0.00847)=[0.1834,0.2166]$. Since the entire interval is below 0.25, the data support that fewer than one-fourth expect to stay at least five years.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch08-review-v1"
     },
     {
       "id": "ch08_q29",
-      "answer": "**a.** : *μ* ≤ 50 versus : *μ* \\> 50\n\n**b.**\\\n24 degrees of freedom,\\\nSince 2.492 \\< 2.5 \\< 3.467, reject at *α* = .10, .05, .01, but not at *α* = .001.\\\nThere is very strong evidence that is false."
+      "answer": "Use a one-sample t test with $df=24$: $t=(54-50)/(8/\\sqrt{25})=2.50$. The one-sided p-value is approximately $0.0098$. Reject $H_0$ at 0.10, 0.05, and 0.01, but not at 0.001. There is strong evidence that the mean receivables outstanding exceeds 50 days.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch08-review-v1"
     },
     {
       "id": "ch08_q30",
-      "answer": "A coffee manufacture is interested in whether the mean daily consumption of regular coffee drinker is less than that of decaffeinated-coffee drinkers. A random sample of 50 regular-coffee drinkers showed a mean of 4.35 cups per day, with a standard deviation of 1.20 cups per day. A sample of 40 decaffeinated-coffee drinkers showed a mean of 5.84 cups per day, with a standard of 1.36 cups per day. Use the 0.01 significance level. Compute the p-value.\n\n[FORMULA:ch08_q01_f01_image1.emf]\n\n--- (from solution) ---\n\na.**\n\n[FORMULA:ch08_q01_ans_f01_image7.wmf] **Yes, as the number of assemblers increases, so does the production.**\n\n**b.** $$$\\overline{x}$**=3,** $\\overline{y}$=24\n\n  -------- --------- ------------------------------------------------------------------------------------ ------------------------------------------------------------------------------------ ------------------------------------------------------------------------------------- ------------------------------------------------------------------------------------- -------------------------------------------------------------------------------------\n  **X**    **Y**     [FORMULA:ch08_q01_ans_f02_image8.wmf]   [FORMULA:ch08_q01_ans_f03_image9.wmf]   [FORMULA:ch08_q01_ans_f04_image10.wmf]   [FORMULA:ch08_q01_ans_f05_image11.wmf]   [FORMULA:ch08_q01_ans_f06_image12.wmf]\n\n  **2**    **15**    **-1**                                                                               **-9**                                                                               **1**                                                                                 **81**                                                                                **9**\n\n  **4**    **25**    **1**                                                                                **1**                                                                                **1**                                                                                 **1**                                                                                 **1**\n\n  **1**    **10**    **-2**                                                                               **-14**                                                                              **4**                                                                                 **196**                                                                               **28**\n\n  **5**    **40**    **2**                                                                                **16**                                                                               **4**                                                                                 **256**                                                                               **32**\n\n  **3**    **30**    **0**                                                                                **6**                                                                                **0**                                                                                 **36**                                                                                **0**\n\n  **15**   **120**                                                                                                                                                                             **10**                                                                                **570**                                                                               **70**\n  -------- --------- ------------------------------------------------------------------------------------ ------------------------------------------------------------------------------------ ------------------------------------------------------------------------------------- ------------------------------------------------------------------------------------- -------------------------------------------------------------------------------------\n\n$b_{1}$**=**$\\frac{\\text{ss}_{\\text{xy}}}{\\text{ss}_{\\text{xx}}}$**=**$\\frac{\\sum_{}^{}{(x_{i} - \\overline{x})(y_{i} - \\overline{y})}}{\\sum_{}^{}{(x_{i} - \\overline{x})^{2}}}$**=**$\\frac{\\text{70}}{\\text{10}}$**=7**\n\n$b_{0}$**=**$\\overline{y} - b_{1}\\overline{x}$**=24-7**$$**3=3**\n\n**So the regression equation is:** $\\hat{y}$**=3+7x.**\n\n**c.** $r^{2} = \\frac{\\text{SSR}}{\\text{SST}} = \\frac{\\sum_{}^{}{(\\hat{y} - \\overline{y})^{2}}}{\\sum_{}^{}{(y_{i} - \\overline{y})^{2}}}$**=**$\\frac{\\text{490}}{\\text{570}}$**=0.8596**\n\n**the coefficient of correlation: r=0.9272**\n\n$$r = \\frac{\\text{SS}_{\\text{xy}}}{\\sqrt{\\text{SS}_{\\text{xx}}\\text{SS}_{\\text{yy}}}} = 0\\text{.9272}$$\n\nd\\. x=6, $\\hat{y}$**=3+7\\*6=45.**"
+      "answer": "a. The points show a strong positive, approximately linear association.\n\nb. $\\bar x=3$, $\\bar y=24$, slope $b=7$, and intercept $a=3$, so $\\hat y=3+7x$.\n\nc. $r\\approx0.9272$.\n\nd. At $x=6$, predicted production is $\\hat y=3+7(6)=45$ units.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch08-review-v1"
     },
     {
       "id": "ch08_q31",
-      "answer": "An Ohio university wishes to demonstrate that car ownership is detrimental to academic achievement. A random sample of 100 students who do not own cars had a mean grade point average (GPA) of 2.68, while a random sample of 100 students who own cars had a mean GPA of 2.55.\n\na\\. Set up the null and alternative hypotheses that should be used to attempt to justify that the mean GPA for non-car owners is higher than the mean GPA for car owners.\n\nb\\. Test the hypotheses that you set up in part *a* with 0.05 level of significance. Again assume that $\\sigma_{1} = 0\\text{.}7$ and $\\sigma_{2} = 0\\text{.}6$. Interpret the results of this test. That is, what do your results say about whether the university can statistically justify that car ownership hurts academic achievement?\n\n[FORMULA:ch08_q02_f01_image2.emf]\n\n[FORMULA:ch08_q02_f02_image3.emf]"
+      "answer": "Let $H_0:\\mu_1-\\mu_2\\le0$ and $H_a:\\mu_1-\\mu_2>0$. The observed difference is 0.13 and $\\operatorname{SE}=\\sqrt{0.7^2/100+0.6^2/100}=0.0922$. Thus $z=0.13/0.0922=1.41$, with one-sided p-value $\\approx0.080$. Fail to reject $H_0$ at 0.05; the sample does not provide sufficient evidence that car ownership lowers GPA.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch08-review-v1"
     },
     {
       "id": "ch08_q32",
-      "answer": "The Computer Anxiety Rating Scale (CARS) measures an individual's level of computer anxiety on a scale from 20 (no anxiety) to 100 (highest level of anxiety). Researchers at Miami University administered CARS to 172 business students. One of the objectives of the study was to determine if there is a difference between the level of computer anxiety experienced by female and male business students. We assume that variances of two populations are equal.\n\n  ------------------ ----------- -------------\n                     Males       Females\n\n  $$\\overline{x}$$   40.26       36.85\n\n  s                  13.35       9.42\n\n  n                  100         72\n  ------------------ ----------- -------------\n\na.  At the 0.05 level of significance, is there evidence of a difference in the mean computer anxiety experienced by female and male business students?\n\nb.  Determine the p-value and interpret its meaning.\n\nc.  What assumptions do you have to make about the two populations in order to justify the use of the *t* test?\n\n[IMG:ch08_q03_f01_image4.png]\n\n[IMG:ch08_q03_f02_image5.png]\n\n[IMG:ch08_q03_f03_image6.png]"
+      "answer": "The pooled variance is $s_p^2=140.849$, giving $\\operatorname{SE}=1.834$ and $t=(40.26-36.85)/1.834=1.859$ with $df=170$. The two-sided p-value is approximately 0.0648, so fail to reject equality at 0.05; evidence of a difference is insufficient. Assumptions: independent random samples, quantitative measurements, approximately normal populations (or adequate sample sizes), and equal population variances for the pooled test.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch08-review-v1"
     },
     {
       "id": "ch08_q33",
-      "answer": "a\\. $d_{1}$=-126, $d_{2}$=-25, $d_{3}$=101, $d_{4}$=126, $d_{5}$=126, $d_{6}$=250, $d_{7}$=151\n\n: $\\mu_{d}$$$``{=html}0 : $\\mu_{d}$\\>0\n\n$\\overline{d}$=86.14 $s_{d}$=123.7\n\n$t_{7 - 1}$=$\\frac{\\overline{d} - \\mu_{d}}{\\frac{s_{d}}{\\sqrt{n}}}$=$\\frac{\\text{86.14} - 0}{\\frac{\\text{123.}7}{\\sqrt{7}}}$=1.842\n\nCritical value: $t_{6,0\\text{.05}}$=1.943\n\nSince 1.842\\<1.943, we can't reject at 0.05 level of significance and there is not enough evidence that the mean bone marrow microvessel density is higher before the stem cell transplant than after that.\n\nb\\. p-value=p($\\overline{d} > \\text{86.14}$)=p($t_{6}$\\>1.842)\\>0.05\n\nSo we can't reject at 0.05 significance level and get the same conclusion as in a.\n\nc.95% confidence interval estimate of the mean difference is\n\n\\[$\\overline{d} \\pm t_{6,0\\text{.}\\frac{\\text{05}}{2}}\\frac{s_{d}}{\\sqrt{n}}$\\]=\\[86.14$\\pm$``{=html}2.447$\\frac{\\text{123.}7}{\\sqrt{7}}$\\]=\\[-28.27,200.55\\]\n\nWe can be 95% confident that the mean of all possible difference in bone marrow mocrovessel density before and after the transplant is between -28.27 and 200.55.\n\n**Regression Analysis**"
+      "answer": "The differences are $-126,-25,101,126,126,250,151$, with $\\bar d=86.143$, $s_d=123.700$, and $n=7$. Test $H_0:\\mu_d=0$ versus $H_a:\\mu_d>0$: $t=86.143/(123.700/\\sqrt7)=1.842$ with $df=6$, p-value $\\approx0.0575$. Fail to reject at 0.05. The 95% CI is $86.143\\pm2.447(123.700/\\sqrt7)=[-28.26,200.55]$, which includes 0 and is consistent with insufficient evidence of a positive mean difference.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch08-review-v1"
     },
     {
       "id": "rotel_ch08_ci_01",
-      "answer": "a. The lower endpoint is $24-4=20$ mmHg.\n\nb. Using $z_{0.975}=1.96$, require\n\n$$n>\\left(\\frac{1.96(9)}{2}\\right)^2=77.79.$$\n\nRounding up, at least **78 participants** are required.",
-      "review_status": "independently solved, translated, and reviewed",
-      "audit_pack": "english-normalization-v1"
+      "answer": "a. The lower endpoint is $24-4=20$ mmHg.\n\nb. $n>(1.96\\cdot9/2)^2=77.79$, so at least 78 participants are required.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch08-review-v1"
     },
     {
       "id": "rotel_ch08_ci_02",
-      "answer": "a. The standard error is\n\n$$SE=\\frac{300}{\\sqrt{30}}\\approx54.7723.$$\n\nWith $z_{0.995}\\approx2.5758$, the margin of error is approximately $141.084$. Thus the 99% confidence interval is\n\n$$(1858.92,2141.08)\\text{ dollars}.$$\n\nb. We are 99% confident that the population mean sale price lies in this interval. In repeated sampling, about 99% of intervals constructed by this method would contain the true population mean. This is not an interval for an individual car's price.",
-      "review_status": "independently solved, translated, and reviewed",
-      "audit_pack": "english-normalization-v1"
+      "answer": "The standard error is $300/\\sqrt{30}=54.7723$ and the 99% margin is $2.5758(54.7723)=141.08$. The interval is $[\\$1,858.92,\\$2,141.08]$. In repeated samples, about 99% of intervals made this way would contain the fixed population mean; it is not a statement about individual car prices.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch08-review-v1"
     },
     {
       "id": "rotel_ch08_ci_03",
-      "answer": "The sample statistics are $n=15$, $\\bar x=36{,}337.4$, and $s\\approx5{,}948.61$. With $df=14$ and $t_{0.97,14}\\approx2.04617$, the margin of error is\n\n$$E=2.04617\\frac{5948.61}{\\sqrt{15}}\\approx3142.76.$$\n\nTherefore, the 94% confidence interval is\n\n$$36{,}337.4\\pm3{,}142.76=(33{,}194.64,39{,}480.16)\\text{ dollars}.$$",
-      "review_status": "independently solved, translated, and reviewed",
-      "audit_pack": "english-normalization-v1"
+      "answer": "The sample statistics are $n=15$, $\\bar x=36{,}337.4$, and $s\\approx5{,}948.61$. With $df=14$, $t_{0.97,14}=2.046$, so the margin is $2.046(5948.61/\\sqrt{15})\\approx3142.76$. The 94% interval is $[\\$33{,}194.64,\\$39{,}480.16]$.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch08-review-v1"
     },
     {
       "id": "rotel_ch08_proportion_n_01",
-      "answer": "With no prior estimate, use the conservative value $p=0.5$. Using $z_{0.995}\\approx2.575829$,\n\n$$n>\\frac{(2.575829)^2(0.5)(0.5)}{(0.01)^2}\\approx16587.24.$$\n\nBecause the margin of error must be strictly less than 0.01, round up to **16,588 students**.",
-      "review_status": "independently solved, translated, and reviewed",
-      "audit_pack": "english-normalization-v1"
+      "answer": "Use the conservative $p=0.5$: $n>(2.5758)^2(0.5)(0.5)/0.01^2=16{,}587.24$. Because the margin must be strictly less than 0.01, sample at least 16,588 students.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch08-review-v1"
     }
   ]
 }

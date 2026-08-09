@@ -3,439 +3,474 @@
   "questions": [
     {
       "id": "ch08_q01",
-      "content": "If $\\overline{x} = 85,\\ \\ \\sigma = 8$, and *n =64*, set up a 95% confidence interval estimate of the population mean $\\mu$.",
+      "content": "A sample has $\\bar x=85$, known population standard deviation $\\sigma=8$, and $n=64$. Construct a 95% confidence interval for the population mean $\\mu$.",
       "source": "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment Chap 8_Confidence interval.docx",
-      "type": "unknown",
-      "difficulty": 1,
-      "keywords": [],
+      "type": "计算题",
+      "difficulty": 2,
+      "keywords": [
+        "confidence interval",
+        "known standard deviation"
+      ],
       "formula_refs": [],
-      "data_refs": []
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch08-review-v1"
     },
     {
       "id": "ch08_q02",
-      "content": "A market researcher states that she has 95% confidence that the true average monthly sales of a product are between \\$170,000 and \\$200,000. Explain the meaning of this statement.",
+      "content": "A market researcher states that she has 95% confidence that the true average monthly sales of a product lie between $\\$170,000$ and $\\$200,000$. Explain this statement correctly.",
       "source": "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment Chap 8_Confidence interval.docx",
-      "type": "unknown",
+      "type": "简答题",
       "difficulty": 1,
-      "keywords": [],
+      "keywords": [
+        "confidence interval interpretation"
+      ],
       "formula_refs": [],
-      "data_refs": []
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch08-review-v1"
     },
     {
       "id": "ch08_q03",
-      "content": "Set up a 95% confidence interval estimate for the population mean, based on each of the following sets of data, assuming the population is normally distributed:\n\n> Set 1: 1, 1, 1, 1, 8, 8, 8, 8\n>\n> Set 2: 1, 2, 3, 4, 5, 6, 7, 8\n>\n> Explain why they have different confidence intervals even though they have the same mean and range.",
+      "content": "Assume normal populations and construct 95% confidence intervals for the mean for each data set:\n\nSet 1: $1,1,1,1,8,8,8,8$\n\nSet 2: $1,2,3,4,5,6,7,8$\n\nExplain why the intervals differ even though the sets have the same mean and range.",
       "source": "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment Chap 8_Confidence interval.docx",
-      "type": "unknown",
-      "difficulty": 1,
-      "keywords": [],
+      "type": "综合题",
+      "difficulty": 3,
+      "keywords": [
+        "confidence interval",
+        "t distribution"
+      ],
       "formula_refs": [],
-      "data_refs": []
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch08-review-v1"
     },
     {
       "id": "ch08_q04",
-      "content": "Suppose that the manager of a paint supply store wants to estimate the actual amount of paint contained in 1-gallon cans purchased from a nationally known manufacturer. It is known from the manufacturer's specifications that the standard deviation of the amount of paint is equal to 0.02 gallon. A random sample of 50 cans is selected, and the average amount of paint per 1-gallon can is 0.995 gallon.\n\n(a) Set up a 99% confidence interval estimate of the true population average amount of paint included in a 1-gallon can.\n\n(b) On the basis of your results, do you think that the store owner has a right to complain to the manufacturer? Why?\n\n(c) Does the population amount of paint per can have to be normally distributed here? Explain.\n\n(d) Suppose that you used a 95% confidence interval estimate. What would be your answers to (a) and (b)?",
+      "content": "The amount of paint in one-gallon cans has known standard deviation $\\sigma=0.02$ gallon. A random sample of 50 cans has mean 0.995 gallon.\n\na. Construct a 99% confidence interval for the population mean.\n\nb. Does the result justify a complaint about cans being short of one gallon?\n\nc. Must the population be normal?\n\nd. Repeat parts a and b using a 95% confidence level.",
       "source": "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment Chap 8_Confidence interval.docx",
-      "type": "unknown",
-      "difficulty": 1,
-      "keywords": [],
+      "type": "综合题",
+      "difficulty": 3,
+      "keywords": [
+        "confidence interval",
+        "known standard deviation"
+      ],
       "formula_refs": [],
-      "data_refs": []
-    },
-    {
-      "id": "ch08_q05",
-      "content": "The United States Department of Transportation requires tire manufacturers to provide tire performance information on the sidewall of the tire so that a prospective customer can be better informed when making a purchasing decision. One very important measure of tire performance is the tread wear index, which indicates the tire's resistance to tread wear compared with a tire graded with a basis of 100. This means that a tire with a grade of 200 should last twice as long, on average, as a tire graded with a basis of 100. Suppose that a consumer organization wishes to estimate the actual tread wear index of a sample of 18 of these tires indicates a sample average tread wear index of 195.3 and a sample standard deviation of 21.4.\n\n(a) Assuming the population of tread wear indices is normally distributed, set up a 95% confidence interval estimate of the population average tread wear index for tires produced by this manufacturer under this brand name.\n\n(b) Do you think that the consumer organization should accuse the manufacturer of producing tires that do not meet the performance information provided on the sidewall of the tire? Explain.\n\n(c) Tell why an observed tread wear index of 210 for a particular tire is not unusual, even though it is outside the confidence interval developed in (a).",
-      "source": "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment Chap 8_Confidence interval.docx",
-      "type": "unknown",
-      "difficulty": 1,
-      "keywords": [],
-      "formula_refs": [],
-      "data_refs": []
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch08-review-v1"
     },
     {
       "id": "ch08_q06",
-      "content": "A stationery store wants to estimate the average retail value of greeting cards that it has in its inventory. A random sample of20 greeting cards indicates an average value of \\$1.67 and a standard deviation of \\$0.32.\n\n(a) Assuming a normal distribution, set up a 95% confidence interval estimate of the average value of all greeting cards in the store's inventory.\n\n(b) How might the results obtained in (a) be useful in assisting the store owner to estimate the total value of her inventory?",
+      "content": "A random sample of 20 greeting cards has mean retail value $\\$1.67$ and sample standard deviation $\\$0.32$. Assume a normal population.\n\na. Construct a 95% confidence interval for the mean value.\n\nb. Explain how the interval can help estimate the total value of an inventory of $N$ cards.",
       "source": "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment Chap 8_Confidence interval.docx",
-      "type": "unknown",
-      "difficulty": 1,
-      "keywords": [],
+      "type": "综合题",
+      "difficulty": 2,
+      "keywords": [
+        "confidence interval",
+        "t distribution"
+      ],
       "formula_refs": [],
-      "data_refs": []
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch08-review-v1"
     },
     {
       "id": "ch08_q07",
-      "content": "The manager of a bank in a small city wants to determine the proportion of its depositors who have more than one account at the bank. A random sample of 100 depositors is selected, and 30 state that they have more than one account at the bank. Set up a 90% confidence interval estimate of the population proportion of the bank's depositors who have more than one account at the bank.",
+      "content": "In a random sample of 100 bank depositors, 30 have more than one account. Construct a 90% confidence interval for the population proportion.",
       "source": "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment Chap 8_Confidence interval.docx",
-      "type": "unknown",
-      "difficulty": 1,
-      "keywords": [],
+      "type": "计算题",
+      "difficulty": 2,
+      "keywords": [
+        "confidence interval",
+        "population proportion"
+      ],
       "formula_refs": [],
-      "data_refs": []
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch08-review-v1"
     },
     {
       "id": "ch08_q08",
-      "content": "An auditor for the state insurance department wants to determine the proportion of claim that are paid by a health insurance company within 2 months of receipt of the claim. A random sample of 200 claims is selected, and it is determined that 80 were paid out within 2 months of the receipt of the claim.\n\n(a) Set up a 99% confidence interval estimate of the population proportion of the claim paid within 2 months.\n\n(b) If 90% or more claims are supposed to be paid within 2 months of their receipt, what should the auditor report to the state insurance department about the payment performance of the health insurance company?",
+      "content": "An auditor samples 200 health-insurance claims and finds that 80 were paid within two months.\n\na. Construct a 99% confidence interval for the population proportion paid within two months.\n\nb. If at least 90% are supposed to be paid within two months, what should the auditor report?",
       "source": "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment Chap 8_Confidence interval.docx",
-      "type": "unknown",
-      "difficulty": 1,
-      "keywords": [],
+      "type": "综合题",
+      "difficulty": 2,
+      "keywords": [
+        "confidence interval",
+        "population proportion"
+      ],
       "formula_refs": [],
-      "data_refs": []
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch08-review-v1"
     },
     {
       "id": "ch08_q09",
-      "content": "A survey is planned to determine the average annual family medical expenses of employees of a large company. The management of the company wishes to be 95% confident that the sample average is correct to within $\\pm \\$ 50$ of the true average annual family medical expenses. A pilot study indicates that the standard deviation can be estimated as \\$400. How large a sample size is necessary?",
+      "content": "A survey should estimate mean annual family medical expenses with 95% confidence and margin of error at most $\\$50$. A pilot study estimates $\\sigma=\\$400$. Find the minimum sample size.",
       "source": "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment Chap 8_Confidence interval.docx",
-      "type": "unknown",
-      "difficulty": 1,
-      "keywords": [],
+      "type": "计算题",
+      "difficulty": 2,
+      "keywords": [
+        "confidence interval",
+        "sample size"
+      ],
       "formula_refs": [],
-      "data_refs": []
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch08-review-v1"
     },
     {
       "id": "ch08_q10",
-      "content": "An audit test to establish the percentage of occurrence of failures to follow a specific internal control procedure is to be undertaken. The auditor decides that the maximum tolerable error rate that is permissible is 5%.\n\n(a) What size sample is required to achieve a sample precision of $\\pm \\$ 2\\%$ with 99% confidence?\n\n(b) What should be your answer in (a) if the maximum tolerable error rate is 10%?\n\n(c) What should be your answer in (a) if the sample precision of $\\pm \\$ 5\\%$ with 99% confidence?",
+      "content": "For a proportion estimate with 99% confidence, determine the minimum sample size for:\n\na. maximum tolerable error rate $p=0.05$ and precision $\\pm0.02$;\n\nb. $p=0.10$ and precision $\\pm0.02$;\n\nc. $p=0.05$ and precision $\\pm0.05$.",
       "source": "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment Chap 8_Confidence interval.docx",
-      "type": "unknown",
-      "difficulty": 1,
-      "keywords": [],
+      "type": "综合题",
+      "difficulty": 2,
+      "keywords": [
+        "confidence interval",
+        "sample size",
+        "population proportion"
+      ],
       "formula_refs": [],
-      "data_refs": []
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch08-review-v1"
     },
     {
       "id": "ch08_q11",
-      "content": "What factors will affect the width of confidence Interval? How do they affect?",
+      "content": "What factors affect the width of a confidence interval, and how do they affect it?",
       "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter08_Confidence interval.docx",
-      "type": "unknown",
+      "type": "简答题",
       "difficulty": 1,
-      "keywords": [],
+      "keywords": [
+        "confidence interval",
+        "margin of error"
+      ],
       "formula_refs": [],
-      "data_refs": []
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch08-review-v1"
     },
     {
       "id": "ch08_q12",
-      "content": "For a given confidence interval, which of the following is the interpretation of a 96% confidence level?\n\nA\\) 96% chance that the given interval includes the true value of the population parameter\n\nB\\) Approximately 96 out of 100 such intervals would include the true value of the population parameter\n\nC\\) 4% chance that the given interval does not include the true value of the population parameter\n\nD\\) Both \\\"a\\\" and \\\"c\\\" are true",
+      "content": "Which statement correctly interprets a 96% confidence level?\n\nA. There is a 96% chance that this fixed interval contains the parameter.\n\nB. About 96 out of 100 intervals constructed by this method would contain the fixed parameter.\n\nC. There is a 4% chance that this fixed interval misses the parameter.\n\nD. Both A and C are true.",
       "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter08_Confidence interval.docx",
-      "type": "unknown",
+      "type": "选择题",
       "difficulty": 1,
-      "keywords": [],
+      "keywords": [
+        "confidence interval interpretation"
+      ],
       "formula_refs": [],
-      "data_refs": []
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch08-review-v1"
     },
     {
       "id": "ch08_q13",
-      "content": "Consider a random sample of size 40 from a normal distribution, given $\\overline{x} = 6.05,\\ \\ \\sigma = 2.44.$\n\na)  Set up a 95% confidence interval for the population mean $\\mu$.\n\nb)  Will the answer in a) change a lot if the population distribution is a little skewed? Explain without calculation.",
+      "content": "A random sample of 40 from a population has $\\bar x=6.05$ and known $\\sigma=2.44$.\n\na. Construct a 95% confidence interval for $\\mu$.\n\nb. Would mild population skewness change the result substantially?",
       "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter08_Confidence interval.docx",
-      "type": "unknown",
-      "difficulty": 1,
-      "keywords": [],
+      "type": "综合题",
+      "difficulty": 2,
+      "keywords": [
+        "confidence interval",
+        "known standard deviation",
+        "central limit theorem"
+      ],
       "formula_refs": [],
-      "data_refs": []
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch08-review-v1"
     },
     {
       "id": "ch08_q14",
-      "content": "The UIC students' union plans to hold a big party for the coming Christmas. To estimate the mean number of soda cans required per student in this party, the organizer randomly asked 25 UIC students and calculated the average number of soda cans required per student, which is 3.2. Assume the number of soda cans required by a UIC student follows normal distribution and the population standard deviation is known to be 1.2.\n\na\\) Calculate a 99% confidence interval for the average number of soda cans required per student in the party.\n\nb\\) If 300 UIC students will attend this party, at least how many soda cans should UIC students' union prepare?",
+      "content": "The number of soda cans needed per student is normal with known $\\sigma=1.2$. A random sample of 25 students has mean 3.2 cans.\n\na. Construct a 99% confidence interval for the population mean.\n\nb. If 300 students attend, give a conservative number of cans based on the upper endpoint.",
       "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter08_Confidence interval.docx",
-      "type": "unknown",
-      "difficulty": 1,
-      "keywords": [],
-      "formula_refs": [],
-      "data_refs": []
-    },
-    {
-      "id": "ch08_q15",
-      "content": "The mean of the sample of 65 customer satisfaction rating in Table below is [FORMULA:ch08_q05_f01_image1.wmf]=42.95. If we let [FORMULA:ch08_q05_f02_image2.wmf]denote the mean of all possible customer satisfaction rating for the XYZ Box video game system, and assume that [FORMULA:ch08_q05_f03_image3.wmf] equals 2.64:\n\na\\) Calculate 95 percent and 99 percent confidence intervals for[FORMULA:ch08_q05_f04_image2.wmf].\n\nb\\) Using the 95 percent confidence interval, can we be 95 percent confident that [FORMULA:ch08_q05_f05_image2.wmf]is at least 42 (recall that a very satisfied customer gives a rating of at least 42)? Explain.\n\nc\\) Using the 99 percent confidence interval, can we be 99 percent confident that [FORMULA:ch08_q05_f06_image2.wmf]is at least 42? Explain.\n\nd\\) Based on your answers to parts b and c, how convinced are you that the mean satisfaction rating is at least 42?\n\n> Table: Composite Scores for the Video Game Satisfaction Rating Case\n>\n> [IMG:ch08_q05_f07_image4.jpeg]",
-      "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter08_Confidence interval.docx",
-      "type": "unknown",
-      "difficulty": 1,
-      "keywords": [],
-      "formula_refs": [
-        "ch08_q05_ans_f08_image2.wmf",
-        "ch08_q05_ans_f09_image5.wmf",
-        "ch08_q05_ans_f10_image2.wmf",
-        "ch08_q05_ans_f11_image6.wmf",
-        "ch08_q05_ans_f12_image2.wmf",
-        "ch08_q05_ans_f13_image2.wmf",
-        "ch08_q05_ans_f14_image2.wmf",
-        "ch08_q05_ans_f15_image2.wmf",
-        "ch08_q05_f01_image1.wmf",
-        "ch08_q05_f02_image2.wmf",
-        "ch08_q05_f03_image3.wmf",
-        "ch08_q05_f04_image2.wmf",
-        "ch08_q05_f05_image2.wmf",
-        "ch08_q05_f06_image2.wmf"
+      "type": "综合题",
+      "difficulty": 2,
+      "keywords": [
+        "confidence interval",
+        "known standard deviation",
+        "planning"
       ],
-      "data_refs": []
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch08-review-v1"
     },
     {
       "id": "ch08_q16",
-      "content": "The owner of Huitong Egg Farm want to estimate the mean number of eggs laid per chicken. A sample of 20 chickens shows they laid an average of 20 eggs per month with a standard deviation of 2 eggs per month.\n\na\\) Give a point estimate for the population mean.\n\nb\\) Explain why we need to use the t-based interval estimation. What assumption do you need to make?\n\nc\\) Develop the 95 percent confidence interval for population mean.\n\nd\\) Would it be reasonable to conclude that the population mean is 21 eggs? What about 25 eggs?",
+      "content": "A sample of 20 chickens has mean monthly egg production 20 and sample standard deviation 2.\n\na. Give a point estimate of the population mean.\n\nb. Explain why a t interval is used and state the assumption.\n\nc. Construct a 95% confidence interval.\n\nd. Is a population mean of 21 plausible? What about 25?",
       "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter08_Confidence interval.docx",
-      "type": "unknown",
-      "difficulty": 1,
-      "keywords": [],
+      "type": "综合题",
+      "difficulty": 3,
+      "keywords": [
+        "one-sample t interval",
+        "confidence interval"
+      ],
       "formula_refs": [],
-      "data_refs": []
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch08-review-v1"
     },
     {
       "id": "ch08_q17",
-      "content": "Manager of a pizza store wants to estimate their mean delivery time, he randomly selected 14 pizza orders and called their customer asking for the delivery time. The delivery time (min.) of the 14 pizza orders are as follows:\n\n22, 15, 18, 30, 12, 31, 18, 15, 23, 13, 19, 25, 17, 32.\n\na\\) Assuming the population of delivery time is normally distributed, find a 95% interval estimate of the true population mean delivery time of this pizza store.\n\nb\\) The owner of the store once claimed that the mean delivery time of his store is less than 25 minutes. On the basis of your results, do you believe this claim? Why?",
+      "content": "Delivery times (minutes) for 14 randomly selected pizza orders are 22, 15, 18, 30, 12, 31, 18, 15, 23, 13, 19, 25, 17, 32. Assume a normal population.\n\na. Construct a 95% confidence interval for the mean delivery time.\n\nb. Does the interval support the claim that the mean is less than 25 minutes?",
       "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter08_Confidence interval.docx",
-      "type": "unknown",
-      "difficulty": 1,
-      "keywords": [],
+      "type": "综合题",
+      "difficulty": 3,
+      "keywords": [
+        "one-sample t interval",
+        "confidence interval"
+      ],
       "formula_refs": [],
-      "data_refs": []
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch08-review-v1"
     },
     {
       "id": "ch08_q18",
-      "content": "Several UIC students are planning to develop an \"App\" to help UIC students do the GE course selection. They did a simple market survey in UIC by randomly asking 18 students about their willingness to pay fees for this \"App\". It turned out that 10 students were definitely NOT willing to pay such fees.\\\na) Construct a 95% confidence interval for the proportion of UIC students willing to pay for this \"App\".\n\nb\\) If the proportion mentioned in a) is less than 80%, these students will stop developing this \"App\". So based on your answer of a), will they continue developing this \"App\"?",
+      "content": "Of 18 UIC students, 10 are definitely not willing to pay for an app, so 8 are willing.\n\na. Construct a 95% confidence interval for the proportion willing to pay.\n\nb. If development stops whenever the proportion is below 80%, should they continue?",
       "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter08_Confidence interval.docx",
-      "type": "unknown",
-      "difficulty": 1,
-      "keywords": [],
+      "type": "综合题",
+      "difficulty": 3,
+      "keywords": [
+        "confidence interval",
+        "population proportion",
+        "Wilson interval"
+      ],
       "formula_refs": [],
-      "data_refs": []
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch08-review-v1"
     },
     {
       "id": "ch08_q19",
-      "content": "In question 7, if the manager of this pizza store wants to 95 percent estimate the mean delivery time with a maximum tolerable error 5 minutes, how many pizza orders he should select as a minimum?",
+      "content": "Using the pilot standard deviation $s=6.661$ minutes from the 14 pizza deliveries, how many orders are needed to estimate the mean delivery time with 95% confidence and margin of error at most 5 minutes?",
       "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter08_Confidence interval.docx",
-      "type": "unknown",
-      "difficulty": 1,
-      "keywords": [],
+      "type": "计算题",
+      "difficulty": 2,
+      "keywords": [
+        "confidence interval",
+        "sample size"
+      ],
       "formula_refs": [],
-      "data_refs": []
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch08-review-v1"
     },
     {
       "id": "ch08_q20",
-      "content": "The Transportation department of an IT company is designing a new shuttle bus route for the employees, they provided two route plans (plan A and plan B) for their employees to choose. A random sample survey shows that among 35 questionnaires collected, 16 staff prefer plan A and 11 prefer plan B, the rest refused to take any of these two plans.\n\na\\) Find a 95% confidence interval for the proportion of staff who prefer plan A ($p_{A}$).\\\nb) Find a 95% confidence interval for the proportion of staff who prefer plan B ($p_{B}$).\n\nc\\) To estimate $p_{A}$ with 95% confidence, how many questionnaires should be collected to achieve a precision of $\\pm 5\\%$?\n\nd\\) To estimate $p_{B}$ with 95% confidence, how many questionnaires should be collected to achieve a precision of $\\pm 5\\%$?",
+      "content": "Among 35 employees, 16 prefer shuttle plan A, 11 prefer plan B, and the rest prefer neither.\n\na. Construct 95% confidence intervals for $p_A$ and $p_B$.\n\nb. How many questionnaires are needed for each proportion to have margin of error at most 0.05 at 95% confidence, using the observed proportions for planning?",
       "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter08_Confidence interval.docx",
-      "type": "unknown",
-      "difficulty": 1,
-      "keywords": [],
+      "type": "综合题",
+      "difficulty": 3,
+      "keywords": [
+        "confidence interval",
+        "population proportion",
+        "sample size"
+      ],
       "formula_refs": [],
-      "data_refs": []
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch08-review-v1"
     },
     {
       "id": "ch08_q21",
-      "content": "Explain what a critical value is, and explain how it is used to test a hypothesis.",
+      "content": "What is a critical value, and how is it used to test a hypothesis?",
       "source": "Assignment Prof Lv/Assignment8-lu.doc",
-      "type": "unknown",
+      "type": "简答题",
       "difficulty": 1,
-      "keywords": [],
+      "keywords": [
+        "critical value",
+        "hypothesis testing"
+      ],
       "formula_refs": [],
-      "data_refs": []
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch08-review-v1"
     },
     {
       "id": "ch08_q22",
-      "content": "Explain what a p-value is, and explain how it is used to test a hypothesis.",
+      "content": "What is a p-value, and how is it used to test a hypothesis?",
       "source": "Assignment Prof Lv/Assignment8-lu.doc",
-      "type": "unknown",
+      "type": "简答题",
       "difficulty": 1,
-      "keywords": [],
+      "keywords": [
+        "p-value",
+        "hypothesis testing"
+      ],
       "formula_refs": [],
-      "data_refs": []
-    },
-    {
-      "id": "ch08_q23",
-      "content": "THE CAR MILEAGE CASE\n\nSuppose the federal government proposes to give a substantial tax break to automakers producing midsize cars that get a mean mileage exceeding 31 mpg. Letting $\\mu$ be a midsize car's mean mileage, the government will award the tax credit if an automaker is able to reject $H_{0}:\\mu \\leq \\text{31}$ in favour of $H_{a}:\\mu > \\text{31}$ at the .05 level of significance. Recall that the sample of 49 mileages has mean $\\overline{x} = \\text{31.5531}$. Assuming that $\\sigma$ equals 0.8, use these sample results and a rejection point to test the null hypothesis versus the alternative hypothesis at the 0.05 level of significance . Will the automaker be awarded the tax break? Calculate p value. Would the tax break have been awarded if the federal government had set $\\alpha$ equal to 0.01? Justify your",
-      "source": "Assignment Prof Lv/Assignment8-lu.doc",
-      "type": "unknown",
-      "difficulty": 1,
-      "keywords": [],
-      "formula_refs": [],
-      "data_refs": []
-    },
-    {
-      "id": "ch08_q24",
-      "content": "In recent years the interest rate on home mortgages has declined to less than 6.0 percent. However, according to a study by Federal Reserve Board the rate charge on credit card debit is more than 14 percent. Listed below is the interest rate charged on a sample of 10 credit cards.\n\n  ---------------------------------------------------------------------\n16.7 17.4 17.0 17.8 15.4 13.1 15.8 14.3 14.5\n\n  ---------------------------------------------------------------------\n\nIs it reasonable to conclude the mean rate charged is greater than 14 percent? Use the 0.01 significance level.",
-      "source": "Assignment Prof Lv/Assignment8-lu.doc",
-      "type": "unknown",
-      "difficulty": 1,
-      "keywords": [],
-      "formula_refs": [],
-      "data_refs": []
-    },
-    {
-      "id": "ch08_q25",
-      "content": "The Watch Corporation of Switzerland claims that their watches on average will neither gain nor lose time during a week. A sample of 18 watches provided the following gains(+) or losses(-) in seconds per week.\n\n+-------------------------------------------------------------------------------------------------+\n| -0.38 -0.20 -0.38 -0.32 +0.32 -0.23 +0.30 +0.25 -0.10 -0.37 -0.61 -0.48 -0.47 -0.64 -0.04 -0.20 |\n|                                                                                                 |\n| -0.68 +0.05                                                                                     |\n+-------------------------------------------------------------------------------------------------+\n\nIs it reasonable to conclude the mean gain or loss in time for the watches is 0? Use the 0.05 significance level. Estimate the p-value.",
-      "source": "Assignment Prof Lv/Assignment8-lu.doc",
-      "type": "unknown",
-      "difficulty": 1,
-      "keywords": [],
-      "formula_refs": [],
-      "data_refs": []
-    },
-    {
-      "id": "ch08_q26",
-      "content": "An urban planner claims that, nationally, 20 percent of all families renting condominiums move during a given year. A random sample of 200 families renting condominiums in Dallas Metroplex reveal that 56 had moved during the past year. At the 0.1 significance level, does this evidence suggest that a large proportion of condominium owners moved in the Dallas area? Determine the p-value.",
-      "source": "Assignment Prof Lv/Assignment8-lu.doc",
-      "type": "unknown",
-      "difficulty": 1,
-      "keywords": [],
-      "formula_refs": [],
-      "data_refs": []
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch08-review-v1"
     },
     {
       "id": "ch08_q27",
-      "content": "In the March 16,1998, issue of Fortune magazine, the results of a survey of 2,221 MBA students from across the United States conducted by the Stockholm-based academic consulting firm Universum showed that only 20 percent of MBA students expect to stay at their first job five years or more. Assuming that a random sample was employed, find a 95 percent confidence interval for the proportion of all U.S.MBA students who expect to stay at their first job five years or more. Based on this interval, is there strong evidence that fewer than one-fourth of all U.S.MBA students expect to stay?",
+      "content": "In a random sample of 2,221 U.S. MBA students, 20% expect to remain at their first job for at least five years. Construct a 95% confidence interval for the population proportion and determine whether it supports a proportion below one-fourth.",
       "source": "Assignments for STAT 2010/assign8.doc",
-      "type": "unknown",
-      "difficulty": 1,
-      "keywords": [],
+      "type": "综合题",
+      "difficulty": 2,
+      "keywords": [
+        "confidence interval",
+        "population proportion"
+      ],
       "formula_refs": [],
-      "data_refs": []
-    },
-    {
-      "id": "ch08_q28",
-      "content": "Consolidated Power, a large electric power utility, has just built a modern nuclear power plant. This plant discharges waste that is allowed to flow into the Atlantic Ocean. The Environmental Protection Agency (EPA) has ordered that the waste water may not be excessively warm so that thermal pollution of the marine environment near the plant can be avoided. Because of this order, the waste water is allowed to cool in specially constructed ponds and is then released into the ocean. This cooling system works properly if the mean temperature of the waste water. A 60­°F or cooler. Consolidated Power is required to monitor the temperature of the waste water. A sample of 100 temperature readings will be obtained each day, and if the sample results cast a substantial amount of doubt on the hypothesis that the cooling system is working properly( the mean temperature of waste water discharged is 60­°F or cooler ­­­), then the plant must be shut down and appropriate actions must be taken to correct the problem.\n\n> **a** Consolidated Power wished to set up a hypothesis test so that the power plant will be shut down when the null hypothesis is rejected. Set up the null hypothesis H~0~ and the alternative hypothesis H~a~ that should be used.\n>\n> **b** Suppose that Consolidated Power decides to use a level of significance of $\\alpha = 0\\text{.05}$, and suppose a random sample of 100 temperature readings is obtained. If the sample mean of the 100 temperature readings is $\\overline{x} = \\text{60.482}$, test H~0~ versus H~a~ and determine whether the power plant should be shut down and the cooling system repaired. Perform the hypothesis test by using a critical value and a p-value. Assume $\\sigma = 2\\text{.}$",
-      "source": "Assignments for STAT 2010/assign8.doc",
-      "type": "unknown",
-      "difficulty": 1,
-      "keywords": [],
-      "formula_refs": [],
-      "data_refs": []
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch08-review-v1"
     },
     {
       "id": "ch08_q29",
-      "content": "In the book Business Research Methods, Donald R. Cooper and C. William Emory (1995) discuss using hypothesis testing to study receivables outstanding. To quote Cooper and Emory:\n\n> $\\ldots$the controller of a large retail chain may be concerned about a possible slowdown in payments by the company's customers. She measures the rate of payment is terms of the average number of days receivables outstanding. Generally, the company has maintained an average of 50 days with a standard deviation of 10 days. Since it would be too expensive to analyze all of a company's receivables frequently, we normally resort to sampling.\n>\n> **a** Set up the null and alternative hypotheses needed to attempt to show that there has been a slowdown in payments by the company's customer (there has been a slowdown if the average days outstanding exceeds 50).\n>\n> **b** Assume approximate normality and suppose that a random sample of 25 accounts gives an average days outstanding of $\\overline{x} = \\text{54}$ with a standard deviation of s=8. Use critical values to test the hypotheses you set up in part a at level of significance $\\alpha = 0\\text{.10}$,$\\alpha = 0\\text{.05}$,$\\alpha = 0\\text{.01}$, and $\\alpha = 0\\text{.001}$. How much evidence is there of a slowdown in payments?\n>\n> **c** Are you qualified to decide whether this result has practical importance? Who would be?",
+      "content": "A company historically has mean receivables outstanding of 50 days with standard deviation 10 days. A random sample of 25 accounts has mean 54 days and sample standard deviation 8 days. Test $H_0:\\mu\\le50$ against $H_a:\\mu>50$ at $\\alpha=0.10$, $0.05$, and $0.01$.",
       "source": "Assignments for STAT 2010/assign8.doc",
-      "type": "unknown",
-      "difficulty": 1,
-      "keywords": [],
+      "type": "综合题",
+      "difficulty": 3,
+      "keywords": [
+        "one-sample t test",
+        "hypothesis testing"
+      ],
       "formula_refs": [],
-      "data_refs": []
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch08-review-v1"
     },
     {
       "id": "ch08_q30",
-      "content": "The production department of NDB Electronics wants to explore the relationship between the number of employees who assemble a subassembly and the number produced. As an experiment, two employees were assigned to assemble the subassemblies. They produced 15 during a one-hour period. Then four employees assembled them. They produced 25 during a one-hour period. The complete set of paired observations follows.\n\n+:-----------------:+:---------------------------:+\n| Number of         | One-Hour Production (units) |\n|                   |                             |\n| Assemblers        |                             |\n+-------------------+-----------------------------+\n| 2                 | 15                          |\n+-------------------+-----------------------------+\n| 4                 | 25                          |\n+-------------------+-----------------------------+\n| 1                 | 10                          |\n+-------------------+-----------------------------+\n| 5                 | 40                          |\n+-------------------+-----------------------------+\n| 3                 | 30                          |\n+-------------------+-----------------------------+\n\nThe dependent variable is production; that is, it is assumed that the level of production depends upon the number of employee.\n\na.  Based on scatter diagram, does there appear to be any linear relationship between the number of assemblers and production? Explain.\n\nb.  Determine the regression equation.\n\nc.  Compute the coefficient of correlation.\n\nd.  Predict the production of 6 employee.",
+      "content": "For five one-hour production trials, the number of assemblers $x$ and units produced $y$ were $(1,10),(2,15),(3,30),(4,25),(5,40)$.\n\na. Does a linear relationship appear plausible?\n\nb. Find the least-squares regression equation.\n\nc. Find the correlation coefficient.\n\nd. Predict production with 6 assemblers.",
       "source": "Assignments for STAT 2012/Assignment_8.doc",
-      "type": "unknown",
-      "difficulty": 1,
-      "keywords": [],
-      "formula_refs": [
-        "ch08_q01_ans_f01_image7.wmf",
-        "ch08_q01_ans_f02_image8.wmf",
-        "ch08_q01_ans_f03_image9.wmf",
-        "ch08_q01_ans_f04_image10.wmf",
-        "ch08_q01_ans_f05_image11.wmf",
-        "ch08_q01_ans_f06_image12.wmf",
-        "ch08_q01_f01_image1.emf"
+      "type": "综合题",
+      "difficulty": 3,
+      "keywords": [
+        "linear regression",
+        "correlation"
       ],
-      "data_refs": []
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch08-review-v1"
     },
     {
       "id": "ch08_q31",
-      "content": "An Ohio university wishes to demonstrate that car ownership is detrimental to academic achievement. A random sample of 100 students who do not own cars had a mean grade point average (GPA) of 2.68, while a random sample of 100 students who own cars had a mean GPA of 2.55.\n\na\\. Set up the null and alternative hypotheses that should be used to attempt to justify that the mean GPA for non-car owners is higher than the mean GPA for car owners.\n\nb\\. Test the hypotheses that you set up in part *a* with 0.05 level of significance. Again assume that $\\sigma_{1} = 0\\text{.}7$ and $\\sigma_{2} = 0\\text{.}6$. Interpret the results of this test. That is, what do your results say about whether the university can statistically justify that car ownership hurts academic achievement?",
+      "content": "A sample of 100 students without cars has mean GPA 2.68; a sample of 100 students with cars has mean GPA 2.55. Assume independent populations with known standard deviations $\\sigma_1=0.7$ and $\\sigma_2=0.6$. Test whether non-car owners have a higher mean GPA at $\\alpha=0.05$.",
       "source": "Assignments for STAT 2012/Assignment_8.doc",
-      "type": "unknown",
-      "difficulty": 1,
-      "keywords": [],
-      "formula_refs": [
-        "ch08_q02_f01_image2.emf",
-        "ch08_q02_f02_image3.emf"
+      "type": "综合题",
+      "difficulty": 3,
+      "keywords": [
+        "two-sample z test",
+        "hypothesis testing"
       ],
-      "data_refs": []
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch08-review-v1"
     },
     {
       "id": "ch08_q32",
-      "content": "The Computer Anxiety Rating Scale (CARS) measures an individual's level of computer anxiety on a scale from 20 (no anxiety) to 100 (highest level of anxiety). Researchers at Miami University administered CARS to 172 business students. One of the objectives of the study was to determine if there is a difference between the level of computer anxiety experienced by female and male business students. We assume that variances of two populations are equal.\n\n  ------------------ ------------ -------------\n                     Males        Females\n\n  $$\\overline{x}$$   40.26        36.85\n\n  s                  13.35        9.42\n\n  n                  100          72\n  ------------------ ------------ -------------\n\na.  At the 0.05 level of significance, is there evidence of a difference in the mean computer anxiety experienced by female and male business students?\n\nb.  Determine the p-value and interpret its meaning.\n\nc.  What assumptions do you have to make about the two populations in order to justify the use of the *t* test?",
+      "content": "Computer Anxiety Rating Scale scores are summarized as follows, with equal population variances assumed:\n\n| Group | Mean | SD | n |\n|---|---:|---:|---:|\n| Male | 40.26 | 13.35 | 100 |\n| Female | 36.85 | 9.42 | 72 |\n\nTest at $\\alpha=0.05$ whether the population means differ, report the p-value, and state the assumptions.",
       "source": "Assignments for STAT 2012/Assignment_8.doc",
-      "type": "unknown",
-      "difficulty": 1,
-      "keywords": [],
+      "type": "综合题",
+      "difficulty": 3,
+      "keywords": [
+        "two-sample t test",
+        "hypothesis testing"
+      ],
       "formula_refs": [],
-      "data_refs": []
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch08-review-v1"
     },
     {
       "id": "ch08_q33",
-      "content": "Multiple myeloma or blood plasma cancer is characterized by increased blood vessel formulation (angiogenesis) in the bone marrow that is a prognostic factor in survival. One treatment approach used for multiple myeloma is stem cell transplantation with the patient's own stem cells. The following data MYELOMA represent the bone marrow microvessel density for patients who had a complete response to the stem cell transplant as measured by blood and urine tests. The measurements were taken immediately prior to the stem cell transplant and at the time of the complete response.\n\n  ------------------ ------------------ ------------------\n       Patient             Before             After\n\n          1                 158                284\n\n          2                 189                214\n\n          3                 202                101\n\n          4                 353                227\n\n          5                 416                290\n\n          6                 426                176\n\n          7                 441                290\n  ------------------ ------------------ ------------------\n\na.  At the 0.05 level of significance, is there evidence that the mean bone marrow microvessel density is higher before the stem cell transplant than after the stem cell transplant?\n\nb.  Interpret the meaning of the *p*-value in (a).\n\nc.  Construct and interpret a 95% confidence interval estimate of the mean difference in bone marrow microvessel density before and after the stem cell transplant.\n\n**Regression Analysis**",
+      "content": "Bone-marrow microvessel densities were measured before and after transplant for seven patients:\n\n| Patient | Before | After |\n|---:|---:|---:|\n| 1 | 158 | 284 |\n| 2 | 189 | 214 |\n| 3 | 202 | 101 |\n| 4 | 353 | 227 |\n| 5 | 416 | 290 |\n| 6 | 426 | 176 |\n| 7 | 441 | 290 |\n\nLet $d=$ before $-$ after. Test at $\\alpha=0.05$ whether mean density is higher before treatment, report the p-value, and give a 95% confidence interval for the mean difference.",
       "source": "Assignments for STAT 2012/Assignment_8.doc",
-      "type": "unknown",
-      "difficulty": 1,
-      "keywords": [],
+      "type": "综合题",
+      "difficulty": 3,
+      "keywords": [
+        "paired t test",
+        "confidence interval",
+        "hypothesis testing"
+      ],
       "formula_refs": [],
-      "data_refs": []
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch08-review-v1"
     },
     {
       "id": "rotel_ch08_ci_01",
-      "content": "A report states that users of an antihypertensive drug experience a mean reduction in systolic blood pressure of 24 mmHg, with a margin of error of $\\pm4$ mmHg at the 95% confidence level.\n\na. What is the lower endpoint of the confidence interval?\n\nb. If the population standard deviation is 9 mmHg, what minimum sample size is required for the margin of error of a 95% confidence interval to be less than 2 mmHg?",
+      "content": "A report gives a mean systolic-blood-pressure reduction of 24 mmHg with margin of error 4 mmHg at 95% confidence.\n\na. Find the lower endpoint.\n\nb. If $\\sigma=9$ mmHg, find the minimum sample size for margin of error less than 2 mmHg.",
       "source": "ROTEL Statistical Problem Sets in WeBWorK — 8.1-8.2 Problem 1 — https://rotel.pressbooks.pub/statsproblemsets/chapter/8-1-8-2-confidence-intervals/",
       "source_url": "https://rotel.pressbooks.pub/statsproblemsets/chapter/8-1-8-2-confidence-intervals/",
       "source_problem": "8.1-8.2 Problem 1",
       "license": "CC BY-NC-SA 4.0",
       "attribution": "Rachael Norton and Peter Staab, 2023",
-      "review_status": "independently solved, translated, and reviewed",
+      "review_status": "independently solved and reviewed",
       "type": "综合题",
       "difficulty": 2,
       "keywords": [
         "confidence interval",
-        "margin of error",
         "sample size"
       ],
       "formula_refs": [],
       "data_refs": [],
-      "audit_pack": "english-normalization-v1"
+      "audit_pack": "ch08-review-v1"
     },
     {
       "id": "rotel_ch08_ci_02",
-      "content": "A random sample of 30 used-car transactions has sample mean sale price 2,000 dollars. The population standard deviation is known to be 300 dollars.\n\na. Find the 99% confidence interval for the population mean sale price, rounding to two decimals.\n\nb. Correctly interpret this confidence interval.",
+      "content": "A random sample of 30 used-car transactions has mean sale price $\\$2,000$, and the population standard deviation is known to be $\\$300$.\n\na. Find the 99% confidence interval for the population mean.\n\nb. Interpret it correctly.",
       "source": "ROTEL Statistical Problem Sets in WeBWorK — 8.1-8.2 Problem 2 — https://rotel.pressbooks.pub/statsproblemsets/chapter/8-1-8-2-confidence-intervals/",
       "source_url": "https://rotel.pressbooks.pub/statsproblemsets/chapter/8-1-8-2-confidence-intervals/",
       "source_problem": "8.1-8.2 Problem 2",
       "license": "CC BY-NC-SA 4.0",
       "attribution": "Rachael Norton and Peter Staab, 2023",
-      "review_status": "independently solved, translated, and reviewed",
+      "review_status": "independently solved and reviewed",
       "type": "综合题",
-      "difficulty": 3,
+      "difficulty": 2,
       "keywords": [
-        "population mean",
-        "known standard deviation",
-        "confidence interval interpretation"
+        "confidence interval",
+        "known standard deviation"
       ],
       "formula_refs": [],
       "data_refs": [],
-      "audit_pack": "english-normalization-v1"
+      "audit_pack": "ch08-review-v1"
     },
     {
       "id": "rotel_ch08_ci_03",
-      "content": "A random sample of 15 television quiz-show winners received the following prize amounts, in dollars: $43{,}460, 38{,}213, 42{,}876, 38{,}921, 36{,}709, 26{,}735, 35{,}472, 31{,}319, 42{,}833, 27{,}159, 32{,}799, 39{,}271, 44{,}016, 28{,}191, 37{,}087$. With the population standard deviation unknown, construct a 94% confidence interval for the population mean prize amount.",
+      "content": "Prize amounts for 15 television quiz-show winners (dollars) are 43,460; 38,213; 42,876; 38,921; 36,709; 26,735; 35,472; 31,319; 42,833; 27,159; 32,799; 39,271; 44,016; 28,191; 37,087. With unknown population standard deviation, construct a 94% confidence interval for the mean prize.",
       "source": "ROTEL Statistical Problem Sets in WeBWorK — 8.1-8.2 Problem 3 — https://rotel.pressbooks.pub/statsproblemsets/chapter/8-1-8-2-confidence-intervals/",
       "source_url": "https://rotel.pressbooks.pub/statsproblemsets/chapter/8-1-8-2-confidence-intervals/",
       "source_problem": "8.1-8.2 Problem 3",
       "license": "CC BY-NC-SA 4.0",
       "attribution": "Rachael Norton and Peter Staab, 2023",
-      "review_status": "independently solved, translated, and reviewed",
+      "review_status": "independently solved and reviewed",
       "type": "计算题",
-      "difficulty": 4,
+      "difficulty": 3,
       "keywords": [
-        "t confidence interval",
-        "small sample",
-        "population mean"
+        "one-sample t interval",
+        "confidence interval"
       ],
       "formula_refs": [],
       "data_refs": [],
-      "audit_pack": "english-normalization-v1"
+      "audit_pack": "ch08-review-v1"
     },
     {
       "id": "rotel_ch08_proportion_n_01",
-      "content": "You plan to estimate the proportion of students who attend home basketball games. With no prior estimate of the proportion, what minimum number of students must be surveyed so that the margin of error of a 99% confidence interval is less than 0.01?",
+      "content": "With no prior estimate of the proportion of students who attend home basketball games, find the minimum sample size needed for a 99% confidence interval with margin of error less than 0.01.",
       "source": "ROTEL Statistical Problem Sets in WeBWorK — 8.3-9.3 Problem 1 — https://rotel.pressbooks.pub/statsproblemsets/chapter/8-3-9-3-ci-and-hypothesis-testing/",
       "source_url": "https://rotel.pressbooks.pub/statsproblemsets/chapter/8-3-9-3-ci-and-hypothesis-testing/",
       "source_problem": "8.3-9.3 Problem 1",
       "license": "CC BY-NC-SA 4.0",
       "attribution": "Rachael Norton and Peter Staab, 2023",
-      "review_status": "independently solved, translated, and reviewed",
+      "review_status": "independently solved and reviewed",
       "type": "计算题",
-      "difficulty": 3,
+      "difficulty": 2,
       "keywords": [
-        "population proportion",
+        "confidence interval",
         "sample size",
-        "margin of error"
+        "population proportion"
       ],
       "formula_refs": [],
       "data_refs": [],
-      "audit_pack": "english-normalization-v1"
+      "audit_pack": "ch08-review-v1"
     }
   ]
 }

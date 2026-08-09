@@ -4,22 +4,22 @@
 
 ## Scope
 
-- Total questions: **295**
+- Total questions: **281**
 - Target language: **English**
 - Questions currently eligible for paper assembly: **0**
 - Source files remain read-only; all rewrites must be traceable through the manifest.
 
 ## Language baseline
 
-- English questions: 295
+- English questions: 281
 - Chinese questions: 0
 - Mixed-language questions: 0
 
 ## Priority findings
 
 - Missing answers: 0
-- Unclassified question types: 96
-- Multi-part alignment candidates: 110
+- Unclassified question types: 34
+- Multi-part alignment candidates: 111
 - Unresolved sources: 0
 - Missing referenced assets: 0
 
