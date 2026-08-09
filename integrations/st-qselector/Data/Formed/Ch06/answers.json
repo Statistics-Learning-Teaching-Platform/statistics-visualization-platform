@@ -3,7 +3,7 @@
   "answers": [
     {
       "id": "ch06_q02",
-      "answer": "a. $f(x)=1$ for $-0.5\\le x\\le0.5$ and $0$ otherwise.\n\nb. The graph is a horizontal line of height $1$ on $[-0.5,0.5]$.\n\nc. $P(X>0.3\\text{ or }X<-0.3)=0.2+0.2=0.4$.\n\nd. $E(X)=0$ and $\\operatorname{SD}(X)=(0.5-(-0.5))/\\sqrt{12}=1/\\sqrt{12}\\approx0.2887$ cents.\n\ne. $P(|X|\\le0.2887)=2(0.2887)\\approx0.5774$.",
+      "answer": "a. $f(x)=1$ for $-0.5\\le x\\le0.5$ and $0$ otherwise.\n\nb. The graph is a horizontal line of height $1$ on [-0.5, 0.5] dollars.\n\nc. $P(X>0.3\\text{ or }X<-0.3)=0.2+0.2=0.4$.\n\nd. $E(X)=0$ and $\\operatorname{SD}(X)=(0.5-(-0.5))/\\sqrt{12}=1/\\sqrt{12}\\approx0.2887$ cents.\n\ne. $P(|X|\\le0.2887)=2(0.2887)\\approx0.5774$.",
       "review_status": "independently solved and reviewed",
       "audit_pack": "ch06-review-v1"
     },
@@ -63,7 +63,7 @@
     },
     {
       "id": "ch06_q15",
-      "answer": "The endpoints are $a=0.5$ and $b=10$ minutes.\n\na. $[0.5,10]$.\n\nb. $E(X)=(a+b)/2=5.25$ minutes and $\\operatorname{SD}(X)=(b-a)/\\sqrt{12}=9.5/\\sqrt{12}\\approx2.742$ minutes.\n\nc. $P(X>5)=(10-5)/(10-0.5)=5/9.5\\approx0.5263$.\n\nd. The middle 50% runs from $a+0.25(b-a)=2.875$ to $a+0.75(b-a)=7.625$ minutes.",
+      "answer": "The endpoints are $a=0.5$ and $b=10$ minutes.\n\na. [0.5, 10] dollars.\n\nb. $E(X)=(a+b)/2=5.25$ minutes and $\\operatorname{SD}(X)=(b-a)/\\sqrt{12}=9.5/\\sqrt{12}\\approx2.742$ minutes.\n\nc. $P(X>5)=(10-5)/(10-0.5)=5/9.5\\approx0.5263$.\n\nd. The middle 50% runs from $a+0.25(b-a)=2.875$ to $a+0.75(b-a)=7.625$ minutes.",
       "review_status": "independently solved and reviewed",
       "audit_pack": "ch06-review-v1"
     },
@@ -135,7 +135,7 @@
     },
     {
       "id": "ch06_q28",
-      "answer": "The 33rd percentile has $z_{0.33}\\approx-0.44$. Therefore $k=3000-0.44(500)\\approx\\$2,780$.",
+      "answer": "The 33rd percentile has $z_{0.33}\\approx-0.44$. Therefore $k=3000-0.44(500)\\approx2,780$ dollars.",
       "review_status": "independently solved and reviewed",
       "audit_pack": "ch06-review-v1"
     },
@@ -159,7 +159,7 @@
     },
     {
       "id": "ch06_q33",
-      "answer": "Because $\\sigma$ is unknown and $n=10$, use $t_{0.975,9}=2.262$. The margin of error is $2.262(32.866/\\sqrt{10})\\approx23.51$. Thus the 95% interval is $846.2\\pm23.51=[822.69,869.71]$ dollars per square foot. Since the entire interval exceeds $800$, the data support that the population mean is greater than $\\$800$.",
+      "answer": "Because $\\sigma$ is unknown and $n=10$, use $t_{0.975,9}=2.262$. The margin of error is $2.262(32.866/\\sqrt{10})\\approx23.51$. Thus the 95% interval is $846.2\\pm23.51=[822.69,869.71]$ dollars per square foot. Since the entire interval exceeds $800$, the data support that the population mean is greater than USD 800.",
       "review_status": "independently solved and reviewed",
       "audit_pack": "ch06-review-v1"
     },
@@ -177,7 +177,7 @@
     },
     {
       "id": "ch06_q36",
-      "answer": "The sample proportion is $\\hat p=350/500=0.70$, and $\\operatorname{SE}=\\sqrt{0.7(0.3)/500}\\approx0.02049$. With $z_{0.995}=2.576$, the margin of error is $2.576(0.02049)\\approx0.0528$. The 99% interval is $[0.647,0.753]$. It is entirely above 0.50, so the data strongly support a majority of voters favoring Miller, but no sample can confirm the election outcome with certainty.",
+      "answer": "The sample proportion is $\\hat p=350/500=0.70$, and $\\operatorname{SE}=\\sqrt{0.7(0.3)/500}\\approx0.02049$. With $z_{0.995}=2.576$, the margin of error is $2.576(0.02049)\\approx0.0528$. The 99% interval is [0.647, 0.753] dollars. It is entirely above 0.50, so the data strongly support a majority of voters favoring Miller, but no sample can confirm the election outcome with certainty.",
       "review_status": "independently solved and reviewed",
       "audit_pack": "ch06-review-v1"
     },

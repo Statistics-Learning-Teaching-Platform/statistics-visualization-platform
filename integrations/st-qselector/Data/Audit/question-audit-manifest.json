@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-08-09T11:13:55.317624+00:00",
+  "generated_at": "2026-08-09T11:23:14.138878+00:00",
   "source_roots": {
     "origin": "Data/Origin",
     "formed": "Data/Formed"
@@ -34,11 +34,11 @@
       "en": 273
     },
     "grouping_candidates": {
-      "atomic_candidate": 164,
-      "multi_part_candidate": 109
+      "atomic_candidate": 163,
+      "multi_part_candidate": 110
     },
     "issue_counts": {
-      "multi_part_requires_alignment_review": 109
+      "multi_part_requires_alignment_review": 110
     },
     "eligible_for_paper": 0
   },
@@ -284,7 +284,7 @@
         "resolvable": true
       },
       "original": {
-        "question_hash": "e54c31fefcff79c0c81cf13eb8f304cc71ccdbb1454a201a9cbae671a4e0ed81",
+        "question_hash": "742e67d7d2a23cd806a94aa952de9c0dbf56a022169208ec9584bbc44655d59f",
         "answer_hash": "b914744d82f9945bcd180be7eb2fbdd344edf6ab4942d09ccb9e160c128a9b0e",
         "type": "简答题",
         "difficulty": 1,
@@ -304,10 +304,12 @@
         "assets": [],
         "format_findings": [],
         "context_findings": [],
-        "detected_part_count": 0,
-        "grouping_status": "atomic_candidate",
+        "detected_part_count": 5,
+        "grouping_status": "multi_part_candidate",
         "previously_reviewed": true,
-        "issue_codes": []
+        "issue_codes": [
+          "multi_part_requires_alignment_review"
+        ]
       },
       "workflow": {
         "decision": "pending",
@@ -2969,7 +2971,7 @@
       },
       "original": {
         "question_hash": "23aa6dbca9e9e7381c26f4392f4f1da53bdf47e7118cc6977296bb40247d8721",
-        "answer_hash": "5bcdb9eb6fe830492c27c3c258500cd20f02b1231cf37c0294829b30b4243592",
+        "answer_hash": "854db412cea0edc0565f5e85bc3756e4689fb194ad657aef0677b6c1720cd48d",
         "type": "综合题",
         "difficulty": 4,
         "keywords": [
@@ -3081,7 +3083,7 @@
       },
       "original": {
         "question_hash": "94e33d673eda21102da648d8473c09814e1694d216c0404b16f276792f16c006",
-        "answer_hash": "36d44d4fd8a60bbd66bcbb8ec3d2e43f3cecb0e916b6fb7aa63b8bd201e3ef87",
+        "answer_hash": "8cb5c5ecded2a8dfb4c19e4e81de97e850bcf8ffa585aefac6b543bf6bc65b94",
         "type": "计算题",
         "difficulty": 3,
         "keywords": [
@@ -4645,7 +4647,7 @@
         "resolvable": true
       },
       "original": {
-        "question_hash": "7d33b886cc7dabd8888da92443491137159ac3186a50f181691773316d4c3c8a",
+        "question_hash": "fae631413a3b3956b1d55994fb87bbf6da3eca9fe1414c01224b40b3a49d40ec",
         "answer_hash": "8401c279877087f4bef419059f93bfb750e182189a8b2ce03459523156bfb69f",
         "type": "计算题",
         "difficulty": 2,
@@ -5753,7 +5755,7 @@
         "resolvable": true
       },
       "original": {
-        "question_hash": "9e9740d3fe18285b4aff26b64bd7dc9d16da1cd2f2ca47ecf4ad5d8fd5e5fdd8",
+        "question_hash": "e2977b78b166e261dce92c66deaaa5ad8a1d606108750be1e9004ee102273546",
         "answer_hash": "0ee68638ee08f10525ab21bb7d91b5eecce09e469bc926617e69dd26b29e94e0",
         "type": "综合题",
         "difficulty": 2,
@@ -5807,8 +5809,8 @@
         "resolvable": true
       },
       "original": {
-        "question_hash": "988eec1b5472dcc0367ba803ac475cb3166db9ac1dd38405a9f06525677ae530",
-        "answer_hash": "c8b1cc2bde342f32df6f2ed3512cd0179e0d726442e7f769b1585eaa00a2a7e6",
+        "question_hash": "75525483c4b85660fbac0e5c6209f1e754d7a29e342e33a07ba48b80ef8c2509",
+        "answer_hash": "9f52eb257f684adf5da61f3b50514cb13dd533aea76a4c3fb02ca68743bb6926",
         "type": "计算题",
         "difficulty": 2,
         "keywords": [
@@ -6489,8 +6491,8 @@
         "resolvable": true
       },
       "original": {
-        "question_hash": "586b9799da2cdfa6aca6f1d7186a037378b913bb02ba588406caee36736fc30d",
-        "answer_hash": "537f41769e3cbab5af0d3957fd8f57e7540b0621e1b463b28000e5905a09e2f2",
+        "question_hash": "11b121f2a0959d29484cda08b82243365866fee6ce951cac348b34a113cfb438",
+        "answer_hash": "dbdf1bc295d13a92deba707b84ca748315ce130e55bd4b2aca93428379867d94",
         "type": "计算题",
         "difficulty": 2,
         "keywords": [
@@ -6541,7 +6543,7 @@
         "resolvable": true
       },
       "original": {
-        "question_hash": "f03dc6819f3617dd2b9a5fdbb153a2479edf87688b6c696308afbe41ebfcf3c1",
+        "question_hash": "9394f931f9a3447de906fe0727fff69a52e601435abe4b48dd1f6bbdf44eb233",
         "answer_hash": "22265c76e89d639d64fdf042db6d314d58c84e8b92b573e54a5d8c9474a1f57a",
         "type": "计算题",
         "difficulty": 2,
@@ -6646,8 +6648,8 @@
         "resolvable": true
       },
       "original": {
-        "question_hash": "4f5baee34fef9d8ad6d6fb83656fb08fda06513490372e167ae2176a55a25d21",
-        "answer_hash": "dc19e469117221697cfad89044ac2100032012a24ae01c4e6fce14141d59ecb6",
+        "question_hash": "d3c384a92e326ef1d9cc3b61730467c8f83e0fa6c6f15f3ea42c0dcb36c19663",
+        "answer_hash": "28da2cf86213fd2625f3d3b598378a9b0801f6c83c5ecd8feac0d1b3ffe62474",
         "type": "计算题",
         "difficulty": 2,
         "keywords": [
@@ -6698,8 +6700,8 @@
         "resolvable": true
       },
       "original": {
-        "question_hash": "52c6511033702620b821b0c2823a3c7a10708e3b37164ef7812e2814bade8dea",
-        "answer_hash": "2b59df8cb31e1c1eab3b18964dff20747f7ad040b6d61a817aaf80d4e25def67",
+        "question_hash": "060182637828e56d6e2cf538ea7c7460786ed79ac5bde7fd3ccf2b40890197e7",
+        "answer_hash": "aa3b1024c33916207635d5a7719e947ae38b74874720b1897ff548ed6a989609",
         "type": "计算题",
         "difficulty": 2,
         "keywords": [
@@ -6907,7 +6909,7 @@
       },
       "original": {
         "question_hash": "091e6f427fbf6480b460a4216e6d572b3a2a6c86db6d131dc7bbb8a9cc41e7ad",
-        "answer_hash": "d45c414b8594127602323978a0ec8dfa074185403fb374d7b0d93b0a0e09aead",
+        "answer_hash": "8f8d6b5cece9a59558a0d053a9bb4e4c753e1473811c101afc7e9f8af4bf1121",
         "type": "计算题",
         "difficulty": 3,
         "keywords": [
@@ -7112,8 +7114,8 @@
         "resolvable": true
       },
       "original": {
-        "question_hash": "2e22d4cabf7aae00c5fd2dffafaa6a991337e4d71469b703b2b9e5f27757cfa1",
-        "answer_hash": "1c243078c82c081c345405a8088e15acca9c595d7ff9ba1d94211b956151b528",
+        "question_hash": "e84dd6435513504301ca5c54d2e3b4ec41d4c2ec9cfd0dc3198c954284a59e52",
+        "answer_hash": "775f951619e0234a186f99f0b28ae341cf99e9ebe24b63d18b9c97f46815c1d0",
         "type": "综合题",
         "difficulty": 2,
         "keywords": [
@@ -7484,8 +7486,8 @@
         "resolvable": true
       },
       "original": {
-        "question_hash": "ec066f70d2f4ba04b378c8ac75327f9556de5cd9951a5c60cb7a4b203e5c744e",
-        "answer_hash": "21f56293503d43ec9f5086def1b2857f8b933380704d0225ddda3b0302b2dcbc",
+        "question_hash": "cae76180afd7ba46c82994ef33dd0db72eb18ca9bc60059165dd1337666c83cc",
+        "answer_hash": "563aa9e8c0fd414af00b8c8f30f38b975d336ac8ba2c9f7935b32c41f883b3c3",
         "type": "综合题",
         "difficulty": 2,
         "keywords": [
@@ -8023,7 +8025,7 @@
       },
       "original": {
         "question_hash": "7c9d34ee975506f476f2846730ef71c3ce95748dbe7eca0d19f304da497dc4ee",
-        "answer_hash": "d12d218e2fdb33595a73368cd32ea84367a2725c54b635a9af078b51745fecff",
+        "answer_hash": "57fc6b5d31b979e352bc8e88aabf5c96889b5e18c0151260ffc6d821ebfd1807",
         "type": "综合题",
         "difficulty": 2,
         "keywords": [
@@ -8075,7 +8077,7 @@
         "resolvable": true
       },
       "original": {
-        "question_hash": "9a7098948ffe44a2348312e2a211ee0f6fd59b327e4a912e7c4a3c0c827e808b",
+        "question_hash": "a460b9e9ca0ff0ee3389f500697d56fd416f5f5a661e8871d0b79f6313570f7c",
         "answer_hash": "602cb65659fba9091d03c3e12f02a888ddea7fc28192478fbd1c680a5dfc1eb4",
         "type": "综合题",
         "difficulty": 2,
@@ -8130,7 +8132,7 @@
         "resolvable": true
       },
       "original": {
-        "question_hash": "a2a2a4d8953de08fce18dab04bb2c5370cc431f844a9e32701305f6b7df257a2",
+        "question_hash": "3e1f6575436bded33866ebbf75cfc6da01350f243789ebd8eb38b44a0c0674c0",
         "answer_hash": "a869a6dc6534e88c48200b8b54447ed6a820f3f2fb91724c3602e651b83ae83c",
         "type": "计算题",
         "difficulty": 2,
@@ -8183,7 +8185,7 @@
         "resolvable": true
       },
       "original": {
-        "question_hash": "f64c69cd313b19155d0bc64eba34ec47ae57223e2946ee97f11a82625c2d8194",
+        "question_hash": "2db1f50642e2612ccdf890170c604d1033ab05103cdf13119c7f84354eb06162",
         "answer_hash": "a16fd17a5f6618189395eec4676c6cb78eb9fdf57779b968381e574ff8e092f0",
         "type": "综合题",
         "difficulty": 2,
@@ -8716,8 +8718,8 @@
         "resolvable": true
       },
       "original": {
-        "question_hash": "0ac5c5ff7743d0a48c3a28be02592633288c5fb0a3e1fcc84cd4c71a190c4e01",
-        "answer_hash": "9a8e8cb77fb1edb0ff1e47a17033d55a0614e77ae2e482b6e38828f0d85962fd",
+        "question_hash": "94c00310e57206d407cf18af94c0d7a5d42ec401f9ed612c4cb3f4d1b2a7fe4a",
+        "answer_hash": "85997912b17eefe7c23486b864ce0b959f6e7eb3d937073d604658b872e74dd7",
         "type": "计算题",
         "difficulty": 2,
         "keywords": [
@@ -8929,8 +8931,8 @@
         "resolvable": true
       },
       "original": {
-        "question_hash": "f83c14d092bd79ab370cc5dc9c7f11a4c843e9389f8f403d5980a85d4fc4f7bf",
-        "answer_hash": "3bb49ce5e74a08900c6dafb654d3f4892795d45887345e2b5025bc447743d920",
+        "question_hash": "fc75cff921e2e3879238f566cae7608d9cc8c81784362c36cf5350ad42197faa",
+        "answer_hash": "5068e67ec7f99e0f69c24239abab29ff6b76d1695e1a2d6b2f19179a1bb19a61",
         "type": "计算题",
         "difficulty": 3,
         "keywords": [
@@ -9035,7 +9037,7 @@
         "resolvable": true
       },
       "original": {
-        "question_hash": "9d62bf282bf968719c37f2450819e91a729395ce1cbbba804b2ae017bf542d14",
+        "question_hash": "a67bf6bcd28cf9135c58a2307aa34b53be59ad45f15716a2c4c87cc36b54201b",
         "answer_hash": "8dc0db37288e4337892f4e5b495fb7fb8c1a45e534b786a478b14c1f25df0caf",
         "type": "计算题",
         "difficulty": 2,
@@ -9088,7 +9090,7 @@
       },
       "original": {
         "question_hash": "27d7c81c9ae6785e91bf797e19673f81c767d88a4a799e9952ff100c3362ab1c",
-        "answer_hash": "1524fe9fe6bb611f9313078a527ec8eba5d5dec6f653fe2853dea6bd8b202394",
+        "answer_hash": "c0633f9b560a37747d5382413fecac5061db0c9cf7143d1129a2391099ce0807",
         "type": "综合题",
         "difficulty": 3,
         "keywords": [
@@ -9885,7 +9887,7 @@
         "resolvable": true
       },
       "original": {
-        "question_hash": "e03941320547bbe8fc8fdb8f14c961b69fc6e34a4a7f731e16ced770f029eccd",
+        "question_hash": "d215a5973776f2d01c12f23dd9dc39a76b5e728c3356144b9dcc5a56c311e907",
         "answer_hash": "485e4f1b3584965f3d728748547f9bc2c5941dcdda92bc7616e50f81c986b2d7",
         "type": "综合题",
         "difficulty": 2,
@@ -10203,7 +10205,7 @@
         "resolvable": true
       },
       "original": {
-        "question_hash": "984d304fe97a768c87f6c089ef9d848accdbb7bfa1c61f8f91a8420f12e8fb88",
+        "question_hash": "de8bc2b4eaa527315efa4d3bca73f0e5633473f00959131d5c50043f58a380b1",
         "answer_hash": "229090af3de5a035ecb7d8bf4146deb36d7c8a3d689c9f345601346e7b21d1dd",
         "type": "计算题",
         "difficulty": 2,
@@ -10569,8 +10571,8 @@
         "resolvable": true
       },
       "original": {
-        "question_hash": "4b6c1f86089800aa837a9fa51dfea6d046c6f381dd4468c0690f3ec4f739f236",
-        "answer_hash": "8252f380f4e6add6aa49c01899937f9aa5605807d30059e082b998e7cae6f8b6",
+        "question_hash": "16caa32fb50cdbb3866641490521d3674ccec9b8da1105007c8b02956f05077a",
+        "answer_hash": "1c0dbeea31b43c7764f78707bcb93c2ee70b202c1834616fa278df14af0cd877",
         "type": "简答题",
         "difficulty": 1,
         "keywords": [
@@ -10621,7 +10623,7 @@
       },
       "original": {
         "question_hash": "272dccaafa52c558aa385b03a65405dacb1e24ccc398a4180c09704c788ad318",
-        "answer_hash": "b5beefe1ac26f42e72026943f8f4ab50455eb25106f253d426c21c67f3307ca1",
+        "answer_hash": "a99b42ac2ae2931d225db3fc3a6160ba996b5d236b5c62e8937c2da70cad6668",
         "type": "综合题",
         "difficulty": 3,
         "keywords": [
@@ -10726,8 +10728,8 @@
         "resolvable": true
       },
       "original": {
-        "question_hash": "68ed2880d505a52950206dfbf929a31c403d574335b45dacea5cd2381029a92a",
-        "answer_hash": "023bc67d4c1be52475e6ab3375ae107c25603e5250f8ad5d18835028bdfa57b5",
+        "question_hash": "8ab284db7be6bce98a4573bbc71b008468ae1204fa66bb07f0ea52140e04fd1d",
+        "answer_hash": "a7c62ad816f2eea4cbe7e19a8fbf0b98df557e5571018c1e6a052cb40c3b67a4",
         "type": "综合题",
         "difficulty": 2,
         "keywords": [
@@ -10781,7 +10783,7 @@
       },
       "original": {
         "question_hash": "4b31cd56684cb1deb71e0be5e6beb670e7326b2bd51ae5819ec25ff3353d08aa",
-        "answer_hash": "d0471fe2fee6abb486d451df31df64bcfeaa59256204d74cdf8b09d3887a75cf",
+        "answer_hash": "ff7e1e44321ec00bd6b30df39c3878285f314d1a1a12e8459da9ee307d791999",
         "type": "计算题",
         "difficulty": 2,
         "keywords": [
@@ -10886,7 +10888,7 @@
         "resolvable": true
       },
       "original": {
-        "question_hash": "693430a4398cbe6f012cd36296aa65918478a2b012d2732be6145174cec754c2",
+        "question_hash": "72907e773ff2f87dfc381aea11f86f4305338b818c0f988b1c96465e1712701c",
         "answer_hash": "5022feaebf9fd347659cc5da2dd730a1b2a6868eb7d59f20ffcf1f27594d727e",
         "type": "计算题",
         "difficulty": 2,
@@ -11099,7 +11101,7 @@
       },
       "original": {
         "question_hash": "aee1ea929b7ed6a357397332a14dd5ec70bfee73004a9f8be6a966a2a595ed48",
-        "answer_hash": "b993f458667208754a47a95ec3fec7e98c376b2c164f0217a1591f517c59ad52",
+        "answer_hash": "a68c8ab00637d7bf78a20b711717d52db475167e51fcfbb6792f26c75998f05e",
         "type": "综合题",
         "difficulty": 2,
         "keywords": [
@@ -11154,7 +11156,7 @@
       },
       "original": {
         "question_hash": "c049aaa920b18f0f4b22ea82e4544b216a8e8f50852f2bd304e99bf849394d49",
-        "answer_hash": "7d9c24b328dfaac50a0f267b2bbbbb79aa8c55f5a95034e6a1e2e9dee71239ce",
+        "answer_hash": "eaef3e06334541142ed00c4b63e95e4e14ebd0fa9aaf10eb44223d2450c3160b",
         "type": "综合题",
         "difficulty": 2,
         "keywords": [
@@ -11263,7 +11265,7 @@
       },
       "original": {
         "question_hash": "04d10eee7d302fb4b51cecdf57ffd124b858f4336664bccafecf7c28f1c17cdf",
-        "answer_hash": "af9402ccfc7e8098c3f0327a293c652d58a24765d1df80e48dac19431dc37c5b",
+        "answer_hash": "969c8d1b7ed46a109f46e4fe6ef62911d972287a43a2542dc4769b0432b6394c",
         "type": "综合题",
         "difficulty": 3,
         "keywords": [
@@ -11317,7 +11319,7 @@
       },
       "original": {
         "question_hash": "445824ba9768d36209dd66aae9a04793cb86754a81f71720a64169f899025cfa",
-        "answer_hash": "0fefeb0af2c8e14b2014f8a7c6ecedb57dc5b87c9b76e7f6f889a265c4a0ffbb",
+        "answer_hash": "7703768d6102e8043090e5aa3cbc3ce03be3013e2009566570bd44d9039d6bff",
         "type": "综合题",
         "difficulty": 3,
         "keywords": [
@@ -11424,7 +11426,7 @@
       },
       "original": {
         "question_hash": "946e46b4139bdfc9b10e85c2915af83ef3045819679b951e3186a483c351cb22",
-        "answer_hash": "95bf48230e7bad940e46e60c4d902c2f92bc7341457d6ab968be148eb262624e",
+        "answer_hash": "53a7812160f3c2ec4dc8e2a175453c1e2ffb2defc1e3edf353a4739284cc188c",
         "type": "综合题",
         "difficulty": 3,
         "keywords": [
@@ -11951,8 +11953,8 @@
         "resolvable": true
       },
       "original": {
-        "question_hash": "61e393ac94362bc0e5cb6a31009a9aec0f35d19d7fd954d5eb100bce7516752b",
-        "answer_hash": "fd9ae0c04040176e7ba5ac36d75cd03fcb70a2e6ff52677a79d355b4ecb66d74",
+        "question_hash": "1a4947f7396acb66bbc26159c03ef0329d862b45aaa087e0318b1561c7adc364",
+        "answer_hash": "23a131909974adaa66b1c20f95efdaa29c5c9d4b87dd308ef318c797dabe463f",
         "type": "综合题",
         "difficulty": 2,
         "keywords": [
@@ -12006,7 +12008,7 @@
       },
       "original": {
         "question_hash": "2788dbb5a6363a5a5ee34ed76ed3d4fa86181390309267c41a4b4bdf91b7c5a2",
-        "answer_hash": "b75ba4271e3e9cdc1aff77334382c75fd860c63af0551da481897083e1632283",
+        "answer_hash": "3349d50d0113f3b8e74e1c4f4c18c60667575a18c9d0ded2d81996a9b200c94d",
         "type": "计算题",
         "difficulty": 3,
         "keywords": [
@@ -12110,8 +12112,8 @@
         "resolvable": true
       },
       "original": {
-        "question_hash": "dbf561a5a8b95e8576f879ebffeefcf2a1ee86dd36b254ff539374d35c149b97",
-        "answer_hash": "53429b67ed8b49df8f1d7eb4705d46a92c4e354eca7b6a64f4a103e6e490f0bb",
+        "question_hash": "1ba71dff5f042abd76e618ac1f086dff977b5b73544f29e51c575101fea15854",
+        "answer_hash": "8ad144cd70eae9e174011ae68ba2885c14f9b6a9b16a0b40d53f7466b6f3d8d2",
         "type": "计算题",
         "difficulty": 2,
         "keywords": [
@@ -12216,7 +12218,7 @@
         "resolvable": true
       },
       "original": {
-        "question_hash": "c97a2b4f7305b2467bdc919ef55f0da40a1713fd279fe141a5b4be9a3d984d8f",
+        "question_hash": "1be2fb3569eea905a1ff06b9340337024d76e9fb9ed808492a0ddaceb59fb453",
         "answer_hash": "83af813ae286459e356b2fdeb7ee140a33417782bc2221f507e09aafc746ab97",
         "type": "计算题",
         "difficulty": 2,
@@ -12587,8 +12589,8 @@
         "resolvable": true
       },
       "original": {
-        "question_hash": "f78598ed699a257de94a0ac51396dc92c6836b8f95e9669fdf3d8a31f3bbb99e",
-        "answer_hash": "0f9b8d0bf469909bdcf46df5efe30508e3a3deca6c5bf07e0d18e047445473a3",
+        "question_hash": "039cb969d71c53346c4bb22b5a026a42ce34117031a44e118761868b21906027",
+        "answer_hash": "76d7eec010270a430906cef0a7f752ee2e05ee5a918cc0079a6da5d8179f3310",
         "type": "计算题",
         "difficulty": 2,
         "keywords": [
@@ -12745,7 +12747,7 @@
         "resolvable": true
       },
       "original": {
-        "question_hash": "7c40b1f70eefffa5e0c79fca3f57685e7e5262c6c86aabbcf9e72923afe79cd0",
+        "question_hash": "605c3c3db88fe11a3f5d9bdd4b9553c5a39eb89a5ded72588e596ffe15deb4f8",
         "answer_hash": "3efa563c6692bb2adbaae0f27019f6611eb6cbddea755b6f63db8184a01eb1a0",
         "type": "计算题",
         "difficulty": 2,
@@ -12797,7 +12799,7 @@
         "resolvable": true
       },
       "original": {
-        "question_hash": "517a8643480e57d5e63d6bae8140a197900a9b297102aa9f66d5fe0af3534886",
+        "question_hash": "4b20f79b74f55503d89ccf1cff5d0d48e79ac39837ae5465e30de60bb962421a",
         "answer_hash": "80742db04ce998855c5bfb8aef09c486947c93cd22c4cab418927bce02e4312e",
         "type": "计算题",
         "difficulty": 2,
@@ -13319,7 +13321,7 @@
         "resolvable": true
       },
       "original": {
-        "question_hash": "2d4d65b2aa28a604c18ad26e85b6802fc1691b14637b2e859889682688ed8993",
+        "question_hash": "0aff1673f208740740ba2055a96627cf8fec9b4f1460d2394b722e854e913ff9",
         "answer_hash": "cbdf9e757fc90d338c5381bb49bbb0167becc2267c86a40789df12365a6942c7",
         "type": "填空题",
         "difficulty": 1,
@@ -13842,7 +13844,7 @@
       },
       "original": {
         "question_hash": "b2ecca8ecfb8880a0c38899a32bbe591ad034c1acbebe2d27708d642cd97635b",
-        "answer_hash": "74a605ccf39b5f533ea440caafe6c48a4557fc3baef3fcc0b8b0dc5928dc8a2f",
+        "answer_hash": "dc79cc9d4e400d583d1658cc39d53f63607375e2e3d8feae07555500852f1403",
         "type": "综合题",
         "difficulty": 3,
         "keywords": [
@@ -14210,7 +14212,7 @@
         "resolvable": true
       },
       "original": {
-        "question_hash": "d997d4d302df1a20a58141f5bc092a01a17aea7c6dddbefd272d022b43a47a46",
+        "question_hash": "37410337d1ab6de833df2a5f4d61a5be8e15b57521d4dd0d3f65fa28f315ccf3",
         "answer_hash": "bce4991004bbfe19afac1d1ad1192172a9bcb76b1e1dd1acd3f9f06aa8811a3e",
         "type": "简答题",
         "difficulty": 2,

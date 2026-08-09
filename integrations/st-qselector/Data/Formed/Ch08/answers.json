@@ -9,13 +9,13 @@
     },
     {
       "id": "ch08_q02",
-      "answer": "The interval is $[\\$170{,}000,\\$200{,}000]$. In repeated sampling, about 95% of intervals constructed by this method would contain the fixed population mean. It is not correct to assign a 95% probability to this already-computed interval containing the mean.",
+      "answer": "The interval is from USD 170,000 to USD 200,000. In repeated sampling, about 95% of intervals constructed by this method would contain the fixed population mean. It is not correct to assign a 95% probability to this already-computed interval containing the mean.",
       "review_status": "independently solved and reviewed",
       "audit_pack": "ch08-review-v1"
     },
     {
       "id": "ch08_q03",
-      "answer": "Both sample means are $4.5$. For Set 1, $s=3.7417$, so with $df=7$ the margin is $2.365(3.7417/\\sqrt8)\\approx3.128$ and the interval is $[1.372,7.628]$. For Set 2, $s=2.4495$, the margin is about $2.048$, and the interval is $[2.452,6.548]$. The intervals differ because their sample standard deviations differ.",
+      "answer": "Both sample means are $4.5$. For Set 1, $s=3.7417$, so with $df=7$ the margin is $2.365(3.7417/\\sqrt8)\\approx3.128$ and the interval is [1.372, 7.628] dollars. For Set 2, $s=2.4495$, the margin is about $2.048$, and the interval is [2.452, 6.548] dollars. The intervals differ because their sample standard deviations differ.",
       "review_status": "independently solved and reviewed",
       "audit_pack": "ch08-review-v1"
     },
@@ -27,13 +27,13 @@
     },
     {
       "id": "ch08_q06",
-      "answer": "a. With $df=19$, $t_{0.975,19}=2.093$ and the margin is $2.093(0.32/\\sqrt{20})\\approx0.150$. The interval is $[1.520,1.820]$ dollars.\n\nb. If the inventory contains $N$ cards, multiplying the endpoints by $N$ gives an interval estimate for the total inventory value (subject to the sampling assumptions).",
+      "answer": "a. With $df=19$, $t_{0.975,19}=2.093$ and the margin is $2.093(0.32/\\sqrt{20})\\approx0.150$. The interval is [1.520, 1.820] dollars dollars.\n\nb. If the inventory contains $N$ cards, multiplying the endpoints by $N$ gives an interval estimate for the total inventory value (subject to the sampling assumptions).",
       "review_status": "independently solved and reviewed",
       "audit_pack": "ch08-review-v1"
     },
     {
       "id": "ch08_q07",
-      "answer": "$\\hat p=0.30$ and $\\operatorname{SE}=\\sqrt{0.3(0.7)/100}=0.0458$. With $z_{0.95}=1.645$, the margin is $0.0753$, giving $[0.2247,0.3753]$.",
+      "answer": "$\\hat p=0.30$ and $\\operatorname{SE}=\\sqrt{0.3(0.7)/100}=0.0458$. With $z_{0.95}=1.645$, the margin is $0.0753$, giving [0.2247, 0.3753] dollars.",
       "review_status": "independently solved and reviewed",
       "audit_pack": "ch08-review-v1"
     },
@@ -69,13 +69,13 @@
     },
     {
       "id": "ch08_q13",
-      "answer": "a. $6.05\\pm1.96(2.44/\\sqrt{40})=6.05\\pm0.756$, giving $[5.294,6.806]$.\n\nb. With $n=40$, the CLT makes the interval reasonably robust to mild skewness, although severe skewness or outliers could affect it.",
+      "answer": "a. $6.05\\pm1.96(2.44/\\sqrt{40})=6.05\\pm0.756$, giving [5.294, 6.806] dollars.\n\nb. With $n=40$, the CLT makes the interval reasonably robust to mild skewness, although severe skewness or outliers could affect it.",
       "review_status": "independently solved and reviewed",
       "audit_pack": "ch08-review-v1"
     },
     {
       "id": "ch08_q14",
-      "answer": "a. The 99% interval is $3.2\\pm2.576(1.2/\\sqrt{25})=3.2\\pm0.618$, or $[2.582,3.818]$ cans per student.\n\nb. Using the upper endpoint to plan for demand, $300(3.818)=1145.4$, so prepare at least 1,146 cans.",
+      "answer": "a. The 99% interval is $3.2\\pm2.576(1.2/\\sqrt{25})=3.2\\pm0.618$, or [2.582, 3.818] dollars cans per student.\n\nb. Using the upper endpoint to plan for demand, $300(3.818)=1145.4$, so prepare at least 1,146 cans.",
       "review_status": "independently solved and reviewed",
       "audit_pack": "ch08-review-v1"
     },
@@ -87,13 +87,13 @@
     },
     {
       "id": "ch08_q17",
-      "answer": "The sample mean is $20.714$ and $s=6.661$. With $df=13$, $t_{0.975}=2.160$, the margin is $2.160(6.661/\\sqrt{14})\\approx3.847$. The interval is $[16.867,24.561]$ minutes. Its upper endpoint is below 25, so the interval supports the claim at the 95% confidence level.",
+      "answer": "The sample mean is $20.714$ and $s=6.661$. With $df=13$, $t_{0.975}=2.160$, the margin is $2.160(6.661/\\sqrt{14})\\approx3.847$. The interval is [16.867, 24.561] dollars minutes. Its upper endpoint is below 25, so the interval supports the claim at the 95% confidence level.",
       "review_status": "independently solved and reviewed",
       "audit_pack": "ch08-review-v1"
     },
     {
       "id": "ch08_q18",
-      "answer": "The sample proportion is $\\hat p=8/18=0.4444$. Because the sample is small, use the Wilson 95% interval: $[0.246,0.663]$. This interval is entirely below 0.80, so they should stop under the stated rule.",
+      "answer": "The sample proportion is $\\hat p=8/18=0.4444$. Because the sample is small, use the Wilson 95% interval: [0.246, 0.663] dollars. This interval is entirely below 0.80, so they should stop under the stated rule.",
       "review_status": "independently solved and reviewed",
       "audit_pack": "ch08-review-v1"
     },
@@ -105,7 +105,7 @@
     },
     {
       "id": "ch08_q20",
-      "answer": "a. For A, $\\hat p_A=16/35=0.4571$, giving $[0.292,0.622]$. For B, $\\hat p_B=11/35=0.3143$, giving $[0.160,0.468]$.\n\nb. Using $n=z_{0.975}^2\\hat p(1-\\hat p)/0.05^2$, plan for $n_A=382$ and $n_B=332$ questionnaires.",
+      "answer": "a. For A, $\\hat p_A=16/35=0.4571$, giving [0.292, 0.622] dollars. For B, $\\hat p_B=11/35=0.3143$, giving [0.160, 0.468] dollars.\n\nb. Using $n=z_{0.975}^2\\hat p(1-\\hat p)/0.05^2$, plan for $n_A=382$ and $n_B=332$ questionnaires.",
       "review_status": "independently solved and reviewed",
       "audit_pack": "ch08-review-v1"
     },
@@ -165,13 +165,13 @@
     },
     {
       "id": "rotel_ch08_ci_02",
-      "answer": "The standard error is $300/\\sqrt{30}=54.7723$ and the 99% margin is $2.5758(54.7723)=141.08$. The interval is $[\\$1,858.92,\\$2,141.08]$. In repeated samples, about 99% of intervals made this way would contain the fixed population mean; it is not a statement about individual car prices.",
+      "answer": "The standard error is $300/\\sqrt{30}=54.7723$ and the 99% margin is $2.5758(54.7723)=141.08$. The interval is from USD 1,858.92 to USD 2,141.08. In repeated samples, about 99% of intervals made this way would contain the fixed population mean; it is not a statement about individual car prices.",
       "review_status": "independently solved and reviewed",
       "audit_pack": "ch08-review-v1"
     },
     {
       "id": "rotel_ch08_ci_03",
-      "answer": "The sample statistics are $n=15$, $\\bar x=36{,}337.4$, and $s\\approx5{,}948.61$. With $df=14$, $t_{0.97,14}=2.046$, so the margin is $2.046(5948.61/\\sqrt{15})\\approx3142.76$. The 94% interval is $[\\$33{,}194.64,\\$39{,}480.16]$.",
+      "answer": "The sample statistics are $n=15$, $\\bar x=36{,}337.4$, and $s\\approx5{,}948.61$. With $df=14$, $t_{0.97,14}=2.046$, so the margin is $2.046(5948.61/\\sqrt{15})\\approx3142.76$. The 94% interval is from USD 33,194.64 to USD 39,480.16.",
       "review_status": "independently solved and reviewed",
       "audit_pack": "ch08-review-v1"
     },

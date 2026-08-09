@@ -35,6 +35,13 @@ FORMAT_RULES: tuple[tuple[str, re.Pattern[str]], ...] = (
     ("pandoc_html", re.compile(r"\{=html\}|<!--.*?-->", re.S)),
     ("strikethrough_residue", re.compile(r"~~")),
     ("replacement_character", re.compile(r"�")),
+    # Currency must be written as plain “USD …” text (or a LaTeX number
+    # followed by a unit), never as `\$` inside a math delimiter. That
+    # sequence is parsed inconsistently by Markdown/KaTeX and can render as
+    # visible backslashes or lose the dollar sign.
+    ("escaped_currency_residue", re.compile(r"\\\$")),
+    ("backslash_digit_residue", re.compile(r"\\\d")),
+    ("escaped_punctuation_residue", re.compile(r"\\[.,;:]")),
     ("legacy_subscript", re.compile(r"\b[Hh]~[0a]~")),
     ("legacy_superscript", re.compile(r"\b[A-Za-z0-9]+\^[A-Za-z0-9.+-]+\^")),
     ("escaped_line_end", re.compile(r"\\\s*$", re.M)),

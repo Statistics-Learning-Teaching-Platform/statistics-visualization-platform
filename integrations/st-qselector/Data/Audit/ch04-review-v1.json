@@ -20,7 +20,7 @@
     {
       "id":"ch04_q03","chapter":"Ch04","decision":"rewrite","question_type":"计算题","difficulty":2,
       "keywords":["frequency distribution","probability"],
-      "clean_question":"The following frequency table summarizes annual family income for 75,998 sampled U.S. families. Correct the final class to $\\$200,000$ and above so that the classes do not overlap. Estimate the probability that a randomly selected family has income from $\\$60,000$ through $\\$199,999$.\n\n| Income class | Frequency |\n|---|---:|\n| Under $\\$20,000$ | 11,470 |\n| $\\$20,000$–$39,999$ | 17,572 |\n| $\\$40,000$–$59,999$ | 14,534 |\n| $\\$60,000$–$79,999$ | 11,410 |\n| $\\$80,000$–$99,999$ | 7,535 |\n| $\\$100,000$–$199,999$ | 11,197 |\n| $\\$200,000$ and above | 2,280 |\n| **Total** | **75,998** |",
+      "clean_question":"The following frequency table summarizes annual family income for 75,998 sampled U.S. families. Correct the final class to USD 200,000 and above so that the classes do not overlap. Estimate the probability that a randomly selected family has income from USD 60,000 through USD 199,999.\n\n| Income class | Frequency |\n|---|---:|\n| Under USD 20,000 | 11,470 |\n| USD 20,000–$39,999$ | 17,572 |\n| USD 40,000–$59,999$ | 14,534 |\n| USD 60,000–$79,999$ | 11,410 |\n| USD 80,000–$99,999$ | 7,535 |\n| USD 100,000–$199,999$ | 11,197 |\n| USD 200,000 and above | 2,280 |\n| **Total** | **75,998** |",
       "clean_answer":"The relevant frequency is $11,410+7,535+11,197=30,142$. Therefore\n\n$$P(60{,}000\\le X<200{,}000)=\\frac{30,142}{75,998}\\approx0.3966.$$\n\nThe estimated probability is about $39.66\\%$."
     },
     {
@@ -156,14 +156,14 @@
     {
       "id":"ch04_q34","chapter":"Ch04","decision":"rewrite","question_type":"综合题","difficulty":2,
       "keywords":["uniform distribution","probability density"],
-      "clean_question":"Let the waiting time $X$ for an elevator be uniformly distributed on $[0,6]$ minutes.\n\na. Give the density function.\n\nb. Describe its graph.\n\nc. Find $P(2\\le X\\le4)$.\n\nd. Find $P(3\\le X\\le6)$.\n\ne. Find $P(0\\le X\\le2\\text{ or }5\\le X\\le6)$.",
+      "clean_question":"Let the waiting time $X$ for an elevator be uniformly distributed on [0, 6] dollars minutes.\n\na. Give the density function.\n\nb. Describe its graph.\n\nc. Find $P(2\\le X\\le4)$.\n\nd. Find $P(3\\le X\\le6)$.\n\ne. Find $P(0\\le X\\le2\\text{ or }5\\le X\\le6)$.",
       "clean_answer":"a. $f(x)=1/6$ for $0\\le x\\le6$ and $f(x)=0$ otherwise.\n\nb. The density graph is a horizontal line at height $1/6$ from 0 to 6.\n\nc. $P(2\\le X\\le4)=2/6=1/3$.\n\nd. $P(3\\le X\\le6)=3/6=1/2$.\n\ne. The two intervals have total length $2+1=3$, so the probability is $3/6=1/2$."
     },
     {
       "id":"ch04_q35","chapter":"Ch04","decision":"rewrite","question_type":"计算题","difficulty":2,
       "keywords":["uniform distribution","mean","variance"],
-      "clean_question":"Let $X$ be uniformly distributed on $[0,6]$ minutes. Calculate $\\mu_X$, $\\sigma_X^2$, and $\\sigma_X$, and find the probability that $X$ is within one standard deviation of the mean.",
-      "clean_answer":"For $U(0,6)$, $\\mu_X=(0+6)/2=3$, $\\sigma_X^2=(6-0)^2/12=3$, and $\\sigma_X=\\sqrt3$. The one-standard-deviation interval is $[3-\\sqrt3,3+\\sqrt3]$, whose length is $2\\sqrt3$. Therefore\n\n$$P(|X-3|\\le\\sqrt3)=\\frac{2\\sqrt3}{6}=\\frac{\\sqrt3}{3}\\approx0.5774.$$"
+      "clean_question":"Let $X$ be uniformly distributed on [0, 6] dollars minutes. Calculate $\\mu_X$, $\\sigma_X^2$, and $\\sigma_X$, and find the probability that $X$ is within one standard deviation of the mean.",
+      "clean_answer":"For $U(0,6)$, $\\mu_X=(0+6)/2=3$, $\\sigma_X^2=(6-0)^2/12=3$, and $\\sigma_X=\\sqrt3$. The one-standard-deviation interval is [3-\\sqrt3, 3+\\sqrt3] dollars, whose length is $2\\sqrt3$. Therefore\n\n$$P(|X-3|\\le\\sqrt3)=\\frac{2\\sqrt3}{6}=\\frac{\\sqrt3}{3}\\approx0.5774.$$"
     },
     {
       "id":"ch04_q36","chapter":"Ch04","decision":"rewrite","question_type":"计算题","difficulty":2,

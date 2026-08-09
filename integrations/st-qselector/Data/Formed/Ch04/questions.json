@@ -35,7 +35,7 @@
     },
     {
       "id": "ch04_q03",
-      "content": "The following frequency table summarizes annual family income for 75,998 sampled U.S. families. Correct the final class to $\\$200,000$ and above so that the classes do not overlap. Estimate the probability that a randomly selected family has income from $\\$60,000$ through $\\$199,999$.\n\n| Income class | Frequency |\n|---|---:|\n| Under $\\$20,000$ | 11,470 |\n| $\\$20,000$–$39,999$ | 17,572 |\n| $\\$40,000$–$59,999$ | 14,534 |\n| $\\$60,000$–$79,999$ | 11,410 |\n| $\\$80,000$–$99,999$ | 7,535 |\n| $\\$100,000$–$199,999$ | 11,197 |\n| $\\$200,000$ and above | 2,280 |\n| **Total** | **75,998** |",
+      "content": "The following frequency table summarizes annual family income for 75,998 sampled U.S. families. Correct the final class to USD 200,000 and above so that the classes do not overlap. Estimate the probability that a randomly selected family has income from USD 60,000 through USD 199,999.\n\n| Income class | Frequency |\n|---|---:|\n| Under USD 20,000 | 11,470 |\n| USD 20,000–$39,999$ | 17,572 |\n| USD 40,000–$59,999$ | 14,534 |\n| USD 60,000–$79,999$ | 11,410 |\n| USD 80,000–$99,999$ | 7,535 |\n| USD 100,000–$199,999$ | 11,197 |\n| USD 200,000 and above | 2,280 |\n| **Total** | **75,998** |",
       "source": "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment_Chapter4_Probability.doc",
       "type": "计算题",
       "difficulty": 2,
@@ -356,7 +356,7 @@
     },
     {
       "id": "ch04_q34",
-      "content": "Let the waiting time $X$ for an elevator be uniformly distributed on $[0,6]$ minutes.\n\na. Give the density function.\n\nb. Describe its graph.\n\nc. Find $P(2\\le X\\le4)$.\n\nd. Find $P(3\\le X\\le6)$.\n\ne. Find $P(0\\le X\\le2\\text{ or }5\\le X\\le6)$.",
+      "content": "Let the waiting time $X$ for an elevator be uniformly distributed on [0, 6] dollars minutes.\n\na. Give the density function.\n\nb. Describe its graph.\n\nc. Find $P(2\\le X\\le4)$.\n\nd. Find $P(3\\le X\\le6)$.\n\ne. Find $P(0\\le X\\le2\\text{ or }5\\le X\\le6)$.",
       "source": "Assignments for STAT 2012/Assignment-4.doc",
       "type": "综合题",
       "difficulty": 2,
@@ -371,7 +371,7 @@
     },
     {
       "id": "ch04_q35",
-      "content": "Let $X$ be uniformly distributed on $[0,6]$ minutes. Calculate $\\mu_X$, $\\sigma_X^2$, and $\\sigma_X$, and find the probability that $X$ is within one standard deviation of the mean.",
+      "content": "Let $X$ be uniformly distributed on [0, 6] dollars minutes. Calculate $\\mu_X$, $\\sigma_X^2$, and $\\sigma_X$, and find the probability that $X$ is within one standard deviation of the mean.",
       "source": "Assignments for STAT 2012/Assignment-4.doc",
       "type": "计算题",
       "difficulty": 2,

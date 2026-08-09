@@ -75,7 +75,7 @@
     },
     {
       "id": "ch05_q09",
-      "content": "An insurer charges a $\\$1,500$ annual premium for a $\\$75,000$ Hummer. The probability of theft is 0.0075. Find the insurer's expected net profit per policy.",
+      "content": "An insurer charges a USD 1,500 annual premium for a USD 75,000 Hummer. The probability of theft is 0.0075. Find the insurer's expected net profit per policy.",
       "source": "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment and solution_Chap_5_discrete random variable.docx",
       "type": "计算题",
       "difficulty": 2,
@@ -90,7 +90,7 @@
     },
     {
       "id": "ch05_q10",
-      "content": "The probability of theft of a $\\$75,000$ Hummer is 0.0075. What premium should an insurer charge to obtain an expected net profit of $\\$2,000$ per policy?",
+      "content": "The probability of theft of a USD 75,000 Hummer is 0.0075. What premium should an insurer charge to obtain an expected net profit of USD 2,000 per policy?",
       "source": "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment and solution_Chap_5_discrete random variable.docx",
       "type": "计算题",
       "difficulty": 2,
@@ -121,7 +121,7 @@
     },
     {
       "id": "ch05_q12",
-      "content": "A drug's six-month profit contribution is $-\\$30,000$ with probability 0.2, $\\$50,000$ with probability 0.5, and $\\$200,000$ with probability 0.3. Management will market the drug only if expected profit exceeds $\\$90,000$. Decide.",
+      "content": "A drug's six-month profit contribution is USD -30,000 with probability 0.2, USD 50,000 with probability 0.5, and USD 200,000 with probability 0.3. Management will market the drug only if expected profit exceeds USD 90,000. Decide.",
       "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter05.docx",
       "type": "计算题",
       "difficulty": 2,
@@ -136,7 +136,7 @@
     },
     {
       "id": "ch05_q13",
-      "content": "A lawyer has probability 0.3 of winning a case and earns $\\$40,000$ if she wins and nothing if she loses. She must spend $\\$5,000 preparing the case in either outcome. Find her expected net gain.",
+      "content": "A lawyer has probability 0.3 of winning a case and earns USD 40,000 if she wins and nothing if she loses. She must spend USD 5,000 preparing the case in either outcome. Find her expected net gain.",
       "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter05.docx",
       "type": "计算题",
       "difficulty": 2,
@@ -254,7 +254,7 @@
     },
     {
       "id": "ch05_q22",
-      "content": "A flight's actual time $X$, in minutes, is uniformly distributed on $[120,140]$.\n\na. Give the density.\n\nb. Describe its graph.\n\nc. Find $P(125\\le X\\le135)$.\n\nd. Find the probability that a flight is at least 5 minutes late when the quoted time is 130 minutes.",
+      "content": "A flight's actual time $X$, in minutes, is uniformly distributed on [120, 140] dollars.\n\na. Give the density.\n\nb. Describe its graph.\n\nc. Find $P(125\\le X\\le135)$.\n\nd. Find the probability that a flight is at least 5 minutes late when the quoted time is 130 minutes.",
       "source": "Assignment Prof Lv/assignment5-lu.doc",
       "type": "综合题",
       "difficulty": 2,

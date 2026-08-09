@@ -199,7 +199,7 @@
     },
     {
       "id": "ch07_q16",
-      "content": "Thirty percent of credit-card purchases exceed $\\$100. For random samples of 100 purchases:\n\na. Find the proportion of samples with 20% to 30% over $\\$100$.\n\nb. Find symmetric limits around 30% containing 95% of sample proportions.",
+      "content": "Thirty percent of credit-card purchases exceed USD 100. For random samples of 100 purchases:\n\na. Find the proportion of samples with 20% to 30% over USD 100.\n\nb. Find symmetric limits around 30% containing 95% of sample proportions.",
       "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter07_Sample Mean.docx",
       "type": "综合题",
       "difficulty": 2,
@@ -289,7 +289,7 @@
     },
     {
       "id": "ch07_q27",
-      "content": "A preliminary sample gives $s=32.866$ dollars per square foot. How large a sample is needed for 95% confidence that the sample mean is within $\\$10$ of the population mean?",
+      "content": "A preliminary sample gives $s=32.866$ dollars per square foot. How large a sample is needed for 95% confidence that the sample mean is within USD 10 of the population mean?",
       "source": "Assignments for STAT 2010/solution-assign7.doc",
       "type": "计算题",
       "difficulty": 2,

@@ -3,7 +3,7 @@
   "questions": [
     {
       "id": "ch06_q02",
-      "content": "Sales tax is rounded to the nearest cent, so the round-off error $X$ is uniformly distributed on $[-0.5,0.5]$ cents.\n\na. Give the probability density of $X$.\n\nb. Describe its graph.\n\nc. Find $P(X>0.3\\text{ or }X<-0.3)$.\n\nd. Find the mean and standard deviation of $X$.\n\ne. Find the probability that $X$ is within one standard deviation of its mean.",
+      "content": "Sales tax is rounded to the nearest cent, so the round-off error $X$ is uniformly distributed on [-0.5, 0.5] dollars cents.\n\na. Give the probability density of $X$.\n\nb. Describe its graph.\n\nc. Find $P(X>0.3\\text{ or }X<-0.3)$.\n\nd. Find the mean and standard deviation of $X$.\n\ne. Find the probability that $X$ is within one standard deviation of its mean.",
       "source": "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment and solution_Chap_6_Continuous Random Variable.doc",
       "type": "综合题",
       "difficulty": 2,
@@ -168,7 +168,7 @@
     },
     {
       "id": "ch06_q16",
-      "content": "A family's yearly spending on all types of insurance is uniformly distributed from $\\$400$ to $\\$3,800$. Find:\n\na. the mean;\n\nb. the standard deviation;\n\nc. $P(X<2000)$;\n\nd. $P(X>3000)$;\n\ne. $P(1500<X<2500)$.",
+      "content": "A family's yearly spending on all types of insurance is uniformly distributed from USD 400 to USD 3,800. Find:\n\na. the mean;\n\nb. the standard deviation;\n\nc. $P(X<2000)$;\n\nd. $P(X>3000)$;\n\ne. $P(1500<X<2500)$.",
       "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter06_Continuous Random Variables.docx",
       "type": "综合题",
       "difficulty": 2,
@@ -184,7 +184,7 @@
     },
     {
       "id": "ch06_q17",
-      "content": "Weekly incomes of shift foremen are normally distributed with mean $\\$1,000$ and standard deviation $\\$100$. Find the probability that a randomly selected foreman's income is:\n\n1. between $\\$790$ and $\\$1,000$;\n\n2. less than $\\$790$.",
+      "content": "Weekly incomes of shift foremen are normally distributed with mean USD 1,000 and standard deviation USD 100. Find the probability that a randomly selected foreman's income is:\n\n1. between USD 790 and USD 1,000;\n\n2. less than USD 790.",
       "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter06_Continuous Random Variables.docx",
       "type": "计算题",
       "difficulty": 2,
@@ -198,7 +198,7 @@
     },
     {
       "id": "ch06_q18",
-      "content": "Home-loan amounts requested are normally distributed with mean $\\$70,000$ and standard deviation $\\$20,000$. Find the probability that a randomly selected application requests:\n\na. at least $\\$80,000$;\n\nb. between $\\$65,000$ and $\\$80,000$;\n\nc. at least $\\$65,000$.",
+      "content": "Home-loan amounts requested are normally distributed with mean USD 70,000 and standard deviation USD 20,000. Find the probability that a randomly selected application requests:\n\na. at least USD 80,000;\n\nb. between USD 65,000 and USD 80,000;\n\nc. at least USD 65,000.",
       "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter06_Continuous Random Variables.docx",
       "type": "综合题",
       "difficulty": 2,
@@ -349,7 +349,7 @@
     },
     {
       "id": "ch06_q28",
-      "content": "Yearly health-care expenses for a family of four are normally distributed with mean $\\$3,000$ and standard deviation $\\$500$. Find the expense cutoff for the lowest 33% of families.",
+      "content": "Yearly health-care expenses for a family of four are normally distributed with mean USD 3,000 and standard deviation USD 500. Find the expense cutoff for the lowest 33% of families.",
       "source": "Assignments for STAT 2010/assign6.doc",
       "type": "计算题",
       "difficulty": 2,
@@ -410,7 +410,7 @@
     },
     {
       "id": "ch06_q33",
-      "content": "For 10 Whole Foods supermarkets, the sample mean sales is $\\bar x=846.2$ dollars per square foot and the sample standard deviation is $s=32.866$. Construct a 95% confidence interval for the population mean and determine whether the mean is greater than $\\$800$.",
+      "content": "For 10 Whole Foods supermarkets, the sample mean sales is $\\bar x=846.2$ dollars per square foot and the sample standard deviation is $s=32.866$. Construct a 95% confidence interval for the population mean and determine whether the mean is greater than USD 800.",
       "source": "Assignments for STAT 2012/Assignment_6.doc",
       "type": "计算题",
       "difficulty": 3,
@@ -440,7 +440,7 @@
     },
     {
       "id": "ch06_q35",
-      "content": "A preliminary sample of 10 Whole Foods sales figures has standard deviation $s=32.866$ dollars per square foot. Using this as a planning estimate for $\\sigma$, how large a sample is needed for 95% confidence that the sample mean is within $\\$10$ of the population mean?",
+      "content": "A preliminary sample of 10 Whole Foods sales figures has standard deviation $s=32.866$ dollars per square foot. Using this as a planning estimate for $\\sigma$, how large a sample is needed for 95% confidence that the sample mean is within USD 10 of the population mean?",
       "source": "Assignments for STAT 2012/Assignment_6.doc",
       "type": "计算题",
       "difficulty": 2,

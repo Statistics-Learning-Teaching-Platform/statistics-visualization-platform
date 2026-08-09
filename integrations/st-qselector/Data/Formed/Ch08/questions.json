@@ -18,7 +18,7 @@
     },
     {
       "id": "ch08_q02",
-      "content": "A market researcher states that she has 95% confidence that the true average monthly sales of a product lie between $\\$170,000$ and $\\$200,000$. Explain this statement correctly.",
+      "content": "A market researcher states that she has 95% confidence that the true average monthly sales of a product lie between USD 170,000 and USD 200,000. Explain this statement correctly.",
       "source": "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment Chap 8_Confidence interval.docx",
       "type": "简答题",
       "difficulty": 1,
@@ -62,7 +62,7 @@
     },
     {
       "id": "ch08_q06",
-      "content": "A random sample of 20 greeting cards has mean retail value $\\$1.67$ and sample standard deviation $\\$0.32$. Assume a normal population.\n\na. Construct a 95% confidence interval for the mean value.\n\nb. Explain how the interval can help estimate the total value of an inventory of $N$ cards.",
+      "content": "A random sample of 20 greeting cards has mean retail value USD 1.67 and sample standard deviation USD 0.32. Assume a normal population.\n\na. Construct a 95% confidence interval for the mean value.\n\nb. Explain how the interval can help estimate the total value of an inventory of $N$ cards.",
       "source": "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment Chap 8_Confidence interval.docx",
       "type": "综合题",
       "difficulty": 2,
@@ -107,7 +107,7 @@
     },
     {
       "id": "ch08_q09",
-      "content": "A survey should estimate mean annual family medical expenses with 95% confidence and margin of error at most $\\$50$. A pilot study estimates $\\sigma=\\$400$. Find the minimum sample size.",
+      "content": "A survey should estimate mean annual family medical expenses with 95% confidence and margin of error at most USD 50. A pilot study estimates $\\sigma=400$ dollars. Find the minimum sample size.",
       "source": "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment Chap 8_Confidence interval.docx",
       "type": "计算题",
       "difficulty": 2,
@@ -416,7 +416,7 @@
     },
     {
       "id": "rotel_ch08_ci_02",
-      "content": "A random sample of 30 used-car transactions has mean sale price $\\$2,000$, and the population standard deviation is known to be $\\$300$.\n\na. Find the 99% confidence interval for the population mean.\n\nb. Interpret it correctly.",
+      "content": "A random sample of 30 used-car transactions has mean sale price USD 2,000, and the population standard deviation is known to be USD 300.\n\na. Find the 99% confidence interval for the population mean.\n\nb. Interpret it correctly.",
       "source": "ROTEL Statistical Problem Sets in WeBWorK — 8.1-8.2 Problem 2 — https://rotel.pressbooks.pub/statsproblemsets/chapter/8-1-8-2-confidence-intervals/",
       "source_url": "https://rotel.pressbooks.pub/statsproblemsets/chapter/8-1-8-2-confidence-intervals/",
       "source_problem": "8.1-8.2 Problem 2",

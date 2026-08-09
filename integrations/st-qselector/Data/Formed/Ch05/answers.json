@@ -33,7 +33,7 @@
     },
     {
       "id": "ch05_q09",
-      "answer": "Expected claim cost is $0.0075(75{,}000)=562.50$ dollars. Expected net profit is $1{,}500-562.50=\\$937.50$.",
+      "answer": "Expected claim cost is $0.0075(75{,}000)=562.50$ dollars. Expected net profit is $1{,}500-562.50=937.50$ dollars.",
       "review_status": "independently solved and reviewed",
       "audit_pack": "ch05-review-v1"
     },
@@ -51,13 +51,13 @@
     },
     {
       "id": "ch05_q12",
-      "answer": "$$E(X)=(-30{,}000)(0.2)+(50{,}000)(0.5)+(200{,}000)(0.3)=\\$79{,}000.$$ Since $79{,}000<90{,}000$, management should not market the drug under this rule.",
+      "answer": "$$E(X)=(-30{,}000)(0.2)+(50{,}000)(0.5)+(200{,}000)(0.3)=79{,}000\\ \\text{dollars}.$$ Since $79{,}000<90{,}000$, management should not market the drug under this rule.",
       "review_status": "independently solved and reviewed",
       "audit_pack": "ch05-review-v1"
     },
     {
       "id": "ch05_q13",
-      "answer": "The net gain is $35{,}000$ if she wins and $-5{,}000$ if she loses. Thus $E(X)=0.3(35{,}000)+0.7(-5{,}000)=\\$7{,}000$.",
+      "answer": "The net gain is $35{,}000$ if she wins and $-5{,}000$ if she loses. Thus $E(X)=0.3(35{,}000)+0.7(-5{,}000)=7{,}000$ dollars.",
       "review_status": "independently solved and reviewed",
       "audit_pack": "ch05-review-v1"
     },
@@ -81,7 +81,7 @@
     },
     {
       "id": "ch05_q17",
-      "answer": "For $X\\sim\\operatorname{Binomial}(8,0.3)$, $\\mu=2.4$ and $\\sigma=\\sqrt{8(0.3)(0.7)}\\approx1.296$. The integer values in $[2.4-1.296,2.4+1.296]$ are 2 and 3, so $P(2\\le X\\le3)=P(X=2)+P(X=3)\\approx0.2965+0.2541=0.5506$.",
+      "answer": "For $X\\sim\\operatorname{Binomial}(8,0.3)$, $\\mu=2.4$ and $\\sigma=\\sqrt{8(0.3)(0.7)}\\approx1.296$. The integer values in [2.4-1.296, 2.4+1.296] dollars are 2 and 3, so $P(2\\le X\\le3)=P(X=2)+P(X=3)\\approx0.2965+0.2541=0.5506$.",
       "review_status": "independently solved and reviewed",
       "audit_pack": "ch05-review-v1"
     },
@@ -105,7 +105,7 @@
     },
     {
       "id": "ch05_q22",
-      "answer": "a. $f(x)=1/20$ for $120\\le x\\le140$ and 0 otherwise.\n\nb. The graph is a horizontal line of height $1/20$ on $[120,140]$.\n\nc. $P(125\\le X\\le135)=10/20=0.50$.\n\nd. At least 5 minutes late means $X\\ge135$, so $P(X\\ge135)=5/20=0.25$.",
+      "answer": "a. $f(x)=1/20$ for $120\\le x\\le140$ and 0 otherwise.\n\nb. The graph is a horizontal line of height $1/20$ on [120, 140] dollars.\n\nc. $P(125\\le X\\le135)=10/20=0.50$.\n\nd. At least 5 minutes late means $X\\ge135$, so $P(X\\ge135)=5/20=0.25$.",
       "review_status": "independently solved and reviewed",
       "audit_pack": "ch05-review-v1"
     },

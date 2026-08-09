@@ -18,7 +18,7 @@
     },
     {
       "id": "ch11_q02",
-      "content": "The ages (years) and second-hand prices (in $\\$100$) of 11 cars are:\n\n| Age | 5 | 7 | 6 | 6 | 5 | 4 | 7 | 6 | 5 | 5 | 2 |\n|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|\n| Price | 80 | 57 | 58 | 55 | 70 | 88 | 43 | 60 | 69 | 63 | 118 |\n\nFind the sample correlation and interpret it.",
+      "content": "The ages (years) and second-hand prices (in USD 100) of 11 cars are:\n\n| Age | 5 | 7 | 6 | 6 | 5 | 4 | 7 | 6 | 5 | 5 | 2 |\n|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|\n| Price | 80 | 57 | 58 | 55 | 70 | 88 | 43 | 60 | 69 | 63 | 118 |\n\nFind the sample correlation and interpret it.",
       "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter11_Simple Regression Models.docx",
       "type": "简答题",
       "difficulty": 2,

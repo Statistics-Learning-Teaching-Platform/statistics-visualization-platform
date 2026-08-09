@@ -64,6 +64,7 @@
       "question_type": "简答题",
       "difficulty": 1,
       "keywords": ["quantitative variable", "qualitative variable"],
+      "clean_question": "Below we list several variables. Which of these variables are quantitative and which are qualitative? Explain.\n\na. The dollar amount on an accounts receivable invoice.\n\nb. The net profit for a company in 2005.\n\nc. The stock exchange on which a company's stock is traded.\n\nd. The national debt of the United States in 2005.\n\ne. The advertising medium (radio, television, or print) used to promote a product.",
       "clean_answer": "a. **Quantitative**, because an invoice amount is a numerical measurement.\n\nb. **Quantitative**, because net profit is a numerical amount.\n\nc. **Qualitative**, because the stock exchange is a category.\n\nd. **Quantitative**, because national debt is a numerical amount.\n\ne. **Qualitative**, because advertising medium identifies a category."
     },
     {

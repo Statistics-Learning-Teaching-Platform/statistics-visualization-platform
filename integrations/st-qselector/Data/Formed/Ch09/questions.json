@@ -3,7 +3,7 @@
   "questions": [
     {
       "id": "ch09_q02",
-      "content": "The 1994 national mean daily hospital cost was $\\$931$. A random sample of 30 Massachusetts hospital costs has mean $\\$1,131$. Assume $\\sigma=\\$333$. Test at $\\alpha=0.05$ whether the Massachusetts mean exceeded $\\$931$.",
+      "content": "The 1994 national mean daily hospital cost was USD 931. A random sample of 30 Massachusetts hospital costs has mean USD 1,131. Assume $\\sigma=333$ dollars. Test at $\\alpha=0.05$ whether the Massachusetts mean exceeded USD 931.",
       "source": "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment_Chapter 9 Hypothesis Testing Questions.docx",
       "type": "计算题",
       "difficulty": 2,
@@ -33,7 +33,7 @@
     },
     {
       "id": "ch09_q04",
-      "content": "Last year's mean apartment price in Zhuhai was $\\$8,650$/m² with known $\\sigma=\\$735$/m². A sample of 42 recent deals has mean $\\$8,950$/m². At $\\alpha=0.01$, test whether the mean price has increased.",
+      "content": "Last year's mean apartment price in Zhuhai was USD 8,650/m² with known $\\sigma=735$ dollars/m². A sample of 42 recent deals has mean USD 8,950/m². At $\\alpha=0.01$, test whether the mean price has increased.",
       "source": "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment_Chapter 9 Hypothesis Testing Questions.docx",
       "type": "计算题",
       "difficulty": 2,
@@ -139,7 +139,7 @@
     },
     {
       "id": "ch09_q12",
-      "content": "The 2007 national mean daily hospital cost was $\\$1,231$. A random sample of 25 Utah costs has mean $\\$1,103$, with known $\\sigma=\\$252$. At $\\alpha=0.05$, test whether Utah's mean was lower.",
+      "content": "The 2007 national mean daily hospital cost per patient was 1,231 dollars. A random sample of 25 Utah daily costs has sample mean 1,103 dollars, with known population standard deviation $\\sigma=252$ dollars. At $\\alpha=0.05$, test whether Utah's population mean daily cost was below the national mean.",
       "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter09_Hypothesis Testing.doc",
       "type": "计算题",
       "difficulty": 2,
@@ -184,7 +184,7 @@
     },
     {
       "id": "ch09_q15",
-      "content": "Last year's Zhuhai apartment price mean was $\\$9,450$/m² with known $\\sigma=\\$1,035$/m². A sample of 47 recent sales has mean $\\$9,850$/m². At $\\alpha=0.01$, test whether the mean increased.",
+      "content": "Last year's Zhuhai apartment price mean was USD 9,450/m² with known $\\sigma=1,035$ dollars/m². A sample of 47 recent sales has mean USD 9,850/m². At $\\alpha=0.01$, test whether the mean increased.",
       "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter09_Hypothesis Testing.doc",
       "type": "计算题",
       "difficulty": 2,
@@ -199,7 +199,7 @@
     },
     {
       "id": "ch09_q16",
-      "content": "Last year's Zhuhai apartment price mean was $\\$9,450$/m². A sample of 25 recent sales has mean $\\$9,850$/m² and $s=\\$1,035$/m². Assuming approximate normality, test at $\\alpha=0.01$ whether the mean increased.",
+      "content": "Last year's Zhuhai apartment price mean was USD 9,450/m². A sample of 25 recent sales has mean USD 9,850/m² and $s=1,035$ dollars/m². Assuming approximate normality, test at $\\alpha=0.01$ whether the mean increased.",
       "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter09_Hypothesis Testing.doc",
       "type": "计算题",
       "difficulty": 2,
@@ -353,7 +353,7 @@
     },
     {
       "id": "rotel_ch09_hypothesis_02",
-      "content": "The national mean selling price is $\\$55$. State hypotheses for testing the claim that a particular area's population mean selling price is lower.",
+      "content": "The national mean selling price is USD 55. State hypotheses for testing the claim that a particular area's population mean selling price is lower.",
       "source": "ROTEL Statistical Problem Sets in WeBWorK — 8.3-9.3 Problem 2(b) — https://rotel.pressbooks.pub/statsproblemsets/chapter/8-3-9-3-ci-and-hypothesis-testing/",
       "source_url": "https://rotel.pressbooks.pub/statsproblemsets/chapter/8-3-9-3-ci-and-hypothesis-testing/",
       "source_problem": "8.3-9.3 Problem 2(b)",

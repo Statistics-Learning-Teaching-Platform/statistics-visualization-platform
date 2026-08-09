@@ -3,7 +3,7 @@
   "answers": [
     {
       "id": "ch09_q02",
-      "answer": "Test $H_0:\\mu=931$ versus $H_a:\\mu>931$. The statistic is $z=(1131-931)/(333/\\sqrt{30})\\approx3.29$, with one-sided p-value about $0.0005$. Reject $H_0$; there is sufficient evidence that the Massachusetts mean exceeded $\\$931$.",
+      "answer": "Test $H_0:\\mu=931$ versus $H_a:\\mu>931$. The statistic is $z=(1131-931)/(333/\\sqrt{30})\\approx3.29$, with one-sided p-value about $0.0005$. Reject $H_0$; there is sufficient evidence that the Massachusetts mean exceeded USD 931.",
       "review_status": "independently solved and reviewed",
       "audit_pack": "ch09-review-v1"
     },
@@ -87,7 +87,7 @@
     },
     {
       "id": "ch09_q12",
-      "answer": "Test $H_0:\\mu=1231$ versus $H_a:\\mu<1231$. $z=(1103-1231)/(252/\\sqrt{25})=-2.540$, p-value $\\approx0.0056$. Reject $H_0$; the Utah mean was significantly below $\\$1,231$.",
+      "answer": "Test $H_0:\\mu=1231$ versus $H_a:\\mu<1231$. The test statistic is $z=(1103-1231)/(252/\\sqrt{25})=-2.540$, with one-sided p-value $\\approx0.0056$. Reject $H_0$; the data support that Utah's population mean daily cost was below 1,231 dollars.",
       "review_status": "independently solved and reviewed",
       "audit_pack": "ch09-review-v1"
     },

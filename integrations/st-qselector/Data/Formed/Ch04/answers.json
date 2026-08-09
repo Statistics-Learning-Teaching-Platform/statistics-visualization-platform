@@ -135,7 +135,7 @@
     },
     {
       "id": "ch04_q35",
-      "answer": "For $U(0,6)$, $\\mu_X=(0+6)/2=3$, $\\sigma_X^2=(6-0)^2/12=3$, and $\\sigma_X=\\sqrt3$. The one-standard-deviation interval is $[3-\\sqrt3,3+\\sqrt3]$, whose length is $2\\sqrt3$. Therefore\n\n$$P(|X-3|\\le\\sqrt3)=\\frac{2\\sqrt3}{6}=\\frac{\\sqrt3}{3}\\approx0.5774.$$",
+      "answer": "For $U(0,6)$, $\\mu_X=(0+6)/2=3$, $\\sigma_X^2=(6-0)^2/12=3$, and $\\sigma_X=\\sqrt3$. The one-standard-deviation interval is [3-\\sqrt3, 3+\\sqrt3] dollars, whose length is $2\\sqrt3$. Therefore\n\n$$P(|X-3|\\le\\sqrt3)=\\frac{2\\sqrt3}{6}=\\frac{\\sqrt3}{3}\\approx0.5774.$$",
       "review_status": "independently solved and reviewed",
       "audit_pack": "ch04-review-v1"
     },

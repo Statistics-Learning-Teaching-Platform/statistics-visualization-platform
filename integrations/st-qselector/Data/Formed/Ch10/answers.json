@@ -39,7 +39,7 @@
     },
     {
       "id": "ch10_q09",
-      "answer": "Define improvement differences $d=\\text{Without}-\\text{With}$: $1.9,2.1,1.7,0.3,1.1,2.9,1.8,1.9,0.8$. Then $\\bar d=1.6111$, $s_d=0.7705$, and $t=6.273$ with $df=8$ for $H_0:\\mu_d=0$ versus $H_a:\\mu_d>0$. The p-value is about 0.00012, so reject $H_0$; the additive improves mileage. A 90% CI for mean improvement is approximately $[1.134,2.089]$ mpg.",
+      "answer": "Define improvement differences $d=\\text{Without}-\\text{With}$: $1.9,2.1,1.7,0.3,1.1,2.9,1.8,1.9,0.8$. Then $\\bar d=1.6111$, $s_d=0.7705$, and $t=6.273$ with $df=8$ for $H_0:\\mu_d=0$ versus $H_a:\\mu_d>0$. The p-value is about 0.00012, so reject $H_0$; the additive improves mileage. A 90% CI for mean improvement is approximately [1.134, 2.089] dollars mpg.",
       "review_status": "independently solved and reviewed",
       "audit_pack": "ch10-review-v1"
     },
