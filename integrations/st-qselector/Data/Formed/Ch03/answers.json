@@ -3,157 +3,189 @@
   "answers": [
     {
       "id": "ch03_q01",
-      "answer": "a. Mean=5, found by (6+4+3+7+5)/5\n>\n> Median is 5, found by rearranging the values and selecting the middle value.\n>\n> b\\. Population, because all partners were included.\n>\n> c\\. $\\sum_{i = 0}^{N}{\\left( X_{i} - \\mu \\right) = (6 - 5) + (4 - 5) + (3 - 5) + (7 - 5) + (5 - 5) = 0}$"
+      "answer": "a. The mean is $\\mu=(6+4+3+7+5)/5=5$. The ordered data are $3,4,5,6,7$, so the median is 5.\n\nb. It is a **population mean** because all five senior partners in the group are included.\n\nc. $\\sum(x_i-\\mu)=(6-5)+(4-5)+(3-5)+(7-5)+(5-5)=1-1-2+2+0=0$.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch03-review-v1"
     },
     {
       "id": "ch03_q02",
-      "answer": "a. Equal or roughly equal.\n\n> b\\. The population mean is smaller than the population median, and the population median is smaller than the population mode.\n>\n> c\\. The population mean is larger than the population median, and the population median is larger than the population mode."
+      "answer": "a. For a symmetric unimodal distribution, mean = median = mode.\n\nb. For a left-skewed distribution, mean < median < mode.\n\nc. For a right-skewed distribution, mode < median < mean.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch03-review-v1"
     },
     {
       "id": "ch03_q03",
-      "answer": "> Answer: a.\n>\n> $\\sum(x_i - \\bar{x})^2 = \\sum x_i^2 - n\\bar{x}^2$ (equivalence shown by algebraic expansion) ![formula](ass-formed/ch03_q03_ans_f08_image5.png)\n>\n> b\\. $\\bar{x} = \\frac{157+132+109+145+125+139}{6} = \\frac{807}{6} = 134.5$ ![formula](ass-formed/ch03_q03_ans_f09_image6.png)\n>\n> $s^2 = \\frac{\\sum(x_i-\\bar{x})^2}{n-1} = \\frac{1441.5}{5} = 288.3$ ![formula](ass-formed/ch03_q03_ans_f10_image7.wmf), $s = \\sqrt{288.3} = 16.98$ ![formula](ass-formed/ch03_q03_ans_f11_image8.png)\n\n**Another formula:**\n\n> $s^2 = \\frac{\\sum x_i^2 - n\\bar{x}^2}{n-1}$ ![formula](ass-formed/ch03_q03_ans_f12_image9.png)\\\n> $\\sum x_i^2 = 157^2 + 132^2 + 109^2 + 145^2 + 125^2 + 139^2 = 109890.5$ ![formula](ass-formed/ch03_q03_ans_f13_image10.png)\\\n> $s^2 = \\frac{109890.5 - 6(134.5)^2}{5} = \\frac{109890.5 - 108449}{5} = \\frac{1441.5}{5} = 288.3$ ![formula](ass-formed/ch03_q03_ans_f14_image11.png) ![formula](ass-formed/ch03_q03_ans_f15_image12.png)\n>\n> c\\. Estimate of tolerance interval containing 68.26 percent: $[\\bar{x} \\pm s] = [134.5 \\pm 16.98] = [117.52, 151.48]$ ![formula](ass-formed/ch03_q03_ans_f16_image13.png)\n>\n> Estimate of tolerance interval containing 95.44 percent: $[\\bar{x} \\pm 2s] = [134.5 \\pm 33.96] = [100.54, 168.46]$ ![formula](ass-formed/ch03_q03_ans_f17_image14.png)\n>\n> Estimate of tolerance interval containing 99.73 percent: $[\\bar{x} \\pm 3s] = [134.5 \\pm 50.94] = [83.56, 185.44]$ ![formula](ass-formed/ch03_q03_ans_f18_image15.png)\n>\n> d\\. Yes, because \\$190 is not within the 99.73% interval \\[84.16, 184.39\\]"
+      "answer": "a. Expanding $(x_i-\\bar{x})^2$ and using $\\sum x_i=n\\bar{x}$ gives $\\sum(x_i-\\bar{x})^2=\\sum x_i^2-2\\bar{x}\\sum x_i+n\\bar{x}^2=\\sum x_i^2-n\\bar{x}^2$.\n\nb. $n=6$, $\\sum x_i=807$, and $\\sum x_i^2=109925$. Thus $\\bar{x}=807/6=134.5$ and\n\n$$s^2=\\frac{109925-6(134.5)^2}{5}=276.7,\\qquad s=\\sqrt{276.7}\\approx16.634.$$\n\nThe deviation formula gives the same $s^2$ because $\\sum(x_i-134.5)^2=1383.5$ and $1383.5/5=276.7$.\n\nc. The intervals are $[117.866,151.134]$, $[101.232,167.768]$, and $[84.598,184.402]$ for one, two, and three standard deviations.\n\nd. Yes. $190>184.402$, so it is more than three sample standard deviations above the mean and is unusually high under the normal model.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch03-review-v1"
     },
     {
       "id": "ch03_q04",
-      "answer": "a, b:\n\n  -----------------------------------\n  Descriptive statistics      \n  --------------------------- -------\n                              \n\n  　                          \\# 1\n\n  count                       30\n\n  mean                        9.10\n\n  sample variance             12.71\n\n  sample standard deviation   3.57\n\n  minimum                     4\n\n  maximum                     18\n\n  range                       14\n\n                              \n\n  1st quartile                6.00\n\n  median                      9.00\n\n  3rd quartile                11.75\n\n  interquartile range         5.75\n  -----------------------------------\n\n> c\\. No outliers.\n>\n> [IMG:ch03_q04_ans_f01_image16.png]"
+      "answer": "$\\bar{x}=9.10$, median $=9.00$, sample standard deviation $s=\\sqrt{12.71}\\approx3.57$, and range $=18-4=14$. Using the stated quartile convention, $Q_1=6.00$, $Q_3=11.75$, and $IQR=5.75$. The upper fence is $11.75+1.5(5.75)=20.375$ and the lower fence is $6-1.5(5.75)=-2.625$; all observations lie between the fences, so there are no outliers.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch03-review-v1"
     },
     {
       "id": "ch03_q05",
-      "answer": "[IMG:ch03_q05_ans_f01_image17.jpeg]\n\na\\. Because the mean equals to the median 36, we can assume the distribution of data is symmetric.\n\nb\\. Since the distribution is symmetric, we can estimate 95.44 percent of days that are within two standard deviations of the Mean.\n\nc\\. The mean equals to 36, Standard Deviation equals to 5. The interval within three standard deviations of the Mean is \\[36-3\\*5, 36+3\\*5\\] = \\[21, 51\\].\n\nIt means 99.73 percent of the days lie in the interval \\[21, 51\\].\n\nSo 2 months (60 days) is unlikely for a delivery."
-    },
-    {
-      "id": "ch03_q06",
-      "answer": "There are 13 measurements in total (n=13). First, arrange the measurements in increasing order:\n\n  ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----\n    127   132   138   141   144   146   152   154   162   171   177   192   241\n\n  ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----\n\na.  The 90th percentile.\n\n> Calculate the index of the 90th percentile: $i = \\frac{90 \\times 13}{100} = 11.7$ ![formula](ass-formed/ch03_q06_ans_f01_image18.png)\n>\n> Round 11.7 up to 12, hence the 90th percentile is the 90th measurement 192.\n\nb.  The median.\n\n> The median is equivalent to the 50th percentile: $i = \\frac{50 \\times 13}{100} = 6.5$ ![formula](ass-formed/ch03_q06_ans_f02_image19.png)\n>\n> Round 6.5 up to 7, hence the median is the 7th measurement 152.\n\nc.  The first quartile.\n\n> We know the index of the first quartile can be found as: $i = \\frac{25 \\times 13}{100} = 3.25$ ![formula](ass-formed/ch03_q06_ans_f03_image20.png)\n>\n> Round 3.25 up to 4, hence the first quartile is the 4th measurement 141.\n\nd.  The third quartile\n\n> We know the index of the third quartile can be found as: $i = \\frac{75 \\times 13}{100} = 9.75$ ![formula](ass-formed/ch03_q06_ans_f04_image21.png)\n>\n> Round 9.75 up to 10, hence the third quartile is the 10th measurement 171.\n\ne.  The 10th percentile.\n\n> Calculate the index of the 10th percentile: $i = \\frac{10 \\times 13}{100} = 1.3$ ![formula](ass-formed/ch03_q06_ans_f05_image22.png)\n>\n> Round 1.3 up to 2, hence the 10th percentile is the 2nd measurement 132.\n\nf.  The interquartile range.\n\n> Interquartile range is the difference between first and third quartile\n>\n> $IQR = Q_3 - Q_1 = 171 - 141 = 30$ ![formula](ass-formed/ch03_q06_ans_f06_image23.png)\n\ng.  Develop a five-number summary and a box-and-whiskers display.\n\n[IMG:ch03_q06_ans_f07_image24.png]"
+      "answer": "The mean is $\\bar{x}=36$ days and the sample standard deviation is $s\\approx5.0166$ days. The interval $\\bar{x}\\pm2s$ is $[25.967,46.033]$; all 13 observations lie in it, so the observed percentage is $100\\%$. The Empirical Rule would suggest about $95.44\\%$ for a normal population. A 60-day delivery has $z=(60-36)/5.0166\\approx4.78$, so it is extremely unlikely under the model.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch03-review-v1"
     },
     {
       "id": "ch03_q07",
-      "answer": "a. Assume returns are normally distributed, according to the empirical rule, 95.44 percent of all yearly returns are within two standard deviations of the Mean and thus lie in the interval $[\\bar{x} \\pm 2\\sigma]$ ![formula](ass-formed/ch03_q07_ans_f01_image25.png)\n\nFund 1: \\[10.93 -- 2\\*41.96, 10.93 + 2\\*41.96\\] = \\[--72.99, 94.85\\]\n\nFund 2: \\[13 -- 2\\*9.36, 13 + 2\\*9.36\\] = \\[--5.72, 31.72\\]\n\nFund 3: \\[34.45 -- 2\\*41.16, 34.5 + 2\\*41.14\\] = \\[--47.87, 116.77\\]\n\nb\\. Fund 1 has the lowest average and highest variability.\\\nFund 2 has the second lowest average and the smallest variability.\\\nFund 3 has the highest average return and the second highest variability.\n\nc\\. We compute the coefficient of variation for these three funds using $CV = \\frac{\\sigma}{\\bar{x}} \\times 100\\%$ ![formula](ass-formed/ch03_q07_ans_f02_image26.png),\n\n> Fund 1: Coefficient of Variation = 41.96 / 10.93 \\* 100 = 383.9%\n\nFund 2: Coefficient of Variation = 9.36 / 13 \\* 100 = 72%\n\nFund 3: Coefficient of Variation = 41.14 / 34.45 \\* 100 = 119.5%\n\nFund 1 is the riskiest, fund 3 is the second and fund 2 is least risky."
+      "answer": "a. Using $\\mu\\pm2\\sigma$:\n\nFund 1: $[-72.99,94.85]\\%$.\n\nFund 2: $[-5.72,31.72]\\%$.\n\nFund 3: $[-47.87,116.77]\\%$.\n\nb. Fund 3 has the highest mean return; Fund 1 has the lowest. Fund 1 has the largest standard deviation, Fund 3 is a close second, and Fund 2 has the smallest spread.\n\nc. $CV_1=(41.96/10.93)\\times100\\%\\approx383.9\\%$, $CV_2=(9.36/13)\\times100\\%\\approx72.0\\%$, and $CV_3=(41.16/34.45)\\times100\\%\\approx119.5\\%$. By relative risk, Fund 1 is riskiest, Fund 3 is second, and Fund 2 is least risky.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch03-review-v1"
     },
     {
       "id": "ch03_q08",
-      "answer": "a. The numerical values for grades A, B, C, D, and F are $x_i = 4.00, 3.00, 2.00, 1.00, 0.00$ ![formula](ass-formed/ch03_q08_ans_f01_image27.png), and the weights applied to these measurements are $w_i = 18, 36, 7, 3, 0$ (hours) ![formula](ass-formed/ch03_q08_ans_f02_image28.png).\n\nThat is, we are weighting the numerical values of grades by the number of hours. The weighted mean is computed as follows:\n\n$\\bar{x}_w = \\frac{\\sum w_i x_i}{\\sum w_i} = \\frac{18(4.00) + 36(3.00) + 7(2.00) + 3(1.00) + 0(0.00)}{18+36+7+3+0} = \\frac{72+108+14+3}{64} = \\frac{197}{64} = 3.08$ ![formula](ass-formed/ch03_q08_ans_f03_image29.png)\n\nb.  This is a weighted mean because the different grade values are weighted by the number of credit hours."
-    },
-    {
-      "id": "ch03_q09",
-      "answer": "The response times in minutes for site A are $x_i$ (from areas 1,2,3,4) ![formula](ass-formed/ch03_q09_ans_f03_image32.png), and the weights applied to these measurements are $w_i$ (number of runs to each area) ![formula](ass-formed/ch03_q09_ans_f04_image33.png).\n\nThat is, we are weighting the response times by the number of emergency runs. The weighted mean is computed as follows:\n\n$\\bar{x}_{w,A} = \\frac{\\sum w_i x_i}{\\sum w_i}$ (compute for site A) = 4.76 ![formula](ass-formed/ch03_q09_ans_f05_image34.png)\n\nSimilarly,\n\n$\\bar{x}_{w,B} = ..., \\bar{x}_{w,C} = ..., \\bar{x}_{w,D} = ...$ (compute for sites B, C, D) ![formula](ass-formed/ch03_q09_ans_f06_image35.png)\n\nSince the weighted mean response time from location A is the smallest, site A should be selected for the new emergency facility."
+      "answer": "$$\\text{GPA}=\\frac{18(4)+36(3)+7(2)+3(1)+0(0)}{64}=\\frac{197}{64}=3.078125\\approx3.08.$$\n\nIt is weighted because each grade-point value is multiplied by the number of credit hours earned at that grade.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch03-review-v1"
     },
     {
       "id": "ch03_q10",
-      "answer": "a. Determine the value of k: (73.75 ± k(6.5)); k = 1.5\\\n(1 - (1/k2) = 1 - (1/2.25) = .5556, or 55.56%\n\nb\\.\n\n> [IMG:ch03_q10_ans_f01_image36.png]"
+      "answer": "a. The interval is centered at 73.75 and has half-width 9.75, so $k=9.75/6.5=1.5$. Chebyshev's inequality gives at least\n\n$$1-\\frac{1}{k^2}=1-\\frac{1}{1.5^2}=0.5556,$$\n\nor $55.56\\%$.\n\nb. For at least $90\\%$, choose $k=\\sqrt{1/(1-0.90)}=\\sqrt{10}$. The bounds are\n\n$$73.75\\pm6.5\\sqrt{10}\\approx[53.19,94.31]\\text{ years}.$$",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch03-review-v1"
     },
     {
       "id": "ch03_q11",
-      "answer": "mean=29.4, median =27.5, mode =25**\n\nb)  For a class group video project:\n\n> Group A's 5 members spent the following number of hours: 12, 25, 37, 8, 41 and\n>\n> Group B's 5 members spent the following number of hours: 19, 32, 44, 15, 48\n>\n> Calculate the standard deviation for both of these groups. Comment on the relationship between the two standard deviations.\n\n**Ans: s=14.64 for both groups. Each value of group B is equal to 7 more hours than the corresponding member of group A. Thus, the spread (**standard deviations) **is similar in both groups**"
+      "answer": "The sum is 294, so the mean is $294/10=29.4$. The ordered data are $24,25,25,26,27,28,31,33,35,40$, so the median is $(27+28)/2=27.5$. The mode is 25.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch03-review-v1"
     },
     {
       "id": "ch03_q12",
-      "answer": "a) New mean=76.4 inches, new median=78 inches, new range=13 inches,**\n\nb)  If the tallest player is replaced by a substitute who is 4 inches shorter, which of the new values (mean, median, and range) could you determine and what would the new value(s) be?\n\n> **Ans: b) the mean， mean=75.2 inches**"
+      "answer": "The original total is $5(76)=380$ inches. Increasing the tallest value by 2 gives a new mean of $(380+2)/5=76.4$ inches. Because only the maximum changes, the median remains 78 inches and the range increases from 11 to 13 inches.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch03-review-v1"
     },
     {
       "id": "ch03_q13",
-      "answer": "3 a)**\n\n  --------------------------------------------------------------------------\n                                 **　A**           **　B**           **C　**\n  -------------------- ----------------- ----------------- -----------------\n  Mean                          1830.833          1310.167              1604\n\n  Standard Error                31.12386          61.02645          63.33035\n\n  Median                 [1831.5]{.mark}   [1312.5]{.mark}   [1597.5]{.mark}\n\n  Mode                              #N/A              #N/A              #N/A\n\n  Standard Deviation            76.23757          149.4837           155.127\n\n  Sample Variance               5812.167          22345.37           24064.4\n\n  Kurtosis                      -1.09385          -1.10545          -0.97969\n\n  Skewness                      -0.06158          -0.11125           0.18481\n\n  Range                              206               398               424\n\n  Minimum                           1726              1104              1402\n\n  Maximum                           1932              1502              1826\n\n  Sum                              10985              7861              9624\n\n  Count                                6                 6                 6\n  --------------------------------------------------------------------------\n\n> **Ans:** **3b)** Compared to B and C, A had higher sales values during the six weeks. A had the smallest range and the smallest standard deviation despite the higher sales values. A's performance is rather stable and best among the three, next is B, then C."
+      "answer": "| Statistic | A | B | C |\n|---|---:|---:|---:|\n| Mean | 1830.833 | 1310.167 | 1604.000 |\n| Median | 1831.5 | 1312.5 | 1597.5 |\n| Sample standard deviation | 76.238 | 149.484 | 155.127 |\n| Range | 206 | 398 | 424 |\n| Minimum | 1726 | 1104 | 1402 |\n| Maximum | 1932 | 1502 | 1826 |\n\nA has the highest mean and the smallest spread, so its performance is highest and most stable. B has lower sales than C on average; C has the largest range and a slightly larger standard deviation than B.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch03-review-v1"
     },
     {
       "id": "ch03_q14",
-      "answer": "99.7%**\n\nb)  Use the *empirical rule* to find the interval that contains the speed of 95% of vehicles traveling on this section of the highway.\n\n> **Ans: 66 to 78 mph**"
+      "answer": "The interval is $72\\pm3(3)=72\\pm9$, so it is within three standard deviations of the mean. The Empirical Rule estimates $99.73\\%$ of vehicles in this interval.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch03-review-v1"
     },
     {
       "id": "ch03_q15",
-      "answer": "$\\bar{x}$ **=133.6 s^2^=298.3 and s = 17.27**\n\nb)  Compute and interpret the *z-score* for the last two entertainment expenses\n\n> **Ans: (122 - 133.6)/17.27 = - 0.67 This expense is 0.67 standard deviation below the mean, i.e., it is somewhat less than the average expenses**\n>\n> **(142 - 133.6)/17.27 = 0.486 This expense is about half a standard deviation above the mean, i.e., it is somewhat higher than the average expenses**"
-    },
-    {
-      "id": "ch03_q16",
-      "answer": "218，245， 256， 329， 367， 383， 397， 404， 427， 433， 471， 523， 537， 551， 563， 581， 592， 622， 636， 647， 655， 678， 689， 810， 841"
+      "answer": "The mean is $\\bar{x}=668/5=133.6$. Using the sample-variance formula gives $s^2=298.3$ and\n\n$$s=\\sqrt{298.3}\\approx17.27.$$",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch03-review-v1"
     },
     {
       "id": "ch03_q17",
-      "answer": "rank the data in increasing order**"
+      "answer": "The ordered data are $21.6,21.7,22.9,25.2,26.5,28.0,28.2,32.6,32.9,70.1,76.1,84.5$. The rank is $\\lceil0.60(12)\\rceil=8$, so $P_{60}=32.6$ million dollars. Approximately 60% of the CEOs have compensation at or below $32.6$ million under this nearest-rank convention.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch03-review-v1"
     },
     {
       "id": "ch03_q19",
-      "answer": "Mean=1803, median=1270**\n\nb)  Identify the outlier in this data set. Drop the outlier and recalculate the mean and median.\n\n> **Ans: Outlier=5490, when this outlier is dropped, mean=1467.8, median =1166**\n\nc)  Which of these two summary measures changes by a larger amount when you drop the outlier?Which is the better summary measure of these data, the mean or the median? Explain\n\n> **Ans: The mean changes a larger amount, the median is a better measure.**"
+      "answer": "a. The mean is $21636/12=1803$. The ordered data have middle values 1166 and 1374, so the median is $(1166+1374)/2=1270$.\n\nb. The outlier is 5490. After removing it, the mean is $16146/11\\approx1467.8$ and the median is 1166.\n\nc. The mean changes by about 335.2, whereas the median changes by 104. The median is more robust and better represents the typical state because the extreme value 5490 pulls the mean upward.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch03-review-v1"
     },
     {
       "id": "ch03_q20",
-      "answer": "$\\bar{x} = \\frac{\\sum f_i m_i}{\\sum f_i}$ where $m_i$ is class midpoint and $f_i$ is frequency ![formula](ass-formed/ch03_q10_ans_f01_image3.png) **mean=13.03 hours variance=78.2648**\n>\n> **standard deviation=8.85hours**"
-    },
-    {
-      "id": "ch03_q21",
-      "answer": "load Analytical Toolpak, next click Data -\\> Data Analysis, select descriptive, next click summary statistics and highlight as instructed in Tutorial session.\n\nResults: **mean=58.11 minutes, median=57.02 minutes, mode=47.28 minutes**,\n\n=quartile(array,1) is 49.78 minutes =quartile(array,3) is 64.48 minutes\n\n**Interquartile range = 64.48 -- 39.78 = 14.70 minutes**"
+      "answer": "Using the class midpoints as representative values, $n=400$ and\n\n$$\\bar{x}=\\frac{\\sum f_im_i}{400}=13.02875\\approx13.03\\text{ hours}.$$\n\nThe grouped-data sample variance is\n\n$$s^2=\\frac{\\sum f_i(m_i-\\bar{x})^2}{399}\\approx78.2648,$$\n\nso $s\\approx8.85$ hours.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch03-review-v1"
     },
     {
       "id": "ch03_q22",
-      "answer": ">\n> **Solution**\n\nThe sum of the probabilities of the individual outcomes sum to 1.\\\n*P*(*E*) = 1 -- (.2 + .15 + .3 + .2) = .15"
+      "answer": "The probabilities of all outcomes must sum to 1, so\n\n$$P(E)=1-(0.20+0.15+0.30+0.20)=0.15.$$",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch03-review-v1"
     },
     {
       "id": "ch03_q23",
-      "answer": "Each month a brokerage house studies various companies and rates each company's stock as being either \"low risk\" or \"moderate to high risk.\" In a recent report, the brokerage house summarized its findings about 15 aerospace companies and 25 food retailers in the following table:\n\n  ---------------------- ----------- -------------------------\n  Company Type           Low Risk    Moderate to High Risk\n\n  Aerospace company      6           9\n\n  Food retailer          15          10\n  ---------------------- ----------- -------------------------\n\nIf we randomly select one of the total 40 companies, find\n\na.  The probability that the company's stock is moderate to high risk given that the firm is an aerospace company.\n\nb.  The probability that the company's stock is moderate to high risk given that the firm is a food retailer.\n\nc.  Determine if the *company type* is independent of the *level of risk* of the firm's stock.\n\n  ---------------------- ----------- ------------------------- -------\n  Company Type           Low Risk    Moderate to High Risk     Total\n\n  Aerospace company      6           9                         15\n\n  Food retailer          15          10                        25\n\n  Total                  21          19                        40\n  ---------------------- ----------- ------------------------- -------\n\n**a.**9/15=0.6\n\n**b.**10/25=0.4\n\nc\\. Dependent.\n\nFor two events to be independent, P(Aero \\| Low) = P(Aero)\n\nP(Aero \\| Low) = 2/7 but the P(Aero) = 3/8. They are not equal."
+      "answer": "a. $P(\\text{moderate-to-high}\\mid\\text{aerospace})=9/15=0.60$.\n\nb. $P(\\text{moderate-to-high}\\mid\\text{food})=10/25=0.40$.\n\nc. The events are dependent because the conditional probabilities differ. Equivalently, $P(\\text{aerospace})=15/40=0.375$, while $P(\\text{aerospace}\\mid\\text{low risk})=6/21\\approx0.286$.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch03-review-v1"
     },
     {
       "id": "ch03_q24",
-      "answer": "--------------- --------------- ------------------ ---------------\n                  Mastercard(M)   No Mastercard( )   Total\n\n  VISA (V)        1000            3000               4000\n\n  No VISA( )      1500            4500               6000\n\n  Total           2500            7500               10,000\n  --------------- --------------- ------------------ ---------------\n\n(1) P(M\\|V)=1000/4000=0.25\n\n(2) P(V\\|M)=1000/2500=0.4\n\n(3)Yes, P(M \\| V) = P(M)=0.25"
+      "answer": "a. $P(V\\mid M)=P(M\\cap V)/P(M)=1000/2500=0.40$.\n\nb. $P(M\\mid V)=1000/4000=0.25$.\n\nc. The events are independent because $P(M\\mid V)=0.25=P(M)=2500/10000$. Equivalently, $P(M\\cap V)=0.10=P(M)P(V)=0.25(0.40)$.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch03-review-v1"
     },
     {
       "id": "ch03_q25",
-      "answer": "Two randomly selected grocery store patrons are each asked to take a blind taste test and to then state which of three diet colas (marked as A, B, or C) he or she prefers.\n\n    a.  Draw a tree diagram depicting the sample space outcomes for the test results.\n\n    b.  List the sample space outcomes that correspond to each of the following events:\n\n        (1) Both patrons prefer diet cola A.\n\n        (2) The two patrons prefer the same diet cola.\n\n        (3) The two patrons prefer different diet colas.\n\n        (4) Diet cola A is preferred by at least one of the two patrons.\n\n        (5) Neither of the patrons prefers diet cola C.\n\n    c.  Assuming that all sample space outcomes are equally likely, find the probability of each of the events given in part b\n\n> Solutions:\n\n  --------- ------------------------------------------------------------------------------------------------------------------------------------------------------\n  **a.**    [IMG:ch03_q01_f01_image1.png]\n\n  --------- ------------------------------------------------------------------------------------------------------------------------------------------------------\n\n**b.** (1) *AA\\*\n(2) *AA*, *BB*, *CC*\\\n(3) *AB*, *AC*, *BA*, *BC*, *CA*, *CB*\\\n(4) *AA*, *AB*, *AC*, *BA*, *CA*\\\n(5) *AA*, *AB*, *BA*, *BB*\n\n**c.** Each outcome has probability\\\n(1)\\\n(2)\n\n(3)\\\n(4)\\\n(5)"
-    },
-    {
-      "id": "ch03_q26",
-      "answer": "> **Solutions:**\n\n**a.**\n\n**b.**\n\n**c.** Yes, P(M \\| V) = P(M)"
+      "answer": "The sample space is $\\{AA,AB,AC,BA,BB,BC,CA,CB,CC\\}$.\n\n| Event | Outcomes | Probability |\n|---|---|---:|\n| Both choose A | $AA$ | $1/9$ |\n| Same cola | $AA,BB,CC$ | $3/9=1/3$ |\n| Different colas | $AB,AC,BA,BC,CA,CB$ | $6/9=2/3$ |\n| At least one chooses A | $AA,AB,AC,BA,CA$ | $5/9$ |\n| Neither chooses C | $AA,AB,BA,BB$ | $4/9$ |",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch03-review-v1"
     },
     {
       "id": "ch03_q27",
-      "answer": "> **Solutions:**\n\n**a.** $P(\\text{John} \\cap \\text{Jane}) = P(\\text{Jane})P(\\text{John}|\\text{Jane}) = (\\text{.}5)(\\text{.}7) = \\text{.35}$\n\n**b.** $P(\\text{Jane}|\\text{John}) = \\frac{P(\\text{John} \\cap \\text{Jane})}{P(\\text{John})} = \\frac{\\text{.35}}{\\text{.}4} = \\text{.875}$\n\n**c.** $\\text{No}\\ P(\\text{John}|\\text{Jane}) \\neq P(\\text{John})$"
+      "answer": "a. $P(J\\cap K)=P(J\\mid K)P(K)=0.7(0.5)=0.35$.\n\nb. $P(K\\mid J)=P(J\\cap K)/P(J)=0.35/0.4=0.875$.\n\nc. They are not independent because $P(J\\mid K)=0.7\\ne0.4=P(J)$.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch03-review-v1"
     },
     {
       "id": "ch03_q28",
-      "answer": "Recall from Exercise 1 that two randomly selected customers are each asked to take a blind taste test and then to state which of three diet colas (marked as A, B, or C) he or she prefers. Suppose that cola A's distributor claims that 80 percent of all people prefer cola A and that only 10 percent prefer each of colas B and C.\n\n    a.  Assuming that the distributor's claim is true and that the two taste test participants make independent cola preference decisions, find the probability of each sample space outcome.\n\n    b.  Find the probability that neither taste test participant will prefer cola A.\n\n    c.  If, when the taste test is carried out, neither participant prefers cola A, use the probability you computed in part b to decide whether the distributor's claim seems valid. Explain.\n\n> **Solutions:**\n\n**a.** *P*(*AA*) = (.8)(.8) = .64\\\n*P*(*AB*) = (.8)(.1) = .08\\\n*P*(*AC*) = (.8)(.1) = .08\\\n*P*(*BA*) = (.1)(.8) = .08\\\n*P*(*BB*) = (.1)(.1) = .01\\\n*P*(*BC*) = (.1)(.1) = .01\\\n*P*(*CA*) = (.1)(.8) = .08\\\n*P*(*CB*) = (.1)(.1) = .01\\\n*P*(*CC*) = (.1)(.1) = .01\n\n**b.** *P*(*BB*) + *P*(*BC*) + *P*(*CB*) + *P*(*CC*) = 4(.01) = .04\n\n**c.** Probably not valid since the probability in part b is small."
-    },
-    {
-      "id": "ch03_q29",
-      "answer": "a.** Discrete\n\n**b.** Discrete\n\n**c.** Continuous\n\n**d.** Discrete\n\n**e.** Discrete\n\n**f.** Continuous\n\n**g.** Continuous\n\n--- (from solution) ---\n\n$\\frac{1}{2} \\ast 5 \\ast k = 1 \\Rightarrow k = \\frac{2}{5}$"
+      "answer": "a. $P(AA)=0.64$; $P(AB)=P(AC)=P(BA)=P(CA)=0.08$; and $P(BB)=P(BC)=P(CB)=P(CC)=0.01$.\n\nb. Neither chooses A means $BB,BC,CB,$ or $CC$, so $P(\\text{neither A})=4(0.01)=0.04$.\n\nc. An outcome with probability 0.04 is unusual under the claim, so it provides evidence against the claim. It is not mathematical proof that the claim is false.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch03-review-v1"
     },
     {
       "id": "ch03_q30",
-      "answer": "**a.** *x* 1 2 3 4 5\n\n*p*(*x*) $\\frac{1}{\\text{15}}$ $\\frac{2}{\\text{15}}$ $\\frac{1}{5}$ $\\frac{4}{\\text{15}}$ $\\frac{1}{3}$\n\n**b.** *p*(*x*) ≥ 0 for each value of *x*.\n\n$\\sum_{x=1}^{5} p(x) = \\frac{1}{15} + \\frac{2}{15} + \\frac{3}{15} + \\frac{4}{15} + \\frac{5}{15} = \\frac{15}{15} = 1$ ![formula](ass-formed/ch03_q12_ans_f01_image1.png)\n\n**c.** $\\mu = \\sum x \\cdot p(x) = 1(\\frac{1}{15}) + 2(\\frac{2}{15}) + 3(\\frac{3}{15}) + 4(\\frac{4}{15}) + 5(\\frac{5}{15}) = \\frac{55}{15} = \\frac{11}{3} \\approx 3.67$\n\nd\\. $\\sigma^2 = \\sum (x - \\mu)^2 p(x)$ or equivalently $\\sigma^2 = \\sum x^2 p(x) - \\mu^2$ ![formula](ass-formed/ch03_q12_ans_f02_image2.png)"
+      "answer": "a.\n\n| $x$ | 1 | 2 | 3 | 4 | 5 |\n|---:|---:|---:|---:|---:|---:|\n| $p(x)$ | $1/15$ | $2/15$ | $3/15$ | $4/15$ | $5/15$ |\n\nb. Every probability is nonnegative and $\\sum p(x)=(1+2+3+4+5)/15=1$.\n\nc.\n\n$$\\mu_X=\\sum xp(x)=\\frac{55}{15}=\\frac{11}{3}\\approx3.667,$$\n\n$$E(X^2)=\\frac{1^3+2^3+3^3+4^3+5^3}{15}=15,$$\n\n$$\\sigma_X^2=15-\\left(\\frac{11}{3}\\right)^2=\\frac{14}{9}\\approx1.556,$$\n\n$$\\sigma_X=\\sqrt{14}/3\\approx1.247.$$",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch03-review-v1"
     },
     {
       "id": "ch03_q31",
-      "answer": "a.**\n\n$$p(x) = \\frac{6!}{x!(6 - x)!}0\\text{.}3^{x}0\\text{.}7^{6 - x}$$\n\nb\\.\n\n$\\begin{array}{r}\n1)p(x = 5) = \\frac{6!}{5\\text{!*}1!}0\\text{.}3^{5}0\\text{.}7 = 0\\text{.}\\text{010206} \\\\\n2)p(x \\geq 3) = p(x = 3) + p(x = 4) + p(x = 5) + p(x = 6) \\\\\n\\frac{6!}{3\\text{!*}3!}0\\text{.}3^{3}0\\text{.}7^{3} + \\frac{6!}{4\\text{!*}2!}0\\text{.}3^{4}0\\text{.}7^{2} + \\frac{6!}{5\\text{!*}1!}0\\text{.}3^{5}0\\text{.}7 + \\frac{6!}{6\\text{!*}0!}0\\text{.}3^{6}0\\text{.}7^{0} \\\\\n0\\text{.}\\text{2557} \\\\\n3)p(x < 3) = p(x = 0) + p(x = 1) + p(x = 2) = 1 - p(x \\geq 3) = 0\\text{.}\\text{7443} \\\\\n4)p(x \\geq 1) = 1 - p(x < 1) = 1 - p(x = 0) = 1 - 0\\text{.}\\text{1176} = 0\\text{.}\\text{8824}\n\\end{array}$"
+      "answer": "a. $X\\sim\\operatorname{Binomial}(6,0.3)$ and\n\n$$P(X=x)=\\binom{6}{x}(0.3)^x(0.7)^{6-x},\\quad x=0,1,\\ldots,6.$$\n\nb. $P(X=5)=0.010206$; $P(X\\ge3)=0.255690$; $P(X\\le2)=0.744310$; and $P(X\\ge1)=1-(0.7)^6=0.882351$.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch03-review-v1"
     },
     {
       "id": "ch03_q32",
-      "answer": "(a)**$p(x = 0) = \\frac{\\mu^{x}e^{- \\mu}}{x!} = \\frac{1\\text{.}5^{0}e^{- 1\\text{.}5}}{0!} = e^{- 1\\text{.}5} = 0\\text{.22}$\n\n\\(b\\) $p(x < 4) = p(x = 0) + p(x = 1) + p(x = 2) + p(x = 3)$=0.22+0.33+0.25+0.13=0.93\n\n(c)$\\begin{array}{r}\n\\mu = 4 \\ast 1\\text{.}5 = 6 \\\\\np(x \\leq \\text{12}) = p(x = 0) + \\cdots + p(x = \\text{12}) \\\\\n = \\frac{1\\text{.}5^{0}e^{- 6}}{0!} + \\cdots + \\frac{1\\text{.}5^{\\text{12}}e^{- 6}}{\\text{12}!} = 0\\text{.}\\text{991173}\n\\end{array}$\n\n\\(d\\) $p(x = 0) = \\frac{1\\text{.}5^{0}e^{- 6}}{0!} = e^{- 6} = \\text{.002479}$\n\nContinuous Random Variables"
+      "answer": "For three months, $X\\sim\\operatorname{Poisson}(1.5)$.\n\na. $P(X=0)=e^{-1.5}\\approx0.223130$.\n\nb. $P(X<4)=\\sum_{x=0}^{3}e^{-1.5}1.5^x/x!\\approx0.934358$.\n\nFor one year, $Y\\sim\\operatorname{Poisson}(6)$.\n\nc. $P(Y\\le12)=\\sum_{y=0}^{12}e^{-6}6^y/y!\\approx0.991173$.\n\nd. $P(Y=0)=e^{-6}\\approx0.002479$.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch03-review-v1"
     },
     {
       "id": "ch03_q33",
-      "answer": "$\\begin{array}{r}\n - 1 = \\frac{\\text{63} - \\mu}{\\sigma} \\\\\n1\\text{.}5 = \\frac{\\text{93} - \\mu}{\\sigma} \\\\\n \\Rightarrow \\mu = \\text{75} \\\\\n\\text{     }\\sigma = \\text{12}\n\\end{array}$"
+      "answer": "The equations are $-1=(63-\\mu)/\\sigma$ and $1.5=(93-\\mu)/\\sigma$. Subtracting gives $2.5=30/\\sigma$, so $\\sigma=12$. Substituting into the first equation gives $\\mu=75$.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch03-review-v1"
     },
     {
       "id": "ch03_q34",
-      "answer": "*P*(*x* ≤ *k*) = .33\\\n\\\n\\\n*k* = 2780\\\n\\$2780"
+      "answer": "The 33rd-percentile standard-normal value is approximately $z=-0.44$. Therefore, the cutoff is\n\n$$3000+(-0.44)(500)=2780\\text{ dollars}.$$",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch03-review-v1"
     },
     {
       "id": "ch03_q35",
-      "answer": "a.** $P(X \\geq 40) \\approx P(Z \\geq \\frac{39.5 - 12.5}{\\sqrt{11.875}}) = P(Z \\geq 7.84) \\approx 0$ (using normal approximation with continuity correction, $\\mu=np=250(0.05)=12.5$, $\\sigma=\\sqrt{np(1-p)}=\\sqrt{11.875}$) ![formula](ass-formed/ch03_q49_ans_f01_image5.png)\n\n(approximately)\n\n**b.** No, if the claim is true, then $P(X \\geq 40) \\approx 0$ is too small."
+      "answer": "Under the claim, $X\\sim\\operatorname{Binomial}(250,0.05)$, with $\\mu=np=12.5$ and $\\sigma=\\sqrt{np(1-p)}=\\sqrt{11.875}\\approx3.446$. With continuity correction,\n\n$$z=\\frac{39.5-12.5}{3.446}\\approx7.84,$$\n\nso $P(X\\ge40)\\approx P(Z\\ge7.84)\\approx0$. Observing 40 or more is extraordinarily unlikely if $p=0.05$, so the data provide strong evidence against the company's claim.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch03-review-v1"
     },
     {
       "id": "rotel_ch03_center_01",
       "answer": "The mean is\n\n$$\\bar{x}=\\frac{8+17+14+17}{4}=14.$$\n\nAfter sorting, the values are $8,14,17,17$, so the median is\n\n$$\\frac{14+17}{2}=15.5.$$",
-      "review_status": "independently solved, translated, and reviewed",
-      "audit_pack": "english-normalization-v1"
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch03-review-v1"
     },
     {
       "id": "rotel_ch03_center_02",
       "answer": "a. The mean number of resident students is\n\n$$\\bar{x}=\\frac{22+13+16+13}{4}=16.$$\n\nThe sorted values are $13,13,16,22$, so the median is\n\n$$\\frac{13+16}{2}=14.5.$$\n\nb. Compare the **means**. Both groups cover the same four semesters, so multiplying the mean by 4 gives the total. The resident-student mean is 16, while the commuter-student mean is 14; therefore, the resident-student total is larger.",
-      "review_status": "independently solved, translated, and reviewed",
-      "audit_pack": "english-normalization-v1"
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch03-review-v1"
     },
     {
       "id": "ch03_q18",
-      "answer": "A boxplot displays the median, first and third quartiles, the interquartile range, whisker endpoints, and any observations identified as potential outliers. Its shape also helps assess spread and possible skewness. Side-by-side boxplots allow several groups to be compared in terms of center, variability, skewness, and outliers.",
+      "answer": "A boxplot displays the median, first and third quartiles, interquartile range, whisker endpoints, and potential outliers. Side-by-side boxplots compare groups using center, spread, skewness, and outliers on the same scale.",
       "review_status": "independently solved and reviewed",
-      "audit_pack": "missing-answer-recovery-v1"
+      "audit_pack": "ch03-review-v1"
     }
   ]
 }

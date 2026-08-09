@@ -1,0 +1,203 @@
+{
+  "schema_version": 1,
+  "pack_id": "ch03-review-v1",
+  "chapter": "Ch03",
+  "baseline_records": 37,
+  "summary": {"reviewed_and_retained": 31, "deleted": 6},
+  "records": [
+    {
+      "id": "ch03_q01", "chapter": "Ch03", "decision": "rewrite", "question_type": "计算题", "difficulty": 1,
+      "keywords": ["mean", "median", "population mean", "deviation sum"],
+      "clean_question": "An accounting firm has five senior partners who saw 6, 4, 3, 7, and 5 clients yesterday.\n\na. Compute the mean and median number of clients.\n\nb. Is the mean a sample mean or a population mean?\n\nc. Verify that $\\sum_{i=1}^{5}(x_i-\\mu)=0$.",
+      "clean_answer": "a. The mean is $\\mu=(6+4+3+7+5)/5=5$. The ordered data are $3,4,5,6,7$, so the median is 5.\n\nb. It is a **population mean** because all five senior partners in the group are included.\n\nc. $\\sum(x_i-\\mu)=(6-5)+(4-5)+(3-5)+(7-5)+(5-5)=1-1-2+2+0=0$."
+    },
+    {
+      "id": "ch03_q02", "chapter": "Ch03", "decision": "rewrite", "question_type": "简答题", "difficulty": 1,
+      "keywords": ["mean", "median", "mode", "skewness"],
+      "clean_question": "Explain how the population mean, median, and mode compare when the relative-frequency curve is (a) symmetric, (b) skewed left, and (c) skewed right.",
+      "clean_answer": "a. For a symmetric unimodal distribution, mean = median = mode.\n\nb. For a left-skewed distribution, mean < median < mode.\n\nc. For a right-skewed distribution, mode < median < mean."
+    },
+    {
+      "id": "ch03_q03", "chapter": "Ch03", "decision": "rewrite", "question_type": "综合题", "difficulty": 4,
+      "keywords": ["sample variance", "sample standard deviation", "empirical rule", "computational formula"],
+      "clean_question": "A random sample of six client-entertainment expenses, in dollars, is $157,132,109,145,125,139$.\n\na. Show that $\\sum(x_i-\\bar{x})^2=\\sum x_i^2-n\\bar{x}^2$.\n\nb. Calculate $\\bar{x}$, $s^2$, and $s$ using both formulas.\n\nc. Assuming an approximately normal population, estimate the intervals containing $68.26\\%$, $95.44\\%$, and $99.73\\%$ of expenses.\n\nd. Is an expense of $190$ unusually high? Explain.",
+      "clean_answer": "a. Expanding $(x_i-\\bar{x})^2$ and using $\\sum x_i=n\\bar{x}$ gives $\\sum(x_i-\\bar{x})^2=\\sum x_i^2-2\\bar{x}\\sum x_i+n\\bar{x}^2=\\sum x_i^2-n\\bar{x}^2$.\n\nb. $n=6$, $\\sum x_i=807$, and $\\sum x_i^2=109925$. Thus $\\bar{x}=807/6=134.5$ and\n\n$$s^2=\\frac{109925-6(134.5)^2}{5}=276.7,\\qquad s=\\sqrt{276.7}\\approx16.634.$$\n\nThe deviation formula gives the same $s^2$ because $\\sum(x_i-134.5)^2=1383.5$ and $1383.5/5=276.7$.\n\nc. The intervals are $[117.866,151.134]$, $[101.232,167.768]$, and $[84.598,184.402]$ for one, two, and three standard deviations.\n\nd. Yes. $190>184.402$, so it is more than three sample standard deviations above the mean and is unusually high under the normal model."
+    },
+    {
+      "id": "ch03_q04", "chapter": "Ch03", "decision": "rewrite", "question_type": "综合题", "difficulty": 3,
+      "keywords": ["mean", "median", "range", "quartile", "IQR", "outlier"],
+      "clean_question": "The numbers of items purchased by 30 evening customers are\n\n$$15,8,6,9,9,4,18,10,10,12,12,4,7,8,12,10,10,11,9,13,5,6,11,14,5,6,6,5,13,5.$$\n\nCalculate the mean, median, sample standard deviation, range, first quartile, third quartile, and interquartile range. Using the $1.5\\times IQR$ rule, determine whether there are outliers.",
+      "clean_answer": "$\\bar{x}=9.10$, median $=9.00$, sample standard deviation $s=\\sqrt{12.71}\\approx3.57$, and range $=18-4=14$. Using the stated quartile convention, $Q_1=6.00$, $Q_3=11.75$, and $IQR=5.75$. The upper fence is $11.75+1.5(5.75)=20.375$ and the lower fence is $6-1.5(5.75)=-2.625$; all observations lie between the fences, so there are no outliers."
+    },
+    {
+      "id": "ch03_q05", "chapter": "Ch03", "decision": "rewrite", "question_type": "计算题", "difficulty": 3,
+      "keywords": ["mean", "sample standard deviation", "empirical rule"],
+      "clean_question": "The shipping times, in days, for 13 rugs are $31,31,42,39,42,43,34,30,28,36,37,35,40$. Calculate the mean and sample standard deviation. What percentage of the observed times lie within two standard deviations of the mean, and is a 60-day delivery likely under an approximately normal model?",
+      "clean_answer": "The mean is $\\bar{x}=36$ days and the sample standard deviation is $s\\approx5.0166$ days. The interval $\\bar{x}\\pm2s$ is $[25.967,46.033]$; all 13 observations lie in it, so the observed percentage is $100\\%$. The Empirical Rule would suggest about $95.44\\%$ for a normal population. A 60-day delivery has $z=(60-36)/5.0166\\approx4.78$, so it is extremely unlikely under the model."
+    },
+    {
+      "id": "ch03_q06", "chapter": "Ch03", "decision": "delete", "reason": "The stem states that there are 13 incomes but supplies only 12; the original answer introduces an unsupported 192 value, so the percentile and boxplot task is not independently solvable."
+    },
+    {
+      "id": "ch03_q07", "chapter": "Ch03", "decision": "rewrite", "question_type": "综合题", "difficulty": 4,
+      "keywords": ["Empirical Rule", "coefficient of variation", "risk", "return"],
+      "clean_question": "Three stock funds have the following mean yearly returns and standard deviations:\n\n| Fund | Mean | Standard deviation |\n|---|---:|---:|\n| 1 | $10.93\\%$ | $41.96\\%$ |\n| 2 | $13.00\\%$ | $9.36\\%$ |\n| 3 | $34.45\\%$ | $41.16\\%$ |\n\nAssume returns are normally distributed.\n\na. Find an interval containing about $95.44\\%$ of returns for each fund.\n\nb. Compare the funds by mean and variability.\n\nc. Calculate each coefficient of variation and rank relative risk.",
+      "clean_answer": "a. Using $\\mu\\pm2\\sigma$:\n\nFund 1: $[-72.99,94.85]\\%$.\n\nFund 2: $[-5.72,31.72]\\%$.\n\nFund 3: $[-47.87,116.77]\\%$.\n\nb. Fund 3 has the highest mean return; Fund 1 has the lowest. Fund 1 has the largest standard deviation, Fund 3 is a close second, and Fund 2 has the smallest spread.\n\nc. $CV_1=(41.96/10.93)\\times100\\%\\approx383.9\\%$, $CV_2=(9.36/13)\\times100\\%\\approx72.0\\%$, and $CV_3=(41.16/34.45)\\times100\\%\\approx119.5\\%$. By relative risk, Fund 1 is riskiest, Fund 3 is second, and Fund 2 is least risky."
+    },
+    {
+      "id": "ch03_q08", "chapter": "Ch03", "decision": "rewrite", "question_type": "计算题", "difficulty": 2,
+      "keywords": ["weighted mean", "GPA"],
+      "clean_question": "A student earned 18 semester hours of A, 36 of B, 7 of C, 3 of D, and 0 of F. Assign grade points 4, 3, 2, 1, and 0, respectively. Calculate the GPA and explain why it is a weighted mean.",
+      "clean_answer": "$$\\text{GPA}=\\frac{18(4)+36(3)+7(2)+3(1)+0(0)}{64}=\\frac{197}{64}=3.078125\\approx3.08.$$\n\nIt is weighted because each grade-point value is multiplied by the number of credit hours earned at that grade."
+    },
+    {
+      "id": "ch03_q09", "chapter": "Ch03", "decision": "delete", "reason": "Both required response-time tables are missing; the original answer contains only one unsupported weighted mean and cannot identify the best site."
+    },
+    {
+      "id": "ch03_q10", "chapter": "Ch03", "decision": "rewrite", "question_type": "计算题", "difficulty": 3,
+      "keywords": ["Chebyshev inequality", "interval", "population mean"],
+      "clean_question": "Canadian women's life expectancy has mean $73.75$ years and standard deviation $6.5$ years.\n\na. Using Chebyshev's inequality, find the minimum percentage with life expectancy between 64 and 83.5 years.\n\nb. Find bounds on life expectancy such that at least $90\\%$ of the population is included.",
+      "clean_answer": "a. The interval is centered at 73.75 and has half-width 9.75, so $k=9.75/6.5=1.5$. Chebyshev's inequality gives at least\n\n$$1-\\frac{1}{k^2}=1-\\frac{1}{1.5^2}=0.5556,$$\n\nor $55.56\\%$.\n\nb. For at least $90\\%$, choose $k=\\sqrt{1/(1-0.90)}=\\sqrt{10}$. The bounds are\n\n$$73.75\\pm6.5\\sqrt{10}\\approx[53.19,94.31]\\text{ years}.$$"
+    },
+    {
+      "id": "ch03_q11", "chapter": "Ch03", "decision": "rewrite", "question_type": "计算题", "difficulty": 2,
+      "keywords": ["mean", "median", "mode"], "formula_refs": [], "data_refs": [],
+      "clean_question": "The numbers of computer monitors produced over 10 days were $24,31,27,25,35,33,26,40,25,28$. Calculate the mean, median, and mode.",
+      "clean_answer": "The sum is 294, so the mean is $294/10=29.4$. The ordered data are $24,25,25,26,27,28,31,33,35,40$, so the median is $(27+28)/2=27.5$. The mode is 25."
+    },
+    {
+      "id": "ch03_q12", "chapter": "Ch03", "decision": "rewrite", "question_type": "计算题", "difficulty": 2,
+      "keywords": ["mean", "median", "range"], "formula_refs": [], "data_refs": [],
+      "clean_question": "Five starting basketball players have mean height 76 inches, median 78 inches, and range 11 inches. If the tallest player is replaced by a substitute who is 2 inches taller, find the new mean, median, and range.",
+      "clean_answer": "The original total is $5(76)=380$ inches. Increasing the tallest value by 2 gives a new mean of $(380+2)/5=76.4$ inches. Because only the maximum changes, the median remains 78 inches and the range increases from 11 to 13 inches."
+    },
+    {
+      "id": "ch03_q13", "chapter": "Ch03", "decision": "rewrite", "question_type": "综合题", "difficulty": 3,
+      "keywords": ["descriptive statistics", "mean", "median", "standard deviation", "range"], "formula_refs": [], "data_refs": [],
+      "clean_question": "Weekly sales, in dollars, for three salespeople over six weeks are:\n\n| Week | A | B | C |\n|---:|---:|---:|---:|\n| 1 | 1774 | 1330 | 1402 |\n| 2 | 1808 | 1295 | 1665 |\n| 3 | 1890 | 1502 | 1530 |\n| 4 | 1932 | 1104 | 1826 |\n| 5 | 1855 | 1189 | 1703 |\n| 6 | 1726 | 1441 | 1498 |\n\nFor each salesperson, report the mean, median, sample standard deviation, range, minimum, and maximum. Compare their performance.",
+      "clean_answer": "| Statistic | A | B | C |\n|---|---:|---:|---:|\n| Mean | 1830.833 | 1310.167 | 1604.000 |\n| Median | 1831.5 | 1312.5 | 1597.5 |\n| Sample standard deviation | 76.238 | 149.484 | 155.127 |\n| Range | 206 | 398 | 424 |\n| Minimum | 1726 | 1104 | 1402 |\n| Maximum | 1932 | 1502 | 1826 |\n\nA has the highest mean and the smallest spread, so its performance is highest and most stable. B has lower sales than C on average; C has the largest range and a slightly larger standard deviation than B."
+    },
+    {
+      "id": "ch03_q14", "chapter": "Ch03", "decision": "rewrite", "question_type": "计算题", "difficulty": 2,
+      "keywords": ["Empirical Rule", "normal distribution"], "formula_refs": [], "data_refs": [],
+      "clean_question": "Vehicle speeds on a highway section have a bell-shaped distribution with mean 72 mph and standard deviation 3 mph. Using the Empirical Rule, estimate the percentage of vehicles traveling between 63 and 81 mph.",
+      "clean_answer": "The interval is $72\\pm3(3)=72\\pm9$, so it is within three standard deviations of the mean. The Empirical Rule estimates $99.73\\%$ of vehicles in this interval."
+    },
+    {
+      "id": "ch03_q15", "chapter": "Ch03", "decision": "rewrite", "question_type": "计算题", "difficulty": 2,
+      "keywords": ["sample variance", "sample standard deviation"], "formula_refs": [], "data_refs": [],
+      "clean_question": "A random sample of five entertainment expenses, in dollars, is $155,138,111,122,142$. Calculate $\\bar{x}$, $s^2$, and $s$.",
+      "clean_answer": "The mean is $\\bar{x}=668/5=133.6$. Using the sample-variance formula gives $s^2=298.3$ and\n\n$$s=\\sqrt{298.3}\\approx17.27.$$"
+    },
+    {
+      "id": "ch03_q16", "chapter": "Ch03", "decision": "delete", "reason": "The question record is a corrupted percentile-answer fragment and the stored answer is an unrelated stem-and-leaf data set."
+    },
+    {
+      "id": "ch03_q17", "chapter": "Ch03", "decision": "rewrite", "question_type": "计算题", "difficulty": 2,
+      "keywords": ["percentile", "nearest-rank method"],
+      "clean_question": "The 2011 total compensation, in millions of dollars, for 12 CEOs was $21.6,25.2,22.9,28.2,28.0,21.7,26.5,84.5,76.1,32.9,32.6,70.1$. Using the nearest-rank method, find the position and value of the 60th percentile and interpret it.",
+      "clean_answer": "The ordered data are $21.6,21.7,22.9,25.2,26.5,28.0,28.2,32.6,32.9,70.1,76.1,84.5$. The rank is $\\lceil0.60(12)\\rceil=8$, so $P_{60}=32.6$ million dollars. Approximately 60% of the CEOs have compensation at or below $32.6$ million under this nearest-rank convention."
+    },
+    {
+      "id": "ch03_q18", "chapter": "Ch03", "decision": "rewrite", "question_type": "简答题", "difficulty": 1,
+      "keywords": ["box plot", "quartile", "outlier", "side-by-side boxplot"],
+      "clean_question": "What information does a box-and-whisker plot display, and how can side-by-side boxplots be used?",
+      "clean_answer": "A boxplot displays the median, first and third quartiles, interquartile range, whisker endpoints, and potential outliers. Side-by-side boxplots compare groups using center, spread, skewness, and outliers on the same scale."
+    },
+    {
+      "id": "ch03_q19", "chapter": "Ch03", "decision": "rewrite", "question_type": "综合题", "difficulty": 3,
+      "keywords": ["mean", "median", "outlier", "robust statistic"], "formula_refs": [], "data_refs": [],
+      "clean_question": "The numbers of tornadoes recorded from 1950 to 1994 in 12 states were $1113,2009,1374,1137,2110,1086,1166,1039,1673,2300,1139,5490$.\n\na. Calculate the mean and median.\n\nb. Identify the outlier, remove it, and recalculate the mean and median.\n\nc. Which summary changes more, and which is the better summary for these data?",
+      "clean_answer": "a. The mean is $21636/12=1803$. The ordered data have middle values 1166 and 1374, so the median is $(1166+1374)/2=1270$.\n\nb. The outlier is 5490. After removing it, the mean is $16146/11\\approx1467.8$ and the median is 1166.\n\nc. The mean changes by about 335.2, whereas the median changes by 104. The median is more robust and better represents the typical state because the extreme value 5490 pulls the mean upward."
+    },
+    {
+      "id": "ch03_q20", "chapter": "Ch03", "decision": "rewrite", "question_type": "计算题", "difficulty": 3,
+      "keywords": ["grouped data", "weighted mean", "sample variance"], "formula_refs": [], "data_refs": [],
+      "clean_question": "A sample of 400 people reports weekly exercise hours. Use the grouped table below to estimate the mean, sample variance, and sample standard deviation.\n\n| Hours | Frequency | Midpoint |\n|---|---:|---:|\n| $0$ to less than $3.5$ | 34 | 1.75 |\n| $3.5$ to less than $7.0$ | 92 | 5.25 |\n| $7.0$ to less than $10.5$ | 55 | 8.75 |\n| $10.5$ to less than $14.0$ | 83 | 12.25 |\n| $14.0$ to less than $28.0$ | 121 | 21.00 |\n| $28.0$ to less than $56.0$ | 15 | 42.00 |",
+      "clean_answer": "Using the class midpoints as representative values, $n=400$ and\n\n$$\\bar{x}=\\frac{\\sum f_im_i}{400}=13.02875\\approx13.03\\text{ hours}.$$\n\nThe grouped-data sample variance is\n\n$$s^2=\\frac{\\sum f_i(m_i-\\bar{x})^2}{399}\\approx78.2648,$$\n\nso $s\\approx8.85$ hours."
+    },
+    {
+      "id": "ch03_q21", "chapter": "Ch03", "decision": "delete", "reason": "The question depends on an attached runners-10K data set that is not present in the record, while the answer contains unsupported Excel output and a quartile inconsistency."
+    },
+    {
+      "id": "ch03_q22", "chapter": "Ch03", "decision": "rewrite", "question_type": "计算题", "difficulty": 1,
+      "keywords": ["sample space", "probability"],
+      "clean_question": "Let $A,B,C,D,E$ be the five outcomes in a sample space. Suppose $P(A)=0.20$, $P(B)=0.15$, $P(C)=0.30$, and $P(D)=0.20$. Find $P(E)$ and explain.",
+      "clean_answer": "The probabilities of all outcomes must sum to 1, so\n\n$$P(E)=1-(0.20+0.15+0.30+0.20)=0.15.$$"
+    },
+    {
+      "id": "ch03_q23", "chapter": "Ch03", "decision": "rewrite", "question_type": "计算题", "difficulty": 2,
+      "keywords": ["conditional probability", "independence", "contingency table"],
+      "clean_question": "A brokerage report classifies 15 aerospace companies and 25 food retailers by stock risk.\n\n| Company type | Low risk | Moderate-to-high risk | Total |\n|---|---:|---:|---:|\n| Aerospace | 6 | 9 | 15 |\n| Food retailer | 15 | 10 | 25 |\n\nFor a randomly selected company, find: (a) $P(\\text{moderate-to-high risk}\\mid\\text{aerospace})$, (b) the analogous probability given food retailer, and (c) whether company type and risk level are independent.",
+      "clean_answer": "a. $P(\\text{moderate-to-high}\\mid\\text{aerospace})=9/15=0.60$.\n\nb. $P(\\text{moderate-to-high}\\mid\\text{food})=10/25=0.40$.\n\nc. The events are dependent because the conditional probabilities differ. Equivalently, $P(\\text{aerospace})=15/40=0.375$, while $P(\\text{aerospace}\\mid\\text{low risk})=6/21\\approx0.286$."
+    },
+    {
+      "id": "ch03_q24", "chapter": "Ch03", "decision": "rewrite", "question_type": "计算题", "difficulty": 2,
+      "keywords": ["conditional probability", "independence", "Venn diagram"],
+      "clean_question": "Of 10,000 college students, 2,500 have a Mastercard, 4,000 have a VISA, and 1,000 have both. Find: (a) $P(V\\mid M)$, (b) $P(M\\mid V)$, and (c) whether having a Mastercard and having a VISA are independent.",
+      "clean_answer": "a. $P(V\\mid M)=P(M\\cap V)/P(M)=1000/2500=0.40$.\n\nb. $P(M\\mid V)=1000/4000=0.25$.\n\nc. The events are independent because $P(M\\mid V)=0.25=P(M)=2500/10000$. Equivalently, $P(M\\cap V)=0.10=P(M)P(V)=0.25(0.40)$."
+    },
+    {
+      "id": "ch03_q25", "chapter": "Ch03", "decision": "rewrite", "question_type": "综合题", "difficulty": 3,
+      "keywords": ["sample space", "tree diagram", "equally likely outcomes"],
+      "clean_question": "Two patrons independently choose one of three diet colas, A, B, or C.\n\na. List the nine ordered outcomes.\n\nb. List the outcomes for: (1) both choose A, (2) the same cola, (3) different colas, (4) at least one chooses A, and (5) neither chooses C.\n\nc. Assuming the nine outcomes are equally likely, find the probability of each event.",
+      "clean_answer": "The sample space is $\\{AA,AB,AC,BA,BB,BC,CA,CB,CC\\}$.\n\n| Event | Outcomes | Probability |\n|---|---|---:|\n| Both choose A | $AA$ | $1/9$ |\n| Same cola | $AA,BB,CC$ | $3/9=1/3$ |\n| Different colas | $AB,AC,BA,BC,CA,CB$ | $6/9=2/3$ |\n| At least one chooses A | $AA,AB,AC,BA,CA$ | $5/9$ |\n| Neither chooses C | $AA,AB,BA,BB$ | $4/9$ |"
+    },
+    {
+      "id": "ch03_q26", "chapter": "Ch03", "decision": "delete", "reason": "This duplicates ch03_q24, and the stored answer is incomplete and incorrectly states independence."
+    },
+    {
+      "id": "ch03_q27", "chapter": "Ch03", "decision": "rewrite", "question_type": "计算题", "difficulty": 2,
+      "keywords": ["conditional probability", "Bayes rule", "independence"],
+      "clean_question": "John watches a television show with probability $0.4$. Jane watches it with probability $0.5$. The conditional probability that John watches it given that Jane does is $0.7$. Find: (a) the probability both watch, (b) $P(\\text{Jane}\\mid\\text{John})$, and (c) whether their viewing is independent.",
+      "clean_answer": "a. $P(J\\cap K)=P(J\\mid K)P(K)=0.7(0.5)=0.35$.\n\nb. $P(K\\mid J)=P(J\\cap K)/P(J)=0.35/0.4=0.875$.\n\nc. They are not independent because $P(J\\mid K)=0.7\\ne0.4=P(J)$."
+    },
+    {
+      "id": "ch03_q28", "chapter": "Ch03", "decision": "rewrite", "question_type": "综合题", "difficulty": 3,
+      "keywords": ["independence", "discrete probability", "hypothesis assessment"],
+      "clean_question": "A cola distributor claims that 80% of people prefer A and 10% prefer each of B and C. Two participants make independent choices.\n\na. Find the probability of every ordered pair of choices.\n\nb. Find the probability that neither participant chooses A.\n\nc. If neither participant chooses A, explain what this says about the claim.",
+      "clean_answer": "a. $P(AA)=0.64$; $P(AB)=P(AC)=P(BA)=P(CA)=0.08$; and $P(BB)=P(BC)=P(CB)=P(CC)=0.01$.\n\nb. Neither chooses A means $BB,BC,CB,$ or $CC$, so $P(\\text{neither A})=4(0.01)=0.04$.\n\nc. An outcome with probability 0.04 is unusual under the claim, so it provides evidence against the claim. It is not mathematical proof that the claim is false."
+    },
+    {
+      "id": "ch03_q29", "chapter": "Ch03", "decision": "delete", "reason": "The question refers to a missing figure that defines f(x); without that figure the normalization constant cannot be determined."
+    },
+    {
+      "id": "ch03_q30", "chapter": "Ch03", "decision": "rewrite", "question_type": "计算题", "difficulty": 3,
+      "keywords": ["discrete probability distribution", "expected value", "variance"],
+      "clean_question": "A random variable $X$ takes values $1,2,3,4,5$ with $p(x)=x/15$.\n\na. Construct the probability table.\n\nb. Verify the distribution conditions.\n\nc. Calculate $\\mu_X$, $\\sigma_X^2$, and $\\sigma_X$.",
+      "clean_answer": "a.\n\n| $x$ | 1 | 2 | 3 | 4 | 5 |\n|---:|---:|---:|---:|---:|---:|\n| $p(x)$ | $1/15$ | $2/15$ | $3/15$ | $4/15$ | $5/15$ |\n\nb. Every probability is nonnegative and $\\sum p(x)=(1+2+3+4+5)/15=1$.\n\nc.\n\n$$\\mu_X=\\sum xp(x)=\\frac{55}{15}=\\frac{11}{3}\\approx3.667,$$\n\n$$E(X^2)=\\frac{1^3+2^3+3^3+4^3+5^3}{15}=15,$$\n\n$$\\sigma_X^2=15-\\left(\\frac{11}{3}\\right)^2=\\frac{14}{9}\\approx1.556,$$\n\n$$\\sigma_X=\\sqrt{14}/3\\approx1.247.$$"
+    },
+    {
+      "id": "ch03_q31", "chapter": "Ch03", "decision": "rewrite", "question_type": "综合题", "difficulty": 3,
+      "keywords": ["binomial distribution", "binomial probability"],
+      "clean_question": "Thirty percent of customers make a purchase. Six customers enter independently. Let $X$ be the number who purchase.\n\na. Write the binomial probability formula.\n\nb. Find $P(X=5)$, $P(X\\ge3)$, $P(X\\le2)$, and $P(X\\ge1)$.",
+      "clean_answer": "a. $X\\sim\\operatorname{Binomial}(6,0.3)$ and\n\n$$P(X=x)=\\binom{6}{x}(0.3)^x(0.7)^{6-x},\\quad x=0,1,\\ldots,6.$$\n\nb. $P(X=5)=0.010206$; $P(X\\ge3)=0.255690$; $P(X\\le2)=0.744310$; and $P(X\\ge1)=1-(0.7)^6=0.882351$."
+    },
+    {
+      "id": "ch03_q32", "chapter": "Ch03", "decision": "rewrite", "question_type": "综合题", "difficulty": 4,
+      "keywords": ["Poisson distribution", "Poisson process"],
+      "clean_question": "Accidents follow a Poisson process with an average of 1.5 accidents per three months. Find: (a) the probability of no accidents in the next three months, (b) the probability of fewer than four accidents in the next three months, (c) the probability of no more than 12 accidents in a year, and (d) the probability of no accidents in a year.",
+      "clean_answer": "For three months, $X\\sim\\operatorname{Poisson}(1.5)$.\n\na. $P(X=0)=e^{-1.5}\\approx0.223130$.\n\nb. $P(X<4)=\\sum_{x=0}^{3}e^{-1.5}1.5^x/x!\\approx0.934358$.\n\nFor one year, $Y\\sim\\operatorname{Poisson}(6)$.\n\nc. $P(Y\\le12)=\\sum_{y=0}^{12}e^{-6}6^y/y!\\approx0.991173$.\n\nd. $P(Y=0)=e^{-6}\\approx0.002479$."
+    },
+    {
+      "id": "ch03_q33", "chapter": "Ch03", "decision": "rewrite", "question_type": "计算题", "difficulty": 2,
+      "keywords": ["normal distribution", "z-score", "mean", "standard deviation"],
+      "clean_question": "Raw exam scores are normally distributed. A score of 63 has z-score $-1$, and a score of 93 has z-score $1.5$. Find the mean and standard deviation of raw scores.",
+      "clean_answer": "The equations are $-1=(63-\\mu)/\\sigma$ and $1.5=(93-\\mu)/\\sigma$. Subtracting gives $2.5=30/\\sigma$, so $\\sigma=12$. Substituting into the first equation gives $\\mu=75$."
+    },
+    {
+      "id": "ch03_q34", "chapter": "Ch03", "decision": "rewrite", "question_type": "计算题", "difficulty": 2,
+      "keywords": ["normal distribution", "percentile", "z-score"],
+      "clean_question": "Annual health-care expenses for a family of four are normally distributed with mean $3000$ dollars and standard deviation $500$ dollars. What expense cutoff includes the lowest $33\\%$ of families?",
+      "clean_answer": "The 33rd-percentile standard-normal value is approximately $z=-0.44$. Therefore, the cutoff is\n\n$$3000+(-0.44)(500)=2780\\text{ dollars}.$$"
+    },
+    {
+      "id": "ch03_q35", "chapter": "Ch03", "decision": "rewrite", "question_type": "综合题", "difficulty": 4,
+      "keywords": ["normal approximation", "binomial distribution", "continuity correction"],
+      "clean_question": "In a survey of 250 consumers, 40 said they would never shop at a store again after a false electronic-article-surveillance alarm. A company claims that no more than 5% of consumers would say this.\n\na. Assuming $p=0.05$, use a normal approximation with continuity correction to estimate $P(X\\ge40)$.\n\nb. What does this probability suggest about the company's claim?",
+      "clean_answer": "Under the claim, $X\\sim\\operatorname{Binomial}(250,0.05)$, with $\\mu=np=12.5$ and $\\sigma=\\sqrt{np(1-p)}=\\sqrt{11.875}\\approx3.446$. With continuity correction,\n\n$$z=\\frac{39.5-12.5}{3.446}\\approx7.84,$$\n\nso $P(X\\ge40)\\approx P(Z\\ge7.84)\\approx0$. Observing 40 or more is extraordinarily unlikely if $p=0.05$, so the data provide strong evidence against the company's claim."
+    },
+    {"id":"rotel_ch03_center_01","chapter":"Ch03","decision":"keep","question_type":"计算题","difficulty":1,"keywords":["mean","median"]},
+    {"id":"rotel_ch03_center_02","chapter":"Ch03","decision":"keep","question_type":"综合题","difficulty":1,"keywords":["mean","median","comparison"]}
+  ]
+}

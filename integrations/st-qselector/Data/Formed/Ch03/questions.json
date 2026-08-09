@@ -3,187 +3,234 @@
   "questions": [
     {
       "id": "ch03_q01",
-      "content": "The accounting firm of Crawford and Associates has five senior partners. Yesterday the senior partners saw six, four, three, seven, and five clients, respectively.\n\na.  Compute the mean number and median number of clients seen by a partner.\n\nb.  Is the mean a sample mean or a population mean?\n\nc.  Verify that $\\sum_{i = 0}^{N}{\\left( X_{i} - \\mu \\right) = 0}$",
+      "content": "An accounting firm has five senior partners who saw 6, 4, 3, 7, and 5 clients yesterday.\n\na. Compute the mean and median number of clients.\n\nb. Is the mean a sample mean or a population mean?\n\nc. Verify that $\\sum_{i=1}^{5}(x_i-\\mu)=0$.",
       "source": "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment_ Chapter 3.docx",
-      "type": "unknown",
+      "type": "计算题",
       "difficulty": 1,
-      "keywords": [],
+      "keywords": [
+        "mean",
+        "median",
+        "population mean",
+        "deviation sum"
+      ],
       "formula_refs": [],
-      "data_refs": []
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch03-review-v1"
     },
     {
       "id": "ch03_q02",
-      "content": "Explain how the population mean, median, and mode compare when the population's relative frequency curve is\n\na\\. Symmetrical\n\nb\\. Skewed with a tail to the left\n\nc\\. Skewed with a tail to the right",
+      "content": "Explain how the population mean, median, and mode compare when the relative-frequency curve is (a) symmetric, (b) skewed left, and (c) skewed right.",
       "source": "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment_ Chapter 3.docx",
-      "type": "unknown",
+      "type": "简答题",
       "difficulty": 1,
-      "keywords": [],
+      "keywords": [
+        "mean",
+        "median",
+        "mode",
+        "skewness"
+      ],
       "formula_refs": [],
-      "data_refs": []
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch03-review-v1"
     },
     {
       "id": "ch03_q03",
-      "content": "In order to control costs, a company wishes to study the amount of money its sales force spends entertaining clients. The following is a random sample of six entertaining expenses (dinner costs for four people) from expense reports submitted by members of the sales force\n\n> \\$157 \\$132 \\$109 \\$145 \\$125 \\$139\n\na.  Show the equivalence of the following two formulas:\n\n> [IMG:ch03_q03_f01_image1.png][IMG:ch03_q03_f02_image1.png] , [IMG:ch03_q03_f03_image2.png][IMG:ch03_q03_f04_image2.png].\n\nb.  Calculate $\\bar{x}$, $s^{2}$, and s for the expense data, use the two different formulas in (a) to calculate $s^{2}$.\n\nc.  Assuming that the distribution of entertainment expenses is approximately normally distributed, calculate estimates of tolerance intervals containing 68.26 percent, 95.44 percent, and 99.73 percent of all entertainment expenses by the sales force.\n\nd.  If a member of the sales force submits an entertaining expense (dinner cost for four) of \\$190, should this expense be considered unusually high (and possibly worthy of investigation by the company)? Explain your",
+      "content": "A random sample of six client-entertainment expenses, in dollars, is $157,132,109,145,125,139$.\n\na. Show that $\\sum(x_i-\\bar{x})^2=\\sum x_i^2-n\\bar{x}^2$.\n\nb. Calculate $\\bar{x}$, $s^2$, and $s$ using both formulas.\n\nc. Assuming an approximately normal population, estimate the intervals containing $68.26\\%$, $95.44\\%$, and $99.73\\%$ of expenses.\n\nd. Is an expense of $190$ unusually high? Explain.",
       "source": "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment_ Chapter 3.docx",
-      "type": "unknown",
-      "difficulty": 1,
-      "keywords": [],
+      "type": "综合题",
+      "difficulty": 4,
+      "keywords": [
+        "sample variance",
+        "sample standard deviation",
+        "empirical rule",
+        "computational formula"
+      ],
       "formula_refs": [],
-      "data_refs": []
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch03-review-v1"
     },
     {
       "id": "ch03_q04",
-      "content": "The manager of the local Wal-Mart Super Store is studying the number of items purchased by customers in the evening hours. Listed below is the number of items for a sample of 30 customers.\n\n  -------------------------------------------------------------------------------\n       15       8       6       9       9       4      18      10      10      12\n  ------- ------- ------- ------- ------- ------- ------- ------- ------- -------\n       12       4       7       8      12      10      10      11       9      13\n\n        5       6      11      14       5       6       6       5      13       5\n  -------------------------------------------------------------------------------\n\na.  Use software (SPSS or EXCEL) to find the mean and the median of the number of items.\n\nb.  Use software (SPSS or Excel) to find the range and the standard deviation of the number of items.\n\nc.  Use software (SPSS or Excel) to find the first quartile, third quartile and IQR and construct the box-plot. Are there any outliers?",
+      "content": "The numbers of items purchased by 30 evening customers are\n\n$$15,8,6,9,9,4,18,10,10,12,12,4,7,8,12,10,10,11,9,13,5,6,11,14,5,6,6,5,13,5.$$\n\nCalculate the mean, median, sample standard deviation, range, first quartile, third quartile, and interquartile range. Using the $1.5\\times IQR$ rule, determine whether there are outliers.",
       "source": "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment_ Chapter 3.docx",
-      "type": "unknown",
-      "difficulty": 1,
-      "keywords": [],
+      "type": "综合题",
+      "difficulty": 3,
+      "keywords": [
+        "mean",
+        "median",
+        "range",
+        "quartile",
+        "IQR",
+        "outlier"
+      ],
       "formula_refs": [],
-      "data_refs": []
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch03-review-v1"
     },
     {
       "id": "ch03_q05",
-      "content": "A group of 13 students is studying in Istanbul, Tukey, for five weeks. As part of their study of the local economy, they each purchased an Oriental rug and arranged for its shipment back to the United States. The shipping time, in days, for each rug was\n\n31 31 42 39 42 43 34\n\n30 28 36 37 35 40\n\nEstimate the percentage of days that are within two standard deviations of the Mean. Is it likely to take 2 months for a delivery?",
+      "content": "The shipping times, in days, for 13 rugs are $31,31,42,39,42,43,34,30,28,36,37,35,40$. Calculate the mean and sample standard deviation. What percentage of the observed times lie within two standard deviations of the mean, and is a 60-day delivery likely under an approximately normal model?",
       "source": "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment_ Chapter 3.docx",
-      "type": "unknown",
-      "difficulty": 1,
-      "keywords": [],
+      "type": "计算题",
+      "difficulty": 3,
+      "keywords": [
+        "mean",
+        "sample standard deviation",
+        "empirical rule"
+      ],
       "formula_refs": [],
-      "data_refs": []
-    },
-    {
-      "id": "ch03_q06",
-      "content": "Thirteen internists in the Midwest are randomly selected, and each internist is asked to report last year's income. The incomes obtained (in thousands of dollars) are 152, 144, 162,154, 146, 241, 127, 141, 171, 177, 138, 132, 192. Find:\n\na.  The 90th percentile.\n\nb.  The median.\n\nc.  The first quartile.\n\nd.  The third quartile\n\ne.  The 10th percentile.\n\nf.  The inter-quartile range.\n\ng.  Develop a five-number summary and a box-and-whiskers display.",
-      "source": "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment_ Chapter 3.docx",
-      "type": "unknown",
-      "difficulty": 1,
-      "keywords": [],
-      "formula_refs": [],
-      "data_refs": []
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch03-review-v1"
     },
     {
       "id": "ch03_q07",
-      "content": "Consider three stock funds, which we will call Stock Funds 1, 2, and 3.Suppose that Stock Fund 1has a mean yearly return of 10.93 percent with a standard deviation of 41.96 percent, Stock Fund 2 has a mean yearly return of 13 percent with a standard deviation of 9.36 percent, and Stock Fund 3 has a mean yearly return of 34.45 percent with a standard deviation of 41.16 percent.\n\na\\. For each fund, find an interval in which you would expect 95.44 percent of all yearly returns to fall. Assume returns are normally distributed.\n\nb\\. Using the intervals you computed in part a, compare the three funds with respect to average yearly returns and with respect to variability of returns.\n\nc\\. Calculate the coefficient of variation for each fund, and use your results to compare the funds with respect to risk. Which fund is riskier?",
+      "content": "Three stock funds have the following mean yearly returns and standard deviations:\n\n| Fund | Mean | Standard deviation |\n|---|---:|---:|\n| 1 | $10.93\\%$ | $41.96\\%$ |\n| 2 | $13.00\\%$ | $9.36\\%$ |\n| 3 | $34.45\\%$ | $41.16\\%$ |\n\nAssume returns are normally distributed.\n\na. Find an interval containing about $95.44\\%$ of returns for each fund.\n\nb. Compare the funds by mean and variability.\n\nc. Calculate each coefficient of variation and rank relative risk.",
       "source": "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment_ Chapter 3.docx",
-      "type": "unknown",
-      "difficulty": 1,
-      "keywords": [],
+      "type": "综合题",
+      "difficulty": 4,
+      "keywords": [
+        "Empirical Rule",
+        "coefficient of variation",
+        "risk",
+        "return"
+      ],
       "formula_refs": [],
-      "data_refs": []
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch03-review-v1"
     },
     {
       "id": "ch03_q08",
-      "content": "The following table gives a summary of the grades received by a student for the first 64 semester hours of university coursework. The table gives the number of semester hours of A, B, C, D, and F earned by the student among the 64 hours.\n\n  ---------------------------------------\n         Grade          Number of Hours\n  ------------------- -------------------\n   A (that is, 4.00)          18\n\n   B (that is, 3.00)          36\n\n   C (that is, 2.00)           7\n\n   D (that is, 1.00)           3\n\n   F (that is, 0.00)           0\n  ---------------------------------------\n\na.  By assigning the numerical values, 4.00,3.00,2.00,1.00 and 0.00 to the grades A, B, C, D, and F (as shown), compute the student's grade point average for the first 64 semester hours of coursework.\n\nb.  Why is this weighted average?",
+      "content": "A student earned 18 semester hours of A, 36 of B, 7 of C, 3 of D, and 0 of F. Assign grade points 4, 3, 2, 1, and 0, respectively. Calculate the GPA and explain why it is a weighted mean.",
       "source": "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment_ Chapter 3.docx",
-      "type": "unknown",
-      "difficulty": 1,
-      "keywords": [],
+      "type": "计算题",
+      "difficulty": 2,
+      "keywords": [
+        "weighted mean",
+        "GPA"
+      ],
       "formula_refs": [],
-      "data_refs": []
-    },
-    {
-      "id": "ch03_q09",
-      "content": "The Rivertown city council is attempting to choose one of four sites (A, B, C, or D) as the location for its new emergency facility. After the new emergency facility becomes available for service, the current emergency facility will be shut down. The project manager has estimated the following response times in minutes from each of the proposed sites to the four areas that must be served by the emergency facility.\\\n [IMG:ch03_q09_f01_image5.png] \\\nThe number of emergency runs from the current emergency facility to each of the four areas over the past year is as follows:\\\n [IMG:ch03_q09_f02_image6.png] \\\nCompute the weighted mean response time from the proposed locations and determine which proposed site should be selected for the new emergency facility.",
-      "source": "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment_ Chapter 3.docx",
-      "type": "unknown",
-      "difficulty": 1,
-      "keywords": [],
-      "formula_refs": [],
-      "data_refs": []
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch03-review-v1"
     },
     {
       "id": "ch03_q10",
-      "content": "The average life of Canadian women is 73.75 years, and the standard deviation of women\\'s life expectancy in Canada is 6.5 years.\n\na\\. Using Chebyshev\\'s Theorem, determine the minimum percentage of women in Canada whose life expectancy is between 64 and 83.5 years. \n\nb\\. Based on Chebyshev\\'s inequality, determine the upper and lower bounds on the average life expectancy of Canadian women such that at least 90 percent of the population is included.",
+      "content": "Canadian women's life expectancy has mean $73.75$ years and standard deviation $6.5$ years.\n\na. Using Chebyshev's inequality, find the minimum percentage with life expectancy between 64 and 83.5 years.\n\nb. Find bounds on life expectancy such that at least $90\\%$ of the population is included.",
       "source": "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment_ Chapter 3.docx",
-      "type": "unknown",
-      "difficulty": 1,
-      "keywords": [],
+      "type": "计算题",
+      "difficulty": 3,
+      "keywords": [
+        "Chebyshev inequality",
+        "interval",
+        "population mean"
+      ],
       "formula_refs": [],
-      "data_refs": []
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch03-review-v1"
     },
     {
       "id": "ch03_q11",
-      "content": "a\\) *Neon Corporation* manufactures computer monitors. The following data are the number of computer monitors produced at the Corporation for a sample of 10 days.\n\n> 24 31 27 25 35 33 26 40 25 28\n\nCalculate the mean, median, and mode for these data.",
+      "content": "The numbers of computer monitors produced over 10 days were $24,31,27,25,35,33,26,40,25,28$. Calculate the mean, median, and mode.",
       "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter03/GCNU1003 Sp of Stat_assignment ch3 sem2 2014-2015.docx",
-      "type": "unknown",
-      "difficulty": 1,
-      "keywords": [],
+      "type": "计算题",
+      "difficulty": 2,
+      "keywords": [
+        "mean",
+        "median",
+        "mode"
+      ],
       "formula_refs": [],
-      "data_refs": [
-        "dataset_10K.xls"
-      ]
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch03-review-v1"
     },
     {
       "id": "ch03_q12",
-      "content": "The heights of five starting players on a basketball team have a mean of 76 inches, a median of 78 inches, and a range of 11 inches.\n\na)  If the tallest of these five players is replaced by a substitute who is 2 inches taller, find the new mean, median and range.\n\n>",
+      "content": "Five starting basketball players have mean height 76 inches, median 78 inches, and range 11 inches. If the tallest player is replaced by a substitute who is 2 inches taller, find the new mean, median, and range.",
       "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter03/GCNU1003 Sp of Stat_assignment ch3 sem2 2014-2015.docx",
-      "type": "unknown",
-      "difficulty": 1,
-      "keywords": [],
+      "type": "计算题",
+      "difficulty": 2,
+      "keywords": [
+        "mean",
+        "median",
+        "range"
+      ],
       "formula_refs": [],
-      "data_refs": [
-        "dataset_10K.xls"
-      ]
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch03-review-v1"
     },
     {
       "id": "ch03_q13",
-      "content": "A company hired three part-time sales persons. The sales records (in dollars) for the past 6 weeks for these three salespersons are as shown in the following table.\n\n  ----------------------------------------------\n   **Week**     **A**       **B**       **C**\n  ---------- ----------- ----------- -----------\n      1         1774        1330        1402\n\n      2         1808        1295        1665\n\n      3         1890        1502        1530\n\n      4         1932        1104        1826\n\n      5         1855        1189        1703\n\n      6         1726        1441        1498\n  ----------------------------------------------\n\na)  Prepare a summary report comparing the sales volume using the mean, median, standard deviation, range, minimum and maximum.\n\nb)  Comment on their sales performances.",
+      "content": "Weekly sales, in dollars, for three salespeople over six weeks are:\n\n| Week | A | B | C |\n|---:|---:|---:|---:|\n| 1 | 1774 | 1330 | 1402 |\n| 2 | 1808 | 1295 | 1665 |\n| 3 | 1890 | 1502 | 1530 |\n| 4 | 1932 | 1104 | 1826 |\n| 5 | 1855 | 1189 | 1703 |\n| 6 | 1726 | 1441 | 1498 |\n\nFor each salesperson, report the mean, median, sample standard deviation, range, minimum, and maximum. Compare their performance.",
       "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter03/GCNU1003 Sp of Stat_assignment ch3 sem2 2014-2015.docx",
-      "type": "unknown",
-      "difficulty": 1,
-      "keywords": [],
+      "type": "综合题",
+      "difficulty": 3,
+      "keywords": [
+        "descriptive statistics",
+        "mean",
+        "median",
+        "standard deviation",
+        "range"
+      ],
       "formula_refs": [],
-      "data_refs": [
-        "dataset_10K.xls"
-      ]
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch03-review-v1"
     },
     {
       "id": "ch03_q14",
-      "content": "Suppose that on a certain section of a highway with a posted speed limit of 65 miles per hour (mph), the speed of all vehicles have a bell-shaped distribution with a mean of 72 mph and a standard deviation of 3 mph.\n\na)  Use the *empirical rule* to find the percentage of vehicles with the speed of 63 to 81 mph on this section of the highway.\n\n>",
+      "content": "Vehicle speeds on a highway section have a bell-shaped distribution with mean 72 mph and standard deviation 3 mph. Using the Empirical Rule, estimate the percentage of vehicles traveling between 63 and 81 mph.",
       "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter03/GCNU1003 Sp of Stat_assignment ch3 sem2 2014-2015.docx",
-      "type": "unknown",
-      "difficulty": 1,
-      "keywords": [],
+      "type": "计算题",
+      "difficulty": 2,
+      "keywords": [
+        "Empirical Rule",
+        "normal distribution"
+      ],
       "formula_refs": [],
-      "data_refs": [
-        "dataset_10K.xls"
-      ]
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch03-review-v1"
     },
     {
       "id": "ch03_q15",
-      "content": "To control costs, a company wishes to study the amount of money its sales forces spent on entertaining its clients. The following is a random sample of five entertainment expenses in January 2015: \\$155 \\$138 \\$111 \\$122 \\$142\n\na)  Calculate $\\bar{x}$, s^2^, and s for the expense data\n\n>",
+      "content": "A random sample of five entertainment expenses, in dollars, is $155,138,111,122,142$. Calculate $\\bar{x}$, $s^2$, and $s$.",
       "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter03/GCNU1003 Sp of Stat_assignment ch3 sem2 2014-2015.docx",
-      "type": "unknown",
-      "difficulty": 1,
-      "keywords": [],
+      "type": "计算题",
+      "difficulty": 2,
+      "keywords": [
+        "sample variance",
+        "sample standard deviation"
+      ],
       "formula_refs": [],
-      "data_refs": [
-        "dataset_10K.xls"
-      ]
-    },
-    {
-      "id": "ch03_q16",
-      "content": ", 21.7, 22.9, 25.2, 26.5, 28.0, 28.1, 32.6, 32.9, 70.1, 76.1, 85.5**\n\n**The position of the 60^th^ percentile is**\n\n***kn/*100 *=* 60(12)/100 = 7.20^th^ term ≈ 7^th^ term**\n\n**The value of the 7^th^ term in the ranked data can be used to approximate the 7.20^th^ term**\n\n**Therefore, P~60~ = 60^th^ percentile = 28.2 = \\$28.2 million.**\n\n**Approximately60% of these 12 CEOs had 2011 total compensation less than \\$28.2 million.**",
-      "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter03/GCNU1003 Sp of Stat_assignment ch3 sem2 2014-2015.docx",
-      "type": "unknown",
-      "difficulty": 1,
-      "keywords": [],
-      "formula_refs": [],
-      "data_refs": [
-        "dataset_10K.xls"
-      ]
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch03-review-v1"
     },
     {
       "id": "ch03_q17",
-      "content": "Refer to the data on total compensation (in millions of dollars) for the year 2011 of 12 CEO's of some big corporations：21.6 25.2 22.9 28.2 28.0 21.7 26.5 84.5 76.1 32.9 32.6 70.1\n\n> Find the **position** and then **value** of the 60^th^ percentile and give a brief interpretation of the 60^th^ percentile",
+      "content": "The 2011 total compensation, in millions of dollars, for 12 CEOs was $21.6,25.2,22.9,28.2,28.0,21.7,26.5,84.5,76.1,32.9,32.6,70.1$. Using the nearest-rank method, find the position and value of the 60th percentile and interpret it.",
       "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter03/GCNU1003 Sp of Stat_assignment ch3 sem2 2014-2015.docx",
-      "type": "unknown",
-      "difficulty": 1,
-      "keywords": [],
+      "type": "计算题",
+      "difficulty": 2,
+      "keywords": [
+        "percentile",
+        "nearest-rank method"
+      ],
       "formula_refs": [],
       "data_refs": [
         "dataset_10K.xls"
-      ]
+      ],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch03-review-v1"
     },
     {
       "id": "ch03_q18",
@@ -192,190 +239,238 @@
       "type": "简答题",
       "difficulty": 1,
       "keywords": [
-        "boxplot",
-        "five-number summary",
-        "outliers"
+        "box plot",
+        "quartile",
+        "outlier",
+        "side-by-side boxplot"
       ],
       "formula_refs": [],
       "data_refs": [],
       "review_status": "independently solved and reviewed",
-      "audit_pack": "missing-answer-recovery-v1"
+      "audit_pack": "ch03-review-v1"
     },
     {
       "id": "ch03_q19",
-      "content": "The following represent the numbers of tornadoes that touched down during 1950 to 1994 in 12 states of the U.S.A.\n\n  -----------------------------------------------------------------------------------\n    CO     FL     IA     IL     KS     LA     MO     MS     NE     OK     SD     TX\n  ------ ------ ------ ------ ------ ------ ------ ------ ------ ------ ------ ------\n   1113   2009   1374   1137   2110   1086   1166   1039   1673   2300   1139   5490\n\n  -----------------------------------------------------------------------------------\n\na)  Calculate the mean and median for these data\n\n>",
+      "content": "The numbers of tornadoes recorded from 1950 to 1994 in 12 states were $1113,2009,1374,1137,2110,1086,1166,1039,1673,2300,1139,5490$.\n\na. Calculate the mean and median.\n\nb. Identify the outlier, remove it, and recalculate the mean and median.\n\nc. Which summary changes more, and which is the better summary for these data?",
       "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter03/GCNU1003 Sp of Stat_assignment ch3 sem2 2014-2015.docx",
-      "type": "unknown",
-      "difficulty": 1,
-      "keywords": [],
+      "type": "综合题",
+      "difficulty": 3,
+      "keywords": [
+        "mean",
+        "median",
+        "outlier",
+        "robust statistic"
+      ],
       "formula_refs": [],
-      "data_refs": [
-        "dataset_10K.xls"
-      ]
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch03-review-v1"
     },
     {
       "id": "ch03_q20",
-      "content": "The table below show the frequency distribution of the number of hours spent per week on exercise by a sample of 400 Chinese. Find the mean, variance, and standard deviation.\n\n  ---------------------------------------------------------------------\n     **Hours per week**     **Number of People**   **Class Mid-point**\n  ------------------------ ---------------------- ---------------------\n     0 to less than 3.5              34                   1.75\nto less than 7.0             92           \n\n   7.0 to less than 10.5             55           \n\n   10.5 to less than 14.0            83           \n\n   14.0 to less than 28.0           121           \n\n   28.0 to less than 56.0            15           \n  ---------------------------------------------------------------------\n\n>",
+      "content": "A sample of 400 people reports weekly exercise hours. Use the grouped table below to estimate the mean, sample variance, and sample standard deviation.\n\n| Hours | Frequency | Midpoint |\n|---|---:|---:|\n| $0$ to less than $3.5$ | 34 | 1.75 |\n| $3.5$ to less than $7.0$ | 92 | 5.25 |\n| $7.0$ to less than $10.5$ | 55 | 8.75 |\n| $10.5$ to less than $14.0$ | 83 | 12.25 |\n| $14.0$ to less than $28.0$ | 121 | 21.00 |\n| $28.0$ to less than $56.0$ | 15 | 42.00 |",
       "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter03/GCNU1003 Sp of Stat_assignment ch3 sem2 2014-2015.docx",
-      "type": "unknown",
-      "difficulty": 1,
-      "keywords": [],
+      "type": "计算题",
+      "difficulty": 3,
+      "keywords": [
+        "grouped data",
+        "weighted mean",
+        "sample variance"
+      ],
       "formula_refs": [],
-      "data_refs": [
-        "dataset_10K.xls"
-      ]
-    },
-    {
-      "id": "ch03_q21",
-      "content": "Refer to the **dataset runners 10K** (attached). Calculate the mean, median, range, standard deviation, and interquartile range for the time (minutes) variable **using EXCEL**",
-      "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter03/GCNU1003 Sp of Stat_assignment ch3 sem2 2014-2015.docx",
-      "type": "unknown",
-      "difficulty": 1,
-      "keywords": [],
-      "formula_refs": [],
-      "data_refs": [
-        "dataset_10K.xls"
-      ]
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch03-review-v1"
     },
     {
       "id": "ch03_q22",
-      "content": "Let *A, B, C, D*, and *E* be sample space outcomes forming a sample space. Suppose that *P(A)=0.2, P(B)=0.15, P(C)=0.3,* and *P(D)=0.2*. What is *P(E)*? Explain how you got your",
+      "content": "Let $A,B,C,D,E$ be the five outcomes in a sample space. Suppose $P(A)=0.20$, $P(B)=0.15$, $P(C)=0.30$, and $P(D)=0.20$. Find $P(E)$ and explain.",
       "source": "Assignment Prof Lv/Assignment3-Lu.doc",
-      "type": "unknown",
+      "type": "计算题",
       "difficulty": 1,
-      "keywords": [],
+      "keywords": [
+        "sample space",
+        "probability"
+      ],
       "formula_refs": [],
-      "data_refs": []
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch03-review-v1"
     },
     {
       "id": "ch03_q23",
-      "content": "Each month a brokerage house studies various companies and rates each company's stock as being either \"low risk\" or \"moderate to high risk.\" In a recent report, the brokerage house summarized its findings about 15 aerospace companies and 25 food retailers in the following table:\n\n  ---------------------- ----------- -------------------------\n  Company Type           Low Risk    Moderate to High Risk\n\n  Aerospace company      6           9\n\n  Food retailer          15          10\n  ---------------------- ----------- -------------------------\n\nIf we randomly select one of the total 40 companies, find\n\na.  The probability that the company's stock is moderate to high risk given that the firm is an aerospace company.\n\nb.  The probability that the company's stock is moderate to high risk given that the firm is a food retailer.\n\nc.  Determine if the *company type* is independent of the *level of risk* of the firm's stock.",
+      "content": "A brokerage report classifies 15 aerospace companies and 25 food retailers by stock risk.\n\n| Company type | Low risk | Moderate-to-high risk | Total |\n|---|---:|---:|---:|\n| Aerospace | 6 | 9 | 15 |\n| Food retailer | 15 | 10 | 25 |\n\nFor a randomly selected company, find: (a) $P(\\text{moderate-to-high risk}\\mid\\text{aerospace})$, (b) the analogous probability given food retailer, and (c) whether company type and risk level are independent.",
       "source": "Assignment Prof Lv/Assignment3-Lu.doc",
-      "type": "unknown",
-      "difficulty": 1,
-      "keywords": [],
+      "type": "计算题",
+      "difficulty": 2,
+      "keywords": [
+        "conditional probability",
+        "independence",
+        "contingency table"
+      ],
       "formula_refs": [],
-      "data_refs": []
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch03-review-v1"
     },
     {
       "id": "ch03_q24",
-      "content": "Of 10,000 students at a college, 2,500 have a Mastercard (*M*), 4,000 have a VISA *(V)* and 1,000 have both. Find\n\na\\. The proportion of Mastercard holders who have VISA cards. Interpret and write this proportion as a conditional probability.\n\nb\\. The proportion of VISA cardholders who have Mastercards. Interpret and write this proportion as a conditional probability.\n\nc\\. Are the events *having a Mastercard* and *having a VISA* independent? Justify your",
+      "content": "Of 10,000 college students, 2,500 have a Mastercard, 4,000 have a VISA, and 1,000 have both. Find: (a) $P(V\\mid M)$, (b) $P(M\\mid V)$, and (c) whether having a Mastercard and having a VISA are independent.",
       "source": "Assignment Prof Lv/Assignment3-Lu.doc",
-      "type": "unknown",
-      "difficulty": 1,
-      "keywords": [],
+      "type": "计算题",
+      "difficulty": 2,
+      "keywords": [
+        "conditional probability",
+        "independence",
+        "Venn diagram"
+      ],
       "formula_refs": [],
-      "data_refs": []
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch03-review-v1"
     },
     {
       "id": "ch03_q25",
-      "content": "Two randomly selected grocery store patrons are each asked to take a blind taste test and to then state which of three diet colas (marked as A, B, or C) he or she prefers.\n\n    a.  Draw a tree diagram depicting the sample space outcomes for the test results.\n\n    b.  List the sample space outcomes that correspond to each of the following events:\n\n        (1) Both patrons prefer diet cola A.\n\n        (2) The two patrons prefer the same diet cola.\n\n        (3) The two patrons prefer different diet colas.\n\n        (4) Diet cola A is preferred by at least one of the two patrons.\n\n        (5) Neither of the patrons prefers diet cola C.\n\n    c.  Assuming that all sample space outcomes are equally likely, find the probability of each of the events given in part b",
+      "content": "Two patrons independently choose one of three diet colas, A, B, or C.\n\na. List the nine ordered outcomes.\n\nb. List the outcomes for: (1) both choose A, (2) the same cola, (3) different colas, (4) at least one chooses A, and (5) neither chooses C.\n\nc. Assuming the nine outcomes are equally likely, find the probability of each event.",
       "source": "Assignments for STAT 2010/assign3.doc",
-      "type": "unknown",
-      "difficulty": 1,
-      "keywords": [],
+      "type": "综合题",
+      "difficulty": 3,
+      "keywords": [
+        "sample space",
+        "tree diagram",
+        "equally likely outcomes"
+      ],
       "formula_refs": [],
-      "data_refs": []
-    },
-    {
-      "id": "ch03_q26",
-      "content": "Recall from Exercise 4.11 (page 186) that of 10,000 students at a college, 2,500 have a Mastercard (M), 4,000 have a VISA (V), and 1,000 have both. Find\n\n    a.  The proportion of Mastercard holders who have VISA cards. Interpret and write this proportion as a conditional probability.\n\n    b.  The proportion of VISA cardholders who have Mastercards. Interpret and write this proportion as a conditional probability.\n\nc.  Are the events having a Mastercard and having a VISA independent? Justify your",
-      "source": "Assignments for STAT 2010/assign3.doc",
-      "type": "unknown",
-      "difficulty": 1,
-      "keywords": [],
-      "formula_refs": [],
-      "data_refs": []
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch03-review-v1"
     },
     {
       "id": "ch03_q27",
-      "content": "John and Jane are married. The probability that John watches a certain television show is .4. The probability that Jane watches the show is .5. The probability that John watches the show, given that Jane does, is .7.\n\n    a.  Find the probability that both John and Jane watch the show.\n\n    b.  Find the probability that Jane watches the show, given that John does.\n\nc.  Do John and Jane watch the show independently of each other? Justify your",
+      "content": "John watches a television show with probability $0.4$. Jane watches it with probability $0.5$. The conditional probability that John watches it given that Jane does is $0.7$. Find: (a) the probability both watch, (b) $P(\\text{Jane}\\mid\\text{John})$, and (c) whether their viewing is independent.",
       "source": "Assignments for STAT 2010/assign3.doc",
-      "type": "unknown",
-      "difficulty": 1,
-      "keywords": [],
+      "type": "计算题",
+      "difficulty": 2,
+      "keywords": [
+        "conditional probability",
+        "Bayes rule",
+        "independence"
+      ],
       "formula_refs": [],
-      "data_refs": []
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch03-review-v1"
     },
     {
       "id": "ch03_q28",
-      "content": "Recall from Exercise 1 that two randomly selected customers are each asked to take a blind taste test and then to state which of three diet colas (marked as A, B, or C) he or she prefers. Suppose that cola A's distributor claims that 80 percent of all people prefer cola A and that only 10 percent prefer each of colas B and C.\n\n    a.  Assuming that the distributor's claim is true and that the two taste test participants make independent cola preference decisions, find the probability of each sample space outcome.\n\n> (Hint: This assumption indicates that both of these two customers may have the same chance to prefer A-80%, B-10% and C-10%.)\n\nb.  Find the probability that neither taste test participant will prefer cola A.\n\nc.  If, when the taste test is carried out, neither participant prefers cola A, use the probability you computed in part b to decide whether the distributor's claim seems valid. Explain.",
+      "content": "A cola distributor claims that 80% of people prefer A and 10% prefer each of B and C. Two participants make independent choices.\n\na. Find the probability of every ordered pair of choices.\n\nb. Find the probability that neither participant chooses A.\n\nc. If neither participant chooses A, explain what this says about the claim.",
       "source": "Assignments for STAT 2010/assign3.doc",
-      "type": "unknown",
-      "difficulty": 1,
-      "keywords": [],
+      "type": "综合题",
+      "difficulty": 3,
+      "keywords": [
+        "independence",
+        "discrete probability",
+        "hypothesis assessment"
+      ],
       "formula_refs": [],
-      "data_refs": []
-    },
-    {
-      "id": "ch03_q29",
-      "content": "Consider the figure given bellow. Find the value k that makes the function f(x) a valid continuous probability distribution.",
-      "source": "Assignments for STAT 2012/Assignment_3.doc",
-      "type": "unknown",
-      "difficulty": 1,
-      "keywords": [],
-      "formula_refs": [],
-      "data_refs": []
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch03-review-v1"
     },
     {
       "id": "ch03_q30",
-      "content": "Suppose that the probability distribution of a random variable x can be described by the formula\n\n$p(x) = \\frac{x}{\\text{15}}$\n\nfor each of the values X=1,2,3,4, and 5. For example, then $P(X = 2) = p(2) = \\frac{2}{\\text{15}}$.\n\na\\. Write out the probability distribution table of x.\n\nb\\. Show that the probability distribution of x satisfies the properties of a discrete probability distribution.\n\nc. Calculate the mean of x.\n\nd\\. Calculate the variance,$\\sigma_{x}^{2}$, and the standard deviation, $\\sigma_{x}$.",
+      "content": "A random variable $X$ takes values $1,2,3,4,5$ with $p(x)=x/15$.\n\na. Construct the probability table.\n\nb. Verify the distribution conditions.\n\nc. Calculate $\\mu_X$, $\\sigma_X^2$, and $\\sigma_X$.",
       "source": "Assignments for STAT 2012/Assignment_3.doc",
-      "type": "unknown",
-      "difficulty": 1,
-      "keywords": [],
+      "type": "计算题",
+      "difficulty": 3,
+      "keywords": [
+        "discrete probability distribution",
+        "expected value",
+        "variance"
+      ],
       "formula_refs": [],
-      "data_refs": []
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch03-review-v1"
     },
     {
       "id": "ch03_q31",
-      "content": "Thirty percent of all customers who enter a store will make a purchase. Suppose that six customers enter the store and that these customers make independent purchase decisions.\n\na\\. Let x=the number of the six customers who will make a purchase. Write the binomial formula for this situation.\n\nb\\. Use the binomial formula to calculate.\n\n\\(1\\) The probability that exactly five customers make a purchase.\n\n\\(2\\) The probability that at least three customers make a purchase.\n\n\\(3\\) The probability that two or fewer customers make a purchase.\n\n\\(4\\) The probability that at least one customer make a purchase.",
+      "content": "Thirty percent of customers make a purchase. Six customers enter independently. Let $X$ be the number who purchase.\n\na. Write the binomial probability formula.\n\nb. Find $P(X=5)$, $P(X\\ge3)$, $P(X\\le2)$, and $P(X\\ge1)$.",
       "source": "Assignments for STAT 2012/Assignment_3.doc",
-      "type": "unknown",
-      "difficulty": 1,
-      "keywords": [],
+      "type": "综合题",
+      "difficulty": 3,
+      "keywords": [
+        "binomial distribution",
+        "binomial probability"
+      ],
       "formula_refs": [],
-      "data_refs": []
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch03-review-v1"
     },
     {
       "id": "ch03_q32",
-      "content": "Suppose that the number of accident occurring in an industrial plant is described by a Poisson process with an average of 1.5 accidents every three months. During the last\n\nthree months, four accidents occurred.\n\na\\. Find the probability that no accidents will occur during the current three-month period.\n\nb\\. Find the probability that fewer accidents will occur during the current three-month period than occurred during the last three-month period.\n\nc\\. Find the probability that no more than 12 accidents will occur during a particular year.\n\nd\\. Find the probability that no accidents will occur during a particular year.\n\nContinuous Random Variables",
+      "content": "Accidents follow a Poisson process with an average of 1.5 accidents per three months. Find: (a) the probability of no accidents in the next three months, (b) the probability of fewer than four accidents in the next three months, (c) the probability of no more than 12 accidents in a year, and (d) the probability of no accidents in a year.",
       "source": "Assignments for STAT 2012/Assignment_3.doc",
-      "type": "unknown",
-      "difficulty": 1,
-      "keywords": [],
+      "type": "综合题",
+      "difficulty": 4,
+      "keywords": [
+        "Poisson distribution",
+        "Poisson process"
+      ],
       "formula_refs": [],
-      "data_refs": []
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch03-review-v1"
     },
     {
       "id": "ch03_q33",
-      "content": "Two students take a college entrance exam known to have a normal distribution of scores. The students receive raw scores of 63 and 93, which correspond to $z$ scores (often called the standardized scores) of $-1$ and 1.5, respectively. Find the mean and standard deviation of the distribution of raw exam scores.",
+      "content": "Raw exam scores are normally distributed. A score of 63 has z-score $-1$, and a score of 93 has z-score $1.5$. Find the mean and standard deviation of raw scores.",
       "source": "Assignments for STAT 2012/Assignment_3.doc",
-      "type": "unknown",
-      "difficulty": 1,
-      "keywords": [],
+      "type": "计算题",
+      "difficulty": 2,
+      "keywords": [
+        "normal distribution",
+        "z-score",
+        "mean",
+        "standard deviation"
+      ],
       "formula_refs": [],
-      "data_refs": []
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch03-review-v1"
     },
     {
       "id": "ch03_q34",
-      "content": "Suppose that yearly health care expenses for a family of four are normally distribute d with a mean expense equal to \\$3,000 and a standard deviation of \\$500. An insurance company has decides to offer a health insurance premium reduction if a policyholder's health care expenses do not exceed a specified dollar amount. What dollar amount should be established if the insurance company wants families having the lowest 33 percent of yearly health care expenses to be eligible for the premium reduction.",
+      "content": "Annual health-care expenses for a family of four are normally distributed with mean $3000$ dollars and standard deviation $500$ dollars. What expense cutoff includes the lowest $33\\%$ of families?",
       "source": "Assignments for STAT 2012/Assignment_3.doc",
-      "type": "unknown",
-      "difficulty": 1,
-      "keywords": [],
+      "type": "计算题",
+      "difficulty": 2,
+      "keywords": [
+        "normal distribution",
+        "percentile",
+        "z-score"
+      ],
       "formula_refs": [],
-      "data_refs": []
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch03-review-v1"
     },
     {
       "id": "ch03_q35",
-      "content": "When a store uses Electronic article surveillance(EAS) to combat shoplifting, it places a small sensor on an item of merchandise. When an item if legitimately purchased, the sales clerk remove the sensor to prevent the alarm from sounding as the customer exits the store to such false alarms. In an actual survey of 250 consumers, 40 said that if they were to set off an EAS alarm because store personnel (mistakenly) failed to deactivate the merchandise leaving the store, then they would never shop at that store again. A company marketing the alarm system claimed that no more than 5 percent of all consumers would say that they would never shop at that store again if they were subjected to a false alarm.\n\na\\. Assuming that the company's claim is valid, use the normal approximation to the binomial to calculate the probability that at least 40 of the 250 randomly selected consumers would say that they would never shop at that store again if they were subjected to a false alarm.\n\n> b\\. Do you believe the company's claim based on your answer to part a? Explain.",
+      "content": "In a survey of 250 consumers, 40 said they would never shop at a store again after a false electronic-article-surveillance alarm. A company claims that no more than 5% of consumers would say this.\n\na. Assuming $p=0.05$, use a normal approximation with continuity correction to estimate $P(X\\ge40)$.\n\nb. What does this probability suggest about the company's claim?",
       "source": "Assignments for STAT 2012/Assignment_3.doc",
-      "type": "unknown",
-      "difficulty": 1,
-      "keywords": [],
+      "type": "综合题",
+      "difficulty": 4,
+      "keywords": [
+        "normal approximation",
+        "binomial distribution",
+        "continuity correction"
+      ],
       "formula_refs": [],
-      "data_refs": []
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch03-review-v1"
     },
     {
       "id": "rotel_ch03_center_01",
@@ -385,17 +480,16 @@
       "source_problem": "2.5 Problem 1(a)",
       "license": "CC BY-NC-SA 4.0",
       "attribution": "Rachael Norton and Peter Staab, 2023",
-      "review_status": "independently solved, translated, and reviewed",
+      "review_status": "independently solved and reviewed",
       "type": "计算题",
       "difficulty": 1,
       "keywords": [
         "mean",
-        "median",
-        "measures of center"
+        "median"
       ],
       "formula_refs": [],
       "data_refs": [],
-      "audit_pack": "english-normalization-v1"
+      "audit_pack": "ch03-review-v1"
     },
     {
       "id": "rotel_ch03_center_02",
@@ -405,9 +499,9 @@
       "source_problem": "2.5 Problem 1(b)",
       "license": "CC BY-NC-SA 4.0",
       "attribution": "Rachael Norton and Peter Staab, 2023",
-      "review_status": "independently solved, translated, and reviewed",
+      "review_status": "independently solved and reviewed",
       "type": "综合题",
-      "difficulty": 2,
+      "difficulty": 1,
       "keywords": [
         "mean",
         "median",
@@ -415,7 +509,7 @@
       ],
       "formula_refs": [],
       "data_refs": [],
-      "audit_pack": "english-normalization-v1"
+      "audit_pack": "ch03-review-v1"
     }
   ]
 }
