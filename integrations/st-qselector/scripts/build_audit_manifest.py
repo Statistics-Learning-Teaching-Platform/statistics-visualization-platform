@@ -43,7 +43,9 @@ FORMAT_RULES: tuple[tuple[str, re.Pattern[str]], ...] = (
 CONTEXT_RULES: tuple[tuple[str, re.Pattern[str]], ...] = (
     ("references_previous_exercise", re.compile(r"\b(?:exercise|question|problem)\s+\d+\s+(?:above|previously)\b", re.I)),
     ("references_missing_figure", re.compile(r"\b(?:figure|table|graph)\s+[\d.]+\s+(?:above|below|gives)\b", re.I)),
-    ("references_unprovided_context", re.compile(r"\b(?:the|as)\s+(?:above|below)\b", re.I)),
+    # Do not flag answer-choice phrases such as “None of the above” or
+    # “All of the above”; those are self-contained options, not missing context.
+    ("references_unprovided_context", re.compile(r"(?<!of )\b(?:the|as)\s+(?:above|below)\b", re.I)),
 )
 
 

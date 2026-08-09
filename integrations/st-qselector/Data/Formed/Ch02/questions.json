@@ -3,7 +3,7 @@
   "questions": [
     {
       "id": "ch02_q01",
-      "content": "The table shows the number of strokes needed to complete a golf hole and the corresponding number of players.\n\n| Number of strokes, $m$ | 2 | 3 | 4 | 5 | 6 | 7 | 8 |\n|---:|---:|---:|---:|---:|---:|---:|---:|\n| Frequency, $f$ | 82 | 278 | 43 | 16 | 6 | 3 | 1 |\n\nCalculate each quantity.\n\na. $\\sum m$\n\nb. $\\sum f$\n\nc. $\\sum m^2$\n\nd. $\\sum mf$\n\ne. $\\sum m^2f$\n\nf. $(\\sum f)^2$",
+      "content": "The table shows the number of strokes needed to complete a golf hole and the corresponding number of players.\n\n| Number of strokes, $m$ | 2 | 3 | 4 | 5 | 6 | 7 | 8 |\n|---:|---:|---:|---:|---:|---:|---:|---:|\n| Frequency, $f$ | 82 | 278 | 43 | 16 | 6 | 3 | 1 |\n\nCalculate each quantity.\n\na. $\\sum m$\n\nb. $\\sum f$\n\nc. $\\sum m^{2}$\n\nd. $\\sum mf$\n\ne. $\\sum m^{2}f$\n\nf. $(\\sum f)^{2}$",
       "source": "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment and solution_Chap 1&2.docx",
       "type": "计算题",
       "difficulty": 2,

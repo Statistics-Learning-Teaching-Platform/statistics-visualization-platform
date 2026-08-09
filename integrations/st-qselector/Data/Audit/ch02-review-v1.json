@@ -15,8 +15,8 @@
       "question_type": "计算题",
       "difficulty": 2,
       "keywords": ["frequency distribution", "weighted sum"],
-      "clean_question": "The table shows the number of strokes needed to complete a golf hole and the corresponding number of players.\n\n| Number of strokes, $m$ | 2 | 3 | 4 | 5 | 6 | 7 | 8 |\n|---:|---:|---:|---:|---:|---:|---:|---:|\n| Frequency, $f$ | 82 | 278 | 43 | 16 | 6 | 3 | 1 |\n\nCalculate each quantity.\n\na. $\\sum m$\n\nb. $\\sum f$\n\nc. $\\sum m^2$\n\nd. $\\sum mf$\n\ne. $\\sum m^2f$\n\nf. $(\\sum f)^2$",
-      "clean_answer": "a. $\\sum m=2+3+4+5+6+7+8=35$.\n\nb. $\\sum f=82+278+43+16+6+3+1=429$.\n\nc. $\\sum m^2=2^2+3^2+4^2+5^2+6^2+7^2+8^2=203$.\n\nd. $\\sum mf=2(82)+3(278)+4(43)+5(16)+6(6)+7(3)+8(1)=1315$.\n\ne. $\\sum m^2f=2^2(82)+3^2(278)+4^2(43)+5^2(16)+6^2(6)+7^2(3)+8^2(1)=4345$.\n\nf. $(\\sum f)^2=429^2=184041$."
+      "clean_question": "The table shows the number of strokes needed to complete a golf hole and the corresponding number of players.\n\n| Number of strokes, $m$ | 2 | 3 | 4 | 5 | 6 | 7 | 8 |\n|---:|---:|---:|---:|---:|---:|---:|---:|\n| Frequency, $f$ | 82 | 278 | 43 | 16 | 6 | 3 | 1 |\n\nCalculate each quantity.\n\na. $\\sum m$\n\nb. $\\sum f$\n\nc. $\\sum m^{2}$\n\nd. $\\sum mf$\n\ne. $\\sum m^{2}f$\n\nf. $(\\sum f)^{2}$",
+      "clean_answer": "a. $\\sum m=2+3+4+5+6+7+8=35$.\n\nb. $\\sum f=82+278+43+16+6+3+1=429$.\n\nc. $\\sum m^{2}=2^{2}+3^{2}+4^{2}+5^{2}+6^{2}+7^{2}+8^{2}=203$.\n\nd. $\\sum mf=2(82)+3(278)+4(43)+5(16)+6(6)+7(3)+8(1)=1315$.\n\ne. $\\sum m^{2}f=2^{2}(82)+3^{2}(278)+4^{2}(43)+5^{2}(16)+6^{2}(6)+7^{2}(3)+8^{2}(1)=4345$.\n\nf. $(\\sum f)^{2}=429^{2}=184041$."
     },
     {
       "id": "ch02_q02",

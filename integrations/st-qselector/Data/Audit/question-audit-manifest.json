@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-08-09T11:10:04.482259+00:00",
+  "generated_at": "2026-08-09T11:13:55.317624+00:00",
   "source_roots": {
     "origin": "Data/Origin",
     "formed": "Data/Formed"
@@ -38,9 +38,7 @@
       "multi_part_candidate": 109
     },
     "issue_counts": {
-      "legacy_superscript": 2,
-      "multi_part_requires_alignment_review": 109,
-      "references_unprovided_context": 2
+      "multi_part_requires_alignment_review": 109
     },
     "eligible_for_paper": 0
   },
@@ -797,15 +795,12 @@
         "source_resolvable": true,
         "assets": [],
         "format_findings": [],
-        "context_findings": [
-          "references_unprovided_context"
-        ],
+        "context_findings": [],
         "detected_part_count": 5,
         "grouping_status": "multi_part_candidate",
         "previously_reviewed": true,
         "issue_codes": [
-          "multi_part_requires_alignment_review",
-          "references_unprovided_context"
+          "multi_part_requires_alignment_review"
         ]
       },
       "workflow": {
@@ -1315,8 +1310,8 @@
         "resolvable": true
       },
       "original": {
-        "question_hash": "94bfd1f591dbc06c0515662ff44c65981ab4d5c44fd2518a920a903fb2ee0413",
-        "answer_hash": "10f0e7644815e2ca612fb161e9d1e39e05027f1e4327222483e9de603d22703b",
+        "question_hash": "e6a859eedc81ab79711cf4df5961cada3c4c423c7752db8a294d6f5976874386",
+        "answer_hash": "8604f23d376e6cec186d212ac8ddc8375443fc9dfaf579e0661001c30b0ec5d2",
         "type": "计算题",
         "difficulty": 2,
         "keywords": [
@@ -1333,15 +1328,12 @@
         "answer_present": true,
         "source_resolvable": true,
         "assets": [],
-        "format_findings": [
-          "legacy_superscript"
-        ],
+        "format_findings": [],
         "context_findings": [],
         "detected_part_count": 6,
         "grouping_status": "multi_part_candidate",
         "previously_reviewed": true,
         "issue_codes": [
-          "legacy_superscript",
           "multi_part_requires_alignment_review"
         ]
       },
@@ -4114,7 +4106,7 @@
       },
       "original": {
         "question_hash": "25fe05466e930526ace81f06a6603cc06595f68bf90adc514a16a75e49773290",
-        "answer_hash": "0449376abcbbed6cc41ab9d96f3474e0ae79a5248b921249f5ec6efec79296f9",
+        "answer_hash": "f8c7171bbf03a3bd471ffc29cdb4f0452d43e589e9121e9c8e33e81c8d712318",
         "type": "计算题",
         "difficulty": 3,
         "keywords": [
@@ -4132,15 +4124,12 @@
         "answer_present": true,
         "source_resolvable": true,
         "assets": [],
-        "format_findings": [
-          "legacy_superscript"
-        ],
+        "format_findings": [],
         "context_findings": [],
         "detected_part_count": 3,
         "grouping_status": "multi_part_candidate",
         "previously_reviewed": true,
         "issue_codes": [
-          "legacy_superscript",
           "multi_part_requires_alignment_review"
         ]
       },
@@ -4566,15 +4555,12 @@
         "source_resolvable": true,
         "assets": [],
         "format_findings": [],
-        "context_findings": [
-          "references_unprovided_context"
-        ],
+        "context_findings": [],
         "detected_part_count": 12,
         "grouping_status": "multi_part_candidate",
         "previously_reviewed": true,
         "issue_codes": [
-          "multi_part_requires_alignment_review",
-          "references_unprovided_context"
+          "multi_part_requires_alignment_review"
         ]
       },
       "workflow": {
