@@ -545,14 +545,72 @@
 }
 
 .learn-activity-stage {
+  display: grid;
+  grid-template-columns: clamp(240px, 18vw, 276px) minmax(0, 1fr);
   min-width: 0;
   min-height: 0;
-  overflow: auto;
+  overflow: hidden;
 }
 
-.learn-activity-stage > .module-shell,
-.learn-activity-stage > .confidence-app,
-.learn-activity-stage > [class$="-app"] {
+.learn-activity-course-nav {
+  min-width: 0;
+  padding: 18px 14px;
+  overflow: auto;
+  border-right: 1px solid var(--border);
+  background: rgba(255, 253, 248, 0.78);
+}
+
+.learn-activity-course-nav summary {
+  padding: 10px 8px 16px;
+  cursor: pointer;
+  color: var(--teal);
+  font-family: Georgia, serif;
+  font-size: 17px;
+  font-weight: 700;
+}
+
+.learn-activity-course-nav nav {
+  display: grid;
+  gap: 7px;
+}
+
+.learn-activity-course-nav a {
+  display: grid;
+  grid-template-columns: 30px minmax(0, 1fr);
+  align-items: center;
+  gap: 8px;
+  padding: 10px;
+  border-radius: 12px;
+  color: var(--text-secondary);
+  font-size: 12px;
+  font-weight: 750;
+  text-decoration: none;
+}
+
+.learn-activity-course-nav a[aria-current="page"] {
+  color: var(--teal);
+  background: var(--sage-soft);
+}
+
+.learn-activity-course-nav a span {
+  display: grid;
+  width: 28px;
+  height: 28px;
+  place-items: center;
+  border-radius: 9px;
+  background: rgba(255, 255, 255, 0.7);
+  font-size: 10px;
+}
+
+.learn-activity-visualizer {
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.learn-activity-visualizer > .module-shell,
+.learn-activity-visualizer > .confidence-app,
+.learn-activity-visualizer > [class$="-app"] {
   min-height: 100%;
 }
 
@@ -648,6 +706,32 @@
     position: static;
     display: inline-block;
     margin-top: 18px;
+  }
+
+  .learn-activity-page {
+    height: auto;
+    min-height: calc(100vh - 72px);
+    overflow: visible;
+  }
+
+  .learn-activity-stage {
+    grid-template-columns: 1fr;
+    overflow: visible;
+  }
+
+  .learn-activity-course-nav {
+    padding: 8px 14px;
+    overflow: visible;
+    border-right: 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .learn-activity-course-nav nav {
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  }
+
+  .learn-activity-visualizer {
+    overflow: visible;
   }
 }
 

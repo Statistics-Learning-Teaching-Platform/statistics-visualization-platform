@@ -42,8 +42,7 @@ export function ControlSidebar({
   onSigmaKnown,
 }: ControlSidebarProps) {
   return (
-    <div className="teaching-panel parameter-panel">
-      <p className="eyebrow">{copy.parameters}</p>
+    <ParameterPanel eyebrow={copy.parameters}>
       <div id="sidebar" className={`control-sidebar${collapsed ? " collapsed" : ""}`}>
         <button
           id="toggleSidebar"
@@ -136,6 +135,7 @@ export function ControlSidebar({
           </div>
         )}
       </div>
-    </div>
+    </ParameterPanel>
   );
 }
+import { ParameterPanel } from "@stats-viz/shared/visualization";

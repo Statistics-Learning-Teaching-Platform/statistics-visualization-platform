@@ -8,3 +8,4 @@ export * from "./math";
 export * from "./confidence-interval";
 export * from "./chart-utils";
 export * from "./regression";
+export * from "./visualization";

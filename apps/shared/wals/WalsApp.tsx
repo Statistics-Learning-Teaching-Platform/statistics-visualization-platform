@@ -8,6 +8,16 @@ import {
 } from "@stats-viz/shared/i18n";
 import { DEFAULT_CLT_SAMPLE_COUNT, generateSampleMeans, runExample } from "./engine";
 import { Chart } from "./charts";
+import {
+  ChartFrame,
+  FormulaCard,
+  MetricGrid,
+  ObservationCard,
+  ParameterPanel,
+  ReadingGuide,
+  VisualizationFrame,
+  VisualizationHeader,
+} from "../visualization";
 import type {
   ControlConfig,
   ControlValue,
@@ -384,46 +394,43 @@ export function WalsApp({ moduleConfig }: WalsAppProps) {
   }, [controls, state.activeExample, sampleMeans, seed]);
 
   return (
-    <div className="module-shell" aria-busy={controls !== deferredControls || seed !== deferredSeed}>
-      <main className="module-layout">
-        <section className="experiment-board">
-          <header className="experiment-header">
-            <div>
-              <p className="eyebrow">{state.config.category}</p>
-              <h1>{state.config.title}</h1>
-              <p>{state.config.subtitle}</p>
-            </div>
-          </header>
+    <VisualizationFrame
+      busy={controls !== deferredControls || seed !== deferredSeed}
+      content={
+        <>
+          <VisualizationHeader
+            eyebrow={state.config.category}
+            title={state.config.title}
+            description={state.config.subtitle}
+          />
           <section className="output-dock">
             <div className="output-heading">
               <p className="eyebrow">{state.copy.modelOutput}</p>
               <h2>{state.result.headline}</h2>
               <p>{state.result.narrative}</p>
             </div>
-            <div className="observation-prompt">
-              <span aria-hidden="true">◎</span>
-              <div>
-                <strong>{state.copy.howToReadThis}</strong>
-                <p>{state.activeExample.teachingPoints[0] ?? state.result.narrative}</p>
-              </div>
-            </div>
-            <section className="metrics-grid" aria-label={state.copy.modelOutput}>
-              {state.result.metrics.map((metric, i) => (
-                <article className="metric-card" key={i} title={metric.help}>
-                  <span className="metric-label">{metric.label}</span>
-                  <strong className="metric-value">{metric.value}</strong>
-                  {metric.detail && <small className="metric-note">{metric.detail}</small>}
-                </article>
-              ))}
-            </section>
-            <div className="chart-frame">
+            <ReadingGuide title={state.copy.howToReadThis}>
+              <p>{state.activeExample.teachingPoints[0] ?? state.result.narrative}</p>
+            </ReadingGuide>
+            <MetricGrid
+              ariaLabel={state.copy.modelOutput}
+              metrics={state.result.metrics.map((metric, index) => ({
+                key: String(index),
+                label: metric.label,
+                value: metric.value,
+                note: metric.detail,
+                help: metric.help,
+              }))}
+            />
+            <ChartFrame>
               <Chart spec={state.result.chart} />
-            </div>
+            </ChartFrame>
           </section>
-        </section>
-        <aside className="teaching-area">
-          <section className="teaching-panel parameter-panel">
-            <p className="eyebrow">{state.copy.parameters}</p>
+        </>
+      }
+      sidebar={
+        <>
+          <ParameterPanel eyebrow={state.copy.parameters}>
             <div className="example-tabs">
               {state.config.examples.map((example) => (
                 <button
@@ -466,7 +473,7 @@ export function WalsApp({ moduleConfig }: WalsAppProps) {
                 ))}
               </div>
             )}
-          </section>
+          </ParameterPanel>
           <section className="teaching-panel">
             <p className="eyebrow">{state.copy.conceptKeyIdea}</p>
             <h2>{state.activeExample.title}</h2>
@@ -477,16 +484,12 @@ export function WalsApp({ moduleConfig }: WalsAppProps) {
               ))}
             </ul>
           </section>
-          <section className="teaching-panel formula-panel">
-            <p className="eyebrow">{state.copy.formula}</p>
-            <div className="latex-formula">{renderFormula(state)}</div>
+          <FormulaCard eyebrow={state.copy.formula} formula={renderFormula(state)}>
             <p>{state.copy.formulaHelper}</p>
-          </section>
-          <section className="teaching-panel">
-            <p className="eyebrow">{state.copy.howToReadThis}</p>
-            <h3>{state.result.headline}</h3>
+          </FormulaCard>
+          <ObservationCard eyebrow={state.copy.howToReadThis} title={state.result.headline}>
             <p>{state.result.narrative}</p>
-          </section>
+          </ObservationCard>
           {state.result.table && (
             <section className="teaching-panel table-panel">
               <h3>{state.copy.dataTable}</h3>
@@ -512,8 +515,8 @@ export function WalsApp({ moduleConfig }: WalsAppProps) {
               </div>
             </section>
           )}
-        </aside>
-      </main>
-    </div>
+        </>
+      }
+    />
   );
 }

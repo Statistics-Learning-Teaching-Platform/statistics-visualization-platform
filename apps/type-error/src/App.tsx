@@ -9,6 +9,16 @@ import {
   type ChartLayout,
 } from "@stats-viz/shared/chart-utils";
 import { formatNumber } from "@stats-viz/shared/format";
+import {
+  ChartFrame,
+  FormulaCard,
+  MetricGrid,
+  ObservationCard,
+  ParameterPanel,
+  ReadingGuide,
+  VisualizationFrame,
+  VisualizationHeader,
+} from "@stats-viz/shared/visualization";
 
 type TestType = "left-tailed" | "right-tailed" | "two-tailed";
 
@@ -194,52 +204,29 @@ export default function TypeErrorApp() {
   const formatRate = (v: number) => `${(v * 100).toFixed(1)}%`;
 
   return (
-    <div className="module-shell">
-      <div className="module-layout">
-        <div className="experiment-board">
-          <div className="experiment-header">
-            <div>
-              <p className="eyebrow">{copy.coreVisualizer}</p>
-              <h1>{copy.title}</h1>
-              <p>{copy.description}</p>
-            </div>
-          </div>
+    <VisualizationFrame
+      content={
+        <>
+          <VisualizationHeader eyebrow={copy.coreVisualizer} title={copy.title} description={copy.description} />
           <div className="output-dock">
             <div className="output-heading">
               <p className="eyebrow">{copy.modelOutput}</p>
               <h2>{copy.chartTitle}</h2>
               <p>{copy.chartDescription}</p>
             </div>
-            <div className="observation-prompt">
-              <span aria-hidden="true">◎</span>
-              <div>
-                <strong>{copy.criticalBoundary}</strong>
-                <p>{copy.controlIntro}</p>
-              </div>
-            </div>
-            <div className="metrics-grid">
-              <div className="metric-card">
-                <span className="metric-label">{copy.alpha}</span>
-                <span className="metric-value">{formatRate(computed.typeOneErrorRate)}</span>
-                <small className="metric-note">{copy.alphaNote}</small>
-              </div>
-              <div className="metric-card">
-                <span className="metric-label">{copy.betaLabel}</span>
-                <span className="metric-value">{formatRate(computed.typeTwoErrorRate)}</span>
-                <small className="metric-note">{copy.betaNote}</small>
-              </div>
-              <div className="metric-card">
-                <span className="metric-label">{copy.power}</span>
-                <span className="metric-value">{formatRate(computed.power)}</span>
-                <small className="metric-note">{copy.powerNote}</small>
-              </div>
-              <div className="metric-card">
-                <span className="metric-label">{copy.effectSize}</span>
-                <span className="metric-value">{formatNumber(computed.effectSize, 2)}</span>
-                <small className="metric-note">{copy.effectSizeNote}</small>
-              </div>
-            </div>
-            <div className="chart-frame">
+            <ReadingGuide title={copy.criticalBoundary}>
+              <p>{copy.controlIntro}</p>
+            </ReadingGuide>
+            <MetricGrid
+              ariaLabel={copy.modelOutput}
+              metrics={[
+                { key: "alpha", label: copy.alpha, value: formatRate(computed.typeOneErrorRate), note: copy.alphaNote },
+                { key: "beta", label: copy.betaLabel, value: formatRate(computed.typeTwoErrorRate), note: copy.betaNote },
+                { key: "power", label: copy.power, value: formatRate(computed.power), note: copy.powerNote },
+                { key: "effect", label: copy.effectSize, value: formatNumber(computed.effectSize, 2), note: copy.effectSizeNote },
+              ]}
+            />
+            <ChartFrame>
               <svg width={CHART_LAYOUT.width} height={CHART_LAYOUT.height} viewBox={`0 0 ${CHART_LAYOUT.width} ${CHART_LAYOUT.height}`} role="img" aria-label={`${copy.chartTitle}: ${computed.hypothesisText.H0Text}; ${computed.hypothesisText.H1Text}`}>
                 <g transform={`translate(${CHART_LAYOUT.margin.left}, ${CHART_LAYOUT.margin.top})`}>
                   <path d={nullPath} fill="none" stroke="var(--chart-blue)" strokeWidth={2} />
@@ -330,12 +317,13 @@ export default function TypeErrorApp() {
                   </g>
                 </g>
               </svg>
-            </div>
+            </ChartFrame>
           </div>
-        </div>
-        <div className="teaching-area">
-          <div className="teaching-panel parameter-panel">
-            <p className="eyebrow">{copy.parameters}</p>
+        </>
+      }
+      sidebar={
+        <>
+          <ParameterPanel eyebrow={copy.parameters}>
             <div className="test-type-tabs">
               <div className="test-type-tabs__label">{copy.hypothesis}</div>
               <div className="test-type-tabs__buttons">
@@ -393,7 +381,7 @@ export default function TypeErrorApp() {
                 </div>
               ))}
             </div>
-          </div>
+          </ParameterPanel>
           <div className="teaching-panel">
             <p className="eyebrow">{copy.conceptKeyIdea}</p>
             <h2>{copy.twoKindsOfError}</h2>
@@ -402,23 +390,22 @@ export default function TypeErrorApp() {
             <p>{getInterpretation()}</p>
             <p>{getStrategyTip()}</p>
           </div>
-          <div className="teaching-panel">
-            <p className="eyebrow">{copy.formula}</p>
-            <div className="latex-formula">
+          <FormulaCard
+            eyebrow={copy.formula}
+            formula={
               <div className="math-expression">
                 <span>Power = 1 −</span>
                 <span className="math-symbol">β</span>
               </div>
-            </div>
+            }
+          >
             <p>
               {copy.currentTest
                 .replace("{testType}", getTestTypeLabel())
                 .replace("{criticalValue}", getCriticalValueLabel())}
             </p>
-          </div>
-          <div className="teaching-panel">
-            <p className="eyebrow">{copy.howToReadThis}</p>
-            <h3>{copy.currentHypotheses}</h3>
+          </FormulaCard>
+          <ObservationCard eyebrow={copy.howToReadThis} title={copy.currentHypotheses}>
             <div className="concept-strip">
               <div className="concept-item">
                 <span className="concept-name">H0</span>
@@ -429,9 +416,9 @@ export default function TypeErrorApp() {
                 <span className="concept-value">{computed.hypothesisText.H1Text}</span>
               </div>
             </div>
-          </div>
-        </div>
-      </div>
-    </div>
+          </ObservationCard>
+        </>
+      }
+    />
   );
 }

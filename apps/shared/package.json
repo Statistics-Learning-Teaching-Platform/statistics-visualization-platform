@@ -13,6 +13,7 @@
     "./confidence-interval": "./confidence-interval.ts",
     "./chart-utils": "./chart-utils.ts",
     "./regression": "./regression.ts",
+    "./visualization": "./visualization/index.ts",
     "./wals/types": "./wals/types.ts",
     "./wals/engine": "./wals/engine.ts",
     "./wals/charts": "./wals/charts.tsx",

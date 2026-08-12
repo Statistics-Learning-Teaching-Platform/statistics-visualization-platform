@@ -188,6 +188,10 @@ function ActivityPage({ activityId, topicId }: { activityId: string; topicId: st
   const activity = activityManifests.find(({ id }) => id === activityId);
   const topic = getTopicById(topicId);
   if (!activity || !topic) return <NotFound />;
+  const chapter = chapterManifests.find(({ id }) => id === topic.chapterId);
+  const siblingTopics = chapter?.topicIds
+    .map((id) => getTopicById(id))
+    .filter((entry): entry is NonNullable<typeof entry> => Boolean(entry)) ?? [];
   const ActiveApp = activity.appId ? appRegistry[activity.appId] : undefined;
   const codingHref = activity.type === "r-lab" ? `/r-learning?topicId=${topic.id}&lessonId=${activity.lessonId ?? ""}` : `/python-learning?topicId=${topic.id}&lessonId=${activity.lessonId ?? ""}`;
   return (
@@ -197,7 +201,22 @@ function ActivityPage({ activityId, topicId }: { activityId: string; topicId: st
         <span>{activity.type}</span>
       </div>
       <section className="learn-activity-stage">
-        {ActiveApp ? <Suspense fallback={<div className="learn-route-loading" role="status">{language === "zh" ? "正在加载实验…" : "Loading activity…"}</div>}><ActiveApp /></Suspense> : <div className="learn-coding-handoff"><h1>{localize(activity.title, language)}</h1><p>{language === "zh" ? "此活动将在共享编程工作室中打开，并携带当前知识点。" : "This activity opens in the shared coding workspace with the current topic context."}</p><a className="learn-primary-link" href={codingHref}>{language === "zh" ? "打开编程实验" : "Open coding lab"} →</a></div>}
+        <aside className="learn-activity-course-nav">
+          <details open>
+            <summary>{chapter ? localize(chapter.title, language) : (language === "zh" ? "课程目录" : "Course outline")}</summary>
+            <nav aria-label={language === "zh" ? "本章知识点" : "Chapter topics"}>
+              {siblingTopics.map((entry) => (
+                <a key={entry.id} href={getTopicRoute(entry.id)} aria-current={entry.id === topic.id ? "page" : undefined}>
+                  <span>{String(entry.order).padStart(2, "0")}</span>
+                  {localize(entry.title, language)}
+                </a>
+              ))}
+            </nav>
+          </details>
+        </aside>
+        <div className="learn-activity-visualizer">
+          {ActiveApp ? <Suspense fallback={<div className="learn-route-loading" role="status">{language === "zh" ? "正在加载实验…" : "Loading activity…"}</div>}><ActiveApp /></Suspense> : <div className="learn-coding-handoff"><h1>{localize(activity.title, language)}</h1><p>{language === "zh" ? "此活动将在共享编程工作室中打开，并携带当前知识点。" : "This activity opens in the shared coding workspace with the current topic context."}</p><a className="learn-primary-link" href={codingHref}>{language === "zh" ? "打开编程实验" : "Open coding lab"} →</a></div>}
+        </div>
       </section>
     </main>
   );
