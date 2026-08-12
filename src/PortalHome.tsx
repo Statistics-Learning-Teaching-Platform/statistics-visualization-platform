@@ -1,11 +1,12 @@
 import { useLanguage, setLanguage } from "@stats-viz/shared/i18n";
+import { apps } from "../scripts/apps";
 
 const copy = {
   en: {
     kicker: "STATMIND · STATISTICS THINKING PLATFORM",
     title: "Learn statistics by thinking",
     lead: "Learn Statistics by Thinking, Exploring and Interacting. Choose a workspace to begin.",
-    teachingEyebrow: "12 VISUALIZER MODULES",
+    teachingEyebrow: "VISUALIZER MODULES",
     teachingTitle: "Teaching Platform",
     teachingDescription:
       "Build intuition for confidence intervals, regression, hypothesis testing, and simulation through interactive visualizers.",
@@ -31,7 +32,7 @@ const copy = {
     kicker: "STATMIND · 统计思维教学平台",
     title: "在思考中学习统计",
     lead: "通过思考、探索与互动学习统计学。请选择要进入的学习空间。",
-    teachingEyebrow: "12 个可视化模块",
+    teachingEyebrow: "个可视化模块",
     teachingTitle: "统计教学平台",
     teachingDescription: "通过交互式可视化学习置信区间、回归、假设检验与统计模拟。",
     teachingAction: "进入教学平台",
@@ -117,10 +118,10 @@ export function PortalHome() {
         <p className="portal-lead">{t.lead}</p>
 
         <div className="portal-destinations">
-          <a className="portal-card portal-card--teaching" href="/teaching#confidence-interval">
+          <a className="portal-card portal-card--teaching" href="/learn">
             <span className="portal-card__icon"><VisualizerIcon /></span>
             <span className="portal-card__copy">
-              <span className="portal-card__eyebrow">{t.teachingEyebrow}</span>
+              <span className="portal-card__eyebrow">{apps.length} {t.teachingEyebrow}</span>
               <strong>{t.teachingTitle}</strong>
               <span>{t.teachingDescription}</span>
             </span>
