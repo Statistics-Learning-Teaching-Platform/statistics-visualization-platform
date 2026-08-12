@@ -100,7 +100,7 @@ export const moduleConfig: ModuleConfig = {
       "controls": [
         {
           "id": "sampleSize",
-          "label": "Candidate draws",
+          "label": "Accepted sample size",
           "type": "number",
           "min": 1,
           "max": 10000,

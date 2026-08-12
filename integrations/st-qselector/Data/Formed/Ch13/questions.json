@@ -128,6 +128,52 @@
       "formula_refs": [],
       "data_refs": [],
       "audit_pack": "ch13-review-v1"
+    },
+    {
+      "id": "opl_nau_ch13_regression_01",
+      "content": "An airline models total checked-luggage weight $y$ (pounds) from passenger count $x$ using the least-squares equation\n\n$$\\hat y=120+18x.$$\n\nPredict the luggage weight for a flight with 80 passengers, and interpret the slope in context.",
+      "source": "WeBWorK Open Problem Library — NAU Statistics — linear_regression1.pg (fixed static instance) — https://github.com/openwebwork/webwork-open-problem-library/blob/54e7db70ed308cab9c7eed8af1d2dba5a6adf7d4/OpenProblemLibrary/NAU/setStatistics/linear_regression1.pg",
+      "source_url": "https://github.com/openwebwork/webwork-open-problem-library/blob/54e7db70ed308cab9c7eed8af1d2dba5a6adf7d4/OpenProblemLibrary/NAU/setStatistics/linear_regression1.pg",
+      "source_problem": "linear_regression1.pg (fixed static instance)",
+      "source_path": "OpenProblemLibrary/NAU/setStatistics/linear_regression1.pg",
+      "source_commit": "54e7db70ed308cab9c7eed8af1d2dba5a6adf7d4",
+      "license": "CC BY-NC-SA 3.0",
+      "license_url": "https://creativecommons.org/licenses/by-nc-sa/3.0/",
+      "attribution": "N. Spencer Sitton, Northern Arizona University",
+      "changes": "Randomized PG problem converted to a fixed, self-contained English instance; answer independently recomputed and Markdown/LaTeX normalized.",
+      "review_status": "independently solved and reviewed",
+      "type": "计算题",
+      "difficulty": 1,
+      "keywords": [
+        "linear regression",
+        "prediction",
+        "regression equation"
+      ],
+      "formula_refs": [],
+      "data_refs": []
+    },
+    {
+      "id": "opl_nau_ch13_regression_02",
+      "content": "For the data points $(1,4),(2,5),(3,7),(4,10),(5,11)$:\n\na. Find the least-squares regression line for predicting $y$ from $x$.\n\nb. Compute Pearson's correlation coefficient.\n\nc. Predict $y$ when $x=6$.",
+      "source": "WeBWorK Open Problem Library — NAU Statistics — linear_regression2.pg (fixed static instance) — https://github.com/openwebwork/webwork-open-problem-library/blob/54e7db70ed308cab9c7eed8af1d2dba5a6adf7d4/OpenProblemLibrary/NAU/setStatistics/linear_regression2.pg",
+      "source_url": "https://github.com/openwebwork/webwork-open-problem-library/blob/54e7db70ed308cab9c7eed8af1d2dba5a6adf7d4/OpenProblemLibrary/NAU/setStatistics/linear_regression2.pg",
+      "source_problem": "linear_regression2.pg (fixed static instance)",
+      "source_path": "OpenProblemLibrary/NAU/setStatistics/linear_regression2.pg",
+      "source_commit": "54e7db70ed308cab9c7eed8af1d2dba5a6adf7d4",
+      "license": "CC BY-NC-SA 3.0",
+      "license_url": "https://creativecommons.org/licenses/by-nc-sa/3.0/",
+      "attribution": "N. Spencer Sitton, Northern Arizona University",
+      "changes": "Randomized PG problem converted to a fixed, self-contained English instance; answer independently recomputed and Markdown/LaTeX normalized.",
+      "review_status": "independently solved and reviewed",
+      "type": "计算题",
+      "difficulty": 3,
+      "keywords": [
+        "least-squares regression",
+        "correlation",
+        "prediction"
+      ],
+      "formula_refs": [],
+      "data_refs": []
     }
   ]
 }

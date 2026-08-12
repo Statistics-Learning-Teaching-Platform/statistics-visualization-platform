@@ -192,6 +192,18 @@
       "answer": "$P(M)=0.40+0.20=0.60$ and $P(M\\cap A)=0.20$. Thus\n\n$$P(A\\mid M)=\\frac{0.20}{0.60}=\\frac13\\approx0.3333.$$",
       "review_status": "independently solved and reviewed",
       "audit_pack": "ch04-review-v1"
+    },
+    {
+      "id": "opl_nau_ch04_samplespace_01",
+      "answer": "a. Choose the position of the single head:\n\n$$\\binom{5}{1}=5.$$\n\nb. Choose the two positions occupied by tails:\n\n$$\\binom{5}{2}=10.$$\n\nc. There are 2 choices for the first face, the final face is then forced to be different, and the middle three tosses are arbitrary. Thus\n\n$$2\\cdot2^3=16.$$",
+      "review_status": "independently solved and reviewed",
+      "source_commit": "54e7db70ed308cab9c7eed8af1d2dba5a6adf7d4"
+    },
+    {
+      "id": "opl_nau_ch04_samplespace_02",
+      "answer": "a. There are 8 choices of red ball and $2^2=4$ ordered outcomes for two coin tosses, so\n\n$$8\\cdot4=32.$$\n\nb. A blue ball gives $10\\cdot2^3=80$ outcomes. Therefore, the full sample space has\n\n$$32+80=112$$\n\noutcomes.",
+      "review_status": "independently solved and reviewed",
+      "source_commit": "54e7db70ed308cab9c7eed8af1d2dba5a6adf7d4"
     }
   ]
 }

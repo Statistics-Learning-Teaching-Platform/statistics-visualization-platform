@@ -55,6 +55,26 @@ describe("distribution explorer", () => {
     );
     expect(Number(metric(r, "interval probability"))).toBeCloseTo(0.95, 2);
   });
+
+  it("keeps a fixed N(0,1) reference beside the adjustable normal curve", () => {
+    const r = runExample(
+      example("distribution"),
+      { dist: "norm", mode: "PDF", a: 2, b: 2, lower: -2, upper: 2 },
+      1,
+    );
+    if (r.chart.type !== "line") throw new Error("expected line chart");
+    expect(r.chart.series).toHaveLength(2);
+    expect(r.chart.xDomain).toEqual([-12, 12]);
+    expect(r.chart.yDomain).toEqual([0, 0.85]);
+
+    const [current, reference] = r.chart.series;
+    const currentPeak = current.points.reduce((best, point) => point.y > best.y ? point : best);
+    const referencePeak = reference.points.reduce((best, point) => point.y > best.y ? point : best);
+    expect(Math.abs(currentPeak.x - 2)).toBeLessThan(0.08);
+    expect(Math.abs(referencePeak.x)).toBeLessThan(0.08);
+    expect(currentPeak.y).toBeLessThan(referencePeak.y);
+    expect(referencePeak.y).toBeCloseTo(jStat.normal.pdf(referencePeak.x, 0, 1), 5);
+  });
 });
 
 describe("gamma rejection sampler (de-biased)", () => {
@@ -69,8 +89,48 @@ describe("gamma rejection sampler (de-biased)", () => {
   });
 });
 
+describe("incremental random-variable sampling", () => {
+  it.each([
+    ["random-normal", { mean: 0, sd: 1 }],
+    ["random-exponential", { lambda: 2 }],
+    ["gamma-rejection", { alpha: 2, beta: 1 }],
+  ])("keeps every previous draw when one %s sample is appended", (kind, parameters) => {
+    const seed = 24680;
+    const before = runExample(example(kind), { ...parameters, sampleSize: 25 }, seed);
+    const after = runExample(example(kind), { ...parameters, sampleSize: 26 }, seed);
+    expect(before.rawSample).toHaveLength(25);
+    expect(after.rawSample).toHaveLength(26);
+    expect(after.rawSample?.slice(0, 25)).toEqual(before.rawSample);
+  });
+});
+
 describe("central limit theorem", () => {
   const controls = { populationShape: "exponential" as const, sampleSize: 5 };
+
+  it("uses enough repeated samples by default and keeps a fixed standardized domain", () => {
+    for (const sampleSize of [1, 5, 20, 88]) {
+      const r = runExample(
+        example("central-limit-theorem"),
+        { populationShape: "exponential", sampleSize },
+        42,
+      );
+      if (r.chart.type !== "clt") throw new Error("expected clt chart");
+      expect(Number(metric(r, "repeated samples"))).toBe(500);
+      expect(r.chart.xDomain).toEqual([-4, 4]);
+      expect("latestMean" in r.chart).toBe(false);
+    }
+  });
+
+  it("makes the approach toward normality measurable as n grows", () => {
+    const skewness = (values: number[]) => {
+      const center = mean(values);
+      const sd = Math.sqrt(variance(values));
+      return values.reduce((sum, value) => sum + ((value - center) / sd) ** 3, 0) / values.length;
+    };
+    const n1 = generateSampleMeans({ populationShape: "exponential", sampleSize: 1 }, 5000, 17);
+    const n20 = generateSampleMeans({ populationShape: "exponential", sampleSize: 20 }, 5000, 17);
+    expect(Math.abs(skewness(n20))).toBeLessThan(Math.abs(skewness(n1)) * 0.45);
+  });
 
   it("observed SD of sample means tracks the theoretical SE", () => {
     const means = generateSampleMeans(controls, 3000, 42);
@@ -98,6 +158,40 @@ describe("ANOVA", () => {
   it("matches the hand-computed F statistic on the fuel dataset", () => {
     const r = runExample(example("anova"), { dataset: "fuel" }, 1);
     expect(Number(metric(r, "F statistic"))).toBeCloseTo(29.377, 1);
+    if (r.chart.type !== "anova") throw new Error("expected anova chart");
+    expect(r.chart.groups.map((group) => group.label)).toEqual(["Brand A", "Brand B", "Brand C"]);
+    expect(r.chart.grandMean).toBeCloseTo(mean(r.chart.groups.flatMap((group) => group.values)), 8);
+  });
+});
+
+describe("permutation test", () => {
+  it("creates a complete null histogram and a valid corrected p value", () => {
+    const r = runExample(
+      example("permutation-mean-difference"),
+      { groupSize: 8, effect: 0.8, replicates: 200 },
+      41,
+    );
+    if (r.chart.type !== "bars") throw new Error("expected bars chart");
+    expect(r.chart.bars.reduce((sum, bar) => sum + bar.value, 0)).toBe(200);
+    expect(new Set(r.chart.bars.map((bar) => bar.color))).toEqual(new Set(["#2f6f64", "#c8665a"]));
+    const pValue = Number(metric(r, "two-sided p value"));
+    expect(pValue).toBeGreaterThanOrEqual(1 / 201);
+    expect(pValue).toBeLessThanOrEqual(1);
+  });
+});
+
+describe("MCMC teaching payloads", () => {
+  it("preserves draw order for Metropolis-Hastings and Gibbs traces", () => {
+    const mh = runExample(example("mcmc-mixture"), { burnin: 20, sampleSize: 120, proposalSd: 1 }, 9);
+    const gibbs = runExample(example("gibbs-bivariate"), { burnin: 20, sampleSize: 120, correlation: 0.8 }, 9);
+    for (const r of [mh, gibbs]) {
+      if (r.chart.type !== "mcmc") throw new Error("expected mcmc chart");
+      expect(r.chart.samples.length).toBeGreaterThan(0);
+      expect(r.chart.path.length).toBeGreaterThan(1);
+      expect(r.chart.traceX).toHaveLength(120);
+      expect(r.chart.traceY).toHaveLength(120);
+      expect(r.chart.contours.length).toBeGreaterThan(0);
+    }
   });
 });
 

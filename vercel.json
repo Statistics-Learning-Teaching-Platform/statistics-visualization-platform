@@ -1,0 +1,15 @@
+{
+  "framework": "vite",
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
+  "rewrites": [
+    { "source": "/st-qselector", "destination": "https://statmind-qselector.vercel.app/st-qselector" },
+    { "source": "/st-qselector/:path*", "destination": "https://statmind-qselector.vercel.app/st-qselector/:path*" },
+    { "source": "/teaching", "destination": "/" },
+    { "source": "/teaching/:path*", "destination": "/" },
+    { "source": "/r-learning", "destination": "/" },
+    { "source": "/r-learning/:path*", "destination": "/" },
+    { "source": "/python-learning", "destination": "/" },
+    { "source": "/python-learning/:path*", "destination": "/" }
+  ]
+}

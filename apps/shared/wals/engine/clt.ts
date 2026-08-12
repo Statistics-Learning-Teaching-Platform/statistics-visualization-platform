@@ -4,6 +4,8 @@ import { formatNumber, mean, standardDeviation } from "@stats-viz/shared/format"
 import { histogram, normalPdf } from "@stats-viz/shared/math";
 import { num, result, str, type ControlMap } from "./internal";
 
+export const DEFAULT_CLT_SAMPLE_COUNT = 500;
+
 function drawPopulationValue(rng: () => number, shape: string): number {
   if (shape === "normal") {
     return normalRandom(rng, 0, 1);
@@ -29,6 +31,15 @@ function populationForShape(shape: string): number[] {
   const rng = createRandom(937 + shape.length * 97);
   return Array.from({ length: 2500 }, () => drawPopulationValue(rng, shape));
 }
+
+function populationMoments(shape: string): { mean: number; sd: number } {
+  if (shape === "bimodal") {
+    return { mean: 0, sd: Math.sqrt(1.35 ** 2 + 0.45 ** 2) };
+  }
+  // The normal, standardized uniform, centered exponential, and scaled
+  // skewed examples are all constructed with mean 0 and standard deviation 1.
+  return { mean: 0, sd: 1 };
+}
 export function generateSampleMeans(
   controls: ControlMap,
   count: number,
@@ -53,27 +64,34 @@ export function centralLimitTheorem(
   const shape = str(controls, "populationShape", "exponential");
   const sampleSize = Math.max(1, Math.round(num(controls, "sampleSize", 5)));
   const population = populationForShape(shape);
-  const populationMean = mean(population);
-  const populationSd = standardDeviation(population);
+  const moments = populationMoments(shape);
+  const populationMean = moments.mean;
+  const populationSd = moments.sd;
   const standardError = populationSd / Math.sqrt(sampleSize);
-  const shownMeans = sampleMeans.length ? sampleMeans : generateSampleMeans(controls, 20, seed);
-  const samplingDomain: [number, number] = [
-    populationMean - Math.max(3.2 * standardError, 0.55),
-    populationMean + Math.max(3.2 * standardError, 0.55),
-  ];
-  const binCount = 18;
+  const shownMeans = sampleMeans.length
+    ? sampleMeans
+    : generateSampleMeans(controls, DEFAULT_CLT_SAMPLE_COUNT, seed);
+
+  // Standardize the sample means and keep a fixed domain. Previously every n
+  // received a newly centered/scaled x-axis, which visually hid both the CLT
+  // shape change and the shrinking standard error.
+  const standardizedMeans = shownMeans.map(
+    (value) => (value - populationMean) / Math.max(standardError, 1e-9),
+  );
+  const samplingDomain: [number, number] = [-4, 4];
+  const binCount = 20;
   const binWidth = (samplingDomain[1] - samplingDomain[0]) / binCount;
   // Histogram first so the normal-curve height scales by the number of sample
   // means that actually land inside the plotted domain. histogram() drops
   // out-of-range means, so scaling by shownMeans.length leaves the curve
   // sitting above the bars whenever a tail escapes the domain.
-  const sampleMeanBars = histogram(shownMeans, binCount, samplingDomain);
+  const sampleMeanBars = histogram(standardizedMeans, binCount, samplingDomain);
   const inRangeCount = sampleMeanBars.reduce((sum, bar) => sum + bar.value, 0);
   const curvePoints: ChartPoint[] = Array.from({ length: 80 }, (_, index) => {
     const x = samplingDomain[0] + (index / 79) * (samplingDomain[1] - samplingDomain[0]);
     return {
       x,
-      y: normalPdf(x, populationMean, Math.max(standardError, 1e-6)) * binWidth * Math.max(inRangeCount, 1),
+      y: normalPdf(x, 0, 1) * binWidth * Math.max(inRangeCount, 1),
     };
   });
 
@@ -81,9 +99,9 @@ export function centralLimitTheorem(
     "Sampling distribution of sample means",
     "Draw repeated samples, then compare the histogram of sample means with the normal approximation predicted by the CLT.",
     [
-      { label: "samples drawn", value: String(shownMeans.length), detail: "sample means in histogram" },
+      { label: "repeated samples", value: String(shownMeans.length), detail: "sample means in histogram" },
       { label: "sample size n", value: String(sampleSize), detail: "observations per sample" },
-      { label: "population mean", value: formatNumber(populationMean, 3), detail: "estimated from preview population" },
+      { label: "population mean", value: formatNumber(populationMean, 3), detail: "theoretical value" },
       { label: "theoretical SE", value: formatNumber(standardError, 4), detail: "sigma / sqrt(n)" },
       {
         label: "observed SD",
@@ -95,14 +113,15 @@ export function centralLimitTheorem(
       type: "clt",
       title: "Central Limit Theorem simulation",
       populationTitle: `Population distribution: ${shape}`,
-      samplingTitle: "Sampling distribution of sample means",
-      xLabel: "Value",
+      samplingTitle: "Standardized sampling distribution of sample means",
+      xLabel: "Standardized sample mean z",
       yLabel: "Count",
       populationBars: histogram(population, 24),
       sampleMeanBars,
       normalCurve: curvePoints,
-      populationMean,
-      latestMean: shownMeans.at(-1),
+      populationMean: 0,
+      normalApproximationLabel: "Normal approximation",
+      populationMeanLabel: "Expected center z = 0",
       xDomain: samplingDomain,
     }
   );

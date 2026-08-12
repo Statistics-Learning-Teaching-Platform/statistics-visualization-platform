@@ -917,7 +917,7 @@ body {
   }
 }
 
-/* Final override at real EOF: regression middle panel stays fully visible on desktop. */
+/* Desktop regression middle panel remains scrollable when chart + metrics exceed the viewport. */
 @media (min-width: 760px) {
   .experiment-board {
     display: grid;
@@ -926,7 +926,8 @@ body {
     min-height: 0;
     max-height: 100%;
     padding: 20px;
-    overflow: hidden !important;
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
   }
 
   .experiment-header {
@@ -1235,7 +1236,7 @@ body {
   object-fit: contain;
 }
 
-/* EOF override: regression middle panel stays fully visible on desktop. */
+/* Wide-screen regression middle panel keeps all statistics reachable. */
 @media (min-width: 1101px) {
   .experiment-board {
     display: grid;
@@ -1244,7 +1245,8 @@ body {
     min-height: 0;
     max-height: 100%;
     padding: 20px;
-    overflow: hidden !important;
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
   }
 
   .experiment-header {
@@ -1602,6 +1604,8 @@ body {
   display: block;
   width: 100%;
   height: 100%;
+  touch-action: none;
+  cursor: crosshair;
   filter: drop-shadow(0 10px 20px rgba(40, 35, 25, 0.035));
 }
 
@@ -1685,9 +1689,58 @@ body {
 
 .custom-line {
   stroke: var(--danger);
-  stroke-width: 2.6;
+  stroke-width: 3.2;
   stroke-linecap: round;
+  filter: drop-shadow(0 2px 5px rgba(200, 102, 90, 0.2));
   vector-effect: non-scaling-stroke;
+}
+
+.regression-line-guide {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 14px;
+  min-height: 30px;
+}
+
+.regression-line-guide__item {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  color: var(--text-secondary);
+  font-size: 12px;
+  font-weight: 750;
+}
+
+.regression-line-guide__item--active {
+  color: var(--danger);
+}
+
+.regression-line-guide__swatch {
+  width: 26px;
+  height: 4px;
+  border-radius: 999px;
+}
+
+.regression-line-guide__swatch--fit {
+  background: var(--teal);
+}
+
+.regression-line-guide__swatch--custom {
+  background: var(--danger);
+}
+
+.regression-line-guide__hint {
+  color: var(--text-secondary);
+  font-size: 12px;
+}
+
+.regression-chart {
+  cursor: crosshair !important;
+}
+
+.regression-chart::after {
+  display: none !important;
 }
 
 .temp-line {
@@ -2082,7 +2135,7 @@ body {
   }
 }
 
-/* True final override: desktop regression board shows chart and statistics without inner scrolling. */
+/* Final regression override: chart and statistics remain reachable without clipping. */
 @media (min-width: 760px) {
   .experiment-board {
     display: grid;
@@ -2091,7 +2144,8 @@ body {
     min-height: 0;
     max-height: 100%;
     padding: 20px;
-    overflow: hidden !important;
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
   }
 
   .experiment-header {

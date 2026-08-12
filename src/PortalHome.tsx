@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useLanguage, setLanguage } from "@stats-viz/shared/i18n";
 
 const copy = {
   en: {
@@ -15,6 +15,16 @@ const copy = {
     paperDescription:
       "Filter the reviewed question bank by chapter, type, difficulty, and knowledge point, then assemble and export a paper.",
     paperAction: "Open paper builder",
+    rEyebrow: "LIVE R + GUIDED PRACTICE",
+    rTitle: "R Coding Studio",
+    rDescription:
+      "Write and run real R code in the browser, receive automatic feedback, and connect programming with statistical reasoning.",
+    rAction: "Open R coding studio",
+    pythonEyebrow: "LIVE PYTHON + DATA SCIENCE",
+    pythonTitle: "Python Coding Studio",
+    pythonDescription:
+      "Run real Python with NumPy, pandas, Matplotlib, and SciPy while receiving guided practice and automatic feedback.",
+    pythonAction: "Open Python coding studio",
     footer: "One learning entrance · Statistics teaching tools",
   },
   zh: {
@@ -29,6 +39,14 @@ const copy = {
     paperTitle: "统计学组卷系统",
     paperDescription: "按章节、题型、难度和知识点筛选已审核题目，完成组卷与导出。",
     paperAction: "进入组卷系统",
+    rEyebrow: "真实 R 环境 + 引导练习",
+    rTitle: "R 语言编程工作室",
+    rDescription: "在浏览器中编写并运行真实 R 代码，通过自动检查把编程与统计思维连接起来。",
+    rAction: "进入 R 编程工作室",
+    pythonEyebrow: "真实 PYTHON + 数据科学",
+    pythonTitle: "Python 语言编程工作室",
+    pythonDescription: "在浏览器中运行真实 Python，通过 NumPy、pandas、Matplotlib 与 SciPy 完成引导练习和自动检查。",
+    pythonAction: "进入 Python 编程工作室",
     footer: "一个学习入口 · 一套统计教学工具",
   },
 } as const;
@@ -55,8 +73,27 @@ function PaperIcon() {
   );
 }
 
+function RCodeIcon() {
+  return (
+    <svg viewBox="0 0 48 48" aria-hidden="true">
+      <path d="m18 14-10 10 10 10M30 14l10 10-10 10M27 8l-6 32" />
+    </svg>
+  );
+}
+
+function PythonCodeIcon() {
+  return (
+    <svg viewBox="0 0 48 48" aria-hidden="true">
+      <path d="M24 7c-8 0-10 3-10 8v5h12v3H10c-4 0-6 3-6 9s3 9 8 9h5v-7c0-5 4-8 9-8h9c5 0 9-4 9-9v-2c0-5-4-8-10-8z" />
+      <path d="M24 41c8 0 10-3 10-8v-5H22v-3h16c4 0 6-3 6-9S41 7 36 7h-5v7c0 5-4 8-9 8h-9c-5 0-9 4-9 9v2c0 5 4 8 10 8z" />
+      <circle cx="20" cy="13" r="1.5" />
+      <circle cx="28" cy="35" r="1.5" />
+    </svg>
+  );
+}
+
 export function PortalHome() {
-  const [language, setLanguage] = useState<keyof typeof copy>("en");
+  const language = useLanguage();
   const t = copy[language];
 
   return (
@@ -64,9 +101,9 @@ export function PortalHome() {
       <div className="portal-orbit portal-orbit--left" aria-hidden="true" />
       <div className="portal-orbit portal-orbit--right" aria-hidden="true" />
 
-      <div className="portal-language" aria-label="Language">
-        <button data-active={language === "zh"} onClick={() => setLanguage("zh")}>中文</button>
-        <button data-active={language === "en"} onClick={() => setLanguage("en")}>English</button>
+      <div className="portal-language" role="group" aria-label={language === "zh" ? "界面语言" : "Interface language"}>
+        <button type="button" data-active={language === "zh"} aria-pressed={language === "zh"} onClick={() => setLanguage("zh")}>中文</button>
+        <button type="button" data-active={language === "en"} aria-pressed={language === "en"} onClick={() => setLanguage("en")}>English</button>
       </div>
 
       <section className="portal-hero" aria-labelledby="portal-title">
@@ -98,6 +135,26 @@ export function PortalHome() {
               <span>{t.paperDescription}</span>
             </span>
             <span className="portal-card__action">{t.paperAction} <b>↗</b></span>
+          </a>
+
+          <a className="portal-card portal-card--r" href="/r-learning">
+            <span className="portal-card__icon"><RCodeIcon /></span>
+            <span className="portal-card__copy">
+              <span className="portal-card__eyebrow">{t.rEyebrow}</span>
+              <strong>{t.rTitle}</strong>
+              <span>{t.rDescription}</span>
+            </span>
+            <span className="portal-card__action">{t.rAction} <b>↗</b></span>
+          </a>
+
+          <a className="portal-card portal-card--python" href="/python-learning">
+            <span className="portal-card__icon"><PythonCodeIcon /></span>
+            <span className="portal-card__copy">
+              <span className="portal-card__eyebrow">{t.pythonEyebrow}</span>
+              <strong>{t.pythonTitle}</strong>
+              <span>{t.pythonDescription}</span>
+            </span>
+            <span className="portal-card__action">{t.pythonAction} <b>↗</b></span>
           </a>
         </div>
 

@@ -31,6 +31,12 @@ export interface Question {
   isComplete: boolean;
   isReviewed: boolean;
   reviewStatus: string | null;
+  /** Question provenance. Omitted on legacy records, which are treated as bank questions. */
+  origin?: "bank" | "variant" | "generated";
+  /** Bank question used as the structural seed for an AI-authored variant. */
+  parentQuestionId?: string | null;
+  /** Short server-side verification summary for AI-authored questions. */
+  verification?: string | null;
 }
 
 export interface QuestionsResponse {

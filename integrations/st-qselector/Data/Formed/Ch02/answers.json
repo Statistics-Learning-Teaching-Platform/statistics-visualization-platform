@@ -168,6 +168,30 @@
       "answer": "Approximately **50%**. From the minimum to the median spans the first and second quartile intervals; each contains approximately 25% of the observations, for a total of $25\\%+25\\%=50\\%$.",
       "review_status": "independently solved and reviewed",
       "audit_pack": "ch02-review-v1"
+    },
+    {
+      "id": "opl_nau_ch02_center_01",
+      "answer": "The sum is $50$ and $n=6$, so\n\n$$\\bar x=\\frac{50}{6}=8.333\\ldots\\approx8.33.$$\n\nThe ordered data are $4,7,7,9,10,13$. Therefore,\n\n$$\\operatorname{median}=\\frac{7+9}{2}=8.$$\n\nThe value 7 occurs most often, so the mode is **7**.",
+      "review_status": "independently solved and reviewed",
+      "source_commit": "54e7db70ed308cab9c7eed8af1d2dba5a6adf7d4"
+    },
+    {
+      "id": "opl_nau_ch02_fivenum_01",
+      "answer": "There are 15 ordered observations. The median is the 8th value, 53. Excluding the median, the lower half is $25,28,32,35,41,44,47$, whose median is 35. The upper half is $58,61,65,69,72,78,84$, whose median is 69.\n\nTherefore, the five-number summary is\n\n$$(25,35,53,69,84).$$",
+      "review_status": "independently solved and reviewed",
+      "source_commit": "54e7db70ed308cab9c7eed8af1d2dba5a6adf7d4"
+    },
+    {
+      "id": "opl_nau_ch02_sd_01",
+      "answer": "The sample mean is\n\n$$\\bar x=\\frac{42+45+47+50+53+57}{6}=49.$$\n\nThe sum of squared deviations is\n\n$$(-7)^2+(-4)^2+(-2)^2+1^2+4^2+8^2=150.$$\n\nHence the sample standard deviation is\n\n$$s=\\sqrt{\\frac{150}{6-1}}=\\sqrt{30}\\approx5.477.$$",
+      "review_status": "independently solved and reviewed",
+      "source_commit": "54e7db70ed308cab9c7eed8af1d2dba5a6adf7d4"
+    },
+    {
+      "id": "opl_nau_ch02_boxplot_01",
+      "answer": "Approximately **75%**. The interval from $Q_1$ to the maximum contains the second, third, and fourth quartile intervals. Each contains about 25% of the observations, so\n\n$$25\\%+25\\%+25\\%=75\\%.$$",
+      "review_status": "independently solved and reviewed",
+      "source_commit": "54e7db70ed308cab9c7eed8af1d2dba5a6adf7d4"
     }
   ]
 }

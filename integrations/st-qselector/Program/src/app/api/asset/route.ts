@@ -27,20 +27,28 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({ error: "缺少 chapter 或 file 参数" }, { status: 400 });
   }
 
-  const chapterDir = getChapterDir(chapter);
-  if (!chapterDir) {
-    return NextResponse.json({ error: "未知章节" }, { status: 404 });
+  // In production the small set of referenced attachments is copied into
+  // public/assets. Keep the original filesystem path for local development.
+  let chapterDir: string | null = null;
+  try {
+    chapterDir = getChapterDir(chapter);
+  } catch {
+    // The Vercel bundle intentionally omits the repository-level Data/Formed
+    // directory; the public asset fallback below remains available there.
   }
+  const publicAssetRoot = path.resolve(process.cwd(), "public", "assets", chapter);
 
   // 依次尝试：<章节目录>/<file>，再退回 <章节目录>/Assests/<file>
   const candidates = [
-    path.resolve(chapterDir, file),
-    path.resolve(chapterDir, "Assests", file),
+    ...(chapterDir ? [path.resolve(chapterDir, file), path.resolve(chapterDir, "Assests", file)] : []),
+    path.resolve(publicAssetRoot, file),
+    path.resolve(publicAssetRoot, "Assests", file),
   ];
 
   for (const abs of candidates) {
     // 越界保护：解析后的路径必须仍在章节目录内。
-    if (abs !== chapterDir && !abs.startsWith(chapterDir + path.sep)) continue;
+    const allowedRoots = [chapterDir, publicAssetRoot].filter((root): root is string => Boolean(root));
+    if (!allowedRoots.some((root) => abs === root || abs.startsWith(root + path.sep))) continue;
     if (fs.existsSync(abs) && fs.statSync(abs).isFile()) {
       // emf/wmf（Word 公式矢量图）浏览器无法渲染，转成 PNG 再返回。
       // 非下载请求才转换；download=1 时保留原始矢量文件。

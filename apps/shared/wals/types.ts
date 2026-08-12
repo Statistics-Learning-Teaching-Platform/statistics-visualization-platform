@@ -17,6 +17,15 @@ export interface ControlConfig {
   max?: number;
   step?: number;
   options?: SelectOption[];
+  /** Change the visible label according to another control's current value. */
+  labelByValue?: { controlId: string; labels: Record<string, string> };
+  /** Override numeric bounds/defaults according to another control. */
+  rangeByValue?: {
+    controlId: string;
+    ranges: Record<string, { min: number; max: number; step: number; defaultValue: number }>;
+  };
+  /** Hide this control for selected values of another control. */
+  hideWhen?: { controlId: string; values: string[] };
 }
 
 export type QuickActionType = "drawSampleMeans" | "bumpControl";
@@ -24,7 +33,8 @@ export type QuickActionCopyKey =
   | "addOneSample"
   | "addTwentySamples"
   | "draw1Sample"
-  | "draw20Samples";
+  | "draw20Samples"
+  | "draw100Samples";
 
 export interface QuickAction {
   type: QuickActionType;
@@ -83,6 +93,8 @@ export interface Metric {
   label: string;
   value: string;
   detail?: string;
+  /** Optional plain-language definition shown beside the metric. */
+  help?: string;
 }
 
 export interface ChartPoint {
@@ -96,6 +108,31 @@ export interface ChartSeries {
   label: string;
   points: ChartPoint[];
   color?: string;
+  dashed?: boolean;
+  opacity?: number;
+}
+
+export interface ChartLegendItem {
+  label: string;
+  color: string;
+  shape?: "line" | "dot" | "bar" | "dashed";
+}
+
+export interface ChartCircle {
+  cx: number;
+  cy: number;
+  radius: number;
+  label?: string;
+  color?: string;
+  fill?: string;
+}
+
+export interface ChartReference {
+  axis: "x" | "y";
+  value: number;
+  label?: string;
+  color?: string;
+  dashed?: boolean;
 }
 
 export interface ChartBar {
@@ -123,16 +160,93 @@ export interface ChartClt {
   sampleMeanBars: ChartBar[];
   normalCurve: ChartPoint[];
   populationMean: number;
-  latestMean?: number;
+  normalApproximationLabel?: string;
+  populationMeanLabel?: string;
   xDomain: [number, number];
 }
 
+export interface ChartMcmc {
+  type: "mcmc";
+  title: string;
+  xLabel: string;
+  yLabel: string;
+  targetLabel: string;
+  traceLabel: string;
+  currentStateLabel?: string;
+  targetDensityLabel?: string;
+  recentPathLabel?: string;
+  samples: ChartPoint[];
+  path: ChartPoint[];
+  contours: ChartSeries[];
+  traceX: ChartPoint[];
+  traceY: ChartPoint[];
+  xDomain: [number, number];
+  yDomain: [number, number];
+}
+
+export interface ChartAnova {
+  type: "anova";
+  title: string;
+  xLabel: string;
+  yLabel: string;
+  groups: Array<{ label: string; values: number[]; mean: number }>;
+  grandMean: number;
+  grandMeanLabel?: string;
+  observationsLabel?: string;
+  groupMeanLabel?: string;
+}
+
 export type ChartSpec =
-  | { type: "scatter"; title: string; xLabel: string; yLabel: string; points: ChartPoint[]; line?: ChartSeries; xDomain?: [number, number]; yDomain?: [number, number] }
-  | { type: "line"; title: string; xLabel: string; yLabel: string; series: ChartSeries[]; xDomain?: [number, number]; yDomain?: [number, number] }
-  | { type: "bars"; title: string; xLabel: string; yLabel: string; bars: ChartBar[]; yDomain?: [number, number] }
-  | { type: "intervals"; title: string; xLabel: string; yLabel: string; intervals: ChartInterval[]; reference?: number; xDomain?: [number, number] }
-  | ChartClt;
+  | {
+      type: "scatter";
+      title: string;
+      xLabel: string;
+      yLabel: string;
+      points: ChartPoint[];
+      line?: ChartSeries;
+      lines?: ChartSeries[];
+      contours?: ChartSeries[];
+      circles?: ChartCircle[];
+      references?: ChartReference[];
+      legend?: ChartLegendItem[];
+      showPointLabels?: boolean;
+      xDomain?: [number, number];
+      yDomain?: [number, number];
+    }
+  | {
+      type: "line";
+      title: string;
+      xLabel: string;
+      yLabel: string;
+      series: ChartSeries[];
+      references?: ChartReference[];
+      legend?: ChartLegendItem[];
+      xDomain?: [number, number];
+      yDomain?: [number, number];
+    }
+  | {
+      type: "bars";
+      title: string;
+      xLabel: string;
+      yLabel: string;
+      bars: ChartBar[];
+      legend?: ChartLegendItem[];
+      yDomain?: [number, number];
+    }
+  | {
+      type: "intervals";
+      title: string;
+      xLabel: string;
+      yLabel: string;
+      intervals: ChartInterval[];
+      reference?: number;
+      referenceLabel?: string;
+      legend?: ChartLegendItem[];
+      xDomain?: [number, number];
+    }
+  | ChartClt
+  | ChartMcmc
+  | ChartAnova;
 
 export interface TableSpec {
   columns: string[];
@@ -145,6 +259,8 @@ export interface SimulationResult {
   metrics: Metric[];
   chart: ChartSpec;
   table?: TableSpec;
+  /** Raw one-dimensional draws retained for deterministic incremental sampling tests. */
+  rawSample?: number[];
 }
 
 export interface State {

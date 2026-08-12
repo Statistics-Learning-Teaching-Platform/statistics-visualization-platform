@@ -138,6 +138,42 @@
       "answer": "One valid design is:\n\na. List all cities in the state whose populations exceed 10,000, and randomly select a sample of those cities.\n\nb. Within each selected city, list the city blocks and randomly select a sample of blocks.\n\nc. Within each selected block, list the eligible consumers or households and randomly select consumers to survey.\n\nRandom selection must be used at every stage. If clusters have unequal selection probabilities, the final analysis should use the corresponding sampling weights.",
       "review_status": "independently solved and reviewed",
       "audit_pack": "ch01-review-v1"
+    },
+    {
+      "id": "opl_nau_ch01_terminology_01",
+      "answer": "a. The **population** is all 1,500 singers in the choir.\n\nb. The **sample** is the 650 singers seated nearest the front who were surveyed.\n\nc. The **parameter** is the true proportion of all 1,500 choir members who are professional singers.\n\nd. The sample statistic is\n\n$$\\hat p=\\frac{26}{650}=0.04.$$\n\nThus, 4% of the surveyed singers are professionals.\n\ne. This is a **convenience sample**, not a random sample. Singers seated near the front may differ systematically from the rest of the choir, so the estimate may be biased.",
+      "review_status": "independently solved and reviewed",
+      "source_commit": "54e7db70ed308cab9c7eed8af1d2dba5a6adf7d4"
+    },
+    {
+      "id": "opl_nau_ch01_sampling_01",
+      "answer": "a. **Reasonably representative.** The sampling frame and target population are both Seattle residents, and simple random sampling gives residents a known chance of selection.\n\nb. **Not representative.** Dentists are a specialized occupational subgroup whose income distribution is unlikely to match that of all Seattle residents.",
+      "review_status": "independently solved and reviewed",
+      "source_commit": "54e7db70ed308cab9c7eed8af1d2dba5a6adf7d4"
+    },
+    {
+      "id": "opl_nau_ch01_design_01",
+      "answer": "a. **Observational study.** The therapist observes existing records without assigning an exposure.\n\nb. **Observational study.** Exercise habits and weight are measured, but no treatment is assigned.\n\nc. **Controlled experiment.** Researchers assign the diet treatments and compare outcomes.\n\nd. **Double-blind experiment.** Treatment is assigned, and neither participants nor the administering nurse knows the assignment.",
+      "review_status": "independently solved and reviewed",
+      "source_commit": "54e7db70ed308cab9c7eed8af1d2dba5a6adf7d4"
+    },
+    {
+      "id": "opl_nau_ch01_population_01",
+      "answer": "a. The **population** is all Americans.\n\nb. The **sample** is the 4,000 Americans interviewed.\n\nc. The attribute of interest is whether a person agrees with the president on the issue.\n\nd. Since\n\n$$\\hat p=\\frac{3200}{4000}=0.80$$\n\nwas calculated from the sample, 0.80 is a **sample proportion**.",
+      "review_status": "independently solved and reviewed",
+      "source_commit": "54e7db70ed308cab9c7eed8af1d2dba5a6adf7d4"
+    },
+    {
+      "id": "ai_ch01_1786356733821_1_091aea5af8",
+      "answer": "An RNN is designed to process sequential data by maintaining a hidden state that captures information from previous time steps. At each time step $t$, the hidden state $h_t$ is updated based on the current input $x_t$ and the previous hidden state $h_{t-1}$: $h_t = f(W_{hh} h_{t-1} + W_{xh} x_t + b_h)$, where $f$ is an activation function (e.g., tanh). The same weight matrices $W_{hh}$ and $W_{xh}$ are used at every time step, which is called parameter sharing. This reduces the number of parameters and allows the model to generalize to sequences of varying lengths. The hidden state acts as a memory that carries relevant information from the past, making RNNs suitable for tasks like language modeling, speech recognition, and time series prediction.",
+      "review_status": "AI generated, independently verified, and accepted by teacher during paper assembly; reviewed",
+      "audit_pack": "ai-paper-assembly-v1"
+    },
+    {
+      "id": "ai_ch01_1786356733821_2_c2df07f37c",
+      "answer": "The update rule is $h_t = \\tanh(w_x x_t + w_h h_{t-1})$.\n\n- For $t=1$: $h_1 = \\tanh(0.5 \\times 1.0 + (-0.8) \\times 0) = \\tanh(0.5) \\approx 0.4621$.\n- For $t=2$: $h_2 = \\tanh(0.5 \\times (-0.5) + (-0.8) \\times 0.4621) = \\tanh(-0.25 - 0.36968) = \\tanh(-0.61968) \\approx -0.5501$.\n- For $t=3$: $h_3 = \\tanh(0.5 \\times 2.0 + (-0.8) \\times (-0.5501)) = \\tanh(1.0 + 0.44008) = \\tanh(1.44008) \\approx 0.8934$.\n\nThus, $h_1 \\approx 0.4621$, $h_2 \\approx -0.5501$, $h_3 \\approx 0.8934$.",
+      "review_status": "AI generated, independently verified, and accepted by teacher during paper assembly; reviewed",
+      "audit_pack": "ai-paper-assembly-v1"
     }
   ]
 }

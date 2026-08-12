@@ -72,6 +72,9 @@ interface RawQuestion {
   keywords?: string[];
   data_refs?: string[];
   review_status?: string;
+  origin?: "bank" | "variant" | "generated";
+  parent_question_id?: string | null;
+  verification?: string | null;
 }
 
 interface RawAnswer {
@@ -184,6 +187,9 @@ export function loadAllQuestions(): Question[] {
           isComplete: questionIsComplete(content, attachments),
           isReviewed: Boolean(reviewStatus && /审核|审校|reviewed/i.test(reviewStatus)),
           reviewStatus,
+          origin: q.origin ?? "bank",
+          parentQuestionId: q.parent_question_id ?? null,
+          verification: q.verification ?? null,
         });
       }
     } catch {
@@ -193,6 +199,12 @@ export function loadAllQuestions(): Question[] {
 
   _questionsCache = all;
   return all;
+}
+
+/** Clear server-side file caches after a teacher accepts generated questions. */
+export function invalidateQuestionCache(): void {
+  _questionsCache = null;
+  _configCache = null;
 }
 
 export function getQuestionsByIds(ids: string[]): Question[] {

@@ -18,7 +18,9 @@
     "./wals/charts": "./wals/charts.tsx",
     "./wals/WalsApp": "./wals/WalsApp.tsx",
     "./styles/tokens": "./styles/tokens.css",
-    "./styles/tokens.css": "./styles/tokens.css"
+    "./styles/tokens.css": "./styles/tokens.css",
+    "./styles/workspace": "./styles/workspace.css",
+    "./styles/workspace.css": "./styles/workspace.css"
   },
   "types": "./index.ts"
 }

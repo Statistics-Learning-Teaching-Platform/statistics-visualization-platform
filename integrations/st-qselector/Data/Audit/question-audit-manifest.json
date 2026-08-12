@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-08-09T12:23:31.803714+00:00",
+  "generated_at": "2026-08-09T13:49:58.261545+00:00",
   "source_roots": {
     "origin": "Data/Origin",
     "formed": "Data/Formed"
@@ -12,33 +12,34 @@
     "source_files_are_read_only": true
   },
   "summary": {
-    "total_questions": 273,
+    "total_questions": 293,
     "chapters": {
-      "Ch01": 23,
-      "Ch02": 28,
+      "Ch01": 27,
+      "Ch02": 32,
       "Ch03": 31,
-      "Ch04": 32,
-      "Ch05": 24,
-      "Ch06": 32,
-      "Ch07": 25,
-      "Ch08": 30,
+      "Ch04": 34,
+      "Ch05": 26,
+      "Ch06": 34,
+      "Ch07": 27,
+      "Ch08": 32,
       "Ch09": 26,
       "Ch10": 13,
       "Ch11": 2,
-      "Ch13": 7
+      "Ch13": 9
     },
     "question_languages": {
-      "en": 273
+      "en": 293
     },
     "answer_languages": {
-      "en": 273
+      "en": 293
     },
     "grouping_candidates": {
-      "atomic_candidate": 163,
-      "multi_part_candidate": 110
+      "atomic_candidate": 174,
+      "multi_part_candidate": 119
     },
     "issue_counts": {
-      "multi_part_requires_alignment_review": 110
+      "legacy_superscript": 1,
+      "multi_part_requires_alignment_review": 119
     },
     "eligible_for_paper": 0
   },
@@ -1279,6 +1280,229 @@
         "format_findings": [],
         "context_findings": [],
         "detected_part_count": 3,
+        "grouping_status": "multi_part_candidate",
+        "previously_reviewed": true,
+        "issue_codes": [
+          "multi_part_requires_alignment_review"
+        ]
+      },
+      "workflow": {
+        "decision": "pending",
+        "english_status": "passed",
+        "source_recovery_status": "not_needed",
+        "grouping_review_status": "pending",
+        "independent_solution_status": "pending",
+        "verification_status": "pending",
+        "metadata_status": "pending",
+        "render_status": "pending",
+        "eligible_for_paper": false
+      },
+      "audit_notes": []
+    },
+    {
+      "id": "opl_nau_ch01_terminology_01",
+      "chapter": "Ch01",
+      "source": {
+        "raw": "WeBWorK Open Problem Library — NAU Statistics — basicTerminology.pg (fixed static instance) — https://github.com/openwebwork/webwork-open-problem-library/blob/54e7db70ed308cab9c7eed8af1d2dba5a6adf7d4/OpenProblemLibrary/NAU/setStatistics/basicTerminology.pg",
+        "kind": "external",
+        "local_paths": [],
+        "external_urls": [
+          "https://github.com/openwebwork/webwork-open-problem-library/blob/54e7db70ed308cab9c7eed8af1d2dba5a6adf7d4/OpenProblemLibrary/NAU/setStatistics/basicTerminology.pg"
+        ],
+        "missing_paths": [],
+        "resolvable": true
+      },
+      "original": {
+        "question_hash": "2c07a366782749ee84863947e5a317bfe761eaaf62b6b9390edbd55359cefaff",
+        "answer_hash": "6f8e7ee62a7f8646ddf2d6ece4ce458526f1eb361f81fd853b77e9fb87c901ce",
+        "type": "综合题",
+        "difficulty": 2,
+        "keywords": [
+          "population",
+          "sample",
+          "parameter",
+          "statistic",
+          "sampling bias"
+        ],
+        "formula_refs": [],
+        "data_refs": [],
+        "review_status": "independently solved and reviewed"
+      },
+      "diagnostics": {
+        "question_language": "en",
+        "answer_language": "en",
+        "answer_present": true,
+        "source_resolvable": true,
+        "assets": [],
+        "format_findings": [],
+        "context_findings": [],
+        "detected_part_count": 5,
+        "grouping_status": "multi_part_candidate",
+        "previously_reviewed": true,
+        "issue_codes": [
+          "multi_part_requires_alignment_review"
+        ]
+      },
+      "workflow": {
+        "decision": "pending",
+        "english_status": "passed",
+        "source_recovery_status": "not_needed",
+        "grouping_review_status": "pending",
+        "independent_solution_status": "pending",
+        "verification_status": "pending",
+        "metadata_status": "pending",
+        "render_status": "pending",
+        "eligible_for_paper": false
+      },
+      "audit_notes": []
+    },
+    {
+      "id": "opl_nau_ch01_sampling_01",
+      "chapter": "Ch01",
+      "source": {
+        "raw": "WeBWorK Open Problem Library — NAU Statistics — sampling1.pg (two fixed scenarios) — https://github.com/openwebwork/webwork-open-problem-library/blob/54e7db70ed308cab9c7eed8af1d2dba5a6adf7d4/OpenProblemLibrary/NAU/setStatistics/sampling1.pg",
+        "kind": "external",
+        "local_paths": [],
+        "external_urls": [
+          "https://github.com/openwebwork/webwork-open-problem-library/blob/54e7db70ed308cab9c7eed8af1d2dba5a6adf7d4/OpenProblemLibrary/NAU/setStatistics/sampling1.pg"
+        ],
+        "missing_paths": [],
+        "resolvable": true
+      },
+      "original": {
+        "question_hash": "5fbeec8a0fee093aaa8f265397694ca455a13d97454443b00c9bc168641257b6",
+        "answer_hash": "932cee9a336a50d93accf59b74de97ac8694b3eadc263b8c2648292bb425e84e",
+        "type": "简答题",
+        "difficulty": 2,
+        "keywords": [
+          "representative sample",
+          "sampling bias",
+          "target population"
+        ],
+        "formula_refs": [],
+        "data_refs": [],
+        "review_status": "independently solved and reviewed"
+      },
+      "diagnostics": {
+        "question_language": "en",
+        "answer_language": "en",
+        "answer_present": true,
+        "source_resolvable": true,
+        "assets": [],
+        "format_findings": [],
+        "context_findings": [],
+        "detected_part_count": 2,
+        "grouping_status": "multi_part_candidate",
+        "previously_reviewed": true,
+        "issue_codes": [
+          "multi_part_requires_alignment_review"
+        ]
+      },
+      "workflow": {
+        "decision": "pending",
+        "english_status": "passed",
+        "source_recovery_status": "not_needed",
+        "grouping_review_status": "pending",
+        "independent_solution_status": "pending",
+        "verification_status": "pending",
+        "metadata_status": "pending",
+        "render_status": "pending",
+        "eligible_for_paper": false
+      },
+      "audit_notes": []
+    },
+    {
+      "id": "opl_nau_ch01_design_01",
+      "chapter": "Ch01",
+      "source": {
+        "raw": "WeBWorK Open Problem Library — NAU Statistics — sampling3.pg (four fixed scenarios) — https://github.com/openwebwork/webwork-open-problem-library/blob/54e7db70ed308cab9c7eed8af1d2dba5a6adf7d4/OpenProblemLibrary/NAU/setStatistics/sampling3.pg",
+        "kind": "external",
+        "local_paths": [],
+        "external_urls": [
+          "https://github.com/openwebwork/webwork-open-problem-library/blob/54e7db70ed308cab9c7eed8af1d2dba5a6adf7d4/OpenProblemLibrary/NAU/setStatistics/sampling3.pg"
+        ],
+        "missing_paths": [],
+        "resolvable": true
+      },
+      "original": {
+        "question_hash": "8c210892ffe5d7bf925119a786e57a4102cbfa800cb8e353d25d6d351d29eeff",
+        "answer_hash": "194fc75de2b1f07f27cb5b7e6fcbedbcbc90e33af21236639cabede4c427fdfe",
+        "type": "简答题",
+        "difficulty": 2,
+        "keywords": [
+          "observational study",
+          "controlled experiment",
+          "double-blind experiment"
+        ],
+        "formula_refs": [],
+        "data_refs": [],
+        "review_status": "independently solved and reviewed"
+      },
+      "diagnostics": {
+        "question_language": "en",
+        "answer_language": "en",
+        "answer_present": true,
+        "source_resolvable": true,
+        "assets": [],
+        "format_findings": [],
+        "context_findings": [],
+        "detected_part_count": 4,
+        "grouping_status": "multi_part_candidate",
+        "previously_reviewed": true,
+        "issue_codes": [
+          "multi_part_requires_alignment_review"
+        ]
+      },
+      "workflow": {
+        "decision": "pending",
+        "english_status": "passed",
+        "source_recovery_status": "not_needed",
+        "grouping_review_status": "pending",
+        "independent_solution_status": "pending",
+        "verification_status": "pending",
+        "metadata_status": "pending",
+        "render_status": "pending",
+        "eligible_for_paper": false
+      },
+      "audit_notes": []
+    },
+    {
+      "id": "opl_nau_ch01_population_01",
+      "chapter": "Ch01",
+      "source": {
+        "raw": "WeBWorK Open Problem Library — NAU Statistics — sampling2.pg (fixed static instance) — https://github.com/openwebwork/webwork-open-problem-library/blob/54e7db70ed308cab9c7eed8af1d2dba5a6adf7d4/OpenProblemLibrary/NAU/setStatistics/sampling2.pg",
+        "kind": "external",
+        "local_paths": [],
+        "external_urls": [
+          "https://github.com/openwebwork/webwork-open-problem-library/blob/54e7db70ed308cab9c7eed8af1d2dba5a6adf7d4/OpenProblemLibrary/NAU/setStatistics/sampling2.pg"
+        ],
+        "missing_paths": [],
+        "resolvable": true
+      },
+      "original": {
+        "question_hash": "1f619739a9fbfcfc016a7a893c657bb4d8357f8bc677c6a0bfc60595a1fa0376",
+        "answer_hash": "0c25eccbd3402e63c489410515122a176dd18a15335999c50364ab996a458a43",
+        "type": "综合题",
+        "difficulty": 1,
+        "keywords": [
+          "population",
+          "sample",
+          "attribute",
+          "sample proportion"
+        ],
+        "formula_refs": [],
+        "data_refs": [],
+        "review_status": "independently solved and reviewed"
+      },
+      "diagnostics": {
+        "question_language": "en",
+        "answer_language": "en",
+        "answer_present": true,
+        "source_resolvable": true,
+        "assets": [],
+        "format_findings": [],
+        "context_findings": [],
+        "detected_part_count": 4,
         "grouping_status": "multi_part_candidate",
         "previously_reviewed": true,
         "issue_codes": [
@@ -2826,6 +3050,221 @@
             "available": true
           }
         ],
+        "format_findings": [],
+        "context_findings": [],
+        "detected_part_count": 0,
+        "grouping_status": "atomic_candidate",
+        "previously_reviewed": true,
+        "issue_codes": []
+      },
+      "workflow": {
+        "decision": "pending",
+        "english_status": "passed",
+        "source_recovery_status": "not_needed",
+        "grouping_review_status": "pending",
+        "independent_solution_status": "pending",
+        "verification_status": "pending",
+        "metadata_status": "pending",
+        "render_status": "pending",
+        "eligible_for_paper": false
+      },
+      "audit_notes": []
+    },
+    {
+      "id": "opl_nau_ch02_center_01",
+      "chapter": "Ch02",
+      "source": {
+        "raw": "WeBWorK Open Problem Library — NAU Statistics — CenterMeasures.pg (fixed static instance) — https://github.com/openwebwork/webwork-open-problem-library/blob/54e7db70ed308cab9c7eed8af1d2dba5a6adf7d4/OpenProblemLibrary/NAU/setStatistics/CenterMeasures.pg",
+        "kind": "external",
+        "local_paths": [],
+        "external_urls": [
+          "https://github.com/openwebwork/webwork-open-problem-library/blob/54e7db70ed308cab9c7eed8af1d2dba5a6adf7d4/OpenProblemLibrary/NAU/setStatistics/CenterMeasures.pg"
+        ],
+        "missing_paths": [],
+        "resolvable": true
+      },
+      "original": {
+        "question_hash": "d4732c518ac612412959f30cb6e794a0f55bdb474e20d47fb318b56fb591b8f8",
+        "answer_hash": "e1b60016d37cf4e833aff9195735274613ed9a5ee94b33b0907a79cf46a9bc3e",
+        "type": "计算题",
+        "difficulty": 1,
+        "keywords": [
+          "mean",
+          "median",
+          "mode"
+        ],
+        "formula_refs": [],
+        "data_refs": [],
+        "review_status": "independently solved and reviewed"
+      },
+      "diagnostics": {
+        "question_language": "en",
+        "answer_language": "en",
+        "answer_present": true,
+        "source_resolvable": true,
+        "assets": [],
+        "format_findings": [],
+        "context_findings": [],
+        "detected_part_count": 0,
+        "grouping_status": "atomic_candidate",
+        "previously_reviewed": true,
+        "issue_codes": []
+      },
+      "workflow": {
+        "decision": "pending",
+        "english_status": "passed",
+        "source_recovery_status": "not_needed",
+        "grouping_review_status": "pending",
+        "independent_solution_status": "pending",
+        "verification_status": "pending",
+        "metadata_status": "pending",
+        "render_status": "pending",
+        "eligible_for_paper": false
+      },
+      "audit_notes": []
+    },
+    {
+      "id": "opl_nau_ch02_fivenum_01",
+      "chapter": "Ch02",
+      "source": {
+        "raw": "WeBWorK Open Problem Library — NAU Statistics — FiveNum1.pg (fixed static instance) — https://github.com/openwebwork/webwork-open-problem-library/blob/54e7db70ed308cab9c7eed8af1d2dba5a6adf7d4/OpenProblemLibrary/NAU/setStatistics/FiveNum1.pg",
+        "kind": "external",
+        "local_paths": [],
+        "external_urls": [
+          "https://github.com/openwebwork/webwork-open-problem-library/blob/54e7db70ed308cab9c7eed8af1d2dba5a6adf7d4/OpenProblemLibrary/NAU/setStatistics/FiveNum1.pg"
+        ],
+        "missing_paths": [],
+        "resolvable": true
+      },
+      "original": {
+        "question_hash": "17036564abc12b2950a8af458bfb8321fdcac05f035f94bc92c19d868187a389",
+        "answer_hash": "97ae921e033e21e5e5936fb7c4c5d15b6cad52e4748b5df5fb53a2a1bd23f521",
+        "type": "计算题",
+        "difficulty": 2,
+        "keywords": [
+          "five-number summary",
+          "quartiles",
+          "median"
+        ],
+        "formula_refs": [],
+        "data_refs": [],
+        "review_status": "independently solved and reviewed"
+      },
+      "diagnostics": {
+        "question_language": "en",
+        "answer_language": "en",
+        "answer_present": true,
+        "source_resolvable": true,
+        "assets": [],
+        "format_findings": [],
+        "context_findings": [],
+        "detected_part_count": 0,
+        "grouping_status": "atomic_candidate",
+        "previously_reviewed": true,
+        "issue_codes": []
+      },
+      "workflow": {
+        "decision": "pending",
+        "english_status": "passed",
+        "source_recovery_status": "not_needed",
+        "grouping_review_status": "pending",
+        "independent_solution_status": "pending",
+        "verification_status": "pending",
+        "metadata_status": "pending",
+        "render_status": "pending",
+        "eligible_for_paper": false
+      },
+      "audit_notes": []
+    },
+    {
+      "id": "opl_nau_ch02_sd_01",
+      "chapter": "Ch02",
+      "source": {
+        "raw": "WeBWorK Open Problem Library — NAU Statistics — Std_Dev_1.pg (fixed static instance) — https://github.com/openwebwork/webwork-open-problem-library/blob/54e7db70ed308cab9c7eed8af1d2dba5a6adf7d4/OpenProblemLibrary/NAU/setStatistics/Std_Dev_1.pg",
+        "kind": "external",
+        "local_paths": [],
+        "external_urls": [
+          "https://github.com/openwebwork/webwork-open-problem-library/blob/54e7db70ed308cab9c7eed8af1d2dba5a6adf7d4/OpenProblemLibrary/NAU/setStatistics/Std_Dev_1.pg"
+        ],
+        "missing_paths": [],
+        "resolvable": true
+      },
+      "original": {
+        "question_hash": "6d9289511f19c4dc1c9dde353eaf8ffcd93244c422edbc39f7f4758230e31a37",
+        "answer_hash": "b963fd193e8f6f1389b39745e563b179a6e0a82a9deb3c37ade82c0022faba23",
+        "type": "计算题",
+        "difficulty": 2,
+        "keywords": [
+          "sample mean",
+          "sample standard deviation"
+        ],
+        "formula_refs": [],
+        "data_refs": [],
+        "review_status": "independently solved and reviewed"
+      },
+      "diagnostics": {
+        "question_language": "en",
+        "answer_language": "en",
+        "answer_present": true,
+        "source_resolvable": true,
+        "assets": [],
+        "format_findings": [
+          "legacy_superscript"
+        ],
+        "context_findings": [],
+        "detected_part_count": 0,
+        "grouping_status": "atomic_candidate",
+        "previously_reviewed": true,
+        "issue_codes": [
+          "legacy_superscript"
+        ]
+      },
+      "workflow": {
+        "decision": "pending",
+        "english_status": "passed",
+        "source_recovery_status": "not_needed",
+        "grouping_review_status": "pending",
+        "independent_solution_status": "pending",
+        "verification_status": "pending",
+        "metadata_status": "pending",
+        "render_status": "pending",
+        "eligible_for_paper": false
+      },
+      "audit_notes": []
+    },
+    {
+      "id": "opl_nau_ch02_boxplot_01",
+      "chapter": "Ch02",
+      "source": {
+        "raw": "WeBWorK Open Problem Library — NAU Statistics — BoxPlotPercentBetween.pg (converted to text) — https://github.com/openwebwork/webwork-open-problem-library/blob/54e7db70ed308cab9c7eed8af1d2dba5a6adf7d4/OpenProblemLibrary/NAU/setStatistics/BoxPlotPercentBetween.pg",
+        "kind": "external",
+        "local_paths": [],
+        "external_urls": [
+          "https://github.com/openwebwork/webwork-open-problem-library/blob/54e7db70ed308cab9c7eed8af1d2dba5a6adf7d4/OpenProblemLibrary/NAU/setStatistics/BoxPlotPercentBetween.pg"
+        ],
+        "missing_paths": [],
+        "resolvable": true
+      },
+      "original": {
+        "question_hash": "4125ac13ce5fe4905e145ea3c8c04ed69417486d85dcca8bf12289b0ddbbbfc6",
+        "answer_hash": "458d859e690f7612017e0a7d7c10b04fc515e4902893058778c428414141174e",
+        "type": "简答题",
+        "difficulty": 1,
+        "keywords": [
+          "boxplot",
+          "quartiles",
+          "percent of observations"
+        ],
+        "formula_refs": [],
+        "data_refs": [],
+        "review_status": "independently solved and reviewed"
+      },
+      "diagnostics": {
+        "question_language": "en",
+        "answer_language": "en",
+        "answer_present": true,
+        "source_resolvable": true,
+        "assets": [],
         "format_findings": [],
         "context_findings": [],
         "detected_part_count": 0,
@@ -6221,6 +6660,115 @@
       "audit_notes": []
     },
     {
+      "id": "opl_nau_ch04_samplespace_01",
+      "chapter": "Ch04",
+      "source": {
+        "raw": "WeBWorK Open Problem Library — NAU Statistics — SampleSpace.pg (fixed static instance) — https://github.com/openwebwork/webwork-open-problem-library/blob/54e7db70ed308cab9c7eed8af1d2dba5a6adf7d4/OpenProblemLibrary/NAU/setStatistics/SampleSpace.pg",
+        "kind": "external",
+        "local_paths": [],
+        "external_urls": [
+          "https://github.com/openwebwork/webwork-open-problem-library/blob/54e7db70ed308cab9c7eed8af1d2dba5a6adf7d4/OpenProblemLibrary/NAU/setStatistics/SampleSpace.pg"
+        ],
+        "missing_paths": [],
+        "resolvable": true
+      },
+      "original": {
+        "question_hash": "848a33d273b563630bced9132a95ba25b950443fe8aeee40e15789241a82c1fb",
+        "answer_hash": "6dbc9df3479686e4f699853d9ceacce7f1aa003fdff94fc2659466f4f8a25abd",
+        "type": "计算题",
+        "difficulty": 2,
+        "keywords": [
+          "sample space",
+          "counting",
+          "coin toss"
+        ],
+        "formula_refs": [],
+        "data_refs": [],
+        "review_status": "independently solved and reviewed"
+      },
+      "diagnostics": {
+        "question_language": "en",
+        "answer_language": "en",
+        "answer_present": true,
+        "source_resolvable": true,
+        "assets": [],
+        "format_findings": [],
+        "context_findings": [],
+        "detected_part_count": 3,
+        "grouping_status": "multi_part_candidate",
+        "previously_reviewed": true,
+        "issue_codes": [
+          "multi_part_requires_alignment_review"
+        ]
+      },
+      "workflow": {
+        "decision": "pending",
+        "english_status": "passed",
+        "source_recovery_status": "not_needed",
+        "grouping_review_status": "pending",
+        "independent_solution_status": "pending",
+        "verification_status": "pending",
+        "metadata_status": "pending",
+        "render_status": "pending",
+        "eligible_for_paper": false
+      },
+      "audit_notes": []
+    },
+    {
+      "id": "opl_nau_ch04_samplespace_02",
+      "chapter": "Ch04",
+      "source": {
+        "raw": "WeBWorK Open Problem Library — NAU Statistics — SampleSpace2.pg (fixed static instance) — https://github.com/openwebwork/webwork-open-problem-library/blob/54e7db70ed308cab9c7eed8af1d2dba5a6adf7d4/OpenProblemLibrary/NAU/setStatistics/SampleSpace2.pg",
+        "kind": "external",
+        "local_paths": [],
+        "external_urls": [
+          "https://github.com/openwebwork/webwork-open-problem-library/blob/54e7db70ed308cab9c7eed8af1d2dba5a6adf7d4/OpenProblemLibrary/NAU/setStatistics/SampleSpace2.pg"
+        ],
+        "missing_paths": [],
+        "resolvable": true
+      },
+      "original": {
+        "question_hash": "6bd0fe83e7c396ab80b2ee9571523c59f18df59c2e7a46e4a0c805418faf4ab7",
+        "answer_hash": "c1228c981cff7eda84ae8a356217b8d29d4f3ce22bb2942da7165361365b985d",
+        "type": "计算题",
+        "difficulty": 2,
+        "keywords": [
+          "sample space",
+          "multiplication principle"
+        ],
+        "formula_refs": [],
+        "data_refs": [],
+        "review_status": "independently solved and reviewed"
+      },
+      "diagnostics": {
+        "question_language": "en",
+        "answer_language": "en",
+        "answer_present": true,
+        "source_resolvable": true,
+        "assets": [],
+        "format_findings": [],
+        "context_findings": [],
+        "detected_part_count": 2,
+        "grouping_status": "multi_part_candidate",
+        "previously_reviewed": true,
+        "issue_codes": [
+          "multi_part_requires_alignment_review"
+        ]
+      },
+      "workflow": {
+        "decision": "pending",
+        "english_status": "passed",
+        "source_recovery_status": "not_needed",
+        "grouping_review_status": "pending",
+        "independent_solution_status": "pending",
+        "verification_status": "pending",
+        "metadata_status": "pending",
+        "render_status": "pending",
+        "eligible_for_paper": false
+      },
+      "audit_notes": []
+    },
+    {
       "id": "ch05_q01",
       "chapter": "Ch05",
       "source": {
@@ -7458,6 +8006,112 @@
         "grouping_status": "atomic_candidate",
         "previously_reviewed": true,
         "issue_codes": []
+      },
+      "workflow": {
+        "decision": "pending",
+        "english_status": "passed",
+        "source_recovery_status": "not_needed",
+        "grouping_review_status": "pending",
+        "independent_solution_status": "pending",
+        "verification_status": "pending",
+        "metadata_status": "pending",
+        "render_status": "pending",
+        "eligible_for_paper": false
+      },
+      "audit_notes": []
+    },
+    {
+      "id": "opl_nau_ch05_binomial_01",
+      "chapter": "Ch05",
+      "source": {
+        "raw": "WeBWorK Open Problem Library — NAU Statistics — binostat1.pg (fixed static instance) — https://github.com/openwebwork/webwork-open-problem-library/blob/54e7db70ed308cab9c7eed8af1d2dba5a6adf7d4/OpenProblemLibrary/NAU/setStatistics/binostat1.pg",
+        "kind": "external",
+        "local_paths": [],
+        "external_urls": [
+          "https://github.com/openwebwork/webwork-open-problem-library/blob/54e7db70ed308cab9c7eed8af1d2dba5a6adf7d4/OpenProblemLibrary/NAU/setStatistics/binostat1.pg"
+        ],
+        "missing_paths": [],
+        "resolvable": true
+      },
+      "original": {
+        "question_hash": "489f62efd6ce98a91647e3bc571ee4f3ff5db22ca15e58e5b51f2237ab893d36",
+        "answer_hash": "e86517e7fa0479ad051bd8328c11b0821a2aa7fbcdd815099cfcb3e39db3b914",
+        "type": "计算题",
+        "difficulty": 3,
+        "keywords": [
+          "binomial distribution",
+          "upper-tail probability"
+        ],
+        "formula_refs": [],
+        "data_refs": [],
+        "review_status": "independently solved and reviewed"
+      },
+      "diagnostics": {
+        "question_language": "en",
+        "answer_language": "en",
+        "answer_present": true,
+        "source_resolvable": true,
+        "assets": [],
+        "format_findings": [],
+        "context_findings": [],
+        "detected_part_count": 0,
+        "grouping_status": "atomic_candidate",
+        "previously_reviewed": true,
+        "issue_codes": []
+      },
+      "workflow": {
+        "decision": "pending",
+        "english_status": "passed",
+        "source_recovery_status": "not_needed",
+        "grouping_review_status": "pending",
+        "independent_solution_status": "pending",
+        "verification_status": "pending",
+        "metadata_status": "pending",
+        "render_status": "pending",
+        "eligible_for_paper": false
+      },
+      "audit_notes": []
+    },
+    {
+      "id": "opl_nau_ch05_binomial_02",
+      "chapter": "Ch05",
+      "source": {
+        "raw": "WeBWorK Open Problem Library — NAU Statistics — binostat1.pg (second fixed static instance) — https://github.com/openwebwork/webwork-open-problem-library/blob/54e7db70ed308cab9c7eed8af1d2dba5a6adf7d4/OpenProblemLibrary/NAU/setStatistics/binostat1.pg",
+        "kind": "external",
+        "local_paths": [],
+        "external_urls": [
+          "https://github.com/openwebwork/webwork-open-problem-library/blob/54e7db70ed308cab9c7eed8af1d2dba5a6adf7d4/OpenProblemLibrary/NAU/setStatistics/binostat1.pg"
+        ],
+        "missing_paths": [],
+        "resolvable": true
+      },
+      "original": {
+        "question_hash": "7e9e0822de8c8bf4b785ebf70ae3730ede68ed15714e778e3f868ffac510538e",
+        "answer_hash": "119db1f670408702ef76213a38b2d00541f72dbf58c6b33662416f9418261786",
+        "type": "计算题",
+        "difficulty": 2,
+        "keywords": [
+          "binomial distribution",
+          "complement rule"
+        ],
+        "formula_refs": [],
+        "data_refs": [],
+        "review_status": "independently solved and reviewed"
+      },
+      "diagnostics": {
+        "question_language": "en",
+        "answer_language": "en",
+        "answer_present": true,
+        "source_resolvable": true,
+        "assets": [],
+        "format_findings": [],
+        "context_findings": [],
+        "detected_part_count": 2,
+        "grouping_status": "multi_part_candidate",
+        "previously_reviewed": true,
+        "issue_codes": [
+          "multi_part_requires_alignment_review"
+        ]
       },
       "workflow": {
         "decision": "pending",
@@ -9181,6 +9835,112 @@
       "audit_notes": []
     },
     {
+      "id": "opl_nau_ch06_normal_01",
+      "chapter": "Ch06",
+      "source": {
+        "raw": "WeBWorK Open Problem Library — NAU Statistics — z-scores1.pg (fixed static instance) — https://github.com/openwebwork/webwork-open-problem-library/blob/54e7db70ed308cab9c7eed8af1d2dba5a6adf7d4/OpenProblemLibrary/NAU/setStatistics/z-scores1.pg",
+        "kind": "external",
+        "local_paths": [],
+        "external_urls": [
+          "https://github.com/openwebwork/webwork-open-problem-library/blob/54e7db70ed308cab9c7eed8af1d2dba5a6adf7d4/OpenProblemLibrary/NAU/setStatistics/z-scores1.pg"
+        ],
+        "missing_paths": [],
+        "resolvable": true
+      },
+      "original": {
+        "question_hash": "55c7cfdef6390762fdcfaa076341e3fb9a5ee649095f3cb1fc8d2d2f03cea5ad",
+        "answer_hash": "d2708bafcd245b9ceac882d9e85cb53a16beaab1fd1660fb2efced723029a5ee",
+        "type": "计算题",
+        "difficulty": 2,
+        "keywords": [
+          "z-score",
+          "normal distribution",
+          "percentile"
+        ],
+        "formula_refs": [],
+        "data_refs": [],
+        "review_status": "independently solved and reviewed"
+      },
+      "diagnostics": {
+        "question_language": "en",
+        "answer_language": "en",
+        "answer_present": true,
+        "source_resolvable": true,
+        "assets": [],
+        "format_findings": [],
+        "context_findings": [],
+        "detected_part_count": 0,
+        "grouping_status": "atomic_candidate",
+        "previously_reviewed": true,
+        "issue_codes": []
+      },
+      "workflow": {
+        "decision": "pending",
+        "english_status": "passed",
+        "source_recovery_status": "not_needed",
+        "grouping_review_status": "pending",
+        "independent_solution_status": "pending",
+        "verification_status": "pending",
+        "metadata_status": "pending",
+        "render_status": "pending",
+        "eligible_for_paper": false
+      },
+      "audit_notes": []
+    },
+    {
+      "id": "opl_nau_ch06_normal_02",
+      "chapter": "Ch06",
+      "source": {
+        "raw": "WeBWorK Open Problem Library — NAU Statistics — normal_dist2.pg (converted from graph to explicit bounds) — https://github.com/openwebwork/webwork-open-problem-library/blob/54e7db70ed308cab9c7eed8af1d2dba5a6adf7d4/OpenProblemLibrary/NAU/setStatistics/normal_dist2.pg",
+        "kind": "external",
+        "local_paths": [],
+        "external_urls": [
+          "https://github.com/openwebwork/webwork-open-problem-library/blob/54e7db70ed308cab9c7eed8af1d2dba5a6adf7d4/OpenProblemLibrary/NAU/setStatistics/normal_dist2.pg"
+        ],
+        "missing_paths": [],
+        "resolvable": true
+      },
+      "original": {
+        "question_hash": "e768a81a7093df10202fb8d1e083952240479b82efe4554dd2656ee0540c32a5",
+        "answer_hash": "4e651ca32f720f55be0b4dab848736032c68673943b9f5a091bcdda771f7e596",
+        "type": "计算题",
+        "difficulty": 2,
+        "keywords": [
+          "normal distribution",
+          "standardization",
+          "interval probability"
+        ],
+        "formula_refs": [],
+        "data_refs": [],
+        "review_status": "independently solved and reviewed"
+      },
+      "diagnostics": {
+        "question_language": "en",
+        "answer_language": "en",
+        "answer_present": true,
+        "source_resolvable": true,
+        "assets": [],
+        "format_findings": [],
+        "context_findings": [],
+        "detected_part_count": 0,
+        "grouping_status": "atomic_candidate",
+        "previously_reviewed": true,
+        "issue_codes": []
+      },
+      "workflow": {
+        "decision": "pending",
+        "english_status": "passed",
+        "source_recovery_status": "not_needed",
+        "grouping_review_status": "pending",
+        "independent_solution_status": "pending",
+        "verification_status": "pending",
+        "metadata_status": "pending",
+        "render_status": "pending",
+        "eligible_for_paper": false
+      },
+      "audit_notes": []
+    },
+    {
       "id": "ch07_q02",
       "chapter": "Ch07",
       "source": {
@@ -10486,6 +11246,114 @@
         "format_findings": [],
         "context_findings": [],
         "detected_part_count": 3,
+        "grouping_status": "multi_part_candidate",
+        "previously_reviewed": true,
+        "issue_codes": [
+          "multi_part_requires_alignment_review"
+        ]
+      },
+      "workflow": {
+        "decision": "pending",
+        "english_status": "passed",
+        "source_recovery_status": "not_needed",
+        "grouping_review_status": "pending",
+        "independent_solution_status": "pending",
+        "verification_status": "pending",
+        "metadata_status": "pending",
+        "render_status": "pending",
+        "eligible_for_paper": false
+      },
+      "audit_notes": []
+    },
+    {
+      "id": "opl_nau_ch07_clt_01",
+      "chapter": "Ch07",
+      "source": {
+        "raw": "WeBWorK Open Problem Library — NAU Statistics — central_limit_theorem1.pg (fixed static instance) — https://github.com/openwebwork/webwork-open-problem-library/blob/54e7db70ed308cab9c7eed8af1d2dba5a6adf7d4/OpenProblemLibrary/NAU/setStatistics/central_limit_theorem1.pg",
+        "kind": "external",
+        "local_paths": [],
+        "external_urls": [
+          "https://github.com/openwebwork/webwork-open-problem-library/blob/54e7db70ed308cab9c7eed8af1d2dba5a6adf7d4/OpenProblemLibrary/NAU/setStatistics/central_limit_theorem1.pg"
+        ],
+        "missing_paths": [],
+        "resolvable": true
+      },
+      "original": {
+        "question_hash": "0ff9fb2a3b47e28ed3429fce748a04f1542905356ed3ca2267321f70b2667aae",
+        "answer_hash": "352e528411cc43fa5aad418e7023f5d6fe6ca12739d50ed822bbbabc6cb3828d",
+        "type": "计算题",
+        "difficulty": 2,
+        "keywords": [
+          "standard error",
+          "sample proportion",
+          "sample size"
+        ],
+        "formula_refs": [],
+        "data_refs": [],
+        "review_status": "independently solved and reviewed"
+      },
+      "diagnostics": {
+        "question_language": "en",
+        "answer_language": "en",
+        "answer_present": true,
+        "source_resolvable": true,
+        "assets": [],
+        "format_findings": [],
+        "context_findings": [],
+        "detected_part_count": 0,
+        "grouping_status": "atomic_candidate",
+        "previously_reviewed": true,
+        "issue_codes": []
+      },
+      "workflow": {
+        "decision": "pending",
+        "english_status": "passed",
+        "source_recovery_status": "not_needed",
+        "grouping_review_status": "pending",
+        "independent_solution_status": "pending",
+        "verification_status": "pending",
+        "metadata_status": "pending",
+        "render_status": "pending",
+        "eligible_for_paper": false
+      },
+      "audit_notes": []
+    },
+    {
+      "id": "opl_nau_ch07_clt_02",
+      "chapter": "Ch07",
+      "source": {
+        "raw": "WeBWorK Open Problem Library — NAU Statistics — central_limit_theorem3.pg (extended fixed static instance) — https://github.com/openwebwork/webwork-open-problem-library/blob/54e7db70ed308cab9c7eed8af1d2dba5a6adf7d4/OpenProblemLibrary/NAU/setStatistics/central_limit_theorem3.pg",
+        "kind": "external",
+        "local_paths": [],
+        "external_urls": [
+          "https://github.com/openwebwork/webwork-open-problem-library/blob/54e7db70ed308cab9c7eed8af1d2dba5a6adf7d4/OpenProblemLibrary/NAU/setStatistics/central_limit_theorem3.pg"
+        ],
+        "missing_paths": [],
+        "resolvable": true
+      },
+      "original": {
+        "question_hash": "51b6fba3a44b7cb35d3170b2b91a707188a70850eec808d213e390f5e7ea60f5",
+        "answer_hash": "3164478996c98db297d13c84d21cfa52fc1769046c4ed8adf78cda6cee66d6ea",
+        "type": "计算题",
+        "difficulty": 2,
+        "keywords": [
+          "sampling distribution",
+          "sample mean",
+          "standard error"
+        ],
+        "formula_refs": [],
+        "data_refs": [],
+        "review_status": "independently solved and reviewed"
+      },
+      "diagnostics": {
+        "question_language": "en",
+        "answer_language": "en",
+        "answer_present": true,
+        "source_resolvable": true,
+        "assets": [],
+        "format_findings": [],
+        "context_findings": [],
+        "detected_part_count": 2,
         "grouping_status": "multi_part_candidate",
         "previously_reviewed": true,
         "issue_codes": [
@@ -12067,6 +12935,112 @@
           "confidence interval",
           "sample size",
           "population proportion"
+        ],
+        "formula_refs": [],
+        "data_refs": [],
+        "review_status": "independently solved and reviewed"
+      },
+      "diagnostics": {
+        "question_language": "en",
+        "answer_language": "en",
+        "answer_present": true,
+        "source_resolvable": true,
+        "assets": [],
+        "format_findings": [],
+        "context_findings": [],
+        "detected_part_count": 0,
+        "grouping_status": "atomic_candidate",
+        "previously_reviewed": true,
+        "issue_codes": []
+      },
+      "workflow": {
+        "decision": "pending",
+        "english_status": "passed",
+        "source_recovery_status": "not_needed",
+        "grouping_review_status": "pending",
+        "independent_solution_status": "pending",
+        "verification_status": "pending",
+        "metadata_status": "pending",
+        "render_status": "pending",
+        "eligible_for_paper": false
+      },
+      "audit_notes": []
+    },
+    {
+      "id": "opl_nau_ch08_ci_prop_01",
+      "chapter": "Ch08",
+      "source": {
+        "raw": "WeBWorK Open Problem Library — NAU Statistics — confidence_interval1.pg (fixed static instance) — https://github.com/openwebwork/webwork-open-problem-library/blob/54e7db70ed308cab9c7eed8af1d2dba5a6adf7d4/OpenProblemLibrary/NAU/setStatistics/confidence_interval1.pg",
+        "kind": "external",
+        "local_paths": [],
+        "external_urls": [
+          "https://github.com/openwebwork/webwork-open-problem-library/blob/54e7db70ed308cab9c7eed8af1d2dba5a6adf7d4/OpenProblemLibrary/NAU/setStatistics/confidence_interval1.pg"
+        ],
+        "missing_paths": [],
+        "resolvable": true
+      },
+      "original": {
+        "question_hash": "95569ca6e15cf81efd7a614d3be5482cdfc78db000c8a000dbed908da3c1e23e",
+        "answer_hash": "29f0eb55cea6260dfa9dff2fff40b37fe36d6fb99ae420ce35fe4c1aa3f0aa34",
+        "type": "计算题",
+        "difficulty": 3,
+        "keywords": [
+          "confidence interval",
+          "population proportion",
+          "margin of error"
+        ],
+        "formula_refs": [],
+        "data_refs": [],
+        "review_status": "independently solved and reviewed"
+      },
+      "diagnostics": {
+        "question_language": "en",
+        "answer_language": "en",
+        "answer_present": true,
+        "source_resolvable": true,
+        "assets": [],
+        "format_findings": [],
+        "context_findings": [],
+        "detected_part_count": 0,
+        "grouping_status": "atomic_candidate",
+        "previously_reviewed": true,
+        "issue_codes": []
+      },
+      "workflow": {
+        "decision": "pending",
+        "english_status": "passed",
+        "source_recovery_status": "not_needed",
+        "grouping_review_status": "pending",
+        "independent_solution_status": "pending",
+        "verification_status": "pending",
+        "metadata_status": "pending",
+        "render_status": "pending",
+        "eligible_for_paper": false
+      },
+      "audit_notes": []
+    },
+    {
+      "id": "opl_nau_ch08_ci_mean_01",
+      "chapter": "Ch08",
+      "source": {
+        "raw": "WeBWorK Open Problem Library — NAU Statistics — confidence_interval2.pg (fixed static instance with exact z critical value) — https://github.com/openwebwork/webwork-open-problem-library/blob/54e7db70ed308cab9c7eed8af1d2dba5a6adf7d4/OpenProblemLibrary/NAU/setStatistics/confidence_interval2.pg",
+        "kind": "external",
+        "local_paths": [],
+        "external_urls": [
+          "https://github.com/openwebwork/webwork-open-problem-library/blob/54e7db70ed308cab9c7eed8af1d2dba5a6adf7d4/OpenProblemLibrary/NAU/setStatistics/confidence_interval2.pg"
+        ],
+        "missing_paths": [],
+        "resolvable": true
+      },
+      "original": {
+        "question_hash": "adad6818cc9ce7698c7b539018422d091aef0a5aff4a29569ea88fac0a36fc01",
+        "answer_hash": "6b76a61c9bcf9d915ec99ae2168feb5d9506ef0dd88e2863fc4e5d5a06455e11",
+        "type": "计算题",
+        "difficulty": 2,
+        "keywords": [
+          "confidence interval",
+          "population mean",
+          "known standard deviation"
         ],
         "formula_refs": [],
         "data_refs": [],
@@ -14604,6 +15578,114 @@
         "format_findings": [],
         "context_findings": [],
         "detected_part_count": 2,
+        "grouping_status": "multi_part_candidate",
+        "previously_reviewed": true,
+        "issue_codes": [
+          "multi_part_requires_alignment_review"
+        ]
+      },
+      "workflow": {
+        "decision": "pending",
+        "english_status": "passed",
+        "source_recovery_status": "not_needed",
+        "grouping_review_status": "pending",
+        "independent_solution_status": "pending",
+        "verification_status": "pending",
+        "metadata_status": "pending",
+        "render_status": "pending",
+        "eligible_for_paper": false
+      },
+      "audit_notes": []
+    },
+    {
+      "id": "opl_nau_ch13_regression_01",
+      "chapter": "Ch13",
+      "source": {
+        "raw": "WeBWorK Open Problem Library — NAU Statistics — linear_regression1.pg (fixed static instance) — https://github.com/openwebwork/webwork-open-problem-library/blob/54e7db70ed308cab9c7eed8af1d2dba5a6adf7d4/OpenProblemLibrary/NAU/setStatistics/linear_regression1.pg",
+        "kind": "external",
+        "local_paths": [],
+        "external_urls": [
+          "https://github.com/openwebwork/webwork-open-problem-library/blob/54e7db70ed308cab9c7eed8af1d2dba5a6adf7d4/OpenProblemLibrary/NAU/setStatistics/linear_regression1.pg"
+        ],
+        "missing_paths": [],
+        "resolvable": true
+      },
+      "original": {
+        "question_hash": "1ba83167d6b57b1d38945d44abf6a5aa427116bbed47ed53f1fd6204143a3dd0",
+        "answer_hash": "ed9170cf75d6763895599bac4f31a6b0375e247e2c19429c2e4134de45d0b522",
+        "type": "计算题",
+        "difficulty": 1,
+        "keywords": [
+          "linear regression",
+          "prediction",
+          "regression equation"
+        ],
+        "formula_refs": [],
+        "data_refs": [],
+        "review_status": "independently solved and reviewed"
+      },
+      "diagnostics": {
+        "question_language": "en",
+        "answer_language": "en",
+        "answer_present": true,
+        "source_resolvable": true,
+        "assets": [],
+        "format_findings": [],
+        "context_findings": [],
+        "detected_part_count": 0,
+        "grouping_status": "atomic_candidate",
+        "previously_reviewed": true,
+        "issue_codes": []
+      },
+      "workflow": {
+        "decision": "pending",
+        "english_status": "passed",
+        "source_recovery_status": "not_needed",
+        "grouping_review_status": "pending",
+        "independent_solution_status": "pending",
+        "verification_status": "pending",
+        "metadata_status": "pending",
+        "render_status": "pending",
+        "eligible_for_paper": false
+      },
+      "audit_notes": []
+    },
+    {
+      "id": "opl_nau_ch13_regression_02",
+      "chapter": "Ch13",
+      "source": {
+        "raw": "WeBWorK Open Problem Library — NAU Statistics — linear_regression2.pg (fixed static instance) — https://github.com/openwebwork/webwork-open-problem-library/blob/54e7db70ed308cab9c7eed8af1d2dba5a6adf7d4/OpenProblemLibrary/NAU/setStatistics/linear_regression2.pg",
+        "kind": "external",
+        "local_paths": [],
+        "external_urls": [
+          "https://github.com/openwebwork/webwork-open-problem-library/blob/54e7db70ed308cab9c7eed8af1d2dba5a6adf7d4/OpenProblemLibrary/NAU/setStatistics/linear_regression2.pg"
+        ],
+        "missing_paths": [],
+        "resolvable": true
+      },
+      "original": {
+        "question_hash": "898516fcb9d25cf72320a16b632dd55d6cf43151a3450eaa1e213e39482f91b3",
+        "answer_hash": "e799486c2363d2e47054d4052c62461cbea92e2c6b5a5b351b24dcfbd7b05055",
+        "type": "计算题",
+        "difficulty": 3,
+        "keywords": [
+          "least-squares regression",
+          "correlation",
+          "prediction"
+        ],
+        "formula_refs": [],
+        "data_refs": [],
+        "review_status": "independently solved and reviewed"
+      },
+      "diagnostics": {
+        "question_language": "en",
+        "answer_language": "en",
+        "answer_present": true,
+        "source_resolvable": true,
+        "assets": [],
+        "format_findings": [],
+        "context_findings": [],
+        "detected_part_count": 3,
         "grouping_status": "multi_part_candidate",
         "previously_reviewed": true,
         "issue_codes": [

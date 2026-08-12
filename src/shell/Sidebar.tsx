@@ -2,9 +2,8 @@ import { useLanguage, setLanguage, getPlatformCopy, getVisualizerLabel } from "@
 import { apps, type AppRecord } from "../../scripts/apps";
 
 const GROUP_ORDER: AppRecord["group"][] = [
-  "Core Visualizers",
-  "WALS Simulation",
-  "WALS MES",
+  "Statistical Foundations",
+  "Statistical Simulation",
 ];
 
 interface SidebarProps {
@@ -88,6 +87,7 @@ export function Sidebar({ activeId, onNavigate }: SidebarProps) {
 
 export function LanguageTabs() {
   const lang = useLanguage();
+  const copy = getPlatformCopy(lang);
 
   const tabs: Array<{ language: "zh" | "en"; label: string }> = [
     { language: "zh", label: "中文" },
@@ -95,7 +95,7 @@ export function LanguageTabs() {
   ];
 
   return (
-    <div className="platform-language-tabs" role="tablist" aria-label="Language">
+    <div className="platform-language-tabs" role="group" aria-label={copy.languageLabel}>
       {tabs.map(({ language, label }) => (
         <button
           key={language}
@@ -103,8 +103,7 @@ export function LanguageTabs() {
           type="button"
           data-language={language}
           data-active={lang === language}
-          role="tab"
-          aria-selected={lang === language}
+          aria-pressed={lang === language}
           onClick={() => setLanguage(language)}
         >
           {label}

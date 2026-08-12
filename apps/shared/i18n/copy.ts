@@ -15,10 +15,15 @@ export const platformCopy = {
     tipBody: "用交互式可视化工具建立统计直觉与推断信心。",
     documentSuffix: "统计学习可视化平台",
     resizeLabel: "调整左侧目录和模块内容宽度",
+    homeLabel: "返回主界面",
+    loadingLabel: "正在加载模块…",
+    languageLabel: "界面语言",
     groups: {
       "Core Visualizers": "核心可视化",
       "WALS Simulation": "模拟模块",
       "WALS MES": "方法模块",
+      "Statistical Foundations": "统计基本原理",
+      "Statistical Simulation": "统计模拟",
     },
   },
   en: {
@@ -29,10 +34,15 @@ export const platformCopy = {
     tipBody: "Interactive visual tools to build statistical intuition and confidence.",
     documentSuffix: "Statistics Learning Visualization Platform",
     resizeLabel: "Resize sidebar and module content",
+    homeLabel: "Back to home",
+    loadingLabel: "Loading module…",
+    languageLabel: "Interface language",
     groups: {
       "Core Visualizers": "Core Visualizers",
       "WALS Simulation": "Simulation",
       "WALS MES": "Methods",
+      "Statistical Foundations": "Statistical Foundations",
+      "Statistical Simulation": "Statistical Simulation",
     },
   },
 } as const;
@@ -40,36 +50,36 @@ export const platformCopy = {
 // 各 app 的导航标签 [label, pageTitle]
 export const visualizerLabels: Record<string, Record<Language, [string, string]>> = {
   "confidence-interval": {
-    zh: ["置信区间", "置信区间可视化"],
-    en: ["Confidence Interval", "Confidence Interval Visualizer"],
+    zh: ["参数估计", "置信区间估计"],
+    en: ["Estimation", "Confidence Interval Estimation"],
   },
   "type-error": {
-    zh: ["一类/二类错误", "一类/二类错误可视化"],
-    en: ["Type I / II Error", "Type I / II Error Visualizer"],
+    zh: ["假设检验", "一类/二类错误可视化"],
+    en: ["Hypothesis Testing", "Type I / II Error Visualizer"],
   },
   regression: {
     zh: ["回归分析", "回归可视化"],
     en: ["Regression", "Regression Visualizer"],
   },
   "simulation-introduction": {
-    zh: ["模拟导论", "模拟导论"],
-    en: ["Simulation Introduction", "Simulation Introduction"],
+    zh: ["蒙特卡洛", "蒙特卡洛模拟导论"],
+    en: ["Monte Carlo", "Monte Carlo Simulation"],
   },
   "simulation-random-variable": {
-    zh: ["随机变量", "随机变量生成"],
-    en: ["Random Variables", "Random Variable Generation"],
+    zh: ["抽样", "随机样本生成"],
+    en: ["Sampling", "Random Sample Generation"],
   },
   "simulation-clt": {
     zh: ["中心极限定理", "中心极限定理"],
-    en: ["Central Limit Theorem", "Central Limit Theorem"],
+    en: ["CLT", "Central Limit Theorem"],
   },
   "simulation-variance-reduction": {
-    zh: ["方差缩减", "蒙特卡洛方差缩减"],
-    en: ["Variance Reduction", "Monte Carlo Variance Reduction"],
+    zh: ["重要性抽样", "蒙特卡洛方差缩减"],
+    en: ["Importance Sampling", "Monte Carlo Variance Reduction"],
   },
   "simulation-resampling": {
-    zh: ["重抽样", "重抽样方法"],
-    en: ["Resampling", "Resampling Methods"],
+    zh: ["自助法", "自助法与重抽样"],
+    en: ["Bootstrap", "Bootstrap and Resampling"],
   },
   "simulation-mcmc": {
     zh: ["MCMC", "马尔可夫链蒙特卡洛"],
@@ -80,16 +90,16 @@ export const visualizerLabels: Record<string, Record<Language, [string, string]>
     en: ["ANOVA", "Analysis of Variance"],
   },
   "mes-confidence-interval": {
-    zh: ["MES 置信区间", "MES 置信区间"],
-    en: ["MES Confidence Interval", "MES Confidence Interval"],
+    zh: ["置信区间", "置信区间比较"],
+    en: ["Confidence Intervals", "Confidence Interval Comparison"],
   },
   "mes-distributions": {
     zh: ["概率分布", "概率分布"],
     en: ["Distributions", "Distributions"],
   },
   "mes-linear-regression": {
-    zh: ["MES 线性回归", "MES 线性回归"],
-    en: ["MES Linear Regression", "MES Linear Regression"],
+    zh: ["线性回归", "线性回归模型"],
+    en: ["Linear Regression", "Linear Regression Models"],
   },
 };
 
@@ -251,8 +261,10 @@ export const walsCopy = {
     simulationResult: "模拟结果",
     simulationResultFormula: "f(参数, 随机种子)",
     redraw: "重新绘制",
+    restartWith500: "重新抽样 500 次",
     draw1Sample: "抽取 1 个样本",
     draw20Samples: "抽取 20 个样本",
+    draw100Samples: "增加 100 次重复抽样",
   },
   en: {
     modelOutput: "Model output",
@@ -270,8 +282,10 @@ export const walsCopy = {
     simulationResult: "simulation result",
     simulationResultFormula: "f(parameters, random seed)",
     redraw: "Redraw",
+    restartWith500: "Resample 500 Times",
     draw1Sample: "Draw 1 Sample",
     draw20Samples: "Draw 20 Samples",
+    draw100Samples: "Add 100 Repeated Samples",
   },
 } as const;
 

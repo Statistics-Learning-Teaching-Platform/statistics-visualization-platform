@@ -29,8 +29,57 @@ export const moduleConfig: ModuleConfig = {
           "defaultValue": 200
         },
         {
+          "id": "proposalSd",
+          "label": "Proposal step size",
+          "type": "number",
+          "min": 0.1,
+          "max": 4,
+          "step": 0.1,
+          "defaultValue": 1
+        },
+        {
           "id": "sampleSize",
           "label": "Number of samples",
+          "type": "number",
+          "min": 50,
+          "max": 5000,
+          "step": 50,
+          "defaultValue": 400
+        }
+      ]
+    },
+    {
+      "id": "gibbs-bivariate",
+      "title": "Gibbs Sampling",
+      "kind": "gibbs-bivariate",
+      "sourcePath": "apps/simulation-mcmc/src/module-config.ts",
+      "description": "Sample a correlated bivariate normal by alternating between the two conditional distributions.",
+      "teachingPoints": [
+        "A Gibbs sweep changes one coordinate while holding the other coordinate fixed.",
+        "Stronger correlation produces slower movement along the narrow direction of the target."
+      ],
+      "controls": [
+        {
+          "id": "correlation",
+          "label": "Target correlation",
+          "type": "number",
+          "min": -0.95,
+          "max": 0.95,
+          "step": 0.05,
+          "defaultValue": 0.8
+        },
+        {
+          "id": "burnin",
+          "label": "Burn-in sweeps",
+          "type": "number",
+          "min": 0,
+          "max": 2000,
+          "step": 50,
+          "defaultValue": 100
+        },
+        {
+          "id": "sampleSize",
+          "label": "Retained sweeps",
           "type": "number",
           "min": 50,
           "max": 5000,
@@ -47,7 +96,7 @@ export const moduleConfig: ModuleConfig = {
       "description": "Simulate a simple Metropolis walk over islands with unequal populations.",
       "teachingPoints": [
         "Stationary visit frequency is shaped by the acceptance rule.",
-        "Trace plots show dependence between neighboring samples."
+        "Visit frequencies converge toward the population-weighted target distribution."
       ],
       "controls": [
         {

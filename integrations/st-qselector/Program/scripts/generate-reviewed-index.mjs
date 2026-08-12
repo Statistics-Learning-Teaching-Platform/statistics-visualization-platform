@@ -8,6 +8,14 @@ const programDir = path.resolve(scriptDir, "..");
 const dataDir = path.resolve(programDir, "..", "Data", "Formed");
 const outputFile = path.resolve(programDir, "public", "data", "reviewed-questions.json");
 const outputModule = path.resolve(programDir, "src", "generated", "reviewed-questions.ts");
+
+// Vercel builds only receive the Program directory. The generated reviewed index
+// is committed and is the deployment-safe source of the approved question bank;
+// do not try to read the repository-level Data/Formed directory during a build.
+if (process.env.VERCEL === "1" && fs.existsSync(outputFile) && fs.existsSync(outputModule)) {
+  console.log("Using committed reviewed question index for Vercel build");
+  process.exit(0);
+}
 const imagePathPattern = /^[\w./\- ]+\.(png|jpe?g|gif|webp)$/i;
 const partMarkerPattern = /(?:^|\n)\s*(?:[a-h][.)]|\([a-h]\))\s+/gm;
 

@@ -12,9 +12,10 @@ import {
   FileText,
   Loader2,
   Search,
-  ShieldCheck,
+  Sparkles,
   X,
 } from "lucide-react";
+import AiPaperWorkspace from "@/components/AiPaperWorkspace";
 import QuestionContent from "@/components/QuestionContent";
 import { useSelection } from "@/lib/selection";
 import type { QuestionsResponse, Question } from "@/lib/types";
@@ -54,10 +55,20 @@ export default function Home() {
   const [fullDataLoaded, setFullDataLoaded] = useState(false);
   const [fullDataLoading, setFullDataLoading] = useState(false);
   const [fullDataError, setFullDataError] = useState<string | null>(null);
+  const [aiWorkspaceOpen, setAiWorkspaceOpen] = useState(false);
   const fullDataLoadedRef = useRef(false);
   const fullRequest = useRef<Promise<QuestionsResponse | null> | null>(null);
+  const questionListRef = useRef<HTMLDivElement>(null);
+  const pendingPageScrollRef = useRef(false);
 
-  const { selected, isSelected, toggle, add, clear } = useSelection();
+  const { selected, generatedQuestions, isSelected, toggle, add, replace, clear } = useSelection();
+
+  const openAiWorkspace = useCallback(() => {
+    setAiWorkspaceOpen(true);
+    window.requestAnimationFrame(() => {
+      document.getElementById("ai-paper-workspace")?.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+  }, []);
 
   const loadFullData = useCallback(() => {
     if (fullDataLoadedRef.current) return Promise.resolve(null);
@@ -109,6 +120,10 @@ export default function Home() {
     () => data?.questions.filter((question) => question.isReviewed) ?? [],
     [data]
   );
+  const selectedQuestionObjects = useMemo(() => {
+    const byId = new Map([...data.questions, ...generatedQuestions].map((question) => [question.id, question]));
+    return selected.map((id) => byId.get(id)).filter((question): question is Question => Boolean(question));
+  }, [data.questions, generatedQuestions, selected]);
 
   const knowledgePoints = useMemo(() => {
     const source = reviewedQuestions.length ? reviewedQuestions : data?.questions ?? [];
@@ -151,6 +166,32 @@ export default function Home() {
   const currentPage = Math.min(page, totalPages);
   const pageQuestions = filtered.slice((currentPage - 1) * PAGE_SIZE, currentPage * PAGE_SIZE);
 
+  const handlePageChange = useCallback((nextPage: number) => {
+    if (nextPage === currentPage) return;
+    pendingPageScrollRef.current = true;
+    setPage(nextPage);
+  }, [currentPage]);
+
+  useEffect(() => {
+    if (!pendingPageScrollRef.current) return;
+    pendingPageScrollRef.current = false;
+
+    const frame = window.requestAnimationFrame(() => {
+      const firstQuestion = questionListRef.current?.querySelector<HTMLElement>(".qb-question");
+      if (!firstQuestion) return;
+
+      const header = document.querySelector<HTMLElement>(".qb-header");
+      const stickyHeaderHeight = header && window.getComputedStyle(header).position === "sticky"
+        ? header.getBoundingClientRect().height
+        : 0;
+      const targetTop = window.scrollY + firstQuestion.getBoundingClientRect().top - stickyHeaderHeight - 16;
+      const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      window.scrollTo({ top: Math.max(0, targetTop), behavior: reduceMotion ? "auto" : "smooth" });
+    });
+
+    return () => window.cancelAnimationFrame(frame);
+  }, [currentPage]);
+
   const chapterCounts = useMemo(() => {
     const source = reviewedOnly ? reviewedQuestions : data?.questions ?? [];
     const counts = new Map<string, number>();
@@ -183,13 +224,31 @@ export default function Home() {
   return (
     <div className="qb-app">
       <header className="qb-header">
-        <div>
+        <div className="qb-header__identity">
           <div className="qb-brand"><span>▥</span> STATMIND</div>
           <h1>统计学组卷系统</h1>
-          <p>
-            题库 {data.totalCount ?? data.questions.length} 题 · 已审核 {reviewedQuestions.length} 题 · {data.chapters.length} 章
-          </p>
+          <p>STATISTICS QUESTION BANK</p>
         </div>
+
+        <div className="qb-header__summary" role="list" aria-label="题库概览">
+          <div className="qb-header__stat" role="listitem">
+            <strong>{data.totalCount ?? data.questions.length}</strong>
+            <span>题库总量</span>
+          </div>
+          <div className="qb-header__stat" role="listitem">
+            <strong>{reviewedQuestions.length}</strong>
+            <span>已审核</span>
+          </div>
+          <div className="qb-header__stat" role="listitem">
+            <strong>{data.chapters.length}</strong>
+            <span>章节</span>
+          </div>
+          <div className="qb-header__stat qb-header__stat--accent" role="listitem">
+            <strong>{selected.length}</strong>
+            <span>已选题目</span>
+          </div>
+        </div>
+
         <nav className="qb-header__actions">
           {/* Cross-app navigation intentionally leaves the Next.js basePath. */}
           {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
@@ -198,8 +257,8 @@ export default function Home() {
         </nav>
       </header>
 
-      <div className="qb-layout">
-        <aside className="qb-sidebar">
+      <div className={`qb-layout${aiWorkspaceOpen ? " qb-layout--ai" : ""}`}>
+        {!aiWorkspaceOpen && <aside className="qb-sidebar">
           <div className="qb-sidebar__heading">
             <h2>筛选题库</h2>
             {hasFilters && <button onClick={resetFilters}><X /> 清除</button>}
@@ -310,40 +369,76 @@ export default function Home() {
             <p><strong>{duplicateCount}</strong> 题与其他题目内容重复</p>
             <small>界面只把数据中具有明确审核标记的题目计为“已审核”。</small>
           </div>
-        </aside>
+        </aside>}
 
         <main className="qb-main">
           {!data ? (
             <div className="qb-state"><Loader2 className="animate-spin" /> 正在加载题库…</div>
           ) : (
             <>
-              <div className="qb-results-header">
-                <p>筛选到 <strong>{filtered.length}</strong> 题</p>
-                {pageQuestions.length > 0 && (
-                  <button onClick={() => add(pageQuestions.map((question) => question.id))}>
-                    <CheckSquare /> 选中本页全部
+              <div className="qb-modebar">
+                <div className="qb-mode-switch" role="tablist" aria-label="组卷方式">
+                  <button
+                    type="button"
+                    role="tab"
+                    aria-selected={!aiWorkspaceOpen}
+                    data-active={!aiWorkspaceOpen}
+                    onClick={() => setAiWorkspaceOpen(false)}
+                  >
+                    <CheckSquare /> 题库筛选
                   </button>
-                )}
+                  <button
+                    type="button"
+                    role="tab"
+                    aria-selected={aiWorkspaceOpen}
+                    data-active={aiWorkspaceOpen}
+                    onClick={openAiWorkspace}
+                  >
+                    <Sparkles /> AI 智能组卷
+                  </button>
+                </div>
+                <p>{aiWorkspaceOpen ? "从课件提取知识点，优先匹配题库，不足部分再生成并校验。" : "按章节、难度、题型和知识点精确筛选题库。"}</p>
               </div>
 
-              <div className="qb-question-list">
-                {pageQuestions.map((question) => (
-                  <QuestionCard
-                    key={question.id}
-                    question={question}
-                    checked={isSelected(question.id)}
-                    open={expanded.has(question.id)}
-                    onToggle={() => toggle(question.id)}
-                    onToggleAnswer={() => toggleSet(setExpanded, question.id)}
-                  />
-                ))}
-                {filtered.length === 0 && (
-                  <div className="qb-empty">没有符合当前条件的题目，请调整筛选条件。</div>
-                )}
-              </div>
+              {aiWorkspaceOpen ? (
+                <AiPaperWorkspace
+                  availableTypes={availableTypes}
+                  selectedIds={selected}
+                  selectedQuestions={selectedQuestionObjects}
+                  onAdd={add}
+                  onReplace={replace}
+                />
+              ) : (
+                <>
+                  <div className="qb-results-header">
+                    <p>筛选到 <strong>{filtered.length}</strong> 题</p>
+                    {pageQuestions.length > 0 && (
+                      <button onClick={() => add(pageQuestions.map((question) => question.id))}>
+                        <CheckSquare /> 选中本页全部
+                      </button>
+                    )}
+                  </div>
 
-              {filtered.length > PAGE_SIZE && (
-                <Pagination page={currentPage} total={totalPages} onChange={setPage} />
+                  <div className="qb-question-list" ref={questionListRef}>
+                    {pageQuestions.map((question) => (
+                      <QuestionCard
+                        key={question.id}
+                        question={question}
+                        checked={isSelected(question.id)}
+                        open={expanded.has(question.id)}
+                        onToggle={() => toggle(question.id)}
+                        onToggleAnswer={() => toggleSet(setExpanded, question.id)}
+                      />
+                    ))}
+                    {filtered.length === 0 && (
+                      <div className="qb-empty">没有符合当前条件的题目，请调整筛选条件。</div>
+                    )}
+                  </div>
+
+                  {filtered.length > PAGE_SIZE && (
+                    <Pagination page={currentPage} total={totalPages} onChange={handlePageChange} />
+                  )}
+                </>
               )}
             </>
           )}
@@ -400,15 +495,13 @@ function QuestionCard({
           {question.partCount > 1 && (
             <span className="qb-badge qb-badge--knowledge">整题选择 · {question.partCount} 小问</span>
           )}
-          <span className={`qb-badge ${question.isComplete ? "qb-badge--complete" : "qb-badge--warning"}`}>
-            {question.isComplete ? "题目完整" : "材料不完整"}
-          </span>
-          {question.isReviewed ? (
-            <span className="qb-badge qb-badge--review"><ShieldCheck /> 答案已审核</span>
-          ) : (
-            <span className="qb-badge qb-badge--warning">未审核</span>
+          {question.origin === "variant" && (
+            <span className="qb-badge qb-badge--ai-variant">AI 母题变式</span>
           )}
-          {question.keywords.slice(0, 2).map((keyword) => (
+          {question.origin === "generated" && (
+            <span className="qb-badge qb-badge--ai-generated">AI 全新生成</span>
+          )}
+          {question.keywords.slice(0, 1).map((keyword) => (
             <span key={keyword} className="qb-badge qb-badge--knowledge">{keyword}</span>
           ))}
           <code>{question.id}</code>

@@ -90,6 +90,14 @@ export default function ConfidenceIntervalApp() {
                 <span>{trueMeanLabel}</span>
               </span>
             </div>
+            <div className="observation-prompt">
+              <span aria-hidden="true">◎</span>
+              <div>
+                <strong>{copy.coverageTitle}</strong>
+                <p>{sampleCount === 0 ? copy.emptyPrompt : copy.missPrompt.replace("{misses}", String(misses))}</p>
+              </div>
+            </div>
+            <MetricsGrid metrics={metrics} />
             <div className="chart-frame">
               <ConfidenceIntervalChart
                 samples={samples}
@@ -100,7 +108,6 @@ export default function ConfidenceIntervalApp() {
               />
             </div>
           </div>
-          <MetricsGrid metrics={metrics} />
         </div>
         <div className="teaching-area">
           <ControlSidebar
@@ -120,6 +127,7 @@ export default function ConfidenceIntervalApp() {
             <div className="studio-control-bar__buttons">
               <button
                 id="generateSample"
+                type="button"
                 className="studio-button studio-button--primary"
                 onClick={() => addSamples(1)}
               >
@@ -128,6 +136,7 @@ export default function ConfidenceIntervalApp() {
               </button>
               <button
                 id="generateMultiple"
+                type="button"
                 className="studio-button studio-button--secondary"
                 onClick={() => addSamples(20)}
               >
@@ -136,6 +145,7 @@ export default function ConfidenceIntervalApp() {
               </button>
               <button
                 id="reset"
+                type="button"
                 className="studio-button studio-button--danger"
                 onClick={reset}
               >

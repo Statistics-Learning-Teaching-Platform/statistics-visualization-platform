@@ -1,0 +1,398 @@
+/*
+ * Shared workspace layer.
+ * Loaded after each module's legacy stylesheet so every visualizer uses the
+ * same canvas, panel, chart and control proportions without duplicating fixes.
+ */
+
+.module-shell {
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  padding: 14px;
+  overflow: hidden;
+  color: var(--text-primary);
+  background:
+    radial-gradient(circle at 88% 2%, rgba(111, 143, 122, 0.1), transparent 22rem),
+    linear-gradient(135deg, var(--bg-soft), var(--bg));
+}
+
+.module-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) clamp(290px, 24vw, 348px);
+  gap: 14px;
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.experiment-board,
+.teaching-panel,
+.studio-control-bar {
+  border: 1px solid var(--border);
+  background: var(--card);
+  box-shadow: 0 12px 30px rgba(40, 35, 25, 0.055);
+  backdrop-filter: blur(10px);
+}
+
+.experiment-board {
+  display: flex;
+  flex-direction: column;
+  align-content: start;
+  justify-content: flex-start;
+  gap: 18px;
+  min-width: 0;
+  height: 100%;
+  padding: clamp(20px, 2.2vw, 32px);
+  overflow-x: hidden;
+  overflow-y: auto !important;
+  overscroll-behavior: contain;
+  border-radius: 24px;
+  scrollbar-gutter: stable;
+}
+
+.teaching-area {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: auto;
+  min-width: 0;
+  height: 100%;
+  max-height: none;
+  padding: 0 4px 0 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-gutter: stable;
+}
+
+.teaching-panel,
+.studio-control-bar {
+  flex: 0 0 auto;
+  min-width: 0;
+  padding: 20px;
+  border-radius: 22px;
+}
+
+.experiment-header h1 {
+  margin-block: 4px 8px;
+  font-size: clamp(32px, 2.8vw, 48px);
+  line-height: 1.03;
+}
+
+.output-dock {
+  display: grid;
+  grid-template-rows: auto auto auto auto;
+  grid-auto-rows: max-content;
+  align-content: start;
+  flex: 0 0 auto;
+  gap: 14px;
+  min-width: 0;
+}
+
+.output-dock > * {
+  min-width: 0;
+  margin-block: 0;
+}
+
+.output-heading {
+  display: grid;
+  gap: 4px;
+}
+
+.output-heading h2,
+.output-heading p {
+  margin: 0;
+}
+
+.observation-prompt {
+  display: grid;
+  grid-template-columns: 34px minmax(0, 1fr);
+  gap: 11px;
+  align-items: center;
+  align-self: start;
+  width: 100%;
+  height: 72px;
+  min-height: 72px;
+  max-height: 72px;
+  padding: 11px 14px;
+  overflow: hidden;
+  border: 1px solid rgba(47, 111, 100, 0.14);
+  border-radius: 16px;
+  background: linear-gradient(135deg, rgba(183, 214, 204, 0.22), rgba(255, 253, 248, 0.6));
+}
+
+.observation-prompt > div {
+  min-width: 0;
+}
+
+.observation-prompt > span {
+  display: grid;
+  width: 30px;
+  height: 30px;
+  place-items: center;
+  border-radius: 50%;
+  color: var(--teal);
+  background: var(--sage-soft);
+  font-weight: 900;
+}
+
+.observation-prompt strong {
+  color: var(--teal);
+  font-size: 12px;
+}
+
+.observation-prompt p {
+  display: -webkit-box;
+  margin: 2px 0 0;
+  overflow: hidden;
+  color: var(--text-secondary);
+  font-size: 12px;
+  line-height: 1.45;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.chart-frame {
+  display: grid;
+  width: 100%;
+  min-width: 0;
+  height: auto;
+  min-height: 320px;
+  max-height: 52vh;
+  aspect-ratio: 19 / 9;
+  place-items: center;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  background: linear-gradient(180deg, var(--card-strong), var(--chart-bg));
+}
+
+.chart-frame > svg,
+.chart-frame .teaching-chart,
+.chart-frame .confidence-chart,
+.chart-frame .regression-chart,
+.chart-frame svg {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0 !important;
+  height: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.metrics-grid {
+  display: grid;
+  flex: 0 0 auto;
+  grid-template-columns: repeat(auto-fit, minmax(138px, 1fr));
+  gap: 9px;
+  margin: 0;
+  padding: 0;
+  border-top: 0;
+}
+
+.metric-card {
+  display: grid;
+  align-content: start;
+  gap: 3px;
+  min-width: 0;
+  min-height: 76px !important;
+  padding: 11px 13px !important;
+  border-color: var(--border);
+  border-radius: 18px;
+  background: rgba(255, 253, 248, 0.78);
+}
+
+.eyebrow,
+.metric-label {
+  color: var(--lavender);
+}
+
+.control-grid,
+.control-panel {
+  display: grid;
+  gap: 14px;
+}
+
+.control-field {
+  display: grid;
+  gap: 8px;
+  min-width: 0;
+}
+
+.control-label-row,
+.control-panel__label-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.control-label,
+.control-panel__label {
+  color: var(--text-primary);
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.control-value,
+.control-panel__value {
+  min-width: 48px;
+  padding: 4px 9px;
+  border-radius: 999px;
+  color: var(--teal);
+  background: var(--sage-soft);
+  font-size: 12px;
+  font-weight: 850;
+  text-align: center;
+}
+
+.control-input,
+.control-panel__select,
+.form-select {
+  width: 100%;
+  min-height: 44px;
+  padding: 0 13px;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  color: var(--text-primary);
+  background: var(--card-strong);
+  outline: none;
+}
+
+.control-input:focus-visible,
+.control-panel__select:focus-visible,
+.form-select:focus-visible,
+.control-range:focus-visible,
+.control-panel__input:focus-visible,
+.form-range:focus-visible {
+  outline: 3px solid rgba(141, 117, 181, 0.2);
+  outline-offset: 3px;
+}
+
+.control-range,
+.control-panel__input[type="range"],
+.form-range {
+  width: 100%;
+  height: 24px;
+  margin: 0;
+  accent-color: var(--teal);
+  cursor: pointer;
+}
+
+.control-range-bounds {
+  display: flex;
+  justify-content: space-between;
+  color: var(--text-secondary);
+  font-size: 10px;
+  line-height: 1;
+}
+
+.example-tabs,
+.test-type-tabs__buttons,
+.sample-quick-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+
+.example-tab,
+.test-type-tab,
+.sample-quick-button {
+  min-height: 38px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  color: var(--text-secondary);
+  background: var(--card-strong);
+  cursor: pointer;
+}
+
+.example-tab[data-active="true"],
+.test-type-tab[data-active="true"] {
+  border-color: rgba(47, 111, 100, 0.28);
+  color: var(--teal);
+  background: var(--sage-soft);
+}
+
+.run-button,
+.studio-button--primary {
+  min-height: 48px;
+  border-radius: 15px;
+  background: linear-gradient(135deg, var(--teal), var(--sage));
+}
+
+.module-shell[aria-busy="true"] .chart-frame {
+  opacity: 0.72;
+  transition: opacity 120ms ease;
+}
+
+@media (max-width: 1120px) {
+  .module-layout {
+    grid-template-columns: minmax(0, 1fr) 310px;
+  }
+}
+
+@media (max-width: 860px) {
+  .module-shell {
+    height: auto;
+    min-height: 100%;
+    padding: 10px;
+    overflow: auto;
+  }
+
+  .module-layout {
+    grid-template-columns: 1fr;
+    height: auto;
+    overflow: visible;
+  }
+
+  .experiment-board,
+  .teaching-area {
+    width: 100%;
+    height: auto;
+    max-height: none;
+    overflow: visible;
+  }
+
+  .teaching-area {
+    padding-right: 0;
+  }
+
+  .chart-frame {
+    height: auto;
+    min-height: 300px;
+    max-height: none;
+  }
+}
+
+@media (max-width: 560px) {
+  .experiment-board,
+  .teaching-panel,
+  .studio-control-bar {
+    padding: 16px;
+    border-radius: 18px;
+  }
+
+  .chart-frame {
+    height: auto;
+    min-height: 260px;
+    aspect-ratio: 4 / 3;
+    border-radius: 16px;
+  }
+
+  .metrics-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .module-shell *,
+  .module-shell *::before,
+  .module-shell *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}

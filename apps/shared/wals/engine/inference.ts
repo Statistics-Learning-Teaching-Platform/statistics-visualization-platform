@@ -1,4 +1,5 @@
 import type { SimulationResult } from "../types";
+import jStat from "jstat";
 import { createRandom, normalRandom } from "@stats-viz/shared/random";
 import { formatNumber, mean } from "@stats-viz/shared/format";
 import { computeInterval } from "@stats-viz/shared/confidence-interval";
@@ -21,9 +22,9 @@ export function anova(controls: ControlMap, seed: number): SimulationResult {
             { label: "90 C", values: [200, 222, 197, 206, 204] }
           ]
         : [
-            { label: "Group 1", values: Array.from({ length: Math.round(num(controls, "n1", 5)) }, () => normalRandom(rng, num(controls, "mu1", 1), num(controls, "sigma", 1))) },
-            { label: "Group 2", values: Array.from({ length: Math.round(num(controls, "n2", 5)) }, () => normalRandom(rng, num(controls, "mu2", 2), num(controls, "sigma", 1))) },
-            { label: "Group 3", values: Array.from({ length: Math.round(num(controls, "n3", 5)) }, () => normalRandom(rng, num(controls, "mu3", 3), num(controls, "sigma", 1))) }
+            { label: "Group 1", values: Array.from({ length: Math.max(2, Math.round(num(controls, "n1", 5))) }, () => normalRandom(rng, num(controls, "mu1", 1), num(controls, "sigma", 1))) },
+            { label: "Group 2", values: Array.from({ length: Math.max(2, Math.round(num(controls, "n2", 5))) }, () => normalRandom(rng, num(controls, "mu2", 2), num(controls, "sigma", 1))) },
+            { label: "Group 3", values: Array.from({ length: Math.max(2, Math.round(num(controls, "n3", 5))) }, () => normalRandom(rng, num(controls, "mu3", 3), num(controls, "sigma", 1))) }
           ];
   const all = groups.flatMap((group) => group.values);
   const grandMean = mean(all);
@@ -36,16 +37,28 @@ export function anova(controls: ControlMap, seed: number): SimulationResult {
   const dfWithin = all.length - groups.length;
   const msBetween = ssBetween / dfBetween;
   const msWithin = ssWithin / dfWithin;
-  const f = msBetween / msWithin;
+  const f = msWithin <= Number.EPSILON ? 0 : msBetween / msWithin;
+  const pValue = 1 - jStat.centralF.cdf(f, dfBetween, dfWithin);
   return result(
     "ANOVA summary",
     "The table partitions variability into between-group and within-group components.",
     [
       { label: "F statistic", value: formatNumber(f, 4), detail: "MS between / MS within" },
+      { label: "p value", value: formatNumber(pValue, 4), detail: `F(${dfBetween}, ${dfWithin}) tail area` },
       { label: "grand mean", value: formatNumber(grandMean, 4), detail: `${all.length} observations` },
       { label: "groups", value: String(groups.length), detail: dataset }
     ],
-    { type: "bars", title: "Group means", xLabel: "group", yLabel: "mean", bars: groups.map((group) => ({ label: group.label, value: mean(group.values) })) },
+    {
+      type: "anova",
+      title: "Within-group spread and between-group separation",
+      xLabel: "group",
+      yLabel: "observed response",
+      groups: groups.map((group) => ({ label: group.label, values: group.values, mean: mean(group.values) })),
+      grandMean,
+      grandMeanLabel: "grand mean",
+      observationsLabel: "observations",
+      groupMeanLabel: "group mean",
+    },
     {
       columns: ["Source", "Df", "Sum Sq", "Mean Sq", "F"],
       rows: [
@@ -60,18 +73,18 @@ export function confidenceInterval(controls: ControlMap, seed: number): Simulati
   // defaults preserve the historical dataset so existing tests stay valid.
   const mu = num(controls, "mu", 31.5);
   const sigma = num(controls, "sigma", 0.3577);
-  const sampleSize = Math.max(1, Math.round(num(controls, "sampleSize", 5)));
+  const requestedSampleSize = Math.max(1, Math.round(num(controls, "sampleSize", 5)));
   const intervalCount = Math.max(1, Math.round(num(controls, "intervalCount", 20)));
   // sigmaKnown toggles z vs t: when false the interval uses the sample SD and
   // Student-t critical value, matching the standalone confidence-interval app.
   const sigmaKnown = str(controls, "sigmaKnown", "true") === "true";
+  const sampleSize = sigmaKnown ? requestedSampleSize : Math.max(2, requestedSampleSize);
   const confidenceLevel = num(controls, "confidenceLevel", 0.95);
   // Each interval is built from a FRESH random sample of size n drawn from
   // N(mu, sigma). This is genuine repeated sampling (the old version used
   // three user-entered means and did not actually simulate), so observed
   // coverage tracks the confidence level.
   const rng = createRandom(seed);
-  const palette = ["#d1495b", "#f28e2b", "#4e79a7", "#9c27b0", "#2a9d8f", "#e9c46a", "#264653", "#e76f51", "#60a5fa", "#f472b6"];
   const intervals = Array.from({ length: intervalCount }, (_, index) => {
     const sample = Array.from({ length: sampleSize }, () => normalRandom(rng, mu, sigma));
     const interval = computeInterval(sample, confidenceLevel, mu, sigma, sigmaKnown);
@@ -80,7 +93,7 @@ export function confidenceInterval(controls: ControlMap, seed: number): Simulati
       center: interval.mean,
       lower: interval.lower,
       upper: interval.upper,
-      color: palette[index % palette.length],
+      color: interval.lower <= mu && interval.upper >= mu ? "#2f6f64" : "#c8665a",
     };
   });
   const covering = intervals.filter((interval) => interval.lower <= mu && interval.upper >= mu).length;
@@ -98,6 +111,20 @@ export function confidenceInterval(controls: ControlMap, seed: number): Simulati
       { label: "confidence level", value: `${formatNumber(confidencePct, 1)}%`, detail: `${method}-interval, sigma ${sigmaKnown ? "known" : "estimated"}` },
       { label: "sample size", value: String(sampleSize), detail: `${intervalCount} repeated samples` }
     ],
-    { type: "intervals", title: "Intervals around means", xLabel: "value", yLabel: "interval", intervals, reference: mu, xDomain: [lowerBound - pad, upperBound + pad] }
+    {
+      type: "intervals",
+      title: "Repeated confidence intervals around sample means",
+      xLabel: "parameter scale",
+      yLabel: "repeated sample",
+      intervals,
+      reference: mu,
+      referenceLabel: "true mean μ",
+      legend: [
+        { label: "covers μ", color: "#2f6f64", shape: "line" },
+        { label: "misses μ", color: "#c8665a", shape: "line" },
+        { label: "true mean", color: "#4b73d9", shape: "dashed" },
+      ],
+      xDomain: [lowerBound - pad, upperBound + pad],
+    }
   );
 }

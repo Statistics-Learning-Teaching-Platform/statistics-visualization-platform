@@ -6,11 +6,12 @@ import { num, result, type ControlMap } from "./internal";
 
 export function randomNormal(controls: ControlMap, seed: number): SimulationResult {
   const rng = createRandom(seed);
-  const n = Math.max(100, Math.round(num(controls, "sampleSize", 1000)));
+  const n = Math.max(1, Math.round(num(controls, "sampleSize", 1000)));
   const targetMean = num(controls, "mean", 0);
   const sd = Math.max(0.1, num(controls, "sd", 1));
   const sample = Array.from({ length: n }, () => normalRandom(rng, targetMean, sd));
-  return result(
+  return {
+    ...result(
     "Generated normal sample",
     "Histogram bins show the simulated distribution around the requested mean and standard deviation.",
     [
@@ -19,27 +20,33 @@ export function randomNormal(controls: ControlMap, seed: number): SimulationResu
       { label: "sample size", value: String(n), detail: "Box-Muller draws" }
     ],
     { type: "bars", title: "Normal sample histogram", xLabel: "bin center", yLabel: "count", bars: histogram(sample) }
-  );
+    ),
+    rawSample: sample,
+  };
 }
 export function randomExponential(controls: ControlMap, seed: number): SimulationResult {
   const rng = createRandom(seed);
-  const n = Math.max(100, Math.round(num(controls, "sampleSize", 1000)));
+  const n = Math.max(1, Math.round(num(controls, "sampleSize", 1000)));
   const lambda = Math.max(0.1, num(controls, "lambda", 2));
   const sample = Array.from({ length: n }, () => exponentialRandom(rng, lambda));
-  return result(
+  return {
+    ...result(
     "Generated exponential sample",
     "The histogram displays right-skew and tail length controlled by lambda.",
     [
       { label: "sample mean", value: formatNumber(mean(sample), 4), detail: `theory ${formatNumber(1 / lambda, 4)}` },
       { label: "sample sd", value: formatNumber(standardDeviation(sample), 4), detail: `theory ${formatNumber(1 / lambda, 4)}` },
-      { label: "lambda", value: formatNumber(lambda, 3), detail: "rate parameter" }
+      { label: "lambda", value: formatNumber(lambda, 3), detail: "rate parameter" },
+      { label: "sample size", value: String(n), detail: "inverse-transform draws" }
     ],
     { type: "bars", title: "Exponential sample histogram", xLabel: "bin center", yLabel: "count", bars: histogram(sample) }
-  );
+    ),
+    rawSample: sample,
+  };
 }
 export function gammaRejection(controls: ControlMap, seed: number): SimulationResult {
   const rng = createRandom(seed);
-  const n = Math.max(100, Math.round(num(controls, "sampleSize", 2000)));
+  const n = Math.max(1, Math.round(num(controls, "sampleSize", 2000)));
   const alpha = Math.max(0.5, num(controls, "alpha", 2));
   const beta = Math.max(0.2, num(controls, "beta", 1));
   // Bounded support covering ~all of the Gamma(alpha, beta) mass.
@@ -54,21 +61,27 @@ export function gammaRejection(controls: ControlMap, seed: number): SimulationRe
   const grid = Array.from({ length: 512 }, (_, i) => density((i / 511) * xMax));
   const fMax = Math.max(Number.EPSILON, ...grid);
   const accepted: number[] = [];
-  for (let i = 0; i < n; i += 1) {
+  let proposals = 0;
+  while (accepted.length < n) {
+    proposals += 1;
     const proposal = rng() * xMax; // uniform proposal on [0, xMax]
     if (rng() <= density(proposal) / fMax) {
       accepted.push(proposal);
     }
   }
   const acceptedMean = accepted.length ? mean(accepted) : 0;
-  return result(
+  return {
+    ...result(
     "Acceptance-rejection preview",
-    "A uniform proposal on a bounded support is accepted with probability proportional to the gamma density, producing an unbiased gamma-like sample.",
+    "A uniform proposal on a finite interval is accepted in proportion to the gamma density. The chart is a truncated approximation; the interval extends six standard deviations beyond the mean.",
     [
-      { label: "accepted", value: String(accepted.length), detail: `${n} candidates` },
-      { label: "acceptance rate", value: formatNumber(accepted.length / n, 4), detail: "accepted / candidates" },
-      { label: "accepted mean", value: formatNumber(acceptedMean, 4), detail: `gamma mean approx ${formatNumber(alpha / beta, 4)}` }
+      { label: "accepted", value: String(accepted.length), detail: `${proposals} candidates` },
+      { label: "acceptance rate", value: formatNumber(accepted.length / proposals, 4), detail: "accepted / candidates" },
+      { label: "accepted mean", value: formatNumber(acceptedMean, 4), detail: `gamma mean ${formatNumber(alpha / beta, 4)}` },
+      { label: "proposal support", value: `[0, ${formatNumber(xMax, 2)}]`, detail: "finite envelope used in this preview" }
     ],
-    { type: "bars", title: "Accepted sample histogram", xLabel: "bin center", yLabel: "count", bars: histogram(accepted.length ? accepted : [0]) }
-  );
+    { type: "bars", title: "Accepted sample histogram", xLabel: "bin center", yLabel: "count", bars: histogram(accepted) }
+    ),
+    rawSample: accepted,
+  };
 }

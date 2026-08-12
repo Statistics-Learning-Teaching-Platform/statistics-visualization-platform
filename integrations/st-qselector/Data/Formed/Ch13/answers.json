@@ -42,6 +42,18 @@
       "answer": "With $\\bar x=287.5$ and $\\bar y=41.5$, $r\\approx-0.8074$. The least-squares coefficients are $b_1=S_{xy}/S_{xx}\\approx-0.20973$ and $b_0=\\bar y-b_1\\bar x\\approx101.7968$. Thus $\\hat y=101.7968-0.20973x$.",
       "review_status": "independently solved and reviewed",
       "audit_pack": "ch13-review-v1"
+    },
+    {
+      "id": "opl_nau_ch13_regression_01",
+      "answer": "Substitute $x=80$:\n\n$$\\hat y=120+18(80)=120+1440=1560\\text{ pounds}.$$\n\nThe slope 18 means that each additional passenger is associated with an increase of **18 pounds** in predicted total checked-luggage weight.",
+      "review_status": "independently solved and reviewed",
+      "source_commit": "54e7db70ed308cab9c7eed8af1d2dba5a6adf7d4"
+    },
+    {
+      "id": "opl_nau_ch13_regression_02",
+      "answer": "The means are $\\bar x=3$ and $\\bar y=7.4$. Also,\n\n$$S_{xx}=\\sum(x_i-\\bar x)^2=10,$$\n\n$$S_{xy}=\\sum(x_i-\\bar x)(y_i-\\bar y)=19.$$\n\nTherefore,\n\n$$b_1=\\frac{S_{xy}}{S_{xx}}=1.9,$$\n\n$$b_0=\\bar y-b_1\\bar x=7.4-1.9(3)=1.7.$$\n\na. The least-squares line is\n\n$$\\hat y=1.7+1.9x.$$\n\nb. Pearson's correlation is\n\n$$r=\\frac{S_{xy}}{\\sqrt{S_{xx}S_{yy}}}\\approx0.9851,$$\n\nindicating a very strong positive linear association.\n\nc. At $x=6$,\n\n$$\\hat y=1.7+1.9(6)=13.1.$$",
+      "review_status": "independently solved and reviewed",
+      "source_commit": "54e7db70ed308cab9c7eed8af1d2dba5a6adf7d4"
     }
   ]
 }

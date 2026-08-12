@@ -11,7 +11,7 @@ import type { QuestionsResponse, Question } from "@/lib/types";
 import { withBasePath } from "@/lib/base-path";
 
 export default function PaperPage() {
-  const { selected, remove, clear, ready } = useSelection();
+  const { selected, generatedQuestions, remove, clear, ready } = useSelection();
   const [data, setData] = useState<QuestionsResponse | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [withAnswer, setWithAnswer] = useState(false);
@@ -31,9 +31,9 @@ export default function PaperPage() {
   // 按选择顺序取题
   const questions = useMemo<Question[]>(() => {
     if (!data) return [];
-    const byId = new Map(data.questions.map((q) => [q.id, q]));
+    const byId = new Map([...data.questions, ...generatedQuestions].map((q) => [q.id, q]));
     return selected.map((id) => byId.get(id)).filter(Boolean) as Question[];
-  }, [data, selected]);
+  }, [data, generatedQuestions, selected]);
 
   async function downloadDocx() {
     setDownloading(true);
@@ -41,7 +41,7 @@ export default function PaperPage() {
       const res = await fetch(withBasePath("/api/export/docx"), {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ids: selected, withAnswer, title }),
+        body: JSON.stringify({ ids: selected, generatedQuestions, withAnswer, title }),
       });
       if (!res.ok) throw new Error("导出失败");
       const blob = await res.blob();
@@ -141,6 +141,8 @@ export default function PaperPage() {
                     <div className="min-w-0 flex-1">
                       <div className="mb-1 text-xs text-slate-400 no-print">
                         {q.chapterTitle} · {q.id}
+                        {q.origin === "variant" && <span className="ml-2 rounded bg-violet-50 px-1.5 py-0.5 text-violet-700">AI 母题变式</span>}
+                        {q.origin === "generated" && <span className="ml-2 rounded bg-amber-50 px-1.5 py-0.5 text-amber-700">AI 全新题</span>}
                         <button
                           onClick={() => remove(q.id)}
                           className="ml-2 inline-flex items-center gap-0.5 text-red-500 hover:underline"

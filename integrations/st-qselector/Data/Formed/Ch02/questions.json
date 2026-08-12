@@ -465,6 +465,97 @@
         "Assests/rotel-boxplot-salary.png"
       ],
       "audit_pack": "ch02-review-v1"
+    },
+    {
+      "id": "opl_nau_ch02_center_01",
+      "content": "For the data set $4,7,7,9,10,13$, calculate the mean, median, and mode.",
+      "source": "WeBWorK Open Problem Library — NAU Statistics — CenterMeasures.pg (fixed static instance) — https://github.com/openwebwork/webwork-open-problem-library/blob/54e7db70ed308cab9c7eed8af1d2dba5a6adf7d4/OpenProblemLibrary/NAU/setStatistics/CenterMeasures.pg",
+      "source_url": "https://github.com/openwebwork/webwork-open-problem-library/blob/54e7db70ed308cab9c7eed8af1d2dba5a6adf7d4/OpenProblemLibrary/NAU/setStatistics/CenterMeasures.pg",
+      "source_problem": "CenterMeasures.pg (fixed static instance)",
+      "source_path": "OpenProblemLibrary/NAU/setStatistics/CenterMeasures.pg",
+      "source_commit": "54e7db70ed308cab9c7eed8af1d2dba5a6adf7d4",
+      "license": "CC BY-NC-SA 3.0",
+      "license_url": "https://creativecommons.org/licenses/by-nc-sa/3.0/",
+      "attribution": "Edgar Fisher; modified by John Hagood, Northern Arizona University",
+      "changes": "Randomized PG problem converted to a fixed, self-contained English instance; answer independently recomputed and Markdown/LaTeX normalized.",
+      "review_status": "independently solved and reviewed",
+      "type": "计算题",
+      "difficulty": 1,
+      "keywords": [
+        "mean",
+        "median",
+        "mode"
+      ],
+      "formula_refs": [],
+      "data_refs": []
+    },
+    {
+      "id": "opl_nau_ch02_fivenum_01",
+      "content": "Using the median-of-halves convention that excludes the overall median, find the five-number summary of\n\n$$25,28,32,35,41,44,47,53,58,61,65,69,72,78,84.$$",
+      "source": "WeBWorK Open Problem Library — NAU Statistics — FiveNum1.pg (fixed static instance) — https://github.com/openwebwork/webwork-open-problem-library/blob/54e7db70ed308cab9c7eed8af1d2dba5a6adf7d4/OpenProblemLibrary/NAU/setStatistics/FiveNum1.pg",
+      "source_url": "https://github.com/openwebwork/webwork-open-problem-library/blob/54e7db70ed308cab9c7eed8af1d2dba5a6adf7d4/OpenProblemLibrary/NAU/setStatistics/FiveNum1.pg",
+      "source_problem": "FiveNum1.pg (fixed static instance)",
+      "source_path": "OpenProblemLibrary/NAU/setStatistics/FiveNum1.pg",
+      "source_commit": "54e7db70ed308cab9c7eed8af1d2dba5a6adf7d4",
+      "license": "CC BY-NC-SA 3.0",
+      "license_url": "https://creativecommons.org/licenses/by-nc-sa/3.0/",
+      "attribution": "C. Tyler Diggans, Northern Arizona University",
+      "changes": "Randomized PG problem converted to a fixed, self-contained English instance; answer independently recomputed and Markdown/LaTeX normalized.",
+      "review_status": "independently solved and reviewed",
+      "type": "计算题",
+      "difficulty": 2,
+      "keywords": [
+        "five-number summary",
+        "quartiles",
+        "median"
+      ],
+      "formula_refs": [],
+      "data_refs": []
+    },
+    {
+      "id": "opl_nau_ch02_sd_01",
+      "content": "For the sample $42,45,47,50,53,57$, calculate the sample mean and sample standard deviation. Round the standard deviation to three decimal places.",
+      "source": "WeBWorK Open Problem Library — NAU Statistics — Std_Dev_1.pg (fixed static instance) — https://github.com/openwebwork/webwork-open-problem-library/blob/54e7db70ed308cab9c7eed8af1d2dba5a6adf7d4/OpenProblemLibrary/NAU/setStatistics/Std_Dev_1.pg",
+      "source_url": "https://github.com/openwebwork/webwork-open-problem-library/blob/54e7db70ed308cab9c7eed8af1d2dba5a6adf7d4/OpenProblemLibrary/NAU/setStatistics/Std_Dev_1.pg",
+      "source_problem": "Std_Dev_1.pg (fixed static instance)",
+      "source_path": "OpenProblemLibrary/NAU/setStatistics/Std_Dev_1.pg",
+      "source_commit": "54e7db70ed308cab9c7eed8af1d2dba5a6adf7d4",
+      "license": "CC BY-NC-SA 3.0",
+      "license_url": "https://creativecommons.org/licenses/by-nc-sa/3.0/",
+      "attribution": "Original author unknown; altered by C. Tyler Diggans at Northern Arizona University",
+      "changes": "Randomized PG problem converted to a fixed, self-contained English instance; answer independently recomputed and Markdown/LaTeX normalized.",
+      "review_status": "independently solved and reviewed",
+      "type": "计算题",
+      "difficulty": 2,
+      "keywords": [
+        "sample mean",
+        "sample standard deviation"
+      ],
+      "formula_refs": [],
+      "data_refs": []
+    },
+    {
+      "id": "opl_nau_ch02_boxplot_01",
+      "content": "A data set has five-number summary $(20,35,50,80,100)$. Assuming no tied-value ambiguity at the quartile boundaries, approximately what percentage of observations lie between the first quartile, 35, and the maximum, 100? Explain.",
+      "source": "WeBWorK Open Problem Library — NAU Statistics — BoxPlotPercentBetween.pg (converted to text) — https://github.com/openwebwork/webwork-open-problem-library/blob/54e7db70ed308cab9c7eed8af1d2dba5a6adf7d4/OpenProblemLibrary/NAU/setStatistics/BoxPlotPercentBetween.pg",
+      "source_url": "https://github.com/openwebwork/webwork-open-problem-library/blob/54e7db70ed308cab9c7eed8af1d2dba5a6adf7d4/OpenProblemLibrary/NAU/setStatistics/BoxPlotPercentBetween.pg",
+      "source_problem": "BoxPlotPercentBetween.pg (converted to text)",
+      "source_path": "OpenProblemLibrary/NAU/setStatistics/BoxPlotPercentBetween.pg",
+      "source_commit": "54e7db70ed308cab9c7eed8af1d2dba5a6adf7d4",
+      "license": "CC BY-NC-SA 3.0",
+      "license_url": "https://creativecommons.org/licenses/by-nc-sa/3.0/",
+      "attribution": "Edgar Fisher, Northern Arizona University",
+      "changes": "Randomized PG problem converted to a fixed, self-contained English instance; answer independently recomputed and Markdown/LaTeX normalized.",
+      "review_status": "independently solved and reviewed",
+      "type": "简答题",
+      "difficulty": 1,
+      "keywords": [
+        "boxplot",
+        "quartiles",
+        "percent of observations"
+      ],
+      "formula_refs": [],
+      "data_refs": []
     }
   ]
 }

@@ -180,6 +180,24 @@
       "answer": "Use the conservative $p=0.5$: $n>(2.5758)^2(0.5)(0.5)/0.01^2=16{,}587.24$. Because the margin must be strictly less than 0.01, sample at least 16,588 students.",
       "review_status": "independently solved and reviewed",
       "audit_pack": "ch08-review-v1"
+    },
+    {
+      "id": "opl_nau_ch08_ci_prop_01",
+      "answer": "The sample proportion is\n\n$$\\hat p=\\frac{320}{800}=0.40.$$\n\nThe standard error is\n\n$$\\operatorname{SE}=\\sqrt{\\frac{0.40(0.60)}{800}}=0.0173205.$$\n\nThe margin of error is\n\n$$1.959964(0.0173205)=0.0339476.$$\n\nThus, the 95% confidence interval is\n\n$$(0.40-0.0339476,\\ 0.40+0.0339476)=(0.3660524,0.4339476),$$\n\nor **36.61% to 43.39%**.",
+      "review_status": "independently solved and reviewed",
+      "source_commit": "54e7db70ed308cab9c7eed8af1d2dba5a6adf7d4"
+    },
+    {
+      "id": "opl_nau_ch08_ci_mean_01",
+      "answer": "The standard error is\n\n$$\\operatorname{SE}=\\frac{8}{\\sqrt{64}}=1.$$\n\nThe margin of error is $1.96(1)=1.96$. Therefore, the confidence interval is\n\n$$52\\pm1.96=(50.04,53.96).$$",
+      "review_status": "independently solved and reviewed",
+      "source_commit": "54e7db70ed308cab9c7eed8af1d2dba5a6adf7d4"
+    },
+    {
+      "id": "ai_ch08_1786367759845_1_5fe887b26c",
+      "answer": "First compute the sample mean: \n\\[\n\\bar{x} = \\frac{245.3+252.1+238.7+260.4+249.8+255.6+241.2+258.9+247.5+253.0+239.4+251.7}{12} = \\frac{2993.6}{12} = 249.4667.\n\\]\nNext compute the sample standard deviation. The squared deviations from the mean are:\n\\[\n(245.3-249.4667)^2 = 17.3611,\\quad (252.1-249.4667)^2 = 6.9344,\n\\]\n\\[\n(238.7-249.4667)^2 = 115.8678,\\quad (260.4-249.4667)^2 = 119.6011,\n\\]\n\\[\n(249.8-249.4667)^2 = 0.1111,\\quad (255.6-249.4667)^2 = 37.6178,\n\\]\n\\[\n(241.2-249.4667)^2 = 68.3378,\\quad (258.9-249.4667)^2 = 88.9611,\n\\]\n\\[\n(247.5-249.4667)^2 = 3.8678,\\quad (253.0-249.4667)^2 = 12.4844,\n\\]\n\\[\n(239.4-249.4667)^2 = 101.3378,\\quad (251.7-249.4667)^2 = 4.9878.\n\\]\nSum of squared deviations = \\(17.3611+6.9344+115.8678+119.6011+0.1111+37.6178+68.3378+88.9611+3.8678+12.4844+101.3378+4.9878 = 577.4700\\).\nThus the sample variance is \\(s^2 = 577.4700/(12-1) = 52.4973\\), so \\(s = \\sqrt{52.4973} \\approx 7.2452\\).\n\nFor a 92% confidence interval, \\(\\alpha = 0.08\\), so \\(\\alpha/2 = 0.04\\). With \\(df = 11\\), the critical value is \\(t_{0.96,11} = 1.886\\) (from t-table).\n\nThe margin of error is:\n\\[\nE = t_{\\alpha/2} \\cdot \\frac{s}{\\sqrt{n}} = 1.886 \\cdot \\frac{7.2452}{\\sqrt{12}} = 1.886 \\cdot 2.0915 \\approx 3.944.\n\\]\n\nTherefore, the 92% confidence interval is:\n\\[\n\\bar{x} \\pm E = 249.4667 \\pm 3.944 = (245.52,\\;253.41).\n\\]\n\nSo the interval is approximately \\((245.52,\\;253.41)\\) minutes.",
+      "review_status": "AI generated, independently verified, and accepted by teacher during paper assembly; reviewed",
+      "audit_pack": "ai-paper-assembly-v1"
     }
   ]
 }

@@ -38,7 +38,10 @@ export function useCustomLine({ scales, chartLayoutMargin, resetDeps }: UseCusto
 
   const handlePointerDown = useCallback(
     (e: React.PointerEvent<SVGSVGElement>) => {
+      e.preventDefault();
+      e.currentTarget.setPointerCapture(e.pointerId);
       const { x, y } = getChartCoords(e);
+      setCustomLine({ start: null, end: null });
       setTempLine({ start: { x: scales.xScale.invert(x), y: scales.yScale.invert(y) }, end: null });
       setIsDragging(true);
     },
@@ -48,6 +51,7 @@ export function useCustomLine({ scales, chartLayoutMargin, resetDeps }: UseCusto
   const handlePointerMove = useCallback(
     (e: React.PointerEvent<SVGSVGElement>) => {
       if (!isDragging) return;
+      e.preventDefault();
       const { x, y } = getChartCoords(e);
       setTempLine((prev) => ({
         start: prev.start,
@@ -63,6 +67,9 @@ export function useCustomLine({ scales, chartLayoutMargin, resetDeps }: UseCusto
       const { x, y } = getChartCoords(e);
       setTempLine({ start: null, end: null });
       setIsDragging(false);
+      if (e.currentTarget.hasPointerCapture(e.pointerId)) {
+        e.currentTarget.releasePointerCapture(e.pointerId);
+      }
       setCustomLine((prev) => {
         const start = prev.start ?? tempLine.start;
         const end = { x: scales.xScale.invert(x), y: scales.yScale.invert(y) };
@@ -107,13 +114,13 @@ export function computeHoverInfo(
   customLineParams: { slope: number; intercept: number } | null,
 ): HoverInfo {
   if (!hoverPoint) return null;
-  if (showRegression) {
-    const lineY = regression.slope * hoverPoint.x + regression.intercept;
-    return { point: hoverPoint, lineY, residual: hoverPoint.y - lineY, lineType: "regression" };
-  }
   if (customLineParams) {
     const lineY = customLineParams.slope * hoverPoint.x + customLineParams.intercept;
     return { point: hoverPoint, lineY, residual: hoverPoint.y - lineY, lineType: "custom" };
+  }
+  if (showRegression) {
+    const lineY = regression.slope * hoverPoint.x + regression.intercept;
+    return { point: hoverPoint, lineY, residual: hoverPoint.y - lineY, lineType: "regression" };
   }
   return null;
 }

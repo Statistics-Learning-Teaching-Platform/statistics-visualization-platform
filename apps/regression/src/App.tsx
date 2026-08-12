@@ -77,11 +77,11 @@ export default function RegressionApp() {
   const customLineParams = useMemo(() => getCustomLineParams(customLine), [customLine]);
 
   const sse = useMemo(() => {
-    if (showRegression) {
-      return { value: regression.sse, lineType: "regression" as const };
-    }
     if (customLineParams) {
       return { value: computeSSE(visibleData, customLineParams.slope, customLineParams.intercept), lineType: "custom" as const };
+    }
+    if (showRegression) {
+      return { value: regression.sse, lineType: "regression" as const };
     }
     return { value: 0, lineType: null };
   }, [visibleData, showRegression, regression, customLineParams]);
@@ -108,6 +108,32 @@ export default function RegressionApp() {
               <h2>{copy.chartTitle}</h2>
               <p>{copy.chartDescription}</p>
             </div>
+            <div className="regression-line-guide" role="list" aria-label={copy.lineType}>
+              {showRegression && (
+                <span className="regression-line-guide__item" role="listitem">
+                  <span className="regression-line-guide__swatch regression-line-guide__swatch--fit" aria-hidden="true" />
+                  {copy.regressionLine}
+                </span>
+              )}
+              {customLineParams ? (
+                <span className="regression-line-guide__item regression-line-guide__item--active" role="listitem">
+                  <span className="regression-line-guide__swatch regression-line-guide__swatch--custom" aria-hidden="true" />
+                  {copy.customLine}
+                </span>
+              ) : (
+                <span className="regression-line-guide__hint">{copy.chartDescription}</span>
+              )}
+            </div>
+            <div className="observation-prompt">
+              <span aria-hidden="true">◎</span>
+              <div>
+                <strong>{copy.residualsExplainFit}</strong>
+                <p>{copy.residualsBody}</p>
+              </div>
+            </div>
+            <section className="metrics-grid">
+              <StatisticsPanel sse={sse} hoverInfo={hoverInfo} copy={copy} />
+            </section>
             <div className="chart-frame">
               <div className="chart-shell">
                 <RegressionChart
@@ -129,9 +155,6 @@ export default function RegressionApp() {
                 />
               </div>
             </div>
-          </section>
-          <section className="metrics-grid">
-            <StatisticsPanel sse={sse} hoverInfo={hoverInfo} copy={copy} />
           </section>
         </section>
         <aside className="teaching-area">

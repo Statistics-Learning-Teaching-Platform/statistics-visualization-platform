@@ -398,6 +398,139 @@
       "formula_refs": [],
       "data_refs": [],
       "audit_pack": "ch01-review-v1"
+    },
+    {
+      "id": "opl_nau_ch01_terminology_01",
+      "content": "A choir contains 1,500 singers. A conductor wants to estimate the proportion who are professional singers. Instead of surveying everyone, she asks the 650 singers seated nearest the front, and 26 of them report being professionals.\n\na. Identify the population.\n\nb. Identify the sample.\n\nc. Identify the parameter of interest.\n\nd. Calculate the sample statistic used to estimate the parameter.\n\ne. Identify the principal sampling problem in this design.",
+      "source": "WeBWorK Open Problem Library — NAU Statistics — basicTerminology.pg (fixed static instance) — https://github.com/openwebwork/webwork-open-problem-library/blob/54e7db70ed308cab9c7eed8af1d2dba5a6adf7d4/OpenProblemLibrary/NAU/setStatistics/basicTerminology.pg",
+      "source_url": "https://github.com/openwebwork/webwork-open-problem-library/blob/54e7db70ed308cab9c7eed8af1d2dba5a6adf7d4/OpenProblemLibrary/NAU/setStatistics/basicTerminology.pg",
+      "source_problem": "basicTerminology.pg (fixed static instance)",
+      "source_path": "OpenProblemLibrary/NAU/setStatistics/basicTerminology.pg",
+      "source_commit": "54e7db70ed308cab9c7eed8af1d2dba5a6adf7d4",
+      "license": "CC BY-NC-SA 3.0",
+      "license_url": "https://creativecommons.org/licenses/by-nc-sa/3.0/",
+      "attribution": "Juhee Park, Northern Arizona University",
+      "changes": "Randomized PG problem converted to a fixed, self-contained English instance; answer independently recomputed and Markdown/LaTeX normalized.",
+      "review_status": "independently solved and reviewed",
+      "type": "综合题",
+      "difficulty": 2,
+      "keywords": [
+        "population",
+        "sample",
+        "parameter",
+        "statistic",
+        "sampling bias"
+      ],
+      "formula_refs": [],
+      "data_refs": []
+    },
+    {
+      "id": "opl_nau_ch01_sampling_01",
+      "content": "For each study, decide whether the sample is reasonably representative of the stated target population and explain why.\n\na. A simple random sample of 300 Seattle residents is used to estimate the median income of all Seattle residents.\n\nb. A sample of 300 Seattle dentists is used to estimate the median income of all Seattle residents.",
+      "source": "WeBWorK Open Problem Library — NAU Statistics — sampling1.pg (two fixed scenarios) — https://github.com/openwebwork/webwork-open-problem-library/blob/54e7db70ed308cab9c7eed8af1d2dba5a6adf7d4/OpenProblemLibrary/NAU/setStatistics/sampling1.pg",
+      "source_url": "https://github.com/openwebwork/webwork-open-problem-library/blob/54e7db70ed308cab9c7eed8af1d2dba5a6adf7d4/OpenProblemLibrary/NAU/setStatistics/sampling1.pg",
+      "source_problem": "sampling1.pg (two fixed scenarios)",
+      "source_path": "OpenProblemLibrary/NAU/setStatistics/sampling1.pg",
+      "source_commit": "54e7db70ed308cab9c7eed8af1d2dba5a6adf7d4",
+      "license": "CC BY-NC-SA 3.0",
+      "license_url": "https://creativecommons.org/licenses/by-nc-sa/3.0/",
+      "attribution": "ASU source, adapted at NAU by C. Tyler Diggans",
+      "changes": "Randomized PG problem converted to a fixed, self-contained English instance; answer independently recomputed and Markdown/LaTeX normalized.",
+      "review_status": "independently solved and reviewed",
+      "type": "简答题",
+      "difficulty": 2,
+      "keywords": [
+        "representative sample",
+        "sampling bias",
+        "target population"
+      ],
+      "formula_refs": [],
+      "data_refs": []
+    },
+    {
+      "id": "opl_nau_ch01_design_01",
+      "content": "Classify each description as an observational study, a controlled experiment, or a double-blind experiment. Explain the feature that determines your classification.\n\na. A therapist summarizes records from adult patients who survived childhood abuse.\n\nb. Researchers survey 500 children about exercise habits and body weight.\n\nc. Five hundred adult men are randomly assigned either a high-fiber diet or a low-fiber diet to study cholesterol.\n\nd. Patients receive either a study drug or a placebo; neither the patient nor the nurse administering the dose knows which treatment was assigned.",
+      "source": "WeBWorK Open Problem Library — NAU Statistics — sampling3.pg (four fixed scenarios) — https://github.com/openwebwork/webwork-open-problem-library/blob/54e7db70ed308cab9c7eed8af1d2dba5a6adf7d4/OpenProblemLibrary/NAU/setStatistics/sampling3.pg",
+      "source_url": "https://github.com/openwebwork/webwork-open-problem-library/blob/54e7db70ed308cab9c7eed8af1d2dba5a6adf7d4/OpenProblemLibrary/NAU/setStatistics/sampling3.pg",
+      "source_problem": "sampling3.pg (four fixed scenarios)",
+      "source_path": "OpenProblemLibrary/NAU/setStatistics/sampling3.pg",
+      "source_commit": "54e7db70ed308cab9c7eed8af1d2dba5a6adf7d4",
+      "license": "CC BY-NC-SA 3.0",
+      "license_url": "https://creativecommons.org/licenses/by-nc-sa/3.0/",
+      "attribution": "C. Tyler Diggans, Northern Arizona University",
+      "changes": "Randomized PG problem converted to a fixed, self-contained English instance; answer independently recomputed and Markdown/LaTeX normalized.",
+      "review_status": "independently solved and reviewed",
+      "type": "简答题",
+      "difficulty": 2,
+      "keywords": [
+        "observational study",
+        "controlled experiment",
+        "double-blind experiment"
+      ],
+      "formula_refs": [],
+      "data_refs": []
+    },
+    {
+      "id": "opl_nau_ch01_population_01",
+      "content": "A survey interviews 4,000 Americans and finds that 3,200 agree with the president on a particular issue.\n\na. Identify the population.\n\nb. Identify the sample.\n\nc. Identify the attribute of interest.\n\nd. Determine whether 0.80 is a population proportion or a sample proportion.",
+      "source": "WeBWorK Open Problem Library — NAU Statistics — sampling2.pg (fixed static instance) — https://github.com/openwebwork/webwork-open-problem-library/blob/54e7db70ed308cab9c7eed8af1d2dba5a6adf7d4/OpenProblemLibrary/NAU/setStatistics/sampling2.pg",
+      "source_url": "https://github.com/openwebwork/webwork-open-problem-library/blob/54e7db70ed308cab9c7eed8af1d2dba5a6adf7d4/OpenProblemLibrary/NAU/setStatistics/sampling2.pg",
+      "source_problem": "sampling2.pg (fixed static instance)",
+      "source_path": "OpenProblemLibrary/NAU/setStatistics/sampling2.pg",
+      "source_commit": "54e7db70ed308cab9c7eed8af1d2dba5a6adf7d4",
+      "license": "CC BY-NC-SA 3.0",
+      "license_url": "https://creativecommons.org/licenses/by-nc-sa/3.0/",
+      "attribution": "ASU source, adapted at NAU by C. Tyler Diggans",
+      "changes": "Randomized PG problem converted to a fixed, self-contained English instance; answer independently recomputed and Markdown/LaTeX normalized.",
+      "review_status": "independently solved and reviewed",
+      "type": "综合题",
+      "difficulty": 1,
+      "keywords": [
+        "population",
+        "sample",
+        "attribute",
+        "sample proportion"
+      ],
+      "formula_refs": [],
+      "data_refs": []
+    },
+    {
+      "id": "ai_ch01_1786356733821_1_091aea5af8",
+      "group_id": "ai_ch01_1786356733821_1_091aea5af8",
+      "part_count": 1,
+      "content": "Explain the core idea of a Recurrent Neural Network (RNN) and why it is suitable for sequential data. In your explanation, include the concept of hidden state and parameter sharing.",
+      "source": "AI generated for Recurrent Neural Network (RNN)",
+      "type": "简答题",
+      "difficulty": 3,
+      "keywords": [
+        "Recurrent Neural Network (RNN)"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "origin": "generated",
+      "parent_question_id": null,
+      "verification": "Check that the answer defines RNN, explains hidden state and parameter sharing, and mentions suitability for sequential data.",
+      "review_status": "AI generated, independently verified, and accepted by teacher during paper assembly; reviewed",
+      "audit_pack": "ai-paper-assembly-v1"
+    },
+    {
+      "id": "ai_ch01_1786356733821_2_c2df07f37c",
+      "group_id": "ai_ch01_1786356733821_2_c2df07f37c",
+      "part_count": 1,
+      "content": "Consider a simple RNN with input size 1, hidden size 1, and no bias. The weight for the input is $w_x = 0.5$, the weight for the hidden state is $w_h = -0.8$, and the activation function is $\\tanh$. The initial hidden state is $h_0 = 0$. The input sequence is $x_1 = 1.0$, $x_2 = -0.5$, $x_3 = 2.0$. Compute the hidden states $h_1$, $h_2$, and $h_3$ after each time step. Show all calculations and round to four decimal places.",
+      "source": "AI generated for RNN Forward Pass",
+      "type": "计算题",
+      "difficulty": 3,
+      "keywords": [
+        "RNN Forward Pass"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "origin": "generated",
+      "parent_question_id": null,
+      "verification": "Verify each step: h1 = tanh(0.5)=0.4621, h2 = tanh(-0.25 -0.8*0.4621)=tanh(-0.61968)=-0.5501, h3 = tanh(1.0 -0.8*(-0.5501))=tanh(1.44008)=0.8934.",
+      "review_status": "AI generated, independently verified, and accepted by teacher during paper assembly; reviewed",
+      "audit_pack": "ai-paper-assembly-v1"
     }
   ]
 }

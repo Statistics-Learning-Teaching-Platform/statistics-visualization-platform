@@ -102,6 +102,7 @@
   "Right-skewed": "右偏分布",
   "Bimodal": "双峰分布",
   "Sampling distribution of sample means": "样本均值的抽样分布",
+  "Standardized sampling distribution of sample means": "标准化样本均值的抽样分布",
   "Sampling distribution of means": "样本均值的抽样分布",
   "Sample means": "样本均值",
   "Population": "总体",
@@ -111,6 +112,7 @@
   "Value": "数值",
   "Count": "计数",
   "samples drawn": "已抽样本数",
+  "repeated samples": "重复抽样次数",
   "sample means in histogram": "直方图中的样本均值",
   "sample size n": "样本量 n",
   "observations per sample": "每个样本的观测数",
@@ -119,6 +121,8 @@
   "theoretical SE": "理论标准误",
   "sigma / sqrt(n)": "sigma / sqrt(n)",
   "observed SD": "观测标准差",
+  "Standardized sample mean z": "标准化样本均值 z",
+  "Expected center z = 0": "理论中心 z = 0",
   "SD of sample means": "样本均值的标准差",
   "Confidence intervals across repeated samples": "重复抽样中的置信区间",
   "Captures true mean": "覆盖真实均值",
@@ -416,8 +420,10 @@
   "posterior sample mean": "后验样本均值",
   "Continuous and discrete distribution exploration from WALS/MES.": "来自 WALS/MES 的连续与离散分布探索。",
   "Distribution Explorer": "分布探索器",
-  "Switch between PDF/PMF and CDF/CMF views for common distributions and calculate interval probabilities.": "在常见分布的 PDF/PMF 与 CDF/CMF 视图之间切换，并计算区间概率。",
+  "Compare a fixed reference curve with the current normal distribution, switch between PDF/PMF and CDF/CMF views, and calculate interval probabilities.": "将当前正态分布与固定参照曲线对比，同时可切换常见分布的 PDF/PMF 与 CDF/CMF 视图并计算区间概率。",
   "Parameters reshape location, spread, skew, and tail behavior.": "参数会改变位置、离散程度、偏度和尾部行为。",
+  "For a normal distribution, the mean shifts the curve while the variance changes its width and peak height.": "对正态分布而言，均值决定曲线的左右位置，方差决定曲线的宽窄与峰值高度。",
+  "A fixed N(0, 1) reference makes parameter changes visible on a shared coordinate system.": "固定的 N(0, 1) 参照曲线让参数变化在同一坐标系中清晰可见。",
   "Interval probability is the area under the density or a CDF difference.": "区间概率可以理解为密度曲线下面积或 CDF 差值。",
   "Distribution": "分布",
   "Parameter a": "参数 a",
@@ -432,6 +438,10 @@
   "Geometric": "几何分布",
   "Poisson": "泊松分布",
   "Distribution explorer": "分布探索器",
+  "Standard deviation σ (variance σ²)": "标准差 σ（方差 σ²）",
+  "normal parameter comparison": "正态分布参数对比",
+  "current N(μ, σ²)": "当前分布 N(μ, σ²)",
+  "reference N(0, 1)": "参照分布 N(0, 1)",
   "PDF view for norm; μ = 0.00, σ = 1.00.": "当前为正态分布的 PDF 视图；μ = 0.00，σ = 1.00。",
   "distribution": "分布",
   "norm": "正态",
@@ -496,5 +506,93 @@
   "Known": "已知",
   "Estimated": "估计",
   "Parameter a (μ / shape / df / p)": "参数 a (μ / 形状 / 自由度 / p)",
-  "Parameter b (σ / shape / df / n / λ)": "参数 b (σ / 形状 / 自由度 / n / λ)"
+  "Parameter b (σ / shape / df / n / λ)": "参数 b (σ / 形状 / 自由度 / n / λ)",
+  "Location or first shape parameter": "位置参数或第一个形状参数",
+  "Mean μ": "均值 μ",
+  "Degrees of freedom ν": "自由度 ν",
+  "Shape α": "形状参数 α",
+  "Lower bound a": "下界 a",
+  "Success probability p": "成功概率 p",
+  "Scale or second shape parameter": "尺度参数或第二个形状参数",
+  "Standard deviation σ": "标准差 σ",
+  "Shape β": "形状参数 β",
+  "Rate β": "率参数 β",
+  "Rate λ": "率参数 λ",
+  "Upper bound b": "上界 b",
+  "Number of trials n": "试验次数 n",
+  "Area ratio inside the unit circle": "单位圆内的面积比例",
+  "horizontal coordinate x": "横坐标 x",
+  "vertical coordinate y": "纵坐标 y",
+  "Nonparametric Bootstrap": "非参数自助法",
+  "Resample the observed values with replacement and study the bootstrap distribution of the sample maximum.": "对观测值进行有放回重抽样，并研究样本最大值的自助分布。",
+  "Permutation Test": "置换检验",
+  "Test a difference in two means by repeatedly shuffling group labels under the null hypothesis.": "在零假设下反复打乱组标签，检验两个均值之差。",
+  "Under the null hypothesis, group labels are exchangeable.": "在零假设下，组标签具有可交换性。",
+  "The p value is the proportion of shuffled differences at least as extreme as the observed difference.": "p 值是置换后均值差至少与观察差异同样极端的比例。",
+  "Observations per group": "每组观测数",
+  "Mean shift in group B": "B 组均值偏移",
+  "Permutations": "置换次数",
+  "Proposal step size": "提议步长",
+  "Gibbs Sampling": "吉布斯抽样",
+  "Sample a correlated bivariate normal by alternating between the two conditional distributions.": "通过在两个条件分布之间交替抽样，生成相关二元正态样本。",
+  "A Gibbs sweep changes one coordinate while holding the other coordinate fixed.": "一次吉布斯扫描固定一个坐标并更新另一个坐标。",
+  "Stronger correlation produces slower movement along the narrow direction of the target.": "相关性越强，链沿目标分布狭窄方向的移动越慢。",
+  "Target correlation": "目标相关系数",
+  "Burn-in sweeps": "预热扫描次数",
+  "Retained sweeps": "保留扫描次数",
+  "Visit frequencies converge toward the population-weighted target distribution.": "访问频率会逐渐收敛到按人口加权的目标分布。",
+  "Contours show the target density, the red polyline shows the most recent chain movement, and the trace panels preserve draw order.": "等高线表示目标密度，红色折线表示最近的链移动，轨迹图保留抽样顺序。",
+  "Very low values indicate proposals that are too large; very high values can indicate slow exploration.": "接受率过低通常表示提议步长过大；过高则可能表示探索速度过慢。",
+  "Approximate number of independent draws after accounting for lag-one dependence.": "考虑一阶滞后相关后得到的近似独立样本数。",
+  "proposal step": "提议步长",
+  "proposal standard deviation": "提议分布标准差",
+  "effective sample size": "有效样本量",
+  "burn-in": "预热期",
+  "discarded initial states": "丢弃的初始状态",
+  "retained sample mean": "保留样本的均值",
+  "How the Metropolis-Hastings chain explores a two-mode target": "M-H 接受—拒绝链如何探索双峰目标分布",
+  "Target density and recent chain path": "目标密度与最近的链路径",
+  "Recent trace by draw order": "按抽样顺序排列的最近轨迹",
+  "parameter x₁": "参数 x₁",
+  "parameter x₂": "参数 x₂",
+  "p value": "p 值",
+  "Within-group spread and between-group separation": "组内离散与组间分离",
+  "observed response": "观测响应值",
+  "Repeated confidence intervals around sample means": "围绕样本均值构造的重复置信区间",
+  "parameter scale": "参数尺度",
+  "repeated sample": "重复样本",
+  "norm density": "正态密度",
+  "value x": "取值 x",
+  "density  f(x)": "密度 f(x)",
+  "sum of squared residuals": "残差平方和",
+  "Observed cities, fitted values, and residuals": "城市观测值、拟合值与残差",
+  "planned skyscrapers": "计划建设的摩天楼",
+  "theoretical value": "理论值",
+  "Study hours": "学习时间",
+  "Exam score": "考试成绩",
+  "Outlier Impact Dataset": "异常值影响数据集",
+  "Strong Linear Relationship": "强线性关系",
+  "Constructed classroom example for influence and outlier teaching": "用于讲解影响点与异常值的课堂示例"
+  ,"Accepted sample size": "接受样本量"
+  ,"inverse-transform draws": "逆变换抽样"
+  ,"latest mean": "最新样本均值"
+  ,"Normal approximation": "正态近似"
+  ,"observations": "观测值"
+  ,"group mean": "组均值"
+  ,"current state": "当前状态"
+  ,"target density": "目标密度"
+  ,"recent path": "最近路径"
+  ,"t": "t"
+  ,"beta": "贝塔"
+  ,"gamma": "伽马"
+  ,"chisq": "卡方"
+  ,"exp": "指数"
+  ,"unif": "均匀"
+  ,"binom": "二项"
+  ,"pois": "泊松"
+  ,"geom": "几何"
+  ,"cumulative distribution": "累积分布"
+  ,"probability mass": "概率质量"
+  ,"density": "密度"
+  ,"PMF  P(X = x)": "概率质量 P(X = x)"
 }

@@ -8,6 +8,11 @@ export default defineConfig({
       "/st-qselector": {
         target: "http://127.0.0.1:3200",
         changeOrigin: true,
+        // Next.js dev mode completes client hydration through its development
+        // runtime websocket. Proxy the upgrade as well as ordinary HTTP;
+        // otherwise the server-rendered question bank is visible but remains
+        // inert when it is opened through the shared 4174 portal.
+        ws: true,
       },
     },
   },

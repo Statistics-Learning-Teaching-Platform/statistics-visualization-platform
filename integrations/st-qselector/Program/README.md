@@ -1,4 +1,6 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# StatMind question bank
+
+The question bank combines manual filtering and AI-assisted paper planning in one workspace. Teachers can upload course material, confirm the extracted knowledge points, set question count/type/difficulty constraints, and then apply a deterministic selection of reviewed questions to the same paper basket used by manual filtering.
 
 ## Getting Started
 
@@ -14,7 +16,15 @@ pnpm dev
 bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3200/st-qselector](http://localhost:3200/st-qselector) with your browser to see the result.
+
+## Optional AI knowledge extraction
+
+Copy `.env.example` to `.env.local` and set `OPENAI_API_KEY`. The key is read only in the server route and must not use a `NEXT_PUBLIC_` prefix. `OPENAI_BASE_URL` and `OPENAI_MODEL` can be changed for an OpenAI-compatible service.
+
+If no key is configured, uploaded material is still analyzed with the built-in statistics taxonomy. AI extraction only proposes knowledge points; the teacher must confirm them, and only reviewed, complete questions with answers can enter the generated paper.
+
+Supported courseware formats: PDF, PPTX, DOCX, TXT, Markdown. Files are limited to 15 MB.
 
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 

@@ -485,6 +485,52 @@
       "formula_refs": [],
       "data_refs": [],
       "audit_pack": "ch06-review-v1"
+    },
+    {
+      "id": "opl_nau_ch06_normal_01",
+      "content": "Exam scores are normally distributed with mean $70$ and standard deviation $10$. For a score of $85$, calculate the z-score and the percentile. Report the percentile to two decimal places.",
+      "source": "WeBWorK Open Problem Library — NAU Statistics — z-scores1.pg (fixed static instance) — https://github.com/openwebwork/webwork-open-problem-library/blob/54e7db70ed308cab9c7eed8af1d2dba5a6adf7d4/OpenProblemLibrary/NAU/setStatistics/z-scores1.pg",
+      "source_url": "https://github.com/openwebwork/webwork-open-problem-library/blob/54e7db70ed308cab9c7eed8af1d2dba5a6adf7d4/OpenProblemLibrary/NAU/setStatistics/z-scores1.pg",
+      "source_problem": "z-scores1.pg (fixed static instance)",
+      "source_path": "OpenProblemLibrary/NAU/setStatistics/z-scores1.pg",
+      "source_commit": "54e7db70ed308cab9c7eed8af1d2dba5a6adf7d4",
+      "license": "CC BY-NC-SA 3.0",
+      "license_url": "https://creativecommons.org/licenses/by-nc-sa/3.0/",
+      "attribution": "N. Spencer Sitton, Northern Arizona University",
+      "changes": "Randomized PG problem converted to a fixed, self-contained English instance; answer independently recomputed and Markdown/LaTeX normalized.",
+      "review_status": "independently solved and reviewed",
+      "type": "计算题",
+      "difficulty": 2,
+      "keywords": [
+        "z-score",
+        "normal distribution",
+        "percentile"
+      ],
+      "formula_refs": [],
+      "data_refs": []
+    },
+    {
+      "id": "opl_nau_ch06_normal_02",
+      "content": "A normally distributed variable has mean $500$ and standard deviation $80$. Calculate $P(420<X<660)$ and report four decimal places.",
+      "source": "WeBWorK Open Problem Library — NAU Statistics — normal_dist2.pg (converted from graph to explicit bounds) — https://github.com/openwebwork/webwork-open-problem-library/blob/54e7db70ed308cab9c7eed8af1d2dba5a6adf7d4/OpenProblemLibrary/NAU/setStatistics/normal_dist2.pg",
+      "source_url": "https://github.com/openwebwork/webwork-open-problem-library/blob/54e7db70ed308cab9c7eed8af1d2dba5a6adf7d4/OpenProblemLibrary/NAU/setStatistics/normal_dist2.pg",
+      "source_problem": "normal_dist2.pg (converted from graph to explicit bounds)",
+      "source_path": "OpenProblemLibrary/NAU/setStatistics/normal_dist2.pg",
+      "source_commit": "54e7db70ed308cab9c7eed8af1d2dba5a6adf7d4",
+      "license": "CC BY-NC-SA 3.0",
+      "license_url": "https://creativecommons.org/licenses/by-nc-sa/3.0/",
+      "attribution": "N. Spencer Sitton; modified by John Hagood, Northern Arizona University",
+      "changes": "Randomized PG problem converted to a fixed, self-contained English instance; answer independently recomputed and Markdown/LaTeX normalized.",
+      "review_status": "independently solved and reviewed",
+      "type": "计算题",
+      "difficulty": 2,
+      "keywords": [
+        "normal distribution",
+        "standardization",
+        "interval probability"
+      ],
+      "formula_refs": [],
+      "data_refs": []
     }
   ]
 }

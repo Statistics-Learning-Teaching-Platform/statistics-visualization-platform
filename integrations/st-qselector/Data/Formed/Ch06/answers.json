@@ -192,6 +192,18 @@
       "answer": "For $X\\sim U(400,3800)$, $E(X)=(400+3800)/2=2100$ and $\\operatorname{SD}(X)=(3800-400)/\\sqrt{12}\\approx981.50$. Also, $P(X<2000)=1600/3400\\approx0.4706$, $P(X>3000)=800/3400\\approx0.2353$, and $P(1500<X<2500)=1000/3400\\approx0.2941$.",
       "review_status": "independently solved and reviewed",
       "audit_pack": "ch06-review-v1"
+    },
+    {
+      "id": "opl_nau_ch06_normal_01",
+      "answer": "The standardized score is\n\n$$z=\\frac{85-70}{10}=1.5.$$\n\nTherefore,\n\n$$P(X\\le85)=\\Phi(1.5)=0.93319\\ldots.$$\n\nThe score is at approximately the **93.32nd percentile**.",
+      "review_status": "independently solved and reviewed",
+      "source_commit": "54e7db70ed308cab9c7eed8af1d2dba5a6adf7d4"
+    },
+    {
+      "id": "opl_nau_ch06_normal_02",
+      "answer": "Standardizing the endpoints gives\n\n$$z_1=\\frac{420-500}{80}=-1,\\qquad z_2=\\frac{660-500}{80}=2.$$\n\nThus,\n\n$$P(420<X<660)=\\Phi(2)-\\Phi(-1)$$\n\n$$=0.9772499-0.1586553=0.8185946\\approx\\boxed{0.8186}.$$",
+      "review_status": "independently solved and reviewed",
+      "source_commit": "54e7db70ed308cab9c7eed8af1d2dba5a6adf7d4"
     }
   ]
 }

@@ -1,5 +1,5 @@
 import { useMemo, useState } from "react";
-import { range, select, axisBottom, axisLeft, line } from "d3";
+import { range, select, axisBottom, axisLeft, line, area as d3Area } from "d3";
 import { typeErrorCopy, useLanguage } from "@stats-viz/shared/i18n";
 import { normalCdf, normalInv, normalPdf } from "@stats-viz/shared/math";
 import {
@@ -97,19 +97,13 @@ function buildAreaPath(
   scales: ReturnType<typeof createScales>,
   invert: boolean,
 ): string {
-  const area = data.map((d) => ({
-    x: d.x,
-    y: invert ? (filterFn(d, criticalValue) ? 0 : d.y) : filterFn(d, criticalValue) ? d.y : 0,
-  }));
-  if (area.length === 0) return "";
-  area.push({ x: area[0]!.x, y: 0 });
-  const last = area.at(-1)!;
-  area.unshift({ x: last.x, y: 0 });
-  area.unshift({ x: area[0]!.x, y: 0 });
-  const lineGen = line<DistributionPoint>()
+  const areaGen = d3Area<DistributionPoint>()
     .x((d) => scales.xScale(d.x))
-    .y((d) => scales.yScale(d.y));
-  return lineGen(area) ?? "";
+    .y0(scales.yScale(0))
+    .y1((d) => scales.yScale(invert
+      ? (filterFn(d, criticalValue) ? 0 : d.y)
+      : (filterFn(d, criticalValue) ? d.y : 0)));
+  return areaGen(data) ?? "";
 }
 
 export default function TypeErrorApp() {
@@ -216,8 +210,37 @@ export default function TypeErrorApp() {
               <h2>{copy.chartTitle}</h2>
               <p>{copy.chartDescription}</p>
             </div>
+            <div className="observation-prompt">
+              <span aria-hidden="true">◎</span>
+              <div>
+                <strong>{copy.criticalBoundary}</strong>
+                <p>{copy.controlIntro}</p>
+              </div>
+            </div>
+            <div className="metrics-grid">
+              <div className="metric-card">
+                <span className="metric-label">{copy.alpha}</span>
+                <span className="metric-value">{formatRate(computed.typeOneErrorRate)}</span>
+                <small className="metric-note">{copy.alphaNote}</small>
+              </div>
+              <div className="metric-card">
+                <span className="metric-label">{copy.betaLabel}</span>
+                <span className="metric-value">{formatRate(computed.typeTwoErrorRate)}</span>
+                <small className="metric-note">{copy.betaNote}</small>
+              </div>
+              <div className="metric-card">
+                <span className="metric-label">{copy.power}</span>
+                <span className="metric-value">{formatRate(computed.power)}</span>
+                <small className="metric-note">{copy.powerNote}</small>
+              </div>
+              <div className="metric-card">
+                <span className="metric-label">{copy.effectSize}</span>
+                <span className="metric-value">{formatNumber(computed.effectSize, 2)}</span>
+                <small className="metric-note">{copy.effectSizeNote}</small>
+              </div>
+            </div>
             <div className="chart-frame">
-              <svg width={CHART_LAYOUT.width} height={CHART_LAYOUT.height} viewBox={`0 0 ${CHART_LAYOUT.width} ${CHART_LAYOUT.height}`}>
+              <svg width={CHART_LAYOUT.width} height={CHART_LAYOUT.height} viewBox={`0 0 ${CHART_LAYOUT.width} ${CHART_LAYOUT.height}`} role="img" aria-label={`${copy.chartTitle}: ${computed.hypothesisText.H0Text}; ${computed.hypothesisText.H1Text}`}>
                 <g transform={`translate(${CHART_LAYOUT.margin.left}, ${CHART_LAYOUT.margin.top})`}>
                   <path d={nullPath} fill="none" stroke="var(--chart-blue)" strokeWidth={2} />
                   <path d={truePath} fill="none" stroke="var(--teal)" strokeWidth={2} />
@@ -307,28 +330,6 @@ export default function TypeErrorApp() {
                   </g>
                 </g>
               </svg>
-            </div>
-          </div>
-          <div className="metrics-grid">
-            <div className="metric-card">
-              <span className="metric-label">{copy.alpha}</span>
-              <span className="metric-value">{formatRate(computed.typeOneErrorRate)}</span>
-              <small className="metric-note">{copy.alphaNote}</small>
-            </div>
-            <div className="metric-card">
-              <span className="metric-label">{copy.betaLabel}</span>
-              <span className="metric-value">{formatRate(computed.typeTwoErrorRate)}</span>
-              <small className="metric-note">{copy.betaNote}</small>
-            </div>
-            <div className="metric-card">
-              <span className="metric-label">{copy.power}</span>
-              <span className="metric-value">{formatRate(computed.power)}</span>
-              <small className="metric-note">{copy.powerNote}</small>
-            </div>
-            <div className="metric-card">
-              <span className="metric-label">{copy.effectSize}</span>
-              <span className="metric-value">{formatNumber(computed.effectSize, 2)}</span>
-              <small className="metric-note">{copy.effectSizeNote}</small>
             </div>
           </div>
         </div>

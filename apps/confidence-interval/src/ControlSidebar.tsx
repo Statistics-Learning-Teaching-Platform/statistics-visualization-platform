@@ -47,18 +47,22 @@ export function ControlSidebar({
       <div id="sidebar" className={`control-sidebar${collapsed ? " collapsed" : ""}`}>
         <button
           id="toggleSidebar"
+          type="button"
           className="control-panel__toggle"
+          aria-label={collapsed ? `Show ${copy.controlsTitle}` : `Hide ${copy.controlsTitle}`}
+          aria-expanded={!collapsed}
+          aria-controls="confidence-control-panel"
           onClick={onToggleCollapsed}
         >
           {collapsed ? "❯" : "❮"}
         </button>
         {!collapsed && (
-          <div className="control-panel">
+          <div className="control-panel" id="confidence-control-panel">
             <div className="control-panel__title">{copy.controlsTitle}</div>
             <div className="control-panel__intro">{copy.controlsIntro}</div>
             <div className="control-panel__group">
               <div className="control-panel__label-row">
-                <div className="control-panel__label">{copy.sampleSize}</div>
+                <label className="control-panel__label" htmlFor="sampleSize">{copy.sampleSize}</label>
                 <div className="control-panel__value">{sampleSize}</div>
               </div>
               <div className="control-panel__hint">{copy.sampleSizeHint}</div>
@@ -74,7 +78,7 @@ export function ControlSidebar({
             </div>
             <div className="control-panel__group">
               <div className="control-panel__label-row">
-                <div className="control-panel__label">{copy.populationSD}</div>
+                <label className="control-panel__label" htmlFor="populationSD">{copy.populationSD}</label>
                 <div className="control-panel__value">{populationSD.toFixed(1)}</div>
               </div>
               <div className="control-panel__hint">{copy.populationSDHint}</div>
@@ -91,7 +95,7 @@ export function ControlSidebar({
             </div>
             <div className="control-panel__group">
               <div className="control-panel__label-row">
-                <div className="control-panel__label">{copy.confidenceLevel}</div>
+                <label className="control-panel__label" htmlFor="confidenceLevel">{copy.confidenceLevel}</label>
                 <div className="control-panel__value">{Math.round(confidenceLevel * 100)}%</div>
               </div>
               <div className="control-panel__hint">{copy.confidenceLevelHint}</div>
@@ -109,7 +113,7 @@ export function ControlSidebar({
             </div>
             <div className="control-panel__group">
               <div className="control-panel__label-row">
-                <div className="control-panel__label">{copy.sigmaAssumption}</div>
+                <label className="control-panel__label" htmlFor="sigmaAssumption">{copy.sigmaAssumption}</label>
                 <div className="control-panel__value">{sigmaKnown ? "z" : "t"}</div>
               </div>
               <div className="control-panel__hint">

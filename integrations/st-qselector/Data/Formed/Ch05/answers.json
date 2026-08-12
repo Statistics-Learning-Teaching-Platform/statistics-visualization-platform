@@ -144,6 +144,18 @@
       "answer": "The net payoffs are 6 dollars for B, $-3.90$ dollars for D, and $-4$ dollars for A or C. Therefore,\n\n$$E(X)=\\frac3{12}(6)+\\frac4{12}(-3.9)+\\frac5{12}(-4)=-1.4667.$$\n\nThe player loses approximately **1.47 dollars per game** on average.",
       "review_status": "independently solved and reviewed",
       "audit_pack": "ch05-review-v1"
+    },
+    {
+      "id": "opl_nau_ch05_binomial_01",
+      "answer": "Let $X\\sim\\operatorname{Binomial}(20,0.30)$. Then\n\n$$P(X\\ge8)=\\sum_{x=8}^{20}\\binom{20}{x}(0.30)^x(0.70)^{20-x}.$$\n\nEvaluating the sum gives\n\n$$P(X\\ge8)=0.227728\\ldots\\approx\\boxed{0.2277}.$$",
+      "review_status": "independently solved and reviewed",
+      "source_commit": "54e7db70ed308cab9c7eed8af1d2dba5a6adf7d4"
+    },
+    {
+      "id": "opl_nau_ch05_binomial_02",
+      "answer": "Let $X\\sim\\operatorname{Binomial}(15,0.04)$.\n\na.\n\n$$P(X=1)=\\binom{15}{1}(0.04)(0.96)^{14}=0.338804\\ldots\\approx0.3388.$$\n\nb. Using the complement rule,\n\n$$P(X\\ge1)=1-P(X=0)=1-(0.96)^{15}=0.457914\\ldots\\approx0.4579.$$",
+      "review_status": "independently solved and reviewed",
+      "source_commit": "54e7db70ed308cab9c7eed8af1d2dba5a6adf7d4"
     }
   ]
 }

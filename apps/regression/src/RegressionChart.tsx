@@ -66,6 +66,15 @@ export function RegressionChart({
     return lineGen([tempLine.start, tempLine.end]) ?? "";
   }, [tempLine, isDragging, scales]);
 
+  const residualSegments = useMemo(() => {
+    const params = customLineParams ?? (showRegression ? regression : null);
+    if (!params) return [];
+    return visibleData.map((point) => ({
+      point,
+      fittedY: params.slope * point.x + params.intercept,
+    }));
+  }, [customLineParams, showRegression, regression, visibleData]);
+
   return (
     <svg
       width={CHART_LAYOUT.width}
@@ -74,6 +83,7 @@ export function RegressionChart({
       preserveAspectRatio="xMidYMid meet"
       className="chart-svg"
       role="img"
+      aria-label={`${yAxisLabel} versus ${xAxisLabel} with draggable comparison line and residuals`}
       data-margin-left={CHART_LAYOUT.margin.left}
       data-margin-top={CHART_LAYOUT.margin.top}
       onPointerDown={onPointerDown}
@@ -94,6 +104,21 @@ export function RegressionChart({
         </g>
         <g transform={`translate(0, ${chartHeight})`} ref={(g) => { if (g) select(g).call(axisBottom(scales.xScale as any)); }} />
         <g ref={(g) => { if (g) select(g).call(axisLeft(scales.yScale as any)); }} />
+        {residualSegments.map(({ point, fittedY }, index) => (
+          <line
+            key={`residual-${index}`}
+            x1={scales.xScale(point.x)}
+            x2={scales.xScale(point.x)}
+            y1={scales.yScale(point.y)}
+            y2={scales.yScale(fittedY)}
+            stroke={customLineParams ? "var(--danger)" : "var(--chart-blue)"}
+            strokeWidth={1.35}
+            strokeDasharray="3 3"
+            opacity={0.42}
+          >
+            <title>{`residual: ${(point.y - fittedY).toFixed(3)}`}</title>
+          </line>
+        ))}
         {visibleData.map((p, i) => (
           <circle
             key={i}

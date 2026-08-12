@@ -401,8 +401,6 @@ p {
 }
 
 /* Warm academic studio theme — tokens imported from shared. */
-@import "@stats-viz/shared/styles/tokens.css";
-
 body {
   overflow: hidden;
   background:

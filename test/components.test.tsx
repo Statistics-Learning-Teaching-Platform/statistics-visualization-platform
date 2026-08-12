@@ -1,5 +1,5 @@
 import { describe, expect, it, beforeEach, vi } from "vitest";
-import { render, screen, within } from "@testing-library/react";
+import { render, screen, waitFor, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { LanguageProvider } from "@stats-viz/shared/i18n";
 import { WalsApp } from "@stats-viz/shared/wals/WalsApp";
@@ -7,6 +7,7 @@ import { Sidebar } from "../src/shell/Sidebar";
 import { moduleConfig as introConfig } from "../apps/simulation-introduction/src/module-config";
 import { moduleConfig as cltConfig } from "../apps/simulation-clt/src/module-config";
 import { moduleConfig as randomVariableConfig } from "../apps/simulation-random-variable/src/module-config";
+import { moduleConfig as distributionsConfig } from "../apps/mes-distributions/src/module-config";
 import RegressionApp from "../apps/regression/src/App";
 import ConfidenceIntervalApp from "../apps/confidence-interval/src/App";
 import TypeErrorApp from "../apps/type-error/src/App";
@@ -29,6 +30,13 @@ describe("WalsApp rendering", () => {
     expect(screen.getByRole("heading", { name: "模拟导论", level: 1 })).toBeInTheDocument();
   });
 
+  it("renders bounded numeric parameters as labelled sliders with a visible value", () => {
+    withLanguage(<WalsApp moduleConfig={introConfig} />);
+    const slider = screen.getByRole("slider");
+    expect(slider).toHaveAttribute("data-control-id", "points");
+    expect(screen.getByText("1000")).toBeInTheDocument();
+  });
+
   it("renders the CLT accumulate quick-action buttons (config-driven, Phase 3)", () => {
     withLanguage(<WalsApp moduleConfig={cltConfig} />);
     // accumulateSampleMeans -> run button is labelled "重新绘制", not "运行".
@@ -44,6 +52,29 @@ describe("WalsApp rendering", () => {
     expect(screen.getByRole("button", { name: "+20 个样本" })).toBeInTheDocument();
     // Not an accumulating example, so the run button stays "运行".
     expect(screen.getByRole("button", { name: "运行" })).toBeInTheDocument();
+  });
+
+  it("appends one random-variable draw without replacing the previous deterministic prefix", async () => {
+    withLanguage(<WalsApp moduleConfig={randomVariableConfig} />);
+    const size = screen.getByRole("slider", { name: "样本量" });
+    expect(size).toHaveValue("1000");
+    await userEvent.click(screen.getByRole("button", { name: "+1 个样本" }));
+    await waitFor(() => expect(size).toHaveValue("1001"));
+  });
+
+  it("switches distribution parameter bounds, steps, and defaults together", async () => {
+    withLanguage(<WalsApp moduleConfig={distributionsConfig} />);
+    await userEvent.selectOptions(screen.getByRole("combobox", { name: "分布" }), "binom");
+    const probability = document.querySelector<HTMLInputElement>('[data-control-id="a"]');
+    const trials = document.querySelector<HTMLInputElement>('[data-control-id="b"]');
+    expect(probability).toHaveAttribute("min", "0.01");
+    expect(probability).toHaveAttribute("max", "0.99");
+    expect(probability).toHaveAttribute("step", "0.01");
+    expect(probability).toHaveValue("0.5");
+    expect(trials).toHaveAttribute("min", "1");
+    expect(trials).toHaveAttribute("max", "50");
+    expect(trials).toHaveAttribute("step", "1");
+    expect(trials).toHaveValue("10");
   });
 });
 

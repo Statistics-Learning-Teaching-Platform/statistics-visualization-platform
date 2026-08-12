@@ -11,7 +11,7 @@
 // Navigation labels (label / pageTitle) live in apps/shared/i18n/copy.ts
 // (`visualizerLabels`), which is the single source consumed by the Sidebar via
 // getVisualizerLabel(). Do NOT duplicate them back onto AppRecord.
-export type AppGroup = "Core Visualizers" | "WALS Simulation" | "WALS MES";
+export type AppGroup = "Statistical Foundations" | "Statistical Simulation";
 export type AppSource = "existing" | "wals";
 
 export interface AppRecord {
@@ -27,44 +27,17 @@ export interface AppRecord {
 
 export const apps: AppRecord[] = [
   {
-    id: "confidence-interval",
-    group: "Core Visualizers",
-    path: "apps/confidence-interval/",
+    id: "mes-distributions",
+    group: "Statistical Foundations",
+    path: "apps/mes-distributions/",
     repositoryUrl:
-      "https://github.com/Statistics-Learning-Teaching-Platform/confidence-interval-visualization",
-    source: "existing",
-    icon: "∫",
-  },
-  {
-    id: "type-error",
-    group: "Core Visualizers",
-    path: "apps/type-error/",
-    repositoryUrl:
-      "https://github.com/Statistics-Learning-Teaching-Platform/type-error-visualization",
-    source: "existing",
-    icon: "α",
-  },
-  {
-    id: "regression",
-    group: "Core Visualizers",
-    path: "apps/regression/",
-    repositoryUrl:
-      "https://github.com/Statistics-Learning-Teaching-Platform/regression-visualizer",
-    source: "existing",
-    icon: "β",
-  },
-  {
-    id: "simulation-introduction",
-    group: "WALS Simulation",
-    path: "apps/simulation-introduction/",
-    repositoryUrl:
-      "https://github.com/Statistics-Learning-Teaching-Platform/simulation-introduction-visualization",
+      "https://github.com/Statistics-Learning-Teaching-Platform/mes-distributions-visualization",
     source: "wals",
-    icon: "μ",
+    icon: "φ",
   },
   {
     id: "simulation-random-variable",
-    group: "WALS Simulation",
+    group: "Statistical Foundations",
     path: "apps/simulation-random-variable/",
     repositoryUrl:
       "https://github.com/Statistics-Learning-Teaching-Platform/simulation-random-variable-visualization",
@@ -73,7 +46,7 @@ export const apps: AppRecord[] = [
   },
   {
     id: "simulation-clt",
-    group: "WALS Simulation",
+    group: "Statistical Foundations",
     path: "apps/simulation-clt/",
     repositoryUrl:
       "https://github.com/Statistics-Learning-Teaching-Platform/simulation-clt-visualization",
@@ -81,17 +54,71 @@ export const apps: AppRecord[] = [
     icon: "μ",
   },
   {
-    id: "simulation-variance-reduction",
-    group: "WALS Simulation",
-    path: "apps/simulation-variance-reduction/",
+    id: "confidence-interval",
+    group: "Statistical Foundations",
+    path: "apps/confidence-interval/",
     repositoryUrl:
-      "https://github.com/Statistics-Learning-Teaching-Platform/simulation-variance-reduction-visualization",
+      "https://github.com/Statistics-Learning-Teaching-Platform/confidence-interval-visualization",
+    source: "existing",
+    icon: "∫",
+  },
+  {
+    id: "mes-confidence-interval",
+    group: "Statistical Foundations",
+    path: "apps/mes-confidence-interval/",
+    repositoryUrl:
+      "https://github.com/Statistics-Learning-Teaching-Platform/mes-confidence-interval-visualization",
     source: "wals",
-    icon: "σ²",
+    icon: "∫",
+  },
+  {
+    id: "type-error",
+    group: "Statistical Foundations",
+    path: "apps/type-error/",
+    repositoryUrl:
+      "https://github.com/Statistics-Learning-Teaching-Platform/type-error-visualization",
+    source: "existing",
+    icon: "α",
+  },
+  {
+    id: "mes-anova",
+    group: "Statistical Foundations",
+    path: "apps/mes-anova/",
+    repositoryUrl:
+      "https://github.com/Statistics-Learning-Teaching-Platform/mes-anova-visualization",
+    source: "wals",
+    icon: "F",
+  },
+  {
+    id: "regression",
+    group: "Statistical Foundations",
+    path: "apps/regression/",
+    repositoryUrl:
+      "https://github.com/Statistics-Learning-Teaching-Platform/regression-visualizer",
+    source: "existing",
+    icon: "β",
+  },
+  {
+    id: "mes-linear-regression",
+    group: "Statistical Foundations",
+    path: "apps/mes-linear-regression/",
+    repositoryUrl:
+      "https://github.com/Statistics-Learning-Teaching-Platform/mes-linear-regression-visualization",
+    source: "wals",
+    icon: "β",
+  },
+  {
+    id: "simulation-introduction",
+    group: "Statistical Simulation",
+    path: "apps/simulation-introduction/",
+    repositoryUrl:
+      "https://github.com/Statistics-Learning-Teaching-Platform/simulation-introduction-visualization",
+    source: "wals",
+    icon: "μ",
   },
   {
     id: "simulation-resampling",
-    group: "WALS Simulation",
+    group: "Statistical Simulation",
     path: "apps/simulation-resampling/",
     repositoryUrl:
       "https://github.com/Statistics-Learning-Teaching-Platform/simulation-resampling-visualization",
@@ -100,7 +127,7 @@ export const apps: AppRecord[] = [
   },
   {
     id: "simulation-mcmc",
-    group: "WALS Simulation",
+    group: "Statistical Simulation",
     path: "apps/simulation-mcmc/",
     repositoryUrl:
       "https://github.com/Statistics-Learning-Teaching-Platform/simulation-mcmc-visualization",
@@ -108,40 +135,13 @@ export const apps: AppRecord[] = [
     icon: "π",
   },
   {
-    id: "mes-anova",
-    group: "WALS MES",
-    path: "apps/mes-anova/",
+    id: "simulation-variance-reduction",
+    group: "Statistical Simulation",
+    path: "apps/simulation-variance-reduction/",
     repositoryUrl:
-      "https://github.com/Statistics-Learning-Teaching-Platform/mes-anova-visualization",
+      "https://github.com/Statistics-Learning-Teaching-Platform/simulation-variance-reduction-visualization",
     source: "wals",
-    icon: "F",
-  },
-  {
-    id: "mes-confidence-interval",
-    group: "WALS MES",
-    path: "apps/mes-confidence-interval/",
-    repositoryUrl:
-      "https://github.com/Statistics-Learning-Teaching-Platform/mes-confidence-interval-visualization",
-    source: "wals",
-    icon: "∫",
-  },
-  {
-    id: "mes-distributions",
-    group: "WALS MES",
-    path: "apps/mes-distributions/",
-    repositoryUrl:
-      "https://github.com/Statistics-Learning-Teaching-Platform/mes-distributions-visualization",
-    source: "wals",
-    icon: "φ",
-  },
-  {
-    id: "mes-linear-regression",
-    group: "WALS MES",
-    path: "apps/mes-linear-regression/",
-    repositoryUrl:
-      "https://github.com/Statistics-Learning-Teaching-Platform/mes-linear-regression-visualization",
-    source: "wals",
-    icon: "β",
+    icon: "σ²",
   },
 ];
 

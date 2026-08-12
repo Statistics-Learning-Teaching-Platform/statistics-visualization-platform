@@ -14,6 +14,10 @@ function getHashId(): string {
   return window.location.hash.replace(/^#\/?/, "");
 }
 
+function resolveVisualizerId(id: string): string {
+  return id in appRegistry ? id : getDefaultVisualizer().id;
+}
+
 function setHashId(id: string): void {
   if (getHashId() !== id) {
     window.location.hash = id;
@@ -78,7 +82,7 @@ export function AppShell() {
   const lang = useLanguage();
   const [activeId, setActiveId] = useState<string>(() => {
     const hashId = getHashId();
-    return hashId || getDefaultVisualizer().id;
+    return resolveVisualizerId(hashId);
   });
   const [sidebarWidth, setSidebarWidth] = useState<string | null>(() => {
     try {
@@ -90,8 +94,9 @@ export function AppShell() {
 
   // Sync hash on mount
   useEffect(() => {
-    if (!getHashId()) {
-      setHashId(getDefaultVisualizer().id);
+    const resolvedId = resolveVisualizerId(getHashId());
+    if (getHashId() !== resolvedId) {
+      setHashId(resolvedId);
     }
   }, []);
 
@@ -99,9 +104,9 @@ export function AppShell() {
   useEffect(() => {
     const onHashChange = () => {
       const hashId = getHashId();
-      if (hashId) {
-        setActiveId(hashId);
-      }
+      const resolvedId = resolveVisualizerId(hashId);
+      setActiveId(resolvedId);
+      if (hashId !== resolvedId) setHashId(resolvedId);
     };
     window.addEventListener("hashchange", onHashChange);
     return () => window.removeEventListener("hashchange", onHashChange);
@@ -138,12 +143,17 @@ export function AppShell() {
       className="platform-shell"
       style={sidebarWidth ? ({ "--platform-sidebar-width": sidebarWidth } as React.CSSProperties) : undefined}
     >
-      <a className="platform-home-link" href="/">← 返回主界面</a>
-      <LanguageTabs />
+      <div className="platform-utility-nav">
+        <a className="platform-home-link" href="/" aria-label={copy.homeLabel}>
+          <span aria-hidden="true">←</span>
+          <span>{copy.homeLabel}</span>
+        </a>
+        <LanguageTabs />
+      </div>
       <Sidebar activeId={activeId} onNavigate={handleNavigate} />
       <ResizeHandle onResize={handleSidebarResize} ariaLabel={copy.resizeLabel} />
       <main className="visualizer-frame" data-loading="false">
-        <Suspense fallback={<div className="app-loading">Loading…</div>}>
+        <Suspense fallback={<div className="app-loading" role="status" aria-live="polite">{copy.loadingLabel}</div>}>
           <ActiveApp />
         </Suspense>
       </main>

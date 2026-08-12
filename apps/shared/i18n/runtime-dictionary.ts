@@ -65,9 +65,23 @@ const DYNAMIC_TEMPLATES: DynamicTemplate[] = [
   { pattern: /^(\d+) repeated samples$/, translate: (m) => `${m[1]} 次重复抽样` },
   { pattern: /^(\d+) observed values$/, translate: (m) => `${m[1]} 个观测值` },
   { pattern: /^(\d+) burn-in draws$/, translate: (m) => `${m[1]} 次预热抽样` },
+  { pattern: /^of (\d+) retained draws$/, translate: (m) => `共 ${m[1]} 个保留样本` },
+  { pattern: /^F\((\d+), (\d+)\) tail area$/, translate: (m) => `F(${m[1]}, ${m[2]}) 的尾部面积` },
+  { pattern: /^(\d+) extreme permutations$/, translate: (m) => `${m[1]} 次极端置换` },
+  { pattern: /^(\d+) observations per group$/, translate: (m) => `每组 ${m[1]} 个观测` },
+  { pattern: /^(\d+) retained sweeps$/, translate: (m) => `${m[1]} 次保留扫描` },
+  { pattern: /^(\d+) discarded sweeps$/, translate: (m) => `${m[1]} 次丢弃扫描` },
   { pattern: /^(\d+) cities$/, translate: (m) => `${m[1]} 个城市` },
   { pattern: /^predictor: (.+)$/, translate: (m, lang) => `预测变量：${localizeText(m[1] ?? "", lang)}` },
   { pattern: /^Population distribution: (.+)$/, translate: (m, lang) => `总体分布：${localizeText(m[1] ?? "", lang)}` },
+  {
+    pattern: /^(PDF|CDF) view for ([a-z]+); (.+)\.$/,
+    translate: (m, lang) => `当前为${localizeText(m[2] ?? "", lang)}分布的 ${m[1]} 视图；${m[3]}。`,
+  },
+  {
+    pattern: /^([a-z]+) (cumulative distribution|probability mass|density)$/,
+    translate: (m, lang) => `${localizeText(m[1] ?? "", lang)}${localizeText(m[2] ?? "", lang)}`,
+  },
   { pattern: /^Sample (\d+)$/, translate: (m) => `样本 ${m[1]}` },
 ];
 
@@ -136,6 +150,10 @@ export function localizeModuleConfig<T extends Record<string, any>>(config: T, l
       controls: example.controls?.map((control: Record<string, any>) => ({
         ...control,
         label: localizeOptionalText(control.label, language),
+        labelByValue: control.labelByValue ? {
+          ...control.labelByValue,
+          labels: Object.fromEntries(Object.entries(control.labelByValue.labels).map(([key, label]) => [key, localizeOptionalText(label, language)]))
+        } : control.labelByValue,
         options: control.options?.map((option: Record<string, any>) => ({
           ...option,
           label: localizeOptionalText(option.label, language)
@@ -153,6 +171,18 @@ function localizeChartSpec<T extends Record<string, any>>(chart: T, language: La
     yLabel: localizeOptionalText(chart.yLabel, language),
     populationTitle: localizeOptionalText(chart.populationTitle, language),
     samplingTitle: localizeOptionalText(chart.samplingTitle, language),
+    targetLabel: localizeOptionalText(chart.targetLabel, language),
+    traceLabel: localizeOptionalText(chart.traceLabel, language),
+    latestMeanLabel: localizeOptionalText(chart.latestMeanLabel, language),
+    normalApproximationLabel: localizeOptionalText(chart.normalApproximationLabel, language),
+    populationMeanLabel: localizeOptionalText(chart.populationMeanLabel, language),
+    currentStateLabel: localizeOptionalText(chart.currentStateLabel, language),
+    targetDensityLabel: localizeOptionalText(chart.targetDensityLabel, language),
+    recentPathLabel: localizeOptionalText(chart.recentPathLabel, language),
+    grandMeanLabel: localizeOptionalText(chart.grandMeanLabel, language),
+    observationsLabel: localizeOptionalText(chart.observationsLabel, language),
+    groupMeanLabel: localizeOptionalText(chart.groupMeanLabel, language),
+    referenceLabel: localizeOptionalText(chart.referenceLabel, language),
     bars: chart.bars?.map((bar: Record<string, any>) => ({
       ...bar,
       label: localizeOptionalText(bar.label, language)
@@ -173,9 +203,29 @@ function localizeChartSpec<T extends Record<string, any>>(chart: T, language: La
       ...interval,
       label: localizeOptionalText(interval.label, language)
     })),
+    groups: chart.groups?.map((group: Record<string, any>) => ({
+      ...group,
+      label: localizeOptionalText(group.label, language)
+    })),
     series: chart.series?.map((series: Record<string, any>) => ({
       ...series,
       label: localizeOptionalText(series.label, language)
+    })),
+    lines: chart.lines?.map((series: Record<string, any>) => ({
+      ...series,
+      label: localizeOptionalText(series.label, language)
+    })),
+    contours: chart.contours?.map((series: Record<string, any>) => ({
+      ...series,
+      label: localizeOptionalText(series.label, language)
+    })),
+    legend: chart.legend?.map((item: Record<string, any>) => ({
+      ...item,
+      label: localizeOptionalText(item.label, language)
+    })),
+    references: chart.references?.map((reference: Record<string, any>) => ({
+      ...reference,
+      label: localizeOptionalText(reference.label, language)
     })),
     line: chart.line ? {
       ...chart.line,
@@ -193,7 +243,8 @@ export function localizeSimulationResult<T extends Record<string, any>>(result: 
       ...metric,
       label: localizeOptionalText(metric.label, language),
       value: localizeOptionalText(metric.value, language),
-      detail: localizeOptionalText(metric.detail, language)
+      detail: localizeOptionalText(metric.detail, language),
+      help: localizeOptionalText(metric.help, language)
     })),
     chart: result.chart ? localizeChartSpec(result.chart, language) : result.chart,
     table: result.table ? {
@@ -217,4 +268,3 @@ export function hasUnexpectedLatin(text: string, allowedWords = new Set<string>(
   const matches = text.match(/\b[A-Za-z]{3,}\b/g) ?? [];
   return matches.some((word) => !allowedWords.has(word));
 }
-

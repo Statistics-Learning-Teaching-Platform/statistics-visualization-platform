@@ -153,18 +153,18 @@ button {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 22px;
-  width: min(1080px, 100%);
+  width: min(1120px, 100%);
   margin: 0 auto;
 }
 
 .portal-card {
   position: relative;
   display: grid;
-  grid-template-columns: 72px minmax(0, 1fr);
+  grid-template-columns: 60px minmax(0, 1fr);
   grid-template-rows: 1fr auto;
   gap: 0 22px;
-  min-height: 275px;
-  padding: 38px 38px 34px;
+  min-height: 250px;
+  padding: 32px 28px 29px;
   border: 1px solid rgba(86, 80, 67, 0.11);
   border-radius: 32px;
   color: inherit;
@@ -189,13 +189,21 @@ button {
   background: linear-gradient(135deg, rgba(255, 252, 246, 0.96), rgba(242, 234, 248, 0.88));
 }
 
+.portal-card--r {
+  background: linear-gradient(145deg, rgba(255, 252, 246, 0.96), rgba(221, 237, 232, 0.84) 55%, rgba(240, 233, 247, 0.72));
+}
+
+.portal-card--python {
+  background: linear-gradient(145deg, rgba(255, 252, 246, 0.96), rgba(227, 239, 249, 0.9) 52%, rgba(252, 243, 207, 0.72));
+}
+
 .portal-card__icon {
   display: grid;
-  width: 72px;
-  height: 72px;
+  width: 60px;
+  height: 60px;
   place-items: center;
   border: 1px solid rgba(47, 111, 100, 0.14);
-  border-radius: 24px;
+  border-radius: 20px;
   color: var(--teal);
   background: rgba(255, 253, 248, 0.72);
 }
@@ -205,9 +213,25 @@ button {
   border-color: rgba(141, 117, 181, 0.18);
 }
 
+.portal-card--r .portal-card__icon {
+  color: var(--teal);
+  border-color: rgba(47, 111, 100, 0.2);
+  background: linear-gradient(135deg, rgba(238, 244, 236, 0.95), rgba(240, 233, 247, 0.72));
+}
+
+.portal-card--python .portal-card__icon {
+  color: #3776ab;
+  border-color: rgba(55, 118, 171, 0.2);
+  background: linear-gradient(135deg, rgba(232, 242, 250, 0.96), rgba(252, 244, 212, 0.78));
+}
+
+.portal-card--python .portal-card__icon svg {
+  fill: none;
+}
+
 .portal-card__icon svg {
-  width: 40px;
-  height: 40px;
+  width: 34px;
+  height: 34px;
   fill: none;
   stroke: currentColor;
   stroke-linecap: round;
@@ -231,7 +255,7 @@ button {
 
 .portal-card__copy strong {
   font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(28px, 2.5vw, 38px);
+  font-size: clamp(26px, 2.1vw, 34px);
   font-weight: 500;
   line-height: 1;
 }
@@ -254,9 +278,26 @@ button {
   color: var(--lavender);
 }
 
+.portal-card--r .portal-card__action {
+  color: var(--teal);
+}
+
+.portal-card--python .portal-card__action {
+  color: #3776ab;
+}
+
 .portal-card__action b {
   margin-left: 4px;
   font-size: 19px;
+}
+
+.route-loading {
+  display: grid;
+  min-height: 100vh;
+  place-items: center;
+  color: var(--teal);
+  background: var(--bg);
+  font-weight: 800;
 }
 
 .portal-footer {
@@ -265,12 +306,22 @@ button {
   font-size: 14px;
 }
 
-.platform-home-link {
+.platform-utility-nav {
   position: fixed;
-  left: 24px;
-  bottom: 22px;
+  top: 18px;
+  right: 24px;
   z-index: 40;
-  padding: 8px 13px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.platform-home-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  min-height: 38px;
+  padding: 0 14px;
   border: 1px solid rgba(47, 111, 100, 0.24);
   border-radius: 999px;
   color: var(--teal);
@@ -306,11 +357,15 @@ button {
   }
 }
 
+@media (max-width: 1040px) and (min-width: 721px) {
+  .portal-destinations {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+}
+
 .platform-language-tabs {
-  position: fixed;
-  top: 18px;
-  right: 24px;
-  z-index: 30;
+  position: static;
   display: inline-flex;
   align-items: center;
   gap: 3px;
@@ -591,7 +646,10 @@ button {
   height: calc(100vh - 36px);
   border: 1px solid var(--border);
   border-radius: 28px;
-  background: #fffdf8;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 92% 4%, rgba(111, 143, 122, 0.08), transparent 26rem),
+    linear-gradient(135deg, var(--bg-soft), var(--bg));
   box-shadow: var(--shadow-soft);
   opacity: 1;
   transition: opacity 140ms ease;
@@ -601,8 +659,18 @@ button {
   opacity: 0.72;
 }
 
+.app-loading {
+  display: grid;
+  width: 100%;
+  height: 100%;
+  place-items: center;
+  color: var(--text-secondary);
+  font-size: 14px;
+  font-weight: 750;
+}
+
 @media (max-width: 980px) {
-  .platform-language-tabs {
+  .platform-utility-nav {
     top: 10px;
     right: 14px;
   }
@@ -636,10 +704,20 @@ button {
 }
 
 @media (max-width: 680px) {
-  .platform-language-tabs {
+  .platform-utility-nav {
     right: 10px;
     transform: scale(0.94);
     transform-origin: top right;
+  }
+
+  .platform-home-link span:last-child {
+    display: none;
+  }
+
+  .platform-home-link {
+    min-width: 38px;
+    padding: 0;
+    justify-content: center;
   }
 
   .platform-sidebar {
@@ -853,5 +931,60 @@ body.is-resizing-panels {
 
   .platform-resize-handle {
     display: none;
+  }
+}
+
+/* Final shell geometry: reserve a real toolbar row so utilities never cover a module. */
+.platform-shell {
+  grid-template-areas:
+    "sidebar resize utilities"
+    "sidebar resize visualizer";
+  grid-template-rows: 44px minmax(0, 1fr);
+  gap: 8px 0;
+  padding: 14px 14px 14px 0;
+}
+
+.platform-utility-nav {
+  position: static;
+  grid-area: utilities;
+  align-self: start;
+  justify-self: end;
+}
+
+.platform-sidebar {
+  grid-area: sidebar;
+  height: 100%;
+  min-height: 0;
+}
+
+.platform-resize-handle {
+  grid-area: resize;
+}
+
+.visualizer-frame {
+  grid-area: visualizer;
+  height: 100%;
+  min-height: 0;
+}
+
+@media (max-width: 980px) {
+  .platform-shell {
+    grid-template-areas:
+      "utilities"
+      "sidebar"
+      "visualizer";
+    grid-template-columns: 1fr;
+    grid-template-rows: 42px auto minmax(0, 1fr);
+    gap: 10px;
+    padding: 10px;
+  }
+
+  .platform-sidebar {
+    max-height: 34vh;
+  }
+
+  .visualizer-frame {
+    height: 100%;
+    min-height: 48vh;
   }
 }

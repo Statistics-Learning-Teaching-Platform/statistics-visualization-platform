@@ -11,6 +11,10 @@ export function distribution(controls: ControlMap): SimulationResult {
   const b = Math.max(0.1, num(controls, "b", 1));
   const lower = num(controls, "lower", -2);
   const upper = num(controls, "upper", 2);
+  const intervalLower = Math.min(lower, upper);
+  const intervalUpper = Math.max(lower, upper);
+  const uniformLower = Math.min(a, b);
+  const uniformUpper = Math.max(a, b);
 
   // The control surface exposes two generic slots (a, b); each distribution
   // maps them to its own parameters. The mapping is collected in ONE object
@@ -23,11 +27,11 @@ export function distribution(controls: ControlMap): SimulationResult {
   // UX redesign (it would change the module-config controls and the a/b
   // sliders the UI renders) and is intentionally out of scope here.
   const params = {
-    shape:     Math.max(0.5, a || 1),                    // slot a → gamma/beta shape α
-    betaParam: Math.max(0.5, b || 1),                    // slot b → beta shape β
+    shape:     Math.max(0.1, a || 1),                    // slot a → gamma/beta shape α
+    betaParam: Math.max(0.1, b || 1),                    // slot b → beta shape β
     tDf:       Math.max(1, Math.round(a || 6)),           // slot a → Student-t df
     chisqDf:   Math.max(1, Math.round(b)),               // slot b → chi-squared df
-    prob:      Math.min(0.95, Math.max(0.05, a || 0.5)), // slot a → binom/geom success p
+    prob:      Math.min(0.99, Math.max(0.01, a || 0.5)), // slot a → binom/geom success p
     binomN:    Math.max(1, Math.round(b)),               // slot b → binomial trials n
   };
 
@@ -39,7 +43,7 @@ export function distribution(controls: ControlMap): SimulationResult {
       case "gamma": return x > 0 ? jStat.gamma.pdf(x, params.shape, 1 / b) : 0; // jstat takes (shape, scale = 1/rate)
       case "chisq": return x > 0 ? jStat.chisquare.pdf(x, params.chisqDf) : 0;
       case "exp": return x < 0 ? 0 : b * Math.exp(-b * x);
-      case "unif": return x >= a && x <= b ? 1 / Math.max(b - a, Number.EPSILON) : 0;
+      case "unif": return x >= uniformLower && x <= uniformUpper ? 1 / Math.max(uniformUpper - uniformLower, Number.EPSILON) : 0;
       case "pois": return x >= 0 && Number.isInteger(x) ? jStat.poisson.pdf(x, b) : 0;
       case "binom": return x >= 0 && x <= params.binomN && Number.isInteger(x) ? jStat.binomial.pdf(x, params.binomN, params.prob) : 0;
       case "geom": return x >= 0 && Number.isInteger(x) ? Math.pow(1 - params.prob, x) * params.prob : 0;
@@ -55,7 +59,7 @@ export function distribution(controls: ControlMap): SimulationResult {
       case "gamma": return x <= 0 ? 0 : jStat.gamma.cdf(x, params.shape, 1 / b);
       case "chisq": return x <= 0 ? 0 : jStat.chisquare.cdf(x, params.chisqDf);
       case "exp": return x < 0 ? 0 : 1 - Math.exp(-b * x);
-      case "unif": return x < a ? 0 : x > b ? 1 : (x - a) / Math.max(b - a, Number.EPSILON);
+      case "unif": return x < uniformLower ? 0 : x > uniformUpper ? 1 : (x - uniformLower) / Math.max(uniformUpper - uniformLower, Number.EPSILON);
       case "pois": return x < 0 ? 0 : jStat.poisson.cdf(Math.floor(x), b);
       case "binom": return x < 0 ? 0 : x >= params.binomN ? 1 : jStat.binomial.cdf(Math.floor(x), params.binomN, params.prob);
       case "geom": return x < 0 ? 0 : 1 - Math.pow(1 - params.prob, Math.floor(x) + 1);
@@ -67,30 +71,57 @@ export function distribution(controls: ControlMap): SimulationResult {
   // i18n completeness check flags any 3+ letter Latin token) while naming each
   // distribution's parameters: gamma uses shape α / rate β, jstat's scale is 1/β.
   const paramSummary: Record<string, string> = {
-    norm: `μ = ${formatNumber(a, 2)}, σ = ${formatNumber(b, 2)}`,
+    norm: `μ = ${formatNumber(a, 2)}, σ = ${formatNumber(b, 2)}, σ² = ${formatNumber(b * b, 2)}`,
     t: `df = ${params.tDf}`,
     beta: `α = ${formatNumber(params.shape, 2)}, β = ${formatNumber(params.betaParam, 2)}`,
     gamma: `α = ${formatNumber(params.shape, 2)}, β = ${formatNumber(b, 2)}`,
     chisq: `df = ${params.chisqDf}`,
     exp: `λ = ${formatNumber(b, 2)}`,
-    unif: `a = ${formatNumber(a, 2)}, b = ${formatNumber(b, 2)}`,
+    unif: `a = ${formatNumber(uniformLower, 2)}, b = ${formatNumber(uniformUpper, 2)}`,
     binom: `n = ${params.binomN}, p = ${formatNumber(params.prob, 2)}`,
     geom: `p = ${formatNumber(params.prob, 2)}`,
     pois: `λ = ${formatNumber(b, 2)}`,
   };
 
   const isDiscrete = ["binom", "geom", "pois"].includes(dist);
+  const discreteMax = dist === "binom"
+    ? params.binomN
+    : dist === "pois"
+      ? Math.max(12, Math.ceil(b + 6 * Math.sqrt(Math.max(b, 0.1))))
+      : Math.min(100, Math.max(12, Math.ceil(Math.log(0.001) / Math.log(Math.max(1 - params.prob, 0.001)))));
+  const continuousSupport: Record<string, [number, number]> = {
+    norm: [a - 4 * b, a + 4 * b],
+    t: [-8, 8],
+    beta: [0, 1],
+    gamma: [0, params.shape / b + (6 * Math.sqrt(params.shape)) / b],
+    chisq: [0, params.chisqDf + 6 * Math.sqrt(2 * params.chisqDf)],
+    exp: [0, 8 / b],
+    unif: [uniformLower, uniformUpper],
+  };
+  const support = continuousSupport[dist] ?? [intervalLower - 2, intervalUpper + 2];
+  const supportWidth = Math.max(support[1] - support[0], 1);
+  // Normal curves deliberately share one fixed teaching canvas. If the axis
+  // followed μ and σ, every curve would be re-centred and re-scaled, hiding
+  // the very location/spread changes this visualizer is meant to teach.
+  const continuousMin = dist === "norm" ? -12 : Math.min(intervalLower, support[0] - supportWidth * 0.04);
+  const continuousMax = dist === "norm" ? 12 : Math.max(intervalUpper, support[1] + supportWidth * 0.04);
   const xs = isDiscrete
-    ? Array.from({ length: Math.max(8, params.binomN + 1) }, (_, index) => index)
-    : Array.from({ length: 160 }, (_, index) => lower - 2 + (index * (upper - lower + 4)) / 159);
+    ? Array.from({ length: discreteMax + 1 }, (_, index) => index)
+    : Array.from({ length: 180 }, (_, index) => continuousMin + (index * (continuousMax - continuousMin)) / 179);
 
   const points = xs.map((x) => ({ x, y: mode === "CDF" ? cdfAt(x) : pdfAt(x) }));
+  const normalReferencePoints = dist === "norm"
+    ? xs.map((x) => ({ x, y: mode === "CDF" ? normalCdf(x, 0, 1) : normalPdf(x, 0, 1) }))
+    : [];
 
   // Exact CDF difference for continuous distributions; pmf sum over the
   // integer support for discrete ones.
   const probability = isDiscrete
-    ? xs.filter((x) => x >= lower && x <= upper).reduce((sum, x) => sum + pdfAt(x), 0)
-    : Math.max(0, cdfAt(upper) - cdfAt(lower));
+    ? Math.max(0, cdfAt(Math.floor(intervalUpper)) - cdfAt(Math.ceil(intervalLower) - 1))
+    : Math.max(0, cdfAt(intervalUpper) - cdfAt(intervalLower));
+  const verticalLabel = isDiscrete
+    ? mode === "CDF" ? "CDF  F(x)" : "PMF  P(X = x)"
+    : mode === "CDF" ? "CDF  F(x)" : "density  f(x)";
 
   return result(
     "Distribution explorer",
@@ -98,10 +129,43 @@ export function distribution(controls: ControlMap): SimulationResult {
     [
       { label: "distribution", value: dist, detail: mode },
       { label: "resolved parameters", value: paramSummary[dist] ?? paramSummary.norm },
-      { label: "interval probability", value: formatNumber(probability, 4), detail: `P(${lower} <= X <= ${upper})` }
+      { label: "interval probability", value: formatNumber(probability, 4), detail: `P(${intervalLower} <= X <= ${intervalUpper})` }
     ],
     isDiscrete
-      ? { type: "bars", title: `${dist} ${mode}`, xLabel: "x", yLabel: mode, bars: points.map((point) => ({ label: String(point.x), value: point.y })) }
-      : { type: "line", title: `${dist} ${mode}`, xLabel: "x", yLabel: mode, series: [{ label: dist, points, color: "#136f63" }] }
+      ? {
+          type: "bars",
+          title: `${dist} ${mode === "CDF" ? "cumulative distribution" : "probability mass"}`,
+          xLabel: "possible value x",
+          yLabel: verticalLabel,
+          bars: points.map((point) => ({
+            label: String(point.x),
+            value: point.y,
+            color: point.x >= intervalLower && point.x <= intervalUpper ? "#c8665a" : "#2f6f64",
+          })),
+          legend: [
+            { label: "selected interval", color: "#c8665a", shape: "bar" },
+            { label: "outside interval", color: "#2f6f64", shape: "bar" },
+          ],
+        }
+      : {
+          type: "line",
+          title: dist === "norm"
+            ? "normal parameter comparison"
+            : `${dist} ${mode === "CDF" ? "cumulative distribution" : "density"}`,
+          xLabel: "value x",
+          yLabel: verticalLabel,
+          series: dist === "norm"
+            ? [
+                { label: "current N(μ, σ²)", points, color: "#2f6f64" },
+                { label: "reference N(0, 1)", points: normalReferencePoints, color: "#8d75b5", dashed: true, opacity: 0.92 },
+              ]
+            : [{ label: mode === "CDF" ? "F(x)" : "f(x)", points, color: "#2f6f64" }],
+          references: [
+            { axis: "x", value: intervalLower, label: "lower", color: "#c8665a" },
+            { axis: "x", value: intervalUpper, label: "upper", color: "#c8665a" },
+          ],
+          xDomain: dist === "norm" ? [-12, 12] : undefined,
+          yDomain: dist === "norm" ? (mode === "CDF" ? [0, 1.02] : [0, 0.85]) : undefined,
+        }
   );
 }

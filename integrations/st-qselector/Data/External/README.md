@@ -24,3 +24,27 @@ python3 scripts/import_rotel_curated.py --check
 ```bash
 python3 scripts/import_rotel_curated.py
 ```
+
+## WeBWorK OPL / NAU Statistics curated v1
+
+- 来源：WeBWorK Open Problem Library，`OpenProblemLibrary/NAU/setStatistics`
+- 原始仓库：https://github.com/openwebwork/webwork-open-problem-library
+- 固定版本：`54e7db70ed308cab9c7eed8af1d2dba5a6adf7d4`
+- 许可：Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported
+- 许可文本：https://creativecommons.org/licenses/by-nc-sa/3.0/
+- 第一批：20 道英文静态题，每题保留原 `.pg` 路径、作者/机构、commit 和变更说明。
+- 处理方式：将随机 PG 题实例化为自包含英文题，独立重算答案，规范化 Markdown/LaTeX；排除缺失图片、R/Sage/Rserve 和外部数据依赖。
+
+验证导入包：
+
+```bash
+python3 scripts/import_opl_nau_curated.py --check
+```
+
+写入章节题库：
+
+```bash
+python3 scripts/import_opl_nau_curated.py
+```
+
+OPL 内容版权归各题贡献者所有。除题目文件或其顶层贡献目录另有声明外，按 CC BY-NC-SA 3.0 使用；改编后必须署名、标注变更、限非商业使用并以相同许可方式分享。

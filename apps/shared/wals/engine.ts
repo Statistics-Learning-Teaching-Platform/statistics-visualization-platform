@@ -11,14 +11,14 @@ import { result, type ControlMap } from "./engine/internal";
 import { piCircle, buffon, mcIntegralExp, mcTransform, normalCdfExample } from "./engine/monte-carlo";
 import { randomNormal, randomExponential, gammaRejection } from "./engine/samplers";
 import { antitheticExp, antitheticGamma, controlExp, controlRatio, importancePower, conditionalCircle } from "./engine/variance-reduction";
-import { bootstrapMax, meanBootstrap } from "./engine/resampling";
-import { mcmcMixture, politician } from "./engine/mcmc";
+import { bootstrapMax, meanBootstrap, permutationMeanDifference } from "./engine/resampling";
+import { gibbsBivariate, mcmcMixture, politician } from "./engine/mcmc";
 import { anova, confidenceInterval } from "./engine/inference";
 import { distribution } from "./engine/distributions";
 import { linearRegressionExample } from "./engine/regression";
 import { centralLimitTheorem } from "./engine/clt";
 
-export { generateSampleMeans } from "./engine/clt";
+export { DEFAULT_CLT_SAMPLE_COUNT, generateSampleMeans } from "./engine/clt";
 
 type ExampleRunner = (
   controls: ControlMap,
@@ -47,7 +47,9 @@ const runners: Record<string, ExampleRunner> = {
   "conditional-circle": (c, s) => conditionalCircle(c, s),
   "bootstrap-max": (c, s) => bootstrapMax(c, s),
   "mean-bootstrap": (c, s) => meanBootstrap(c, s),
+  "permutation-mean-difference": (c, s) => permutationMeanDifference(c, s),
   "mcmc-mixture": (c, s) => mcmcMixture(c, s),
+  "gibbs-bivariate": (c, s) => gibbsBivariate(c, s),
   "politician": (c, s) => politician(c, s),
   "anova": (c, s) => anova(c, s),
   "confidence-interval": (c, s) => confidenceInterval(c, s),

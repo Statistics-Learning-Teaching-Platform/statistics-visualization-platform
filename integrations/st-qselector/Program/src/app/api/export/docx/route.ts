@@ -151,6 +151,23 @@ function questionBlocks(q: Question, index: number, withAnswer: boolean): Paragr
   return blocks;
 }
 
+function safeGeneratedQuestions(value: unknown): Question[] {
+  if (!Array.isArray(value)) return [];
+  return value.slice(0, 80).filter((item): item is Question => {
+    if (!item || typeof item !== "object") return false;
+    const question = item as Partial<Question>;
+    return Boolean(
+      typeof question.id === "string" && /^ai_[a-z0-9_]+$/i.test(question.id) &&
+      (question.origin === "variant" || question.origin === "generated") &&
+      typeof question.content === "string" && question.content.length <= 30_000 &&
+      typeof question.answer === "string" && question.answer.length <= 30_000 &&
+      typeof question.chapterId === "string" && /^Ch(?:0[1-9]|1[0-3])$/.test(question.chapterId) &&
+      Array.isArray(question.attachments) && question.attachments.length === 0 &&
+      Array.isArray(question.dataRefs) && question.dataRefs.length === 0
+    );
+  });
+}
+
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
@@ -161,7 +178,10 @@ export async function POST(request: NextRequest) {
     if (ids.length === 0) {
       return NextResponse.json({ error: "未选择题目" }, { status: 400 });
     }
-    const questions = getQuestionsByIds(ids);
+    const stored = getQuestionsByIds(ids);
+    const generated = safeGeneratedQuestions(body?.generatedQuestions);
+    const byId = new Map([...stored, ...generated].map((question) => [question.id, question]));
+    const questions = ids.map((id) => byId.get(id)).filter((question): question is Question => Boolean(question));
 
     const children: Paragraph[] = [
       new Paragraph({ heading: HeadingLevel.HEADING_1, children: [new TextRun(title)] }),

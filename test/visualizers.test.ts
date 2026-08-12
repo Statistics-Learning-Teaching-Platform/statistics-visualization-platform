@@ -9,37 +9,37 @@ import {
 describe("visualizer registry", () => {
   it("registers all teaching visualizers in grouped navigation order", () => {
     expect(apps.map((visualizer) => visualizer.id)).toEqual([
-      "confidence-interval",
-      "type-error",
-      "regression",
-      "simulation-introduction",
+      "mes-distributions",
       "simulation-random-variable",
       "simulation-clt",
-      "simulation-variance-reduction",
+      "confidence-interval",
+      "mes-confidence-interval",
+      "type-error",
+      "mes-anova",
+      "regression",
+      "mes-linear-regression",
+      "simulation-introduction",
       "simulation-resampling",
       "simulation-mcmc",
-      "mes-anova",
-      "mes-confidence-interval",
-      "mes-distributions",
-      "mes-linear-regression"
+      "simulation-variance-reduction"
     ]);
   });
 
-  it("groups the existing and WALS visualizers separately", () => {
+  it("groups visualizers by the requested learning sequence", () => {
     expect(apps.map((visualizer) => visualizer.group)).toEqual([
-      "Core Visualizers",
-      "Core Visualizers",
-      "Core Visualizers",
-      "WALS Simulation",
-      "WALS Simulation",
-      "WALS Simulation",
-      "WALS Simulation",
-      "WALS Simulation",
-      "WALS Simulation",
-      "WALS MES",
-      "WALS MES",
-      "WALS MES",
-      "WALS MES"
+      "Statistical Foundations",
+      "Statistical Foundations",
+      "Statistical Foundations",
+      "Statistical Foundations",
+      "Statistical Foundations",
+      "Statistical Foundations",
+      "Statistical Foundations",
+      "Statistical Foundations",
+      "Statistical Foundations",
+      "Statistical Simulation",
+      "Statistical Simulation",
+      "Statistical Simulation",
+      "Statistical Simulation"
     ]);
   });
 

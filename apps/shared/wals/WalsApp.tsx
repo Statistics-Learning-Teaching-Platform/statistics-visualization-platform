@@ -6,7 +6,7 @@ import {
   useLanguage,
   walsCopy,
 } from "@stats-viz/shared/i18n";
-import { generateSampleMeans, runExample } from "./engine";
+import { DEFAULT_CLT_SAMPLE_COUNT, generateSampleMeans, runExample } from "./engine";
 import { Chart } from "./charts";
 import type {
   ControlConfig,
@@ -34,7 +34,10 @@ export function createState(
 ): State {
   const config = localizeModuleConfig(moduleConfig, language);
   const activeExample = getExample(exampleId ?? moduleConfig.examples[0].id, config);
-  const mergedControls = { ...createDefaultControls(activeExample), ...(controls ?? {}) };
+  const mergedControls = normalizeControls(activeExample, {
+    ...createDefaultControls(activeExample),
+    ...(controls ?? {}),
+  });
   return {
     language,
     copy: walsCopy[language],
@@ -54,24 +57,80 @@ function valueFor(control: ControlConfig, controls: Record<string, ControlValue>
   return controls[control.id] ?? control.defaultValue;
 }
 
+export function resolveControlConfig(
+  control: ControlConfig,
+  controls: Record<string, ControlValue>,
+): ControlConfig {
+  const dependency = control.rangeByValue;
+  if (!dependency) return control;
+  const range = dependency.ranges[String(controls[dependency.controlId] ?? "")];
+  return range ? { ...control, ...range } : control;
+}
+
+function snapToRange(value: number, min: number, max: number, step: number): number {
+  const clamped = Math.min(max, Math.max(min, value));
+  const snapped = min + Math.round((clamped - min) / step) * step;
+  return Number(Math.min(max, Math.max(min, snapped)).toFixed(10));
+}
+
+export function normalizeControls(
+  example: ExampleConfig,
+  controls: Record<string, ControlValue>,
+  changedId?: string,
+): Record<string, ControlValue> {
+  const next = { ...controls };
+  for (const control of example.controls) {
+    const effective = resolveControlConfig(control, next);
+    if (effective.type !== "number" || effective.min === undefined || effective.max === undefined) continue;
+    const numeric = Number(next[control.id] ?? effective.defaultValue);
+    if (!Number.isFinite(numeric)) {
+      next[control.id] = effective.defaultValue;
+      continue;
+    }
+    next[control.id] = snapToRange(numeric, effective.min, effective.max, effective.step ?? 1);
+  }
+
+  if (typeof next.lower === "number" && typeof next.upper === "number" && next.lower > next.upper) {
+    if (changedId === "lower") next.upper = next.lower;
+    else next.lower = next.upper;
+  }
+
+  if (next.dist === "unif" && typeof next.a === "number" && typeof next.b === "number" && next.a >= next.b) {
+    const aControl = example.controls.find((control) => control.id === "a");
+    const bControl = example.controls.find((control) => control.id === "b");
+    if (aControl && bControl) {
+      const aRange = resolveControlConfig(aControl, next);
+      const bRange = resolveControlConfig(bControl, next);
+      const step = Math.max(aRange.step ?? 0.1, bRange.step ?? 0.1);
+      if (changedId === "b") next.a = Math.max(aRange.min ?? -10, next.b - step);
+      else next.b = Math.min(bRange.max ?? 10, next.a + step);
+    }
+  }
+  return next;
+}
+
 function renderControl(
   control: ControlConfig,
   controls: Record<string, ControlValue>,
   onChange: (id: string, value: ControlValue) => void,
 ): ReactNode {
-  const value = valueFor(control, controls);
+  const effectiveControl = resolveControlConfig(control, controls);
+  const value = valueFor(effectiveControl, controls);
+  const dependentValue = control.labelByValue ? String(controls[control.labelByValue.controlId] ?? "") : "";
+  const visibleLabel = control.labelByValue?.labels[dependentValue] ?? control.label;
 
-  if (control.type === "select") {
+  if (effectiveControl.type === "select") {
     return (
       <label className="control-field" key={control.id}>
-        <span className="control-label">{control.label}</span>
+        <span className="control-label">{visibleLabel}</span>
         <select
           className="control-input"
           data-control-id={control.id}
+          aria-label={visibleLabel}
           value={String(value)}
           onChange={(e) => onChange(control.id, e.target.value)}
         >
-          {(control.options ?? []).map((option) => (
+          {(effectiveControl.options ?? []).map((option) => (
             <option key={option.value} value={option.value}>
               {option.label}
             </option>
@@ -81,19 +140,47 @@ function renderControl(
     );
   }
 
+  if (effectiveControl.type === "number" && effectiveControl.min !== undefined && effectiveControl.max !== undefined) {
+    return (
+      <label className="control-field control-field--range" key={control.id}>
+        <span className="control-label-row">
+          <span className="control-label">{visibleLabel}</span>
+          <output className="control-value" htmlFor={`control-${control.id}`}>{String(value)}</output>
+        </span>
+        <input
+          id={`control-${control.id}`}
+          className="control-range"
+          data-control-id={control.id}
+          aria-label={visibleLabel}
+          type="range"
+          value={String(value)}
+          min={effectiveControl.min}
+          max={effectiveControl.max}
+          step={effectiveControl.step}
+          onChange={(e) => onChange(control.id, Number(e.target.value))}
+        />
+        <span className="control-range-bounds" aria-hidden="true">
+          <span>{effectiveControl.min}</span>
+          <span>{effectiveControl.max}</span>
+        </span>
+      </label>
+    );
+  }
+
   return (
     <label className="control-field" key={control.id}>
-      <span className="control-label">{control.label}</span>
+      <span className="control-label">{visibleLabel}</span>
       <input
         className="control-input"
         data-control-id={control.id}
-        type={control.type}
+        aria-label={visibleLabel}
+        type={effectiveControl.type}
         value={String(value)}
-        min={control.min}
-        max={control.max}
-        step={control.step}
+        min={effectiveControl.min}
+        max={effectiveControl.max}
+        step={effectiveControl.step}
         onChange={(e) =>
-          onChange(control.id, control.type === "number" ? Number(e.target.value) : e.target.value)
+          onChange(control.id, effectiveControl.type === "number" ? Number(e.target.value) : e.target.value)
         }
       />
     </label>
@@ -152,7 +239,13 @@ const formulaRenderers: Record<string, (state: State) => ReactNode> = {
       <span>SE</span>
     </div>
   ),
-  "distribution": () => (
+  "distribution": (state) => state.controls.dist === "norm" ? (
+    <div className="math-expression">
+      <span>N(μ, σ²)</span>
+      <span className="math-symbol">{state.language === "zh" ? "对比" : "vs"}</span>
+      <span>N(0, 1)</span>
+    </div>
+  ) : (
     <div className="math-expression">
       <span>P(a ≤ X ≤ b) =</span>
       <span className="math-symbol">∫</span>
@@ -168,6 +261,21 @@ const formulaRenderers: Record<string, (state: State) => ReactNode> = {
       <span>p(θ | y)</span>
       <span className="math-symbol">∝</span>
       <span>p(y | θ) p(θ)</span>
+    </div>
+  ),
+  "gibbs-bivariate": () => (
+    <div className="math-expression">
+      <span>x₁</span>
+      <span className="math-symbol">∼</span>
+      <span>p(x₁ | x₂)</span>
+      <span className="math-symbol">→</span>
+      <span>x₂ ∼ p(x₂ | x₁)</span>
+    </div>
+  ),
+  "permutation-mean-difference": () => (
+    <div className="math-expression">
+      <span>H₀:</span>
+      <span>group labels are exchangeable</span>
     </div>
   ),
 };
@@ -227,7 +335,15 @@ export function WalsApp({ moduleConfig }: WalsAppProps) {
   }, []);
 
   const handleUpdateControl = useCallback((id: string, value: ControlValue) => {
-    setControls((prev) => ({ ...createDefaultControls(state.activeExample), ...prev, [id]: value }));
+    setControls((prev) => {
+      const next = { ...createDefaultControls(state.activeExample), ...prev, [id]: value };
+      for (const control of state.activeExample.controls) {
+        if (control.rangeByValue?.controlId !== id) continue;
+        const range = control.rangeByValue.ranges[String(value)];
+        if (range) next[control.id] = range.defaultValue;
+      }
+      return normalizeControls(state.activeExample, next, id);
+    });
     if (accumulate) {
       setSampleMeans(undefined);
     }
@@ -236,43 +352,39 @@ export function WalsApp({ moduleConfig }: WalsAppProps) {
 
   const handleRun = useCallback(() => {
     if (accumulate) {
-      // Per the accumulateSampleMeans contract, the run button APPENDS a fresh
-      // batch of sample means (count = current length, min 20) instead of
-      // reseeding from scratch. Previously this replaced the array, which wiped
-      // the accumulation the quick-action buttons had built up.
       const current = controls ?? createDefaultControls(state.activeExample);
-      const count = Math.max(sampleMeans?.length ?? 0, 20);
       const nextSeed = Date.now();
-      const previous = sampleMeans ?? [];
-      const combined = [...previous, ...generateSampleMeans(current, count, nextSeed)];
-      setSampleMeans(combined.length > MAX_SAMPLE_MEANS ? combined.slice(combined.length - MAX_SAMPLE_MEANS) : combined);
+      setSampleMeans(generateSampleMeans(current, DEFAULT_CLT_SAMPLE_COUNT, nextSeed));
       setSeed(nextSeed);
     } else {
       setSeed(Date.now());
     }
-  }, [accumulate, controls, state.activeExample, sampleMeans]);
+  }, [accumulate, controls, state.activeExample]);
 
   // "bumpControl" quick actions increment a numeric control (e.g. the
   // random-variable module's sample size) by a fixed delta.
   const handleBumpControl = useCallback((controlId: string, delta: number) => {
     setControls((prev) => {
       const current = prev ?? createDefaultControls(state.activeExample);
-      return { ...current, [controlId]: Number(current[controlId] ?? 0) + delta };
+      return normalizeControls(
+        state.activeExample,
+        { ...current, [controlId]: Number(current[controlId] ?? 0) + delta },
+        controlId,
+      );
     });
-    setSeed(Date.now());
   }, [state.activeExample]);
 
   const handleDrawSamples = useCallback((count: number) => {
     const current = controls ?? createDefaultControls(state.activeExample);
     const nextSeed = Date.now();
-    const previous = sampleMeans ?? [];
+    const previous = sampleMeans ?? generateSampleMeans(current, DEFAULT_CLT_SAMPLE_COUNT, seed);
     const combined = [...previous, ...generateSampleMeans(current, count, nextSeed)];
     setSampleMeans(combined.length > MAX_SAMPLE_MEANS ? combined.slice(combined.length - MAX_SAMPLE_MEANS) : combined);
     setSeed(nextSeed);
-  }, [controls, state.activeExample, sampleMeans]);
+  }, [controls, state.activeExample, sampleMeans, seed]);
 
   return (
-    <div className="module-shell">
+    <div className="module-shell" aria-busy={controls !== deferredControls || seed !== deferredSeed}>
       <main className="module-layout">
         <section className="experiment-board">
           <header className="experiment-header">
@@ -288,18 +400,25 @@ export function WalsApp({ moduleConfig }: WalsAppProps) {
               <h2>{state.result.headline}</h2>
               <p>{state.result.narrative}</p>
             </div>
+            <div className="observation-prompt">
+              <span aria-hidden="true">◎</span>
+              <div>
+                <strong>{state.copy.howToReadThis}</strong>
+                <p>{state.activeExample.teachingPoints[0] ?? state.result.narrative}</p>
+              </div>
+            </div>
+            <section className="metrics-grid" aria-label={state.copy.modelOutput}>
+              {state.result.metrics.map((metric, i) => (
+                <article className="metric-card" key={i} title={metric.help}>
+                  <span className="metric-label">{metric.label}</span>
+                  <strong className="metric-value">{metric.value}</strong>
+                  {metric.detail && <small className="metric-note">{metric.detail}</small>}
+                </article>
+              ))}
+            </section>
             <div className="chart-frame">
               <Chart spec={state.result.chart} />
             </div>
-          </section>
-          <section className="metrics-grid">
-            {state.result.metrics.map((metric, i) => (
-              <article className="metric-card" key={i}>
-                <span className="metric-label">{metric.label}</span>
-                <strong className="metric-value">{metric.value}</strong>
-                {metric.detail && <small className="metric-note">{metric.detail}</small>}
-              </article>
-            ))}
           </section>
         </section>
         <aside className="teaching-area">
@@ -320,12 +439,12 @@ export function WalsApp({ moduleConfig }: WalsAppProps) {
               ))}
             </div>
             <div className="control-grid">
-              {state.activeExample.controls.map((control) =>
-                renderControl(control, controls ?? {}, handleUpdateControl),
-              )}
+              {state.activeExample.controls
+                .filter((control) => !control.hideWhen?.values.includes(String((controls ?? createDefaultControls(state.activeExample))[control.hideWhen.controlId] ?? "")))
+                .map((control) => renderControl(control, controls ?? createDefaultControls(state.activeExample), handleUpdateControl))}
             </div>
             <button type="button" className="run-button" onClick={handleRun}>
-              {accumulate ? walsCopy[language].redraw : state.copy.run}
+              {accumulate ? walsCopy[language].restartWith500 : state.copy.run}
             </button>
             {quickActions.length > 0 && (
               <div className="sample-quick-actions">

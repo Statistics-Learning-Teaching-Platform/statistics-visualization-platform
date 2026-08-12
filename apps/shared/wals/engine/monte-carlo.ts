@@ -14,7 +14,7 @@ export function piCircle(controls: ControlMap, seed: number): SimulationResult {
     const y = rng() * 2 - 1;
     const hit = x * x + y * y <= 1;
     if (hit) inside += 1;
-    if (i < 1200) points.push({ x, y, color: hit ? "#136f63" : "#d1495b" });
+    if (i < 1200) points.push({ x, y, color: hit ? "#2f6f64" : "#c8665a" });
   }
   const estimate = 4 * inside / n;
   return result(
@@ -25,7 +25,25 @@ export function piCircle(controls: ControlMap, seed: number): SimulationResult {
       { label: "inside points", value: String(inside), detail: `${n} total draws` },
       { label: "absolute error", value: formatNumber(Math.abs(Math.PI - estimate), 5), detail: "Compared with Math.PI" }
     ],
-    { type: "scatter", title: "Random points in the unit square", xLabel: "x", yLabel: "y", points, xDomain: [-1, 1], yDomain: [-1, 1] }
+    {
+      type: "scatter",
+      title: "Area ratio inside the unit circle",
+      xLabel: "horizontal coordinate x",
+      yLabel: "vertical coordinate y",
+      points,
+      circles: [{ cx: 0, cy: 0, radius: 1, label: "unit circle", color: "#8d75b5" }],
+      references: [
+        { axis: "x", value: 0, color: "#b9b3a7", dashed: false },
+        { axis: "y", value: 0, color: "#b9b3a7", dashed: false },
+      ],
+      legend: [
+        { label: "inside circle", color: "#2f6f64", shape: "dot" },
+        { label: "outside circle", color: "#c8665a", shape: "dot" },
+        { label: "circle boundary", color: "#8d75b5", shape: "line" },
+      ],
+      xDomain: [-1, 1],
+      yDomain: [-1, 1],
+    }
   );
 }
 export function buffon(controls: ControlMap, seed: number): SimulationResult {
@@ -56,7 +74,15 @@ export function buffon(controls: ControlMap, seed: number): SimulationResult {
       { label: "crossing rate", value: formatNumber(totalCrosses / (trials * experiments), 4), detail: "Needles crossing a line" },
       { label: "experiments", value: String(experiments), detail: `${trials} trials each` }
     ],
-    { type: "line", title: "Cumulative estimate by experiment", xLabel: "experiment", yLabel: "pi estimate", series: [{ label: "estimate", points: estimates, color: "#136f63" }], yDomain: [0, Math.max(5, final * 1.2)] }
+    {
+      type: "line",
+      title: "Cumulative estimate by experiment",
+      xLabel: "completed experiments",
+      yLabel: "estimate of π",
+      series: [{ label: "Monte Carlo estimate", points: estimates, color: "#2f6f64" }],
+      references: [{ axis: "y", value: Math.PI, label: "π", color: "#8d75b5" }],
+      yDomain: [Math.max(0, Math.min(...estimates.map((point) => point.y), Math.PI) - 0.8), Math.max(...estimates.map((point) => point.y), Math.PI) + 0.8],
+    }
   );
 }
 export function mcIntegralExp(controls: ControlMap, seed: number): SimulationResult {
@@ -87,12 +113,14 @@ export function mcTransform(controls: ControlMap, seed: number): SimulationResul
     return 5 * (1 / (u * u)) * Math.sqrt(1 / u - 1) * Math.exp(-(1 / u - 1));
   });
   const exponentialValues = Array.from({ length: n }, () => 5 * Math.sqrt(exponentialRandom(rng)));
+  const exact = 5 * Math.sqrt(Math.PI) / 2;
   return result(
     "Estimator comparison",
     "Both estimators target the same quantity with different sampling distributions.",
     [
       { label: "uniform estimate", value: formatNumber(mean(uniformValues), 5), detail: `variance ${formatNumber(variance(uniformValues), 4)}` },
       { label: "exponential estimate", value: formatNumber(mean(exponentialValues), 5), detail: `variance ${formatNumber(variance(exponentialValues), 4)}` },
+      { label: "exact target", value: formatNumber(exact, 5), detail: "5Γ(3/2)" },
       { label: "variance ratio", value: ratioOrNa(variance(uniformValues), variance(exponentialValues), 3), detail: "uniform / exponential" }
     ],
     { type: "bars", title: "Estimator variance", xLabel: "method", yLabel: "variance", bars: [{ label: "uniform", value: variance(uniformValues) }, { label: "exponential", value: variance(exponentialValues) }] }
@@ -118,7 +146,17 @@ export function normalCdfExample(controls: ControlMap, seed: number): Simulation
       { label: "draws", value: String(n), detail: "standard normal sample" },
       { label: "max error", value: formatNumber(Math.max(...rows.map((row) => Number(row[3]))), 4), detail: "indicator vs Phi" }
     ],
-    { type: "line", title: "Phi(x) estimate", xLabel: "x", yLabel: "CDF", series: [{ label: "indicator", points: xs.map((xValue, index) => ({ x: xValue, y: Number(rows[index][1]) })), color: "#136f63" }, { label: "Phi", points: xs.map((xValue) => ({ x: xValue, y: normalCdf(xValue) })), color: "#d1495b" }] },
+    {
+      type: "line",
+      title: "Simulated and analytic standard normal CDF",
+      xLabel: "threshold x",
+      yLabel: "P(Z ≤ x)",
+      series: [
+        { label: "indicator estimate", points: xs.map((xValue, index) => ({ x: xValue, y: Number(rows[index][1]) })), color: "#2f6f64" },
+        { label: "analytic Φ(x)", points: xs.map((xValue) => ({ x: xValue, y: normalCdf(xValue) })), color: "#c8665a", dashed: true },
+      ],
+      yDomain: [0, 1],
+    },
     { columns: ["x", "Indicator MC", "Phi(x)", "Abs. error"], rows }
   );
 }
