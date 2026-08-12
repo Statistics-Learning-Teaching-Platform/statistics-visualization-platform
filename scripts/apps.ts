@@ -16,6 +16,8 @@ export type AppSource = "existing" | "wals";
 
 export interface AppRecord {
   id: string;
+  topicId: string;
+  activityId: string;
   group: AppGroup;
   path: string;
   repositoryUrl: string;
@@ -28,6 +30,8 @@ export interface AppRecord {
 export const apps: AppRecord[] = [
   {
     id: "mes-distributions",
+    topicId: "probability-distributions",
+    activityId: "compare-probability-distributions",
     group: "Statistical Foundations",
     path: "apps/mes-distributions/",
     repositoryUrl:
@@ -37,6 +41,8 @@ export const apps: AppRecord[] = [
   },
   {
     id: "simulation-random-variable",
+    topicId: "random-variables",
+    activityId: "visualize-random-variables",
     group: "Statistical Foundations",
     path: "apps/simulation-random-variable/",
     repositoryUrl:
@@ -46,6 +52,8 @@ export const apps: AppRecord[] = [
   },
   {
     id: "simulation-clt",
+    topicId: "central-limit-theorem",
+    activityId: "explore-central-limit-theorem",
     group: "Statistical Foundations",
     path: "apps/simulation-clt/",
     repositoryUrl:
@@ -55,6 +63,8 @@ export const apps: AppRecord[] = [
   },
   {
     id: "confidence-interval",
+    topicId: "confidence-interval",
+    activityId: "confidence-interval-coverage",
     group: "Statistical Foundations",
     path: "apps/confidence-interval/",
     repositoryUrl:
@@ -64,6 +74,8 @@ export const apps: AppRecord[] = [
   },
   {
     id: "mes-confidence-interval",
+    topicId: "confidence-interval",
+    activityId: "confidence-interval-case-study",
     group: "Statistical Foundations",
     path: "apps/mes-confidence-interval/",
     repositoryUrl:
@@ -73,6 +85,8 @@ export const apps: AppRecord[] = [
   },
   {
     id: "type-error",
+    topicId: "type-i-type-ii-errors",
+    activityId: "explore-testing-errors",
     group: "Statistical Foundations",
     path: "apps/type-error/",
     repositoryUrl:
@@ -82,6 +96,8 @@ export const apps: AppRecord[] = [
   },
   {
     id: "mes-anova",
+    topicId: "anova",
+    activityId: "explore-anova",
     group: "Statistical Foundations",
     path: "apps/mes-anova/",
     repositoryUrl:
@@ -91,6 +107,8 @@ export const apps: AppRecord[] = [
   },
   {
     id: "regression",
+    topicId: "linear-regression",
+    activityId: "draw-regression-line",
     group: "Statistical Foundations",
     path: "apps/regression/",
     repositoryUrl:
@@ -100,6 +118,8 @@ export const apps: AppRecord[] = [
   },
   {
     id: "mes-linear-regression",
+    topicId: "linear-regression",
+    activityId: "linear-regression-city-case",
     group: "Statistical Foundations",
     path: "apps/mes-linear-regression/",
     repositoryUrl:
@@ -109,6 +129,8 @@ export const apps: AppRecord[] = [
   },
   {
     id: "simulation-introduction",
+    topicId: "simulation-foundations",
+    activityId: "introduce-statistical-simulation",
     group: "Statistical Simulation",
     path: "apps/simulation-introduction/",
     repositoryUrl:
@@ -118,6 +140,8 @@ export const apps: AppRecord[] = [
   },
   {
     id: "simulation-resampling",
+    topicId: "bootstrap-and-permutation",
+    activityId: "explore-resampling",
     group: "Statistical Simulation",
     path: "apps/simulation-resampling/",
     repositoryUrl:
@@ -127,6 +151,8 @@ export const apps: AppRecord[] = [
   },
   {
     id: "simulation-mcmc",
+    topicId: "mcmc",
+    activityId: "explore-mcmc",
     group: "Statistical Simulation",
     path: "apps/simulation-mcmc/",
     repositoryUrl:
@@ -136,6 +162,8 @@ export const apps: AppRecord[] = [
   },
   {
     id: "simulation-variance-reduction",
+    topicId: "variance-reduction",
+    activityId: "explore-variance-reduction",
     group: "Statistical Simulation",
     path: "apps/simulation-variance-reduction/",
     repositoryUrl:

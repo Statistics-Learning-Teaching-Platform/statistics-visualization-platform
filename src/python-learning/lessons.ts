@@ -1,7 +1,8 @@
-export type LocalizedText = { zh: string; en: string };
+import type { LocalizedText } from "../course/types";
 
 export type PythonLesson = {
   id: string;
+  topicId: string;
   unit: "foundations" | "data" | "visualization" | "statistics";
   order: number;
   eyebrow: LocalizedText;
@@ -28,6 +29,7 @@ export const pythonLessonUnits = [
 export const pythonLessons: PythonLesson[] = [
   {
     id: "lists-and-mean",
+    topicId: "descriptive-statistics",
     unit: "foundations",
     order: 1,
     eyebrow: { zh: "第一课 · 序列与计算", en: "Lesson 1 · Sequences and calculation" },
@@ -66,6 +68,7 @@ print(f"Mean score: {mean_score:.2f}")`,
   },
   {
     id: "functions-and-comprehensions",
+    topicId: "standardization",
     unit: "foundations",
     order: 2,
     eyebrow: { zh: "第二课 · 函数与推导式", en: "Lesson 2 · Functions and comprehensions" },
@@ -114,6 +117,7 @@ print(z_scores)`,
   },
   {
     id: "pandas-filter-summary",
+    topicId: "data-and-variables",
     unit: "data",
     order: 3,
     eyebrow: { zh: "第三课 · pandas", en: "Lesson 3 · pandas" },
@@ -169,6 +173,7 @@ print(group_means)`,
   },
   {
     id: "matplotlib-distribution",
+    topicId: "histograms",
     unit: "visualization",
     order: 4,
     eyebrow: { zh: "第四课 · Matplotlib", en: "Lesson 4 · Matplotlib" },
@@ -219,6 +224,7 @@ plt.show()`,
   },
   {
     id: "one-sample-t-test",
+    topicId: "hypothesis-testing",
     unit: "statistics",
     order: 5,
     eyebrow: { zh: "第五课 · 假设检验", en: "Lesson 5 · Hypothesis testing" },
@@ -269,6 +275,7 @@ print("Reject H0" if reject_null else "Fail to reject H0")`,
   },
   {
     id: "linear-regression",
+    topicId: "linear-regression",
     unit: "statistics",
     order: 6,
     eyebrow: { zh: "第六课 · 回归分析", en: "Lesson 6 · Regression" },
@@ -321,6 +328,7 @@ print(f"R² = {r_squared:.3f}")`,
   },
   {
     id: "sampling-simulation",
+    topicId: "central-limit-theorem",
     unit: "statistics",
     order: 7,
     eyebrow: { zh: "第七课 · 统计模拟", en: "Lesson 7 · Statistical simulation" },

@@ -1,20 +1,23 @@
+import type { LocalizedText } from "../course/types";
+
 export type LessonUnit = "foundations" | "data" | "statistics";
 
 export type RLesson = {
   id: string;
+  topicId: string;
   unit: LessonUnit;
   order: number;
-  title: { zh: string; en: string };
-  eyebrow: { zh: string; en: string };
-  objective: { zh: string; en: string };
-  explanation: { zh: string; en: string };
-  task: { zh: string; en: string };
+  title: LocalizedText;
+  eyebrow: LocalizedText;
+  objective: LocalizedText;
+  explanation: LocalizedText;
+  task: LocalizedText;
   concepts: string[];
   starterCode: string;
-  hint: { zh: string; en: string };
+  hint: LocalizedText;
   solution: string;
   checkCode: string;
-  success: { zh: string; en: string };
+  success: LocalizedText;
 };
 
 export const lessonUnits = [
@@ -26,6 +29,7 @@ export const lessonUnits = [
 export const rLessons: RLesson[] = [
   {
     id: "vectors-and-mean",
+    topicId: "descriptive-statistics",
     unit: "foundations",
     order: 1,
     eyebrow: { zh: "第一课 · 对象与向量", en: "Lesson 1 · Objects and vectors" },
@@ -68,6 +72,7 @@ average_score`,
   },
   {
     id: "data-frame-filter",
+    topicId: "data-and-variables",
     unit: "data",
     order: 2,
     eyebrow: { zh: "第二课 · 数据框", en: "Lesson 2 · Data frames" },
@@ -120,6 +125,7 @@ high_score_mean`,
   },
   {
     id: "first-histogram",
+    topicId: "histograms",
     unit: "data",
     order: 3,
     eyebrow: { zh: "第三课 · 基础绘图", en: "Lesson 3 · Base graphics" },
@@ -169,6 +175,7 @@ plot_created <- TRUE`,
   },
   {
     id: "one-sample-t-test",
+    topicId: "hypothesis-testing",
     unit: "statistics",
     order: 4,
     eyebrow: { zh: "第四课 · 假设检验", en: "Lesson 4 · Hypothesis testing" },
@@ -214,6 +221,7 @@ test_result`,
   },
   {
     id: "linear-regression",
+    topicId: "linear-regression",
     unit: "statistics",
     order: 5,
     eyebrow: { zh: "第五课 · 线性回归", en: "Lesson 5 · Linear regression" },
@@ -265,6 +273,7 @@ summary(model)`,
   },
   {
     id: "sampling-simulation",
+    topicId: "central-limit-theorem",
     unit: "statistics",
     order: 6,
     eyebrow: { zh: "第六课 · 抽样模拟", en: "Lesson 6 · Sampling simulation" },
