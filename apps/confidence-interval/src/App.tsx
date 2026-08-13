@@ -104,6 +104,14 @@ export default function ConfidenceIntervalApp() {
                 trueMeanLabel={trueMeanLabel}
                 populationScaleLabel={copy.populationScale}
                 sampleIndexLabel={copy.sampleIndex}
+                chartDescription={copy.chartAriaDescription}
+                sampleTooltip={(sampleNumber, lower, upper, contains) =>
+                  copy.sampleTooltip
+                    .replace("{number}", String(sampleNumber))
+                    .replace("{lower}", lower.toFixed(3))
+                    .replace("{upper}", upper.toFixed(3))
+                    .replace("{coverage}", contains ? copy.tooltipCovers : copy.tooltipMisses)
+                }
               />
             </ChartFrame>
           </div>

@@ -6,7 +6,7 @@ import {
   useLanguage,
   walsCopy,
 } from "@stats-viz/shared/i18n";
-import { DEFAULT_CLT_SAMPLE_COUNT, generateSampleMeans, runExample } from "./engine";
+import { generateSampleMeans, runExample } from "./engine";
 import { Chart } from "./charts";
 import {
   ChartFrame,
@@ -317,7 +317,9 @@ export function WalsApp({ moduleConfig }: WalsAppProps) {
   const [exampleId, setExampleId] = useState<string | undefined>(undefined);
   const [controls, setControls] = useState<Record<string, ControlValue> | undefined>(undefined);
   const [seed, setSeed] = useState<number>(() => Date.now());
-  const [sampleMeans, setSampleMeans] = useState<number[] | undefined>(undefined);
+  const [sampleMeans, setSampleMeans] = useState<number[] | undefined>(() =>
+    moduleConfig.examples[0]?.accumulateSampleMeans ? [] : undefined,
+  );
 
   // Defer the expensive simulation so slider drags stay responsive.
   // `controls`/`seed` update urgently (slider thumb tracks the cursor); the
@@ -338,11 +340,12 @@ export function WalsApp({ moduleConfig }: WalsAppProps) {
   const quickActions = state.activeExample.quickActions ?? [];
 
   const handleSelectExample = useCallback((id: string) => {
+    const nextExample = moduleConfig.examples.find((example) => example.id === id);
     setExampleId(id);
     setControls(undefined);
     setSeed((s) => s + 1);
-    setSampleMeans(undefined);
-  }, []);
+    setSampleMeans(nextExample?.accumulateSampleMeans ? [] : undefined);
+  }, [moduleConfig.examples]);
 
   const handleUpdateControl = useCallback((id: string, value: ControlValue) => {
     setControls((prev) => {
@@ -355,21 +358,19 @@ export function WalsApp({ moduleConfig }: WalsAppProps) {
       return normalizeControls(state.activeExample, next, id);
     });
     if (accumulate) {
-      setSampleMeans(undefined);
+      setSampleMeans([]);
     }
     setSeed((s) => s + 1);
   }, [state.activeExample, accumulate]);
 
   const handleRun = useCallback(() => {
     if (accumulate) {
-      const current = controls ?? createDefaultControls(state.activeExample);
-      const nextSeed = Date.now();
-      setSampleMeans(generateSampleMeans(current, DEFAULT_CLT_SAMPLE_COUNT, nextSeed));
-      setSeed(nextSeed);
+      setSampleMeans([]);
+      setSeed(Date.now());
     } else {
       setSeed(Date.now());
     }
-  }, [accumulate, controls, state.activeExample]);
+  }, [accumulate]);
 
   // "bumpControl" quick actions increment a numeric control (e.g. the
   // random-variable module's sample size) by a fixed delta.
@@ -387,11 +388,11 @@ export function WalsApp({ moduleConfig }: WalsAppProps) {
   const handleDrawSamples = useCallback((count: number) => {
     const current = controls ?? createDefaultControls(state.activeExample);
     const nextSeed = Date.now();
-    const previous = sampleMeans ?? generateSampleMeans(current, DEFAULT_CLT_SAMPLE_COUNT, seed);
+    const previous = sampleMeans ?? [];
     const combined = [...previous, ...generateSampleMeans(current, count, nextSeed)];
     setSampleMeans(combined.length > MAX_SAMPLE_MEANS ? combined.slice(combined.length - MAX_SAMPLE_MEANS) : combined);
     setSeed(nextSeed);
-  }, [controls, state.activeExample, sampleMeans, seed]);
+  }, [controls, state.activeExample, sampleMeans]);
 
   return (
     <VisualizationFrame
@@ -451,11 +452,13 @@ export function WalsApp({ moduleConfig }: WalsAppProps) {
                 .map((control) => renderControl(control, controls ?? createDefaultControls(state.activeExample), handleUpdateControl))}
             </div>
             <button type="button" className="run-button" onClick={handleRun}>
-              {accumulate ? walsCopy[language].restartWith500 : state.copy.run}
+              {accumulate ? walsCopy[language].redraw : state.copy.run}
             </button>
             {quickActions.length > 0 && (
               <div className="sample-quick-actions">
-                {quickActions.map((action) => (
+                {quickActions
+                  .filter((action) => !action.showWhen || action.showWhen.values.includes(String(state.controls[action.showWhen.controlId] ?? "")))
+                  .map((action) => (
                   <button
                     key={`${action.type}-${action.amount}`}
                     type="button"
@@ -463,6 +466,8 @@ export function WalsApp({ moduleConfig }: WalsAppProps) {
                     onClick={() => {
                       if (action.type === "drawSampleMeans") {
                         handleDrawSamples(action.amount);
+                      } else if (action.type === "setControl") {
+                        handleUpdateControl(action.control ?? "sampleSize", action.amount);
                       } else {
                         handleBumpControl(action.control ?? "sampleSize", action.amount);
                       }
@@ -470,7 +475,7 @@ export function WalsApp({ moduleConfig }: WalsAppProps) {
                   >
                     {walsCopy[language][action.copyKey]}
                   </button>
-                ))}
+                  ))}
               </div>
             )}
           </ParameterPanel>

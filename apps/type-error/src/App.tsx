@@ -27,6 +27,7 @@ interface Params {
   nullMean: number;
   trueMean: number;
   stdDev: number;
+  observedStatistic: number;
 }
 
 interface DistributionPoint {
@@ -51,7 +52,7 @@ function createScales() {
   return createLinearScales(CHART_LAYOUT, [-5, 10], [0, 0.5]);
 }
 
-function computeCriticalValues(
+export function computeCriticalValues(
   alpha: number,
   nullMean: number,
   stdDev: number,
@@ -100,6 +101,18 @@ function computeTypeTwoErrorRate(
   return normalCdf(right, trueMean, stdDev) - normalCdf(left, trueMean, stdDev);
 }
 
+export function computePValue(
+  observedStatistic: number,
+  nullMean: number,
+  stdDev: number,
+  testType: TestType,
+): number {
+  const lowerTail = normalCdf(observedStatistic, nullMean, stdDev);
+  if (testType === "left-tailed") return Math.max(0, Math.min(1, lowerTail));
+  if (testType === "right-tailed") return Math.max(0, Math.min(1, 1 - lowerTail));
+  return Math.min(1, 2 * Math.min(lowerTail, 1 - lowerTail));
+}
+
 function buildAreaPath(
   data: DistributionPoint[],
   criticalValue: number[],
@@ -125,6 +138,7 @@ export default function TypeErrorApp() {
     nullMean: 0,
     trueMean: 1,
     stdDev: 1,
+    observedStatistic: 1.65,
   });
 
   const computed = useMemo(() => {
@@ -134,6 +148,7 @@ export default function TypeErrorApp() {
     const cv = computeCriticalValues(params.alpha, params.nullMean, params.stdDev, testType);
     const filterFn = criticalAreaFn(testType);
     const typeTwoErrorRate = computeTypeTwoErrorRate(cv, params.trueMean, params.stdDev, testType);
+    const pValue = computePValue(params.observedStatistic, params.nullMean, params.stdDev, testType);
     return {
       scales,
       nullDistribution,
@@ -145,6 +160,8 @@ export default function TypeErrorApp() {
       typeTwoErrorRate,
       power: 1 - typeTwoErrorRate,
       effectSize: params.trueMean - params.nullMean,
+      pValue,
+      rejectsNull: pValue < params.alpha,
     };
   }, [params, testType]);
 
@@ -178,6 +195,7 @@ export default function TypeErrorApp() {
     { kind: "dash", className: "chart-inline-legend__line--critical", label: copy.criticalBoundary },
     { kind: "area", className: "chart-inline-legend__area--type1", label: copy.typeIErrorArea },
     { kind: "area", className: "chart-inline-legend__area--type2", label: copy.typeIIErrorArea },
+    { kind: "dash", className: "chart-inline-legend__line--observed", label: copy.observedStatistic },
   ];
 
   const getCriticalValueLabel = () => {
@@ -199,7 +217,11 @@ export default function TypeErrorApp() {
   };
 
   const getTestTypeLabel = () =>
-    testType === "two-tailed" ? copy.twoSidedTest : copy.oneSidedTest;
+    testType === "two-tailed"
+      ? copy.twoSidedTest
+      : testType === "left-tailed"
+        ? copy.leftTailedTest
+        : copy.rightTailedTest;
 
   const formatRate = (v: number) => `${(v * 100).toFixed(1)}%`;
 
@@ -224,6 +246,8 @@ export default function TypeErrorApp() {
                 { key: "beta", label: copy.betaLabel, value: formatRate(computed.typeTwoErrorRate), note: copy.betaNote },
                 { key: "power", label: copy.power, value: formatRate(computed.power), note: copy.powerNote },
                 { key: "effect", label: copy.effectSize, value: formatNumber(computed.effectSize, 2), note: copy.effectSizeNote },
+                { key: "p-value", label: copy.pValue, value: formatNumber(computed.pValue, 4), note: copy.pValueNote },
+                { key: "decision", label: copy.testDecision, value: computed.rejectsNull ? copy.rejectNull : copy.failToRejectNull, note: copy.decisionNote },
               ]}
             />
             <ChartFrame>
@@ -244,6 +268,15 @@ export default function TypeErrorApp() {
                       strokeDasharray="5,5"
                     />
                   ))}
+                  <line
+                    x1={scales.xScale(params.observedStatistic)}
+                    x2={scales.xScale(params.observedStatistic)}
+                    y1={scales.yScale(0)}
+                    y2={scales.yScale(0.5)}
+                    stroke="var(--danger)"
+                    strokeWidth={2}
+                    strokeDasharray="3,4"
+                  />
                   <g transform={`translate(0, ${plotHeight})`} ref={(g) => {
                     if (g) select(g).call(axisBottom(scales.xScale).ticks(6));
                   }} />
@@ -278,7 +311,7 @@ export default function TypeErrorApp() {
                     <rect
                       className="chart-inline-legend__panel"
                       width={206}
-                      height={112}
+                      height={127}
                       rx={12}
                       ry={12}
                     />
@@ -330,11 +363,20 @@ export default function TypeErrorApp() {
                 <button
                   type="button"
                   className="test-type-tab"
+                  data-test-type="left-tailed"
+                  data-active={String(testType === "left-tailed")}
+                  onClick={() => setTestType("left-tailed")}
+                >
+                  {copy.leftTailed}
+                </button>
+                <button
+                  type="button"
+                  className="test-type-tab"
                   data-test-type="right-tailed"
                   data-active={String(testType === "right-tailed")}
                   onClick={() => setTestType("right-tailed")}
                 >
-                  {copy.oneSided}
+                  {copy.rightTailed}
                 </button>
                 <button
                   type="button"
@@ -355,8 +397,9 @@ export default function TypeErrorApp() {
               {[
                 { id: "alpha", label: copy.alphaLabel, hint: copy.alphaHint, min: 0.01, max: 0.2, step: 0.01, value: params.alpha, key: "alpha" as const },
                 { id: "null-mean", label: copy.nullMeanLabel, hint: copy.nullMeanHint, min: -2, max: 2, step: 0.1, value: params.nullMean, key: "nullMean" as const },
-                { id: "true-mean", label: copy.trueMeanLabel, hint: copy.trueMeanHint, min: 0, max: 3, step: 0.1, value: params.trueMean, key: "trueMean" as const },
+                { id: "true-mean", label: copy.trueMeanLabel, hint: copy.trueMeanHint, min: -3, max: 3, step: 0.1, value: params.trueMean, key: "trueMean" as const },
                 { id: "std-dev", label: copy.stdDevLabel, hint: copy.stdDevHint, min: 0.1, max: 2, step: 0.1, value: params.stdDev, key: "stdDev" as const },
+                { id: "observed-statistic", label: copy.observedStatistic, hint: copy.observedStatisticHint, min: -4, max: 6, step: 0.05, value: params.observedStatistic, key: "observedStatistic" as const },
               ].map((slider) => (
                 <div className="control-panel__slider" key={slider.id}>
                   <div className="control-panel__label-row">
@@ -406,6 +449,7 @@ export default function TypeErrorApp() {
             </p>
           </FormulaCard>
           <ObservationCard eyebrow={copy.howToReadThis} title={copy.currentHypotheses}>
+            <p>{copy.pValueWarning}</p>
             <div className="concept-strip">
               <div className="concept-item">
                 <span className="concept-name">H0</span>

@@ -7,6 +7,8 @@ interface ConfidenceIntervalChartProps {
   trueMeanLabel: string;
   populationScaleLabel: string;
   sampleIndexLabel: string;
+  chartDescription: string;
+  sampleTooltip: (sampleNumber: number, lower: number, upper: number, contains: boolean) => string;
 }
 
 export function ConfidenceIntervalChart({
@@ -15,6 +17,8 @@ export function ConfidenceIntervalChart({
   trueMeanLabel,
   populationScaleLabel,
   sampleIndexLabel,
+  chartDescription,
+  sampleTooltip,
 }: ConfidenceIntervalChartProps) {
   const { width, height, margin } = defaultConfig.layout;
   const marginTop = margin.top;
@@ -25,7 +29,7 @@ export function ConfidenceIntervalChart({
 
   return (
     <svg width={width} height={height} viewBox={`0 0 ${width} ${height}`} role="img" aria-label={`${samples.length} repeated confidence intervals; ${trueMeanLabel}`}>
-      <desc>Green intervals contain the true mean; red intervals miss it. Each dot is a sample mean.</desc>
+      <desc>{chartDescription}</desc>
       <g transform={`translate(${marginLeft}, ${marginTop})`}>
         <g transform={`translate(0, ${chartHeight})`} ref={(g) => {
           if (g) select(g).call(axisBottom(scales.xScale).ticks(6).tickSizeOuter(0));
@@ -53,7 +57,7 @@ export function ConfidenceIntervalChart({
           const color = sample.contains ? "var(--sage)" : "var(--danger)";
           return (
             <g key={i} className="ci-group">
-              <title>{`Sample ${i + 1}: ${sample.lower.toFixed(3)} to ${sample.upper.toFixed(3)}; ${sample.contains ? "covers" : "misses"} the true mean`}</title>
+              <title>{sampleTooltip(i + 1, sample.lower, sample.upper, sample.contains)}</title>
               <line
                 className="ci-line"
                 y1={y}

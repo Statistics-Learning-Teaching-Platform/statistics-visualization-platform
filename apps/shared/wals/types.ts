@@ -28,19 +28,27 @@ export interface ControlConfig {
   hideWhen?: { controlId: string; values: string[] };
 }
 
-export type QuickActionType = "drawSampleMeans" | "bumpControl";
+export type QuickActionType = "drawSampleMeans" | "bumpControl" | "setControl";
 export type QuickActionCopyKey =
   | "addOneSample"
   | "addTwentySamples"
   | "draw1Sample"
   | "draw20Samples"
-  | "draw100Samples";
+  | "draw100Samples"
+  | "setN1"
+  | "setN5"
+  | "setN30"
+  | "setN100"
+  | "changeMeanOnly"
+  | "changeSdOnly";
 
 export interface QuickAction {
   type: QuickActionType;
   amount: number;
   /** For "bumpControl": the numeric control id to increment. */
   control?: string;
+  /** Only render this action for matching control values. */
+  showWhen?: { controlId: string; values: string[] };
   /** Label key into walsCopy. */
   copyKey: QuickActionCopyKey;
 }
@@ -58,6 +66,7 @@ export interface ExampleConfig {
    * former hardcoded checks on module id / example kind.
    * - "drawSampleMeans": append `amount` fresh sample means (CLT accumulation).
    * - "bumpControl": add `amount` to the numeric control named by `control`.
+   * - "setControl": set the numeric control named by `control` to `amount`.
    */
   quickActions?: QuickAction[];
   /**
