@@ -23,6 +23,7 @@ export interface Question {
   source: string;
   type: string;
   difficulty: number;
+  estimatedMinutes: number;
   keywords: string[];
   topicIds: string[];
   dataRefs: string[];
@@ -34,6 +35,8 @@ export interface Question {
   reviewStatus: string | null;
   /** Question provenance. Omitted on legacy records, which are treated as bank questions. */
   origin?: "bank" | "variant" | "generated";
+  /** AI variant strategy; candidates still require explicit teacher acceptance. */
+  variantKind?: "parameter" | "context";
   /** Bank question used as the structural seed for an AI-authored variant. */
   parentQuestionId?: string | null;
   /** Short server-side verification summary for AI-authored questions. */

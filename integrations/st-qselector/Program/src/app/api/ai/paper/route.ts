@@ -13,6 +13,7 @@ const QUESTION_TYPES = new Set(["选择题", "判断题", "填空题", "计算�
 interface GenerationJob {
   concept: string;
   origin: "variant" | "generated";
+  variantKind?: "parameter" | "context";
   parentQuestionId: string | null;
   chapterId: string;
 }
@@ -98,6 +99,7 @@ function sanitizeDraft(draft: GeneratedDraft, job: GenerationJob, position: numb
       : `AI generated for ${job.concept}`,
     type,
     difficulty,
+    estimatedMinutes: Math.max(1, Math.min(60, difficulty * (type === "综合题" ? 5 : 3))),
     keywords,
     topicIds: normalizeTopicIds(chapterId, keywords),
     dataRefs: [],
@@ -108,6 +110,7 @@ function sanitizeDraft(draft: GeneratedDraft, job: GenerationJob, position: numb
     isReviewed: false,
     reviewStatus: "AI independently generated and verified; teacher confirmation required",
     origin: job.origin,
+    variantKind: job.variantKind,
     parentQuestionId: job.parentQuestionId,
     verification: String(draft.verification ?? "").trim() || "Independent verifier confirmed that the question is self-contained and the answer follows from the stated information.",
   };
@@ -124,7 +127,7 @@ export async function POST(request: NextRequest) {
     if (!selectedConcepts.length) {
       return NextResponse.json({ error: "请先确认至少一个知识点" }, { status: 400 });
     }
-    const targetCount = Math.max(1, Math.min(40, Math.round(blueprint.targetCount)));
+    const targetCount = Math.max(1, Math.min(40, Math.round(blueprint.totalQuestions || blueprint.targetCount)));
     const variantPercent = Math.max(0, Math.min(70, Number(body.variantPercent) || 30));
     const desiredAiCount = Math.min(targetCount, Math.round(targetCount * variantPercent / 100));
     const bankTarget = Math.max(Math.min(targetCount, selectedConcepts.length), targetCount - desiredAiCount);
@@ -148,20 +151,16 @@ export async function POST(request: NextRequest) {
       });
     }
 
-    const missingConcepts = selectedConcepts.filter((point) =>
-      !bankQuestionsSource.some((question) => question.isReviewed && question.isComplete && question.answer && questionMatchesKnowledge(question, point.label)),
-    );
     const jobs: GenerationJob[] = [];
-    for (const point of missingConcepts) {
-      if (jobs.length >= generatedNeeded) break;
-      jobs.push({ concept: point.label, origin: "generated", parentQuestionId: null, chapterId: mapConceptToChapter(point.label) });
-    }
-    for (let index = jobs.length; index < generatedNeeded; index++) {
+    // Exhaust reviewed-bank seeds as parameter variants, then context variants.
+    // Only create an entirely new item if no reviewed seed exists for the target.
+    for (let index = 0; index < generatedNeeded; index++) {
       const point = selectedConcepts[index % selectedConcepts.length];
       const seed = bankQuestions.find((question) => questionMatchesKnowledge(question, point.label)) ?? bankQuestions[index % Math.max(1, bankQuestions.length)];
       jobs.push({
         concept: point.label,
         origin: seed ? "variant" : "generated",
+        variantKind: seed ? (index % 2 === 0 ? "parameter" : "context") : undefined,
         parentQuestionId: seed?.id ?? null,
         chapterId: seed?.chapterId ?? mapConceptToChapter(point.label),
       });
@@ -172,7 +171,7 @@ export async function POST(request: NextRequest) {
     });
     const generatedPayload = await callJson(
       "You are a statistics assessment author. Create self-contained English questions with complete, independently derivable English answers. Return JSON only as {questions:[{index,concept,type,difficulty,chapterId,content,answer,verification}]}, with exactly one item for every input job and the same index. Never refer to a missing figure, previous exercise, external table, file, or unstated data. Use Markdown tables and $...$/$$...$$ LaTeX. For a variant preserve only the tested concept and solution structure; change context, values, wording, and recompute every result. The answer must show all calculations and conclusions for computation questions. Allowed question types are: 选择题, 判断题, 填空题, 计算题, 简答题, 综合题.",
-      JSON.stringify({ targetDifficulty: blueprint.targetDifficulty, allowedTypes: blueprint.types, jobs: seeds }),
+      JSON.stringify({ targetDifficulty: blueprint.targetDifficulty, difficultyDistribution: blueprint.difficultyDistribution, questionTypeCounts: blueprint.questionTypeCounts, estimatedMinutes: blueprint.estimatedMinutes, allowedTypes: blueprint.types, jobs: seeds }),
     );
     const firstPass = Array.isArray(generatedPayload.questions) ? generatedPayload.questions as GeneratedDraft[] : [];
     if (firstPass.length !== jobs.length) throw new Error(`AI 只生成了 ${firstPass.length}/${jobs.length} 道题`);

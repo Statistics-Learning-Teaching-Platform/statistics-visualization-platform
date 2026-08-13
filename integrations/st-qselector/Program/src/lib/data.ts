@@ -182,6 +182,7 @@ export function loadAllQuestions(): Question[] {
           source: q.source ?? "",
           type: inferQuestionType(q.type, content),
           difficulty: typeof q.difficulty === "number" ? q.difficulty : 1,
+          estimatedMinutes: Math.max(1, Math.min(60, (typeof q.difficulty === "number" ? q.difficulty : 1) * (inferQuestionType(q.type, content) === "综合题" ? 5 : 3))),
           keywords,
           topicIds: normalizeTopicIds(ch.id, keywords, q.topic_ids),
           dataRefs,

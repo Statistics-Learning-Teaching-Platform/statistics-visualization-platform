@@ -83,6 +83,7 @@ for (const chapter of config.chapters || []) {
       source: question.source || "",
       type: question.type || "简答题",
       difficulty: typeof question.difficulty === "number" ? question.difficulty : 1,
+      estimatedMinutes: Math.max(1, Math.min(60, (typeof question.difficulty === "number" ? question.difficulty : 1) * (question.type === "综合题" ? 5 : 3))),
       keywords,
       topicIds: normalizeTopicIds(String(chapter.id), keywords, question.topic_ids),
       dataRefs,

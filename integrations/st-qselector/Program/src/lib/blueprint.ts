@@ -10,6 +10,13 @@ export interface KnowledgePointDraft {
 }
 
 export interface PaperBlueprint {
+  learningObjectives: string[];
+  topicWeights: Record<string, number>;
+  questionTypeCounts: Record<string, number>;
+  difficultyDistribution: Record<number, number>;
+  totalQuestions: number;
+  estimatedMinutes: number;
+  /** Legacy compatibility fields consumed by the existing selector. */
   targetCount: number;
   targetDifficulty: number;
   types: string[];
@@ -17,7 +24,7 @@ export interface PaperBlueprint {
 }
 
 export interface QualityDimension {
-  id: "coverage" | "difficulty" | "types" | "reliability" | "variety";
+  id: "coverage" | "difficulty" | "types" | "duration" | "reliability" | "variety" | "integrity";
   label: string;
   score: number;
   detail: string;
@@ -29,6 +36,7 @@ export interface PaperQualityReport {
   dimensions: QualityDimension[];
   comment: string;
   missingKnowledge: string[];
+  estimatedMinutes: number;
 }
 
 export interface BlueprintSelection {
@@ -132,7 +140,7 @@ export function selectQuestionsFromBlueprint(
   blueprint: PaperBlueprint,
   options: { relevantOnly?: boolean } = {},
 ): BlueprintSelection {
-  const targetCount = Math.max(1, Math.min(60, Math.round(blueprint.targetCount)));
+  const targetCount = Math.max(1, Math.min(60, Math.round(blueprint.totalQuestions || blueprint.targetCount)));
   const selectedKnowledge = blueprint.knowledgePoints.filter((point) => point.selected);
   const eligible = dedupeUnits(buildQuestionUnits(questions)).filter((unit) =>
     !options.relevantOnly || selectedKnowledge.length === 0 ||
@@ -195,9 +203,17 @@ export function evaluatePaperQuality(
     ? Math.max(0, 100 - Math.abs(averageDifficulty - blueprint.targetDifficulty) * 28)
     : 0;
   const representedTypes = new Set(selectedQuestions.map((question) => question.type));
-  const typeScore = blueprint.types.length
-    ? (blueprint.types.filter((type) => representedTypes.has(type)).length / blueprint.types.length) * 100
-    : 100;
+  const requestedTypeCounts = Object.entries(blueprint.questionTypeCounts ?? {}).filter(([, count]) => count > 0);
+  const actualTypeCounts = new Map<string, number>();
+  for (const question of selectedQuestions) actualTypeCounts.set(question.type, (actualTypeCounts.get(question.type) ?? 0) + 1);
+  const typeScore = requestedTypeCounts.length
+    ? Math.max(0, 100 - requestedTypeCounts.reduce((gap, [type, count]) => gap + Math.abs((actualTypeCounts.get(type) ?? 0) - count), 0) * 8)
+    : blueprint.types.length
+      ? (blueprint.types.filter((type) => representedTypes.has(type)).length / blueprint.types.length) * 100
+      : 100;
+  const estimatedMinutes = selectedQuestions.reduce((sum, question) => sum + (question.estimatedMinutes || Math.max(1, question.difficulty * 3)), 0);
+  const targetMinutes = Math.max(1, blueprint.estimatedMinutes || estimatedMinutes || 1);
+  const durationScore = Math.max(0, 100 - Math.abs(estimatedMinutes - targetMinutes) / targetMinutes * 100);
   const reliable = selectedQuestions.reduce((score, question) => {
     if (question.isReviewed && question.isComplete && question.answer) return score + 1;
     if ((question.origin === "variant" || question.origin === "generated") && question.isComplete && question.answer && question.verification) {
@@ -209,19 +225,25 @@ export function evaluatePaperQuality(
   const duplicateKeys = selectedQuestions.map((question) => normalized(question.content));
   const uniqueCount = new Set(duplicateKeys).size;
   const varietyScore = selectedQuestions.length ? (uniqueCount / selectedQuestions.length) * 100 : 0;
+  const consistent = selectedQuestions.filter((question) => question.isComplete && Boolean(question.answer) && question.attachments.every((item) => item.available)).length;
+  const integrityScore = selectedQuestions.length ? consistent / selectedQuestions.length * 100 : 0;
   const dimensions: QualityDimension[] = [
     { id: "coverage", label: "知识点覆盖", score: coverageScore, detail: `${coveredKnowledge.length}/${selectedKnowledge.length || 0} 个目标知识点` },
     { id: "difficulty", label: "难度匹配", score: difficultyScore, detail: selectedQuestions.length ? `平均难度 ${averageDifficulty.toFixed(1)} / 目标 ${blueprint.targetDifficulty}` : "尚未选题" },
     { id: "types", label: "题型平衡", score: typeScore, detail: `${representedTypes.size} 种题型` },
+    { id: "duration", label: "预计完成时间", score: durationScore, detail: `预计 ${estimatedMinutes} 分钟 / 目标 ${targetMinutes} 分钟` },
     { id: "reliability", label: "答案可靠", score: reliabilityScore, detail: `${reliable.toFixed(1)}/${selectedQuestions.length} 题已审核或完成 AI 双阶段校验` },
     { id: "variety", label: "题目多样性", score: varietyScore, detail: uniqueCount === selectedQuestions.length ? "未发现重复题" : `${selectedQuestions.length - uniqueCount} 道内容相似` },
+    { id: "integrity", label: "数据与答案一致性", score: integrityScore, detail: `${consistent}/${selectedQuestions.length} 题具有完整题干、可用数据和答案` },
   ];
   const weights: Record<QualityDimension["id"], number> = {
-    coverage: 0.32,
-    difficulty: 0.22,
-    types: 0.16,
-    reliability: 0.2,
-    variety: 0.1,
+    coverage: 0.25,
+    difficulty: 0.16,
+    types: 0.12,
+    duration: 0.1,
+    reliability: 0.16,
+    variety: 0.08,
+    integrity: 0.13,
   };
   const overall = dimensions.reduce((sum, dimension) => sum + dimension.score * weights[dimension.id], 0);
   const stars = Math.max(1, Math.min(5, Math.round(overall / 20)));
@@ -236,5 +258,23 @@ export function evaluatePaperQuality(
     dimensions: dimensions.map((dimension) => ({ ...dimension, score: Math.round(dimension.score) })),
     comment: comments.join("").trim(),
     missingKnowledge,
+    estimatedMinutes,
+  };
+}
+
+export function createPaperBlueprint(input: Partial<PaperBlueprint> = {}): PaperBlueprint {
+  const totalQuestions = Math.max(1, Math.min(60, Math.round(input.totalQuestions ?? input.targetCount ?? 20)));
+  const targetDifficulty = Math.max(1, Math.min(5, Math.round(input.targetDifficulty ?? 3)));
+  return {
+    learningObjectives: input.learningObjectives ?? [],
+    topicWeights: input.topicWeights ?? {},
+    questionTypeCounts: input.questionTypeCounts ?? {},
+    difficultyDistribution: input.difficultyDistribution ?? { [targetDifficulty]: totalQuestions },
+    totalQuestions,
+    estimatedMinutes: Math.max(1, Math.round(input.estimatedMinutes ?? totalQuestions * targetDifficulty * 3)),
+    targetCount: totalQuestions,
+    targetDifficulty,
+    types: input.types ?? Object.keys(input.questionTypeCounts ?? {}),
+    knowledgePoints: input.knowledgePoints ?? [],
   };
 }

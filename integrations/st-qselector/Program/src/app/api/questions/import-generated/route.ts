@@ -39,9 +39,13 @@ function writeJsonAtomic(file: string, value: unknown): void {
 
 export async function POST(request: NextRequest) {
   try {
-    const body = await request.json() as { questions?: unknown[] };
+    const body = await request.json() as { questions?: unknown[]; teacherConfirmedIds?: unknown[] };
     const incoming = Array.isArray(body.questions) ? body.questions.slice(0, 40) : [];
     if (!incoming.length) return NextResponse.json({ imported: 0, reused: 0, idMap: {} });
+    const teacherConfirmedIds = new Set(Array.isArray(body.teacherConfirmedIds) ? body.teacherConfirmedIds.filter((id): id is string => typeof id === "string") : []);
+    if (!incoming.every((question) => question && typeof question === "object" && teacherConfirmedIds.has(String((question as { id?: unknown }).id ?? "")))) {
+      return NextResponse.json({ error: "AI 候选题必须逐题由教师确认后才能入库" }, { status: 400 });
+    }
 
     const readOnlyDeployment = process.env.VERCEL === "1";
     const chapterIds = new Set(
@@ -117,6 +121,7 @@ export async function POST(request: NextRequest) {
           formula_refs: [],
           data_refs: [],
           origin: question.origin,
+          variant_kind: question.variantKind,
           parent_question_id: question.parentQuestionId ?? null,
           verification: question.verification,
           review_status: reviewStatus,

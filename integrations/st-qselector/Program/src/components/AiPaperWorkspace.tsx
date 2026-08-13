@@ -6,6 +6,7 @@ import QuestionContent from "@/components/QuestionContent";
 import type { Question } from "@/lib/types";
 import {
   evaluatePaperQuality,
+  createPaperBlueprint,
   type KnowledgePointDraft,
   type PaperBlueprint,
   type PaperQualityReport,
@@ -106,6 +107,7 @@ export default function AiPaperWorkspace({
   const [manualConcept, setManualConcept] = useState("");
   const [targetCount, setTargetCount] = useState(20);
   const [targetDifficulty, setTargetDifficulty] = useState(3);
+  const [estimatedMinutes, setEstimatedMinutes] = useState(90);
   const [types, setTypes] = useState<string[]>([]);
   const [variantPercent, setVariantPercent] = useState(30);
   const [analyzing, setAnalyzing] = useState(false);
@@ -114,13 +116,19 @@ export default function AiPaperWorkspace({
   const [analysisMode, setAnalysisMode] = useState<"ai" | "local" | null>(null);
   const [message, setMessage] = useState<string | null>(null);
   const [candidate, setCandidate] = useState<HybridCandidate | null>(null);
+  const [acceptedCandidateIds, setAcceptedCandidateIds] = useState<Set<string>>(new Set());
 
-  const blueprint: PaperBlueprint = useMemo(() => ({
-    targetCount,
+  const blueprint: PaperBlueprint = useMemo(() => createPaperBlueprint({
+    learningObjectives: concepts.filter((point) => point.selected).map((point) => point.label),
+    topicWeights: Object.fromEntries(concepts.filter((point) => point.selected).map((point) => [point.id, point.weight])),
+    questionTypeCounts: Object.fromEntries(types.map((type) => [type, Math.max(1, Math.floor(targetCount / Math.max(types.length, 1)))])),
+    difficultyDistribution: { [targetDifficulty]: targetCount },
+    totalQuestions: targetCount,
+    estimatedMinutes,
     targetDifficulty,
     types,
     knowledgePoints: concepts,
-  }), [concepts, targetCount, targetDifficulty, types]);
+  }), [concepts, estimatedMinutes, targetCount, targetDifficulty, types]);
   const currentReport = useMemo(
     () => selectedQuestions.length ? evaluatePaperQuality(selectedQuestions, blueprint) : null,
     [blueprint, selectedQuestions],
@@ -186,6 +194,7 @@ export default function AiPaperWorkspace({
       const result = await response.json() as HybridCandidate & { error?: string };
       if (!response.ok) throw new Error(result.error || "AI 组卷失败");
       setCandidate(result);
+      setAcceptedCandidateIds(new Set(result.questions.filter((question) => (question.origin ?? "bank") === "bank").map((question) => question.id)));
       setMessage(`已生成 ${result.sources.bank + result.sources.variant + result.sources.generated} 个选题单元：题库 ${result.sources.bank}、母题变式 ${result.sources.variant}、全新生成 ${result.sources.generated}。`);
     } catch (error) {
       setMessage(error instanceof Error ? error.message : "AI 组卷失败");
@@ -196,21 +205,27 @@ export default function AiPaperWorkspace({
 
   async function applyCandidate(mode: "replace" | "add") {
     if (!candidate) return;
+    const acceptedQuestions = candidate.questions.filter((question) => acceptedCandidateIds.has(question.id));
+    if (!acceptedQuestions.length) {
+      setMessage("请至少确认一道候选题后再采用试卷。");
+      return;
+    }
     setApplying(true);
     try {
-      let ids = candidate.ids;
-      let transient = candidate.generatedQuestions;
-      if (candidate.generatedQuestions.length) {
+      let ids = acceptedQuestions.map((question) => question.id);
+      const acceptedGenerated = candidate.generatedQuestions.filter((question) => acceptedCandidateIds.has(question.id));
+      let transient = acceptedGenerated;
+      if (acceptedGenerated.length) {
         const response = await fetch(withBasePath("/api/questions/import-generated"), {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ questions: candidate.generatedQuestions }),
+          body: JSON.stringify({ questions: acceptedGenerated, teacherConfirmedIds: acceptedGenerated.map((question) => question.id) }),
         });
         const result = await response.json() as { imported?: number; reused?: number; idMap?: Record<string, string>; persisted?: boolean; error?: string };
         if (!response.ok) throw new Error(result.error || "AI 题目入库失败");
         const idMap = result.idMap ?? {};
-        ids = candidate.ids.map((id) => idMap[id] ?? id);
-        transient = candidate.generatedQuestions.filter((question) => (idMap[question.id] ?? question.id) === question.id);
+        ids = ids.map((id) => idMap[id] ?? id);
+        transient = acceptedGenerated.filter((question) => (idMap[question.id] ?? question.id) === question.id);
         setMessage(result.persisted === false
           ? `试卷已采用；${result.imported ?? 0} 道 AI 题已保存到本浏览器题库，${result.reused ?? 0} 道与现有题重复并复用原题。`
           : `试卷已采用；${result.imported ?? 0} 道 AI 题已写入正式题库，${result.reused ?? 0} 道与现有题重复并复用原题。`);
@@ -284,6 +299,7 @@ export default function AiPaperWorkspace({
             <div className="qb-ai-controls">
               <label><span>题目数量</span><input type="number" min="1" max="60" value={targetCount} onChange={(event) => { setTargetCount(Number(event.target.value)); setCandidate(null); }} /></label>
               <label><span>目标难度</span><input type="range" min="1" max="5" step="1" value={targetDifficulty} onChange={(event) => { setTargetDifficulty(Number(event.target.value)); setCandidate(null); }} /><em>{"★".repeat(targetDifficulty)}</em></label>
+              <label><span>预计完成时间</span><input type="number" min="10" max="300" value={estimatedMinutes} onChange={(event) => { setEstimatedMinutes(Number(event.target.value)); setCandidate(null); }} /><em>分钟</em></label>
               <label><span>母题变式/新题比例</span><input type="range" min="0" max="70" step="10" value={variantPercent} onChange={(event) => { setVariantPercent(Number(event.target.value)); setCandidate(null); }} /><em>{variantPercent}%</em></label>
             </div>
             <div className="qb-ai-type-grid">
@@ -322,6 +338,18 @@ export default function AiPaperWorkspace({
                         <em>{question.type}</em>
                         <em>{"★".repeat(Math.max(1, Math.min(5, question.difficulty)))}</em>
                       </div>
+                      <label className="qb-ai-candidate-question__accept">
+                        <input
+                          type="checkbox"
+                          checked={acceptedCandidateIds.has(question.id)}
+                          onChange={() => setAcceptedCandidateIds((current) => {
+                            const next = new Set(current);
+                            if (next.has(question.id)) next.delete(question.id); else next.add(question.id);
+                            return next;
+                          })}
+                        />
+                        {question.origin === "bank" ? "采用已审核原题" : "教师确认采用此候选题"}
+                      </label>
                       <QuestionContent text={question.content} chapterId={question.chapterId} className="qb-ai-candidate-question__content" />
                       {question.answer && (
                         <details>
@@ -345,6 +373,7 @@ export default function AiPaperWorkspace({
               <div><dt>目标知识点</dt><dd>{concepts.filter((point) => point.selected).length}</dd></div>
               <div><dt>目标难度</dt><dd>{"★".repeat(targetDifficulty)}</dd></div>
               <div><dt>目标题型</dt><dd>{types.length || "不限"}</dd></div>
+              <div><dt>预计时间</dt><dd>{estimatedMinutes} 分钟</dd></div>
               <div><dt>当前已选</dt><dd>{selectedIds.length}</dd></div>
             </dl>
           </section>
