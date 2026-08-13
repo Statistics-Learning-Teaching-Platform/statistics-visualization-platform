@@ -38,6 +38,9 @@ jobs:
       - name: Test
         run: npm test
 
+      - name: Privacy gate
+        run: npm run check:privacy
+
       - name: Build
         run: npm run build:pages
 

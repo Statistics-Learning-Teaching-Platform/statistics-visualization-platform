@@ -179,7 +179,9 @@ export function loadAllQuestions(): Question[] {
           chapterTitle: ch.title,
           chapterNum,
           content,
-          source: q.source ?? "",
+          // Preserve provenance only in the offline Data directory. Public/API
+          // records must not reveal original document names or local paths.
+          source: "StatMind 已审核题库",
           type: inferQuestionType(q.type, content),
           difficulty: typeof q.difficulty === "number" ? q.difficulty : 1,
           estimatedMinutes: Math.max(1, Math.min(60, (typeof q.difficulty === "number" ? q.difficulty : 1) * (inferQuestionType(q.type, content) === "综合题" ? 5 : 3))),

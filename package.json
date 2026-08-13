@@ -9,6 +9,9 @@
   "scripts": {
     "dev": "vite --host 127.0.0.1",
     "test": "vitest run",
+    "check:privacy": "node scripts/check-content-privacy.mjs",
+    "prebuild": "npm run check:privacy",
+    "prebuild:pages": "npm run check:privacy",
     "build": "node scripts/build.mjs",
     "build:pages": "BASE_PATH=/statistics-visualization-platform/ node scripts/build.mjs",
     "preview": "vite preview --host 127.0.0.1"

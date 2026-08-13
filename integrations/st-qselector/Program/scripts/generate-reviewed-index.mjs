@@ -80,7 +80,7 @@ for (const chapter of config.chapters || []) {
       chapterTitle: String(chapter.title || chapter.id),
       chapterNum: Number.parseInt(String(chapter.id).replace(/\D/g, ""), 10) || 0,
       content: question.content || "",
-      source: question.source || "",
+      source: "StatMind 已审核题库",
       type: question.type || "简答题",
       difficulty: typeof question.difficulty === "number" ? question.difficulty : 1,
       estimatedMinutes: Math.max(1, Math.min(60, (typeof question.difficulty === "number" ? question.difficulty : 1) * (question.type === "综合题" ? 5 : 3))),
