@@ -177,7 +177,7 @@ function TopicPage({ topicId }: { topicId: string }) {
       </div>
       <section className="topic-activities"><div className="topic-activities__heading"><div><p className="learn-eyebrow">{language === "zh" ? "学习活动" : "LEARNING ACTIVITIES"}</p><h2>{language === "zh" ? "从直觉到实践" : "From intuition to practice"}</h2></div><a href={`/st-qselector?topicId=${topic.id}`}>{language === "zh" ? "练习这一知识点" : "Practice this topic"} →</a></div>
         {activities.length ? <div className="activity-card-grid">{activities.map((activity) => <a className="activity-card" key={activity.id} href={getActivityRoute(activity.id)}><span>{activity.type}</span><strong>{localize(activity.title, language)}</strong><b aria-hidden="true">→</b></a>)}</div> : <p className="learn-empty-state">{language === "zh" ? "本知识点的交互活动正在复核中。" : "Interactive activities for this topic are being reviewed."}</p>}
-        <div className="coding-links">{topic.rLessonIds.map((lessonId) => <a key={`r-${lessonId}`} href={`/r-learning?topicId=${topic.id}&lessonId=${lessonId}`}>R · {lessonId}</a>)}{topic.pythonLessonIds.map((lessonId) => <a key={`python-${lessonId}`} href={`/python-learning?topicId=${topic.id}&lessonId=${lessonId}`}>Python · {lessonId}</a>)}</div>
+        <div className="coding-links">{topic.rLessonIds.map((lessonId) => <a key={`r-${lessonId}`} href={`/r-learning?topicId=${topic.id}&lessonId=${lessonId}&returnTo=${encodeURIComponent(getTopicRoute(topic.id))}`}>R · {lessonId}</a>)}{topic.pythonLessonIds.map((lessonId) => <a key={`python-${lessonId}`} href={`/python-learning?topicId=${topic.id}&lessonId=${lessonId}&returnTo=${encodeURIComponent(getTopicRoute(topic.id))}`}>Python · {lessonId}</a>)}</div>
       </section>
     </main>
   );
@@ -193,7 +193,8 @@ function ActivityPage({ activityId, topicId }: { activityId: string; topicId: st
     .map((id) => getTopicById(id))
     .filter((entry): entry is NonNullable<typeof entry> => Boolean(entry)) ?? [];
   const ActiveApp = activity.appId ? appRegistry[activity.appId] : undefined;
-  const codingHref = activity.type === "r-lab" ? `/r-learning?topicId=${topic.id}&lessonId=${activity.lessonId ?? ""}` : `/python-learning?topicId=${topic.id}&lessonId=${activity.lessonId ?? ""}`;
+  const returnTo = getActivityRoute(activity.id);
+  const codingHref = activity.type === "r-lab" ? `/r-learning?topicId=${topic.id}&lessonId=${activity.lessonId ?? ""}&returnTo=${encodeURIComponent(returnTo)}` : `/python-learning?topicId=${topic.id}&lessonId=${activity.lessonId ?? ""}&returnTo=${encodeURIComponent(returnTo)}`;
   return (
     <main className="learn-activity-page">
       <div className="learn-activity-toolbar">

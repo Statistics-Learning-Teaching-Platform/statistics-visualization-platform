@@ -1,7 +1,10 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { setLanguage, useLanguage } from "@stats-viz/shared/i18n";
-import { pythonLessonUnits, pythonLessons, type PythonLesson } from "./lessons";
+import { pythonLessonUnits, pythonLessons } from "./lessons";
 import { checkPythonCode, resetPythonSession, runPythonCode } from "./pyodideRuntime";
+import { createMessageId, resolveCodeLearningContext } from "../code-learning/context";
+import { loadLearningProgress, saveCodeLessonProgress } from "../course/progressStore";
+import { LessonSidebar } from "../code-learning/LessonSidebar";
 import "../r-learning/styles.css";
 import "./styles.css";
 
@@ -11,12 +14,6 @@ type ReviewState = { kind: "idle" | "success" | "failure"; message: string };
 type TutorMessage = { id: string; role: "user" | "assistant"; content: string };
 type TutorStatus = "idle" | "asking" | "error";
 type PythonObject = { name: string; type: string; preview: string };
-
-const PROGRESS_KEY = "statmind-python-learning-progress-v1";
-
-function createMessageId() {
-  return globalThis.crypto?.randomUUID?.() ?? `message-${Date.now()}-${Math.random().toString(36).slice(2)}`;
-}
 
 const uiCopy = {
   zh: {
@@ -113,16 +110,6 @@ const uiCopy = {
   },
 } as const;
 
-function loadProgress(): string[] {
-  try {
-    const stored = localStorage.getItem(PROGRESS_KEY);
-    const parsed: unknown = stored ? JSON.parse(stored) : [];
-    return Array.isArray(parsed) ? parsed.filter((id): id is string => typeof id === "string") : [];
-  } catch {
-    return [];
-  }
-}
-
 function CodeIcon() {
   return (
     <svg viewBox="0 0 48 48" aria-hidden="true">
@@ -154,46 +141,18 @@ function TutorAnswer({ content }: { content: string }) {
   );
 }
 
-function LessonNavItem({
-  lesson,
-  active,
-  complete,
-  onSelect,
-}: {
-  lesson: PythonLesson;
-  active: boolean;
-  complete: boolean;
-  onSelect: () => void;
-}) {
-  const language = useLanguage();
-  return (
-    <button
-      type="button"
-      className="r-lesson-nav__item"
-      data-active={active}
-      onClick={onSelect}
-      aria-current={active ? "page" : undefined}
-    >
-      <span className="r-lesson-nav__number">{String(lesson.order).padStart(2, "0")}</span>
-      <span className="r-lesson-nav__copy">
-        <strong>{lesson.title[language]}</strong>
-        <small>{lesson.concepts.join(" · ")}</small>
-      </span>
-      <span className="r-lesson-nav__state" data-complete={complete} aria-label={complete ? "complete" : "not complete"}>
-        {complete ? "✓" : ""}
-      </span>
-    </button>
-  );
-}
-
 export function PythonLearningWorkspace() {
   const language = useLanguage();
   const t = uiCopy[language];
-  const [activeId, setActiveId] = useState(pythonLessons[0].id);
+  const [learningContext] = useState(() => resolveCodeLearningContext(window.location.search, pythonLessons));
+  const [activeId, setActiveId] = useState(learningContext.lessonId);
   const [codes, setCodes] = useState<Record<string, string>>(() =>
     Object.fromEntries(pythonLessons.map((lesson) => [lesson.id, lesson.starterCode])),
   );
-  const [completed, setCompleted] = useState<string[]>(loadProgress);
+  const [completed, setCompleted] = useState<string[]>(() => {
+    const validIds = new Set(pythonLessons.map(({ id }) => id));
+    return loadLearningProgress().completedPythonLessons.filter((id) => validIds.has(id));
+  });
   const [engineStatus, setEngineStatus] = useState<EngineStatus>("idle");
   const [consoleLines, setConsoleLines] = useState<string[]>([]);
   const [plot, setPlot] = useState<string | null>(null);
@@ -218,12 +177,8 @@ export function PythonLearningWorkspace() {
   const progress = Math.round((completed.length / pythonLessons.length) * 100);
 
   useEffect(() => {
-    try {
-      localStorage.setItem(PROGRESS_KEY, JSON.stringify(completed));
-    } catch {
-      // The course remains usable when storage is unavailable.
-    }
-  }, [completed]);
+    saveCodeLessonProgress("python", completed, completed.includes(activeLesson.id) ? activeLesson.topicId : undefined, window.location.pathname + window.location.search);
+  }, [activeLesson.topicId, completed]);
 
   useEffect(() => {
     const messages = tutorMessagesRef.current;
@@ -310,6 +265,13 @@ export function PythonLearningWorkspace() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
+          topicId: activeLesson.topicId,
+          lessonId: activeLesson.id,
+          learningObjective: activeLesson.objective[language],
+          currentParameters: learningContext.currentParameters,
+          currentCode: code,
+          consoleOutput: consoleLines,
+          chartSummary: plot ? "The latest run produced a Python plot." : "No plot has been produced.",
           language,
           question,
           lesson: {
@@ -368,7 +330,7 @@ export function PythonLearningWorkspace() {
         </div>
 
         <nav className="r-learning-utility">
-          <a href="/">← {t.back}</a>
+          <a href={learningContext.returnTo}>← {t.back}</a>
           <div className="r-language-tabs" role="group" aria-label="Language">
             <button type="button" data-active={language === "zh"} onClick={() => setLanguage("zh")}>中文</button>
             <button type="button" data-active={language === "en"} onClick={() => setLanguage("en")}>English</button>
@@ -377,35 +339,7 @@ export function PythonLearningWorkspace() {
       </header>
 
       <div className="r-learning-layout">
-        <aside className="r-lesson-sidebar">
-          <div className="r-sidebar-heading">
-            <span>{t.lessons}</span>
-            <b>{String(pythonLessons.length).padStart(2, "0")}</b>
-          </div>
-          <nav className="r-lesson-nav" aria-label={t.lessons}>
-            {pythonLessonUnits.map((unit) => {
-              const unitLessons = pythonLessons.filter((lesson) => lesson.unit === unit.id);
-              if (!unitLessons.length) return null;
-              return (
-                <section key={unit.id} className="r-lesson-nav__unit">
-                  <div className="r-lesson-nav__unit-title">
-                    <span>{unit.number}</span>
-                    <strong>{unit[language]}</strong>
-                  </div>
-                  {unitLessons.map((lesson) => (
-                    <LessonNavItem
-                      key={lesson.id}
-                      lesson={lesson}
-                      active={lesson.id === activeLesson.id}
-                      complete={completed.includes(lesson.id)}
-                      onSelect={() => selectLesson(lesson.id)}
-                    />
-                  ))}
-                </section>
-              );
-            })}
-          </nav>
-        </aside>
+        <LessonSidebar label={t.lessons} lessons={pythonLessons} units={pythonLessonUnits} activeLessonId={activeLesson.id} completedLessonIds={completed} onSelect={selectLesson} />
 
         <section ref={lessonWorkspaceRef} className="r-lesson-workspace">
           <article className="r-lesson-brief">

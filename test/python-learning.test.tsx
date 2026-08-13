@@ -63,8 +63,20 @@ describe("Python Coding Studio", () => {
     expect(await screen.findByText(/right-hand side/)).toBeInTheDocument();
     const request = JSON.parse(String(fetchMock.mock.calls[0][1]?.body));
     expect(request.question).toBe("为什么这段代码报错？");
+    expect(request.topicId).toBe("descriptive-statistics");
+    expect(request.lessonId).toBe("lists-and-mean");
+    expect(request.learningObjective).toContain("列表");
+    expect(request.currentCode).toContain("mean_score =");
+    expect(request.consoleOutput).toEqual([]);
     expect(request.lesson.title).toBe("用列表计算样本均值");
     expect(request.code).toContain("mean_score =");
     fetchMock.mockRestore();
+  });
+
+  it("selects a valid lesson from the course query and keeps the return route", () => {
+    window.history.replaceState({}, "", "/python-learning?topicId=central-limit-theorem&lessonId=sampling-simulation&returnTo=%2Flearn%2Fsampling%2Fcentral-limit-theorem");
+    renderWorkspace();
+    expect(screen.getByRole("heading", { level: 1 })).toHaveTextContent(/抽样分布/);
+    expect(screen.getByRole("link", { name: /返回主界面/ })).toHaveAttribute("href", "/learn/sampling/central-limit-theorem");
   });
 });

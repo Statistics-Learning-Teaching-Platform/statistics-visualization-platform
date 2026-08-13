@@ -1,24 +1,8 @@
-import type { LocalizedText } from "../course/types";
+import type { CodeLesson } from "../code-learning/types";
 
 export type LessonUnit = "foundations" | "data" | "statistics";
 
-export type RLesson = {
-  id: string;
-  topicId: string;
-  unit: LessonUnit;
-  order: number;
-  title: LocalizedText;
-  eyebrow: LocalizedText;
-  objective: LocalizedText;
-  explanation: LocalizedText;
-  task: LocalizedText;
-  concepts: string[];
-  starterCode: string;
-  hint: LocalizedText;
-  solution: string;
-  checkCode: string;
-  success: LocalizedText;
-};
+export type RLesson = CodeLesson<LessonUnit, "r">;
 
 export const lessonUnits = [
   { id: "foundations", zh: "R 编程基础", en: "R Foundations", number: "01" },
@@ -28,6 +12,8 @@ export const lessonUnits = [
 
 export const rLessons: RLesson[] = [
   {
+    language: "r",
+    prerequisites: [],
     id: "vectors-and-mean",
     topicId: "descriptive-statistics",
     unit: "foundations",
@@ -71,6 +57,8 @@ average_score`,
     },
   },
   {
+    language: "r",
+    prerequisites: ["vectors-and-mean"],
     id: "data-frame-filter",
     topicId: "data-and-variables",
     unit: "data",
@@ -124,6 +112,8 @@ high_score_mean`,
     },
   },
   {
+    language: "r",
+    prerequisites: ["vectors-and-mean"],
     id: "first-histogram",
     topicId: "histograms",
     unit: "data",
@@ -174,6 +164,8 @@ plot_created <- TRUE`,
     },
   },
   {
+    language: "r",
+    prerequisites: ["vectors-and-mean"],
     id: "one-sample-t-test",
     topicId: "hypothesis-testing",
     unit: "statistics",
@@ -220,6 +212,8 @@ test_result`,
     },
   },
   {
+    language: "r",
+    prerequisites: ["data-frame-filter"],
     id: "linear-regression",
     topicId: "linear-regression",
     unit: "statistics",
@@ -272,6 +266,8 @@ summary(model)`,
     },
   },
   {
+    language: "r",
+    prerequisites: ["vectors-and-mean", "first-histogram"],
     id: "sampling-simulation",
     topicId: "central-limit-theorem",
     unit: "statistics",

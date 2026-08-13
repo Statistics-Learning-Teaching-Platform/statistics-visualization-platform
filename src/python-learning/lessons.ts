@@ -1,23 +1,6 @@
-import type { LocalizedText } from "../course/types";
+import type { CodeLesson } from "../code-learning/types";
 
-export type PythonLesson = {
-  id: string;
-  topicId: string;
-  unit: "foundations" | "data" | "visualization" | "statistics";
-  order: number;
-  eyebrow: LocalizedText;
-  title: LocalizedText;
-  objective: LocalizedText;
-  explanation: LocalizedText;
-  task: LocalizedText;
-  concepts: string[];
-  packages?: string[];
-  starterCode: string;
-  hint: LocalizedText;
-  solution: string;
-  checkCode: string;
-  success: LocalizedText;
-};
+export type PythonLesson = CodeLesson<"foundations" | "data" | "visualization" | "statistics", "python">;
 
 export const pythonLessonUnits = [
   { id: "foundations", number: "01", zh: "Python 基础", en: "Python foundations" },
@@ -28,6 +11,8 @@ export const pythonLessonUnits = [
 
 export const pythonLessons: PythonLesson[] = [
   {
+    language: "python",
+    prerequisites: [],
     id: "lists-and-mean",
     topicId: "descriptive-statistics",
     unit: "foundations",
@@ -67,6 +52,8 @@ print(f"Mean score: {mean_score:.2f}")`,
     },
   },
   {
+    language: "python",
+    prerequisites: ["lists-and-mean"],
     id: "functions-and-comprehensions",
     topicId: "standardization",
     unit: "foundations",
@@ -116,6 +103,8 @@ print(z_scores)`,
     },
   },
   {
+    language: "python",
+    prerequisites: ["lists-and-mean"],
     id: "pandas-filter-summary",
     topicId: "data-and-variables",
     unit: "data",
@@ -172,6 +161,8 @@ print(group_means)`,
     },
   },
   {
+    language: "python",
+    prerequisites: ["pandas-filter-summary"],
     id: "matplotlib-distribution",
     topicId: "histograms",
     unit: "visualization",
@@ -223,6 +214,8 @@ plt.show()`,
     },
   },
   {
+    language: "python",
+    prerequisites: ["lists-and-mean"],
     id: "one-sample-t-test",
     topicId: "hypothesis-testing",
     unit: "statistics",
@@ -274,6 +267,8 @@ print("Reject H0" if reject_null else "Fail to reject H0")`,
     },
   },
   {
+    language: "python",
+    prerequisites: ["pandas-filter-summary"],
     id: "linear-regression",
     topicId: "linear-regression",
     unit: "statistics",
@@ -327,6 +322,8 @@ print(f"R² = {r_squared:.3f}")`,
     },
   },
   {
+    language: "python",
+    prerequisites: ["lists-and-mean", "matplotlib-distribution"],
     id: "sampling-simulation",
     topicId: "central-limit-theorem",
     unit: "statistics",
