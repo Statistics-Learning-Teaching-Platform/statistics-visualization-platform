@@ -3,6 +3,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { evaluatePaperQuality, questionMatchesKnowledge, selectQuestionsFromBlueprint, type PaperBlueprint } from "@/lib/blueprint";
 import { reviewedQuestionIndex } from "@/generated/reviewed-questions";
 import type { Question } from "@/lib/types";
+import { normalizeTopicIds } from "@/lib/topic-mapping";
 
 export const runtime = "nodejs";
 export const maxDuration = 120;
@@ -82,6 +83,7 @@ function sanitizeDraft(draft: GeneratedDraft, job: GenerationJob, position: numb
   const chapterId = /^Ch(?:0[1-9]|1[0-3])$/.test(String(draft.chapterId)) ? String(draft.chapterId) : job.chapterId;
   const suffix = randomUUID().replace(/-/g, "").slice(0, 10);
   const id = `ai_${chapterId.toLowerCase()}_${Date.now()}_${position + 1}_${suffix}`;
+  const keywords = [String(draft.concept ?? job.concept).trim() || job.concept];
   return {
     id,
     groupId: id,
@@ -96,7 +98,8 @@ function sanitizeDraft(draft: GeneratedDraft, job: GenerationJob, position: numb
       : `AI generated for ${job.concept}`,
     type,
     difficulty,
-    keywords: [String(draft.concept ?? job.concept).trim() || job.concept],
+    keywords,
+    topicIds: normalizeTopicIds(chapterId, keywords),
     dataRefs: [],
     attachments: [],
     answer,

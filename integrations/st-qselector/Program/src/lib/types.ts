@@ -24,6 +24,7 @@ export interface Question {
   type: string;
   difficulty: number;
   keywords: string[];
+  topicIds: string[];
   dataRefs: string[];
   attachments: { name: string; available: boolean }[];
   answer: string | null;

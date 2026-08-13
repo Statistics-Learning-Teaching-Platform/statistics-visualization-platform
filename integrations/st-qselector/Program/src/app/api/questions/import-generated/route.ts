@@ -113,6 +113,7 @@ export async function POST(request: NextRequest) {
           type: question.type,
           difficulty: question.difficulty,
           keywords: question.keywords,
+          topic_ids: question.topicIds,
           formula_refs: [],
           data_refs: [],
           origin: question.origin,

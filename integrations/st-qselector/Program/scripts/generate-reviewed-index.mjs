@@ -2,6 +2,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { load as yamlLoad } from "js-yaml";
+import { normalizeTopicIds } from "../src/lib/topic-mapping.ts";
 
 const scriptDir = path.dirname(fileURLToPath(import.meta.url));
 const programDir = path.resolve(scriptDir, "..");
@@ -66,6 +67,7 @@ for (const chapter of config.chapters || []) {
     }));
     const answer = answerRecord?.answer ?? null;
 
+    const keywords = Array.isArray(question.keywords) ? question.keywords : [];
     questions.push({
       id: question.id,
       groupId: String(question.group_id || question.id),
@@ -81,7 +83,8 @@ for (const chapter of config.chapters || []) {
       source: question.source || "",
       type: question.type || "简答题",
       difficulty: typeof question.difficulty === "number" ? question.difficulty : 1,
-      keywords: Array.isArray(question.keywords) ? question.keywords : [],
+      keywords,
+      topicIds: normalizeTopicIds(String(chapter.id), keywords, question.topic_ids),
       dataRefs,
       attachments,
       answer,
