@@ -48,7 +48,11 @@ export const moduleConfig: ModuleConfig = {
       accumulateSampleMeans: true,
       quickActions: [
         { type: "drawSampleMeans", amount: 1, copyKey: "draw1Sample" },
-        { type: "drawSampleMeans", amount: 100, copyKey: "draw100Samples" }
+        { type: "drawSampleMeans", amount: 20, copyKey: "draw20Samples" },
+        { type: "setControl", control: "sampleSize", amount: 1, copyKey: "setN1" },
+        { type: "setControl", control: "sampleSize", amount: 5, copyKey: "setN5" },
+        { type: "setControl", control: "sampleSize", amount: 30, copyKey: "setN30" },
+        { type: "setControl", control: "sampleSize", amount: 100, copyKey: "setN100" }
       ]
     }
   ]

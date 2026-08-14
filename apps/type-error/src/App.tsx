@@ -9,6 +9,16 @@ import {
   type ChartLayout,
 } from "@stats-viz/shared/chart-utils";
 import { formatNumber } from "@stats-viz/shared/format";
+import {
+  ChartFrame,
+  FormulaCard,
+  MetricGrid,
+  ObservationCard,
+  ParameterPanel,
+  ReadingGuide,
+  VisualizationFrame,
+  VisualizationHeader,
+} from "@stats-viz/shared/visualization";
 
 type TestType = "left-tailed" | "right-tailed" | "two-tailed";
 
@@ -17,6 +27,7 @@ interface Params {
   nullMean: number;
   trueMean: number;
   stdDev: number;
+  observedStatistic: number;
 }
 
 interface DistributionPoint {
@@ -41,7 +52,7 @@ function createScales() {
   return createLinearScales(CHART_LAYOUT, [-5, 10], [0, 0.5]);
 }
 
-function computeCriticalValues(
+export function computeCriticalValues(
   alpha: number,
   nullMean: number,
   stdDev: number,
@@ -90,6 +101,18 @@ function computeTypeTwoErrorRate(
   return normalCdf(right, trueMean, stdDev) - normalCdf(left, trueMean, stdDev);
 }
 
+export function computePValue(
+  observedStatistic: number,
+  nullMean: number,
+  stdDev: number,
+  testType: TestType,
+): number {
+  const lowerTail = normalCdf(observedStatistic, nullMean, stdDev);
+  if (testType === "left-tailed") return Math.max(0, Math.min(1, lowerTail));
+  if (testType === "right-tailed") return Math.max(0, Math.min(1, 1 - lowerTail));
+  return Math.min(1, 2 * Math.min(lowerTail, 1 - lowerTail));
+}
+
 function buildAreaPath(
   data: DistributionPoint[],
   criticalValue: number[],
@@ -115,6 +138,7 @@ export default function TypeErrorApp() {
     nullMean: 0,
     trueMean: 1,
     stdDev: 1,
+    observedStatistic: 1.65,
   });
 
   const computed = useMemo(() => {
@@ -124,6 +148,7 @@ export default function TypeErrorApp() {
     const cv = computeCriticalValues(params.alpha, params.nullMean, params.stdDev, testType);
     const filterFn = criticalAreaFn(testType);
     const typeTwoErrorRate = computeTypeTwoErrorRate(cv, params.trueMean, params.stdDev, testType);
+    const pValue = computePValue(params.observedStatistic, params.nullMean, params.stdDev, testType);
     return {
       scales,
       nullDistribution,
@@ -135,6 +160,8 @@ export default function TypeErrorApp() {
       typeTwoErrorRate,
       power: 1 - typeTwoErrorRate,
       effectSize: params.trueMean - params.nullMean,
+      pValue,
+      rejectsNull: pValue < params.alpha,
     };
   }, [params, testType]);
 
@@ -168,6 +195,7 @@ export default function TypeErrorApp() {
     { kind: "dash", className: "chart-inline-legend__line--critical", label: copy.criticalBoundary },
     { kind: "area", className: "chart-inline-legend__area--type1", label: copy.typeIErrorArea },
     { kind: "area", className: "chart-inline-legend__area--type2", label: copy.typeIIErrorArea },
+    { kind: "dash", className: "chart-inline-legend__line--observed", label: copy.observedStatistic },
   ];
 
   const getCriticalValueLabel = () => {
@@ -189,57 +217,40 @@ export default function TypeErrorApp() {
   };
 
   const getTestTypeLabel = () =>
-    testType === "two-tailed" ? copy.twoSidedTest : copy.oneSidedTest;
+    testType === "two-tailed"
+      ? copy.twoSidedTest
+      : testType === "left-tailed"
+        ? copy.leftTailedTest
+        : copy.rightTailedTest;
 
   const formatRate = (v: number) => `${(v * 100).toFixed(1)}%`;
 
   return (
-    <div className="module-shell">
-      <div className="module-layout">
-        <div className="experiment-board">
-          <div className="experiment-header">
-            <div>
-              <p className="eyebrow">{copy.coreVisualizer}</p>
-              <h1>{copy.title}</h1>
-              <p>{copy.description}</p>
-            </div>
-          </div>
+    <VisualizationFrame
+      content={
+        <>
+          <VisualizationHeader eyebrow={copy.coreVisualizer} title={copy.title} description={copy.description} />
           <div className="output-dock">
             <div className="output-heading">
               <p className="eyebrow">{copy.modelOutput}</p>
               <h2>{copy.chartTitle}</h2>
               <p>{copy.chartDescription}</p>
             </div>
-            <div className="observation-prompt">
-              <span aria-hidden="true">◎</span>
-              <div>
-                <strong>{copy.criticalBoundary}</strong>
-                <p>{copy.controlIntro}</p>
-              </div>
-            </div>
-            <div className="metrics-grid">
-              <div className="metric-card">
-                <span className="metric-label">{copy.alpha}</span>
-                <span className="metric-value">{formatRate(computed.typeOneErrorRate)}</span>
-                <small className="metric-note">{copy.alphaNote}</small>
-              </div>
-              <div className="metric-card">
-                <span className="metric-label">{copy.betaLabel}</span>
-                <span className="metric-value">{formatRate(computed.typeTwoErrorRate)}</span>
-                <small className="metric-note">{copy.betaNote}</small>
-              </div>
-              <div className="metric-card">
-                <span className="metric-label">{copy.power}</span>
-                <span className="metric-value">{formatRate(computed.power)}</span>
-                <small className="metric-note">{copy.powerNote}</small>
-              </div>
-              <div className="metric-card">
-                <span className="metric-label">{copy.effectSize}</span>
-                <span className="metric-value">{formatNumber(computed.effectSize, 2)}</span>
-                <small className="metric-note">{copy.effectSizeNote}</small>
-              </div>
-            </div>
-            <div className="chart-frame">
+            <ReadingGuide title={copy.criticalBoundary}>
+              <p>{copy.controlIntro}</p>
+            </ReadingGuide>
+            <MetricGrid
+              ariaLabel={copy.modelOutput}
+              metrics={[
+                { key: "alpha", label: copy.alpha, value: formatRate(computed.typeOneErrorRate), note: copy.alphaNote },
+                { key: "beta", label: copy.betaLabel, value: formatRate(computed.typeTwoErrorRate), note: copy.betaNote },
+                { key: "power", label: copy.power, value: formatRate(computed.power), note: copy.powerNote },
+                { key: "effect", label: copy.effectSize, value: formatNumber(computed.effectSize, 2), note: copy.effectSizeNote },
+                { key: "p-value", label: copy.pValue, value: formatNumber(computed.pValue, 4), note: copy.pValueNote },
+                { key: "decision", label: copy.testDecision, value: computed.rejectsNull ? copy.rejectNull : copy.failToRejectNull, note: copy.decisionNote },
+              ]}
+            />
+            <ChartFrame>
               <svg width={CHART_LAYOUT.width} height={CHART_LAYOUT.height} viewBox={`0 0 ${CHART_LAYOUT.width} ${CHART_LAYOUT.height}`} role="img" aria-label={`${copy.chartTitle}: ${computed.hypothesisText.H0Text}; ${computed.hypothesisText.H1Text}`}>
                 <g transform={`translate(${CHART_LAYOUT.margin.left}, ${CHART_LAYOUT.margin.top})`}>
                   <path d={nullPath} fill="none" stroke="var(--chart-blue)" strokeWidth={2} />
@@ -257,6 +268,15 @@ export default function TypeErrorApp() {
                       strokeDasharray="5,5"
                     />
                   ))}
+                  <line
+                    x1={scales.xScale(params.observedStatistic)}
+                    x2={scales.xScale(params.observedStatistic)}
+                    y1={scales.yScale(0)}
+                    y2={scales.yScale(0.5)}
+                    stroke="var(--danger)"
+                    strokeWidth={2}
+                    strokeDasharray="3,4"
+                  />
                   <g transform={`translate(0, ${plotHeight})`} ref={(g) => {
                     if (g) select(g).call(axisBottom(scales.xScale).ticks(6));
                   }} />
@@ -291,7 +311,7 @@ export default function TypeErrorApp() {
                     <rect
                       className="chart-inline-legend__panel"
                       width={206}
-                      height={112}
+                      height={127}
                       rx={12}
                       ry={12}
                     />
@@ -330,15 +350,25 @@ export default function TypeErrorApp() {
                   </g>
                 </g>
               </svg>
-            </div>
+            </ChartFrame>
           </div>
-        </div>
-        <div className="teaching-area">
-          <div className="teaching-panel parameter-panel">
-            <p className="eyebrow">{copy.parameters}</p>
+        </>
+      }
+      sidebar={
+        <>
+          <ParameterPanel eyebrow={copy.parameters}>
             <div className="test-type-tabs">
               <div className="test-type-tabs__label">{copy.hypothesis}</div>
               <div className="test-type-tabs__buttons">
+                <button
+                  type="button"
+                  className="test-type-tab"
+                  data-test-type="left-tailed"
+                  data-active={String(testType === "left-tailed")}
+                  onClick={() => setTestType("left-tailed")}
+                >
+                  {copy.leftTailed}
+                </button>
                 <button
                   type="button"
                   className="test-type-tab"
@@ -346,7 +376,7 @@ export default function TypeErrorApp() {
                   data-active={String(testType === "right-tailed")}
                   onClick={() => setTestType("right-tailed")}
                 >
-                  {copy.oneSided}
+                  {copy.rightTailed}
                 </button>
                 <button
                   type="button"
@@ -367,8 +397,9 @@ export default function TypeErrorApp() {
               {[
                 { id: "alpha", label: copy.alphaLabel, hint: copy.alphaHint, min: 0.01, max: 0.2, step: 0.01, value: params.alpha, key: "alpha" as const },
                 { id: "null-mean", label: copy.nullMeanLabel, hint: copy.nullMeanHint, min: -2, max: 2, step: 0.1, value: params.nullMean, key: "nullMean" as const },
-                { id: "true-mean", label: copy.trueMeanLabel, hint: copy.trueMeanHint, min: 0, max: 3, step: 0.1, value: params.trueMean, key: "trueMean" as const },
+                { id: "true-mean", label: copy.trueMeanLabel, hint: copy.trueMeanHint, min: -3, max: 3, step: 0.1, value: params.trueMean, key: "trueMean" as const },
                 { id: "std-dev", label: copy.stdDevLabel, hint: copy.stdDevHint, min: 0.1, max: 2, step: 0.1, value: params.stdDev, key: "stdDev" as const },
+                { id: "observed-statistic", label: copy.observedStatistic, hint: copy.observedStatisticHint, min: -4, max: 6, step: 0.05, value: params.observedStatistic, key: "observedStatistic" as const },
               ].map((slider) => (
                 <div className="control-panel__slider" key={slider.id}>
                   <div className="control-panel__label-row">
@@ -393,7 +424,7 @@ export default function TypeErrorApp() {
                 </div>
               ))}
             </div>
-          </div>
+          </ParameterPanel>
           <div className="teaching-panel">
             <p className="eyebrow">{copy.conceptKeyIdea}</p>
             <h2>{copy.twoKindsOfError}</h2>
@@ -402,23 +433,23 @@ export default function TypeErrorApp() {
             <p>{getInterpretation()}</p>
             <p>{getStrategyTip()}</p>
           </div>
-          <div className="teaching-panel">
-            <p className="eyebrow">{copy.formula}</p>
-            <div className="latex-formula">
+          <FormulaCard
+            eyebrow={copy.formula}
+            formula={
               <div className="math-expression">
                 <span>Power = 1 −</span>
                 <span className="math-symbol">β</span>
               </div>
-            </div>
+            }
+          >
             <p>
               {copy.currentTest
                 .replace("{testType}", getTestTypeLabel())
                 .replace("{criticalValue}", getCriticalValueLabel())}
             </p>
-          </div>
-          <div className="teaching-panel">
-            <p className="eyebrow">{copy.howToReadThis}</p>
-            <h3>{copy.currentHypotheses}</h3>
+          </FormulaCard>
+          <ObservationCard eyebrow={copy.howToReadThis} title={copy.currentHypotheses}>
+            <p>{copy.pValueWarning}</p>
             <div className="concept-strip">
               <div className="concept-item">
                 <span className="concept-name">H0</span>
@@ -429,9 +460,9 @@ export default function TypeErrorApp() {
                 <span className="concept-value">{computed.hypothesisText.H1Text}</span>
               </div>
             </div>
-          </div>
-        </div>
-      </div>
-    </div>
+          </ObservationCard>
+        </>
+      }
+    />
   );
 }

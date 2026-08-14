@@ -138,6 +138,12 @@ describe("central limit theorem", () => {
     expect(Number(metric(r, "observed SD"))).toBeCloseTo(Number(metric(r, "theoretical SE")), 1);
   });
 
+  it("preserves an explicitly empty CLT history and reports instability", () => {
+    const r = runExample(example("central-limit-theorem"), controls, 42, undefined, []);
+    expect(Number(metric(r, "repeated samples"))).toBe(0);
+    expect(metric(r, "shape stability")).toBe("still unstable");
+  });
+
   it("scales the normal curve to the in-range histogram (locks the curve-scaling fix)", () => {
     const means = generateSampleMeans(controls, 2000, 7);
     const r = runExample(example("central-limit-theorem"), controls, 7, undefined, means);

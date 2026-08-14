@@ -18,7 +18,9 @@ export default defineConfig({
   },
   build: {
     target: "es2020",
-    sourcemap: true,
+    // Public source maps expose implementation details and can retain local
+    // build paths. Keep them out of deployment artifacts.
+    sourcemap: false,
   },
   test: {
     // jsdom so component render tests have a DOM; Node APIs (fs, process)

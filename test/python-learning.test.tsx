@@ -30,11 +30,11 @@ describe("Python Coding Studio", () => {
     localStorage.clear();
   });
 
-  it("renders the seven-lesson curriculum and Python starter editor", () => {
+  it("renders the expanded thirty-one-lesson curriculum and Python starter editor", () => {
     renderWorkspace();
     expect(screen.getByText("Python 语言编程工作室")).toBeInTheDocument();
     const navigation = screen.getByRole("navigation", { name: "课程" });
-    expect(within(navigation).getAllByRole("button")).toHaveLength(7);
+    expect(within(navigation).getAllByRole("button")).toHaveLength(31);
     expect(
       (screen.getByRole("textbox", { name: "Python 代码编辑器" }) as HTMLTextAreaElement).value,
     ).toContain("mean_score =");
@@ -47,7 +47,7 @@ describe("Python Coding Studio", () => {
 
     await userEvent.click(screen.getByRole("button", { name: "✓ 检查答案" }));
     expect(await screen.findByText(/列表与样本均值均正确/)).toBeInTheDocument();
-    expect(screen.getByLabelText("学习进度: 14%")).toBeInTheDocument();
+    expect(screen.getByLabelText("学习进度: 3%")).toBeInTheDocument();
   });
 
   it("sends the current lesson context to the AI Python tutor", async () => {
@@ -63,8 +63,20 @@ describe("Python Coding Studio", () => {
     expect(await screen.findByText(/right-hand side/)).toBeInTheDocument();
     const request = JSON.parse(String(fetchMock.mock.calls[0][1]?.body));
     expect(request.question).toBe("为什么这段代码报错？");
+    expect(request.topicId).toBe("descriptive-statistics");
+    expect(request.lessonId).toBe("lists-and-mean");
+    expect(request.learningObjective).toContain("列表");
+    expect(request.currentCode).toContain("mean_score =");
+    expect(request.consoleOutput).toEqual([]);
     expect(request.lesson.title).toBe("用列表计算样本均值");
     expect(request.code).toContain("mean_score =");
     fetchMock.mockRestore();
+  });
+
+  it("selects a valid lesson from the course query and keeps the return route", () => {
+    window.history.replaceState({}, "", "/python-learning?topicId=central-limit-theorem&lessonId=sampling-simulation&returnTo=%2Flearn%2Fsampling%2Fcentral-limit-theorem");
+    renderWorkspace();
+    expect(screen.getByRole("heading", { level: 1 })).toHaveTextContent(/抽样分布/);
+    expect(screen.getByRole("link", { name: /返回主界面/ })).toHaveAttribute("href", "/learn/sampling/central-limit-theorem");
   });
 });

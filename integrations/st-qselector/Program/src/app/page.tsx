@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import React, { use, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import {
   Check,
@@ -21,6 +21,7 @@ import { useSelection } from "@/lib/selection";
 import type { QuestionsResponse, Question } from "@/lib/types";
 import { withBasePath } from "@/lib/base-path";
 import { reviewedQuestionIndex } from "@/generated/reviewed-questions";
+import { topicLabels } from "@/lib/topic-mapping";
 
 const PAGE_SIZE = 8;
 const TYPE_ORDER = ["计算题", "选择题", "综合题", "填空题", "简答题", "判断题"];
@@ -42,13 +43,18 @@ function normalizeForDuplicate(value: string) {
   return value.toLowerCase().replace(/\s+/g, "").replace(/[\p{P}\p{S}]/gu, "");
 }
 
-export default function Home() {
+export default function Home({ searchParams }: { searchParams: Promise<{ topicId?: string | string[] }> }) {
+  const routeParams = use(searchParams);
+  const requestedTopic = typeof routeParams.topicId === "string" && routeParams.topicId in topicLabels
+    ? routeParams.topicId
+    : undefined;
   const [data, setData] = useState<QuestionsResponse>(() => reviewedQuestionIndex);
   const [search, setSearch] = useState("");
   const [chapterSel, setChapterSel] = useState<Set<string>>(new Set());
   const [difficultySel, setDifficultySel] = useState<Set<number>>(new Set());
   const [typeSel, setTypeSel] = useState<Set<string>>(new Set());
   const [knowledgeSel, setKnowledgeSel] = useState<Set<string>>(new Set());
+  const [topicSel, setTopicSel] = useState<Set<string>>(() => requestedTopic ? new Set([requestedTopic]) : new Set());
   const [reviewedOnly, setReviewedOnly] = useState(false);
   const [expanded, setExpanded] = useState<Set<string>>(new Set());
   const [page, setPage] = useState(1);
@@ -154,13 +160,14 @@ export default function Home() {
       if (difficultySel.size && !difficultySel.has(question.difficulty)) return false;
       if (typeSel.size && !typeSel.has(question.type)) return false;
       if (knowledgeSel.size && !question.keywords.some((item) => knowledgeSel.has(item))) return false;
+      if (topicSel.size && !question.topicIds.some((item) => topicSel.has(item))) return false;
       if (terms.length) {
         const haystack = `${question.id} ${question.content} ${question.answer ?? ""} ${question.keywords.join(" ")} ${question.source}`.toLowerCase();
         if (!terms.every((term) => haystack.includes(term))) return false;
       }
       return true;
     });
-  }, [data, search, chapterSel, difficultySel, typeSel, knowledgeSel, reviewedOnly]);
+  }, [data, search, chapterSel, difficultySel, typeSel, knowledgeSel, topicSel, reviewedOnly]);
 
   const totalPages = Math.max(1, Math.ceil(filtered.length / PAGE_SIZE));
   const currentPage = Math.min(page, totalPages);
@@ -209,7 +216,7 @@ export default function Home() {
   }, [data]);
 
   const hasFilters = Boolean(
-    search.trim() || chapterSel.size || difficultySel.size || typeSel.size || knowledgeSel.size
+    search.trim() || chapterSel.size || difficultySel.size || typeSel.size || knowledgeSel.size || topicSel.size
   );
 
   function resetFilters() {
@@ -218,6 +225,7 @@ export default function Home() {
     setDifficultySel(new Set());
     setTypeSel(new Set());
     setKnowledgeSel(new Set());
+    setTopicSel(new Set());
     setPage(1);
   }
 
@@ -344,6 +352,23 @@ export default function Home() {
                 {type}
               </FilterChip>
             ))}
+          </FilterGroup>
+
+          <FilterGroup title="课程知识点">
+            {Object.entries(topicLabels)
+              .filter(([topicId]) => (data?.questions ?? []).some((question) => question.topicIds.includes(topicId)))
+              .map(([topicId, label]) => (
+                <FilterChip
+                  key={topicId}
+                  active={topicSel.has(topicId)}
+                  onClick={() => {
+                    toggleSet(setTopicSel, topicId);
+                    setPage(1);
+                  }}
+                >
+                  {label}
+                </FilterChip>
+              ))}
           </FilterGroup>
 
           {knowledgePoints.length > 0 && (

@@ -3,6 +3,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { load as yamlLoad } from "js-yaml";
 import type { AppConfig, Question } from "./types";
+import { normalizeTopicIds } from "./topic-mapping";
 
 // 数据目录：默认取 Program 的上级 Data/Formed，可用 DATA_DIR 环境变量覆盖。
 export function getDataDir(): string {
@@ -70,6 +71,7 @@ interface RawQuestion {
   type?: string;
   difficulty?: number;
   keywords?: string[];
+  topic_ids?: string[];
   data_refs?: string[];
   review_status?: string;
   origin?: "bank" | "variant" | "generated";
@@ -167,6 +169,7 @@ export function loadAllQuestions(): Question[] {
           typeof q.part_count === "number" && q.part_count > 0
             ? Math.floor(q.part_count)
             : detectPartCount(content);
+        const keywords = Array.isArray(q.keywords) ? q.keywords : [];
         all.push({
           id: q.id,
           groupId,
@@ -176,10 +179,14 @@ export function loadAllQuestions(): Question[] {
           chapterTitle: ch.title,
           chapterNum,
           content,
-          source: q.source ?? "",
+          // Preserve provenance only in the offline Data directory. Public/API
+          // records must not reveal original document names or local paths.
+          source: "StatMind 已审核题库",
           type: inferQuestionType(q.type, content),
           difficulty: typeof q.difficulty === "number" ? q.difficulty : 1,
-          keywords: Array.isArray(q.keywords) ? q.keywords : [],
+          estimatedMinutes: Math.max(1, Math.min(60, (typeof q.difficulty === "number" ? q.difficulty : 1) * (inferQuestionType(q.type, content) === "综合题" ? 5 : 3))),
+          keywords,
+          topicIds: normalizeTopicIds(ch.id, keywords, q.topic_ids),
           dataRefs,
           attachments,
           answer,

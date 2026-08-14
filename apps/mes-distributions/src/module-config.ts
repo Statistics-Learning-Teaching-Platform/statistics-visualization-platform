@@ -19,6 +19,10 @@ export const moduleConfig: ModuleConfig = {
         "A fixed N(0, 1) reference makes parameter changes visible on a shared coordinate system.",
         "Interval probability is the area under the density or a CDF difference."
       ],
+      "quickActions": [
+        { "type": "bumpControl", "control": "a", "amount": 1, "copyKey": "changeMeanOnly", "showWhen": { "controlId": "dist", "values": ["norm"] } },
+        { "type": "bumpControl", "control": "b", "amount": 0.5, "copyKey": "changeSdOnly", "showWhen": { "controlId": "dist", "values": ["norm"] } }
+      ],
       "controls": [
         {
           "id": "dist",

@@ -1,11 +1,12 @@
 import { useLanguage, setLanguage } from "@stats-viz/shared/i18n";
+import { apps } from "../scripts/apps";
 
 const copy = {
   en: {
     kicker: "STATMIND · STATISTICS THINKING PLATFORM",
     title: "Learn statistics by thinking",
     lead: "Learn Statistics by Thinking, Exploring and Interacting. Choose a workspace to begin.",
-    teachingEyebrow: "12 VISUALIZER MODULES",
+    teachingEyebrow: "VISUALIZER MODULES",
     teachingTitle: "Teaching Platform",
     teachingDescription:
       "Build intuition for confidence intervals, regression, hypothesis testing, and simulation through interactive visualizers.",
@@ -16,22 +17,22 @@ const copy = {
       "Filter the reviewed question bank by chapter, type, difficulty, and knowledge point, then assemble and export a paper.",
     paperAction: "Open paper builder",
     rEyebrow: "LIVE R + GUIDED PRACTICE",
-    rTitle: "R Coding Studio",
+    rTitle: "R Knowledge Base",
     rDescription:
       "Write and run real R code in the browser, receive automatic feedback, and connect programming with statistical reasoning.",
-    rAction: "Open R coding studio",
+    rAction: "Open R knowledge base",
     pythonEyebrow: "LIVE PYTHON + DATA SCIENCE",
-    pythonTitle: "Python Coding Studio",
+    pythonTitle: "Python Knowledge Base",
     pythonDescription:
       "Run real Python with NumPy, pandas, Matplotlib, and SciPy while receiving guided practice and automatic feedback.",
-    pythonAction: "Open Python coding studio",
+    pythonAction: "Open Python knowledge base",
     footer: "One learning entrance · Statistics teaching tools",
   },
   zh: {
     kicker: "STATMIND · 统计思维教学平台",
     title: "在思考中学习统计",
     lead: "通过思考、探索与互动学习统计学。请选择要进入的学习空间。",
-    teachingEyebrow: "12 个可视化模块",
+    teachingEyebrow: "个可视化模块",
     teachingTitle: "统计教学平台",
     teachingDescription: "通过交互式可视化学习置信区间、回归、假设检验与统计模拟。",
     teachingAction: "进入教学平台",
@@ -40,13 +41,13 @@ const copy = {
     paperDescription: "按章节、题型、难度和知识点筛选已审核题目，完成组卷与导出。",
     paperAction: "进入组卷系统",
     rEyebrow: "真实 R 环境 + 引导练习",
-    rTitle: "R 语言编程工作室",
+    rTitle: "R 语言知识库",
     rDescription: "在浏览器中编写并运行真实 R 代码，通过自动检查把编程与统计思维连接起来。",
-    rAction: "进入 R 编程工作室",
+    rAction: "进入 R 知识库",
     pythonEyebrow: "真实 PYTHON + 数据科学",
-    pythonTitle: "Python 语言编程工作室",
+    pythonTitle: "Python 语言知识库",
     pythonDescription: "在浏览器中运行真实 Python，通过 NumPy、pandas、Matplotlib 与 SciPy 完成引导练习和自动检查。",
-    pythonAction: "进入 Python 编程工作室",
+    pythonAction: "进入 Python 知识库",
     footer: "一个学习入口 · 一套统计教学工具",
   },
 } as const;
@@ -117,10 +118,10 @@ export function PortalHome() {
         <p className="portal-lead">{t.lead}</p>
 
         <div className="portal-destinations">
-          <a className="portal-card portal-card--teaching" href="/teaching#confidence-interval">
+          <a className="portal-card portal-card--teaching" href="/teaching-platform">
             <span className="portal-card__icon"><VisualizerIcon /></span>
             <span className="portal-card__copy">
-              <span className="portal-card__eyebrow">{t.teachingEyebrow}</span>
+              <span className="portal-card__eyebrow">{apps.length} {t.teachingEyebrow}</span>
               <strong>{t.teachingTitle}</strong>
               <span>{t.teachingDescription}</span>
             </span>
@@ -137,7 +138,7 @@ export function PortalHome() {
             <span className="portal-card__action">{t.paperAction} <b>↗</b></span>
           </a>
 
-          <a className="portal-card portal-card--r" href="/r-learning">
+          <a className="portal-card portal-card--r" href="/r-learning?returnTo=%2F">
             <span className="portal-card__icon"><RCodeIcon /></span>
             <span className="portal-card__copy">
               <span className="portal-card__eyebrow">{t.rEyebrow}</span>
@@ -147,7 +148,7 @@ export function PortalHome() {
             <span className="portal-card__action">{t.rAction} <b>↗</b></span>
           </a>
 
-          <a className="portal-card portal-card--python" href="/python-learning">
+          <a className="portal-card portal-card--python" href="/python-learning?returnTo=%2F">
             <span className="portal-card__icon"><PythonCodeIcon /></span>
             <span className="portal-card__copy">
               <span className="portal-card__eyebrow">{t.pythonEyebrow}</span>

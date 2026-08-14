@@ -1,4 +1,5 @@
 import type { Dataset } from "./constants";
+import { ParameterPanel } from "@stats-viz/shared/visualization";
 
 interface ControlPanelProps {
   copy: {
@@ -49,8 +50,7 @@ export function ControlPanel({
 }: ControlPanelProps) {
   const t = translate;
   return (
-    <section className="teaching-panel parameter-panel">
-      <p className="eyebrow">{copy.parameters}</p>
+    <ParameterPanel eyebrow={copy.parameters}>
       <div className="control-panel">
         <h2 className="control-panel__title">{copy.controlPanel}</h2>
         <p className="control-panel__intro">{copy.controlIntro}</p>
@@ -155,6 +155,6 @@ export function ControlPanel({
           </div>
         )}
       </div>
-    </section>
+    </ParameterPanel>
   );
 }

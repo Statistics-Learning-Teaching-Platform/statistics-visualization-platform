@@ -1162,6 +1162,12 @@ body {
   stroke-dasharray: 4 4;
 }
 
+.chart-inline-legend__line--observed {
+  stroke: var(--danger);
+  stroke-width: 2;
+  stroke-dasharray: 3 4;
+}
+
 .chart-inline-legend__area--type1 {
   fill: var(--lavender);
   opacity: 0.3;

@@ -59,7 +59,7 @@ export function generateSampleMeans(
 export function centralLimitTheorem(
   controls: ControlMap,
   seed: number,
-  sampleMeans: number[] = []
+  sampleMeans?: number[]
 ): SimulationResult {
   const shape = str(controls, "populationShape", "exponential");
   const sampleSize = Math.max(1, Math.round(num(controls, "sampleSize", 5)));
@@ -68,9 +68,7 @@ export function centralLimitTheorem(
   const populationMean = moments.mean;
   const populationSd = moments.sd;
   const standardError = populationSd / Math.sqrt(sampleSize);
-  const shownMeans = sampleMeans.length
-    ? sampleMeans
-    : generateSampleMeans(controls, DEFAULT_CLT_SAMPLE_COUNT, seed);
+  const shownMeans = sampleMeans ?? generateSampleMeans(controls, DEFAULT_CLT_SAMPLE_COUNT, seed);
 
   // Standardize the sample means and keep a fixed domain. Previously every n
   // received a newly centered/scaled x-axis, which visually hid both the CLT
@@ -95,9 +93,15 @@ export function centralLimitTheorem(
     };
   });
 
+  const stabilityNarrative = shownMeans.length === 0
+    ? "No repeated samples yet. Add samples to begin building the sampling distribution."
+    : shownMeans.length < 100
+      ? "The sampling shape is still unstable. Add more repeated samples before judging its shape."
+      : "Compare the histogram with the theoretical normal curve and the observed SD with sigma / sqrt(n).";
+
   return result(
     "Sampling distribution of sample means",
-    "Draw repeated samples, then compare the histogram of sample means with the normal approximation predicted by the CLT.",
+    stabilityNarrative,
     [
       { label: "repeated samples", value: String(shownMeans.length), detail: "sample means in histogram" },
       { label: "sample size n", value: String(sampleSize), detail: "observations per sample" },
@@ -107,6 +111,11 @@ export function centralLimitTheorem(
         label: "observed SD",
         value: shownMeans.length > 1 ? formatNumber(standardDeviation(shownMeans), 4) : "n/a",
         detail: "SD of sample means"
+      },
+      {
+        label: "shape stability",
+        value: shownMeans.length < 100 ? "still unstable" : "ready to compare",
+        detail: shownMeans.length < 100 ? "collect at least 100 repeated samples" : "enough repetitions for a first visual comparison",
       },
     ],
     {

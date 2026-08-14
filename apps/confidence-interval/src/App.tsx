@@ -1,11 +1,19 @@
 import { useMemo, useState } from "react";
 import { useLanguage, confidenceIntervalCopy } from "@stats-viz/shared/i18n";
 import { criticalValue } from "@stats-viz/shared/confidence-interval";
+import {
+  ChartFrame,
+  FormulaCard,
+  MetricGrid,
+  ObservationCard,
+  ReadingGuide,
+  VisualizationFrame,
+  VisualizationHeader,
+} from "@stats-viz/shared/visualization";
 
 import { defaultConfig } from "./constants";
 import { useConfidenceIntervals } from "./useConfidenceIntervals";
 import { ConfidenceIntervalChart } from "./ConfidenceIntervalChart";
-import { MetricsGrid } from "./MetricsGrid";
 import { ControlSidebar } from "./ControlSidebar";
 
 export default function ConfidenceIntervalApp() {
@@ -56,17 +64,12 @@ export default function ConfidenceIntervalApp() {
   const trueMeanLabel = copy.trueMean.replace("{mean}", String(defaultConfig.populationMean));
 
   return (
-    <div className="module-shell">
-      <div className="module-layout">
-        <div className="experiment-board">
-          <div className="experiment-header">
-            <div>
-              <p className="eyebrow">{copy.coreVisualizer}</p>
-              <h1>{copy.title}</h1>
-              <p className="module-kicker">{copy.kicker}</p>
-              <p className="module-description">{copy.description}</p>
-            </div>
-          </div>
+    <VisualizationFrame
+      content={
+        <>
+          <VisualizationHeader eyebrow={copy.coreVisualizer} title={copy.title} description={copy.kicker}>
+            <p className="module-description">{copy.description}</p>
+          </VisualizationHeader>
           <div className="output-dock">
             <div className="output-heading">
               <div>
@@ -90,26 +93,32 @@ export default function ConfidenceIntervalApp() {
                 <span>{trueMeanLabel}</span>
               </span>
             </div>
-            <div className="observation-prompt">
-              <span aria-hidden="true">◎</span>
-              <div>
-                <strong>{copy.coverageTitle}</strong>
-                <p>{sampleCount === 0 ? copy.emptyPrompt : copy.missPrompt.replace("{misses}", String(misses))}</p>
-              </div>
-            </div>
-            <MetricsGrid metrics={metrics} />
-            <div className="chart-frame">
+            <ReadingGuide title={copy.coverageTitle}>
+              <p>{sampleCount === 0 ? copy.emptyPrompt : copy.missPrompt.replace("{misses}", String(misses))}</p>
+            </ReadingGuide>
+            <MetricGrid metrics={metrics} ariaLabel={copy.modelOutput} />
+            <ChartFrame>
               <ConfidenceIntervalChart
                 samples={samples}
                 scales={scales}
                 trueMeanLabel={trueMeanLabel}
                 populationScaleLabel={copy.populationScale}
                 sampleIndexLabel={copy.sampleIndex}
+                chartDescription={copy.chartAriaDescription}
+                sampleTooltip={(sampleNumber, lower, upper, contains) =>
+                  copy.sampleTooltip
+                    .replace("{number}", String(sampleNumber))
+                    .replace("{lower}", lower.toFixed(3))
+                    .replace("{upper}", upper.toFixed(3))
+                    .replace("{coverage}", contains ? copy.tooltipCovers : copy.tooltipMisses)
+                }
               />
-            </div>
+            </ChartFrame>
           </div>
-        </div>
-        <div className="teaching-area">
+        </>
+      }
+      sidebar={
+        <>
           <ControlSidebar
             collapsed={collapsed}
             onToggleCollapsed={() => setCollapsed((c) => !c)}
@@ -173,9 +182,9 @@ export default function ConfidenceIntervalApp() {
               </div>
             </div>
           </div>
-          <div className="teaching-panel">
-            <p className="eyebrow">{copy.formula}</p>
-            <div className="latex-formula">
+          <FormulaCard
+            eyebrow={copy.formula}
+            formula={
               <div className="math-expression">
                 <span>{copy.estimate}</span>
                 <span className="math-symbol">±</span>
@@ -183,21 +192,20 @@ export default function ConfidenceIntervalApp() {
                 <span className="math-symbol">×</span>
                 <span>{copy.se}</span>
               </div>
-            </div>
+            }
+          >
             <p>{copy.formulaNote.replace("{zValue}", critValue.toFixed(2)).replace("{populationMean}", defaultConfig.populationMean.toFixed(1))}</p>
-          </div>
-          <div className="teaching-panel">
-            <p className="eyebrow">{copy.howToReadThis}</p>
-            <h3>{copy.currentInterpretation}</h3>
+          </FormulaCard>
+          <ObservationCard eyebrow={copy.howToReadThis} title={copy.currentInterpretation}>
             <p>{interpretation}</p>
             <p>{sampleCount === 0 ? copy.emptyPrompt : copy.missPrompt.replace("{misses}", String(misses))}</p>
-          </div>
+          </ObservationCard>
           <div className="teaching-panel learning-note">
             <p className="eyebrow">{copy.learningNote}</p>
             <p>{copy.learningNoteBody}</p>
           </div>
-        </div>
-      </div>
-    </div>
+        </>
+      }
+    />
   );
 }

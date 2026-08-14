@@ -3,6 +3,15 @@ import { localizeText, regressionCopy, useLanguage } from "@stats-viz/shared/i18
 import { linearRegression } from "@stats-viz/shared/math";
 import { computeSSE } from "@stats-viz/shared/regression";
 import { createLinearScales } from "@stats-viz/shared/chart-utils";
+import {
+  ChartFrame,
+  FormulaCard,
+  MetricGrid,
+  ObservationCard,
+  ReadingGuide,
+  VisualizationFrame,
+  VisualizationHeader,
+} from "@stats-viz/shared/visualization";
 
 import { CHART_LAYOUT, type Point } from "./constants";
 import { useDatasets } from "./useDatasets";
@@ -92,16 +101,10 @@ export default function RegressionApp() {
   );
 
   return (
-    <div className="module-shell">
-      <main className="module-layout">
-        <section className="experiment-board">
-          <header className="experiment-header">
-            <div>
-              <p className="eyebrow">{copy.coreVisualizer}</p>
-              <h1>{copy.title}</h1>
-              <p>{copy.description}</p>
-            </div>
-          </header>
+    <VisualizationFrame
+      content={
+        <>
+          <VisualizationHeader eyebrow={copy.coreVisualizer} title={copy.title} description={copy.description} />
           <section className="output-dock">
             <div className="output-heading">
               <p className="eyebrow">{copy.modelOutput}</p>
@@ -124,17 +127,13 @@ export default function RegressionApp() {
                 <span className="regression-line-guide__hint">{copy.chartDescription}</span>
               )}
             </div>
-            <div className="observation-prompt">
-              <span aria-hidden="true">◎</span>
-              <div>
-                <strong>{copy.residualsExplainFit}</strong>
-                <p>{copy.residualsBody}</p>
-              </div>
-            </div>
-            <section className="metrics-grid">
+            <ReadingGuide title={copy.residualsExplainFit}>
+              <p>{copy.residualsBody}</p>
+            </ReadingGuide>
+            <MetricGrid>
               <StatisticsPanel sse={sse} hoverInfo={hoverInfo} copy={copy} />
-            </section>
-            <div className="chart-frame">
+            </MetricGrid>
+            <ChartFrame>
               <div className="chart-shell">
                 <RegressionChart
                   visibleData={visibleData}
@@ -154,10 +153,12 @@ export default function RegressionApp() {
                   onHoverPoint={setHoverPoint}
                 />
               </div>
-            </div>
+            </ChartFrame>
           </section>
-        </section>
-        <aside className="teaching-area">
+        </>
+      }
+      sidebar={
+        <>
           <ControlPanel
             copy={copy}
             datasets={datasets}
@@ -178,25 +179,24 @@ export default function RegressionApp() {
             <h3>{copy.residualsExplainFit}</h3>
             <p>{copy.residualsBody}</p>
           </section>
-          <section className="teaching-panel">
-            <p className="eyebrow">{copy.formula}</p>
-            <div className="latex-formula">
+          <FormulaCard
+            eyebrow={copy.formula}
+            formula={
               <div className="math-expression">
                 <span>SSE =</span>
                 <span className="math-symbol">Σ</span>
                 <span>(y<sub>i</sub> − ŷ<sub>i</sub>)</span>
                 <sup>2</sup>
               </div>
-            </div>
+            }
+          >
             <p>{copy.formulaNote}</p>
-          </section>
-          <section className="teaching-panel">
-            <p className="eyebrow">{copy.teachingNotes}</p>
-            <h3>{copy.classroomFocus}</h3>
+          </FormulaCard>
+          <ObservationCard eyebrow={copy.teachingNotes} title={copy.classroomFocus}>
             <p>{copy.classroomFocusBody}</p>
-          </section>
-        </aside>
-      </main>
-    </div>
+          </ObservationCard>
+        </>
+      }
+    />
   );
 }

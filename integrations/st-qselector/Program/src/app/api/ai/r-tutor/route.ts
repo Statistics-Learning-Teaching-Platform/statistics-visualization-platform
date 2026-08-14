@@ -9,6 +9,13 @@ interface TutorMessage {
 }
 
 interface TutorRequest {
+  topicId?: string;
+  lessonId?: string;
+  learningObjective?: string;
+  currentParameters?: Record<string, unknown>;
+  currentCode?: string;
+  consoleOutput?: string[];
+  chartSummary?: string;
   language?: "zh" | "en";
   question?: string;
   lesson?: {
@@ -47,11 +54,16 @@ export async function POST(request: NextRequest) {
     const lesson = body.lesson ?? {};
     const context = [
       `Lesson: ${String(lesson.title ?? "").slice(0, 300)}`,
+      `Topic ID: ${String(body.topicId ?? "").slice(0, 200)}`,
+      `Lesson ID: ${String(body.lessonId ?? "").slice(0, 200)}`,
       `Concepts: ${Array.isArray(lesson.concepts) ? lesson.concepts.join(", ").slice(0, 500) : ""}`,
       `Objective: ${String(lesson.objective ?? "").slice(0, 1_000)}`,
+      `Learning objective: ${String(body.learningObjective ?? "").slice(0, 1_000)}`,
       `Task: ${String(lesson.task ?? "").slice(0, 1_500)}`,
-      `Current R code:\n${String(body.code ?? "").slice(0, 8_000)}`,
-      `Latest console output:\n${Array.isArray(body.console) ? body.console.join("\n").slice(0, 5_000) : "No output yet."}`,
+      `Current parameters: ${JSON.stringify(body.currentParameters ?? {}).slice(0, 2_000)}`,
+      `Current R code:\n${String(body.currentCode ?? body.code ?? "").slice(0, 8_000)}`,
+      `Latest console output:\n${Array.isArray(body.consoleOutput) ? body.consoleOutput.join("\n").slice(0, 5_000) : Array.isArray(body.console) ? body.console.join("\n").slice(0, 5_000) : "No output yet."}`,
+      `Chart summary: ${String(body.chartSummary ?? "No chart summary.").slice(0, 1_000)}`,
       `Latest automatic check: ${String(body.review ?? "Not checked yet.").slice(0, 1_000)}`,
     ].join("\n\n");
 

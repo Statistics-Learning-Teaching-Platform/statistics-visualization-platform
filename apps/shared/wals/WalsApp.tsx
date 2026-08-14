@@ -6,8 +6,18 @@ import {
   useLanguage,
   walsCopy,
 } from "@stats-viz/shared/i18n";
-import { DEFAULT_CLT_SAMPLE_COUNT, generateSampleMeans, runExample } from "./engine";
+import { generateSampleMeans, runExample } from "./engine";
 import { Chart } from "./charts";
+import {
+  ChartFrame,
+  FormulaCard,
+  MetricGrid,
+  ObservationCard,
+  ParameterPanel,
+  ReadingGuide,
+  VisualizationFrame,
+  VisualizationHeader,
+} from "../visualization";
 import type {
   ControlConfig,
   ControlValue,
@@ -307,7 +317,9 @@ export function WalsApp({ moduleConfig }: WalsAppProps) {
   const [exampleId, setExampleId] = useState<string | undefined>(undefined);
   const [controls, setControls] = useState<Record<string, ControlValue> | undefined>(undefined);
   const [seed, setSeed] = useState<number>(() => Date.now());
-  const [sampleMeans, setSampleMeans] = useState<number[] | undefined>(undefined);
+  const [sampleMeans, setSampleMeans] = useState<number[] | undefined>(() =>
+    moduleConfig.examples[0]?.accumulateSampleMeans ? [] : undefined,
+  );
 
   // Defer the expensive simulation so slider drags stay responsive.
   // `controls`/`seed` update urgently (slider thumb tracks the cursor); the
@@ -328,11 +340,12 @@ export function WalsApp({ moduleConfig }: WalsAppProps) {
   const quickActions = state.activeExample.quickActions ?? [];
 
   const handleSelectExample = useCallback((id: string) => {
+    const nextExample = moduleConfig.examples.find((example) => example.id === id);
     setExampleId(id);
     setControls(undefined);
     setSeed((s) => s + 1);
-    setSampleMeans(undefined);
-  }, []);
+    setSampleMeans(nextExample?.accumulateSampleMeans ? [] : undefined);
+  }, [moduleConfig.examples]);
 
   const handleUpdateControl = useCallback((id: string, value: ControlValue) => {
     setControls((prev) => {
@@ -345,21 +358,19 @@ export function WalsApp({ moduleConfig }: WalsAppProps) {
       return normalizeControls(state.activeExample, next, id);
     });
     if (accumulate) {
-      setSampleMeans(undefined);
+      setSampleMeans([]);
     }
     setSeed((s) => s + 1);
   }, [state.activeExample, accumulate]);
 
   const handleRun = useCallback(() => {
     if (accumulate) {
-      const current = controls ?? createDefaultControls(state.activeExample);
-      const nextSeed = Date.now();
-      setSampleMeans(generateSampleMeans(current, DEFAULT_CLT_SAMPLE_COUNT, nextSeed));
-      setSeed(nextSeed);
+      setSampleMeans([]);
+      setSeed(Date.now());
     } else {
       setSeed(Date.now());
     }
-  }, [accumulate, controls, state.activeExample]);
+  }, [accumulate]);
 
   // "bumpControl" quick actions increment a numeric control (e.g. the
   // random-variable module's sample size) by a fixed delta.
@@ -377,53 +388,50 @@ export function WalsApp({ moduleConfig }: WalsAppProps) {
   const handleDrawSamples = useCallback((count: number) => {
     const current = controls ?? createDefaultControls(state.activeExample);
     const nextSeed = Date.now();
-    const previous = sampleMeans ?? generateSampleMeans(current, DEFAULT_CLT_SAMPLE_COUNT, seed);
+    const previous = sampleMeans ?? [];
     const combined = [...previous, ...generateSampleMeans(current, count, nextSeed)];
     setSampleMeans(combined.length > MAX_SAMPLE_MEANS ? combined.slice(combined.length - MAX_SAMPLE_MEANS) : combined);
     setSeed(nextSeed);
-  }, [controls, state.activeExample, sampleMeans, seed]);
+  }, [controls, state.activeExample, sampleMeans]);
 
   return (
-    <div className="module-shell" aria-busy={controls !== deferredControls || seed !== deferredSeed}>
-      <main className="module-layout">
-        <section className="experiment-board">
-          <header className="experiment-header">
-            <div>
-              <p className="eyebrow">{state.config.category}</p>
-              <h1>{state.config.title}</h1>
-              <p>{state.config.subtitle}</p>
-            </div>
-          </header>
+    <VisualizationFrame
+      busy={controls !== deferredControls || seed !== deferredSeed}
+      content={
+        <>
+          <VisualizationHeader
+            eyebrow={state.config.category}
+            title={state.config.title}
+            description={state.config.subtitle}
+          />
           <section className="output-dock">
             <div className="output-heading">
               <p className="eyebrow">{state.copy.modelOutput}</p>
               <h2>{state.result.headline}</h2>
               <p>{state.result.narrative}</p>
             </div>
-            <div className="observation-prompt">
-              <span aria-hidden="true">◎</span>
-              <div>
-                <strong>{state.copy.howToReadThis}</strong>
-                <p>{state.activeExample.teachingPoints[0] ?? state.result.narrative}</p>
-              </div>
-            </div>
-            <section className="metrics-grid" aria-label={state.copy.modelOutput}>
-              {state.result.metrics.map((metric, i) => (
-                <article className="metric-card" key={i} title={metric.help}>
-                  <span className="metric-label">{metric.label}</span>
-                  <strong className="metric-value">{metric.value}</strong>
-                  {metric.detail && <small className="metric-note">{metric.detail}</small>}
-                </article>
-              ))}
-            </section>
-            <div className="chart-frame">
+            <ReadingGuide title={state.copy.howToReadThis}>
+              <p>{state.activeExample.teachingPoints[0] ?? state.result.narrative}</p>
+            </ReadingGuide>
+            <MetricGrid
+              ariaLabel={state.copy.modelOutput}
+              metrics={state.result.metrics.map((metric, index) => ({
+                key: String(index),
+                label: metric.label,
+                value: metric.value,
+                note: metric.detail,
+                help: metric.help,
+              }))}
+            />
+            <ChartFrame>
               <Chart spec={state.result.chart} />
-            </div>
+            </ChartFrame>
           </section>
-        </section>
-        <aside className="teaching-area">
-          <section className="teaching-panel parameter-panel">
-            <p className="eyebrow">{state.copy.parameters}</p>
+        </>
+      }
+      sidebar={
+        <>
+          <ParameterPanel eyebrow={state.copy.parameters}>
             <div className="example-tabs">
               {state.config.examples.map((example) => (
                 <button
@@ -444,11 +452,13 @@ export function WalsApp({ moduleConfig }: WalsAppProps) {
                 .map((control) => renderControl(control, controls ?? createDefaultControls(state.activeExample), handleUpdateControl))}
             </div>
             <button type="button" className="run-button" onClick={handleRun}>
-              {accumulate ? walsCopy[language].restartWith500 : state.copy.run}
+              {accumulate ? walsCopy[language].redraw : state.copy.run}
             </button>
             {quickActions.length > 0 && (
               <div className="sample-quick-actions">
-                {quickActions.map((action) => (
+                {quickActions
+                  .filter((action) => !action.showWhen || action.showWhen.values.includes(String(state.controls[action.showWhen.controlId] ?? "")))
+                  .map((action) => (
                   <button
                     key={`${action.type}-${action.amount}`}
                     type="button"
@@ -456,6 +466,8 @@ export function WalsApp({ moduleConfig }: WalsAppProps) {
                     onClick={() => {
                       if (action.type === "drawSampleMeans") {
                         handleDrawSamples(action.amount);
+                      } else if (action.type === "setControl") {
+                        handleUpdateControl(action.control ?? "sampleSize", action.amount);
                       } else {
                         handleBumpControl(action.control ?? "sampleSize", action.amount);
                       }
@@ -463,10 +475,10 @@ export function WalsApp({ moduleConfig }: WalsAppProps) {
                   >
                     {walsCopy[language][action.copyKey]}
                   </button>
-                ))}
+                  ))}
               </div>
             )}
-          </section>
+          </ParameterPanel>
           <section className="teaching-panel">
             <p className="eyebrow">{state.copy.conceptKeyIdea}</p>
             <h2>{state.activeExample.title}</h2>
@@ -477,16 +489,12 @@ export function WalsApp({ moduleConfig }: WalsAppProps) {
               ))}
             </ul>
           </section>
-          <section className="teaching-panel formula-panel">
-            <p className="eyebrow">{state.copy.formula}</p>
-            <div className="latex-formula">{renderFormula(state)}</div>
+          <FormulaCard eyebrow={state.copy.formula} formula={renderFormula(state)}>
             <p>{state.copy.formulaHelper}</p>
-          </section>
-          <section className="teaching-panel">
-            <p className="eyebrow">{state.copy.howToReadThis}</p>
-            <h3>{state.result.headline}</h3>
+          </FormulaCard>
+          <ObservationCard eyebrow={state.copy.howToReadThis} title={state.result.headline}>
             <p>{state.result.narrative}</p>
-          </section>
+          </ObservationCard>
           {state.result.table && (
             <section className="teaching-panel table-panel">
               <h3>{state.copy.dataTable}</h3>
@@ -512,8 +520,8 @@ export function WalsApp({ moduleConfig }: WalsAppProps) {
               </div>
             </section>
           )}
-        </aside>
-      </main>
-    </div>
+        </>
+      }
+    />
   );
 }
