@@ -37,14 +37,14 @@ function LearningHeader() {
   const language = useLanguage();
   return (
     <header className="learn-header">
-      <a className="learn-brand" href="/learn" aria-label={language === "zh" ? "统计学课程主页" : "Statistics course home"}>
+      <a className="learn-brand" href="/teaching-platform" aria-label={language === "zh" ? "统计教学平台" : "Statistics teaching platform"}>
         <span className="learn-brand__mark" aria-hidden="true">Σ</span>
         <span><strong>StatMind</strong><small>{language === "zh" ? "统计学数字教学平台" : "Digital statistics learning"}</small></span>
       </a>
       <nav className="learn-header__links" aria-label={language === "zh" ? "平台导航" : "Platform navigation"}>
         <a href="/">{language === "zh" ? "平台首页" : "Platform home"}</a>
-        <a href="/r-learning">R</a>
-        <a href="/python-learning">Python</a>
+        <a href="/r-learning?returnTo=%2F">R</a>
+        <a href="/python-learning?returnTo=%2F">Python</a>
       </nav>
       <LanguageTabs />
     </header>
@@ -140,7 +140,7 @@ function ChapterPage({ chapterIds }: { chapterIds: string[] }) {
   const title = chapters.map((chapter) => localize(chapter.title, language).replace(/^\d{2}\s*/, "")).join(" · ");
   return (
     <main className="learn-page learn-page--detail">
-      <Breadcrumbs items={[{ label: language === "zh" ? "课程" : "Course", href: "/learn" }, { label: title }]} />
+      <Breadcrumbs items={[{ label: language === "zh" ? "统计教学平台" : "Teaching platform", href: "/teaching-platform" }, { label: title }]} />
       <header className="learn-section-heading"><p className="learn-eyebrow">{language === "zh" ? "章节学习" : "CHAPTER STUDY"}</p><h1>{title}</h1><p>{chapters.map((chapter) => localize(chapter.description, language)).join(" ")}</p></header>
       <section className="chapter-topic-list">
         {chapters.map((chapter) => (
@@ -168,7 +168,7 @@ function TopicPage({ topicId }: { topicId: string }) {
   const activities = activityManifests.filter(({ topicId: ownerId }) => ownerId === topic.id).sort((left, right) => left.order - right.order);
   return (
     <main className="learn-page learn-page--detail">
-      <Breadcrumbs items={[{ label: language === "zh" ? "课程" : "Course", href: "/learn" }, { label: chapter ? localize(chapter.title, language) : "", href: getChapterRoute(topic.chapterId) }, { label: localize(topic.title, language) }]} />
+      <Breadcrumbs items={[{ label: language === "zh" ? "统计教学平台" : "Teaching platform", href: "/teaching-platform" }, { label: chapter ? localize(chapter.title, language) : "", href: getChapterRoute(topic.chapterId) }, { label: localize(topic.title, language) }]} />
       <header className="learn-section-heading"><p className="learn-eyebrow">{language === "zh" ? "知识点" : "TOPIC"}</p><h1>{localize(topic.title, language)}</h1><p>{localize(topic.summary, language)}</p><span className={`review-badge review-badge--${topic.reviewStatus}`}>{topic.reviewStatus}</span></header>
       <div className="topic-overview-grid">
         <section><h2>{language === "zh" ? "学习目标" : "Learning objectives"}</h2><ul>{topic.learningObjectives.map((objective, index) => <li key={index}>{localize(objective, language)}</li>)}</ul></section>
@@ -198,7 +198,7 @@ function ActivityPage({ activityId, topicId }: { activityId: string; topicId: st
   return (
     <main className="learn-activity-page">
       <div className="learn-activity-toolbar">
-        <Breadcrumbs items={[{ label: language === "zh" ? "课程" : "Course", href: "/learn" }, { label: localize(topic.title, language), href: getTopicRoute(topic.id) }, { label: localize(activity.title, language) }]} />
+        <Breadcrumbs items={[{ label: language === "zh" ? "统计教学平台" : "Teaching platform", href: "/teaching-platform" }, { label: localize(topic.title, language), href: getTopicRoute(topic.id) }, { label: localize(activity.title, language) }]} />
         <span>{activity.type}</span>
       </div>
       <section className="learn-activity-stage">
@@ -225,7 +225,7 @@ function ActivityPage({ activityId, topicId }: { activityId: string; topicId: st
 
 function NotFound() {
   const language = useLanguage();
-  return <main className="learn-page learn-not-found"><p className="learn-eyebrow">404</p><h1>{language === "zh" ? "没有找到这个课程页面" : "Course page not found"}</h1><a className="learn-primary-link" href="/learn">{language === "zh" ? "返回课程主页" : "Back to course home"}</a></main>;
+  return <main className="learn-page learn-not-found"><p className="learn-eyebrow">404</p><h1>{language === "zh" ? "没有找到这个知识点页面" : "Learning page not found"}</h1><a className="learn-primary-link" href="/teaching-platform">{language === "zh" ? "返回统计教学平台" : "Back to teaching platform"}</a></main>;
 }
 
 export function LearnRouter({ pathname = window.location.pathname }: { pathname?: string }) {

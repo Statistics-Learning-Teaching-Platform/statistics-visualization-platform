@@ -76,7 +76,7 @@ export function getLegacyTeachingRoute(hash: string): string {
 
 export function parseLearnRoute(pathname: string): ParsedLearnRoute {
   const segments = pathname.replace(/\/+$/, "").split("/").filter(Boolean);
-  if (segments.length === 1 && segments[0] === "learn") return { kind: "home" };
+  if (segments.length === 1 && segments[0] === "learn") return { kind: "not-found" };
   if (segments[0] !== "learn" || segments.length < 2 || segments.length > 4) {
     return { kind: "not-found" };
   }

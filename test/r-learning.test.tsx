@@ -27,11 +27,11 @@ describe("R Coding Studio", () => {
     localStorage.clear();
   });
 
-  it("renders the six-lesson curriculum and the starter editor", () => {
+  it("renders the expanded thirty-two-lesson curriculum and the starter editor", () => {
     renderWorkspace();
     expect(screen.getByText("R 语言编程工作室")).toBeInTheDocument();
     const navigation = screen.getByRole("navigation", { name: "课程" });
-    expect(within(navigation).getAllByRole("button")).toHaveLength(6);
+    expect(within(navigation).getAllByRole("button")).toHaveLength(32);
     expect(
       (screen.getByRole("textbox", { name: "R 代码编辑器" }) as HTMLTextAreaElement).value,
     ).toContain("average_score <-");
@@ -44,7 +44,7 @@ describe("R Coding Studio", () => {
 
     await userEvent.click(screen.getByRole("button", { name: "✓ 检查答案" }));
     expect(await screen.findByText(/正确保存了它的均值 80.8/)).toBeInTheDocument();
-    expect(screen.getByLabelText("学习进度: 17%")).toBeInTheDocument();
+    expect(screen.getByLabelText("学习进度: 3%")).toBeInTheDocument();
   });
 
   it("sends the current lesson context to the AI R tutor", async () => {

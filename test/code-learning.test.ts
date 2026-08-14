@@ -17,7 +17,7 @@ describe("shared coding-lab context", () => {
     expect(resolveCodeLearningContext("?topicId=topic-b&lessonId=two&returnTo=/learn/topic-b&parameters=%7B%22n%22%3A30%7D", lessons)).toEqual({
       topicId: "topic-b", lessonId: "two", returnTo: "/learn/topic-b", currentParameters: { n: 30 }, caseId: undefined,
     });
-    expect(resolveCodeLearningContext("?lessonId=two&returnTo=https://evil.example", lessons).returnTo).toBe("/learn");
+    expect(resolveCodeLearningContext("?lessonId=two&returnTo=https://evil.example", lessons).returnTo).toBe("/");
   });
 });
 

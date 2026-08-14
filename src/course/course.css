@@ -1,6 +1,9 @@
 .learn-root {
-  min-height: 100%;
-  overflow: auto;
+  height: 100%;
+  min-height: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior-y: contain;
   color: var(--text-primary);
   background:
     radial-gradient(circle at 4% 8%, rgba(141, 117, 181, 0.12), transparent 28rem),

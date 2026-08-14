@@ -528,10 +528,12 @@
 
 .r-code-editor textarea {
   width: 100%;
+  min-width: 0;
   min-height: 260px;
   max-height: 420px;
   padding: 16px 18px;
-  overflow: auto;
+  overflow-x: hidden;
+  overflow-y: auto;
   border: 0;
   outline: 0;
   resize: vertical;
@@ -541,7 +543,11 @@
   font: inherit;
   line-height: inherit;
   tab-size: 2;
-  white-space: pre;
+  /* Keep indentation and explicit newlines, but wrap long teaching examples
+     inside the editor so learners can read them without horizontal scrolling. */
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 
 .r-code-editor textarea::selection {

@@ -17,15 +17,15 @@ const copy = {
       "Filter the reviewed question bank by chapter, type, difficulty, and knowledge point, then assemble and export a paper.",
     paperAction: "Open paper builder",
     rEyebrow: "LIVE R + GUIDED PRACTICE",
-    rTitle: "R Coding Studio",
+    rTitle: "R Knowledge Base",
     rDescription:
       "Write and run real R code in the browser, receive automatic feedback, and connect programming with statistical reasoning.",
-    rAction: "Open R coding studio",
+    rAction: "Open R knowledge base",
     pythonEyebrow: "LIVE PYTHON + DATA SCIENCE",
-    pythonTitle: "Python Coding Studio",
+    pythonTitle: "Python Knowledge Base",
     pythonDescription:
       "Run real Python with NumPy, pandas, Matplotlib, and SciPy while receiving guided practice and automatic feedback.",
-    pythonAction: "Open Python coding studio",
+    pythonAction: "Open Python knowledge base",
     footer: "One learning entrance · Statistics teaching tools",
   },
   zh: {
@@ -41,13 +41,13 @@ const copy = {
     paperDescription: "按章节、题型、难度和知识点筛选已审核题目，完成组卷与导出。",
     paperAction: "进入组卷系统",
     rEyebrow: "真实 R 环境 + 引导练习",
-    rTitle: "R 语言编程工作室",
+    rTitle: "R 语言知识库",
     rDescription: "在浏览器中编写并运行真实 R 代码，通过自动检查把编程与统计思维连接起来。",
-    rAction: "进入 R 编程工作室",
+    rAction: "进入 R 知识库",
     pythonEyebrow: "真实 PYTHON + 数据科学",
-    pythonTitle: "Python 语言编程工作室",
+    pythonTitle: "Python 语言知识库",
     pythonDescription: "在浏览器中运行真实 Python，通过 NumPy、pandas、Matplotlib 与 SciPy 完成引导练习和自动检查。",
-    pythonAction: "进入 Python 编程工作室",
+    pythonAction: "进入 Python 知识库",
     footer: "一个学习入口 · 一套统计教学工具",
   },
 } as const;
@@ -118,7 +118,7 @@ export function PortalHome() {
         <p className="portal-lead">{t.lead}</p>
 
         <div className="portal-destinations">
-          <a className="portal-card portal-card--teaching" href="/learn">
+          <a className="portal-card portal-card--teaching" href="/teaching-platform">
             <span className="portal-card__icon"><VisualizerIcon /></span>
             <span className="portal-card__copy">
               <span className="portal-card__eyebrow">{apps.length} {t.teachingEyebrow}</span>
@@ -138,7 +138,7 @@ export function PortalHome() {
             <span className="portal-card__action">{t.paperAction} <b>↗</b></span>
           </a>
 
-          <a className="portal-card portal-card--r" href="/r-learning">
+          <a className="portal-card portal-card--r" href="/r-learning?returnTo=%2F">
             <span className="portal-card__icon"><RCodeIcon /></span>
             <span className="portal-card__copy">
               <span className="portal-card__eyebrow">{t.rEyebrow}</span>
@@ -148,7 +148,7 @@ export function PortalHome() {
             <span className="portal-card__action">{t.rAction} <b>↗</b></span>
           </a>
 
-          <a className="portal-card portal-card--python" href="/python-learning">
+          <a className="portal-card portal-card--python" href="/python-learning?returnTo=%2F">
             <span className="portal-card__icon"><PythonCodeIcon /></span>
             <span className="portal-card__copy">
               <span className="portal-card__eyebrow">{t.pythonEyebrow}</span>

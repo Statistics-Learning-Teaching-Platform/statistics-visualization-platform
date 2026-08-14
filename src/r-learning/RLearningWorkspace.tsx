@@ -401,6 +401,7 @@ export function RLearningWorkspace() {
                   }
                 }}
                 spellCheck={false}
+                wrap="soft"
                 aria-label={t.editor}
               />
             </div>

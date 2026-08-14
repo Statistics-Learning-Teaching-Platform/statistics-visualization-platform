@@ -392,6 +392,7 @@ export function PythonLearningWorkspace() {
                   }
                 }}
                 spellCheck={false}
+                wrap="soft"
                 aria-label={t.editor}
               />
             </div>

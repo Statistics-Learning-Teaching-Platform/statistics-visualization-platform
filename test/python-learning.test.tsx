@@ -30,11 +30,11 @@ describe("Python Coding Studio", () => {
     localStorage.clear();
   });
 
-  it("renders the seven-lesson curriculum and Python starter editor", () => {
+  it("renders the expanded thirty-one-lesson curriculum and Python starter editor", () => {
     renderWorkspace();
     expect(screen.getByText("Python 语言编程工作室")).toBeInTheDocument();
     const navigation = screen.getByRole("navigation", { name: "课程" });
-    expect(within(navigation).getAllByRole("button")).toHaveLength(7);
+    expect(within(navigation).getAllByRole("button")).toHaveLength(31);
     expect(
       (screen.getByRole("textbox", { name: "Python 代码编辑器" }) as HTMLTextAreaElement).value,
     ).toContain("mean_score =");
@@ -47,7 +47,7 @@ describe("Python Coding Studio", () => {
 
     await userEvent.click(screen.getByRole("button", { name: "✓ 检查答案" }));
     expect(await screen.findByText(/列表与样本均值均正确/)).toBeInTheDocument();
-    expect(screen.getByLabelText("学习进度: 14%")).toBeInTheDocument();
+    expect(screen.getByLabelText("学习进度: 3%")).toBeInTheDocument();
   });
 
   it("sends the current lesson context to the AI Python tutor", async () => {

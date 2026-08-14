@@ -1,5 +1,4 @@
 import { render, screen } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
 import { LanguageProvider } from "@stats-viz/shared/i18n";
 import { describe, expect, it } from "vitest";
 import { apps } from "../scripts/apps";
@@ -30,7 +29,7 @@ describe("course route helpers", () => {
   });
 
   it("parses each level of the learning hierarchy and rejects bad references", () => {
-    expect(parseLearnRoute("/learn")).toEqual({ kind: "home" });
+    expect(parseLearnRoute("/learn")).toEqual({ kind: "not-found" });
     expect(parseLearnRoute("/learn/inference")).toMatchObject({
       kind: "chapter",
       chapterIds: ["parameter-estimation", "hypothesis-testing"],
@@ -61,21 +60,10 @@ describe("course route helpers", () => {
 });
 
 describe("learning course pages", () => {
-  it("renders the chapter path by default and topic exploration on request", async () => {
-    render(
-      <LanguageProvider>
-        <LearnRouter pathname="/learn" />
-      </LanguageProvider>,
-    );
-    expect(
-      screen.getByRole("heading", { name: "从一个问题，走到可信的统计结论" }),
-    ).toBeInTheDocument();
-    expect(screen.getByLabelText("章节学习路径")).toBeInTheDocument();
-    expect(screen.getAllByRole("link", { name: /开始学习/ })).toHaveLength(13);
-
-    await userEvent.click(screen.getByRole("tab", { name: "主题探索" }));
-    expect(screen.getByLabelText("主题探索")).toBeInTheDocument();
-    expect(screen.getByRole("heading", { name: "分布" })).toBeInTheDocument();
+  it("does not expose the retired chapter landing page", () => {
+    render(<LanguageProvider><LearnRouter pathname="/learn" /></LanguageProvider>);
+    expect(screen.queryByRole("heading", { name: "从一个问题，走到可信的统计结论" })).not.toBeInTheDocument();
+    expect(screen.getByRole("link", { name: /返回统计教学平台/ })).toHaveAttribute("href", "/teaching-platform");
   });
 
   it("renders a topic page with prerequisite, activity, coding, and practice links", () => {

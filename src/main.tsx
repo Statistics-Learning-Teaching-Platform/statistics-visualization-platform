@@ -22,12 +22,21 @@ function LegacyTeachingRoute() {
 
 export function CurrentPage() {
   if (window.location.pathname === "/") return <PortalHome />;
+  // The former chapter landing page is intentionally removed from the front door.
+  // Keep deep /learn/... topic and activity URLs available for cross-links.
+  if (window.location.pathname === "/learn" || window.location.pathname === "/learn/") {
+    window.history.replaceState(null, "", "/teaching-platform");
+    return <AppShell />;
+  }
   if (window.location.pathname.startsWith("/learn")) {
     return (
       <Suspense fallback={<div className="route-loading">Loading course…</div>}>
         <LearnRouter />
       </Suspense>
     );
+  }
+  if (window.location.pathname.startsWith("/teaching-platform")) {
+    return <AppShell />;
   }
   if (window.location.pathname.startsWith("/teaching")) {
     return (

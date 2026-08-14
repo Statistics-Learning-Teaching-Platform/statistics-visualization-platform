@@ -19,7 +19,7 @@ const emptyProgress = (): LearningProgress => ({
   completedActivities: [],
   completedRLessons: [],
   completedPythonLessons: [],
-  lastVisitedRoute: "/learn",
+  lastVisitedRoute: "/teaching-platform",
 });
 
 function stringList(value: unknown): string[] {

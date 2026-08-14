@@ -13,7 +13,7 @@ function safeJsonObject(value: string | null): Record<string, unknown> {
 }
 
 function safeReturnPath(value: string | null): string {
-  return value?.startsWith("/") && !value.startsWith("//") ? value : "/learn";
+  return value?.startsWith("/") && !value.startsWith("//") ? value : "/";
 }
 
 export function resolveCodeLearningContext(
