@@ -6,6 +6,22 @@ export type RLesson = CodeLesson<LessonUnit, "r">;
 
 const normalizeCode = (code: string) => code.replace(/\\n/g, "\n").replace(/\\t/g, "\t");
 
+function isolateCheckCode(checkCode: string, requiresPlot: boolean): string {
+  const normalizedCheck = normalizeCode(checkCode).replace(/\\"/g, '"');
+  return `check_env <- base::new.env(parent = base::baseenv())
+    stats_env <- base::getNamespace("stats")
+    stats_names <- base::getNamespaceExports("stats")
+    base::list2env(base::mget(stats_names, envir = stats_env, inherits = FALSE), envir = check_env)
+    user_names <- base::ls(envir = user, all.names = TRUE)
+    safe_user_names <- user_names[base::vapply(user_names, function(name) {
+      value <- base::get(name, envir = user, inherits = FALSE)
+      !base::is.function(value) || !base::exists(name, envir = check_env, inherits = TRUE)
+    }, logical(1))]
+    base::list2env(base::mget(safe_user_names, envir = user, inherits = FALSE), envir = check_env)
+    ${requiresPlot ? ".statmind_had_plot &&" : ""}
+      base::isTRUE(base::eval(base::parse(text = ${JSON.stringify(normalizedCheck)}), envir = check_env))`;
+}
+
 export const lessonUnits = [
   { id: "foundations", zh: "R 编程基础", en: "R Foundations", number: "01" },
   { id: "data", zh: "数据与图形", en: "Data & Graphics", number: "02" },
@@ -635,4 +651,5 @@ export const rLessons: RLesson[] = rawRLessons.map((lesson) => ({
   ...lesson,
   starterCode: normalizeCode(lesson.starterCode),
   solution: normalizeCode(lesson.solution),
+  checkCode: isolateCheckCode(lesson.checkCode, lesson.id === "first-histogram"),
 }));

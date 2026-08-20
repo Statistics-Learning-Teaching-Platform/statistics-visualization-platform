@@ -7,6 +7,7 @@ import {
   getVisualizerLabel,
 } from "@stats-viz/shared/i18n";
 import { getDefaultVisualizer } from "../../scripts/apps";
+import { AppErrorBoundary } from "./AppErrorBoundary";
 
 const PLATFORM_SIDEBAR_WIDTH_KEY = "statistics-platform-sidebar-width";
 
@@ -153,9 +154,20 @@ export function AppShell() {
       <Sidebar activeId={activeId} onNavigate={handleNavigate} />
       <ResizeHandle onResize={handleSidebarResize} ariaLabel={copy.resizeLabel} />
       <main className="visualizer-frame" data-loading="false">
-        <Suspense fallback={<div className="app-loading" role="status" aria-live="polite">{copy.loadingLabel}</div>}>
-          <ActiveApp />
-        </Suspense>
+        <AppErrorBoundary
+          key={activeId}
+          title={lang === "zh" ? "可视化模块加载失败" : "Visualizer failed to load"}
+          message={
+            lang === "zh"
+              ? "请重新加载后再试。已保存的设置不会被清除。"
+              : "Reload and try again. Your saved settings will be kept."
+          }
+          retryLabel={lang === "zh" ? "重新加载" : "Reload"}
+        >
+          <Suspense fallback={<div className="app-loading" role="status" aria-live="polite">{copy.loadingLabel}</div>}>
+            <ActiveApp />
+          </Suspense>
+        </AppErrorBoundary>
       </main>
     </section>
   );

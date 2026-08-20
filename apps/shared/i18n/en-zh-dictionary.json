@@ -181,7 +181,7 @@
   "This setting has low power, which makes Type II errors common even when a real effect exists.": "当前设置检验功效较低，即使存在真实效应也容易发生二类错误。",
   "The true mean is still close to the null mean, so the two curves overlap heavily.": "真实均值仍接近原假设均值，所以两条曲线重叠很多。",
   "A strict alpha protects against false positives, but it can widen the acceptance region and raise beta.": "更严格的 α 可以减少误报，但也会扩大接受域并提高 β。",
-  "A larger alpha lowers beta here, but the blue Type I region also expands.": "在这里更大的 α 会降低 β，但一类错误区域也会扩大。",
+  "A larger alpha lowers beta here, but the shaded Type I region also expands.": "在这里更大的 α 会降低 β，但一类错误区域也会扩大。",
   "Current hypotheses": "当前假设",
   "Critical value": "临界值",
   "Test Statistic": "检验统计量",
@@ -488,6 +488,7 @@
   "PDF/PMF or CDF/CMF": "PDF/PMF 或 CDF/CMF",
   "Over many repeated samples the observed coverage approaches the confidence level.": "随着重复抽样次数增多，观察覆盖率会逐渐接近置信水平。",
   "Each interval is a z-interval from a fresh sample drawn from N(mu, sigma); the reference line marks the true mean.": "每个区间都是由 N(μ,σ) 的一次新抽样构造的 z 区间；参考线标记真实均值。",
+  "Each interval is a t-interval from a fresh sample drawn from N(mu, sigma); the reference line marks the true mean.": "每个区间都是由 N(μ,σ) 的一次新抽样构造的 t 区间；参考线标记真实均值。",
   "value": "数值",
   "interval": "区间",
   "WALS/MES city skyscraper regression template rebuilt with static data.": "使用静态数据重构的 WALS/MES 城市摩天楼回归模板。",
@@ -603,4 +604,10 @@
   ,"probability mass": "概率质量"
   ,"density": "密度"
   ,"PMF  P(X = x)": "概率质量 P(X = x)"
+  ,"Every bootstrap replicate resamples exactly n observations; the replicate count was reduced to keep the total draw budget responsive.": "每次自助法重复仍抽取恰好 n 个观测；为保持响应速度，重复次数已按总抽样预算下调。"
+  ,"Every bootstrap replicate resamples exactly n observations with replacement from the generated sample.": "每次自助法重复都从生成样本中有放回地抽取恰好 n 个观测。"
+  ,"bootstrap replicates": "自助法重复次数"
+  ,"not reported until both modes are explored": "在两个模态都得到探索前不报告"
+  ,"Initial-positive-sequence autocorrelation estimate. It is withheld when the chain has not demonstrated movement between both target modes.": "使用初始正序列自相关估计；当链尚未显示在两个目标模态之间移动时，不报告该值。"
+  ,"mode coverage": "模态覆盖"
 }

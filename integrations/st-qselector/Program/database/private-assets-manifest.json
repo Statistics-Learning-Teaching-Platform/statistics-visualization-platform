@@ -1,0 +1,77 @@
+{
+  "schemaVersion": 1,
+  "assets": [
+    {
+      "key": "Ch01/Assests/ch01_q03_f01_image1.jpeg",
+      "source": "Data/Formed/Ch01/Assests/ch01_q03_f01_image1.jpeg",
+      "contentType": "image/jpeg",
+      "accessScope": "question",
+      "sha256": "d8444ed49c7e4640af25b6c4372332b8613567ff357117886bddd306f0a689e8",
+      "size": 89518
+    },
+    {
+      "key": "Ch01/Assests/ch01_q33_f01_image1.jpeg",
+      "source": "Data/Formed/Ch01/Assests/ch01_q33_f01_image1.jpeg",
+      "contentType": "image/jpeg",
+      "accessScope": "question",
+      "sha256": "d228efdb236a9c74ac5671689b854bb1c10622b04b752393daaed958988a6a03",
+      "size": 151314
+    },
+    {
+      "key": "Ch01/Assests/Data-Chapter01-02.xlsx",
+      "source": "Data/Formed/Ch01/Assests/Data-Chapter01-02.xlsx",
+      "contentType": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+      "accessScope": "attachment",
+      "sha256": "fcb6d9ebee7d63552706e26cc2721bae2cf575563a75e816282534fcfc2d8dc6",
+      "size": 9372
+    },
+    {
+      "key": "Ch02/Assests/ch02_q04_f01_image1.jpeg",
+      "source": "Data/Formed/Ch02/Assests/ch02_q04_f01_image1.jpeg",
+      "contentType": "image/jpeg",
+      "accessScope": "question",
+      "sha256": "c80ba5c81e9802269ae89e47adb0532d2d718815fac097006471e7392e91a47a",
+      "size": 119330
+    },
+    {
+      "key": "Ch02/Assests/ch02_q09_f01_image3.jpeg",
+      "source": "Data/Formed/Ch02/Assests/ch02_q09_f01_image3.jpeg",
+      "contentType": "image/jpeg",
+      "accessScope": "question",
+      "sha256": "38b188af43eede335a1b5fcd8b4b68d2ed811ea8b089250a9aa0589f40a839dc",
+      "size": 76383
+    },
+    {
+      "key": "Ch02/Assests/ch02_q09_f02_image4.jpeg",
+      "source": "Data/Formed/Ch02/Assests/ch02_q09_f02_image4.jpeg",
+      "contentType": "image/jpeg",
+      "accessScope": "question",
+      "sha256": "ca7bdde3a56482e273665293b4f3cd80aed80cb3a603ce9550e36e5f073d11c6",
+      "size": 141221
+    },
+    {
+      "key": "Ch02/Assests/rotel-boxplot-five-number.png",
+      "source": "Data/Formed/Ch02/Assests/rotel-boxplot-five-number.png",
+      "contentType": "image/png",
+      "accessScope": "question",
+      "sha256": "eea2d8890a4c8599e3e1d4cd3f87ff1dc8343c055b089cc1d5bc56cc86e74002",
+      "size": 29651
+    },
+    {
+      "key": "Ch02/Assests/rotel-boxplot-salary.png",
+      "source": "Data/Formed/Ch02/Assests/rotel-boxplot-salary.png",
+      "contentType": "image/png",
+      "accessScope": "question",
+      "sha256": "995946de636acb834d2e5f33d7e766ba8db717338867f61ee69e2b129c67ba2c",
+      "size": 35616
+    },
+    {
+      "key": "Ch03/Assests/dataset_10K.xls",
+      "source": "Data/Formed/Ch03/Assests/dataset_10K.xls",
+      "contentType": "application/vnd.ms-excel",
+      "accessScope": "attachment",
+      "sha256": "badaf51e565fc3c298e064d07c0e5cb0ac3769103e5effd69b1feef3e50144ac",
+      "size": 752640
+    }
+  ]
+}

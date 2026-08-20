@@ -41,6 +41,9 @@ describe("shared teaching charts", () => {
     expect(screen.getAllByText("recent path").length).toBeGreaterThanOrEqual(2);
     expect(container.querySelector("title")?.textContent).toContain("draw 1");
     expect(container.querySelector('path[stroke-dasharray="7 5"]')).toBeInTheDocument();
+    const dataCircle = container.querySelector(".chart-data-circle");
+    expect(dataCircle?.tagName.toLowerCase()).toBe("ellipse");
+    expect(Number(dataCircle?.getAttribute("rx"))).toBeGreaterThan(Number(dataCircle?.getAttribute("ry")));
   });
 
   it("shows MCMC target geometry, ordered traces, and current state", () => {

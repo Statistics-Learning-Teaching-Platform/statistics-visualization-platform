@@ -1,0 +1,18 @@
+version: 1
+postgres:
+  host: alist.tlljyang.pp.ua
+  port: 14935
+  database: STAT
+  username: stat
+  passwordEnv: STAT_DB_PASSWORD
+  # Only used by direct Node.js connections. Hyperdrive-to-origin TLS is
+  # configured on the Cloudflare VPC Service/Hyperdrive control plane.
+  ssl: false
+  pool:
+    maxConnections: 4
+    idleTimeoutMs: 20000
+    connectionTimeoutMs: 8000
+  operationalTimeouts:
+    statementMs: 15000
+    lockMs: 5000
+    idleInTransactionMs: 15000

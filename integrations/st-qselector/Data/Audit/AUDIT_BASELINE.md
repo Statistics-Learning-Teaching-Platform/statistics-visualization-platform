@@ -6,7 +6,7 @@
 
 - Total questions: **293**
 - Target language: **English**
-- Questions currently eligible for paper assembly: **0**
+- Questions currently eligible for paper assembly: **293**
 - Source files remain read-only; all rewrites must be traceable through the manifest.
 
 ## Language baseline

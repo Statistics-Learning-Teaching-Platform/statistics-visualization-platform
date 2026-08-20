@@ -2,6 +2,7 @@ import { lazy, StrictMode, Suspense, useEffect } from "react";
 import { createRoot } from "react-dom/client";
 import { LanguageProvider } from "@stats-viz/shared/i18n";
 import { AppShell } from "./shell/AppShell";
+import { AppErrorBoundary } from "./shell/AppErrorBoundary";
 import { PortalHome } from "./PortalHome";
 import { getLegacyTeachingRoute } from "./course/routeHelpers";
 import "./styles.css";
@@ -70,7 +71,9 @@ if (!container) {
 createRoot(container).render(
   <StrictMode>
     <LanguageProvider>
-      <CurrentPage />
+      <AppErrorBoundary>
+        <CurrentPage />
+      </AppErrorBoundary>
     </LanguageProvider>
   </StrictMode>,
 );

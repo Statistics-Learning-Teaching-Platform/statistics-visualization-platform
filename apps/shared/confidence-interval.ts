@@ -29,10 +29,13 @@ export function criticalValue(
   sampleSize: number,
   sigmaKnown: boolean,
 ): number {
+  // A t interval cannot estimate its standard error from one observation:
+  // both s and the t distribution's degrees of freedom are undefined.
+  if (!sigmaKnown && sampleSize < 2) return Number.NaN;
   const p = 0.5 + confidenceLevel / 2;
   return sigmaKnown
     ? normalInv(p, 0, 1)
-    : jStat.studentt.inv(p, Math.max(1, sampleSize - 1));
+    : jStat.studentt.inv(p, sampleSize - 1);
 }
 
 /**
@@ -51,6 +54,9 @@ export function computeInterval(
     return { lower: Number.NaN, upper: Number.NaN, mean: Number.NaN, contains: false };
   }
   const sampleMean = mean(samples);
+  if (!sigmaKnown && samples.length < 2) {
+    return { lower: Number.NaN, upper: Number.NaN, mean: sampleMean, contains: false };
+  }
   const crit = criticalValue(confidenceLevel, samples.length, sigmaKnown);
   const sigma = sigmaKnown ? populationSD : standardDeviation(samples);
   const margin = (crit * sigma) / Math.sqrt(samples.length);

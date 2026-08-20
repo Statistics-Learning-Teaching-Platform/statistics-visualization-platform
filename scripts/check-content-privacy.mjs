@@ -7,8 +7,11 @@ const root = path.resolve(import.meta.dirname, "..");
 const officePattern = /\.(?:pdf|pptx?|docx?)$/i;
 const legacyDocumentRoot = "integrations/st-qselector/Data/";
 const legacyDocumentBaseline = {
-  count: 86,
-  pathListSha256: "3e77af2ea6fcb7e5839b1444e818d3d54b81ea7f3ef7e5b4001ac06e1492c72b",
+  // Explicitly reviewed after removing the invalid Microsoft Office lock
+  // file `~$signment and solution_Chap 1&2.docx`. All remaining documents
+  // stay confined to the preserved offline Data tree.
+  count: 85,
+  pathListSha256: "cd48ef3b080e6301b68a23bdef36d495665900984e077f77a1c4c09416a1de87",
 };
 const deployRoots = ["public", "dist", "integrations/st-qselector/Program/public"];
 const textExtensions = new Set([".html", ".js", ".mjs", ".cjs", ".json", ".css", ".txt", ".xml", ".svg", ".map"]);

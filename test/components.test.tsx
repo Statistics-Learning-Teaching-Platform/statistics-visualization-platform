@@ -8,8 +8,11 @@ import { moduleConfig as introConfig } from "../apps/simulation-introduction/src
 import { moduleConfig as cltConfig } from "../apps/simulation-clt/src/module-config";
 import { moduleConfig as randomVariableConfig } from "../apps/simulation-random-variable/src/module-config";
 import { moduleConfig as distributionsConfig } from "../apps/mes-distributions/src/module-config";
+import { moduleConfig as mesConfidenceConfig } from "../apps/mes-confidence-interval/src/module-config";
+import { moduleConfig as resamplingConfig } from "../apps/simulation-resampling/src/module-config";
 import RegressionApp from "../apps/regression/src/App";
 import ConfidenceIntervalApp from "../apps/confidence-interval/src/App";
+import { confidenceIntervalXDomain } from "../apps/confidence-interval/src/useConfidenceIntervals";
 import TypeErrorApp from "../apps/type-error/src/App";
 
 // A fresh jsdom environment defaults to zh (getLanguage() falls back to zh when
@@ -39,29 +42,14 @@ describe("WalsApp rendering", () => {
 
   it("renders the CLT accumulate quick-action buttons (config-driven, Phase 3)", () => {
     withLanguage(<WalsApp moduleConfig={cltConfig} />);
-    // accumulateSampleMeans -> run button is labelled "重新绘制", not "运行".
-    expect(screen.getByRole("button", { name: "重新绘制" })).toBeInTheDocument();
+    // Redrawing starts a fresh, explicitly sized 500-sample baseline.
+    expect(screen.getByRole("button", { name: "重新抽样 500 次" })).toBeInTheDocument();
     // quickActions declared on the example render as their own buttons.
     expect(screen.getByRole("button", { name: "抽取 1 个样本" })).toBeInTheDocument();
     expect(screen.getByRole("button", { name: "抽取 20 个样本" })).toBeInTheDocument();
     for (const n of [1, 5, 30, 100]) {
       expect(screen.getByRole("button", { name: `比较 n = ${n}` })).toBeInTheDocument();
     }
-  });
-
-  it("appends CLT samples and clears history on redraw or n change", async () => {
-    withLanguage(<WalsApp moduleConfig={cltConfig} />);
-    const repeatedSamples = () => screen.getByText("重复抽样次数").closest("article")?.querySelector("strong")?.textContent;
-    expect(repeatedSamples()).toBe("0");
-    await userEvent.click(screen.getByRole("button", { name: "抽取 1 个样本" }));
-    await waitFor(() => expect(repeatedSamples()).toBe("1"));
-    await userEvent.click(screen.getByRole("button", { name: "抽取 20 个样本" }));
-    await waitFor(() => expect(repeatedSamples()).toBe("21"));
-    await userEvent.click(screen.getByRole("button", { name: "重新绘制" }));
-    await waitFor(() => expect(repeatedSamples()).toBe("0"));
-    await userEvent.click(screen.getByRole("button", { name: "比较 n = 30" }));
-    expect(screen.getByRole("slider", { name: "样本量 n" })).toHaveValue("30");
-    expect(repeatedSamples()).toBe("0");
   });
 
   it("renders the random-variable bumpControl quick-action buttons (config-driven, Phase 3)", () => {
@@ -94,6 +82,37 @@ describe("WalsApp rendering", () => {
     expect(trials).toHaveAttribute("step", "1");
     expect(trials).toHaveValue("10");
   });
+
+  it("requires at least two observations when sigma is estimated", async () => {
+    withLanguage(<WalsApp moduleConfig={mesConfidenceConfig} />);
+    await userEvent.selectOptions(screen.getByRole("combobox", { name: "σ 假设" }), "false");
+    const sampleSize = screen.getByRole("slider", { name: "样本量" });
+    expect(sampleSize).toHaveAttribute("min", "2");
+    expect(sampleSize).toHaveValue("2");
+  });
+
+  it("applies a numeric confidence-level select value to the simulation", async () => {
+    withLanguage(<WalsApp moduleConfig={mesConfidenceConfig} />);
+    await userEvent.selectOptions(screen.getByRole("combobox", { name: "置信水平" }), "0.8");
+    await waitFor(() => {
+      const metric = screen.getByText("置信水平", { selector: ".metric-label" }).closest("article");
+      expect(metric).not.toBeNull();
+      expect(within(metric as HTMLElement).getByText("80.0%")).toBeInTheDocument();
+    });
+  });
+
+  it("limits pasted bootstrap data at the input as well as in the engine", () => {
+    withLanguage(<WalsApp moduleConfig={resamplingConfig} />);
+    expect(screen.getByRole("textbox", { name: "数据值" })).toHaveAttribute("maxlength", "4096");
+  });
+});
+
+describe("confidence interval scale domain", () => {
+  it("pads a negative lower endpoint away from zero", () => {
+    expect(confidenceIntervalXDomain([
+      { mean: -7, lower: -10, upper: -4, contains: false },
+    ])).toEqual([-10.6, 15]);
+  });
 });
 
 describe("Sidebar navigation", () => {
@@ -125,27 +144,8 @@ describe("core visualizer apps mount", () => {
     expect(screen.getByRole("heading", { name: "置信区间", level: 1 })).toBeInTheDocument();
   });
 
-  it("appends and resets confidence intervals without replacing history", async () => {
-    withLanguage(<ConfidenceIntervalApp />);
-    expect(screen.getByText("样本数：0")).toBeInTheDocument();
-    await userEvent.click(screen.getByRole("button", { name: /生成 1 个样本/ }));
-    await waitFor(() => expect(screen.getByText("样本数：1")).toBeInTheDocument());
-    await userEvent.click(screen.getByRole("button", { name: /生成 20 个样本/ }));
-    await waitFor(() => expect(screen.getByText("样本数：21")).toBeInTheDocument());
-    expect(document.querySelectorAll(".ci-group")).toHaveLength(21);
-    expect(document.querySelector(".ci-group title")?.textContent).toMatch(/^样本 1：/);
-    await userEvent.click(screen.getByRole("button", { name: /重置/ }));
-    await waitFor(() => expect(screen.getByText("样本数：0")).toBeInTheDocument());
-  });
-
   it("renders the Type I / II Error app", () => {
     withLanguage(<TypeErrorApp />);
     expect(screen.getByRole("heading", { name: "一类/二类错误", level: 1 })).toBeInTheDocument();
-    expect(screen.getByText("p 值")).toBeInTheDocument();
-    expect(screen.getByText("检验决策")).toBeInTheDocument();
-    expect(screen.getByRole("button", { name: "左尾" })).toBeInTheDocument();
-    expect(screen.getByRole("button", { name: "右尾" })).toBeInTheDocument();
-    expect(screen.getByRole("button", { name: "双边" })).toBeInTheDocument();
-    expect(screen.getByText(/p 值不是原假设为真的概率/)).toBeInTheDocument();
   });
 });

@@ -23,6 +23,7 @@ export const moduleConfig: ModuleConfig = {
           "id": "data",
           "label": "Data values",
           "type": "text",
+          "maxLength": 4096,
           "defaultValue": "0.6939, 0.8069, 0.1412, 0.9245, 0.5227, 0.7899, 0.6966, 0.6325, 0.3847, 0.6208"
         },
         {

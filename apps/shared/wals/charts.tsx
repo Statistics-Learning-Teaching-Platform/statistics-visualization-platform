@@ -229,7 +229,16 @@ function ScatterChart({ spec }: { spec: Extract<ChartSpec, { type: "scatter" }> 
       <References references={spec.references} x={x} y={y} />
       {spec.circles?.map((circle, index) => (
         <g key={`circle-${index}`}>
-          <circle cx={x(circle.cx)} cy={y(circle.cy)} r={Math.abs(x(circle.cx + circle.radius) - x(circle.cx))} fill={circle.fill ?? "none"} stroke={circle.color ?? chartTheme.lavender} strokeWidth={2} />
+          <ellipse
+            className="chart-data-circle"
+            cx={x(circle.cx)}
+            cy={y(circle.cy)}
+            rx={Math.abs(x(circle.cx + circle.radius) - x(circle.cx))}
+            ry={Math.abs(y(circle.cy + circle.radius) - y(circle.cy))}
+            fill={circle.fill ?? "none"}
+            stroke={circle.color ?? chartTheme.lavender}
+            strokeWidth={2}
+          />
           {circle.label && <text x={x(circle.cx)} y={y(circle.cy - circle.radius) - 7} textAnchor="middle" fill={circle.color ?? chartTheme.lavender} fontSize={11} fontWeight={750}>{circle.label}</text>}
         </g>
       ))}
@@ -276,7 +285,9 @@ function LineChart({ spec }: { spec: Extract<ChartSpec, { type: "line" }> }) {
 function BarsChart({ spec }: { spec: Extract<ChartSpec, { type: "bars" }> }) {
   const maxValue = Math.max(...spec.bars.map((b) => b.value), 1);
   const yDomain = spec.yDomain ?? [0, maxValue * 1.15] as [number, number];
-  const x = scaleBand().domain(spec.bars.map((b) => b.label)).range([margin.left, width - margin.right]).padding(0.18);
+  // Use array position as the categorical identity. Histogram labels are
+  // rounded for display and adjacent narrow bins can legitimately share one.
+  const x = scaleBand<number>().domain(spec.bars.map((_, index) => index)).range([margin.left, width - margin.right]).padding(0.18);
   const y = scaleLinear().domain(yDomain).nice().range([height - margin.bottom, margin.top]);
   return (
     <Frame title={spec.title} xLabel={spec.xLabel} yLabel={spec.yLabel}>
@@ -284,14 +295,14 @@ function BarsChart({ spec }: { spec: Extract<ChartSpec, { type: "bars" }> }) {
       <AxisTicks scale={y} orientation="y" />
       {spec.bars.map((bar, i) => (
         <g key={i}>
-          <rect x={x(bar.label) ?? margin.left} y={y(bar.value)} width={x.bandwidth()} height={Math.max(0, height - margin.bottom - y(bar.value))} fill={bar.color ?? chartTheme.teal} opacity={0.86}>
+          <rect x={x(i) ?? margin.left} y={y(bar.value)} width={x.bandwidth()} height={Math.max(0, height - margin.bottom - y(bar.value))} fill={bar.color ?? chartTheme.teal} opacity={0.86}>
             <title>{`${bar.label}: ${Number(bar.value.toFixed(4))}`}</title>
           </rect>
           <text
-            x={(x(bar.label) ?? margin.left) + x.bandwidth() / 2}
+            x={(x(i) ?? margin.left) + x.bandwidth() / 2}
             y={height - margin.bottom + 15}
             textAnchor={spec.bars.length > 8 ? "end" : "middle"}
-            transform={spec.bars.length > 8 ? `rotate(-35 ${(x(bar.label) ?? margin.left) + x.bandwidth() / 2} ${height - margin.bottom + 15})` : undefined}
+            transform={spec.bars.length > 8 ? `rotate(-35 ${(x(i) ?? margin.left) + x.bandwidth() / 2} ${height - margin.bottom + 15})` : undefined}
             fill={chartTheme.muted}
             fontSize={spec.bars.length > 18 ? 8.5 : 10}
           >
@@ -368,7 +379,7 @@ function CltChart({ spec }: { spec: Extract<ChartSpec, { type: "clt" }> }) {
   );
   const popY = scaleLinear().domain([0, populationMax * 1.15]).range([top.y + top.height, top.y]);
   const meanY = scaleLinear().domain([0, samplingMax * 1.18]).range([bottom.y + bottom.height, bottom.y]);
-  const populationCenters = spec.populationBars.map((bar) => Number(bar.label));
+  const populationCenters = spec.populationBars.map((bar) => bar.x ?? Number(bar.label));
   const populationDomain = extent(populationCenters, [-3, 3]);
   const popX = scaleLinear().domain(populationDomain).range([top.x, top.x + top.width]);
   const popBarWidth = Math.max(2, top.width / Math.max(spec.populationBars.length, 1) * 0.82);
@@ -385,7 +396,7 @@ function CltChart({ spec }: { spec: Extract<ChartSpec, { type: "clt" }> }) {
       {spec.populationBars.map((bar, i) => (
         <rect
           key={`pop-${i}`}
-          x={popX(Number(bar.label)) - popBarWidth / 2}
+          x={popX(bar.x ?? Number(bar.label)) - popBarWidth / 2}
           y={popY(bar.value)}
           width={popBarWidth}
           height={Math.max(0, top.y + top.height - popY(bar.value))}
@@ -414,7 +425,7 @@ function CltChart({ spec }: { spec: Extract<ChartSpec, { type: "clt" }> }) {
       {spec.sampleMeanBars.map((bar, i) => (
         <rect
           key={`mean-${i}`}
-          x={x(Number(bar.label)) - meanBarWidth / 2}
+          x={x(bar.x ?? Number(bar.label)) - meanBarWidth / 2}
           y={meanY(bar.value)}
           width={meanBarWidth}
           height={Math.max(0, bottom.y + bottom.height - meanY(bar.value))}

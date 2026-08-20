@@ -1,0 +1,33 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "statmind-qselector",
+  "main": ".open-next/worker.js",
+  "compatibility_date": "2026-08-17",
+  "compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
+  "routes": [
+    {
+      "pattern": "next.modern-stat.com/st-qselector*",
+      "zone_name": "modern-stat.com"
+    }
+  ],
+  "assets": {
+    "directory": ".open-next/assets",
+    "binding": "ASSETS"
+  },
+  "hyperdrive": [
+    {
+      "binding": "HYPERDRIVE",
+      "id": "ea6a58da8aab4683a1df6224bdb8a138"
+    }
+  ],
+  "observability": {
+    "enabled": true
+  },
+  "vars": {
+    "NODE_ENV": "production",
+    "STAT_TRUSTED_PROXY": "cloudflare",
+    "STAT_ALLOWED_ORIGINS": "https://next.modern-stat.com",
+    "STAT_AI_API_URL": "http://alist.tlljyang.pp.ua:61235/api/v1/chat",
+    "STAT_AI_MODEL": "lfm2.5-8b-a1b@q6_k"
+  }
+}

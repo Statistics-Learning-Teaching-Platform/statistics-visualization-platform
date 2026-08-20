@@ -67,6 +67,29 @@ describe("platform integration inventory", () => {
       expect(source).not.toMatch(/from ["']@(components|utils)\//);
     }
   });
+
+  it("keeps the WALS visualizers on one shared stylesheet", () => {
+    const walsApps = apps.filter((app) => app.source === "wals");
+    expect(walsApps).toHaveLength(10);
+
+    for (const app of walsApps) {
+      const entry = readFileSync(
+        resolve(process.cwd(), app.path, "src/main.tsx"),
+        "utf8",
+      );
+      expect(entry).toContain('import "@stats-viz/shared/styles/wals-custom.css"');
+      expect(existsSync(resolve(process.cwd(), app.path, "src/styles/custom.css"))).toBe(false);
+    }
+    expect(existsSync(resolve(process.cwd(), "apps/shared/styles/wals-custom.css"))).toBe(true);
+  });
+
+  it("ships an enforced content security policy", () => {
+    const headers = readFileSync(resolve(process.cwd(), "public/_headers"), "utf8");
+    expect(headers).toContain("Content-Security-Policy:");
+    expect(headers).not.toContain("Content-Security-Policy-Report-Only:");
+    expect(headers).toContain("worker-src 'self' blob:");
+    expect(headers).toContain("script-src 'self' 'wasm-unsafe-eval'");
+  });
 });
 
 function listSourceFiles(dir: string): string[] {

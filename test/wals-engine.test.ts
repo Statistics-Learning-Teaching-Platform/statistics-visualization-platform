@@ -1,8 +1,19 @@
 import { describe, expect, it } from "vitest";
 import jStat from "jstat";
 import { generateSampleMeans, runExample } from "../apps/shared/wals/engine";
-import { linearRegression, normalCdf, normalPdf } from "../apps/shared/math";
+import { histogram, linearRegression, normalCdf, normalPdf } from "../apps/shared/math";
 import { mean, reductionPct, ratioOrNa, variance } from "../apps/shared/format";
+import { computeInterval, criticalValue } from "../apps/shared/confidence-interval";
+import {
+  mixtureTargetContours,
+  mixtureTargetDensity,
+} from "../apps/shared/wals/engine/mcmc";
+import {
+  MAX_MEAN_BOOTSTRAP_DRAWS,
+  permutationHistogram,
+  permutationTailColor,
+  resolveMeanBootstrapBudget,
+} from "../apps/shared/wals/engine/resampling";
 import type { ExampleConfig, SimulationResult } from "../apps/shared/wals/types";
 
 // runExample only consumes example.kind / .id / .sourcePath, so a minimal stub
@@ -75,6 +86,18 @@ describe("distribution explorer", () => {
     expect(currentPeak.y).toBeLessThan(referencePeak.y);
     expect(referencePeak.y).toBeCloseTo(jStat.normal.pdf(referencePeak.x, 0, 1), 5);
   });
+
+  it("preserves a uniform distribution whose entire support is negative", () => {
+    const r = runExample(
+      example("distribution"),
+      { dist: "unif", mode: "PDF", a: -5, b: -1, lower: -4, upper: -2 },
+      1,
+    );
+    expect(metric(r, "resolved parameters")).toContain("a = -5.00, b = -1.00");
+    expect(Number(metric(r, "interval probability"))).toBeCloseTo(0.5, 8);
+    const positiveDensityPoints = linePoints(r).filter((point) => point.y > 0);
+    expect(positiveDensityPoints.every((point) => point.x >= -5 && point.x <= -1)).toBe(true);
+  });
 });
 
 describe("gamma rejection sampler (de-biased)", () => {
@@ -86,6 +109,13 @@ describe("gamma rejection sampler (de-biased)", () => {
     // acceptance rate is a real probability
     expect(Number(metric(r, "acceptance rate"))).toBeGreaterThan(0);
     expect(Number(metric(r, "acceptance rate"))).toBeLessThan(1);
+  });
+
+  it("supports alpha below one without a finite uniform-envelope bias", () => {
+    const r = runExample(example("gamma-rejection"), { sampleSize: 8000, alpha: 0.3, beta: 2 }, 9182);
+    expect(Number(metric(r, "accepted mean"))).toBeCloseTo(0.15, 1);
+    expect(metric(r, "proposal support")).toBe("(0, ∞)");
+    expect(r.rawSample?.every((value) => value > 0)).toBe(true);
   });
 });
 
@@ -132,6 +162,19 @@ describe("central limit theorem", () => {
     expect(Math.abs(skewness(n20))).toBeLessThan(Math.abs(skewness(n1)) * 0.45);
   });
 
+  it("keeps the right-skewed population distinct from the exponential option", () => {
+    const skewness = (values: number[]) => {
+      const center = mean(values);
+      const sd = Math.sqrt(variance(values));
+      return values.reduce((sum, value) => sum + ((value - center) / sd) ** 3, 0) / values.length;
+    };
+    const exponential = generateSampleMeans({ populationShape: "exponential", sampleSize: 1 }, 8000, 81);
+    const rightSkewed = generateSampleMeans({ populationShape: "skewed", sampleSize: 1 }, 8000, 81);
+    expect(rightSkewed).not.toEqual(exponential);
+    expect(skewness(rightSkewed)).toBeGreaterThan(0.8);
+    expect(skewness(rightSkewed)).toBeLessThan(skewness(exponential) * 0.9);
+  });
+
   it("observed SD of sample means tracks the theoretical SE", () => {
     const means = generateSampleMeans(controls, 3000, 42);
     const r = runExample(example("central-limit-theorem"), controls, 42, undefined, means);
@@ -168,6 +211,16 @@ describe("ANOVA", () => {
     expect(r.chart.groups.map((group) => group.label)).toEqual(["Brand A", "Brand B", "Brand C"]);
     expect(r.chart.grandMean).toBeCloseTo(mean(r.chart.groups.flatMap((group) => group.values)), 8);
   });
+
+  it("returns infinite F and zero p when separated groups have no within-group variance", () => {
+    const r = runExample(
+      example("anova"),
+      { dataset: "random", n1: 4, n2: 4, n3: 4, mu1: 1, mu2: 2, mu3: 3, sigma: 0 },
+      12,
+    );
+    expect(metric(r, "F statistic")).toBe("∞");
+    expect(Number(metric(r, "p value"))).toBe(0);
+  });
 });
 
 describe("permutation test", () => {
@@ -180,9 +233,23 @@ describe("permutation test", () => {
     if (r.chart.type !== "bars") throw new Error("expected bars chart");
     expect(r.chart.bars.reduce((sum, bar) => sum + bar.value, 0)).toBe(200);
     expect(new Set(r.chart.bars.map((bar) => bar.color))).toEqual(new Set(["#2f6f64", "#c8665a"]));
+    const extreme = Number(r.metrics.find((item) => item.label === "two-sided p value")?.detail?.split(" ")[0]);
+    expect(r.chart.bars.filter((bar) => bar.color === "#c8665a").reduce((sum, bar) => sum + bar.value, 0)).toBe(extreme);
     const pValue = Number(metric(r, "two-sided p value"));
     expect(pValue).toBeGreaterThanOrEqual(1 / 201);
     expect(pValue).toBeLessThanOrEqual(1);
+  });
+
+  it("classifies tails from exact bin centers rather than rounded labels", () => {
+    expect(permutationTailColor(0.0048, 0.00485)).toBe("#2f6f64");
+    expect(permutationTailColor(0.0049, 0.00485)).toBe("#c8665a");
+    expect(0.0048.toFixed(2)).toBe(0.0049.toFixed(2));
+  });
+
+  it("splits a threshold-crossing bin without changing exact tail counts", () => {
+    const bars = permutationHistogram([-0.51, -0.49, 0.49, 0.51], 0.5, 1);
+    expect(bars.filter((bar) => bar.color === "#c8665a").reduce((sum, bar) => sum + bar.value, 0)).toBe(2);
+    expect(bars.filter((bar) => bar.color === "#2f6f64").reduce((sum, bar) => sum + bar.value, 0)).toBe(2);
   });
 });
 
@@ -198,6 +265,62 @@ describe("MCMC teaching payloads", () => {
       expect(r.chart.traceY).toHaveLength(120);
       expect(r.chart.contours.length).toBeGreaterThan(0);
     }
+  });
+
+  it("uses normalized equal mixture weights despite unequal component spreads", () => {
+    expect(mixtureTargetDensity(0, 0)).toBeCloseTo(
+      0.5 / (2 * Math.PI) + 0.5 * Math.exp(-18) / (4 * Math.PI),
+      10,
+    );
+    expect(mixtureTargetDensity(6, 6)).toBeCloseTo(
+      0.5 / (4 * Math.PI) + 0.5 * Math.exp(-36) / (2 * Math.PI),
+      10,
+    );
+  });
+
+  it("draws actual mixture-density contours", () => {
+    const contours = mixtureTargetContours();
+    expect(contours).toHaveLength(6);
+    for (const contour of contours) {
+      const level = Number(contour.label.split(" ")[2]);
+      for (const point of contour.points.filter((_, index) => index % 12 === 0)) {
+        expect(mixtureTargetDensity(point.x, point.y)).toBeCloseTo(level, 7);
+      }
+    }
+  });
+
+  it("withholds ESS when a local chain has not explored both modes", () => {
+    const r = runExample(
+      example("mcmc-mixture"),
+      { burnin: 100, sampleSize: 500, proposalSd: 0.05 },
+      9,
+    );
+    expect(metric(r, "effective sample size")).toBe("n/a");
+    expect(metric(r, "mode coverage")).not.toBe("2 / 2");
+  });
+});
+
+describe("bootstrap work budgets", () => {
+  it("caps the maximum mean-bootstrap controls by total indexed draws", () => {
+    expect(resolveMeanBootstrapBudget(5000, 5000)).toEqual({
+      sampleSize: 5000,
+      replicates: 200,
+      draws: MAX_MEAN_BOOTSTRAP_DRAWS,
+    });
+    const r = runExample(example("mean-bootstrap"), { sampleSize: 5000, replicates: 5000 }, 33);
+    expect(metric(r, "resample size")).toBe("5000");
+    expect(metric(r, "bootstrap replicates")).toBe("200");
+    if (r.chart.type !== "bars") throw new Error("expected bars chart");
+    expect(r.chart.bars.reduce((sum, bar) => sum + bar.value, 0)).toBe(200);
+  });
+
+  it("bounds pasted bootstrap-max data and samples its exact maximum distribution", () => {
+    const oversizedData = Array.from({ length: 2000 }, (_, index) => String(index)).join(",");
+    const bounded = runExample(example("bootstrap-max"), { data: oversizedData, replicates: 100 }, 5);
+    expect(bounded.metrics.find((item) => item.label === "replicates")?.detail).toContain("input limit applied");
+
+    const exact = runExample(example("bootstrap-max"), { data: "1,2", replicates: 10000 }, 91);
+    expect(Number(metric(exact, "bootstrap mean max"))).toBeCloseTo(1.75, 1);
   });
 });
 
@@ -226,6 +349,38 @@ describe("shared math + format helpers", () => {
     expect(ratioOrNa(6, 0)).toBe("n/a");
     expect(ratioOrNa(6, 3)).toBe("2.00");
   });
+
+  it("keeps exact numeric histogram centers separate from rounded labels", () => {
+    const bars = histogram([0.001, 0.0015, 0.002], 4);
+    expect(new Set(bars.map((bar) => bar.x)).size).toBe(4);
+    expect(new Set(bars.map((bar) => bar.label)).size).toBeLessThan(4);
+    expect(histogram([7, 7, 7], 18)).toEqual([{ label: "7.00", value: 3, x: 7 }]);
+  });
+
+  it("marks an unknown-sigma interval with n=1 as undefined", () => {
+    expect(criticalValue(0.95, 1, false)).toBeNaN();
+    expect(computeInterval([4.2], 0.95, 4, 1, false)).toMatchObject({
+      mean: 4.2,
+      lower: Number.NaN,
+      upper: Number.NaN,
+      contains: false,
+    });
+  });
+});
+
+describe("variance reduction budget", () => {
+  it.each(["antithetic-exp", "antithetic-gamma"])("compares %s estimators at equal evaluation counts", (kind) => {
+    const r = runExample(example(kind), { sampleSize: 1000 }, 55);
+    const reduction = r.metrics.find((item) => item.label === "variance reduction");
+    expect(reduction?.detail).toBe("1000 function evaluations each");
+    if (r.chart.type !== "bars" && kind === "antithetic-exp") throw new Error("expected bars chart");
+  });
+
+  it("rounds an odd antithetic request down so both methods use the same budget", () => {
+    const r = runExample(example("antithetic-exp"), { sampleSize: 1001 }, 55);
+    expect(r.metrics.find((item) => item.label === "variance reduction")?.detail)
+      .toBe("1000 function evaluations each");
+  });
 });
 
 describe("confidence interval (genuine repeated sampling)", () => {
@@ -243,6 +398,15 @@ describe("confidence interval (genuine repeated sampling)", () => {
     const coverage = Number.parseFloat(metric(r, "observed coverage"));
     expect(coverage).toBeGreaterThanOrEqual(0);
     expect(coverage).toBeLessThanOrEqual(100);
+  });
+
+  it("accepts the numeric string produced by an existing confidence-level select state", () => {
+    const r = runExample(
+      example("confidence-interval"),
+      { confidenceLevel: "0.8", sampleSize: 20, intervalCount: 20 },
+      12345,
+    );
+    expect(metric(r, "confidence level")).toBe("80.0%");
   });
 
   it("observed coverage tracks the confidence level over many intervals", () => {

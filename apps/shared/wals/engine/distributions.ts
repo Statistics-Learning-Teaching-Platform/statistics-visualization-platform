@@ -8,13 +8,17 @@ export function distribution(controls: ControlMap): SimulationResult {
   const dist = str(controls, "dist", "norm");
   const mode = str(controls, "mode", "PDF");
   const a = num(controls, "a", 0);
-  const b = Math.max(0.1, num(controls, "b", 1));
+  const rawB = num(controls, "b", 1);
+  // Most distributions use slot b as a positive scale/rate/shape parameter,
+  // but Uniform uses it as a location. Keep the raw value for that one case:
+  // clamping it here used to turn U(-5, -1) into U(-5, 0.1).
+  const b = Math.max(0.1, rawB);
   const lower = num(controls, "lower", -2);
   const upper = num(controls, "upper", 2);
   const intervalLower = Math.min(lower, upper);
   const intervalUpper = Math.max(lower, upper);
-  const uniformLower = Math.min(a, b);
-  const uniformUpper = Math.max(a, b);
+  const uniformLower = Math.min(a, rawB);
+  const uniformUpper = Math.max(a, rawB);
 
   // The control surface exposes two generic slots (a, b); each distribution
   // maps them to its own parameters. The mapping is collected in ONE object

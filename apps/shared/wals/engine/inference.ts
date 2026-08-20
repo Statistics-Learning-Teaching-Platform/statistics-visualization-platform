@@ -37,13 +37,20 @@ export function anova(controls: ControlMap, seed: number): SimulationResult {
   const dfWithin = all.length - groups.length;
   const msBetween = ssBetween / dfBetween;
   const msWithin = ssWithin / dfWithin;
-  const f = msWithin <= Number.EPSILON ? 0 : msBetween / msWithin;
-  const pValue = 1 - jStat.centralF.cdf(f, dfBetween, dfWithin);
+  const hasWithinGroupVariation = msWithin > Number.EPSILON;
+  const hasBetweenGroupVariation = msBetween > Number.EPSILON;
+  const f = hasWithinGroupVariation
+    ? msBetween / msWithin
+    : hasBetweenGroupVariation
+      ? Number.POSITIVE_INFINITY
+      : 0;
+  const pValue = Number.isFinite(f) ? 1 - jStat.centralF.cdf(f, dfBetween, dfWithin) : 0;
+  const formattedF = Number.isFinite(f) ? formatNumber(f, 4) : "∞";
   return result(
     "ANOVA summary",
     "The table partitions variability into between-group and within-group components.",
     [
-      { label: "F statistic", value: formatNumber(f, 4), detail: "MS between / MS within" },
+      { label: "F statistic", value: formattedF, detail: "MS between / MS within" },
       { label: "p value", value: formatNumber(pValue, 4), detail: `F(${dfBetween}, ${dfWithin}) tail area` },
       { label: "grand mean", value: formatNumber(grandMean, 4), detail: `${all.length} observations` },
       { label: "groups", value: String(groups.length), detail: dataset }
@@ -62,7 +69,7 @@ export function anova(controls: ControlMap, seed: number): SimulationResult {
     {
       columns: ["Source", "Df", "Sum Sq", "Mean Sq", "F"],
       rows: [
-        ["Between groups", dfBetween, formatNumber(ssBetween, 4), formatNumber(msBetween, 4), formatNumber(f, 4)],
+        ["Between groups", dfBetween, formatNumber(ssBetween, 4), formatNumber(msBetween, 4), formattedF],
         ["Within groups", dfWithin, formatNumber(ssWithin, 4), formatNumber(msWithin, 4), ""]
       ]
     }
@@ -79,7 +86,8 @@ export function confidenceInterval(controls: ControlMap, seed: number): Simulati
   // Student-t critical value, matching the standalone confidence-interval app.
   const sigmaKnown = str(controls, "sigmaKnown", "true") === "true";
   const sampleSize = sigmaKnown ? requestedSampleSize : Math.max(2, requestedSampleSize);
-  const confidenceLevel = num(controls, "confidenceLevel", 0.95);
+  const rawConfidenceLevel = Number(controls.confidenceLevel ?? 0.95);
+  const confidenceLevel = Number.isFinite(rawConfidenceLevel) ? rawConfidenceLevel : 0.95;
   // Each interval is built from a FRESH random sample of size n drawn from
   // N(mu, sigma). This is genuine repeated sampling (the old version used
   // three user-entered means and did not actually simulate), so observed

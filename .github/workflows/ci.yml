@@ -1,0 +1,60 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main, master]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  platform:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .node-version
+          cache: npm
+      - uses: actions/cache@v4
+        with:
+          path: .runtime-cache
+          key: browser-runtimes-${{ runner.os }}-${{ hashFiles('package-lock.json', 'scripts/sync-browser-runtimes.mjs') }}
+      - run: npm ci
+      - run: npm run check
+      - run: npm run build
+      - run: npx --yes npm@11.6.2 audit --registry=https://registry.npmjs.org --audit-level=high
+
+  question-bank:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: integrations/st-qselector/Program
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .node-version
+          cache: npm
+          cache-dependency-path: integrations/st-qselector/Program/package-lock.json
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: npm ci
+      - run: npm run lint
+      - run: npm run typecheck
+      - run: npm test
+      - name: Validate reviewed question release
+        working-directory: integrations/st-qselector
+        run: |
+          python -m unittest discover -s tests -v
+          python scripts/validate_release.py
+      - run: npm run build:cloudflare
+      - run: npm run test:build-artifacts
+      - run: npx wrangler deploy --dry-run
+      - run: npx --yes npm@11.6.2 audit --registry=https://registry.npmjs.org --audit-level=high

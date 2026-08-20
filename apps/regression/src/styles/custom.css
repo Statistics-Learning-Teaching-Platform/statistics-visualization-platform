@@ -144,7 +144,7 @@ select {
 }
 
 .lesson-label,
-.metric-label {
+.regression-app .metric-label {
   font-size: 0.8rem;
   font-weight: 700;
   text-transform: uppercase;
@@ -193,14 +193,14 @@ select {
 }
 
 .lesson-stat-value,
-.metric-value {
+.regression-app .metric-value {
   display: block;
   margin-top: 0.25rem;
   color: #0f172a;
   font-weight: 700;
 }
 
-.metric-value--compact {
+.regression-app .metric-value--compact {
   font-size: 0.9rem;
   line-height: 1.35;
 }
@@ -649,7 +649,7 @@ select {
   overflow: auto;
 }
 
-.metrics-grid {
+.regression-app .metrics-grid {
   display: grid;
   grid-template-columns: 1fr;
   gap: 10px;
@@ -749,7 +749,7 @@ select {
   font-size: 12px;
 }
 
-.metrics-grid {
+.regression-app .metrics-grid {
   border-top: 1px solid #e0e7e5;
   padding-top: 12px;
 }
@@ -998,7 +998,7 @@ body {
     height: 100%;
   }
 
-  .metrics-grid {
+  .regression-app .metrics-grid {
     min-height: 0;
     padding-top: 10px;
   }
@@ -1327,7 +1327,7 @@ body {
     height: 100%;
   }
 
-  .metrics-grid {
+  .regression-app .metrics-grid {
     min-height: 0;
     padding-top: 10px;
   }
@@ -1494,7 +1494,7 @@ body {
   height: 100%;
 }
 
-.metrics-grid {
+.regression-app .metrics-grid {
   min-height: 0;
   padding-top: 10px;
 }
@@ -1847,7 +1847,7 @@ body {
   pointer-events: none;
 }
 
-.metrics-grid {
+.regression-app .metrics-grid {
   min-height: 0;
   padding-top: 10px;
 }
@@ -2022,26 +2022,26 @@ body {
     linear-gradient(180deg, rgba(255, 253, 248, 0.94), rgba(255, 250, 241, 0.96));
 }
 
-.metrics-grid {
+.regression-app .metrics-grid {
   gap: 12px;
   padding-top: 18px;
   border-top: 1px solid rgba(90, 80, 60, 0.1);
 }
 
 .statistics-panel,
-.metric-card {
+.regression-app .metric-card {
   border-color: rgba(90, 80, 60, 0.1);
   border-radius: 18px;
   background: rgba(255, 253, 248, 0.76);
   box-shadow: none;
 }
 
-.metric-label,
+.regression-app .metric-label,
 .lesson-label {
   color: var(--lavender);
 }
 
-.metric-value,
+.regression-app .metric-value,
 .lesson-title {
   color: var(--text-primary);
   font-family: Georgia, "Times New Roman", serif;
@@ -2226,7 +2226,7 @@ body {
     height: 100%;
   }
 
-  .metrics-grid {
+  .regression-app .metrics-grid {
     min-height: 0;
     padding-top: 10px;
   }

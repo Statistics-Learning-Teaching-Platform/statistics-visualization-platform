@@ -11,6 +11,8 @@ import json
 from pathlib import Path
 from typing import Any
 
+from review_schema import sha256_text, stamp_approved_review
+
 
 ROOT = Path(__file__).resolve().parents[1]
 FORMED = ROOT / "Data" / "Formed"
@@ -22,6 +24,19 @@ def load(path: Path) -> dict[str, Any]:
 
 def write(path: Path, value: dict[str, Any]) -> None:
     path.write_text(json.dumps(value, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+
+
+def require_current_hash(record: dict[str, Any], field: str, actual: str, qid: str) -> None:
+    allowed = {
+        str(record.get(f"expected_{field}_hash") or ""),
+        str(record.get(f"reviewed_{field}_hash") or ""),
+    } - {""}
+    if not allowed:
+        raise ValueError(f"{qid}: review pack is missing {field} hash preconditions")
+    if actual not in allowed:
+        raise ValueError(
+            f"{qid}: {field} hash changed since review; expected one of {sorted(allowed)}, got {actual}"
+        )
 
 
 def main() -> None:
@@ -58,6 +73,11 @@ def main() -> None:
                 if decision == "delete":
                     continue
                 raise KeyError(f"{qid} not found in {question_path}")
+            question = question_map[qid]
+            answer = answer_map.get(qid)
+            require_current_hash(record, "question", sha256_text(str(question.get("content") or "")), qid)
+            if answer is not None:
+                require_current_hash(record, "answer", sha256_text(str(answer.get("answer") or "")), qid)
             if decision == "delete":
                 questions["questions"] = [item for item in questions["questions"] if item["id"] != qid]
                 answers["answers"] = [item for item in answers["answers"] if item["id"] != qid]
@@ -66,8 +86,6 @@ def main() -> None:
                 deleted += 1
                 continue
 
-            question = question_map[qid]
-            answer = answer_map.get(qid)
             if answer is None:
                 raise KeyError(f"{qid} has no answer record")
             for source_key, target_key in (
@@ -82,11 +100,18 @@ def main() -> None:
                     question[target_key] = record[source_key]
             if "clean_answer" in record:
                 answer["answer"] = record["clean_answer"]
+            reviewed_question_hash = sha256_text(str(question.get("content") or ""))
+            reviewed_answer_hash = sha256_text(str(answer.get("answer") or ""))
+            if reviewed_question_hash != record.get("reviewed_question_hash"):
+                raise ValueError(f"{qid}: review pack output question hash does not match clean_question")
+            if reviewed_answer_hash != record.get("reviewed_answer_hash"):
+                raise ValueError(f"{qid}: review pack output answer hash does not match clean_answer")
             review_status = record.get("review_status", "independently solved and reviewed")
             question["review_status"] = review_status
             question["audit_pack"] = pack["pack_id"]
             answer["review_status"] = review_status
             answer["audit_pack"] = pack["pack_id"]
+            stamp_approved_review(question, answer, pack_id=pack["pack_id"])
             reviewed += 1
 
         write(question_path, questions)

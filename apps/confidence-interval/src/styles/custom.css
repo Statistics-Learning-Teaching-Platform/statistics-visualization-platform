@@ -90,7 +90,7 @@ body {
 .module-intro,
 .experiment-panel,
 .teaching-panel,
-.metric-card {
+.confidence-interval-app .metric-card {
   border: 1px solid rgba(148, 163, 184, 0.28);
   border-radius: 10px;
   background: rgba(255, 255, 255, 0.9);
@@ -150,13 +150,13 @@ body {
   overflow: auto;
 }
 
-.metrics-grid {
+.confidence-interval-app .metrics-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
   gap: 10px;
 }
 
-.metric-card {
+.confidence-interval-app .metric-card {
   display: grid;
   gap: 5px;
   min-height: 92px;
@@ -274,7 +274,7 @@ body {
   font-size: 12px;
 }
 
-.metrics-grid {
+.confidence-interval-app .metrics-grid {
   border-top: 1px solid #e0e7e5;
   padding-top: 12px;
 }
@@ -582,7 +582,7 @@ body {
 
 .chart-card,
 .explanation-card,
-.metric-card {
+.confidence-interval-app .metric-card {
   border-radius: 1rem;
   background: rgba(255, 255, 255, 0.94);
   border: 1px solid rgba(148, 163, 184, 0.18);
@@ -666,11 +666,11 @@ body {
   margin-top: 1.5rem;
 }
 
-.metric-card {
+.confidence-interval-app .metric-card {
   padding: 0.95rem 1rem;
 }
 
-.metric-label {
+.confidence-interval-app .metric-label {
   display: block;
   color: #64748b;
   font-size: 0.8rem;
@@ -678,7 +678,7 @@ body {
   letter-spacing: 0.05em;
 }
 
-.metric-value {
+.confidence-interval-app .metric-value {
   display: block;
   margin-top: 0.25rem;
   color: #0f172a;
@@ -686,7 +686,7 @@ body {
   font-size: 1.15rem;
 }
 
-.metric-note {
+.confidence-interval-app .metric-note {
   display: block;
   margin-top: 0.4rem;
   color: #64748b;
@@ -1006,7 +1006,7 @@ select {
 .module-description,
 .output-heading p,
 .teaching-panel p,
-.metric-note {
+.confidence-interval-app .metric-note {
   color: var(--text-secondary);
   font-size: 15px;
   line-height: 1.6;
@@ -1190,7 +1190,7 @@ select {
   line-height: 1.45;
 }
 
-.metrics-grid {
+.confidence-interval-app .metrics-grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(140px, 1fr));
   gap: 12px;
@@ -1198,7 +1198,7 @@ select {
   border-top: 1px solid rgba(90, 80, 60, 0.1);
 }
 
-.metric-card {
+.confidence-interval-app .metric-card {
   display: grid;
   gap: 5px;
   min-height: 94px;
@@ -1209,7 +1209,7 @@ select {
   box-shadow: none;
 }
 
-.metric-label {
+.confidence-interval-app .metric-label {
   color: var(--lavender);
   font-size: 11px;
   font-weight: 850;
@@ -1217,7 +1217,7 @@ select {
   text-transform: uppercase;
 }
 
-.metric-value {
+.confidence-interval-app .metric-value {
   color: var(--text-primary);
   font-family: Georgia, "Times New Roman", serif;
   font-size: 27px;
@@ -1425,7 +1425,7 @@ select {
     grid-template-columns: minmax(0, 1fr) 320px;
   }
 
-  .metrics-grid {
+  .confidence-interval-app .metrics-grid {
     grid-template-columns: repeat(2, minmax(140px, 1fr));
   }
 }
@@ -1474,7 +1474,7 @@ select {
     border-radius: 22px;
   }
 
-  .metrics-grid,
+  .confidence-interval-app .metrics-grid,
   .studio-control-bar__buttons {
     grid-template-columns: 1fr;
   }
@@ -1512,7 +1512,7 @@ select {
 .module-description,
 .output-heading p,
 .teaching-panel p,
-.metric-note {
+.confidence-interval-app .metric-note {
   font-size: 14px;
   line-height: 1.5;
 }
@@ -1555,18 +1555,18 @@ select {
   max-width: none;
 }
 
-.metrics-grid {
+.confidence-interval-app .metrics-grid {
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 10px;
   padding-top: 14px;
 }
 
-.metric-card {
+.confidence-interval-app .metric-card {
   min-height: 82px;
   padding: 12px;
 }
 
-.metric-value {
+.confidence-interval-app .metric-value {
   font-size: 24px;
 }
 
@@ -1579,7 +1579,7 @@ select {
 }
 
 @media (max-width: 1280px) {
-  .metrics-grid {
+  .confidence-interval-app .metrics-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }

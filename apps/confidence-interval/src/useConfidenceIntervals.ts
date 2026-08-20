@@ -1,5 +1,4 @@
 import { useCallback, useMemo, useState } from "react";
-import { max, min } from "d3";
 import { createRandom, normalRandom } from "@stats-viz/shared/random";
 import {
   createLinearScales,
@@ -12,15 +11,22 @@ import {
 } from "@stats-viz/shared/confidence-interval";
 import { defaultConfig, MAX_CI_SAMPLES, type Sample, type Scales } from "./constants";
 
+export function confidenceIntervalXDomain(samples: Sample[]): [number, number] {
+  const finiteLowerBounds = samples.map((sample) => sample.lower).filter(Number.isFinite);
+  const finiteUpperBounds = samples.map((sample) => sample.upper).filter(Number.isFinite);
+  if (finiteLowerBounds.length === 0 || finiteUpperBounds.length === 0) return [5, 15];
+
+  const observedLower = Math.min(...finiteLowerBounds);
+  const observedUpper = Math.max(...finiteUpperBounds);
+  const padding = Math.max((observedUpper - observedLower) * 0.1, 0.1);
+  return [Math.min(observedLower - padding, 5), Math.max(observedUpper + padding, 15)];
+}
+
 function createScales(layout: ChartLayout, samples: Sample[]): Scales {
-  const xDomain: [number, number] = [5, 15];
+  const xDomain = confidenceIntervalXDomain(samples);
   const yDomain: [number, number] = [0, 1];
   if (samples && samples.length > 0) {
     yDomain[1] = samples.length;
-    const maxValue = max(samples, (d) => d.upper)! * 1.1;
-    const minValue = min(samples, (d) => d.lower)! * 0.9;
-    xDomain[0] = Math.min(minValue, 5);
-    xDomain[1] = Math.max(maxValue, 15);
   }
   return createLinearScales(layout, xDomain, yDomain);
 }
@@ -85,9 +91,9 @@ export function useConfidenceIntervals(): UseConfidenceIntervalsResult {
 
   // Wrap each setter so parameter changes also clear accumulated samples.
   const setSampleSize = useCallback((value: number) => {
-    setSampleSizeState(value);
+    setSampleSizeState(sigmaKnown ? value : Math.max(2, value));
     reset();
-  }, [reset]);
+  }, [reset, sigmaKnown]);
   const setPopulationSD = useCallback((value: number) => {
     setPopulationSDState(value);
     reset();
@@ -98,6 +104,7 @@ export function useConfidenceIntervals(): UseConfidenceIntervalsResult {
   }, [reset]);
   const setSigmaKnown = useCallback((value: boolean) => {
     setSigmaKnownState(value);
+    if (!value) setSampleSizeState((current) => Math.max(2, current));
     reset();
   }, [reset]);
 

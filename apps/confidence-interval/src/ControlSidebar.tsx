@@ -69,7 +69,7 @@ export function ControlSidebar({
                 id="sampleSize"
                 type="range"
                 className="form-range control-panel__input"
-                min={1}
+                min={sigmaKnown ? 1 : 2}
                 max={100}
                 value={sampleSize}
                 onChange={(e) => onSampleSize(Number(e.target.value))}

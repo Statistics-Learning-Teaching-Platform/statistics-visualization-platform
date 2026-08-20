@@ -22,6 +22,11 @@ export default defineConfig({
     // build paths. Keep them out of deployment artifacts.
     sourcemap: false,
   },
+  // Pyodide's worker uses split ESM imports, which cannot be emitted in
+  // Vite's default IIFE worker format.
+  worker: {
+    format: "es",
+  },
   test: {
     // jsdom so component render tests have a DOM; Node APIs (fs, process)
     // remain available, so the file-based inventory tests still pass.

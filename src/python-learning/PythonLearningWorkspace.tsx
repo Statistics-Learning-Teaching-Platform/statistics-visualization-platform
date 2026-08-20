@@ -1,7 +1,13 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { setLanguage, useLanguage } from "@stats-viz/shared/i18n";
 import { pythonLessonUnits, pythonLessons } from "./lessons";
-import { checkPythonCode, resetPythonSession, runPythonCode } from "./pyodideRuntime";
+import {
+  checkPythonCode,
+  disposePythonRuntime,
+  resetPythonSession,
+  runPythonCode,
+} from "./pyodideRuntime";
+import { authenticatedFetch } from "../authenticatedFetch";
 import { createMessageId, resolveCodeLearningContext } from "../code-learning/context";
 import { loadLearningProgress, saveCodeLessonProgress } from "../course/progressStore";
 import { LessonSidebar } from "../code-learning/LessonSidebar";
@@ -167,6 +173,12 @@ export function PythonLearningWorkspace() {
   const lessonWorkspaceRef = useRef<HTMLElement>(null);
   const outputSidebarRef = useRef<HTMLElement>(null);
   const tutorMessagesRef = useRef<HTMLDivElement>(null);
+  const mountedRef = useRef(true);
+  const viewEpochRef = useRef(0);
+  const executionBusyRef = useRef(false);
+  const tutorBusyRef = useRef(false);
+  const tutorEpochRef = useRef(0);
+  const tutorAbortRef = useRef<AbortController | null>(null);
 
   const activeLesson = useMemo(
     () => pythonLessons.find((lesson) => lesson.id === activeId) ?? pythonLessons[0],
@@ -178,7 +190,18 @@ export function PythonLearningWorkspace() {
 
   useEffect(() => {
     saveCodeLessonProgress("python", completed, completed.includes(activeLesson.id) ? activeLesson.topicId : undefined, window.location.pathname + window.location.search);
-  }, [activeLesson.topicId, completed]);
+  }, [activeLesson.id, activeLesson.topicId, completed]);
+
+  useEffect(() => {
+    mountedRef.current = true;
+    return () => {
+      mountedRef.current = false;
+      viewEpochRef.current += 1;
+      tutorEpochRef.current += 1;
+      tutorAbortRef.current?.abort();
+      disposePythonRuntime();
+    };
+  }, []);
 
   useEffect(() => {
     const messages = tutorMessagesRef.current;
@@ -186,7 +209,16 @@ export function PythonLearningWorkspace() {
   }, [tutorMessages, tutorStatus]);
 
   function selectLesson(id: string) {
+    if (id === activeLesson.id) return;
+    viewEpochRef.current += 1;
+    executionBusyRef.current = false;
+    disposePythonRuntime();
+    tutorEpochRef.current += 1;
+    tutorAbortRef.current?.abort();
+    tutorAbortRef.current = null;
+    tutorBusyRef.current = false;
     setActiveId(id);
+    setEngineStatus("idle");
     setShowHint(false);
     setShowSolution(false);
     setReview({ kind: "idle", message: "" });
@@ -197,18 +229,26 @@ export function PythonLearningWorkspace() {
     setTutorPrompt("");
     setTutorMessages([]);
     setTutorStatus("idle");
-    lessonWorkspaceRef.current?.scrollTo({ top: 0 });
-    outputSidebarRef.current?.scrollTo({ top: 0 });
+    lessonWorkspaceRef.current?.scrollTo?.({ top: 0 });
+    outputSidebarRef.current?.scrollTo?.({ top: 0 });
   }
 
   async function execute(shouldCheck: boolean) {
+    if (executionBusyRef.current) return;
+    executionBusyRef.current = true;
+    const viewEpoch = viewEpochRef.current;
+    const lesson = activeLesson;
+    const sourceCode = code;
+    const lessonLanguage = language;
+    const isCurrentView = () => mountedRef.current && viewEpochRef.current === viewEpoch;
     setEngineStatus(engineStatus === "idle" ? "loading" : "running");
     setReview({ kind: "idle", message: "" });
     setConsoleLines([]);
     if (!shouldCheck) setOutputTab("console");
 
     try {
-      const result = await runPythonCode(code);
+      const result = await runPythonCode(sourceCode);
+      if (!isCurrentView()) return;
       setEngineStatus("ready");
       setConsoleLines(result.console.length ? result.console : ["Code completed without printed output."]);
       setPlot(result.plotUrl);
@@ -216,28 +256,37 @@ export function PythonLearningWorkspace() {
 
       if (result.plotUrl && !shouldCheck) setOutputTab("plot");
       if (shouldCheck) {
-        const passed = await checkPythonCode(activeLesson.checkCode);
+        const passed = await checkPythonCode(lesson.checkCode);
+        if (!isCurrentView()) return;
         if (passed) {
-          setCompleted((current) => current.includes(activeLesson.id) ? current : [...current, activeLesson.id]);
-          setReview({ kind: "success", message: activeLesson.success[language] });
+          setCompleted((current) => current.includes(lesson.id) ? current : [...current, lesson.id]);
+          setReview({ kind: "success", message: lesson.success[lessonLanguage] });
         } else {
           setReview({ kind: "failure", message: t.failed });
         }
         setOutputTab("review");
       }
     } catch (error) {
+      if (!isCurrentView()) return;
       const message = error instanceof Error ? error.message : String(error);
       setEngineStatus("error");
       setConsoleLines([message]);
       setReview({ kind: "failure", message: t.runtimeError });
       setOutputTab("console");
+    } finally {
+      if (viewEpochRef.current === viewEpoch) executionBusyRef.current = false;
     }
   }
 
   async function clearSession() {
+    if (executionBusyRef.current) return;
+    executionBusyRef.current = true;
+    const viewEpoch = viewEpochRef.current;
+    const isCurrentView = () => mountedRef.current && viewEpochRef.current === viewEpoch;
     setEngineStatus(engineStatus === "idle" ? "loading" : "running");
     try {
       await resetPythonSession();
+      if (!isCurrentView()) return;
       setEngineStatus("ready");
       setConsoleLines([t.cleared]);
       setPlot(null);
@@ -245,15 +294,30 @@ export function PythonLearningWorkspace() {
       setReview({ kind: "idle", message: "" });
       setOutputTab("console");
     } catch (error) {
+      if (!isCurrentView()) return;
       setEngineStatus("error");
       setConsoleLines([error instanceof Error ? error.message : String(error)]);
+    } finally {
+      if (viewEpochRef.current === viewEpoch) executionBusyRef.current = false;
     }
   }
 
   async function askTutor(suggestedQuestion?: string) {
     const question = (suggestedQuestion ?? tutorPrompt).trim();
-    if (!question || tutorStatus === "asking") return;
+    if (!question || tutorBusyRef.current) return;
 
+    tutorBusyRef.current = true;
+    const tutorEpoch = ++tutorEpochRef.current;
+    const controller = new AbortController();
+    tutorAbortRef.current?.abort();
+    tutorAbortRef.current = controller;
+    const viewEpoch = viewEpochRef.current;
+    const lesson = activeLesson;
+    const sourceCode = code;
+    const requestLanguage = language;
+    const isCurrentRequest = () => mountedRef.current
+      && tutorEpochRef.current === tutorEpoch
+      && viewEpochRef.current === viewEpoch;
     const userMessage: TutorMessage = { id: createMessageId(), role: "user", content: question };
     const history = tutorMessages.map(({ role, content }) => ({ role, content }));
     setTutorMessages((current) => [...current, userMessage]);
@@ -261,26 +325,27 @@ export function PythonLearningWorkspace() {
     setTutorStatus("asking");
 
     try {
-      const response = await fetch("/st-qselector/api/ai/python-tutor", {
+      const response = await authenticatedFetch("/st-qselector/api/ai/python-tutor", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
+        signal: controller.signal,
         body: JSON.stringify({
-          topicId: activeLesson.topicId,
-          lessonId: activeLesson.id,
-          learningObjective: activeLesson.objective[language],
+          topicId: lesson.topicId,
+          lessonId: lesson.id,
+          learningObjective: lesson.objective[requestLanguage],
           currentParameters: learningContext.currentParameters,
-          currentCode: code,
+          currentCode: sourceCode,
           consoleOutput: consoleLines,
           chartSummary: plot ? "The latest run produced a Python plot." : "No plot has been produced.",
-          language,
+          language: requestLanguage,
           question,
           lesson: {
-            title: activeLesson.title[language],
-            objective: activeLesson.objective[language],
-            task: activeLesson.task[language],
-            concepts: activeLesson.concepts,
+            title: lesson.title[requestLanguage],
+            objective: lesson.objective[requestLanguage],
+            task: lesson.task[requestLanguage],
+            concepts: lesson.concepts,
           },
-          code,
+          code: sourceCode,
           console: consoleLines,
           review: review.message,
           history,
@@ -288,17 +353,24 @@ export function PythonLearningWorkspace() {
       });
       const payload = await response.json() as { answer?: string; error?: string };
       if (!response.ok || !payload.answer) throw new Error(payload.error || "AI request failed");
+      if (!isCurrentRequest()) return;
       setTutorMessages((current) => [
         ...current,
         { id: createMessageId(), role: "assistant", content: payload.answer as string },
       ]);
       setTutorStatus("idle");
     } catch {
+      if (!isCurrentRequest() || controller.signal.aborted) return;
       setTutorMessages((current) => [
         ...current,
         { id: createMessageId(), role: "assistant", content: t.tutorError },
       ]);
       setTutorStatus("error");
+    } finally {
+      if (tutorEpochRef.current === tutorEpoch) {
+        tutorBusyRef.current = false;
+        tutorAbortRef.current = null;
+      }
     }
   }
 
@@ -339,7 +411,14 @@ export function PythonLearningWorkspace() {
       </header>
 
       <div className="r-learning-layout">
-        <LessonSidebar label={t.lessons} lessons={pythonLessons} units={pythonLessonUnits} activeLessonId={activeLesson.id} completedLessonIds={completed} onSelect={selectLesson} />
+        <LessonSidebar
+          label={t.lessons}
+          lessons={pythonLessons}
+          units={pythonLessonUnits}
+          activeLessonId={activeLesson.id}
+          completedLessonIds={completed}
+          onSelect={selectLesson}
+        />
 
         <section ref={lessonWorkspaceRef} className="r-lesson-workspace">
           <article className="r-lesson-brief">
@@ -392,7 +471,6 @@ export function PythonLearningWorkspace() {
                   }
                 }}
                 spellCheck={false}
-                wrap="soft"
                 aria-label={t.editor}
               />
             </div>

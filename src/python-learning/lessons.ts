@@ -2,6 +2,62 @@ import type { CodeLesson } from "../code-learning/types";
 
 const normalizeCode = (code: string) => code.replace(/\\n/g, "\n").replace(/\\t/g, "\t");
 
+const trustedCheckNames = new Set([
+  "False", "None", "True", "abs", "all", "and", "bool", "callable", "dict", "float",
+  "for", "getattr", "if", "in", "int", "is", "isinstance", "len", "list", "metadata",
+  "not", "or", "type", "user",
+]);
+
+function isolateCheckCode(checkCode: string): string {
+  if (checkCode.includes("user.get")) return checkCode;
+  const source = normalizeCode(checkCode)
+    .replace(/\bglobals\s*\(\s*\)/g, "user")
+    .replace(/\bhasattr\((\w+),\s*(['"][^'"]+['"])\)/g, "getattr($1, $2, None) is not None");
+  let result = "";
+  let quote: string | null = null;
+  for (let index = 0; index < source.length;) {
+    const character = source[index];
+    if (quote) {
+      result += character;
+      if (character === "\\" && index + 1 < source.length) {
+        result += source[index + 1];
+        index += 2;
+        continue;
+      }
+      if (character === quote) quote = null;
+      index += 1;
+      continue;
+    }
+    if (character === '"' || character === "'") {
+      quote = character;
+      result += character;
+      index += 1;
+      continue;
+    }
+    if (!/[A-Za-z_]/.test(character)) {
+      result += character;
+      index += 1;
+      continue;
+    }
+    let end = index + 1;
+    while (end < source.length && /[A-Za-z0-9_]/.test(source[end])) end += 1;
+    const name = source.slice(index, end);
+    const previous = source.slice(0, index).trimEnd().at(-1);
+    const following = source.slice(end).trimStart();
+    const isExponent = name === "e" && /[0-9.]/.test(previous ?? "") && /^[+-]?\d/.test(following);
+    const isKeywordArgument = following.startsWith("=") && !following.startsWith("==");
+    if (trustedCheckNames.has(name) || previous === "." || isExponent || isKeywordArgument) {
+      result += name;
+    } else if (name === "str") {
+      result += 'type("")';
+    } else {
+      result += `user.get(${JSON.stringify(name)})`;
+    }
+    index = end;
+  }
+  return result;
+}
+
 export type PythonLesson = CodeLesson<"foundations" | "data" | "visualization" | "statistics", "python">;
 
 export const pythonLessonUnits = [
@@ -47,7 +103,7 @@ print(f"Mean score: {mean_score:.2f}")`,
     solution: `scores = [72, 81, 88, 91, 76, 84]
 mean_score = sum(scores) / len(scores)
 print(f"Mean score: {mean_score:.2f}")`,
-    checkCode: `isinstance(scores, list) and scores == [72, 81, 88, 91, 76, 84] and abs(mean_score - sum(scores) / len(scores)) < 1e-12`,
+    checkCode: `type(user.get("scores")) is list and user.get("scores") == [72, 81, 88, 91, 76, 84] and isinstance(user.get("mean_score"), (int, float)) and abs(user.get("mean_score") - 82.0) < 1e-12`,
     success: {
       zh: "完成：列表与样本均值均正确。",
       en: "Complete: the list and sample mean are correct.",
@@ -98,7 +154,7 @@ def z_score(x, mean, sd):
 
 z_scores = [z_score(x, mean, sd) for x in values]
 print(z_scores)`,
-    checkCode: `callable(z_score) and len(z_scores) == 5 and abs(z_scores[2]) < 1e-12 and abs(z_scores[0] + 1.41421356237) < 1e-8`,
+    checkCode: `callable(user.get("z_score")) and type(user.get("z_scores")) is list and len(user.get("z_scores")) == 5 and all(abs(user.get("z_score")(x, 14, 2.8284271247461903) - expected) < 1e-8 for x, expected in [(10, -1.414213562373095), (14, 0.0), (18, 1.414213562373095)])`,
     success: {
       zh: "完成：函数与列表推导式都按预期工作。",
       en: "Complete: the function and list comprehension work as intended.",
@@ -156,7 +212,7 @@ high_scores = students[students["score"] >= 80]
 group_means = students.groupby("group")["score"].mean()
 print(high_scores)
 print(group_means)`,
-    checkCode: `list(high_scores["score"]) == [88, 91, 85] and abs(float(group_means["A"]) - 80.0) < 1e-12 and abs(float(group_means["B"]) - 85.0) < 1e-12`,
+    checkCode: `user.get("high_scores") is not None and list(user.get("high_scores")["score"]) == [88, 91, 85] and list(user.get("high_scores")["group"]) == ["A", "B", "B"] and user.get("group_means") is not None and abs(float(user.get("group_means")["A"]) - 80.0) < 1e-12 and abs(float(user.get("group_means")["B"]) - 85.0) < 1e-12`,
     success: {
       zh: "完成：筛选结果与分组均值均正确。",
       en: "Complete: the filtered rows and grouped means are correct.",
@@ -209,7 +265,7 @@ ax.set_title("Waiting Time Distribution")
 ax.set_xlabel("Minutes")
 ax.set_ylabel("Frequency")
 plt.show()`,
-    checkCode: `'fig' in globals() and 'ax' in globals() and len(ax.patches) == 6 and ax.get_xlabel() == "Minutes"`,
+    checkCode: `metadata["had_plot"] and user.get("fig") is not None and user.get("ax") is not None and len(user.get("ax").patches) == 6 and user.get("ax").get_title() == "Waiting Time Distribution" and user.get("ax").get_xlabel() == "Minutes"`,
     success: {
       zh: "完成：直方图、分组数和标签均正确。",
       en: "Complete: the histogram, bin count, and labels are correct.",
@@ -262,7 +318,7 @@ p_value = float(result.pvalue)
 reject_null = p_value < 0.05
 print(f"t = {t_statistic:.4f}, p = {p_value:.4f}")
 print("Reject H0" if reject_null else "Fail to reject H0")`,
-    checkCode: `'result' in globals() and abs(t_statistic - float(result.statistic)) < 1e-12 and abs(p_value - float(result.pvalue)) < 1e-12 and reject_null == (p_value < 0.05)`,
+    checkCode: `user.get("result") is not None and isinstance(user.get("t_statistic"), (int, float)) and isinstance(user.get("p_value"), (int, float)) and abs(float(getattr(user.get("result"), "statistic", "nan")) - 0.1081024679302992) < 1e-10 and abs(float(getattr(user.get("result"), "pvalue", "nan")) - 0.9169477679596767) < 1e-10 and abs(user.get("t_statistic") - float(getattr(user.get("result"), "statistic", "nan"))) < 1e-12 and abs(user.get("p_value") - float(getattr(user.get("result"), "pvalue", "nan"))) < 1e-12 and user.get("reject_null") is False`,
     success: {
       zh: "完成：检验统计量、p 值与结论均一致。",
       en: "Complete: the statistic, p-value, and conclusion are consistent.",
@@ -317,7 +373,7 @@ intercept = float(model.intercept)
 r_squared = float(model.rvalue ** 2)
 print(f"score = {intercept:.3f} + {slope:.3f} × hours")
 print(f"R² = {r_squared:.3f}")`,
-    checkCode: `'model' in globals() and abs(slope - model.slope) < 1e-12 and abs(intercept - model.intercept) < 1e-12 and abs(r_squared - model.rvalue ** 2) < 1e-12`,
+    checkCode: `user.get("model") is not None and isinstance(user.get("slope"), (int, float)) and isinstance(user.get("intercept"), (int, float)) and isinstance(user.get("r_squared"), (int, float)) and abs(float(getattr(user.get("model"), "slope", "nan")) - 6.514285714285714) < 1e-10 and abs(float(getattr(user.get("model"), "intercept", "nan")) - 44.866666666666674) < 1e-10 and abs(float(getattr(user.get("model"), "rvalue", "nan")) ** 2 - 0.9963710707896754) < 1e-10 and abs(user.get("slope") - float(getattr(user.get("model"), "slope", "nan"))) < 1e-12 and abs(user.get("intercept") - float(getattr(user.get("model"), "intercept", "nan"))) < 1e-12 and abs(user.get("r_squared") - float(getattr(user.get("model"), "rvalue", "nan")) ** 2) < 1e-12`,
     success: {
       zh: "完成：回归系数与决定系数均正确。",
       en: "Complete: the regression coefficients and R-squared are correct.",
@@ -383,7 +439,7 @@ ax.hist(sample_means, bins=25, color="#6f8f7a", edgecolor="white")
 ax.axvline(100, color="#8d75b5", linestyle="--")
 ax.set_xlabel("Sample mean")
 plt.show()`,
-    checkCode: `'samples' in globals() and samples.shape == (1000, 30) and len(sample_means) == 1000 and abs(float(sample_means.mean()) - 100) < 1 and 2.1 < simulated_se < 3.4`,
+    checkCode: `user.get("samples") is not None and user.get("sample_means") is not None and getattr(user.get("samples"), "shape", None) == (1000, 30) and len(user.get("sample_means")) == 1000 and abs(float(user.get("samples").mean()) - 100) < 0.5 and 14 < float(user.get("samples").std(ddof=1)) < 16 and float(abs(user.get("sample_means") - user.get("samples").mean(axis=1)).max()) < 1e-10 and abs(float(user.get("simulated_se")) - float(user.get("sample_means").std(ddof=1))) < 1e-10`,
     success: {
       zh: "完成：1000 次重复抽样与模拟标准误符合理论预期。",
       en: "Complete: the 1,000 repeated samples and simulated standard error agree with theory.",
@@ -690,4 +746,5 @@ export const pythonLessons: PythonLesson[] = rawPythonLessons.map((lesson) => ({
   ...lesson,
   starterCode: normalizeCode(lesson.starterCode),
   solution: normalizeCode(lesson.solution),
+  checkCode: isolateCheckCode(lesson.checkCode),
 }));

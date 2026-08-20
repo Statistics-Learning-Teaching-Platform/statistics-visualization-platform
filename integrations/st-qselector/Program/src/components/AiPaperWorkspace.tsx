@@ -11,7 +11,7 @@ import {
   type PaperBlueprint,
   type PaperQualityReport,
 } from "@/lib/blueprint";
-import { withBasePath } from "@/lib/base-path";
+import { authenticatedFetch } from "@/lib/auth/client";
 
 interface AiPaperWorkspaceProps {
   availableTypes: string[];
@@ -34,6 +34,7 @@ interface HybridCandidate {
   generatedQuestions: Question[];
   report: PaperQualityReport;
   sources: { bank: number; variant: number; generated: number };
+  warning?: string;
 }
 
 function normalizedConceptKey(value: string): string {
@@ -146,7 +147,7 @@ export default function AiPaperWorkspace({
       const form = new FormData();
       if (sourceText.trim()) form.set("text", sourceText.trim());
       if (file) form.set("file", file);
-      const response = await fetch(withBasePath("/api/ai/knowledge"), { method: "POST", body: form });
+      const response = await authenticatedFetch("/api/ai/knowledge", { method: "POST", body: form });
       const result = await response.json() as KnowledgeResponse;
       if (!response.ok) throw new Error(result.error || "课件分析失败");
       const next = prepareConcepts(result.concepts ?? []);
@@ -186,7 +187,7 @@ export default function AiPaperWorkspace({
     setCandidate(null);
     setMessage(null);
     try {
-      const response = await fetch(withBasePath("/api/ai/paper"), {
+      const response = await authenticatedFetch("/api/ai/paper", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ blueprint, variantPercent }),
@@ -195,7 +196,8 @@ export default function AiPaperWorkspace({
       if (!response.ok) throw new Error(result.error || "AI 组卷失败");
       setCandidate(result);
       setAcceptedCandidateIds(new Set(result.questions.filter((question) => (question.origin ?? "bank") === "bank").map((question) => question.id)));
-      setMessage(`已生成 ${result.sources.bank + result.sources.variant + result.sources.generated} 个选题单元：题库 ${result.sources.bank}、母题变式 ${result.sources.variant}、全新生成 ${result.sources.generated}。`);
+      const summary = `已生成 ${result.sources.bank + result.sources.variant + result.sources.generated} 个选题单元：题库 ${result.sources.bank}、母题变式 ${result.sources.variant}、全新生成 ${result.sources.generated}。`;
+      setMessage(result.warning ? `${result.warning} ${summary}` : summary);
     } catch (error) {
       setMessage(error instanceof Error ? error.message : "AI 组卷失败");
     } finally {
@@ -216,19 +218,17 @@ export default function AiPaperWorkspace({
       const acceptedGenerated = candidate.generatedQuestions.filter((question) => acceptedCandidateIds.has(question.id));
       let transient = acceptedGenerated;
       if (acceptedGenerated.length) {
-        const response = await fetch(withBasePath("/api/questions/import-generated"), {
+        const response = await authenticatedFetch("/api/questions/import-generated", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ questions: acceptedGenerated, teacherConfirmedIds: acceptedGenerated.map((question) => question.id) }),
+          body: JSON.stringify({ ids: acceptedGenerated.map((question) => question.id) }),
         });
-        const result = await response.json() as { imported?: number; reused?: number; idMap?: Record<string, string>; persisted?: boolean; error?: string };
+        const result = await response.json() as { imported?: number; reused?: number; idMap?: Record<string, string>; questions?: Question[]; persisted?: boolean; error?: string };
         if (!response.ok) throw new Error(result.error || "AI 题目入库失败");
         const idMap = result.idMap ?? {};
         ids = ids.map((id) => idMap[id] ?? id);
-        transient = acceptedGenerated.filter((question) => (idMap[question.id] ?? question.id) === question.id);
-        setMessage(result.persisted === false
-          ? `试卷已采用；${result.imported ?? 0} 道 AI 题已保存到本浏览器题库，${result.reused ?? 0} 道与现有题重复并复用原题。`
-          : `试卷已采用；${result.imported ?? 0} 道 AI 题已写入正式题库，${result.reused ?? 0} 道与现有题重复并复用原题。`);
+        transient = Array.isArray(result.questions) ? result.questions : [];
+        setMessage(`试卷已采用；${result.imported ?? 0} 道 AI 题已写入当前账号的待审核区，${result.reused ?? 0} 道与正式题库重复并复用原题。`);
       } else {
         setMessage("试卷已采用，本次全部使用已审核题库原题。");
       }
@@ -247,7 +247,7 @@ export default function AiPaperWorkspace({
         <div>
           <span><Sparkles /> AI 辅助层 · 与传统筛选共用同一试卷篮</span>
           <h2>统一组卷蓝图</h2>
-          <p>题库原题优先；数量不足时生成母题变式，缺失知识点时生成全新题。教师采用后 AI 题才进入正式题库。</p>
+          <p>题库原题优先；数量不足时生成母题变式，缺失知识点时生成全新题。AI 二次校验不等同于独立人工审核，采用后只进入当前账号的待审核区。</p>
         </div>
       </header>
 
@@ -297,7 +297,7 @@ export default function AiPaperWorkspace({
           <section className="qb-ai-section">
             <div className="qb-ai-section__title"><span>03</span><div><h3>设置组卷约束</h3><p>AI 建议和手动筛选最终汇入同一蓝图</p></div></div>
             <div className="qb-ai-controls">
-              <label><span>题目数量</span><input type="number" min="1" max="60" value={targetCount} onChange={(event) => { setTargetCount(Number(event.target.value)); setCandidate(null); }} /></label>
+              <label><span>题目数量</span><input type="number" min="1" max="60" value={targetCount} onChange={(event) => { setTargetCount(Math.max(1, Math.min(60, Number(event.target.value) || 1))); setCandidate(null); }} /></label>
               <label><span>目标难度</span><input type="range" min="1" max="5" step="1" value={targetDifficulty} onChange={(event) => { setTargetDifficulty(Number(event.target.value)); setCandidate(null); }} /><em>{"★".repeat(targetDifficulty)}</em></label>
               <label><span>预计完成时间</span><input type="number" min="10" max="300" value={estimatedMinutes} onChange={(event) => { setEstimatedMinutes(Number(event.target.value)); setCandidate(null); }} /><em>分钟</em></label>
               <label><span>母题变式/新题比例</span><input type="range" min="0" max="70" step="10" value={variantPercent} onChange={(event) => { setVariantPercent(Number(event.target.value)); setCandidate(null); }} /><em>{variantPercent}%</em></label>

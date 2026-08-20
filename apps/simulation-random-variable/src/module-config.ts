@@ -111,7 +111,7 @@ export const moduleConfig: ModuleConfig = {
           "id": "alpha",
           "label": "Gamma alpha",
           "type": "number",
-          "min": 0.5,
+          "min": 0.1,
           "max": 5,
           "step": 0.1,
           "defaultValue": 2

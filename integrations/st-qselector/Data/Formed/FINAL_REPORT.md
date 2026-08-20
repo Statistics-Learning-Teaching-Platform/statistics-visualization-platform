@@ -1,5 +1,9 @@
 # 题目转换最终报告
 
+> 历史快照：本文档记录早期原始转换阶段，不代表当前发布题库的数量或审核状态。
+> 当前发布真值请以 `Data/Audit/AUDIT_BASELINE.md` 与
+> `python3 scripts/validate_release.py` 的校验结果为准。
+
 ## 修复的 Parser Bug
 
 ### 1. 嵌套子列表误识别为顶级题目

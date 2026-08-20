@@ -47,38 +47,67 @@ export function randomExponential(controls: ControlMap, seed: number): Simulatio
 export function gammaRejection(controls: ControlMap, seed: number): SimulationResult {
   const rng = createRandom(seed);
   const n = Math.max(1, Math.round(num(controls, "sampleSize", 2000)));
-  const alpha = Math.max(0.5, num(controls, "alpha", 2));
+  const alpha = Math.max(0.1, num(controls, "alpha", 2));
   const beta = Math.max(0.2, num(controls, "beta", 1));
-  // Bounded support covering ~all of the Gamma(alpha, beta) mass.
-  const xMax = alpha / beta + (6 * Math.sqrt(alpha)) / beta;
-  // Unnormalized Gamma(alpha, beta) density on [0, xMax].
-  const density = (x: number) => (x > 0 ? Math.pow(x, alpha - 1) * Math.exp(-beta * x) : 0);
-  // Domination constant via a uniform proposal g(x) = 1/xMax: take
-  // M = fMax * xMax so that f(x) <= M * g(x) everywhere on the support. The
-  // acceptance probability is then f(x) / (M * g(x)) = f(x) / fMax, which is
-  // <= 1 by construction — unlike a clamped ratio this never silently biases
-  // the sample toward under-enveloped regions.
-  const grid = Array.from({ length: 512 }, (_, i) => density((i / 511) * xMax));
-  const fMax = Math.max(Number.EPSILON, ...grid);
+
+  // Both branches are exact rejection samplers on the full positive support.
+  // A uniform envelope cannot dominate Gamma(alpha, beta) when alpha < 1,
+  // because its density is unbounded at zero. The GS algorithm handles that
+  // case; Marsaglia-Tsang handles alpha >= 1. Values are sampled at rate 1 and
+  // then divided by beta.
+  const drawShapeUnitRate = (): { value: number; proposals: number } => {
+    if (alpha < 1) {
+      const envelope = (Math.E + alpha) / Math.E;
+      let proposals = 0;
+      while (true) {
+        proposals += 1;
+        const p = envelope * rng();
+        if (p <= 1) {
+          const x = Math.pow(p, 1 / alpha);
+          if (rng() <= Math.exp(-x)) return { value: x, proposals };
+        } else {
+          const x = -Math.log((envelope - p) / alpha);
+          if (rng() <= Math.pow(x, alpha - 1)) return { value: x, proposals };
+        }
+      }
+    }
+
+    const d = alpha - 1 / 3;
+    const c = 1 / Math.sqrt(9 * d);
+    let proposals = 0;
+    while (true) {
+      proposals += 1;
+      const z = normalRandom(rng);
+      const base = 1 + c * z;
+      if (base <= 0) continue;
+      const v = base ** 3;
+      const u = Math.max(rng(), Number.EPSILON);
+      if (
+        u < 1 - 0.0331 * z ** 4
+        || Math.log(u) < 0.5 * z * z + d * (1 - v + Math.log(v))
+      ) {
+        return { value: d * v, proposals };
+      }
+    }
+  };
+
   const accepted: number[] = [];
   let proposals = 0;
   while (accepted.length < n) {
-    proposals += 1;
-    const proposal = rng() * xMax; // uniform proposal on [0, xMax]
-    if (rng() <= density(proposal) / fMax) {
-      accepted.push(proposal);
-    }
+    const draw = drawShapeUnitRate();
+    proposals += draw.proposals;
+    accepted.push(draw.value / beta);
   }
   const acceptedMean = accepted.length ? mean(accepted) : 0;
   return {
     ...result(
     "Acceptance-rejection preview",
-    "A uniform proposal on a finite interval is accepted in proportion to the gamma density. The chart is a truncated approximation; the interval extends six standard deviations beyond the mean.",
+    "An exact rejection sampler targets the full positive gamma support. A shape-specific envelope keeps the method valid even when alpha is below one and the density is unbounded at zero.",
     [
       { label: "accepted", value: String(accepted.length), detail: `${proposals} candidates` },
       { label: "acceptance rate", value: formatNumber(accepted.length / proposals, 4), detail: "accepted / candidates" },
       { label: "accepted mean", value: formatNumber(acceptedMean, 4), detail: `gamma mean ${formatNumber(alpha / beta, 4)}` },
-      { label: "proposal support", value: `[0, ${formatNumber(xMax, 2)}]`, detail: "finite envelope used in this preview" }
+      { label: "proposal support", value: "(0, ∞)", detail: alpha < 1 ? "GS envelope" : "Marsaglia-Tsang envelope" }
     ],
     { type: "bars", title: "Accepted sample histogram", xLabel: "bin center", yLabel: "count", bars: histogram(accepted) }
     ),

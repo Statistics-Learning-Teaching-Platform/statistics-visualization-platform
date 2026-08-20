@@ -435,7 +435,7 @@ export const typeErrorCopy = {
     lowPower: "This setting has low power, which makes Type II errors common even when a real effect exists.",
     closeTrueMean: "The true mean is still close to the null mean, so the two curves overlap heavily.",
     strictAlpha: "A strict alpha protects against false positives, but it can widen the acceptance region and raise beta.",
-    largerAlpha: "A larger alpha lowers beta here, but the blue Type I region also expands.",
+    largerAlpha: "A larger alpha lowers beta here, but the shaded Type I region also expands.",
     formula: "Formula",
     howToReadThis: "How to read this",
     currentHypotheses: "Current hypotheses",

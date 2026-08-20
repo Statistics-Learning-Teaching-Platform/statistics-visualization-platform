@@ -20,7 +20,9 @@ function drawPopulationValue(rng: () => number, shape: string): number {
   }
 
   if (shape === "skewed") {
-    return (exponentialRandom(rng, 1.25) - 0.8) * 1.25;
+    // Standardized Gamma(shape=2, rate=1): still right-skewed, but visibly
+    // distinct from the centered exponential option (skewness sqrt(2) vs 2).
+    return (exponentialRandom(rng, 1) + exponentialRandom(rng, 1) - 2) / Math.sqrt(2);
   }
 
   return exponentialRandom(rng, 1) - 1;
@@ -36,8 +38,8 @@ function populationMoments(shape: string): { mean: number; sd: number } {
   if (shape === "bimodal") {
     return { mean: 0, sd: Math.sqrt(1.35 ** 2 + 0.45 ** 2) };
   }
-  // The normal, standardized uniform, centered exponential, and scaled
-  // skewed examples are all constructed with mean 0 and standard deviation 1.
+  // The normal, standardized uniform, centered exponential, and standardized
+  // gamma examples are all constructed with mean 0 and standard deviation 1.
   return { mean: 0, sd: 1 };
 }
 export function generateSampleMeans(

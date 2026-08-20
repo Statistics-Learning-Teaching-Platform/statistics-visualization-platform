@@ -2,9 +2,9 @@
 
 import React, { createContext, useContext, useEffect, useState, useCallback } from "react";
 import type { Question } from "./types";
+import { authenticatedFetch } from "./auth/client";
 
-const STORAGE_KEY = "zujuan.selectedIds";
-const GENERATED_STORAGE_KEY = "zujuan.generatedQuestions.v1";
+const STORAGE_KEY_PREFIX = "zujuan.selectedIds.user.";
 
 interface SelectionCtx {
   selected: string[];
@@ -24,48 +24,54 @@ export function SelectionProvider({ children }: { children: React.ReactNode }) {
   const [selected, setSelected] = useState<string[]>([]);
   const [generatedQuestions, setGeneratedQuestions] = useState<Question[]>([]);
   const [ready, setReady] = useState(false);
+  const [storageKey, setStorageKey] = useState<string | null>(null);
 
-  // 初次挂载从 localStorage 恢复（SSR 安全：首帧仍为空，由 ready 标记区分）
   useEffect(() => {
-    try {
-      const raw = localStorage.getItem(STORAGE_KEY);
-      // eslint-disable-next-line react-hooks/set-state-in-effect -- 一次性水合，非级联渲染
-      if (raw) setSelected(JSON.parse(raw));
-      const generatedRaw = localStorage.getItem(GENERATED_STORAGE_KEY);
-      if (generatedRaw) {
-        const parsed = JSON.parse(generatedRaw) as unknown;
-        if (Array.isArray(parsed)) {
-          setGeneratedQuestions(parsed.filter((item): item is Question => Boolean(
-            item && typeof item === "object" && typeof item.id === "string" &&
-            typeof item.content === "string" && typeof item.answer === "string" &&
-            (item.origin === "variant" || item.origin === "generated"),
-          )).slice(0, 80));
+    const controller = new AbortController();
+    void (async () => {
+      try {
+        const meResponse = await authenticatedFetch("/api/auth/me", { signal: controller.signal, cache: "no-store" });
+        if (!meResponse.ok) throw new Error("session unavailable");
+        const me = await meResponse.json() as { user?: { id?: string; role?: string } };
+        if (!me.user?.id) throw new Error("session user unavailable");
+        const key = `${STORAGE_KEY_PREFIX}${me.user.id}`;
+        const raw = localStorage.getItem(key);
+        if (raw) {
+          const parsed = JSON.parse(raw) as unknown;
+          if (Array.isArray(parsed)) {
+            setSelected(parsed.filter((id): id is string => typeof id === "string").slice(0, 100));
+          }
         }
+        if (me.user.role !== "student") {
+          const draftsResponse = await authenticatedFetch("/api/questions/import-generated", {
+            signal: controller.signal,
+            cache: "no-store",
+          });
+          if (draftsResponse.ok) {
+            const drafts = await draftsResponse.json() as { questions?: Question[] };
+            setGeneratedQuestions(Array.isArray(drafts.questions) ? drafts.questions.slice(0, 200) : []);
+          }
+        }
+        setStorageKey(key);
+      } catch (error) {
+        if ((error as { name?: string }).name === "AbortError") return;
+        setSelected([]);
+        setGeneratedQuestions([]);
+      } finally {
+        if (!controller.signal.aborted) setReady(true);
       }
-    } catch {
-      /* ignore */
-    }
-    setReady(true);
+    })();
+    return () => controller.abort();
   }, []);
 
-  // 变更时持久化
   useEffect(() => {
-    if (!ready) return;
+    if (!ready || !storageKey) return;
     try {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(selected));
+      localStorage.setItem(storageKey, JSON.stringify(selected));
     } catch {
       /* ignore */
     }
-  }, [selected, ready]);
-
-  useEffect(() => {
-    if (!ready) return;
-    try {
-      localStorage.setItem(GENERATED_STORAGE_KEY, JSON.stringify(generatedQuestions));
-    } catch {
-      /* ignore */
-    }
-  }, [generatedQuestions, ready]);
+  }, [selected, ready, storageKey]);
 
   const isSelected = useCallback((id: string) => selected.includes(id), [selected]);
   const toggle = useCallback((id: string) => {

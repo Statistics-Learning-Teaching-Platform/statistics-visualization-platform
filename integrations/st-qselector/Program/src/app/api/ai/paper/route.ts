@@ -2,11 +2,18 @@ import { randomUUID } from "node:crypto";
 import { NextRequest, NextResponse } from "next/server";
 import { evaluatePaperQuality, questionMatchesKnowledge, selectQuestionsFromBlueprint, type PaperBlueprint } from "@/lib/blueprint";
 import { reviewedQuestionIndex } from "@/generated/reviewed-questions";
+import { callStatAi } from "@/lib/ai-client";
+import { persistAiDrafts } from "@/lib/ai-drafts";
+import { consumeRateLimit, requestPrincipal, withConcurrencyLease } from "@/lib/auth/rate-limit";
+import { requireRequestSession, verifyCsrf } from "@/lib/auth/session";
+import { assertSafeOrigin, authErrorResponse, AuthError, readLimitedJson } from "@/lib/auth/security";
 import type { Question } from "@/lib/types";
 import { normalizeTopicIds } from "@/lib/topic-mapping";
 
 export const runtime = "nodejs";
-export const maxDuration = 120;
+export const maxDuration = 180;
+
+const AI_STAGE_TIMEOUT_MS = 80_000;
 
 const QUESTION_TYPES = new Set(["选择题", "判断题", "填空题", "计算题", "简答题", "综合题"]);
 
@@ -34,45 +41,94 @@ function safeJson(value: string): unknown {
   return JSON.parse(clean);
 }
 
-async function callJson(system: string, user: string): Promise<Record<string, unknown>> {
-  const apiKey = process.env.OPENAI_API_KEY?.trim();
-  if (!apiKey) throw new Error("未配置服务端 API Key");
-  const baseUrl = (process.env.OPENAI_BASE_URL?.trim() || "https://api.openai.com/v1").replace(/\/$/, "");
-  const model = process.env.OPENAI_MODEL?.trim() || "deepseek-v4-flash";
+async function callJson(system: string, user: string, requestSignal: AbortSignal): Promise<Record<string, unknown>> {
   const controller = new AbortController();
-  const timeout = setTimeout(() => controller.abort(), 50_000);
+  const timeout = setTimeout(() => controller.abort(), AI_STAGE_TIMEOUT_MS);
   try {
-    const response = await fetch(`${baseUrl}/chat/completions`, {
-      method: "POST",
-      headers: { Authorization: `Bearer ${apiKey}`, "Content-Type": "application/json" },
-      signal: controller.signal,
-      body: JSON.stringify({
-        model,
-        temperature: 0.15,
-        response_format: { type: "json_object" },
-        messages: [{ role: "system", content: system }, { role: "user", content: user }],
-      }),
-    });
-    if (!response.ok) throw new Error(`AI 服务返回 ${response.status}`);
-    const payload = await response.json() as { choices?: Array<{ message?: { content?: string } }> };
-    const content = payload.choices?.[0]?.message?.content;
-    if (!content) throw new Error("AI 没有返回内容");
-    return safeJson(content) as Record<string, unknown>;
+    const parsed = safeJson(await callStatAi({
+      systemPrompt: system,
+      input: user,
+      signal: AbortSignal.any([requestSignal, controller.signal]),
+    }));
+    if (!parsed || typeof parsed !== "object" || Array.isArray(parsed)) throw new Error("AI 返回的 JSON 结构无效");
+    return parsed as Record<string, unknown>;
   } finally {
     clearTimeout(timeout);
   }
 }
 
-function mapConceptToChapter(label: string): string {
+function parseBlueprint(value: unknown): PaperBlueprint {
+  if (!value || typeof value !== "object") throw new AuthError(400, "缺少有效的组卷蓝图");
+  const raw = value as Partial<PaperBlueprint>;
+  if (!Array.isArray(raw.knowledgePoints) || raw.knowledgePoints.length === 0 || raw.knowledgePoints.length > 60) {
+    throw new AuthError(400, "知识点数量必须在 1 到 60 之间");
+  }
+  const requestedCount = Number.isFinite(raw.totalQuestions) ? Number(raw.totalQuestions) : Number(raw.targetCount);
+  if (!Number.isFinite(requestedCount) || !Number.isFinite(raw.targetDifficulty)) {
+    throw new AuthError(400, "组卷数量或难度无效");
+  }
+  const knowledgePoints = raw.knowledgePoints.map((point, index) => {
+    if (!point || typeof point !== "object") throw new AuthError(400, "知识点结构无效");
+    const label = typeof point.label === "string" ? point.label.trim() : "";
+    if (!label || label.length > 160) throw new AuthError(400, "知识点名称不能为空且不能超过 160 个字符");
+    return {
+      id: typeof point.id === "string" && point.id.trim() ? point.id.trim().slice(0, 160) : `concept-${index + 1}`,
+      label,
+      selected: point.selected === true,
+      weight: Number.isFinite(point.weight) ? Math.max(0.25, Math.min(4, Number(point.weight))) : 1,
+      confidence: Number.isFinite(point.confidence) ? Math.max(0, Math.min(1, Number(point.confidence))) : undefined,
+      evidence: typeof point.evidence === "string" ? point.evidence.slice(0, 500) : undefined,
+    };
+  });
+  const targetCount = Math.max(1, Math.min(60, Math.round(requestedCount)));
+  const targetDifficulty = Math.max(1, Math.min(5, Math.round(Number(raw.targetDifficulty))));
+  const types = Array.isArray(raw.types)
+    ? [...new Set(raw.types.filter((type): type is string => typeof type === "string" && QUESTION_TYPES.has(type)))].slice(0, QUESTION_TYPES.size)
+    : [];
+  return {
+    learningObjectives: Array.isArray(raw.learningObjectives)
+      ? raw.learningObjectives.filter((item): item is string => typeof item === "string").map((item) => item.trim()).filter(Boolean).slice(0, 60)
+      : knowledgePoints.filter((point) => point.selected).map((point) => point.label),
+    topicWeights: Object.fromEntries(knowledgePoints.map((point) => [point.id, point.weight])),
+    questionTypeCounts: Object.fromEntries(types.map((type) => [
+      type,
+      Math.max(0, Math.min(targetCount, Math.round(Number(raw.questionTypeCounts?.[type]) || 0))),
+    ])),
+    difficultyDistribution: Object.fromEntries([1, 2, 3, 4, 5].map((difficulty) => [
+      difficulty,
+      Math.max(0, Math.min(targetCount, Math.round(Number(raw.difficultyDistribution?.[difficulty]) || 0))),
+    ])),
+    totalQuestions: targetCount,
+    estimatedMinutes: Math.max(1, Math.min(600, Math.round(Number(raw.estimatedMinutes) || targetCount * 4))),
+    targetCount,
+    targetDifficulty,
+    types,
+    knowledgePoints,
+  };
+}
+
+function mapConceptToChapter(label: string): string | null {
   const value = label.toLowerCase();
   if (/regression|correlation|least.?squares/.test(value)) return "Ch13";
   if (/two.?sample|paired|anova/.test(value)) return "Ch10";
   if (/hypothesis|p-value|type i|type ii|power/.test(value)) return "Ch09";
   if (/confidence|estimat|margin of error/.test(value)) return "Ch08";
   if (/central limit|sampling distribution/.test(value)) return "Ch07";
-  if (/normal|binomial|poisson|distribution|probability/.test(value)) return "Ch06";
+  if (/normal|continuous distribution/.test(value)) return "Ch06";
+  if (/binomial|poisson|discrete distribution|random variable/.test(value)) return "Ch05";
+  if (/conditional probability|bayes|independence|probability/.test(value)) return "Ch04";
+  if (/histogram|box.?plot|stem.?and.?leaf|descriptive|mean|median|variance|standard deviation/.test(value)) return "Ch02";
   if (/bootstrap|permutation|monte carlo|mcmc|gibbs|metropolis|simulation/.test(value)) return "Ch12";
-  return "Ch01";
+  if (/population|sample|sampling method|data type|categorical|quantitative|qualitative/.test(value)) return "Ch01";
+  return null;
+}
+
+function requireMappedChapter(concept: string): string {
+  const chapterId = mapConceptToChapter(concept);
+  if (!chapterId) {
+    throw new Error(`知识点“${concept}”无法映射到当前统计学课程章节，请调整知识点后重试。`);
+  }
+  return chapterId;
 }
 
 function sanitizeDraft(draft: GeneratedDraft, job: GenerationJob, position: number): Question | null {
@@ -81,7 +137,9 @@ function sanitizeDraft(draft: GeneratedDraft, job: GenerationJob, position: numb
   if (content.length < 20 || answer.length < 8) return null;
   const type = QUESTION_TYPES.has(String(draft.type)) ? String(draft.type) : "简答题";
   const difficulty = Math.max(1, Math.min(5, Math.round(Number(draft.difficulty) || 2)));
-  const chapterId = /^Ch(?:0[1-9]|1[0-3])$/.test(String(draft.chapterId)) ? String(draft.chapterId) : job.chapterId;
+  const verification = String(draft.verification ?? "").trim();
+  if (verification.length < 20 || verification.length > 2_000) return null;
+  const chapterId = job.chapterId;
   const suffix = randomUUID().replace(/-/g, "").slice(0, 10);
   const id = `ai_${chapterId.toLowerCase()}_${Date.now()}_${position + 1}_${suffix}`;
   const keywords = [String(draft.concept ?? job.concept).trim() || job.concept];
@@ -108,26 +166,54 @@ function sanitizeDraft(draft: GeneratedDraft, job: GenerationJob, position: numb
     answerIsImage: false,
     isComplete: true,
     isReviewed: false,
-    reviewStatus: "AI independently generated and verified; teacher confirmation required",
+    reviewStatus: "pending:ai-secondary-check",
     origin: job.origin,
     variantKind: job.variantKind,
     parentQuestionId: job.parentQuestionId,
-    verification: String(draft.verification ?? "").trim() || "Independent verifier confirmed that the question is self-contained and the answer follows from the stated information.",
+    verification,
   };
+}
+
+function indexedDrafts(value: unknown, jobs: readonly GenerationJob[], stage: string): GeneratedDraft[] {
+  if (!Array.isArray(value) || value.length !== jobs.length) {
+    throw new Error(`${stage}返回了 ${Array.isArray(value) ? value.length : 0}/${jobs.length} 道题`);
+  }
+  const byIndex = new Map<number, GeneratedDraft>();
+  for (const item of value) {
+    if (!item || typeof item !== "object") throw new Error(`${stage}题目结构无效`);
+    const draft = item as GeneratedDraft;
+    if (!Number.isInteger(draft.index) || Number(draft.index) < 0 || Number(draft.index) >= jobs.length) {
+      throw new Error(`${stage}返回了越界 index`);
+    }
+    const index = Number(draft.index);
+    if (byIndex.has(index)) throw new Error(`${stage}返回了重复 index ${index}`);
+    byIndex.set(index, draft);
+  }
+  return jobs.map((_, index) => {
+    const draft = byIndex.get(index);
+    if (!draft) throw new Error(`${stage}缺少 index ${index}`);
+    return draft;
+  });
 }
 
 export async function POST(request: NextRequest) {
   try {
-    const body = await request.json() as { blueprint?: PaperBlueprint; variantPercent?: number };
-    const blueprint = body.blueprint;
-    if (!blueprint || !Array.isArray(blueprint.knowledgePoints)) {
-      return NextResponse.json({ error: "缺少有效的组卷蓝图" }, { status: 400 });
-    }
+    assertSafeOrigin(request);
+    const session = await requireRequestSession(request, ["teacher", "superadmin"]);
+    await verifyCsrf(request, session);
+    await consumeRateLimit({
+      principal: await requestPrincipal(request, session.user.id),
+      route: "ai-paper",
+      limit: 8,
+      windowSeconds: 60 * 60,
+    });
+    const body = await readLimitedJson(request, 128 * 1024) as { blueprint?: unknown; variantPercent?: unknown };
+    const blueprint = parseBlueprint(body.blueprint);
     const selectedConcepts = blueprint.knowledgePoints.filter((point) => point.selected && point.label.trim());
     if (!selectedConcepts.length) {
       return NextResponse.json({ error: "请先确认至少一个知识点" }, { status: 400 });
     }
-    const targetCount = Math.max(1, Math.min(40, Math.round(blueprint.totalQuestions || blueprint.targetCount)));
+    const targetCount = blueprint.targetCount;
     const variantPercent = Math.max(0, Math.min(70, Number(body.variantPercent) || 30));
     const desiredAiCount = Math.min(targetCount, Math.round(targetCount * variantPercent / 100));
     const bankTarget = Math.max(Math.min(targetCount, selectedConcepts.length), targetCount - desiredAiCount);
@@ -151,10 +237,19 @@ export async function POST(request: NextRequest) {
       });
     }
 
+    const missingConcepts = selectedConcepts.filter((point) =>
+      !bankQuestionsSource.some((question) =>
+        question.isReviewed && question.isComplete && question.answer && questionMatchesKnowledge(question, point.label)
+      ),
+    );
     const jobs: GenerationJob[] = [];
     // Exhaust reviewed-bank seeds as parameter variants, then context variants.
     // Only create an entirely new item if no reviewed seed exists for the target.
-    for (let index = 0; index < generatedNeeded; index++) {
+    for (const point of missingConcepts) {
+      if (jobs.length >= generatedNeeded) break;
+      jobs.push({ concept: point.label, origin: "generated", parentQuestionId: null, chapterId: requireMappedChapter(point.label) });
+    }
+    for (let index = jobs.length; index < generatedNeeded; index++) {
       const point = selectedConcepts[index % selectedConcepts.length];
       const seed = bankQuestions.find((question) => questionMatchesKnowledge(question, point.label)) ?? bankQuestions[index % Math.max(1, bankQuestions.length)];
       jobs.push({
@@ -162,46 +257,83 @@ export async function POST(request: NextRequest) {
         origin: seed ? "variant" : "generated",
         variantKind: seed ? (index % 2 === 0 ? "parameter" : "context") : undefined,
         parentQuestionId: seed?.id ?? null,
-        chapterId: seed?.chapterId ?? mapConceptToChapter(point.label),
+        chapterId: seed?.chapterId ?? requireMappedChapter(point.label),
       });
     }
     const seeds = jobs.map((job, index) => {
       const seed = job.parentQuestionId ? bankQuestions.find((question) => question.id === job.parentQuestionId) : null;
       return { index, ...job, seed: seed ? { id: seed.id, type: seed.type, difficulty: seed.difficulty, content: seed.content, answer: seed.answer } : null };
     });
-    const generatedPayload = await callJson(
-      "You are a statistics assessment author. Create self-contained English questions with complete, independently derivable English answers. Return JSON only as {questions:[{index,concept,type,difficulty,chapterId,content,answer,verification}]}, with exactly one item for every input job and the same index. Never refer to a missing figure, previous exercise, external table, file, or unstated data. Use Markdown tables and $...$/$$...$$ LaTeX. For a variant preserve only the tested concept and solution structure; change context, values, wording, and recompute every result. The answer must show all calculations and conclusions for computation questions. Allowed question types are: 选择题, 判断题, 填空题, 计算题, 简答题, 综合题.",
-      JSON.stringify({ targetDifficulty: blueprint.targetDifficulty, difficultyDistribution: blueprint.difficultyDistribution, questionTypeCounts: blueprint.questionTypeCounts, estimatedMinutes: blueprint.estimatedMinutes, allowedTypes: blueprint.types, jobs: seeds }),
-    );
-    const firstPass = Array.isArray(generatedPayload.questions) ? generatedPayload.questions as GeneratedDraft[] : [];
-    if (firstPass.length !== jobs.length) throw new Error(`AI 只生成了 ${firstPass.length}/${jobs.length} 道题`);
+    try {
+      await consumeRateLimit({ principal: "global", route: "ai-paper-budget", limit: 120, windowSeconds: 60 * 60 });
+      return await withConcurrencyLease({
+        route: "ai-paper",
+        limit: 4,
+        ttlSeconds: 175,
+        requestSignal: request.signal,
+        work: async (signal) => {
+      const generatedPayload = await callJson(
+        "Return compact JSON only: {questions:[{index,concept,type,difficulty,chapterId,content,answer,verification}]}. Write exactly one self-contained English statistics question per job with the same index. Include all data; never require an external figure, file, table, or prior exercise. A variant must change its context and numbers and recompute its answer. Show essential calculations and a conclusion. Keep each content and answer under 1200 characters. Allowed types: 选择题, 判断题, 填空题, 计算题, 简答题, 综合题.",
+        JSON.stringify({ targetDifficulty: blueprint.targetDifficulty, allowedTypes: blueprint.types, jobs: seeds }),
+        signal,
+      );
+      const firstPass = indexedDrafts(generatedPayload.questions, jobs, "AI 生成阶段");
 
-    const verificationPayload = await callJson(
-      "You are an independent statistics answer verifier. Do not trust the proposed answers. Solve each question from scratch, check every subpart, units, rounding, hypotheses, test direction, degrees of freedom, p-values and confidence intervals. Rewrite any flawed or unclear question into a self-contained solvable English question and provide the corrected complete English answer. Return JSON only: {questions:[{index,concept,type,difficulty,chapterId,content,answer,verification}]}. Keep the same number and indices. Do not output uncertainty or pending-review language.",
-      JSON.stringify({ questions: firstPass.map((item, index) => ({ index, ...item })) }),
-    );
-    const verifiedDrafts = Array.isArray(verificationPayload.questions) ? verificationPayload.questions as GeneratedDraft[] : [];
-    if (verifiedDrafts.length !== jobs.length) throw new Error(`独立校验只返回了 ${verifiedDrafts.length}/${jobs.length} 道题`);
-    const generatedQuestions = verifiedDrafts
-      .map((draft, index) => sanitizeDraft(draft, jobs[index], index))
-      .filter((question): question is Question => Boolean(question));
-    if (generatedQuestions.length !== jobs.length) throw new Error("部分 AI 题目未通过完整性校验");
+      const verificationPayload = await callJson(
+        "Act as a second-pass statistics verifier. Solve each proposed question yourself. Correct any ambiguity, arithmetic, units, rounding, hypotheses, direction, degrees of freedom, p-value, or interval error. In verification, state the concrete checks performed; never claim independent human review. Return compact JSON only: {questions:[{index,concept,type,difficulty,chapterId,content,answer,verification}]}, preserving every index. Questions must remain self-contained. Keep each content and corrected answer under 1200 characters.",
+        JSON.stringify({ questions: firstPass.map((item, index) => ({ index, ...item })) }),
+        signal,
+      );
+      const verifiedDrafts = indexedDrafts(verificationPayload.questions, jobs, "AI 二次校验阶段");
+      const generatedQuestions = verifiedDrafts
+        .map((draft, index) => sanitizeDraft(draft, jobs[index], index))
+        .filter((question): question is Question => Boolean(question));
+      if (generatedQuestions.length !== jobs.length) throw new Error("部分 AI 题目未通过完整性校验");
 
-    const allQuestions = [...bankQuestions, ...generatedQuestions];
-    const report = evaluatePaperQuality(allQuestions, blueprint);
-    return NextResponse.json({
-      ids: allQuestions.map((question) => question.id),
-      questions: allQuestions,
-      generatedQuestions,
-      report,
-      sources: {
-        bank: bankSelection.unitCount,
-        variant: generatedQuestions.filter((question) => question.origin === "variant").length,
-        generated: generatedQuestions.filter((question) => question.origin === "generated").length,
-      },
-    });
+      const storedQuestions = await persistAiDrafts(
+        session.user.id,
+        generatedQuestions.map((question, index) => ({
+          question,
+          generationJob: jobs[index],
+          verifierOutput: verifiedDrafts[index],
+        })),
+      );
+
+      const allQuestions = [...bankQuestions, ...storedQuestions];
+      const report = evaluatePaperQuality(allQuestions, blueprint);
+      return NextResponse.json({
+        ids: allQuestions.map((question) => question.id),
+        questions: allQuestions,
+        generatedQuestions: storedQuestions,
+        report,
+        sources: {
+          bank: bankSelection.unitCount,
+          variant: storedQuestions.filter((question) => question.origin === "variant").length,
+          generated: storedQuestions.filter((question) => question.origin === "generated").length,
+        },
+      });
+        },
+      });
+    } catch (error) {
+      console.error("AI paper stages failed; considering reviewed-bank fallback", error);
+      const fallback = selectQuestionsFromBlueprint(bankQuestionsSource, blueprint, { relevantOnly: true });
+      if (missingConcepts.length > 0 || fallback.unitCount < targetCount) throw error;
+      const fallbackQuestions: Question[] = fallback.questions.map((question) => ({
+        ...question,
+        origin: question.origin ?? "bank",
+      }));
+      return NextResponse.json({
+        ids: fallbackQuestions.map((question) => question.id),
+        questions: fallbackQuestions,
+        generatedQuestions: [],
+        report: evaluatePaperQuality(fallbackQuestions, blueprint),
+        sources: { bank: fallback.unitCount, variant: 0, generated: 0 },
+        warning: "AI 服务暂时不稳定，本次已安全回退为仅使用已审核题库原题。",
+      });
+    }
   } catch (error) {
-    const message = error instanceof Error ? error.message : "AI 组卷失败";
-    return NextResponse.json({ error: message }, { status: 500 });
+    if (error instanceof AuthError) return authErrorResponse(error);
+    console.error("AI paper generation failed", error);
+    return NextResponse.json({ error: "AI 组卷失败，请稍后重试" }, { status: 502 });
   }
 }

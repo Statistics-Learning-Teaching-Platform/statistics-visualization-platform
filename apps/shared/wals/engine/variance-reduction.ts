@@ -6,13 +6,19 @@ import { num, result, type ControlMap } from "./internal";
 
 export function antitheticExp(controls: ControlMap, seed: number): SimulationResult {
   const rng = createRandom(seed);
-  const n = Math.max(100, Math.round(num(controls, "sampleSize", 1000)));
+  const requestedN = Math.max(100, Math.round(num(controls, "sampleSize", 1000)));
+  const n = requestedN - requestedN % 2;
   const half = Math.floor(n / 2);
   const paired = Array.from({ length: half }, () => {
     const u = rng();
     return (Math.exp(u) + Math.exp(1 - u)) / 2;
   });
   const independent = Array.from({ length: n }, () => Math.exp(rng()));
+  // Both estimators spend n integrand evaluations. Because n evaluations make
+  // only n/2 antithetic pair-means, compare variances of the final estimators,
+  // not variances of their differently sized per-draw contribution arrays.
+  const pairedEstimatorVariance = variance(paired) / paired.length;
+  const independentEstimatorVariance = variance(independent) / independent.length;
   const exact = Math.E - 1;
   return result(
     "Antithetic estimator for exp(U)",
@@ -20,30 +26,33 @@ export function antitheticExp(controls: ControlMap, seed: number): SimulationRes
     [
       { label: "antithetic estimate", value: formatNumber(mean(paired), 5), detail: `exact ${formatNumber(exact, 5)}` },
       { label: "independent estimate", value: formatNumber(mean(independent), 5), detail: "simple MC" },
-      { label: "variance reduction", value: reductionPct(variance(paired), variance(independent)), detail: "sample variance basis" }
+      { label: "variance reduction", value: reductionPct(pairedEstimatorVariance, independentEstimatorVariance), detail: `${n} function evaluations each` }
     ],
-    { type: "bars", title: "Variance under the same simulation budget", xLabel: "estimator", yLabel: "sample variance", bars: [{ label: "antithetic", value: variance(paired), color: "#2f6f64" }, { label: "independent", value: variance(independent), color: "#c8665a" }] }
+    { type: "bars", title: "Variance under the same simulation budget", xLabel: "estimator", yLabel: "estimator variance", bars: [{ label: "antithetic", value: pairedEstimatorVariance, color: "#2f6f64" }, { label: "independent", value: independentEstimatorVariance, color: "#c8665a" }] }
   );
 }
 export function antitheticGamma(controls: ControlMap, seed: number): SimulationResult {
   const rng = createRandom(seed);
-  const n = Math.max(100, Math.round(num(controls, "sampleSize", 1000)));
+  const requestedN = Math.max(100, Math.round(num(controls, "sampleSize", 1000)));
+  const n = requestedN - requestedN % 2;
   const half = Math.floor(n / 2);
   const paired = Array.from({ length: half }, () => {
     const u = Math.max(rng(), Number.EPSILON);
     return (Math.pow(-Math.log(u), 0.9) + Math.pow(-Math.log(1 - u), 0.9)) / 2;
   });
-  const independent = Array.from({ length: half }, () => {
+  const independent = Array.from({ length: n }, () => {
     const u = Math.max(rng(), Number.EPSILON);
     return Math.pow(-Math.log(u), 0.9);
   });
+  const pairedEstimatorVariance = variance(paired) / paired.length;
+  const independentEstimatorVariance = variance(independent) / independent.length;
   return result(
     "Antithetic gamma-like integral",
     "The paired estimator mirrors the WALS antithetic integral example.",
     [
       { label: "estimate", value: formatNumber(mean(paired), 5), detail: "antithetic method" },
       { label: "standard error", value: formatNumber(standardDeviation(paired) / Math.sqrt(half), 5), detail: `${half} pairs` },
-      { label: "variance reduction", value: reductionPct(variance(paired), variance(independent)), detail: "antithetic vs independent" }
+      { label: "variance reduction", value: reductionPct(pairedEstimatorVariance, independentEstimatorVariance), detail: `${n} function evaluations each` }
     ],
     { type: "bars", title: "Pair-mean histogram", xLabel: "pair mean", yLabel: "count", bars: histogram(paired) }
   );

@@ -41,6 +41,13 @@ export const moduleConfig: ModuleConfig = {
           "id": "sampleSize",
           "label": "Sample size",
           "type": "number",
+          "rangeByValue": {
+            "controlId": "sigmaKnown",
+            "ranges": {
+              "true": { "min": 1, "max": 100, "step": 1, "defaultValue": 5 },
+              "false": { "min": 2, "max": 100, "step": 1, "defaultValue": 2 }
+            }
+          },
           "min": 1,
           "max": 100,
           "step": 1,
@@ -65,7 +72,7 @@ export const moduleConfig: ModuleConfig = {
             { "value": "0.95", "label": "95%" },
             { "value": "0.99", "label": "99%" }
           ],
-          "defaultValue": "0.95"
+          "defaultValue": 0.95
         },
         {
           "id": "sigmaKnown",

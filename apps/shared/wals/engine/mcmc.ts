@@ -1,14 +1,94 @@
-import type { ChartPoint, SimulationResult } from "../types";
+import type { ChartPoint, ChartSeries, SimulationResult } from "../types";
 import { createRandom, normalRandom } from "@stats-viz/shared/random";
 import { formatNumber, mean } from "@stats-viz/shared/format";
 import { num, result, type ControlMap } from "./internal";
+
+/** Equal-weight, fully normalized bivariate-normal mixture target. */
+export function mixtureTargetDensity(x: number, y: number): number {
+  const broadMode = Math.exp(-((x - 6) ** 2 + (y - 6) ** 2) / 4) / (4 * Math.PI);
+  const unitMode = Math.exp(-(x * x + y * y) / 2) / (2 * Math.PI);
+  return 0.5 * broadMode + 0.5 * unitMode;
+}
+
+const MIXTURE_MODES = [
+  { x: 0, y: 0 },
+  { x: 6, y: 6 },
+] as const;
+const MIXTURE_CONTOUR_LEVELS = [0.006, 0.015, 0.03] as const;
+
+export function mixtureTargetContours(): ChartSeries[] {
+  return MIXTURE_CONTOUR_LEVELS.flatMap((level) =>
+    MIXTURE_MODES.map((mode, modeIndex) => {
+      const points = Array.from({ length: 97 }, (_, index) => {
+        const angle = (index / 96) * Math.PI * 2;
+        const dx = Math.cos(angle);
+        const dy = Math.sin(angle);
+        let innerRadius = 0;
+        let outerRadius = 0.05;
+
+        // Find the first outward crossing. The mixture is multimodal, so a
+        // coarse exponential bracket could skip the valley and land in the
+        // other mode; small fixed steps preserve the local contour component.
+        while (
+          outerRadius < 12
+          && mixtureTargetDensity(mode.x + dx * outerRadius, mode.y + dy * outerRadius) > level
+        ) {
+          innerRadius = outerRadius;
+          outerRadius += 0.05;
+        }
+        for (let iteration = 0; iteration < 32; iteration += 1) {
+          const midpoint = (innerRadius + outerRadius) / 2;
+          if (mixtureTargetDensity(mode.x + dx * midpoint, mode.y + dy * midpoint) > level) {
+            innerRadius = midpoint;
+          } else {
+            outerRadius = midpoint;
+          }
+        }
+        const radius = (innerRadius + outerRadius) / 2;
+        return { x: mode.x + dx * radius, y: mode.y + dy * radius };
+      });
+      return {
+        label: `target density ${level} mode ${modeIndex + 1}`,
+        points,
+        color: "#8d75b5",
+        opacity: 0.5,
+      };
+    }),
+  );
+}
+
+export function autocorrelationEffectiveSampleSize(values: number[]): number {
+  if (values.length < 3) return values.length;
+  const center = mean(values);
+  const centered = values.map((value) => value - center);
+  const varianceSum = centered.reduce((sum, value) => sum + value * value, 0);
+  if (varianceSum <= Number.EPSILON) return 1;
+
+  const autocorrelation = (lag: number) => {
+    let covarianceSum = 0;
+    for (let index = lag; index < centered.length; index += 1) {
+      covarianceSum += centered[index] * centered[index - lag];
+    }
+    return covarianceSum / varianceSum;
+  };
+
+  let positivePairSum = 0;
+  for (let lag = 1; lag + 1 < values.length; lag += 2) {
+    const pair = autocorrelation(lag) + autocorrelation(lag + 1);
+    if (pair <= 0) break;
+    positivePairSum += pair;
+  }
+  const autocorrelationTime = Math.max(1, 1 + 2 * positivePairSum);
+  return Math.max(1, Math.min(values.length, values.length / autocorrelationTime));
+}
+
+const MIXTURE_TARGET_CONTOURS = mixtureTargetContours();
 
 export function mcmcMixture(controls: ControlMap, seed: number): SimulationResult {
   const rng = createRandom(seed);
   const burnin = Math.max(0, Math.round(num(controls, "burnin", 200)));
   const sampleSize = Math.max(50, Math.round(num(controls, "sampleSize", 400)));
   const proposalSd = Math.max(0.05, num(controls, "proposalSd", 1));
-  const density = (x: number, y: number) => 0.5 * Math.exp(-((x - 6) ** 2 + (y - 6) ** 2) / 4) + 0.5 * Math.exp(-(x * x + y * y) / 2);
   let x = rng() * 10 - 2;
   let y = rng() * 10 - 2;
   let accepted = 0;
@@ -17,7 +97,7 @@ export function mcmcMixture(controls: ControlMap, seed: number): SimulationResul
   for (let i = 0; i < burnin + sampleSize; i += 1) {
     const px = x + normalRandom(rng, 0, proposalSd);
     const py = y + normalRandom(rng, 0, proposalSd);
-    const ratio = density(px, py) / Math.max(density(x, y), Number.EPSILON);
+    const ratio = mixtureTargetDensity(px, py) / Math.max(mixtureTargetDensity(x, y), Number.EPSILON);
     if (rng() < Math.min(1, ratio)) {
       x = px;
       y = py;
@@ -35,31 +115,42 @@ export function mcmcMixture(controls: ControlMap, seed: number): SimulationResul
   const traceWindow = allStates.slice(-Math.min(180, allStates.length));
   const traceX = traceWindow.map((point, index) => ({ x: index + 1, y: point.x }));
   const traceY = traceWindow.map((point, index) => ({ x: index + 1, y: point.y }));
-  const ellipse = (cx: number, cy: number, radius: number, stretch = 1): ChartPoint[] =>
-    Array.from({ length: 65 }, (_, index) => {
-      const angle = (index / 64) * Math.PI * 2;
-      return { x: cx + Math.cos(angle) * radius * stretch, y: cy + Math.sin(angle) * radius };
-    });
-  const contours = [0.8, 1.45, 2.2].flatMap((radius) => [
-    { label: `mode 1 level ${radius}`, points: ellipse(0, 0, radius), color: "#8d75b5", opacity: 0.5 },
-    { label: `mode 2 level ${radius}`, points: ellipse(6, 6, radius, 1.15), color: "#8d75b5", opacity: 0.5 },
-  ]);
-  const lagOne = (values: number[]): number => {
-    if (values.length < 3) return 0;
-    const center = mean(values);
-    const denominator = values.reduce((sum, value) => sum + (value - center) ** 2, 0);
-    if (denominator <= Number.EPSILON) return 0;
-    return values.slice(1).reduce((sum, value, index) => sum + (value - center) * (values[index] - center), 0) / denominator;
-  };
-  const rho = Math.max(-0.99, Math.min(0.99, (lagOne(points.map((point) => point.x)) + lagOne(points.map((point) => point.y))) / 2));
-  const ess = sampleSize * (1 - rho) / Math.max(1 + rho, 0.01);
+  const localEss = Math.min(
+    autocorrelationEffectiveSampleSize(points.map((point) => point.x)),
+    autocorrelationEffectiveSampleSize(points.map((point) => point.y)),
+  );
+  const coreAssignments = points.map((point) => {
+    const distanceToFirst = point.x ** 2 + point.y ** 2;
+    const distanceToSecond = (point.x - 6) ** 2 + (point.y - 6) ** 2;
+    if (distanceToFirst <= 9) return 0;
+    if (distanceToSecond <= 18) return 1;
+    return undefined;
+  });
+  const modeVisits = [0, 0];
+  let previousMode: number | undefined;
+  let modeSwitches = 0;
+  for (const assignment of coreAssignments) {
+    if (assignment === undefined) continue;
+    modeVisits[assignment] += 1;
+    if (previousMode !== undefined && previousMode !== assignment) modeSwitches += 1;
+    previousMode = assignment;
+  }
+  const minimumModeVisits = Math.max(5, Math.floor(sampleSize * 0.01));
+  const visitedModes = modeVisits.filter((visits) => visits >= minimumModeVisits).length;
+  const supportsGlobalEss = visitedModes === MIXTURE_MODES.length && modeSwitches > 0;
   return result(
     "Metropolis-Hastings sample path",
     "Contours show the target density, the red polyline shows the most recent chain movement, and the trace panels preserve draw order.",
     [
       { label: "acceptance rate", value: formatNumber(accepted / (burnin + sampleSize), 4), detail: "accepted proposals", help: "Very low values indicate proposals that are too large; very high values can indicate slow exploration." },
       { label: "proposal step", value: formatNumber(proposalSd, 2), detail: "proposal standard deviation" },
-      { label: "effective sample size", value: formatNumber(Math.min(sampleSize, Math.max(1, ess)), 0), detail: `of ${sampleSize} retained draws`, help: "Approximate number of independent draws after accounting for lag-one dependence." },
+      {
+        label: "effective sample size",
+        value: supportsGlobalEss ? formatNumber(localEss, 0) : "n/a",
+        detail: supportsGlobalEss ? `of ${sampleSize} retained draws` : "not reported until both modes are explored",
+        help: "Initial-positive-sequence autocorrelation estimate. It is withheld when the chain has not demonstrated movement between both target modes.",
+      },
+      { label: "mode coverage", value: `${visitedModes} / 2`, detail: `${modeSwitches} between-mode transitions` },
       { label: "burn-in", value: String(burnin), detail: "discarded initial states" },
       { label: "mean location", value: `(${formatNumber(mean(points.map((p) => p.x)), 2)}, ${formatNumber(mean(points.map((p) => p.y)), 2)})`, detail: "retained sample mean" }
     ],
@@ -75,7 +166,7 @@ export function mcmcMixture(controls: ControlMap, seed: number): SimulationResul
       recentPathLabel: "recent path",
       samples,
       path,
-      contours,
+      contours: MIXTURE_TARGET_CONTOURS,
       traceX,
       traceY,
       xDomain: [-4, 10],

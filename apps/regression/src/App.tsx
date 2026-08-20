@@ -150,6 +150,7 @@ export default function RegressionApp() {
                   onPointerDown={handlers.handlePointerDown}
                   onPointerMove={handlers.handlePointerMove}
                   onPointerUp={handlers.handlePointerUp}
+                  onPointerCancel={handlers.handlePointerCancel}
                   onHoverPoint={setHoverPoint}
                 />
               </div>

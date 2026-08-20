@@ -19,6 +19,7 @@ export interface RegressionChartProps {
   onPointerDown: (e: React.PointerEvent<SVGSVGElement>) => void;
   onPointerMove: (e: React.PointerEvent<SVGSVGElement>) => void;
   onPointerUp: (e: React.PointerEvent<SVGSVGElement>) => void;
+  onPointerCancel: (e: React.PointerEvent<SVGSVGElement>) => void;
   onHoverPoint: (p: Point | null) => void;
 }
 
@@ -37,6 +38,7 @@ export function RegressionChart({
   onPointerDown,
   onPointerMove,
   onPointerUp,
+  onPointerCancel,
   onHoverPoint,
 }: RegressionChartProps) {
   const chartWidth = innerWidth(CHART_LAYOUT);
@@ -89,6 +91,7 @@ export function RegressionChart({
       onPointerDown={onPointerDown}
       onPointerMove={onPointerMove}
       onPointerUp={onPointerUp}
+      onPointerCancel={onPointerCancel}
     >
       <g transform={`translate(${CHART_LAYOUT.margin.left}, ${CHART_LAYOUT.margin.top})`}>
         <rect className="plot-background" x={0} y={0} width={chartWidth} height={chartHeight} rx={14} />

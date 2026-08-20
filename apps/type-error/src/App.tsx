@@ -44,12 +44,13 @@ const CHART_LAYOUT: ChartLayout = {
   margin: { top: 50, right: 30, bottom: 50, left: 50 },
 };
 
-function generateDistribution(mean: number, stdDev: number): DistributionPoint[] {
-  return range(-5, 10, 0.05).map((x) => ({ x, y: normalPdf(x, mean, stdDev) }));
+function generateDistribution(mean: number, stdDev: number, domain: [number, number]): DistributionPoint[] {
+  const step = (domain[1] - domain[0]) / 320;
+  return range(domain[0], domain[1] + step / 2, step).map((x) => ({ x, y: normalPdf(x, mean, stdDev) }));
 }
 
-function createScales() {
-  return createLinearScales(CHART_LAYOUT, [-5, 10], [0, 0.5]);
+function createScales(xDomain: [number, number], yMax: number) {
+  return createLinearScales(CHART_LAYOUT, xDomain, [0, yMax]);
 }
 
 export function computeCriticalValues(
@@ -88,7 +89,7 @@ function createHypothesisText(nullMean: number, testType: TestType) {
   return { H0Text, H1Text };
 }
 
-function computeTypeTwoErrorRate(
+export function computeTypeTwoErrorRate(
   criticalValue: number[],
   trueMean: number,
   stdDev: number,
@@ -99,6 +100,19 @@ function computeTypeTwoErrorRate(
   const left = criticalValue[0] ?? 0;
   const right = criticalValue[1] ?? 0;
   return normalCdf(right, trueMean, stdDev) - normalCdf(left, trueMean, stdDev);
+}
+
+export function resolveTestType(mode: "one-tailed" | "two-tailed", nullMean: number, trueMean: number): TestType {
+  if (mode === "two-tailed") return "two-tailed";
+  return trueMean < nullMean ? "left-tailed" : "right-tailed";
+}
+
+export function computeChartDomain(nullMean: number, trueMean: number, stdDev: number, criticalValues: number[]): [number, number] {
+  const padding = 4.5 * stdDev;
+  return [
+    Math.min(nullMean - padding, trueMean - padding, ...criticalValues) - stdDev * 0.15,
+    Math.max(nullMean + padding, trueMean + padding, ...criticalValues) + stdDev * 0.15,
+  ];
 }
 
 export function computePValue(
@@ -142,24 +156,30 @@ export default function TypeErrorApp() {
   });
 
   const computed = useMemo(() => {
-    const scales = createScales();
-    const nullDistribution = generateDistribution(params.nullMean, params.stdDev);
-    const trueDistribution = generateDistribution(params.trueMean, params.stdDev);
-    const cv = computeCriticalValues(params.alpha, params.nullMean, params.stdDev, testType);
-    const filterFn = criticalAreaFn(testType);
-    const typeTwoErrorRate = computeTypeTwoErrorRate(cv, params.trueMean, params.stdDev, testType);
-    const pValue = computePValue(params.observedStatistic, params.nullMean, params.stdDev, testType);
+    // The current UI exposes left and right tails explicitly, so preserve the
+    // learner's selected direction. `resolveTestType` remains available for
+    // callers that present a single direction-following one-tailed mode.
+    const effectiveTestType = testType;
+    const cv = computeCriticalValues(params.alpha, params.nullMean, params.stdDev, effectiveTestType);
+    const xDomain = computeChartDomain(params.nullMean, params.trueMean, params.stdDev, cv);
+    const yMax = normalPdf(params.nullMean, params.nullMean, params.stdDev) * 1.12;
+    const scales = createScales(xDomain, yMax);
+    const nullDistribution = generateDistribution(params.nullMean, params.stdDev, xDomain);
+    const trueDistribution = generateDistribution(params.trueMean, params.stdDev, xDomain);
+    const filterFn = criticalAreaFn(effectiveTestType);
+    const typeTwoErrorRate = computeTypeTwoErrorRate(cv, params.trueMean, params.stdDev, effectiveTestType);
+    const pValue = computePValue(params.observedStatistic, params.nullMean, params.stdDev, effectiveTestType);
     return {
       scales,
       nullDistribution,
       trueDistribution,
       criticalValue: cv,
       criticalAreaFn: filterFn,
-      hypothesisText: createHypothesisText(params.nullMean, testType),
+      hypothesisText: createHypothesisText(params.nullMean, effectiveTestType),
       typeOneErrorRate: params.alpha,
       typeTwoErrorRate,
       power: 1 - typeTwoErrorRate,
-      effectSize: params.trueMean - params.nullMean,
+      effectSize: Math.abs(params.trueMean - params.nullMean),
       pValue,
       rejectsNull: pValue < params.alpha,
     };

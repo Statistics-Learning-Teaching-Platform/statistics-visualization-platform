@@ -672,6 +672,38 @@ button {
   font-weight: 750;
 }
 
+.app-error {
+  display: grid;
+  width: min(520px, calc(100% - 40px));
+  min-height: 100%;
+  margin: 0 auto;
+  align-content: center;
+  justify-items: start;
+  gap: 12px;
+  color: var(--text-primary);
+}
+
+.app-error strong {
+  font-size: 20px;
+}
+
+.app-error p {
+  margin: 0;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+.app-error button {
+  min-height: 40px;
+  padding: 0 18px;
+  border: 1px solid var(--teal);
+  border-radius: 7px;
+  color: #fff;
+  background: var(--teal);
+  cursor: pointer;
+  font-weight: 800;
+}
+
 @media (max-width: 980px) {
   .platform-utility-nav {
     top: 10px;

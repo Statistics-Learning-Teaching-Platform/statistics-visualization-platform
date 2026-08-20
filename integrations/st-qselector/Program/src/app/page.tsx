@@ -20,7 +20,6 @@ import QuestionContent from "@/components/QuestionContent";
 import { useSelection } from "@/lib/selection";
 import type { QuestionsResponse, Question } from "@/lib/types";
 import { withBasePath } from "@/lib/base-path";
-import { reviewedQuestionIndex } from "@/generated/reviewed-questions";
 import { topicLabels } from "@/lib/topic-mapping";
 
 const PAGE_SIZE = 8;
@@ -48,7 +47,7 @@ export default function Home({ searchParams }: { searchParams: Promise<{ topicId
   const requestedTopic = typeof routeParams.topicId === "string" && routeParams.topicId in topicLabels
     ? routeParams.topicId
     : undefined;
-  const [data, setData] = useState<QuestionsResponse>(() => reviewedQuestionIndex);
+  const [data, setData] = useState<QuestionsResponse>(() => ({ questions: [], chapters: [], difficulties: [] }));
   const [search, setSearch] = useState("");
   const [chapterSel, setChapterSel] = useState<Set<string>>(new Set());
   const [difficultySel, setDifficultySel] = useState<Set<number>>(new Set());
@@ -248,8 +247,8 @@ export default function Home({ searchParams }: { searchParams: Promise<{ topicId
             <span>已审核</span>
           </div>
           <div className="qb-header__stat" role="listitem">
-            <strong>{data.chapters.length}</strong>
-            <span>章节</span>
+            <strong>{data.chapters.filter((chapter) => chapter.count > 0).length}</strong>
+            <span>可用章节</span>
           </div>
           <div className="qb-header__stat qb-header__stat--accent" role="listitem">
             <strong>{selected.length}</strong>
@@ -261,6 +260,7 @@ export default function Home({ searchParams }: { searchParams: Promise<{ topicId
           {/* Cross-app navigation intentionally leaves the Next.js basePath. */}
           {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
           <a href="/">←&nbsp; 返回主界面</a>
+          <Link className="qb-preview-button" href="/account">账号管理</Link>
           <Link className="qb-preview-button" href="/paper"><FileText /> 试卷预览</Link>
         </nav>
       </header>
@@ -307,7 +307,7 @@ export default function Home({ searchParams }: { searchParams: Promise<{ topicId
 
           {data && (
             <FilterGroup title="章节">
-              {data.chapters.map((chapter) => (
+              {data.chapters.filter((chapter) => chapter.count > 0).map((chapter) => (
                 <FilterChip
                   key={chapter.id}
                   active={chapterSel.has(chapter.id)}
@@ -392,6 +392,9 @@ export default function Home({ searchParams }: { searchParams: Promise<{ topicId
             <h3>题目质量概览</h3>
             <p><strong>{reviewedQuestions.length}</strong> 题已完成独立审核</p>
             <p><strong>{duplicateCount}</strong> 题与其他题目内容重复</p>
+            {data?.coverage && !data.coverage.isComplete && (
+              <p><strong>{data.coverage.emptyChapterIds.join("、")}</strong> 尚无通过审核的正式题目</p>
+            )}
             <small>界面只把数据中具有明确审核标记的题目计为“已审核”。</small>
           </div>
         </aside>}

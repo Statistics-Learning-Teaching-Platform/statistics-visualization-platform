@@ -3,41 +3,51 @@
   "private": true,
   "version": "0.1.0",
   "type": "module",
+  "packageManager": "npm@10.9.8",
+  "engines": {
+    "node": ">=22.12.0 <25",
+    "npm": ">=10.9.0 <12"
+  },
   "workspaces": [
     "apps/shared"
   ],
   "scripts": {
+    "sync:runtimes": "node scripts/sync-browser-runtimes.mjs",
+    "predev": "npm run sync:runtimes",
     "dev": "vite --host 127.0.0.1",
     "test": "vitest run",
     "check:privacy": "node scripts/check-content-privacy.mjs",
-    "prebuild": "npm run check:privacy",
     "prebuild:pages": "npm run check:privacy",
+    "lint": "biome lint --files-ignore-unknown=true src apps scripts test vite.config.ts",
+    "format": "biome format --write --files-ignore-unknown=true src apps scripts test vite.config.ts",
+    "typecheck": "tsc --noEmit",
+    "check": "npm run lint && npm run typecheck && npm test",
+    "prebuild": "npm run check:privacy && npm run sync:runtimes",
     "build": "node scripts/build.mjs",
-    "build:pages": "BASE_PATH=/statistics-visualization-platform/ node scripts/build.mjs",
     "preview": "vite preview --host 127.0.0.1"
   },
   "devDependencies": {
     "@biomejs/biome": "^1.9.4",
-    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/jest-dom": "^6.10.0",
     "@testing-library/react": "^16.3.2",
-    "@testing-library/user-event": "^14.6.1",
+    "@testing-library/user-event": "^14.6.4",
     "@types/d3": "^7.4.3",
-    "@types/node": "^22.19.15",
-    "@types/react": "^19.2.17",
-    "@types/react-dom": "^19.2.3",
+    "@types/node": "^22.20.1",
+    "@types/react": "^19.2.18",
+    "@types/react-dom": "^19.2.4",
     "@vitejs/plugin-react": "^4.7.0",
     "jsdom": "^25.0.1",
     "typescript": "~5.9.3",
-    "vite": "^7.2.7",
-    "vitest": "^3.2.4"
+    "vite": "^7.3.6",
+    "vitest": "^3.2.7"
   },
   "dependencies": {
     "bootstrap": "^5.3.8",
     "d3": "^7.9.0",
     "jstat": "^1.9.6",
-    "pyodide": "^314.0.3",
-    "react": "^19.2.7",
-    "react-dom": "^19.2.7",
+    "pyodide": "^314.0.5",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8",
     "webr": "^0.6.0"
   }
 }
