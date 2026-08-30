@@ -27,11 +27,11 @@ describe("R Coding Studio", () => {
     localStorage.clear();
   });
 
-  it("renders the expanded thirty-two-lesson curriculum and the starter editor", () => {
+  it("renders the expanded thirty-nine-lesson curriculum and the starter editor", () => {
     renderWorkspace();
     expect(screen.getByText("R 语言编程工作室")).toBeInTheDocument();
     const navigation = screen.getByRole("navigation", { name: "课程" });
-    expect(within(navigation).getAllByRole("button")).toHaveLength(32);
+    expect(within(navigation).getAllByRole("button")).toHaveLength(39);
     expect(
       (screen.getByRole("textbox", { name: "R 代码编辑器" }) as HTMLTextAreaElement).value,
     ).toContain("average_score <-");

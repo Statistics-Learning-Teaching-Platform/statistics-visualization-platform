@@ -710,3 +710,485 @@ body {
   }
   .chart-frame { min-height: 0 !important; }
 }
+
+/* Probability Distribution: a restrained instrument surface. The module is
+ * scoped by data-module-id so the other twelve laboratory pages keep their
+ * shared phase-two presentation. */
+.visualization-frame[data-module-id="mes-distributions"] {
+  --probability-font: "Geist Variable", Inter, "Source Han Sans SC", "Noto Sans SC", "PingFang SC", sans-serif;
+  --probability-soft: color-mix(in srgb, var(--lab-border) 22%, var(--lab-bg));
+  font-family: var(--probability-font) !important;
+  color: var(--lab-text) !important;
+  background: var(--lab-bg) !important;
+}
+
+.visualization-frame[data-module-id="mes-distributions"] *,
+.visualization-frame[data-module-id="mes-distributions"] button,
+.visualization-frame[data-module-id="mes-distributions"] input,
+.visualization-frame[data-module-id="mes-distributions"] select {
+  font-family: inherit;
+}
+
+.visualization-frame[data-module-id="mes-distributions"] .experiment-board {
+  gap: 32px !important;
+  padding: clamp(24px, 3vw, 40px) !important;
+  border: 1px solid var(--lab-border) !important;
+  border-radius: 10px !important;
+  background: var(--lab-surface) !important;
+  box-shadow: none !important;
+}
+
+.visualization-frame[data-module-id="mes-distributions"] .experiment-header {
+  padding-bottom: 28px !important;
+  border-bottom: 0 !important;
+}
+
+.visualization-frame[data-module-id="mes-distributions"] .experiment-header__meta {
+  gap: 0 !important;
+  margin-bottom: 12px !important;
+}
+
+.visualization-frame[data-module-id="mes-distributions"] .experiment-header__number {
+  color: var(--lab-text) !important;
+  font-family: inherit !important;
+  font-size: 11px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.08em !important;
+}
+
+.visualization-frame[data-module-id="mes-distributions"] .experiment-header__number::after {
+  content: " ·";
+  color: var(--lab-muted);
+}
+
+.visualization-frame[data-module-id="mes-distributions"] .experiment-header__meta .eyebrow {
+  color: var(--lab-muted) !important;
+  font-size: 11px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.08em !important;
+}
+
+.visualization-frame[data-module-id="mes-distributions"] .experiment-header h1 {
+  margin: 0 0 10px !important;
+  color: var(--lab-text) !important;
+  font-family: inherit !important;
+  font-size: 36px !important;
+  font-weight: 600 !important;
+  letter-spacing: -0.02em !important;
+  line-height: 1.15 !important;
+}
+
+.visualization-frame[data-module-id="mes-distributions"] .experiment-header > p:not(.eyebrow) {
+  max-width: 72ch;
+  margin: 0 !important;
+  color: var(--lab-muted) !important;
+  font-size: 14px !important;
+  font-weight: 400 !important;
+  line-height: 1.65 !important;
+}
+
+.visualization-frame[data-module-id="mes-distributions"] .experiment-header .research-question {
+  display: none !important;
+}
+
+.visualization-frame[data-module-id="mes-distributions"] .probability-output {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 0 !important;
+}
+
+.visualization-frame[data-module-id="mes-distributions"] .probability-output .output-heading {
+  display: none !important;
+}
+
+.visualization-frame[data-module-id="mes-distributions"] .probability-output .experiment-metric-strip {
+  order: 1;
+  display: grid !important;
+  grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+  min-height: 92px !important;
+  margin: 0 0 28px !important;
+  padding: 0 !important;
+  gap: 0 !important;
+  border: 1px solid var(--lab-border) !important;
+  border-radius: 8px !important;
+  background: var(--lab-surface) !important;
+}
+
+.visualization-frame[data-module-id="mes-distributions"] .probability-output .experiment-metric {
+  min-height: 92px !important;
+  padding: 18px 20px !important;
+  border: 0 !important;
+  border-right: 1px solid var(--lab-border) !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+}
+
+.visualization-frame[data-module-id="mes-distributions"] .probability-output .experiment-metric:last-child {
+  border-right: 0 !important;
+}
+
+.visualization-frame[data-module-id="mes-distributions"] .probability-output .metric-label {
+  color: var(--lab-muted) !important;
+  font-size: 12px !important;
+  font-weight: 500 !important;
+  letter-spacing: 0 !important;
+  line-height: 1.35 !important;
+  text-transform: none !important;
+}
+
+.visualization-frame[data-module-id="mes-distributions"] .probability-output .metric-value {
+  color: var(--lab-text) !important;
+  font-family: inherit !important;
+  font-size: 28px !important;
+  font-weight: 600 !important;
+  line-height: 1.15 !important;
+  font-variant-numeric: tabular-nums;
+}
+
+.visualization-frame[data-module-id="mes-distributions"] .probability-output .metric-note,
+.visualization-frame[data-module-id="mes-distributions"] .probability-output .metric-comparison {
+  display: none !important;
+}
+
+.visualization-frame[data-module-id="mes-distributions"] .probability-output .experiment-metric[data-metric-key="3"] .metric-value {
+  font-size: clamp(18px, 1.8vw, 24px) !important;
+  white-space: nowrap;
+}
+
+.visualization-frame[data-module-id="mes-distributions"] .probability-output .chart-frame {
+  order: 2;
+  margin: 0 0 18px !important;
+  border: 1px solid var(--lab-border) !important;
+  border-radius: 8px !important;
+  background: var(--lab-surface) !important;
+  box-shadow: none !important;
+}
+
+.visualization-frame[data-module-id="mes-distributions"] .probability-output .chart-frame .teaching-chart {
+  background: var(--lab-plot-bg);
+}
+
+.visualization-frame[data-module-id="mes-distributions"] .probability-output .chart-frame .teaching-chart > text:first-of-type {
+  fill: var(--lab-text) !important;
+  font-family: inherit !important;
+  font-size: 18px !important;
+  font-weight: 600 !important;
+}
+
+.visualization-frame[data-module-id="mes-distributions"] .probability-output .change-summary {
+  order: 3;
+  min-height: 56px;
+  max-height: 72px;
+  margin: 0 !important;
+  padding: 10px 18px !important;
+  gap: 2px !important;
+  border: 1px solid var(--lab-border) !important;
+  border-radius: 8px !important;
+  background: var(--probability-soft) !important;
+  box-shadow: none !important;
+}
+
+.visualization-frame[data-module-id="mes-distributions"] .probability-output .change-summary .eyebrow {
+  color: var(--lab-muted) !important;
+  font-size: 10px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.08em !important;
+  line-height: 1.2 !important;
+}
+
+.visualization-frame[data-module-id="mes-distributions"] .probability-output .change-summary p {
+  color: var(--lab-muted) !important;
+  font-size: 11px !important;
+  font-weight: 400 !important;
+  line-height: 1.3 !important;
+}
+
+.visualization-frame[data-module-id="mes-distributions"] .probability-output .change-summary strong,
+.visualization-frame[data-module-id="mes-distributions"] .probability-output .change-summary__interpretation {
+  color: var(--lab-text) !important;
+}
+
+.visualization-frame[data-module-id="mes-distributions"] .probability-parameter-panel {
+  gap: 14px !important;
+  padding: 20px !important;
+  border: 1px solid var(--lab-border) !important;
+  border-radius: 10px !important;
+  background: var(--lab-surface) !important;
+  box-shadow: none !important;
+}
+
+.visualization-frame[data-module-id="mes-distributions"] .probability-parameter-panel > .eyebrow {
+  margin: 0 !important;
+  color: var(--lab-muted) !important;
+  font-size: 11px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.08em !important;
+  line-height: 1.3 !important;
+}
+
+.visualization-frame[data-module-id="mes-distributions"] .probability-parameter-panel .example-tabs,
+.visualization-frame[data-module-id="mes-distributions"] .probability-parameter-panel .sample-quick-actions {
+  display: none !important;
+}
+
+.visualization-frame[data-module-id="mes-distributions"] .probability-parameter-panel .control-group {
+  gap: 8px !important;
+  padding-top: 0 !important;
+  border-top: 0 !important;
+}
+
+.visualization-frame[data-module-id="mes-distributions"] .probability-parameter-panel .probability-mode-group .control-group__heading,
+.visualization-frame[data-module-id="mes-distributions"] .probability-parameter-panel .probability-core-group .control-group__heading {
+  display: none !important;
+}
+
+.visualization-frame[data-module-id="mes-distributions"] .probability-parameter-panel .probability-core-group {
+  padding-top: 16px !important;
+  border-top: 1px solid var(--lab-border) !important;
+}
+
+.visualization-frame[data-module-id="mes-distributions"] .probability-parameter-panel .control-group__heading h3 {
+  color: var(--lab-text) !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0 !important;
+  line-height: 1.35 !important;
+  text-transform: none !important;
+}
+
+.visualization-frame[data-module-id="mes-distributions"] .probability-parameter-panel .control-group__body {
+  gap: 12px !important;
+}
+
+.visualization-frame[data-module-id="mes-distributions"] .probability-parameter-panel .control-field {
+  gap: 7px !important;
+  padding-bottom: 0 !important;
+  border-bottom: 0 !important;
+}
+
+.visualization-frame[data-module-id="mes-distributions"] .probability-parameter-panel .control-label {
+  color: var(--lab-text) !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  line-height: 1.35 !important;
+}
+
+.visualization-frame[data-module-id="mes-distributions"] .probability-parameter-panel .control-description {
+  display: none !important;
+}
+
+.visualization-frame[data-module-id="mes-distributions"] .probability-parameter-panel .control-input {
+  min-height: 38px !important;
+  padding: 0 10px !important;
+  border: 1px solid var(--lab-border) !important;
+  border-radius: 7px !important;
+  color: var(--lab-text) !important;
+  background: var(--lab-surface) !important;
+  font-size: 13px !important;
+}
+
+.visualization-frame[data-module-id="mes-distributions"] .probability-parameter-panel .control-number-input {
+  min-height: 30px !important;
+  padding: 3px 7px !important;
+  border: 1px solid var(--lab-border) !important;
+  border-radius: 6px !important;
+  color: var(--lab-text) !important;
+  background: var(--probability-soft) !important;
+  font-family: inherit !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  font-variant-numeric: tabular-nums;
+}
+
+.visualization-frame[data-module-id="mes-distributions"] .probability-parameter-panel .control-range {
+  accent-color: var(--lab-blue) !important;
+}
+
+.visualization-frame[data-module-id="mes-distributions"] .probability-parameter-panel .control-range-bounds {
+  color: var(--lab-muted) !important;
+  font-size: 10px !important;
+  font-weight: 400 !important;
+}
+
+.visualization-frame[data-module-id="mes-distributions"] .probability-reset-button {
+  width: 100%;
+  min-height: 36px;
+  padding: 0 12px;
+  border: 1px solid var(--lab-border);
+  border-radius: 7px;
+  color: var(--lab-text);
+  background: var(--lab-surface);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.visualization-frame[data-module-id="mes-distributions"] .probability-reset-button:hover {
+  background: var(--probability-soft);
+}
+
+@media (max-width: 720px) {
+  .visualization-frame[data-module-id="mes-distributions"] .experiment-header h1 {
+    font-size: 32px !important;
+  }
+
+  .visualization-frame[data-module-id="mes-distributions"] .probability-output .experiment-metric-strip {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+
+  .visualization-frame[data-module-id="mes-distributions"] .probability-output .experiment-metric:nth-child(2n) {
+    border-right: 0 !important;
+  }
+
+  .visualization-frame[data-module-id="mes-distributions"] .probability-output .experiment-metric:nth-child(n + 3) {
+    border-top: 1px solid var(--lab-border) !important;
+  }
+}
+
+/* The shared workspace stylesheet is loaded after module CSS and uses
+ * important typography rules. The ID-qualified selectors keep this compact
+ * pass authoritative without changing the shared defaults. */
+#main-content .visualization-frame[data-module-id="mes-distributions"] .experiment-header h1 {
+  margin-bottom: 6px !important;
+  font-size: 32px !important;
+  line-height: 1.12 !important;
+}
+
+#main-content .visualization-frame[data-module-id="mes-distributions"] .experiment-header__meta {
+  line-height: 1.3 !important;
+}
+
+#main-content .visualization-frame[data-module-id="mes-distributions"] .experiment-header div > p:not(.eyebrow) {
+  font-size: 14px !important;
+  font-weight: 400 !important;
+  line-height: 1.55 !important;
+}
+
+#main-content .visualization-frame[data-module-id="mes-distributions"] .probability-output .chart-frame .teaching-chart {
+  width: calc(100% + 32px) !important;
+  max-width: none !important;
+  margin-inline: -16px;
+}
+
+@media (max-width: 720px) {
+  #main-content .visualization-frame[data-module-id="mes-distributions"] .probability-output .chart-frame .teaching-chart {
+    width: calc(100% + 20px) !important;
+    margin-inline: -10px;
+  }
+}
+
+/* Compact Scientific Workspace pass. Keep this final block Probability-only;
+ * it changes density without touching the chart data or control semantics. */
+.visualization-frame[data-module-id="mes-distributions"] .experiment-board {
+  gap: 24px !important;
+  padding: 0 clamp(24px, 2.6vw, 32px) 32px !important;
+}
+
+.visualization-frame[data-module-id="mes-distributions"] .experiment-header {
+  padding-top: 28px !important;
+  padding-bottom: 22px !important;
+}
+
+.visualization-frame[data-module-id="mes-distributions"] .experiment-header__meta {
+  margin-bottom: 6px !important;
+}
+
+.visualization-frame[data-module-id="mes-distributions"] .experiment-header h1 {
+  margin-bottom: 8px !important;
+  font-size: 32px !important;
+  line-height: 1.12 !important;
+}
+
+.visualization-frame[data-module-id="mes-distributions"] .experiment-header > p:not(.eyebrow) {
+  font-size: 14px !important;
+  line-height: 1.55 !important;
+}
+
+.visualization-frame[data-module-id="mes-distributions"] .probability-output {
+  margin-block: 0 !important;
+}
+
+.visualization-frame[data-module-id="mes-distributions"] .probability-output .experiment-metric-strip {
+  min-height: 68px !important;
+  max-height: 76px !important;
+  height: 76px !important;
+  margin-bottom: 22px !important;
+}
+
+.visualization-frame[data-module-id="mes-distributions"] .probability-output .experiment-metric {
+  min-height: 68px !important;
+  max-height: 76px !important;
+  padding: 12px 16px !important;
+}
+
+.visualization-frame[data-module-id="mes-distributions"] .probability-output .metric-label {
+  font-size: 11px !important;
+  font-weight: 500 !important;
+}
+
+.visualization-frame[data-module-id="mes-distributions"] .probability-output .metric-value {
+  font-size: 26px !important;
+}
+
+.visualization-frame[data-module-id="mes-distributions"] .probability-output .experiment-metric[data-metric-key="3"] .metric-value {
+  font-size: clamp(20px, 1.8vw, 22px) !important;
+}
+
+.visualization-frame[data-module-id="mes-distributions"] .probability-output .chart-frame {
+  margin-bottom: 18px !important;
+  padding: 16px !important;
+}
+
+.visualization-frame[data-module-id="mes-distributions"] .probability-output .chart-frame .teaching-chart > text:first-of-type {
+  font-size: 18px !important;
+}
+
+.visualization-frame[data-module-id="mes-distributions"] .probability-parameter-panel {
+  gap: 10px !important;
+  padding: 16px 18px 20px !important;
+}
+
+.visualization-frame[data-module-id="mes-distributions"] .probability-parameter-panel .control-group {
+  gap: 6px !important;
+}
+
+.visualization-frame[data-module-id="mes-distributions"] .probability-parameter-panel .control-group__body {
+  gap: 8px !important;
+}
+
+.visualization-frame[data-module-id="mes-distributions"] .probability-parameter-panel .control-field {
+  gap: 4px !important;
+  padding-block: 0 !important;
+}
+
+.visualization-frame[data-module-id="mes-distributions"] .probability-parameter-panel .control-label-row {
+  min-height: 30px;
+}
+
+.visualization-frame[data-module-id="mes-distributions"] .probability-parameter-panel .control-range {
+  height: 16px !important;
+}
+
+.visualization-frame[data-module-id="mes-distributions"] .probability-parameter-panel .control-range-bounds {
+  font-size: 10px !important;
+  line-height: 1 !important;
+}
+
+.visualization-frame[data-module-id="mes-distributions"] .probability-core-group {
+  padding-top: 12px !important;
+}
+
+.visualization-frame[data-module-id="mes-distributions"] .probability-reset-button {
+  min-height: 34px !important;
+  height: 36px !important;
+  font-size: 13px !important;
+}
+
+@media (max-width: 720px) {
+  .visualization-frame[data-module-id="mes-distributions"] .experiment-board {
+    padding: 0 18px 28px !important;
+  }
+
+  .visualization-frame[data-module-id="mes-distributions"] .probability-output .chart-frame {
+    padding: 10px !important;
+  }
+}

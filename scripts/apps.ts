@@ -11,6 +11,8 @@
 // Navigation labels (label / pageTitle) live in apps/shared/i18n/copy.ts
 // (`visualizerLabels`), which is the single source consumed by the Sidebar via
 // getVisualizerLabel(). Do NOT duplicate them back onto AppRecord.
+import type { TextbookChapterId } from "../src/course/textbookChapters";
+
 export type AppGroup = "Statistical Foundations" | "Statistical Simulation";
 export type AppSource = "existing" | "wals";
 
@@ -18,6 +20,7 @@ export interface AppRecord {
   id: string;
   topicId: string;
   activityId: string;
+  textbookChapterIds: TextbookChapterId[];
   group: AppGroup;
   path: string;
   repositoryUrl: string;
@@ -32,6 +35,7 @@ export const apps: AppRecord[] = [
     id: "mes-distributions",
     topicId: "probability-distributions",
     activityId: "compare-probability-distributions",
+    textbookChapterIds: ["mes-ch05"],
     group: "Statistical Foundations",
     path: "apps/mes-distributions/",
     repositoryUrl:
@@ -43,6 +47,7 @@ export const apps: AppRecord[] = [
     id: "simulation-random-variable",
     topicId: "random-variables",
     activityId: "visualize-random-variables",
+    textbookChapterIds: ["mes-ch04"],
     group: "Statistical Foundations",
     path: "apps/simulation-random-variable/",
     repositoryUrl:
@@ -54,6 +59,7 @@ export const apps: AppRecord[] = [
     id: "simulation-clt",
     topicId: "central-limit-theorem",
     activityId: "explore-central-limit-theorem",
+    textbookChapterIds: ["mes-ch06"],
     group: "Statistical Foundations",
     path: "apps/simulation-clt/",
     repositoryUrl:
@@ -65,6 +71,7 @@ export const apps: AppRecord[] = [
     id: "confidence-interval",
     topicId: "confidence-interval",
     activityId: "confidence-interval-coverage",
+    textbookChapterIds: ["mes-ch06"],
     group: "Statistical Foundations",
     path: "apps/confidence-interval/",
     repositoryUrl:
@@ -76,6 +83,7 @@ export const apps: AppRecord[] = [
     id: "mes-confidence-interval",
     topicId: "confidence-interval",
     activityId: "confidence-interval-case-study",
+    textbookChapterIds: ["mes-ch06"],
     group: "Statistical Foundations",
     path: "apps/mes-confidence-interval/",
     repositoryUrl:
@@ -87,6 +95,7 @@ export const apps: AppRecord[] = [
     id: "type-error",
     topicId: "type-i-type-ii-errors",
     activityId: "explore-testing-errors",
+    textbookChapterIds: ["mes-ch07"],
     group: "Statistical Foundations",
     path: "apps/type-error/",
     repositoryUrl:
@@ -98,6 +107,7 @@ export const apps: AppRecord[] = [
     id: "mes-anova",
     topicId: "anova",
     activityId: "explore-anova",
+    textbookChapterIds: ["mes-ch07"],
     group: "Statistical Foundations",
     path: "apps/mes-anova/",
     repositoryUrl:
@@ -109,6 +119,7 @@ export const apps: AppRecord[] = [
     id: "regression",
     topicId: "linear-regression",
     activityId: "draw-regression-line",
+    textbookChapterIds: ["mes-ch08"],
     group: "Statistical Foundations",
     path: "apps/regression/",
     repositoryUrl:
@@ -120,6 +131,7 @@ export const apps: AppRecord[] = [
     id: "mes-linear-regression",
     topicId: "linear-regression",
     activityId: "linear-regression-city-case",
+    textbookChapterIds: ["mes-ch08"],
     group: "Statistical Foundations",
     path: "apps/mes-linear-regression/",
     repositoryUrl:
@@ -131,6 +143,7 @@ export const apps: AppRecord[] = [
     id: "simulation-introduction",
     topicId: "simulation-foundations",
     activityId: "introduce-statistical-simulation",
+    textbookChapterIds: ["mes-ch04"],
     group: "Statistical Simulation",
     path: "apps/simulation-introduction/",
     repositoryUrl:
@@ -142,6 +155,7 @@ export const apps: AppRecord[] = [
     id: "simulation-resampling",
     topicId: "bootstrap-and-permutation",
     activityId: "explore-resampling",
+    textbookChapterIds: ["mes-ch06", "mes-ch10"],
     group: "Statistical Simulation",
     path: "apps/simulation-resampling/",
     repositoryUrl:
@@ -153,6 +167,7 @@ export const apps: AppRecord[] = [
     id: "simulation-mcmc",
     topicId: "mcmc",
     activityId: "explore-mcmc",
+    textbookChapterIds: ["mes-ch04"],
     group: "Statistical Simulation",
     path: "apps/simulation-mcmc/",
     repositoryUrl:
@@ -164,6 +179,7 @@ export const apps: AppRecord[] = [
     id: "simulation-variance-reduction",
     topicId: "variance-reduction",
     activityId: "explore-variance-reduction",
+    textbookChapterIds: ["mes-ch04"],
     group: "Statistical Simulation",
     path: "apps/simulation-variance-reduction/",
     repositoryUrl:

@@ -12,10 +12,10 @@ export function linearRegressionExample(controls: ControlMap, _seed: number, dat
   const fit = linearRegression(points);
   const xMin = points.map((point) => point.x).reduce((a, b) => Math.min(a, b), Infinity);
   const xMax = points.map((point) => point.x).reduce((a, b) => Math.max(a, b), -Infinity);
-  const line: ChartSeries = { label: "least squares fit", color: "#c8665a", points: [{ x: xMin, y: fit.intercept + fit.slope * xMin }, { x: xMax, y: fit.intercept + fit.slope * xMax }] };
+  const line: ChartSeries = { label: "least squares fit", color: "var(--lab-blue)", points: [{ x: xMin, y: fit.intercept + fit.slope * xMin }, { x: xMax, y: fit.intercept + fit.slope * xMax }] };
   const residuals: ChartSeries[] = points.map((point) => ({
     label: `residual for ${point.label ?? "observation"}`,
-    color: "#8d75b5",
+    color: "var(--lab-purple)",
     dashed: true,
     opacity: 0.34,
     points: [point, { x: point.x, y: fit.intercept + fit.slope * point.x }],
@@ -27,7 +27,8 @@ export function linearRegressionExample(controls: ControlMap, _seed: number, dat
       { label: "slope", value: formatNumber(fit.slope, 5), detail: `predictor: ${feature}` },
       { label: "intercept", value: formatNumber(fit.intercept, 4), detail: "least-squares fit" },
       { label: "R-squared", value: formatNumber(fit.rSquared, 4), detail: `${kept.length} cities` },
-      { label: "SSE", value: formatNumber(fit.sse, 3), detail: "sum of squared residuals" }
+      { label: "SSE", value: formatNumber(fit.sse, 3), detail: "sum of squared residuals" },
+      { label: "n", value: String(kept.length), detail: "included cities" }
     ],
     {
       type: "scatter",
@@ -38,9 +39,9 @@ export function linearRegressionExample(controls: ControlMap, _seed: number, dat
       line,
       lines: residuals,
       legend: [
-        { label: "city", color: "#2f6f64", shape: "dot" },
-        { label: "least squares fit", color: "#c8665a", shape: "line" },
-        { label: "residual", color: "#8d75b5", shape: "dashed" },
+        { label: "city", color: "var(--lab-teal)", shape: "dot" },
+        { label: "least squares fit", color: "var(--lab-blue)", shape: "line" },
+        { label: "residual", color: "var(--lab-purple)", shape: "dashed" },
       ],
     },
     { columns: ["City", feature, "planned"], rows: kept.map((city) => [city.city, city[feature], city.planning]) }

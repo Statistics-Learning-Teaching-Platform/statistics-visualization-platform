@@ -56,16 +56,17 @@ describe("shared visualization shell", () => {
 
   it("is the common structure used by WALS and the three independent core visualizers", () => {
     const apps = [
-      <WalsApp key="wals" moduleConfig={distributionConfig} />,
-      <ConfidenceIntervalApp key="confidence" />,
-      <RegressionApp key="regression" />,
-      <TypeErrorApp key="testing" />,
+      { id: "mes-distributions", ui: <WalsApp key="wals" moduleConfig={distributionConfig} /> },
+      { id: "confidence-interval", ui: <ConfidenceIntervalApp key="confidence" /> },
+      { id: "regression", ui: <RegressionApp key="regression" /> },
+      { id: "type-error", ui: <TypeErrorApp key="testing" /> },
     ];
 
     for (const app of apps) {
-      const view = withLanguage(app);
+      const view = withLanguage(app.ui);
       expect(view.container.querySelector("[data-visualization-frame='true']")).toBeInTheDocument();
-      expect(view.container.querySelector("[data-reading-guide='true']")).toBeInTheDocument();
+      expect(view.container.querySelector(`[data-module-id='${app.id}']`)).toBeInTheDocument();
+      expect(view.container.querySelector("[data-reading-guide='true']")).toBeNull();
       expect(view.container.querySelector("[data-chart-frame='true']")).toBeInTheDocument();
       expect(view.container.querySelector("[data-parameter-panel='true']")).toBeInTheDocument();
       expect(view.container.querySelector("[data-formula-card='true']")).toBeInTheDocument();

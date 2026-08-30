@@ -14,6 +14,10 @@ interface ControlPanelProps {
     outliersRemoved: string;
     outliersHint: string;
     clearCustomLine: string;
+    customLineParameters: string;
+    numericLineHint: string;
+    slope: string;
+    intercept: string;
     selectedDataset: string;
     dataPoints: string;
     outliers: string;
@@ -32,6 +36,8 @@ interface ControlPanelProps {
   onToggleRegression: (checked: boolean) => void;
   onToggleOutliers: (checked: boolean) => void;
   onClearCustomLine: () => void;
+  customLineParams: { slope: number; intercept: number } | null;
+  onNumericLine: (slope: number, intercept: number) => void;
   translate: (text: string) => string;
 }
 
@@ -46,6 +52,8 @@ export function ControlPanel({
   onToggleRegression,
   onToggleOutliers,
   onClearCustomLine,
+  customLineParams,
+  onNumericLine,
   translate,
 }: ControlPanelProps) {
   const t = translate;
@@ -114,6 +122,12 @@ export function ControlPanel({
           >
             {copy.clearCustomLine}
           </button>
+        </div>
+        <div className="control-panel__group numeric-line-controls">
+          <div className="control-panel__label-row"><span className="control-panel__label">{copy.customLineParameters}</span></div>
+          <p className="control-panel__hint">{copy.numericLineHint}</p>
+          <label className="control-field"><span className="control-label">{copy.slope}</span><input className="control-input" aria-label={copy.slope} type="number" step="0.01" value={customLineParams?.slope.toFixed(2) ?? "0"} onChange={(e) => onNumericLine(Number(e.target.value), customLineParams?.intercept ?? 0)} /></label>
+          <label className="control-field"><span className="control-label">{copy.intercept}</span><input className="control-input" aria-label={copy.intercept} type="number" step="0.1" value={customLineParams?.intercept.toFixed(2) ?? "0"} onChange={(e) => onNumericLine(customLineParams?.slope ?? 0, Number(e.target.value))} /></label>
         </div>
         {selectedDataset && (
           <div className="control-panel__summary-card">

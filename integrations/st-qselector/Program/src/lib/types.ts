@@ -1,4 +1,5 @@
 // 共享数据类型（前后端通用）
+import type { TextbookChapterId } from "./textbook-chapters";
 
 export interface ChapterConfig {
   id: string; // 如 "Ch01"
@@ -26,6 +27,8 @@ export interface Question {
   estimatedMinutes: number;
   keywords: string[];
   topicIds: string[];
+  /** Canonical textbook chapters derived from topicIds. */
+  textbookChapterIds: TextbookChapterId[];
   dataRefs: string[];
   attachments: { name: string; available: boolean }[];
   answer: string | null;

@@ -24,7 +24,7 @@ export function mcmcMixture(controls: ControlMap, seed: number): SimulationResul
       accepted += 1;
     }
     if (i >= burnin) {
-      const state = { x, y, color: i === burnin ? "#c8665a" : "#2f6f64" };
+      const state = { x, y, color: i === burnin ? "var(--lab-orange)" : "var(--lab-teal)" };
       points.push(state);
       allStates.push(state);
     }
@@ -41,8 +41,8 @@ export function mcmcMixture(controls: ControlMap, seed: number): SimulationResul
       return { x: cx + Math.cos(angle) * radius * stretch, y: cy + Math.sin(angle) * radius };
     });
   const contours = [0.8, 1.45, 2.2].flatMap((radius) => [
-    { label: `mode 1 level ${radius}`, points: ellipse(0, 0, radius), color: "#8d75b5", opacity: 0.5 },
-    { label: `mode 2 level ${radius}`, points: ellipse(6, 6, radius, 1.15), color: "#8d75b5", opacity: 0.5 },
+    { label: `mode 1 level ${radius}`, points: ellipse(0, 0, radius), color: "var(--lab-purple)", opacity: 0.5 },
+    { label: `mode 2 level ${radius}`, points: ellipse(6, 6, radius, 1.15), color: "var(--lab-purple)", opacity: 0.5 },
   ]);
   const lagOne = (values: number[]): number => {
     if (values.length < 3) return 0;
@@ -113,10 +113,10 @@ export function politician(controls: ControlMap, seed: number): SimulationResult
       title: "Empirical visit frequency by island",
       xLabel: "island",
       yLabel: "visit proportion",
-      bars: bars.map((bar, index) => ({ ...bar, color: Math.abs(bar.value - target[index].value) < 0.02 ? "#2f6f64" : "#b69252" })),
+      bars: bars.map((bar, index) => ({ ...bar, color: Math.abs(bar.value - target[index].value) < 0.02 ? "var(--lab-green)" : "var(--lab-orange)" })),
       legend: [
-        { label: "close to target", color: "#2f6f64", shape: "bar" },
-        { label: "still converging", color: "#b69252", shape: "bar" },
+        { label: "close to target", color: "var(--lab-green)", shape: "bar" },
+        { label: "still converging", color: "var(--lab-orange)", shape: "bar" },
       ],
       yDomain: [0, Math.max(...bars.map((bar) => bar.value), ...target.map((bar) => bar.value)) * 1.2],
     }
@@ -138,7 +138,7 @@ export function gibbsBivariate(controls: ControlMap, seed: number): SimulationRe
     if (sweep >= burnin && sweep >= burnin + sampleSize - 24) axisPath.push({ x, y });
     y = normalRandom(rng, rho * x, conditionalSd);
     if (sweep >= burnin) {
-      samples.push({ x, y, color: "#2f6f64" });
+      samples.push({ x, y, color: "var(--lab-teal)" });
       if (sweep >= burnin + sampleSize - 24) axisPath.push({ x, y });
     }
   }
@@ -159,14 +159,27 @@ export function gibbsBivariate(controls: ControlMap, seed: number): SimulationRe
   const xVariance = mean(samples.map((point) => (point.x - xMean) ** 2));
   const yVariance = mean(samples.map((point) => (point.y - yMean) ** 2));
   const observedCorrelation = covariance / Math.max(Math.sqrt(xVariance * yVariance), Number.EPSILON);
+  const lagOne = (values: number[]): number => {
+    if (values.length < 3) return 0;
+    const center = mean(values);
+    const denominator = values.reduce((sum, value) => sum + (value - center) ** 2, 0);
+    if (denominator <= Number.EPSILON) return 0;
+    return values.slice(1).reduce((sum, value, index) => sum + (value - center) * (values[index] - center), 0) / denominator;
+  };
+  const lagCorrelation = Math.max(-0.99, Math.min(0.99, (lagOne(samples.map((point) => point.x)) + lagOne(samples.map((point) => point.y))) / 2));
+  const ess = sampleSize * (1 - lagCorrelation) / Math.max(1 + lagCorrelation, 0.01);
   return result(
     "Gibbs sampling through conditional distributions",
     "Each sweep updates x while y is fixed, then updates y while x is fixed. The recent path therefore alternates horizontal and vertical moves.",
     [
       { label: "target correlation", value: formatNumber(rho, 3), detail: "bivariate normal target" },
       { label: "sample correlation", value: formatNumber(observedCorrelation, 3), detail: `${sampleSize} retained sweeps` },
-      { label: "conditional SD", value: formatNumber(conditionalSd, 3), detail: "sqrt(1 - rho²)" },
       { label: "burn-in", value: String(burnin), detail: "discarded sweeps" },
+      { label: "effective sample size", value: formatNumber(Math.min(sampleSize, Math.max(1, ess)), 0), detail: `of ${sampleSize} retained draws` },
+      { label: "posterior mean", value: `(${formatNumber(xMean, 2)}, ${formatNumber(yMean, 2)})`, detail: "retained sample mean" },
+      // Keep the conditional spread available to existing consumers; the
+      // shared strip presents the five teaching metrics above.
+      { label: "conditional SD", value: formatNumber(conditionalSd, 3), detail: "sqrt(1 - rho²)" },
     ],
     {
       type: "mcmc",
@@ -180,7 +193,7 @@ export function gibbsBivariate(controls: ControlMap, seed: number): SimulationRe
       recentPathLabel: "recent path",
       samples: preview,
       path: axisPath,
-      contours: [0.8, 1.5, 2.3].map((radius) => ({ label: `density level ${radius}`, points: contour(radius), color: "#8d75b5", opacity: 0.55 })),
+      contours: [0.8, 1.5, 2.3].map((radius) => ({ label: `density level ${radius}`, points: contour(radius), color: "var(--lab-purple)", opacity: 0.55 })),
       traceX,
       traceY,
       xDomain: [-4, 4],

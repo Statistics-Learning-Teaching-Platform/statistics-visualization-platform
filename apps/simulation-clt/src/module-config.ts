@@ -43,10 +43,23 @@ export const moduleConfig: ModuleConfig = {
           max: 200,
           step: 1,
           defaultValue: 5
+        },
+        {
+          id: "repetitions",
+          label: "Repetitions",
+          type: "number",
+          min: 100,
+          max: 5000,
+          step: 100,
+          defaultValue: 500,
+          description: "Number of sample means used in the sampling distribution."
         }
       ],
       accumulateSampleMeans: true,
       quickActions: [
+        { type: "resetAndDrawSampleMeans", amount: 100, copyKey: "run100Samples" },
+        { type: "drawSampleMeans", amount: 100, copyKey: "draw100Samples" },
+        { type: "reset", amount: 0, copyKey: "reset" },
         { type: "drawSampleMeans", amount: 1, copyKey: "draw1Sample" },
         { type: "drawSampleMeans", amount: 20, copyKey: "draw20Samples" },
         { type: "setControl", control: "sampleSize", amount: 1, copyKey: "setN1" },

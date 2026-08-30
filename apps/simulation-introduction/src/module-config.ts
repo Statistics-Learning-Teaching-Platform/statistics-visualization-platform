@@ -18,6 +18,11 @@ export const moduleConfig: ModuleConfig = {
         "Monte Carlo estimators turn geometric areas into frequencies.",
         "The estimate stabilizes as the number of simulated points grows."
       ],
+      "quickActions": [
+        { "type": "runWithControl", "control": "points", "amount": 100, "copyKey": "simulate100" },
+        { "type": "runWithControl", "control": "points", "amount": 1000, "copyKey": "simulate1000" },
+        { "type": "reset", "amount": 0, "copyKey": "reset" }
+      ],
       "controls": [
         {
           "id": "points",
@@ -39,6 +44,11 @@ export const moduleConfig: ModuleConfig = {
       "teachingPoints": [
         "The crossing rate links random angles and distances to pi.",
         "Repeated experiments show convergence and sampling variability."
+      ],
+      "quickActions": [
+        { "type": "runWithControl", "control": "trials", "amount": 100, "copyKey": "simulate100" },
+        { "type": "runWithControl", "control": "trials", "amount": 1000, "copyKey": "simulate1000" },
+        { "type": "reset", "amount": 0, "copyKey": "reset" }
       ],
       "controls": [
         {

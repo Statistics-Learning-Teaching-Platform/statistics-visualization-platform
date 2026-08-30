@@ -18,6 +18,11 @@ export const moduleConfig: ModuleConfig = {
         "Each interval is built from a fresh random sample; choose z (sigma known) or t (sigma estimated).",
         "Over many repeated samples the observed coverage approaches the confidence level."
       ],
+      "quickActions": [
+        { "type": "runWithControl", "control": "intervalCount", "amount": 1, "copyKey": "generateOneInterval" },
+        { "type": "runWithControl", "control": "intervalCount", "amount": 20, "copyKey": "generateTwentyIntervals" },
+        { "type": "reset", "amount": 0, "copyKey": "reset" }
+      ],
       "controls": [
         {
           "id": "mu",

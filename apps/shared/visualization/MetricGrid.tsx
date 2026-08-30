@@ -15,8 +15,14 @@ interface MetricGridProps {
 }
 
 export function MetricGrid({ metrics, children, ariaLabel }: MetricGridProps) {
+  const metricCount = (metrics?.length ?? 0) + (children ? 1 : 0);
   return (
-    <section className="metrics-grid" aria-label={ariaLabel} data-metric-grid="true">
+    <section
+      className="metrics-grid"
+      aria-label={ariaLabel}
+      data-metric-grid="true"
+      data-metric-count={metricCount}
+    >
       {metrics?.map((metric, index) => (
         <article className="metric-card" key={metric.key ?? `${String(metric.label)}-${index}`} title={metric.help}>
           <span className="metric-label">{metric.label}</span>

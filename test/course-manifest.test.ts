@@ -10,6 +10,10 @@ import {
 import { validateCourseCatalog } from "../src/course/validation";
 import { pythonLessons } from "../src/python-learning/lessons";
 import { rLessons } from "../src/r-learning/lessons";
+import {
+  getTextbookChapterIdForTopic,
+  textbookChapterIds,
+} from "../src/course/textbookChapters";
 
 describe("course content model", () => {
   it("defines the thirteen-chapter statistics path in learning order", () => {
@@ -46,6 +50,11 @@ describe("course content model", () => {
         topicId: app.topicId,
       });
       expect(topic?.activityIds).toContain(app.activityId);
+      expect(app.textbookChapterIds.length, app.id).toBeGreaterThan(0);
+      expect(
+        app.textbookChapterIds.every((chapterId) => textbookChapterIds.includes(chapterId)),
+        app.id,
+      ).toBe(true);
     }
   });
 
@@ -54,13 +63,28 @@ describe("course content model", () => {
       const topic = getTopicById(lesson.topicId);
       expect(topic, `R lesson ${lesson.id}`).toBeDefined();
       expect(topic?.rLessonIds).toContain(lesson.id);
+      expect(lesson.textbookChapterId).toBe(getTextbookChapterIdForTopic(lesson.topicId));
     }
 
     for (const lesson of pythonLessons) {
       const topic = getTopicById(lesson.topicId);
       expect(topic, `Python lesson ${lesson.id}`).toBeDefined();
       expect(topic?.pythonLessonIds).toContain(lesson.id);
+      expect(lesson.textbookChapterId).toBe(getTextbookChapterIdForTopic(lesson.topicId));
     }
+  });
+
+  it("keeps textbook chapter metadata internal and complete", () => {
+    expect(textbookChapterIds).toEqual([
+      "mes-ch00", "mes-ch01", "mes-ch02", "mes-ch03", "mes-ch04", "mes-ch05",
+      "mes-ch06", "mes-ch07", "mes-ch08", "mes-ch09", "mes-ch10", "mes-ch11",
+    ]);
+    expect(new Set(pythonLessons.map(({ textbookChapterId }) => textbookChapterId))).toEqual(
+      new Set(textbookChapterIds),
+    );
+    expect(new Set(rLessons.map(({ textbookChapterId }) => textbookChapterId))).toEqual(
+      new Set(textbookChapterIds),
+    );
   });
 
   it("keeps topic and activity ordering unique within each parent", () => {

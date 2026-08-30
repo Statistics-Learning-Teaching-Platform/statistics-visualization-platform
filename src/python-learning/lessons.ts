@@ -1,8 +1,17 @@
 import type { CodeLesson } from "../code-learning/types";
+import {
+  getTextbookChapterIdForTopic,
+  type TextbookChapterId,
+} from "../course/textbookChapters";
 
 const normalizeCode = (code: string) => code.replace(/\\n/g, "\n").replace(/\\t/g, "\t");
 
-export type PythonLesson = CodeLesson<"foundations" | "data" | "visualization" | "statistics", "python">;
+export type PythonLesson = CodeLesson<"foundations" | "data" | "visualization" | "statistics", "python"> & {
+  /** Internal textbook binding. The workspace intentionally does not display it yet. */
+  textbookChapterId: TextbookChapterId;
+};
+
+type PythonLessonDraft = Omit<PythonLesson, "textbookChapterId">;
 
 export const pythonLessonUnits = [
   { id: "foundations", number: "01", zh: "Python 基础", en: "Python foundations" },
@@ -11,7 +20,7 @@ export const pythonLessonUnits = [
   { id: "statistics", number: "04", zh: "统计建模", en: "Statistical modelling" },
 ] as const;
 
-const rawPythonLessons: PythonLesson[] = [
+const rawPythonLessons: PythonLessonDraft[] = [
   {
     language: "python",
     prerequisites: [],
@@ -684,10 +693,419 @@ print(mae)`,
   { language: "python", prerequisites: ["sampling-simulation"], id: "sampling-distribution-sim", topicId: "sampling-distributions", unit: "statistics", order: 29, eyebrow: { zh: "第二十九课 · 抽样分布", en: "Lesson 29 · Sampling distributions" }, title: { zh: "模拟样本均值的标准误", en: "Simulate the standard error of a mean" }, objective: { zh: "区分样本量、重复抽样次数和样本均值的变异。", en: "Distinguish sample size, repetitions, and variation in sample means." }, explanation: { zh: "理论标准误是总体标准差除以样本量平方根。", en: "The theoretical standard error is population spread divided by sqrt(n)." }, task: { zh: "保存样本均值的标准差 `observed_se`。", en: "Save the standard deviation of sample means." }, concepts: ["sampling distribution", "standard error"], packages: ["numpy"], starterCode: "import numpy as np\\nrng = np.random.default_rng(42)\\nmeans = np.array([rng.normal(10, 4, 25).mean() for _ in range(1000)])\\nobserved_se =", hint: { zh: "使用 `means.std(ddof=1)`。", en: "Use `means.std(ddof=1)`." }, solution: "import numpy as np\\nrng = np.random.default_rng(42)\\nmeans = np.array([rng.normal(10, 4, 25).mean() for _ in range(1000)])\\nobserved_se = means.std(ddof=1)", checkCode: "len(means) == 1000 and 0.6 < observed_se < 1", success: { zh: "完成：观察标准误接近理论值 0.8。", en: "Complete: the observed standard error is close to 0.8." } },
   { language: "python", prerequisites: ["one-way-anova"], id: "anova-posthoc", topicId: "anova", unit: "statistics", order: 30, eyebrow: { zh: "第三十课 · 多重比较", en: "Lesson 30 · Multiple comparisons" }, title: { zh: "在 ANOVA 后进行 Tukey 比较", en: "Run Tukey comparisons after ANOVA" }, objective: { zh: "理解整体检验与校正后的两两比较。", en: "Connect an overall test to adjusted pairwise comparisons." }, explanation: { zh: "多重比较需要控制整体错误率。", en: "Multiple comparisons require family-wise error control." }, task: { zh: "保存 Tukey 结果 `posthoc`。", en: "Save Tukey results as `posthoc`." }, concepts: ["Tukey HSD", "multiple comparisons"], packages: ["numpy", "statsmodels"], starterCode: "import numpy as np\\nfrom statsmodels.stats.multicomp import pairwise_tukeyhsd\\n\\nscores = np.array([70, 72, 71, 69, 76, 78, 75, 77, 82, 84, 83, 81])\\ngroups = np.repeat([\"A\", \"B\", \"C\"], 4)\\nposthoc =", hint: { zh: "使用 `pairwise_tukeyhsd(scores, groups)`。", en: "Use `pairwise_tukeyhsd(scores, groups)`." }, solution: "import numpy as np\\nfrom statsmodels.stats.multicomp import pairwise_tukeyhsd\\nscores = np.array([70, 72, 71, 69, 76, 78, 75, 77, 82, 84, 83, 81])\\ngroups = np.repeat([\"A\", \"B\", \"C\"], 4)\\nposthoc = pairwise_tukeyhsd(scores, groups)", checkCode: "hasattr(posthoc, 'summary')", success: { zh: "完成：整体 ANOVA 与校正后的两两比较已经连接。", en: "Complete: ANOVA is connected to adjusted pairwise comparisons." } },
   { language: "python", prerequisites: ["chi-square-contingency"], id: "chi-square-goodness-fit", topicId: "chi-square-test", unit: "statistics", order: 31, eyebrow: { zh: "第三十一课 · 拟合优度", en: "Lesson 31 · Goodness of fit" }, title: { zh: "检验频数是否符合理论比例", en: "Test frequencies against theoretical proportions" }, objective: { zh: "使用卡方拟合优度检验比较观察和期望频数。", en: "Use a chi-square goodness-of-fit test." }, explanation: { zh: "原假设给出各类别的理论比例。", en: "The null hypothesis specifies theoretical category proportions." }, task: { zh: "保存检验结果 `gof_result`。", en: "Save `gof_result`." }, concepts: ["chisquare", "goodness of fit"], packages: ["numpy", "scipy"], starterCode: "import numpy as np\\nfrom scipy import stats\\n\\nobserved = np.array([28, 34, 38])\\nexpected = np.array([1/3, 1/3, 1/3])\\ngof_result =", hint: { zh: "使用 `stats chisquare(f_obs=observed, f_exp=observed.sum() * expected)`。", en: "Use `stats chisquare` with expected counts." }, solution: "import numpy as np\\nfrom scipy import stats\\nobserved = np.array([28, 34, 38])\\nexpected = np.array([1/3, 1/3, 1/3])\\ngof_result = stats.chisquare(f_obs=observed, f_exp=observed.sum() * expected)", checkCode: "gof_result.pvalue > 0", success: { zh: "完成：观察频数已经与理论比例比较。", en: "Complete: observed counts are compared with expected counts." } },
+  {
+    language: "python",
+    prerequisites: ["pandas-filter-summary"],
+    id: "sampling-designs",
+    topicId: "sampling-methods",
+    unit: "data",
+    order: 32,
+    eyebrow: { zh: "第三十二课 · 抽样设计", en: "Lesson 32 · Sampling designs" },
+    title: { zh: "比较简单随机抽样与分层抽样", en: "Compare simple and stratified sampling" },
+    objective: { zh: "使用随机数生成器实施可复现的概率抽样。", en: "Use a random generator to implement reproducible probability samples." },
+    explanation: { zh: "简单随机抽样让每个个体有相同入样机会；分层抽样先按重要群体分层，再在层内随机抽取。", en: "Simple random sampling gives each unit an equal chance; stratified sampling draws randomly within important groups." },
+    task: { zh: "从100个个体中抽取20个简单随机样本，并从A、B两层各抽取10个个体。", en: "Draw a simple random sample of 20 and a stratified sample with 10 units from each stratum." },
+    concepts: ["simple random sampling", "stratified sampling", "reproducibility"],
+    packages: ["numpy"],
+    starterCode: `import numpy as np
+
+rng = np.random.default_rng(42)
+population = np.arange(1, 101)
+strata = np.array(["A"] * 60 + ["B"] * 40)
+
+simple_sample =
+sample_a = rng.choice(population[strata == "A"], size=10, replace=False)
+sample_b = rng.choice(population[strata == "B"], size=10, replace=False)
+stratified_sample =
+
+print(simple_sample)
+print(stratified_sample)`,
+    hint: { zh: "使用 `rng.choice(population, size=20, replace=False)`，再用 `np.concatenate([sample_a, sample_b])`。", en: "Use `rng.choice(..., replace=False)` and concatenate the two stratum samples." },
+    solution: `import numpy as np
+rng = np.random.default_rng(42)
+population = np.arange(1, 101)
+strata = np.array(["A"] * 60 + ["B"] * 40)
+simple_sample = rng.choice(population, size=20, replace=False)
+sample_a = rng.choice(population[strata == "A"], size=10, replace=False)
+sample_b = rng.choice(population[strata == "B"], size=10, replace=False)
+stratified_sample = np.concatenate([sample_a, sample_b])`,
+    checkCode: `len(simple_sample) == 20 and len(np.unique(simple_sample)) == 20 and len(stratified_sample) == 20 and np.sum(stratified_sample <= 60) == 10 and np.sum(stratified_sample > 60) == 10`,
+    success: { zh: "完成：两种抽样设计均可复现，且分层样本保持了层别配额。", en: "Complete: both samples are reproducible and the stratified sample preserves its quotas." },
+  },
+  {
+    language: "python",
+    prerequisites: ["pandas-filter-summary"],
+    id: "chart-selection",
+    topicId: "visual-encoding",
+    unit: "visualization",
+    order: 33,
+    eyebrow: { zh: "第三十三课 · 图表选择", en: "Lesson 33 · Chart selection" },
+    title: { zh: "根据变量类型选择统计图", en: "Choose a chart from variable types" },
+    objective: { zh: "区分分类分布、数值分布、变量关系和时间变化四类图形任务。", en: "Distinguish charts for categories, distributions, relationships, and time." },
+    explanation: { zh: "图形由统计问题和变量类型决定，而不是由软件默认样式决定。", en: "A chart should follow the statistical question and variable types, not a software default." },
+    task: { zh: "为分类频数、单个数值变量和两个数值变量分别保存合适的图表名称。", en: "Save suitable chart names for category counts, one numeric variable, and two numeric variables." },
+    concepts: ["bar chart", "histogram", "scatter plot", "line chart"],
+    starterCode: `chart_for_categories =
+chart_for_numeric_distribution =
+chart_for_two_numeric_variables =
+
+print(chart_for_categories, chart_for_numeric_distribution, chart_for_two_numeric_variables)`,
+    hint: { zh: "依次使用 `bar`、`histogram` 和 `scatter`。", en: "Use `bar`, `histogram`, and `scatter`, respectively." },
+    solution: `chart_for_categories = "bar"
+chart_for_numeric_distribution = "histogram"
+chart_for_two_numeric_variables = "scatter"`,
+    checkCode: `chart_for_categories == "bar" and chart_for_numeric_distribution == "histogram" and chart_for_two_numeric_variables == "scatter"`,
+    success: { zh: "完成：图表类型与变量结构正确匹配。", en: "Complete: the chart types match the variable structures." },
+  },
+  {
+    language: "python",
+    prerequisites: ["chart-selection"],
+    id: "grouped-visualization",
+    topicId: "visual-encoding",
+    unit: "visualization",
+    order: 34,
+    eyebrow: { zh: "第三十四课 · 分组图形", en: "Lesson 34 · Grouped graphics" },
+    title: { zh: "绘制分组均值条形图", en: "Plot grouped means" },
+    objective: { zh: "用 pandas 分组汇总，并用 Matplotlib 准确呈现比较。", en: "Summarize groups with pandas and present the comparison with Matplotlib." },
+    explanation: { zh: "先明确统计量，再绘图，能够避免把原始频数与组均值混为一谈。", en: "Computing the statistic before plotting avoids confusing raw counts with group means." },
+    task: { zh: "按学习方式计算平均成绩并绘制条形图。", en: "Calculate mean score by learning method and draw a bar chart." },
+    concepts: ["groupby()", "mean()", "bar chart"],
+    packages: ["pandas", "matplotlib"],
+    starterCode: `import pandas as pd
+import matplotlib.pyplot as plt
+
+data = pd.DataFrame({
+    "method": ["video", "video", "text", "text", "video", "text"],
+    "score": [78, 84, 72, 76, 81, 79],
+})
+mean_table =
+fig, ax = plt.subplots(figsize=(6, 4))
+
+ax.set_ylabel("Mean score")
+plt.show()`,
+    hint: { zh: '使用 `data.groupby("method")["score"].mean()`，再调用 `mean_table.plot.bar(ax=ax)`。', en: "Group by method, take the score mean, then call `mean_table.plot.bar(ax=ax)`." },
+    solution: `import pandas as pd
+import matplotlib.pyplot as plt
+data = pd.DataFrame({"method": ["video", "video", "text", "text", "video", "text"], "score": [78, 84, 72, 76, 81, 79]})
+mean_table = data.groupby("method")["score"].mean()
+fig, ax = plt.subplots(figsize=(6, 4))
+mean_table.plot.bar(ax=ax, color="#2f7d70")
+ax.set_ylabel("Mean score")
+plt.show()`,
+    checkCode: `set(mean_table.index) == {"text", "video"} and abs(float(mean_table["video"]) - 81.0) < 1e-12 and len(ax.patches) == 2`,
+    success: { zh: "完成：分组统计量和图形编码一致。", en: "Complete: the grouped statistic and graphic agree." },
+  },
+  {
+    language: "python",
+    prerequisites: ["lists-and-mean"],
+    id: "percentiles-and-outliers",
+    topicId: "descriptive-statistics",
+    unit: "statistics",
+    order: 35,
+    eyebrow: { zh: "第三十五课 · 百分位数", en: "Lesson 35 · Percentiles" },
+    title: { zh: "用四分位距识别离群值", en: "Identify outliers with the IQR rule" },
+    objective: { zh: "计算四分位数、四分位距和1.5IQR离群值边界。", en: "Calculate quartiles, the IQR, and 1.5-IQR outlier fences." },
+    explanation: { zh: "离群值规则是一种诊断工具，不等于自动删除数据的命令。", en: "An outlier rule is a diagnostic, not an instruction to delete observations automatically." },
+    task: { zh: "保存Q1、Q3、IQR以及识别出的离群值。", en: "Save Q1, Q3, the IQR, and the detected outliers." },
+    concepts: ["percentile", "IQR", "outlier"],
+    packages: ["numpy"],
+    starterCode: `import numpy as np
+
+scores = np.array([62, 68, 71, 73, 75, 77, 80, 82, 85, 100])
+q1, q3 =
+iqr =
+lower_fence = q1 - 1.5 * iqr
+upper_fence = q3 + 1.5 * iqr
+outliers =
+
+print(outliers)`,
+    hint: { zh: "使用 `np.percentile(scores, [25, 75])`，再用布尔条件筛选边界之外的值。", en: "Use `np.percentile(scores, [25, 75])` and filter values beyond the fences." },
+    solution: `import numpy as np
+scores = np.array([62, 68, 71, 73, 75, 77, 80, 82, 85, 100])
+q1, q3 = np.percentile(scores, [25, 75])
+iqr = q3 - q1
+lower_fence = q1 - 1.5 * iqr
+upper_fence = q3 + 1.5 * iqr
+outliers = scores[(scores < lower_fence) | (scores > upper_fence)]`,
+    checkCode: `q1 < q3 and iqr == q3 - q1 and np.array_equal(outliers, np.array([100]))`,
+    success: { zh: "完成：离群值已按明确规则标记，但没有被自动删除。", en: "Complete: the outlier is flagged by a stated rule without being deleted." },
+  },
+  {
+    language: "python",
+    prerequisites: ["lists-and-mean"],
+    id: "weighted-average",
+    topicId: "descriptive-statistics",
+    unit: "statistics",
+    order: 36,
+    eyebrow: { zh: "第三十六课 · 加权平均", en: "Lesson 36 · Weighted means" },
+    title: { zh: "按交易量计算加权均价", en: "Calculate a volume-weighted mean" },
+    objective: { zh: "区分简单平均与按样本规模加权的平均。", en: "Distinguish an unweighted mean from a size-weighted mean." },
+    explanation: { zh: "当各组代表的观测数量不同，简单平均可能不能代表所有个体的总体水平。", en: "When groups represent different numbers of observations, an unweighted mean may not describe the overall level." },
+    task: { zh: "分别保存简单均价和按成交量加权的均价。", en: "Save the simple and transaction-volume-weighted mean prices." },
+    concepts: ["weighted mean", "np.average", "weights"],
+    packages: ["numpy"],
+    starterCode: `import numpy as np
+
+prices = np.array([5200, 6100, 7800, 9000], dtype=float)
+transactions = np.array([500, 420, 180, 80], dtype=float)
+simple_mean =
+weighted_mean =
+
+print(simple_mean, weighted_mean)`,
+    hint: { zh: "简单平均使用 `prices.mean()`；加权平均使用 `np.average(prices, weights=transactions)`。", en: "Use `prices.mean()` and `np.average(prices, weights=transactions)`." },
+    solution: `import numpy as np
+prices = np.array([5200, 6100, 7800, 9000], dtype=float)
+transactions = np.array([500, 420, 180, 80], dtype=float)
+simple_mean = prices.mean()
+weighted_mean = np.average(prices, weights=transactions)`,
+    checkCode: `abs(simple_mean - 7025) < 1e-12 and 5000 < weighted_mean < simple_mean`,
+    success: { zh: "完成：权重改变了“总体平均”的统计口径。", en: "Complete: weighting changes the meaning of the overall average." },
+  },
+  {
+    language: "python",
+    prerequisites: ["distribution-probabilities"],
+    id: "discrete-distribution-models",
+    topicId: "probability-distributions",
+    unit: "statistics",
+    order: 37,
+    eyebrow: { zh: "第三十七课 · 离散分布", en: "Lesson 37 · Discrete distributions" },
+    title: { zh: "比较二项、几何与泊松模型", en: "Compare binomial, geometric, and Poisson models" },
+    objective: { zh: "根据随机机制选择离散分布并计算尾概率。", en: "Choose a discrete model from its mechanism and calculate tail probabilities." },
+    explanation: { zh: "二项分布描述固定次数中的成功数，几何分布描述首次成功前的等待，泊松分布描述单位区间的事件数。", en: "Binomial models successes in fixed trials, geometric models waiting to first success, and Poisson models event counts in an interval." },
+    task: { zh: "分别计算14次中至少13次成功、20次仍未成功以及一年至少发生一次事故的概率。", en: "Calculate three probabilities under binomial, geometric, and Poisson mechanisms." },
+    concepts: ["binomial", "geometric", "Poisson", "survival function"],
+    packages: ["scipy"],
+    starterCode: `from scipy import stats
+
+binomial_tail =
+geometric_tail =
+poisson_at_least_one =
+
+print(binomial_tail, geometric_tail, poisson_at_least_one)`,
+    hint: { zh: "使用 `stats.binom.sf(12, 14, 0.5)`、`stats.geom.sf(20, 0.09)` 和 `stats.poisson.sf(0, 1.45)`。", en: "Use the survival functions of binomial, geometric, and Poisson distributions." },
+    solution: `from scipy import stats
+binomial_tail = stats.binom.sf(12, 14, 0.5)
+geometric_tail = stats.geom.sf(20, 0.09)
+poisson_at_least_one = stats.poisson.sf(0, 1.45)`,
+    checkCode: `0 < binomial_tail < 0.01 and 0 < geometric_tail < 0.2 and 0.7 < poisson_at_least_one < 0.8`,
+    success: { zh: "完成：三种分布已经按不同随机机制使用。", en: "Complete: all three distributions are used for their distinct mechanisms." },
+  },
+  {
+    language: "python",
+    prerequisites: ["normal-uniform-exponential"],
+    id: "normality-qq-plot",
+    topicId: "normal-distribution",
+    unit: "visualization",
+    order: 38,
+    eyebrow: { zh: "第三十八课 · 正态性诊断", en: "Lesson 38 · Normality diagnostics" },
+    title: { zh: "用Q-Q图检查正态性", en: "Inspect normality with a Q-Q plot" },
+    objective: { zh: "绘制Q-Q图，并把图形证据与相关系数结合解释。", en: "Draw a Q-Q plot and combine visual evidence with its correlation." },
+    explanation: { zh: "点接近参考直线支持正态近似；偏离可能来自偏态、重尾或离群值。图形诊断不应成为任意删数据的理由。", en: "Points near the line support a normal approximation; departures may reflect skew, heavy tails, or outliers." },
+    task: { zh: "绘制给定样本的正态Q-Q图并保存拟合相关系数。", en: "Draw a normal Q-Q plot and save its fitted correlation." },
+    concepts: ["Q-Q plot", "probplot", "normality"],
+    packages: ["numpy", "scipy", "matplotlib"],
+    starterCode: `import numpy as np
+from scipy import stats
+import matplotlib.pyplot as plt
+
+rng = np.random.default_rng(7)
+sample = rng.normal(50, 8, size=120)
+fig, ax = plt.subplots(figsize=(6, 4))
+qq_result =
+qq_correlation =
+plt.show()`,
+    hint: { zh: '使用 `stats.probplot(sample, dist="norm", plot=ax)`，相关系数位于返回值第二部分的第三项。', en: "Use `stats.probplot(..., plot=ax)`; the correlation is the third item of the fitted tuple." },
+    solution: `import numpy as np
+from scipy import stats
+import matplotlib.pyplot as plt
+rng = np.random.default_rng(7)
+sample = rng.normal(50, 8, size=120)
+fig, ax = plt.subplots(figsize=(6, 4))
+qq_result = stats.probplot(sample, dist="norm", plot=ax)
+qq_correlation = float(qq_result[1][2])
+plt.show()`,
+    checkCode: `len(qq_result) == 2 and 0.97 < qq_correlation <= 1 and len(ax.lines) >= 2`,
+    success: { zh: "完成：Q-Q图和拟合指标共同支持正态性判断。", en: "Complete: the Q-Q plot and fitted measure jointly inform the normality assessment." },
+  },
+  {
+    language: "python",
+    prerequisites: ["paired-test"],
+    id: "wilcoxon-signed-rank",
+    topicId: "nonparametric-tests",
+    unit: "statistics",
+    order: 39,
+    eyebrow: { zh: "第三十九课 · 符号秩检验", en: "Lesson 39 · Signed-rank test" },
+    title: { zh: "比较配对样本的秩差", en: "Compare paired samples by signed ranks" },
+    objective: { zh: "在配对差值不适合正态假设时使用Wilcoxon符号秩检验。", en: "Use the Wilcoxon signed-rank test when paired differences are not suitably normal." },
+    explanation: { zh: "该检验利用差值的方向和秩，而不是直接检验均值差。", en: "The test uses signs and ranks of differences rather than directly testing a mean difference." },
+    task: { zh: "保存培训前后成绩的Wilcoxon检验结果。", en: "Save the Wilcoxon result for paired before-after scores." },
+    concepts: ["Wilcoxon signed-rank", "paired data", "ranks"],
+    packages: ["numpy", "scipy"],
+    starterCode: `import numpy as np
+from scipy import stats
+
+before = np.array([61, 70, 68, 75, 64, 72, 69, 77])
+after = np.array([66, 72, 73, 78, 69, 75, 74, 80])
+signed_rank_result =
+
+print(signed_rank_result)`,
+    hint: { zh: '使用 `stats.wilcoxon(after, before, alternative="greater")`。', en: 'Use `stats.wilcoxon(after, before, alternative="greater")`.' },
+    solution: `import numpy as np
+from scipy import stats
+before = np.array([61, 70, 68, 75, 64, 72, 69, 77])
+after = np.array([66, 72, 73, 78, 69, 75, 74, 80])
+signed_rank_result = stats.wilcoxon(after, before, alternative="greater")`,
+    checkCode: `hasattr(signed_rank_result, "statistic") and signed_rank_result.pvalue < 0.05`,
+    success: { zh: "完成：配对变化已用符号秩而不是均值差评价。", en: "Complete: paired change is assessed through signed ranks rather than a mean difference." },
+  },
+  {
+    language: "python",
+    prerequisites: ["nonparametric-tests"],
+    id: "kruskal-wallis",
+    topicId: "nonparametric-tests",
+    unit: "statistics",
+    order: 40,
+    eyebrow: { zh: "第四十课 · 多组秩检验", en: "Lesson 40 · Multi-group rank test" },
+    title: { zh: "用Kruskal-Wallis检验比较多组", en: "Compare groups with Kruskal-Wallis" },
+    objective: { zh: "在单因素ANOVA假设不合适时比较三个独立组。", en: "Compare three independent groups when one-way ANOVA assumptions are unsuitable." },
+    explanation: { zh: "显著结果说明至少一组分布位置不同，但仍需事后比较确定具体组别。", en: "A significant result indicates at least one group differs and still requires post-hoc comparisons." },
+    task: { zh: "保存三个影院满意度的Kruskal-Wallis检验结果。", en: "Save the Kruskal-Wallis result for three cinema ratings." },
+    concepts: ["Kruskal-Wallis", "independent groups", "rank test"],
+    packages: ["scipy"],
+    starterCode: `from scipy import stats
+
+cinema_a = [3, 4, 4, 5, 3, 4]
+cinema_b = [2, 2, 3, 3, 2, 4]
+cinema_c = [4, 5, 5, 4, 5, 5]
+kruskal_result =
+
+print(kruskal_result)`,
+    hint: { zh: "使用 `stats.kruskal(cinema_a, cinema_b, cinema_c)`。", en: "Use `stats.kruskal(cinema_a, cinema_b, cinema_c)`." },
+    solution: `from scipy import stats
+cinema_a = [3, 4, 4, 5, 3, 4]
+cinema_b = [2, 2, 3, 3, 2, 4]
+cinema_c = [4, 5, 5, 4, 5, 5]
+kruskal_result = stats.kruskal(cinema_a, cinema_b, cinema_c)`,
+    checkCode: `kruskal_result.statistic > 0 and kruskal_result.pvalue < 0.05`,
+    success: { zh: "完成：多组差异已用秩方法进行整体检验。", en: "Complete: the overall multi-group difference is assessed with ranks." },
+  },
+  {
+    language: "python",
+    prerequisites: ["time-series-forecasting"],
+    id: "time-series-decomposition",
+    topicId: "time-series",
+    unit: "statistics",
+    order: 41,
+    eyebrow: { zh: "第四十一课 · 序列分解", en: "Lesson 41 · Time-series decomposition" },
+    title: { zh: "分离趋势与季节性", en: "Separate trend and seasonality" },
+    objective: { zh: "使用移动平均估计趋势，并计算季度季节指数。", en: "Estimate trend with a moving average and calculate quarterly seasonal indices." },
+    explanation: { zh: "分解帮助区分长期变化和重复季节模式；解释结果前应确认季节周期。", en: "Decomposition separates long-run change from repeating seasonal patterns after the period is justified." },
+    task: { zh: "计算四期中心移动平均和四个季度的平均季节指数。", en: "Calculate a centered four-period moving average and four average seasonal indices." },
+    concepts: ["trend", "seasonality", "moving average", "decomposition"],
+    packages: ["numpy", "pandas"],
+    starterCode: `import numpy as np
+import pandas as pd
+
+sales = np.array([120, 90, 60, 130, 132, 96, 66, 143, 144, 105, 72, 156], dtype=float)
+trend =
+quarter_means = sales.reshape(-1, 4).mean(axis=0)
+seasonal_index =
+
+print(seasonal_index)`,
+    hint: { zh: "趋势使用 `pd.Series(sales).rolling(4, center=True).mean()`；季节指数用季度均值除以所有季度均值的平均。", en: "Use a centered rolling mean; divide quarter means by their overall mean for seasonal indices." },
+    solution: `import numpy as np
+import pandas as pd
+sales = np.array([120, 90, 60, 130, 132, 96, 66, 143, 144, 105, 72, 156], dtype=float)
+trend = pd.Series(sales).rolling(4, center=True).mean()
+quarter_means = sales.reshape(-1, 4).mean(axis=0)
+seasonal_index = quarter_means / quarter_means.mean()`,
+    checkCode: `len(trend) == len(sales) and np.isnan(trend.iloc[0]) and seasonal_index.shape == (4,) and abs(float(seasonal_index.mean()) - 1) < 1e-12`,
+    success: { zh: "完成：趋势与季度季节模式已分别估计。", en: "Complete: trend and quarterly seasonal patterns are estimated separately." },
+  },
+  {
+    language: "python",
+    prerequisites: ["forecast-error-metrics"],
+    id: "exponential-smoothing",
+    topicId: "time-series",
+    unit: "statistics",
+    order: 42,
+    eyebrow: { zh: "第四十二课 · 指数平滑", en: "Lesson 42 · Exponential smoothing" },
+    title: { zh: "比较不同平滑参数", en: "Compare smoothing parameters" },
+    objective: { zh: "实现简单指数平滑，并用MSE选择平滑参数。", en: "Implement simple exponential smoothing and compare alpha values with MSE." },
+    explanation: { zh: "较大的alpha更重视最新观测，较小的alpha产生更平滑但反应更慢的预测。", en: "A larger alpha emphasizes recent observations; a smaller alpha is smoother but slower to react." },
+    task: { zh: "完成平滑函数，并比较alpha为0.3和0.5时的MSE。", en: "Complete the smoother and compare MSE for alpha 0.3 and 0.5." },
+    concepts: ["exponential smoothing", "alpha", "MSE"],
+    packages: ["numpy"],
+    starterCode: `import numpy as np
+
+sales = np.array([3.2, 4.8, 2.9, 6.1, 5.4, 7.0, 6.5], dtype=float)
+
+def smooth(values, alpha):
+    forecasts = [values[0]]
+    for value in values[:-1]:
+        forecasts.append(
+        )
+    return np.array(forecasts)
+
+forecast_03 = smooth(sales, 0.3)
+forecast_05 = smooth(sales, 0.5)
+mse_03 =
+mse_05 =`,
+    hint: { zh: "新预测为 `alpha * value + (1 - alpha) * forecasts[-1]`；MSE是实际值与预测值平方误差的平均。", en: "Update with alpha times the observation plus one minus alpha times the previous forecast, then average squared errors." },
+    solution: `import numpy as np
+sales = np.array([3.2, 4.8, 2.9, 6.1, 5.4, 7.0, 6.5], dtype=float)
+def smooth(values, alpha):
+    forecasts = [values[0]]
+    for value in values[:-1]:
+        forecasts.append(alpha * value + (1 - alpha) * forecasts[-1])
+    return np.array(forecasts)
+forecast_03 = smooth(sales, 0.3)
+forecast_05 = smooth(sales, 0.5)
+mse_03 = float(np.mean((sales - forecast_03) ** 2))
+mse_05 = float(np.mean((sales - forecast_05) ** 2))`,
+    checkCode: `len(forecast_03) == len(sales) and len(forecast_05) == len(sales) and mse_03 > 0 and mse_05 > 0 and mse_03 != mse_05`,
+    success: { zh: "完成：平滑参数已经用同一误差标准比较。", en: "Complete: the smoothing parameters are compared with a common error metric." },
+  },
+  {
+    language: "python",
+    prerequisites: ["polynomial-regression"],
+    id: "regression-model-comparison",
+    topicId: "linear-regression",
+    unit: "statistics",
+    order: 43,
+    eyebrow: { zh: "第四十三课 · 模型选择", en: "Lesson 43 · Model comparison" },
+    title: { zh: "比较线性与二次回归", en: "Compare linear and quadratic regression" },
+    objective: { zh: "使用训练误差比较模型，同时识别复杂模型的过拟合风险。", en: "Compare models with fitting error while recognizing the overfitting risk of complexity." },
+    explanation: { zh: "训练误差降低不自动证明模型更好；最终还应使用留出数据、残差和业务解释进行评价。", en: "Lower training error does not automatically mean a better model; held-out data, residuals, and context are also needed." },
+    task: { zh: "分别拟合一次与二次多项式，并保存两个RMSE。", en: "Fit degree-one and degree-two polynomials and save both RMSE values." },
+    concepts: ["model comparison", "RMSE", "overfitting"],
+    packages: ["numpy"],
+    starterCode: `import numpy as np
+
+x = np.arange(1, 9, dtype=float)
+y = np.array([4, 6, 9, 13, 18, 25, 33, 42], dtype=float)
+linear_fit = np.polyval(np.polyfit(x, y, 1), x)
+quadratic_fit = np.polyval(np.polyfit(x, y, 2), x)
+linear_rmse =
+quadratic_rmse =
+
+print(linear_rmse, quadratic_rmse)`,
+    hint: { zh: "对每组预测计算 `np.sqrt(np.mean((y - prediction) ** 2))`。", en: "Calculate the square root of mean squared residuals for each prediction." },
+    solution: `import numpy as np
+x = np.arange(1, 9, dtype=float)
+y = np.array([4, 6, 9, 13, 18, 25, 33, 42], dtype=float)
+linear_fit = np.polyval(np.polyfit(x, y, 1), x)
+quadratic_fit = np.polyval(np.polyfit(x, y, 2), x)
+linear_rmse = float(np.sqrt(np.mean((y - linear_fit) ** 2)))
+quadratic_rmse = float(np.sqrt(np.mean((y - quadratic_fit) ** 2)))`,
+    checkCode: `linear_rmse > 0 and quadratic_rmse >= 0 and quadratic_rmse < linear_rmse`,
+    success: { zh: "完成：二次模型降低了训练误差，同时保留了过拟合警告。", en: "Complete: the quadratic model lowers fitting error while retaining the overfitting warning." },
+  },
 ];
 
 export const pythonLessons: PythonLesson[] = rawPythonLessons.map((lesson) => ({
   ...lesson,
+  textbookChapterId: getTextbookChapterIdForTopic(lesson.topicId),
   starterCode: normalizeCode(lesson.starterCode),
   solution: normalizeCode(lesson.solution),
 }));

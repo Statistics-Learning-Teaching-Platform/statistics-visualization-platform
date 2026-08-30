@@ -10,13 +10,16 @@ import { generateSampleMeans, runExample } from "./engine";
 import { Chart } from "./charts";
 import {
   ChartFrame,
+  ControlGroup,
+  ExperimentMetricStrip,
+  ExperimentChangeSummary,
+  RunControls,
+  StatisticsTable,
   FormulaCard,
-  MetricGrid,
-  ObservationCard,
   ParameterPanel,
-  ReadingGuide,
   VisualizationFrame,
   VisualizationHeader,
+  localizedExperimentMetadata,
 } from "../visualization";
 import type {
   ControlConfig,
@@ -123,11 +126,22 @@ function renderControl(
   control: ControlConfig,
   controls: Record<string, ControlValue>,
   onChange: (id: string, value: ControlValue) => void,
+  language: "zh" | "en",
+  compact = false,
 ): ReactNode {
   const effectiveControl = resolveControlConfig(control, controls);
   const value = valueFor(effectiveControl, controls);
   const dependentValue = control.labelByValue ? String(controls[control.labelByValue.controlId] ?? "") : "";
   const visibleLabel = control.labelByValue?.labels[dependentValue] ?? control.label;
+  const description = control.description ?? (
+    effectiveControl.type === "number" && effectiveControl.min !== undefined && effectiveControl.max !== undefined
+      ? language === "zh"
+        ? `在 ${effectiveControl.min}–${effectiveControl.max} 范围内调整此参数。`
+        : `Adjust this parameter between ${effectiveControl.min} and ${effectiveControl.max}.`
+      : effectiveControl.type === "select"
+        ? language === "zh" ? "选择当前实验的模式或数据设置。" : "Choose the current experiment mode or data setting."
+        : language === "zh" ? "输入当前实验使用的数据。" : "Enter the data used by this experiment."
+  );
 
   if (effectiveControl.type === "select") {
     return (
@@ -146,6 +160,7 @@ function renderControl(
             </option>
           ))}
         </select>
+        {!compact && <span className="control-description">{description}</span>}
       </label>
     );
   }
@@ -155,7 +170,16 @@ function renderControl(
       <label className="control-field control-field--range" key={control.id}>
         <span className="control-label-row">
           <span className="control-label">{visibleLabel}</span>
-          <output className="control-value" htmlFor={`control-${control.id}`}>{String(value)}</output>
+          <input
+            className="control-number-input"
+            aria-label={`${visibleLabel} numeric value`}
+            type="number"
+            value={String(value)}
+            min={effectiveControl.min}
+            max={effectiveControl.max}
+            step={effectiveControl.step}
+            onChange={(e) => onChange(control.id, Number(e.target.value))}
+          />
         </span>
         <input
           id={`control-${control.id}`}
@@ -169,6 +193,7 @@ function renderControl(
           step={effectiveControl.step}
           onChange={(e) => onChange(control.id, Number(e.target.value))}
         />
+        {!compact && <span className="control-description">{description}</span>}
         <span className="control-range-bounds" aria-hidden="true">
           <span>{effectiveControl.min}</span>
           <span>{effectiveControl.max}</span>
@@ -193,6 +218,7 @@ function renderControl(
           onChange(control.id, effectiveControl.type === "number" ? Number(e.target.value) : e.target.value)
         }
       />
+      {!compact && <span className="control-description">{description}</span>}
     </label>
   );
 }
@@ -282,11 +308,62 @@ const formulaRenderers: Record<string, (state: State) => ReactNode> = {
       <span>x₂ ∼ p(x₂ | x₁)</span>
     </div>
   ),
-  "permutation-mean-difference": () => (
+  "permutation-mean-difference": (state) => (
     <div className="math-expression">
       <span>H₀:</span>
-      <span>group labels are exchangeable</span>
+      <span>{state.language === "zh" ? "组标签可交换" : "group labels are exchangeable"}</span>
     </div>
+  ),
+  "pi-circle": () => (
+    <div className="math-expression"><span>π ≈ 4 ×</span><span>inside / N</span></div>
+  ),
+  buffon: () => (
+    <div className="math-expression"><span>π ≈</span><span className="math-frac"><span className="math-num">2 L N</span><span className="math-den">T · C</span></span></div>
+  ),
+  "random-normal": () => (
+    <div className="math-expression"><span>X̄ = (1 / n)</span><span className="math-symbol">Σ</span><span>Xᵢ</span></div>
+  ),
+  "random-exponential": () => (
+    <div className="math-expression"><span>X = −ln(1 − U) / λ</span></div>
+  ),
+  "gamma-rejection": (state) => (
+    <div className="math-expression"><span>{state.language === "zh" ? "接受 x ∼ g(x)，概率为 f(x) / M g(x)" : "accept x ∼ g(x) with probability f(x) / M g(x)"}</span></div>
+  ),
+  "bootstrap-max": (state) => (
+    <div className="math-expression"><span>θ̂* = T(X₁*, …, Xₙ*)</span><span className="math-symbol">,</span><span>{state.language === "zh" ? "Xᵢ* ∼ 经验数据" : "Xᵢ* ∼ empirical data"}</span></div>
+  ),
+  "mean-bootstrap": () => (
+    <div className="math-expression"><span>SE_boot = sd(θ̂*)</span></div>
+  ),
+  "mc-integral-exp": () => (
+    <div className="math-expression"><span>∫ f(x)dx ≈ (1 / N)</span><span className="math-symbol">Σ</span><span>f(Xᵢ)</span></div>
+  ),
+  "mc-transform": () => (
+    <div className="math-expression"><span>E[f(X)] = (1 / N)</span><span className="math-symbol">Σ</span><span>f(Xᵢ)</span></div>
+  ),
+  "normal-cdf": () => (
+    <div className="math-expression"><span>Φ(x) = P(Z ≤ x) ≈ (1 / N)</span><span className="math-symbol">Σ</span><span>1(Zᵢ ≤ x)</span></div>
+  ),
+  "antithetic-exp": () => (
+    <div className="math-expression"><span>Ȳ = (f(U) + f(1 − U)) / 2</span></div>
+  ),
+  "antithetic-gamma": () => (
+    <div className="math-expression"><span>Ȳ = (f(U) + f(1 − U)) / 2</span></div>
+  ),
+  "control-exp": () => (
+    <div className="math-expression"><span>Y_cv = Y + c(C − E[C])</span></div>
+  ),
+  "control-ratio": () => (
+    <div className="math-expression"><span>c* = −Cov(Y, C) / Var(C)</span></div>
+  ),
+  "importance-power": () => (
+    <div className="math-expression"><span>E_f[h(X)] = E_g[h(X) f(X) / g(X)]</span></div>
+  ),
+  "conditional-circle": () => (
+    <div className="math-expression"><span>E[Y] = E[E(Y | X)]</span></div>
+  ),
+  politician: (state) => (
+    <div className="math-expression"><span>{state.language === "zh" ? "P(接受) = min(1, N提议 / N当前)" : "P(accept) = min(1, Nproposal / Ncurrent)"}</span></div>
   ),
 };
 
@@ -295,13 +372,7 @@ function renderFormula(state: State): ReactNode {
   if (renderer) {
     return renderer(state);
   }
-  return (
-    <div className="math-expression">
-      <span>{walsCopy[state.language].simulationResult}</span>
-      <span className="math-symbol">=</span>
-      <span>{walsCopy[state.language].simulationResultFormula}</span>
-    </div>
-  );
+  return <span>{state.language === "zh" ? "请结合图表中的当前统计量阅读本实验。" : "Read the current statistic alongside the chart."}</span>;
 }
 
 // Cap accumulated CLT sample means so repeated "draw" clicks cannot grow the
@@ -314,8 +385,22 @@ export interface WalsAppProps {
 
 export function WalsApp({ moduleConfig }: WalsAppProps) {
   const language = useLanguage();
+  const metadata = localizedExperimentMetadata(moduleConfig.id, language);
+  const isProbability = moduleConfig.id === "mes-distributions";
   const [exampleId, setExampleId] = useState<string | undefined>(undefined);
   const [controls, setControls] = useState<Record<string, ControlValue> | undefined>(undefined);
+  const [appliedControls, setAppliedControls] = useState<Record<string, ControlValue> | undefined>(() =>
+    metadata?.interaction === "stochastic" && moduleConfig.examples[0]
+      ? createDefaultControls(moduleConfig.examples[0])
+      : undefined,
+  );
+  const [changeSummary, setChangeSummary] = useState<{
+    parameterId: string;
+    parameter: string;
+    previousValue: ControlValue;
+    currentValue: ControlValue;
+    previousMetric?: string;
+  } | null>(null);
   const [seed, setSeed] = useState<number>(() => Date.now());
   const [sampleMeans, setSampleMeans] = useState<number[] | undefined>(() =>
     moduleConfig.examples[0]?.accumulateSampleMeans ? [] : undefined,
@@ -327,11 +412,14 @@ export function WalsApp({ moduleConfig }: WalsAppProps) {
   // coalesces, dropping stale intermediate runs instead of freezing the UI.
   const deferredControls = useDeferredValue(controls);
   const deferredSeed = useDeferredValue(seed);
+  const stochastic = metadata?.interaction === "stochastic";
+  const resultControls = stochastic ? (appliedControls ?? controls) : controls;
 
   const state = useMemo(
-    () => createState(moduleConfig, exampleId, deferredControls, deferredSeed, language, sampleMeans),
-    [moduleConfig, exampleId, deferredControls, deferredSeed, language, sampleMeans],
+    () => createState(moduleConfig, exampleId, stochastic ? resultControls : deferredControls, deferredSeed, language, sampleMeans),
+    [moduleConfig, exampleId, stochastic, resultControls, deferredControls, deferredSeed, language, sampleMeans],
   );
+  const isAnova = state.activeExample.kind === "anova";
 
   // Behavior the generic framework does not model is declared on the active
   // example itself (accumulateSampleMeans / quickActions), not detected by
@@ -343,11 +431,21 @@ export function WalsApp({ moduleConfig }: WalsAppProps) {
     const nextExample = moduleConfig.examples.find((example) => example.id === id);
     setExampleId(id);
     setControls(undefined);
+    setAppliedControls(metadata?.interaction === "stochastic" && nextExample ? createDefaultControls(nextExample) : undefined);
+    setChangeSummary(null);
     setSeed((s) => s + 1);
     setSampleMeans(nextExample?.accumulateSampleMeans ? [] : undefined);
-  }, [moduleConfig.examples]);
+  }, [moduleConfig.examples, metadata]);
 
   const handleUpdateControl = useCallback((id: string, value: ControlValue) => {
+    const probabilitySummaryControl = ["dist", "a", "b", "lower", "upper"].includes(id);
+    if (!stochastic && (!isProbability || probabilitySummaryControl)) {
+      const previous = (controls ?? createDefaultControls(state.activeExample))[id];
+      if (previous !== value) {
+        const label = state.activeExample.controls.find((control) => control.id === id)?.label ?? id;
+        setChangeSummary({ parameterId: id, parameter: label, previousValue: previous, currentValue: value, previousMetric: state.result.metrics[0]?.value });
+      }
+    }
     setControls((prev) => {
       const next = { ...createDefaultControls(state.activeExample), ...prev, [id]: value };
       for (const control of state.activeExample.controls) {
@@ -360,30 +458,36 @@ export function WalsApp({ moduleConfig }: WalsAppProps) {
     if (accumulate) {
       setSampleMeans([]);
     }
-    setSeed((s) => s + 1);
-  }, [state.activeExample, accumulate]);
+    if (!stochastic) setSeed((s) => s + 1);
+  }, [state.activeExample, state.result.metrics, controls, accumulate, stochastic, isProbability]);
 
   const handleRun = useCallback(() => {
+    if (stochastic) {
+      setAppliedControls(controls ?? createDefaultControls(state.activeExample));
+    }
     if (accumulate) {
       setSampleMeans([]);
       setSeed(Date.now());
     } else {
       setSeed(Date.now());
     }
-  }, [accumulate]);
+  }, [accumulate, controls, state.activeExample, stochastic]);
 
   // "bumpControl" quick actions increment a numeric control (e.g. the
   // random-variable module's sample size) by a fixed delta.
   const handleBumpControl = useCallback((controlId: string, delta: number) => {
-    setControls((prev) => {
-      const current = prev ?? createDefaultControls(state.activeExample);
-      return normalizeControls(
-        state.activeExample,
-        { ...current, [controlId]: Number(current[controlId] ?? 0) + delta },
-        controlId,
-      );
-    });
-  }, [state.activeExample]);
+    const current = controls ?? createDefaultControls(state.activeExample);
+    const next = normalizeControls(
+      state.activeExample,
+      { ...current, [controlId]: Number(current[controlId] ?? 0) + delta },
+      controlId,
+    );
+    setControls(next);
+    // A sample-size quick action is an explicit stochastic action. Reusing
+    // the current seed lets the engine extend the same deterministic prefix
+    // when n grows, instead of silently replacing earlier draws.
+    if (stochastic && controlId === "sampleSize" && !accumulate) setAppliedControls(next);
+  }, [state.activeExample, controls, stochastic, accumulate]);
 
   const handleDrawSamples = useCallback((count: number) => {
     const current = controls ?? createDefaultControls(state.activeExample);
@@ -391,137 +495,342 @@ export function WalsApp({ moduleConfig }: WalsAppProps) {
     const previous = sampleMeans ?? [];
     const combined = [...previous, ...generateSampleMeans(current, count, nextSeed)];
     setSampleMeans(combined.length > MAX_SAMPLE_MEANS ? combined.slice(combined.length - MAX_SAMPLE_MEANS) : combined);
+    if (stochastic) setAppliedControls(current);
     setSeed(nextSeed);
-  }, [controls, state.activeExample, sampleMeans]);
+  }, [controls, state.activeExample, sampleMeans, stochastic]);
+
+  const groupedControls = useMemo(() => {
+    const currentControls = controls ?? createDefaultControls(state.activeExample);
+    const visible = state.activeExample.controls.filter(
+      (control) => !control.hideWhen?.values.includes(String(currentControls[control.hideWhen.controlId] ?? "")),
+    );
+    if (isProbability) {
+      return {
+        mode: visible.filter((control) => control.id === "dist"),
+        core: visible.filter((control) => !["dist", "mode", "showReference"].includes(control.id)),
+        display: visible.filter((control) => control.id === "mode" || control.id === "showReference"),
+      };
+    }
+    return {
+      mode: visible.filter((control) => control.group === "mode" || control.id === "mode" || control.type === "select" && visible.indexOf(control) === 0),
+      core: visible.filter((control) => control.group === "core" || (control.group === undefined && !(control.id === "mode" || control.type === "select" && visible.indexOf(control) === 0))),
+      display: visible.filter((control) => control.group === "display"),
+    };
+  }, [controls, state.activeExample, isProbability]);
+
+  const outputMetrics = isProbability ? state.result.metrics.slice(0, 4) : state.result.metrics;
+  const currentPrimaryMetric = state.result.metrics[0]?.value;
+  const metricChanged = Boolean(
+    changeSummary?.previousMetric &&
+      currentPrimaryMetric &&
+      changeSummary.previousMetric !== currentPrimaryMetric,
+  );
+  const changeSummaryNode = changeSummary && !stochastic ? (
+    <ExperimentChangeSummary
+      eyebrow={isProbability ? (language === "zh" ? "参数变化" : "Parameter change") : undefined}
+      parameter={changeSummary.parameter}
+      previousValue={isProbability ? formatProbabilityChangeValue(changeSummary.parameterId, changeSummary.previousValue) : String(changeSummary.previousValue)}
+      currentValue={isProbability ? formatProbabilityChangeValue(changeSummary.parameterId, changeSummary.currentValue) : String(changeSummary.currentValue)}
+      metric={metricChanged ? state.result.metrics[0]?.label : undefined}
+      previousMetric={changeSummary.previousMetric}
+      currentMetric={currentPrimaryMetric}
+      interpretation={isProbability
+        ? probabilityChangeInterpretation(changeSummary, language, String(state.controls.dist ?? "norm"))
+        : language === "zh"
+          ? "参数变化已即时反馈到当前指标与图形。"
+          : "The parameter change is reflected immediately in the current metric and chart."}
+    />
+  ) : null;
+
+  const parameterPanelNode = (
+    <ParameterPanel eyebrow={isAnova ? (language === "zh" ? "数据集" : "Dataset") : state.copy.parameters} className={isAnova ? "anova-parameter-rail" : isProbability ? "probability-parameter-panel" : ""}>
+      {!isProbability && !isAnova && (
+        <div className="example-tabs">
+          {state.config.examples.map((example) => (
+            <button
+              key={example.id}
+              type="button"
+              className="example-tab"
+              data-example-id={example.id}
+              data-active={String(example.id === state.activeExample.id)}
+              onClick={() => handleSelectExample(example.id)}
+            >
+              {example.title}
+            </button>
+          ))}
+        </div>
+      )}
+      {groupedControls.mode.length > 0 && (
+        <ControlGroup className={isProbability ? "probability-mode-group" : isAnova ? "anova-dataset-group" : ""} title={isProbability ? "" : isAnova ? (language === "zh" ? "数据集" : "Dataset") : language === "zh" ? "实验模式" : "Experiment mode"}>
+          <div className="control-grid">{groupedControls.mode.map((control) => renderControl(control, controls ?? createDefaultControls(state.activeExample), handleUpdateControl, language, isProbability))}</div>
+        </ControlGroup>
+      )}
+      {isProbability && groupedControls.display.length > 0 && (
+        <ControlGroup className="probability-display-group" title={language === "zh" ? "显示" : "Display"}>
+          <div className="control-grid">{groupedControls.display.map((control) => renderControl(control, controls ?? createDefaultControls(state.activeExample), handleUpdateControl, language, true))}</div>
+        </ControlGroup>
+      )}
+      {groupedControls.core.length > 0 && (
+        <ControlGroup className={isProbability ? "probability-core-group" : isAnova ? "anova-core-group" : ""} title={isProbability ? "" : isAnova ? (language === "zh" ? "组参数" : "Group parameters") : language === "zh" ? "核心参数" : "Core parameters"}>
+          <div className="control-grid">{groupedControls.core.map((control) => renderControl(control, controls ?? createDefaultControls(state.activeExample), handleUpdateControl, language, isProbability))}</div>
+        </ControlGroup>
+      )}
+      {!isProbability && groupedControls.display.length > 0 && (
+        <ControlGroup className={isProbability ? "probability-display-group" : ""} title={isProbability ? (language === "zh" ? "显示" : "Display") : language === "zh" ? "显示选项" : "Display options"}>
+          <div className="control-grid">{groupedControls.display.map((control) => renderControl(control, controls ?? createDefaultControls(state.activeExample), handleUpdateControl, language, isProbability))}</div>
+        </ControlGroup>
+      )}
+      {stochastic && (
+        <RunControls>
+          <button type="button" className="run-button" onClick={handleRun}>
+            {accumulate ? walsCopy[language].redraw : state.copy.run}
+          </button>
+          <span className="run-controls__hint">{language === "zh" ? "参数改变后，点击运行才会生成新的随机结果。" : "Change parameters, then run to generate new random results."}</span>
+        </RunControls>
+      )}
+      {isProbability && (
+        <button
+          type="button"
+          className="probability-reset-button"
+          onClick={() => handleSelectExample(state.activeExample.id)}
+        >
+          {language === "zh" ? "恢复默认" : "Reset defaults"}
+        </button>
+      )}
+      {quickActions.length > 0 && (
+        <div className="sample-quick-actions">
+          {quickActions
+            .filter((action) => !action.showWhen || action.showWhen.values.includes(String(state.controls[action.showWhen.controlId] ?? "")))
+            .map((action) => (
+            <button
+              key={`${action.type}-${action.amount}`}
+              type="button"
+              className="sample-quick-button"
+              onClick={() => {
+                if (action.type === "drawSampleMeans") {
+                  handleDrawSamples(action.amount);
+                } else if (action.type === "resetAndDrawSampleMeans") {
+                  const current = controls ?? createDefaultControls(state.activeExample);
+                  const nextSeed = Date.now();
+                  setSampleMeans(generateSampleMeans(current, action.amount, nextSeed));
+                  setAppliedControls(current);
+                  setSeed(nextSeed);
+                } else if (action.type === "reset") {
+                  setSampleMeans([]);
+                  setSeed(Date.now());
+                } else if (action.type === "setControl") {
+                  handleUpdateControl(action.control ?? "sampleSize", action.amount);
+                } else if (action.type === "runWithControl") {
+                  const controlId = action.control ?? "sampleSize";
+                  const current = controls ?? createDefaultControls(state.activeExample);
+                  const next = normalizeControls(state.activeExample, { ...current, [controlId]: action.amount }, controlId);
+                  setControls(next);
+                  setAppliedControls(next);
+                  setSeed(Date.now());
+                } else {
+                  handleBumpControl(action.control ?? "sampleSize", action.amount);
+                }
+              }}
+            >
+              {walsCopy[language][action.copyKey]}
+            </button>
+            ))}
+        </div>
+      )}
+    </ParameterPanel>
+  );
+
+  const anovaStatisticsNode = (
+    <div className="anova-statistics-stack">
+      {(state.result.tables ?? (state.result.table ? [state.result.table] : [])).map((table, index) => (
+        <section className="teaching-panel table-panel anova-table-panel" key={table.title ?? index}>
+          <p className="eyebrow">{index === 0 ? (language === "zh" ? "汇总" : "Summary") : (language === "zh" ? "检验结果" : "Test result")}</p>
+          <h2>{table.title ?? state.copy.dataTable}</h2>
+          <StatisticsTable
+            columns={index === 1 ? [...table.columns, "Pr(>F)"] : table.columns}
+            rows={table.rows.map((row, rowIndex) => [
+              ...row.map((cell) => String(cell)),
+              ...(index === 1 ? [rowIndex === 0 ? (state.result.metrics[1]?.value ?? "") : ""] : []),
+            ])}
+          />
+        </section>
+      ))}
+    </div>
+  );
 
   return (
     <VisualizationFrame
+      moduleId={moduleConfig.id}
       busy={controls !== deferredControls || seed !== deferredSeed}
       content={
         <>
           <VisualizationHeader
             eyebrow={state.config.category}
             title={state.config.title}
-            description={state.config.subtitle}
+            description={isProbability
+              ? (language === "zh"
+                ? "观察分布参数如何改变位置、离散程度与区间概率。"
+                : "Observe how distribution parameters change location, spread, and interval probability.")
+              : state.activeExample.description}
+            experimentNumber={metadata?.number}
+            category={metadata?.localizedCategory ?? state.config.category}
+            researchQuestion={isProbability ? undefined : metadata?.localizedQuestion}
           />
-          <section className="output-dock">
-            <div className="output-heading">
-              <p className="eyebrow">{state.copy.modelOutput}</p>
-              <h2>{state.result.headline}</h2>
-              <p>{state.result.narrative}</p>
-            </div>
-            <ReadingGuide title={state.copy.howToReadThis}>
-              <p>{state.activeExample.teachingPoints[0] ?? state.result.narrative}</p>
-            </ReadingGuide>
-            <MetricGrid
-              ariaLabel={state.copy.modelOutput}
-              metrics={state.result.metrics.map((metric, index) => ({
-                key: String(index),
-                label: metric.label,
-                value: metric.value,
-                note: metric.detail,
-                help: metric.help,
-              }))}
+          <section className={`output-dock${isProbability ? " probability-output" : ""}`}>
+            {!isProbability && (
+              <div className="output-heading">
+                <p className="eyebrow">{state.copy.modelOutput}</p>
+                <h2>{state.result.headline}</h2>
+                <p>{state.result.narrative}</p>
+              </div>
+            )}
+            <ExperimentMetricStrip
+              ariaLabel={isProbability ? (language === "zh" ? "关键指标" : "Key metrics") : state.copy.modelOutput}
+              maxVisible={isProbability ? 4 : 5}
+              metrics={outputMetrics.map((metric, index) => {
+                const presentationMetric = isProbability
+                  ? formatProbabilityMetric(metric, index, state.controls, language)
+                  : metric;
+                return {
+                  key: String(index),
+                  label: presentationMetric.label,
+                  value: presentationMetric.value,
+                  note: presentationMetric.detail,
+                  help: presentationMetric.help,
+                  semantics: isProbability ? "derived" : index === 0 ? "derived" : "comparison",
+                };
+              })}
             />
+            {!isProbability && changeSummaryNode}
             <ChartFrame>
               <Chart spec={state.result.chart} />
             </ChartFrame>
+            {isAnova && (
+              <section className="anova-inline-results" aria-label={language === "zh" ? "方差分析结果" : "ANOVA results"}>
+                {anovaStatisticsNode}
+              </section>
+            )}
+            {isProbability && changeSummaryNode}
           </section>
         </>
       }
-      sidebar={
+      sidebar={isAnova ? parameterPanelNode : (
         <>
-          <ParameterPanel eyebrow={state.copy.parameters}>
-            <div className="example-tabs">
-              {state.config.examples.map((example) => (
-                <button
-                  key={example.id}
-                  type="button"
-                  className="example-tab"
-                  data-example-id={example.id}
-                  data-active={String(example.id === state.activeExample.id)}
-                  onClick={() => handleSelectExample(example.id)}
-                >
-                  {example.title}
-                </button>
-              ))}
-            </div>
-            <div className="control-grid">
-              {state.activeExample.controls
-                .filter((control) => !control.hideWhen?.values.includes(String((controls ?? createDefaultControls(state.activeExample))[control.hideWhen.controlId] ?? "")))
-                .map((control) => renderControl(control, controls ?? createDefaultControls(state.activeExample), handleUpdateControl))}
-            </div>
-            <button type="button" className="run-button" onClick={handleRun}>
-              {accumulate ? walsCopy[language].redraw : state.copy.run}
-            </button>
-            {quickActions.length > 0 && (
-              <div className="sample-quick-actions">
-                {quickActions
-                  .filter((action) => !action.showWhen || action.showWhen.values.includes(String(state.controls[action.showWhen.controlId] ?? "")))
-                  .map((action) => (
-                  <button
-                    key={`${action.type}-${action.amount}`}
-                    type="button"
-                    className="sample-quick-button"
-                    onClick={() => {
-                      if (action.type === "drawSampleMeans") {
-                        handleDrawSamples(action.amount);
-                      } else if (action.type === "setControl") {
-                        handleUpdateControl(action.control ?? "sampleSize", action.amount);
-                      } else {
-                        handleBumpControl(action.control ?? "sampleSize", action.amount);
-                      }
-                    }}
-                  >
-                    {walsCopy[language][action.copyKey]}
-                  </button>
-                  ))}
-              </div>
-            )}
-          </ParameterPanel>
+          {parameterPanelNode}
           <section className="teaching-panel">
-            <p className="eyebrow">{state.copy.conceptKeyIdea}</p>
-            <h2>{state.activeExample.title}</h2>
+            <p className="eyebrow">{language === "zh" ? "研究问题" : "Research question"}</p>
+            <p>{metadata?.localizedQuestion ?? state.activeExample.title}</p>
+            <h3>{language === "zh" ? "如何工作" : "How it works"}</h3>
             <p>{state.activeExample.description}</p>
+            <h3>{language === "zh" ? "观察什么" : "What to observe"}</h3>
             <ul className="teaching-list">
-              {state.activeExample.teachingPoints.map((point, i) => (
-                <li key={i}>{point}</li>
-              ))}
+              {state.activeExample.teachingPoints.map((point, i) => <li key={i}>{point}</li>)}
             </ul>
           </section>
           <FormulaCard eyebrow={state.copy.formula} formula={renderFormula(state)}>
             <p>{state.copy.formulaHelper}</p>
           </FormulaCard>
-          <ObservationCard eyebrow={state.copy.howToReadThis} title={state.result.headline}>
-            <p>{state.result.narrative}</p>
-          </ObservationCard>
-          {state.result.table && (
-            <section className="teaching-panel table-panel">
-              <h3>{state.copy.dataTable}</h3>
-              <div className="table-scroll">
-                <table className="result-table">
-                  <thead>
-                    <tr>
-                      {state.result.table.columns.map((col, i) => (
-                        <th key={i}>{col}</th>
-                      ))}
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {state.result.table.rows.map((row, i) => (
-                      <tr key={i}>
-                        {row.map((cell, j) => (
-                          <td key={j}>{String(cell)}</td>
-                        ))}
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
+          {(state.result.tables ?? (state.result.table ? [state.result.table] : [])).map((table, index) => (
+            <section className="teaching-panel table-panel" key={table.title ?? index}>
+              <details open={state.activeExample.kind !== "anova"}>
+                <summary>{table.title ?? state.copy.dataTable}</summary>
+                <StatisticsTable columns={table.columns} rows={table.rows.map((row) => row.map((cell) => String(cell)))} />
+              </details>
             </section>
-          )}
+          ))}
         </>
-      }
+      )}
     />
   );
+}
+
+function probabilityChangeInterpretation(
+  change: { parameterId: string; previousValue: ControlValue; currentValue: ControlValue },
+  language: "zh" | "en",
+  distribution: string,
+): string {
+  if (language === "en") {
+    if (change.parameterId === "a" && distribution === "norm") {
+      const previous = Number(change.previousValue);
+      const current = Number(change.currentValue);
+      if (current < previous) return "The expected value decreases and the curve shifts left.";
+      if (current > previous) return "The expected value increases and the curve shifts right.";
+    }
+    if (change.parameterId === "b" && distribution === "norm") return "The variance changes with σ², widening or narrowing the curve.";
+    if (change.parameterId === "lower" || change.parameterId === "upper") return "The interval boundary and highlighted probability area update together.";
+    if (change.parameterId === "dist") return "The distribution family changes, updating the curve shape and moments.";
+    return "The parameter change is reflected immediately in the chart.";
+  }
+
+  if (change.parameterId === "a" && distribution === "norm") {
+    const previous = Number(change.previousValue);
+    const current = Number(change.currentValue);
+    if (current < previous) return "期望值同步下降，曲线整体向左移动。";
+    if (current > previous) return "期望值同步上升，曲线整体向右移动。";
+  }
+  if (change.parameterId === "b" && distribution === "norm") return "方差随 σ² 变化，曲线宽度与峰高同步改变。";
+  if (change.parameterId === "lower" || change.parameterId === "upper") return "区间端点与橙色高亮区域、区间概率同步更新。";
+  if (change.parameterId === "dist") return "分布类型变化，曲线形状与理论矩同步更新。";
+  return "参数变化已即时反馈到当前图形。";
+}
+
+function formatProbabilityMetric(
+  metric: State["result"]["metrics"][number],
+  index: number,
+  controls: Record<string, ControlValue>,
+  language: "zh" | "en",
+) {
+  if (language === "zh") {
+    if (index === 0) return { ...metric, label: "期望 E(X)" };
+    if (index === 1) return { ...metric, label: "方差 Var(X)" };
+    if (index === 2) return { ...metric, label: "区间概率" };
+    if (index === 3) {
+      return {
+        ...metric,
+        label: "当前分布",
+        value: formatProbabilityDistribution(controls),
+        detail: undefined,
+      };
+    }
+  } else {
+    if (index === 0) return { ...metric, label: "Expected value E(X)" };
+    if (index === 1) return { ...metric, label: "Variance Var(X)" };
+    if (index === 2) return { ...metric, label: "Interval probability" };
+    if (index === 3) {
+      return {
+        ...metric,
+        label: "Current distribution",
+        value: formatProbabilityDistribution(controls),
+        detail: undefined,
+      };
+    }
+  }
+  return metric;
+}
+
+function formatProbabilityDistribution(controls: Record<string, ControlValue>): string {
+  const dist = String(controls.dist ?? "norm");
+  const a = Number(controls.a ?? 0);
+  const b = Number(controls.b ?? 1);
+  const fixed = (value: number) => Number.isFinite(value) ? value.toFixed(2) : "—";
+  switch (dist) {
+    case "norm": return `N(${fixed(a)}, ${fixed(b)}²)`;
+    case "t": return `t(df=${Math.round(a)})`;
+    case "beta": return `Beta(${fixed(a)}, ${fixed(b)})`;
+    case "gamma": return `Gamma(${fixed(a)}, rate=${fixed(b)})`;
+    case "chisq": return `χ²(df=${Math.round(b)})`;
+    case "exp": return `Exp(λ=${fixed(b)})`;
+    case "unif": return `U(${fixed(Math.min(a, b))}, ${fixed(Math.max(a, b))})`;
+    case "binom": return `Bin(n=${Math.round(b)}, p=${fixed(a)})`;
+    case "geom": return `Geom(p=${fixed(a)})`;
+    case "pois": return `Pois(λ=${fixed(b)})`;
+    default: return dist;
+  }
+}
+
+function formatProbabilityChangeValue(parameterId: string, value: ControlValue): string {
+  if (["a", "b", "lower", "upper"].includes(parameterId) && typeof value === "number" && Number.isFinite(value)) {
+    return value.toFixed(2);
+  }
+  return String(value);
 }

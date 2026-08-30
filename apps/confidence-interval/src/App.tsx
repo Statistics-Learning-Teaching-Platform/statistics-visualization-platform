@@ -3,15 +3,13 @@ import { useLanguage, confidenceIntervalCopy } from "@stats-viz/shared/i18n";
 import { criticalValue } from "@stats-viz/shared/confidence-interval";
 import {
   ChartFrame,
+  ExperimentMetricStrip,
   FormulaCard,
-  MetricGrid,
-  ObservationCard,
-  ReadingGuide,
+  localizedExperimentMetadata,
   VisualizationFrame,
   VisualizationHeader,
 } from "@stats-viz/shared/visualization";
 
-import { defaultConfig } from "./constants";
 import { useConfidenceIntervals } from "./useConfidenceIntervals";
 import { ConfidenceIntervalChart } from "./ConfidenceIntervalChart";
 import { ControlSidebar } from "./ControlSidebar";
@@ -19,10 +17,12 @@ import { ControlSidebar } from "./ControlSidebar";
 export default function ConfidenceIntervalApp() {
   const language = useLanguage();
   const copy = confidenceIntervalCopy[language];
+  const metadata = localizedExperimentMetadata("confidence-interval", language);
   const [collapsed, setCollapsed] = useState(false);
 
   const {
     sampleSize,
+    populationMean,
     populationSD,
     confidenceLevel,
     sigmaKnown,
@@ -30,6 +30,7 @@ export default function ConfidenceIntervalApp() {
     coverage,
     scales,
     setSampleSize,
+    setPopulationMean,
     setPopulationSD,
     setConfidenceLevel,
     setSigmaKnown,
@@ -38,19 +39,11 @@ export default function ConfidenceIntervalApp() {
   } = useConfidenceIntervals();
 
   const sampleCount = samples.length;
-  const misses = sampleCount - samples.filter((s) => s.contains).length;
   const averageWidth =
     sampleCount === 0
       ? 0
       : samples.reduce((sum, s) => sum + (s.upper - s.lower), 0) / sampleCount;
   const critValue = criticalValue(confidenceLevel, sampleSize, sigmaKnown);
-  const interpretation =
-    sampleCount === 0
-      ? copy.emptyInterpretation
-      : coverage >= confidenceLevel
-        ? copy.healthyInterpretation
-        : copy.lowCoverageInterpretation;
-
   const metrics = useMemo(
     () => [
       { label: copy.observedCoverage, value: `${(coverage * 100).toFixed(1)}%`, note: copy.observedCoverageNote },
@@ -61,78 +54,111 @@ export default function ConfidenceIntervalApp() {
     [copy, coverage, sampleCount, averageWidth, critValue],
   );
 
-  const trueMeanLabel = copy.trueMean.replace("{mean}", String(defaultConfig.populationMean));
+  const trueMeanLabel = copy.trueMean.replace("{mean}", populationMean.toFixed(1));
+  const recentMeans = samples.slice(-3).map((sample) => sample.mean);
+  const confidencePercent = Math.round(confidenceLevel * 100);
 
   return (
     <VisualizationFrame
+      moduleId="confidence-interval"
       content={
         <>
-          <VisualizationHeader eyebrow={copy.coreVisualizer} title={copy.title} description={copy.kicker}>
-            <p className="module-description">{copy.description}</p>
-          </VisualizationHeader>
-          <div className="output-dock">
-            <div className="output-heading">
-              <div>
-                <p className="eyebrow">{copy.modelOutput}</p>
-                <h2>{copy.chartTitle}</h2>
-                <p>{copy.chartDescription}</p>
+          <VisualizationHeader eyebrow={copy.coreVisualizer} title={copy.title} experimentNumber={metadata?.number} category={metadata?.localizedCategory} researchQuestion={metadata?.localizedQuestion} />
+          <section className="ci-reference-stage" aria-label={copy.chartTitle}>
+              <div className="output-heading ci-reference-heading">
+                <div>
+                  <p className="eyebrow">{copy.modelOutput}</p>
+                  <h2>{copy.chartTitle}</h2>
+                  <p>{copy.chartDescription}</p>
+                </div>
+                <span className="sample-pill">{copy.samples.replace("{count}", String(sampleCount))}</span>
               </div>
-              <span className="sample-pill">{copy.samples.replace("{count}", String(sampleCount))}</span>
-            </div>
-            <div className="chart-legend">
-              <span className="legend-item">
-                <span className="legend-swatch legend-swatch--capture" />
-                <span>{copy.capturesTrueMean}</span>
-              </span>
-              <span className="legend-item">
-                <span className="legend-swatch legend-swatch--miss" />
-                <span>{copy.missesTrueMean}</span>
-              </span>
-              <span className="legend-item">
-                <span className="legend-swatch legend-swatch--true" />
-                <span>{trueMeanLabel}</span>
-              </span>
-            </div>
-            <ReadingGuide title={copy.coverageTitle}>
-              <p>{sampleCount === 0 ? copy.emptyPrompt : copy.missPrompt.replace("{misses}", String(misses))}</p>
-            </ReadingGuide>
-            <MetricGrid metrics={metrics} ariaLabel={copy.modelOutput} />
-            <ChartFrame>
-              <ConfidenceIntervalChart
-                samples={samples}
-                scales={scales}
-                trueMeanLabel={trueMeanLabel}
-                populationScaleLabel={copy.populationScale}
-                sampleIndexLabel={copy.sampleIndex}
-                chartDescription={copy.chartAriaDescription}
-                sampleTooltip={(sampleNumber, lower, upper, contains) =>
-                  copy.sampleTooltip
-                    .replace("{number}", String(sampleNumber))
-                    .replace("{lower}", lower.toFixed(3))
-                    .replace("{upper}", upper.toFixed(3))
-                    .replace("{coverage}", contains ? copy.tooltipCovers : copy.tooltipMisses)
-                }
-              />
-            </ChartFrame>
-          </div>
+              <div className="chart-legend ci-reference-legend">
+                <span className="legend-item">
+                  <span className="legend-swatch legend-swatch--capture" />
+                  <span>{copy.capturesTrueMean}</span>
+                </span>
+                <span className="legend-item">
+                  <span className="legend-swatch legend-swatch--miss" />
+                  <span>{copy.missesTrueMean}</span>
+                </span>
+                <span className="legend-item">
+                  <span className="legend-swatch legend-swatch--true" />
+                  <span>{trueMeanLabel}</span>
+                </span>
+              </div>
+              <ChartFrame className="ci-reference-chart-frame">
+                <ConfidenceIntervalChart
+                  samples={samples}
+                  scales={scales}
+                  trueMean={populationMean}
+                  populationSD={populationSD}
+                  sampleSize={sampleSize}
+                  confidenceLevel={confidenceLevel}
+                  criticalMultiplier={critValue}
+                  trueMeanLabel={trueMeanLabel}
+                  populationScaleLabel={copy.populationScale}
+                  sampleIndexLabel={language === "zh" ? "最近生成的区间" : "Latest generated intervals"}
+                  emptyPrompt={copy.emptyInterpretation}
+                  chartDescription={copy.chartAriaDescription}
+                  sampleTooltip={(sampleNumber, lower, upper, contains) =>
+                    copy.sampleTooltip
+                      .replace("{number}", String(sampleNumber))
+                      .replace("{lower}", lower.toFixed(3))
+                      .replace("{upper}", upper.toFixed(3))
+                      .replace("{coverage}", contains ? copy.tooltipCovers : copy.tooltipMisses)
+                  }
+                />
+              </ChartFrame>
+              <ExperimentMetricStrip metrics={metrics.map((metric, index) => ({ ...metric, key: String(index), semantics: index === 0 ? "derived" : "comparison" }))} ariaLabel={copy.modelOutput} />
+              <div className="ci-reference-explanation-grid">
+                <section className="teaching-panel ci-reference-explanation">
+                  <p className="eyebrow">{copy.howToReadThis}</p>
+                  <ul className="ci-reference-notes">
+                    <li><strong>x̄</strong><span>{copy.whatIsBody}</span></li>
+                    <li><strong>SE(x̄) = σ / √n</strong><span>{copy.learningNoteBody}</span></li>
+                    <li><strong>{confidencePercent}%</strong><span>{copy.coverageBody}</span></li>
+                  </ul>
+                </section>
+                <FormulaCard
+                  eyebrow={copy.formula}
+                  formula={
+                    <div className="math-expression">
+                      <span>{copy.estimate}</span>
+                      <span className="math-symbol">±</span>
+                      <span>{copy.criticalValue}</span>
+                      <span className="math-symbol">×</span>
+                      <span>{copy.se}</span>
+                    </div>
+                  }
+                >
+                  <p>{copy.formulaNote.replace("{zValue}", critValue.toFixed(2)).replace("{populationMean}", populationMean.toFixed(1))}</p>
+                </FormulaCard>
+              </div>
+          </section>
         </>
       }
       sidebar={
-        <>
+        <div className="ci-reference-rail" aria-label={language === "zh" ? "置信区间参数" : "Confidence interval parameters"}>
           <ControlSidebar
             collapsed={collapsed}
             onToggleCollapsed={() => setCollapsed((c) => !c)}
             copy={copy}
             sampleSize={sampleSize}
             populationSD={populationSD}
+            populationMean={populationMean}
             confidenceLevel={confidenceLevel}
             sigmaKnown={sigmaKnown}
+            recentMeans={recentMeans}
+            recentMeansTitle={language === "zh" ? "最近 3 个样本均值" : "Latest 3 sample means"}
+            recentMeanLabel={language === "zh" ? "样本均值 {index}" : "Sample mean {index}"}
             onSampleSize={setSampleSize}
             onPopulationSD={setPopulationSD}
+            onPopulationMean={setPopulationMean}
             onConfidenceLevel={setConfidenceLevel}
             onSigmaKnown={setSigmaKnown}
           />
-          <div className="studio-control-bar studio-control-bar--side">
+          <div className="studio-control-bar studio-control-bar--side ci-reference-actions">
             <div className="studio-control-bar__buttons">
               <button
                 id="generateSample"
@@ -140,7 +166,7 @@ export default function ConfidenceIntervalApp() {
                 className="studio-button studio-button--primary"
                 onClick={() => addSamples(1)}
               >
-                <span className="studio-button__icon">+</span>
+                <span className="studio-button__icon" aria-hidden="true">+</span>
                 <span>{copy.generateOne}</span>
               </button>
               <button
@@ -149,7 +175,7 @@ export default function ConfidenceIntervalApp() {
                 className="studio-button studio-button--secondary"
                 onClick={() => addSamples(20)}
               >
-                <span className="studio-button__icon">⋯</span>
+                <span className="studio-button__icon" aria-hidden="true">⋯</span>
                 <span>{copy.generateTwenty}</span>
               </button>
               <button
@@ -158,53 +184,13 @@ export default function ConfidenceIntervalApp() {
                 className="studio-button studio-button--danger"
                 onClick={reset}
               >
-                <span className="studio-button__icon">↺</span>
+                <span className="studio-button__icon" aria-hidden="true">↺</span>
                 <span>{copy.reset}</span>
               </button>
             </div>
             <span className="studio-control-bar__hint">{copy.controlHint}</span>
           </div>
-          <div className="teaching-panel">
-            <p className="eyebrow">{copy.conceptKeyIdea}</p>
-            <div className="concept-block">
-              <span className="concept-icon">◎</span>
-              <div>
-                <h2>{copy.whatIsTitle}</h2>
-                <p>{copy.whatIsBody}</p>
-              </div>
-            </div>
-            <div className="concept-divider" />
-            <div className="concept-block">
-              <span className="concept-icon">▥</span>
-              <div>
-                <h3>{copy.coverageTitle}</h3>
-                <p>{copy.coverageBody}</p>
-              </div>
-            </div>
-          </div>
-          <FormulaCard
-            eyebrow={copy.formula}
-            formula={
-              <div className="math-expression">
-                <span>{copy.estimate}</span>
-                <span className="math-symbol">±</span>
-                <span>{copy.criticalValue}</span>
-                <span className="math-symbol">×</span>
-                <span>{copy.se}</span>
-              </div>
-            }
-          >
-            <p>{copy.formulaNote.replace("{zValue}", critValue.toFixed(2)).replace("{populationMean}", defaultConfig.populationMean.toFixed(1))}</p>
-          </FormulaCard>
-          <ObservationCard eyebrow={copy.howToReadThis} title={copy.currentInterpretation}>
-            <p>{interpretation}</p>
-            <p>{sampleCount === 0 ? copy.emptyPrompt : copy.missPrompt.replace("{misses}", String(misses))}</p>
-          </ObservationCard>
-          <div className="teaching-panel learning-note">
-            <p className="eyebrow">{copy.learningNote}</p>
-            <p>{copy.learningNoteBody}</p>
-          </div>
-        </>
+        </div>
       }
     />
   );

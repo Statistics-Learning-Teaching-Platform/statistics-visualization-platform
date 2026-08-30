@@ -45,6 +45,8 @@ export function anova(controls: ControlMap, seed: number): SimulationResult {
     [
       { label: "F statistic", value: formatNumber(f, 4), detail: "MS between / MS within" },
       { label: "p value", value: formatNumber(pValue, 4), detail: `F(${dfBetween}, ${dfWithin}) tail area` },
+      { label: "MS between", value: formatNumber(msBetween, 4), detail: "between-group variation per df" },
+      { label: "MS within", value: formatNumber(msWithin, 4), detail: "within-group variation per df" },
       { label: "grand mean", value: formatNumber(grandMean, 4), detail: `${all.length} observations` },
       { label: "groups", value: String(groups.length), detail: dataset }
     ],
@@ -64,7 +66,25 @@ export function anova(controls: ControlMap, seed: number): SimulationResult {
       rows: [
         ["Between groups", dfBetween, formatNumber(ssBetween, 4), formatNumber(msBetween, 4), formatNumber(f, 4)],
         ["Within groups", dfWithin, formatNumber(ssWithin, 4), formatNumber(msWithin, 4), ""]
-      ]
+      ],
+      title: "ANOVA table"
+    },
+    {
+      tables: [
+        {
+          title: "Descriptive Statistics",
+          columns: ["Group", "n", "Mean", "SD"],
+          rows: groups.map((group, index) => [group.label, group.values.length, formatNumber(groupMeans[index], 4), formatNumber(Math.sqrt(group.values.reduce((sum, value) => sum + (value - groupMeans[index]) ** 2, 0) / Math.max(1, group.values.length - 1)), 4)]),
+        },
+        {
+          title: "ANOVA table",
+          columns: ["Source", "Df", "Sum Sq", "Mean Sq", "F"],
+          rows: [
+            ["Between groups", dfBetween, formatNumber(ssBetween, 4), formatNumber(msBetween, 4), formatNumber(f, 4)],
+            ["Within groups", dfWithin, formatNumber(ssWithin, 4), formatNumber(msWithin, 4), ""],
+          ],
+        },
+      ],
     }
   );
 }
@@ -93,7 +113,7 @@ export function confidenceInterval(controls: ControlMap, seed: number): Simulati
       center: interval.mean,
       lower: interval.lower,
       upper: interval.upper,
-      color: interval.lower <= mu && interval.upper >= mu ? "#2f6f64" : "#c8665a",
+      color: interval.lower <= mu && interval.upper >= mu ? "var(--lab-green)" : "var(--lab-coral)",
     };
   });
   const covering = intervals.filter((interval) => interval.lower <= mu && interval.upper >= mu).length;
@@ -103,13 +123,15 @@ export function confidenceInterval(controls: ControlMap, seed: number): Simulati
   const pad = (upperBound - lowerBound) * 0.1 || (1.96 * sigma) / Math.sqrt(sampleSize);
   const confidencePct = confidenceLevel * 100;
   const method = sigmaKnown ? "z" : "t";
+  const averageWidth = intervals.reduce((sum, interval) => sum + interval.upper - interval.lower, 0) / intervals.length;
   return result(
     "Sample-centered confidence intervals",
     `Each interval is a ${method}-interval from a fresh sample drawn from N(mu, sigma); the reference line marks the true mean.`,
     [
       { label: "observed coverage", value: `${formatNumber(coverage * 100, 1)}%`, detail: `${covering} / ${intervalCount}` },
       { label: "confidence level", value: `${formatNumber(confidencePct, 1)}%`, detail: `${method}-interval, sigma ${sigmaKnown ? "known" : "estimated"}` },
-      { label: "sample size", value: String(sampleSize), detail: `${intervalCount} repeated samples` }
+      { label: "sample size", value: String(sampleSize), detail: `${intervalCount} repeated samples` },
+      { label: "average width", value: formatNumber(averageWidth, 4), detail: "mean upper − lower across intervals" }
     ],
     {
       type: "intervals",
@@ -120,9 +142,9 @@ export function confidenceInterval(controls: ControlMap, seed: number): Simulati
       reference: mu,
       referenceLabel: "true mean μ",
       legend: [
-        { label: "covers μ", color: "#2f6f64", shape: "line" },
-        { label: "misses μ", color: "#c8665a", shape: "line" },
-        { label: "true mean", color: "#4b73d9", shape: "dashed" },
+        { label: "covers μ", color: "var(--lab-green)", shape: "line" },
+        { label: "misses μ", color: "var(--lab-coral)", shape: "line" },
+        { label: "true mean", color: "var(--lab-blue)", shape: "dashed" },
       ],
       xDomain: [lowerBound - pad, upperBound + pad],
     }
