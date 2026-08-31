@@ -146,6 +146,6 @@ describe("core visualizer apps mount", () => {
     expect(screen.getByRole("button", { name: "左尾" })).toBeInTheDocument();
     expect(screen.getByRole("button", { name: "右尾" })).toBeInTheDocument();
     expect(screen.getByRole("button", { name: "双边" })).toBeInTheDocument();
-    expect(screen.getByText(/p 值不是原假设为真的概率/)).toBeInTheDocument();
+    expect(screen.getByText(/在 H₀ 成立时，得到当前或更极端统计量的概率/)).toBeInTheDocument();
   });
 });

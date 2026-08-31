@@ -6,7 +6,7 @@ function question(id: string, type: string, difficulty: number, minutes: number)
   return {
     id, groupId: id, partCount: 1, selectionUnit: "atomic", chapterId: "Ch06", chapterTitle: "第6章", chapterNum: 6,
     content: `Complete ${id} about a confidence interval.`, source: "test", type, difficulty, estimatedMinutes: minutes,
-    keywords: ["confidence interval"], topicIds: ["confidence-interval"], dataRefs: [], attachments: [],
+    keywords: ["confidence interval"], topicIds: ["confidence-interval"], textbookChapterIds: ["mes-ch06"], dataRefs: [], attachments: [],
     answer: "A complete independently checked answer.", answerIsImage: false, isComplete: true, isReviewed: true,
     reviewStatus: "reviewed", origin: "bank",
   };

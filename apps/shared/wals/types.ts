@@ -26,15 +26,25 @@ export interface ControlConfig {
   };
   /** Hide this control for selected values of another control. */
   hideWhen?: { controlId: string; values: string[] };
+  /** Optional short learner-facing hint shown under the control. */
+  description?: string;
+  /** Optional grouping hint. Unspecified controls remain in Core parameters. */
+  group?: "mode" | "core" | "display";
 }
 
-export type QuickActionType = "drawSampleMeans" | "bumpControl" | "setControl";
+export type QuickActionType = "drawSampleMeans" | "bumpControl" | "setControl" | "runWithControl" | "reset" | "resetAndDrawSampleMeans";
 export type QuickActionCopyKey =
   | "addOneSample"
   | "addTwentySamples"
   | "draw1Sample"
   | "draw20Samples"
   | "draw100Samples"
+  | "run100Samples"
+  | "simulate100"
+  | "simulate1000"
+  | "generateOneInterval"
+  | "generateTwentyIntervals"
+  | "reset"
   | "setN1"
   | "setN5"
   | "setN30"
@@ -67,6 +77,7 @@ export interface ExampleConfig {
    * - "drawSampleMeans": append `amount` fresh sample means (CLT accumulation).
    * - "bumpControl": add `amount` to the numeric control named by `control`.
    * - "setControl": set the numeric control named by `control` to `amount`.
+   * - "runWithControl": set a control and immediately run the stochastic experiment.
    */
   quickActions?: QuickAction[];
   /**
@@ -121,6 +132,13 @@ export interface ChartSeries {
   opacity?: number;
 }
 
+export interface ChartArea {
+  label?: string;
+  points: ChartPoint[];
+  color?: string;
+  opacity?: number;
+}
+
 export interface ChartLegendItem {
   label: string;
   color: string;
@@ -148,6 +166,8 @@ export interface ChartBar {
   label: string;
   value: number;
   color?: string;
+  /** Semantic theme color used by the shared renderer; color is retained for legacy consumers. */
+  semanticColor?: string;
 }
 
 export interface ChartInterval {
@@ -228,6 +248,7 @@ export type ChartSpec =
       xLabel: string;
       yLabel: string;
       series: ChartSeries[];
+      areas?: ChartArea[];
       references?: ChartReference[];
       legend?: ChartLegendItem[];
       xDomain?: [number, number];
@@ -239,6 +260,7 @@ export type ChartSpec =
       xLabel: string;
       yLabel: string;
       bars: ChartBar[];
+      references?: ChartReference[];
       legend?: ChartLegendItem[];
       yDomain?: [number, number];
     }
@@ -260,6 +282,7 @@ export type ChartSpec =
 export interface TableSpec {
   columns: string[];
   rows: Array<Array<string | number>>;
+  title?: string;
 }
 
 export interface SimulationResult {
@@ -268,6 +291,7 @@ export interface SimulationResult {
   metrics: Metric[];
   chart: ChartSpec;
   table?: TableSpec;
+  tables?: TableSpec[];
   /** Raw one-dimensional draws retained for deterministic incremental sampling tests. */
   rawSample?: number[];
 }

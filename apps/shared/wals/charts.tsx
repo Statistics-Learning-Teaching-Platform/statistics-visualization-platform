@@ -1,4 +1,4 @@
-import { scaleLinear, line, scaleBand, type ScaleLinear } from "d3";
+import { scaleLinear, line, area, scaleBand, type ScaleLinear } from "d3";
 import type {
   ChartLegendItem,
   ChartPoint,
@@ -13,17 +13,18 @@ const height = CHART_LAYOUT.height;
 const margin = { ...CHART_LAYOUT.margin, top: 52 };
 
 const chartTheme = {
-  background: "#fffaf1",
-  text: "#252822",
-  muted: "#696e63",
-  axis: "#b9b3a7",
-  grid: "#ded6c7",
-  teal: "#2f6f64",
-  sage: "#6f8f7a",
-  sageSoft: "#b7d6cc",
-  lavender: "#8d75b5",
-  blue: "#4b73d9",
-  danger: "#c8665a",
+  background: "var(--lab-plot-bg)",
+  text: "var(--lab-text)",
+  muted: "var(--lab-muted)",
+  axis: "var(--lab-border)",
+  grid: "var(--lab-border)",
+  teal: "var(--lab-teal)",
+  sage: "var(--lab-green)",
+  sageSoft: "color-mix(in srgb, var(--lab-green) 16%, var(--lab-bg))",
+  lavender: "var(--lab-purple)",
+  blue: "var(--lab-blue)",
+  orange: "var(--lab-orange)",
+  danger: "var(--lab-coral)",
 } as const;
 
 function extent(values: number[], fallback: [number, number]): [number, number] {
@@ -268,6 +269,10 @@ function LineChart({ spec }: { spec: Extract<ChartSpec, { type: "line" }> }) {
       {spec.series.map((series, i) => (
         <path key={i} d={lineGen(series.points) ?? ""} fill="none" stroke={series.color ?? chartTheme.teal} strokeWidth={3} strokeOpacity={series.opacity ?? 1} strokeDasharray={series.dashed ? "7 5" : undefined} />
       ))}
+      {(spec.areas ?? []).map((shape, i) => {
+        const areaGen = area<ChartPoint>().x((point) => x(point.x)).y0(y(0)).y1((point) => y(point.y));
+        return <path key={`area-${i}`} d={areaGen(shape.points) ?? ""} fill={shape.color ?? chartTheme.orange} fillOpacity={shape.opacity ?? 0.2} />;
+      })}
       <Legend items={spec.legend ?? spec.series.map((series) => ({ label: series.label, color: series.color ?? chartTheme.teal, shape: series.dashed ? "dashed" : "line" }))} />
     </Frame>
   );
@@ -278,13 +283,18 @@ function BarsChart({ spec }: { spec: Extract<ChartSpec, { type: "bars" }> }) {
   const yDomain = spec.yDomain ?? [0, maxValue * 1.15] as [number, number];
   const x = scaleBand().domain(spec.bars.map((b) => b.label)).range([margin.left, width - margin.right]).padding(0.18);
   const y = scaleLinear().domain(yDomain).nice().range([height - margin.bottom, margin.top]);
+  const numericLabels = spec.bars.map((bar) => Number(bar.label.replace(/,/g, "")));
+  const numericX = numericLabels.every(Number.isFinite)
+    ? scaleLinear().domain(extent(numericLabels, [0, 1])).nice().range([margin.left, width - margin.right])
+    : undefined;
   return (
     <Frame title={spec.title} xLabel={spec.xLabel} yLabel={spec.yLabel}>
       <GridLines y={y} />
       <AxisTicks scale={y} orientation="y" />
+      {numericX && spec.references && <References references={spec.references} x={numericX} y={y} />}
       {spec.bars.map((bar, i) => (
         <g key={i}>
-          <rect x={x(bar.label) ?? margin.left} y={y(bar.value)} width={x.bandwidth()} height={Math.max(0, height - margin.bottom - y(bar.value))} fill={bar.color ?? chartTheme.teal} opacity={0.86}>
+          <rect x={x(bar.label) ?? margin.left} y={y(bar.value)} width={x.bandwidth()} height={Math.max(0, height - margin.bottom - y(bar.value))} fill={bar.semanticColor ?? bar.color ?? chartTheme.teal} opacity={0.86}>
             <title>{`${bar.label}: ${Number(bar.value.toFixed(4))}`}</title>
           </rect>
           <text

@@ -3,6 +3,10 @@ import path from "node:path";
 import { describe, expect, it } from "vitest";
 import { topicManifests } from "../src/course/topicRegistry";
 import { inferTopicIds, topicLabels } from "../integrations/st-qselector/Program/src/lib/topic-mapping";
+import {
+  getTextbookChapterIdsForTopics,
+  isTextbookChapterId,
+} from "../src/course/textbookChapters";
 
 describe("question bank topic mapping", () => {
   const validTopicIds = new Set(topicManifests.map(({ id }) => id));
@@ -17,13 +21,17 @@ describe("question bank topic mapping", () => {
     const file = path.resolve("integrations/st-qselector/Program/public/data/reviewed-questions.json");
     const index = JSON.parse(fs.readFileSync(file, "utf8")) as {
       totalCount: number;
-      questions: Array<{ topicIds?: string[] }>;
+      questions: Array<{ topicIds?: string[]; textbookChapterIds?: string[] }>;
     };
     expect(index.totalCount).toBe(296);
     expect(index.questions).toHaveLength(296);
     for (const question of index.questions) {
       expect(question.topicIds?.length).toBeGreaterThan(0);
       expect(question.topicIds?.every((id) => validTopicIds.has(id))).toBe(true);
+      expect(question.textbookChapterIds).toEqual(
+        getTextbookChapterIdsForTopics(question.topicIds ?? []),
+      );
+      expect(question.textbookChapterIds?.every(isTextbookChapterId)).toBe(true);
     }
   });
 });

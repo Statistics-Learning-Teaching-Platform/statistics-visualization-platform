@@ -1115,6 +1115,34 @@ select {
   font-weight: 800;
 }
 
+.confidence-chart .ci-empty-curve {
+  fill: none;
+  stroke: var(--chart-blue);
+  stroke-width: 2;
+  stroke-dasharray: 5 7;
+  opacity: 0.42;
+}
+
+.confidence-chart .ci-empty-interval {
+  fill: none;
+  stroke: var(--sage);
+  stroke-width: 2;
+  stroke-linecap: round;
+  opacity: 0.42;
+}
+
+.confidence-chart .ci-empty-point {
+  fill: var(--sage);
+  opacity: 0.46;
+}
+
+.confidence-chart .ci-empty-label {
+  fill: var(--text-secondary);
+  font-size: 14px;
+  font-weight: 650;
+  letter-spacing: 0.04em;
+}
+
 .studio-control-bar {
   display: flex;
   align-items: center;
@@ -1833,5 +1861,381 @@ select {
 
   .teaching-area {
     height: auto;
+  }
+}
+
+/* Reference-aligned confidence interval workbench -------------------------
+ * The experiment keeps its existing simulation and controls while the shared
+ * VisualizationFrame owns the standard main-stage + right-parameter layout. */
+
+.visualization-frame.module-shell[data-module-id="confidence-interval"] .experiment-board {
+  gap: 18px !important;
+}
+
+.visualization-frame.module-shell[data-module-id="confidence-interval"] > .module-layout > .ed-parameter-rail {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: stretch;
+  gap: 12px;
+}
+
+.visualization-frame.module-shell[data-module-id="confidence-interval"] .lab-experiment-description,
+.visualization-frame.module-shell[data-module-id="confidence-interval"] .module-description {
+  display: none !important;
+}
+
+.visualization-frame.module-shell[data-module-id="confidence-interval"] .experiment-header .research-question {
+  margin-top: 6px;
+}
+
+.visualization-frame.module-shell[data-module-id="confidence-interval"] .ci-reference-workbench {
+  display: grid;
+  grid-template-columns: minmax(260px, 300px) minmax(0, 1fr);
+  gap: clamp(18px, 2vw, 28px);
+  min-width: 0;
+  align-items: start;
+}
+
+.visualization-frame.module-shell[data-module-id="confidence-interval"] .ci-reference-rail,
+.visualization-frame.module-shell[data-module-id="confidence-interval"] .ci-reference-stage {
+  display: grid;
+  gap: 12px;
+  min-width: 0;
+}
+
+.visualization-frame.module-shell[data-module-id="confidence-interval"] .ci-reference-stage {
+  width: 100%;
+}
+
+.visualization-frame.module-shell[data-module-id="confidence-interval"] .ci-reference-rail {
+  align-content: start;
+  width: 100%;
+}
+
+.visualization-frame.module-shell[data-module-id="confidence-interval"] .ci-reference-rail .parameter-panel {
+  width: 100%;
+  gap: 10px !important;
+  padding: 16px !important;
+  border-radius: 10px;
+  background: var(--lab-surface-soft, #f8faf9);
+}
+
+.visualization-frame.module-shell[data-module-id="confidence-interval"] .ci-reference-rail .parameter-panel > .eyebrow,
+.visualization-frame.module-shell[data-module-id="confidence-interval"] .ci-reference-rail .control-panel__toggle,
+.visualization-frame.module-shell[data-module-id="confidence-interval"] .ci-reference-rail .control-panel__info-box {
+  display: none !important;
+}
+
+.visualization-frame.module-shell[data-module-id="confidence-interval"] .ci-reference-rail .control-panel {
+  gap: 8px !important;
+}
+
+.visualization-frame.module-shell[data-module-id="confidence-interval"] .ci-reference-control-copy {
+  display: grid;
+  gap: 5px;
+}
+
+.visualization-frame.module-shell[data-module-id="confidence-interval"] .ci-reference-control-copy h2 {
+  margin: 0;
+  color: var(--lab-text);
+  font-family: var(--lab-font-sans);
+  font-size: 18px;
+  font-weight: 650;
+  line-height: 1.25;
+}
+
+.visualization-frame.module-shell[data-module-id="confidence-interval"] .ci-reference-control-copy p {
+  margin: 0;
+  color: var(--lab-text-secondary);
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+.visualization-frame.module-shell[data-module-id="confidence-interval"] .ci-reference-rail .control-panel__title,
+.visualization-frame.module-shell[data-module-id="confidence-interval"] .ci-reference-rail .control-panel__intro {
+  display: none !important;
+}
+
+.visualization-frame.module-shell[data-module-id="confidence-interval"] .ci-reference-rail .control-panel__group {
+  gap: 5px;
+  margin: 0;
+  padding: 8px 0 9px;
+  border: 0;
+  border-top: 1px solid var(--lab-divider);
+  border-radius: 0;
+  background: transparent;
+}
+
+.visualization-frame.module-shell[data-module-id="confidence-interval"] .ci-reference-rail .control-panel__hint {
+  display: none !important;
+}
+
+.visualization-frame.module-shell[data-module-id="confidence-interval"] .ci-reference-rail .control-number-input,
+.visualization-frame.module-shell[data-module-id="confidence-interval"] .ci-reference-rail .control-panel__select {
+  min-height: 36px;
+}
+
+.visualization-frame.module-shell[data-module-id="confidence-interval"] .ci-recent-means {
+  display: grid;
+  gap: 8px;
+  padding: 10px 0 9px;
+  border-top: 1px solid var(--lab-divider);
+}
+
+.visualization-frame.module-shell[data-module-id="confidence-interval"] .ci-recent-means h3 {
+  margin: 0;
+  color: var(--lab-text);
+  font-family: var(--lab-font-sans);
+  font-size: 13px;
+  font-weight: 650;
+}
+
+.visualization-frame.module-shell[data-module-id="confidence-interval"] .ci-recent-means__list {
+  display: grid;
+  gap: 7px;
+}
+
+.visualization-frame.module-shell[data-module-id="confidence-interval"] .ci-recent-mean {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 88px;
+  gap: 10px;
+  align-items: center;
+  color: var(--lab-text);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.visualization-frame.module-shell[data-module-id="confidence-interval"] .ci-recent-mean output {
+  min-height: 34px;
+  padding: 7px 9px;
+  border: 1px solid var(--lab-border);
+  border-radius: var(--lab-radius-sm);
+  color: var(--lab-text);
+  background: var(--lab-surface);
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+}
+
+.visualization-frame.module-shell[data-module-id="confidence-interval"] .ci-reference-actions {
+  margin: 0;
+  padding: 12px;
+  border-radius: 10px;
+}
+
+.visualization-frame.module-shell[data-module-id="confidence-interval"] .ci-reference-actions .studio-control-bar__buttons {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.visualization-frame.module-shell[data-module-id="confidence-interval"] .ci-reference-actions .studio-button {
+  min-height: 44px;
+}
+
+.visualization-frame.module-shell[data-module-id="confidence-interval"] .ci-reference-actions .studio-button:last-child {
+  grid-column: 1 / -1;
+}
+
+.visualization-frame.module-shell[data-module-id="confidence-interval"] .ci-reference-stage {
+  align-content: start;
+}
+
+.visualization-frame.module-shell[data-module-id="confidence-interval"] .ci-reference-heading {
+  margin: 0;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--lab-divider);
+}
+
+.visualization-frame.module-shell[data-module-id="confidence-interval"] .ci-reference-heading h2 {
+  font-size: clamp(20px, 2vw, 27px) !important;
+}
+
+.visualization-frame.module-shell[data-module-id="confidence-interval"] .ci-reference-legend {
+  padding: 0 0 2px !important;
+}
+
+.visualization-frame.module-shell[data-module-id="confidence-interval"] .ci-reference-chart-frame {
+  min-height: 0 !important;
+  padding: 10px !important;
+  border-radius: 10px;
+  background: var(--lab-surface);
+  aspect-ratio: 760 / 410 !important;
+  overflow: hidden;
+}
+
+.visualization-frame.module-shell[data-module-id="confidence-interval"] .ci-reference-chart-frame > svg {
+  width: 100%;
+  min-width: 0 !important;
+  height: auto !important;
+}
+
+.visualization-frame.module-shell[data-module-id="confidence-interval"] .ci-distribution-axis .domain {
+  stroke: var(--lab-border-strong, #94a3b8);
+}
+
+.visualization-frame.module-shell[data-module-id="confidence-interval"] .ci-distribution-axis .tick line {
+  stroke: var(--lab-divider);
+  stroke-opacity: 0.72;
+}
+
+.visualization-frame.module-shell[data-module-id="confidence-interval"] .ci-distribution-axis .tick text {
+  fill: var(--lab-text-secondary);
+  font-family: var(--lab-font-sans);
+  font-size: 10px;
+}
+
+.visualization-frame.module-shell[data-module-id="confidence-interval"] .ci-distribution-band {
+  fill: color-mix(in srgb, var(--lab-blue) 18%, transparent);
+  stroke: none;
+}
+
+.visualization-frame.module-shell[data-module-id="confidence-interval"] .ci-distribution-curve {
+  fill: none;
+  stroke: var(--lab-text);
+  stroke-width: 2;
+}
+
+.visualization-frame.module-shell[data-module-id="confidence-interval"] .ci-true-mean-line {
+  stroke: var(--lab-blue);
+  stroke-width: 1.7;
+  stroke-dasharray: 6 6;
+}
+
+.visualization-frame.module-shell[data-module-id="confidence-interval"] .ci-true-mean-label,
+.visualization-frame.module-shell[data-module-id="confidence-interval"] .ci-confidence-band-label {
+  fill: var(--lab-blue);
+  font-family: var(--lab-font-sans);
+  font-size: 10px;
+  font-weight: 650;
+}
+
+.visualization-frame.module-shell[data-module-id="confidence-interval"] .ci-interval-section-label {
+  fill: var(--lab-text-secondary);
+  font-family: var(--lab-font-sans);
+  font-size: 11px;
+  font-weight: 650;
+}
+
+.visualization-frame.module-shell[data-module-id="confidence-interval"] .ci-group .ci-line,
+.visualization-frame.module-shell[data-module-id="confidence-interval"] .ci-group .ci-endpoint {
+  stroke: var(--lab-green);
+  stroke-width: 2;
+  stroke-linecap: round;
+}
+
+.visualization-frame.module-shell[data-module-id="confidence-interval"] .ci-group--miss .ci-line,
+.visualization-frame.module-shell[data-module-id="confidence-interval"] .ci-group--miss .ci-endpoint {
+  stroke: var(--lab-coral);
+}
+
+.visualization-frame.module-shell[data-module-id="confidence-interval"] .ci-group .sample-mean {
+  fill: var(--lab-green);
+  stroke: var(--lab-surface);
+  stroke-width: 1.5;
+}
+
+.visualization-frame.module-shell[data-module-id="confidence-interval"] .ci-group--miss .sample-mean {
+  fill: var(--lab-coral);
+}
+
+.visualization-frame.module-shell[data-module-id="confidence-interval"] .ci-bound-label,
+.visualization-frame.module-shell[data-module-id="confidence-interval"] .ci-mean-label,
+.visualization-frame.module-shell[data-module-id="confidence-interval"] .ci-interval-index {
+  fill: var(--lab-green);
+  font-family: var(--lab-font-sans);
+  font-size: 9px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.visualization-frame.module-shell[data-module-id="confidence-interval"] .ci-group--miss .ci-bound-label,
+.visualization-frame.module-shell[data-module-id="confidence-interval"] .ci-group--miss .ci-mean-label,
+.visualization-frame.module-shell[data-module-id="confidence-interval"] .ci-group--miss .ci-interval-index {
+  fill: var(--lab-coral);
+}
+
+.visualization-frame.module-shell[data-module-id="confidence-interval"] .ci-empty-interval {
+  stroke: var(--lab-blue);
+  stroke-width: 2;
+  stroke-dasharray: 5 5;
+}
+
+.visualization-frame.module-shell[data-module-id="confidence-interval"] .ci-empty-point {
+  fill: var(--lab-blue);
+}
+
+.visualization-frame.module-shell[data-module-id="confidence-interval"] .ci-empty-label {
+  fill: var(--lab-text-secondary);
+  font-family: var(--lab-font-sans);
+  font-size: 11px;
+  font-weight: 500;
+}
+
+.visualization-frame.module-shell[data-module-id="confidence-interval"] .ci-reference-explanation-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(250px, 0.8fr);
+  gap: 12px;
+  min-width: 0;
+}
+
+.visualization-frame.module-shell[data-module-id="confidence-interval"] .ci-reference-explanation-grid > * {
+  margin: 0;
+}
+
+.visualization-frame.module-shell[data-module-id="confidence-interval"] .ci-reference-explanation {
+  min-width: 0;
+}
+
+.visualization-frame.module-shell[data-module-id="confidence-interval"] .ci-reference-notes {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.visualization-frame.module-shell[data-module-id="confidence-interval"] .ci-reference-notes li {
+  display: grid;
+  grid-template-columns: minmax(74px, auto) minmax(0, 1fr);
+  gap: 10px;
+  align-items: baseline;
+  color: var(--lab-text-secondary);
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.visualization-frame.module-shell[data-module-id="confidence-interval"] .ci-reference-notes strong {
+  color: var(--lab-text);
+  font-family: "Cambria Math", Georgia, serif;
+  font-size: 14px;
+  font-weight: 650;
+}
+
+@media (max-width: 1050px) {
+  .visualization-frame.module-shell[data-module-id="confidence-interval"] .ci-reference-workbench {
+    grid-template-columns: 1fr;
+  }
+
+  .visualization-frame.module-shell[data-module-id="confidence-interval"] .ci-reference-rail {
+    grid-template-columns: minmax(0, 1fr) minmax(230px, 0.72fr);
+    align-items: start;
+  }
+}
+
+@media (max-width: 760px) {
+  .visualization-frame.module-shell[data-module-id="confidence-interval"] .ci-reference-rail,
+  .visualization-frame.module-shell[data-module-id="confidence-interval"] .ci-reference-explanation-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .visualization-frame.module-shell[data-module-id="confidence-interval"] .ci-reference-chart-frame {
+    padding: 6px !important;
+  }
+
+  .visualization-frame.module-shell[data-module-id="confidence-interval"] .ci-bound-label {
+    display: none;
+  }
+
+  .visualization-frame.module-shell[data-module-id="confidence-interval"] .ci-reference-notes li {
+    grid-template-columns: 1fr;
+    gap: 3px;
   }
 }

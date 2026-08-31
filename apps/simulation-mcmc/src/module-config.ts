@@ -18,6 +18,9 @@ export const moduleConfig: ModuleConfig = {
         "The chain accepts or rejects proposals using a target-density ratio.",
         "Burn-in and sample size affect how much of the target surface is explored."
       ],
+      "quickActions": [
+        { "type": "reset", "amount": 0, "copyKey": "reset" }
+      ],
       "controls": [
         {
           "id": "burnin",
@@ -58,6 +61,9 @@ export const moduleConfig: ModuleConfig = {
         "A Gibbs sweep changes one coordinate while holding the other coordinate fixed.",
         "Stronger correlation produces slower movement along the narrow direction of the target."
       ],
+      "quickActions": [
+        { "type": "reset", "amount": 0, "copyKey": "reset" }
+      ],
       "controls": [
         {
           "id": "correlation",
@@ -97,6 +103,9 @@ export const moduleConfig: ModuleConfig = {
       "teachingPoints": [
         "Stationary visit frequency is shaped by the acceptance rule.",
         "Visit frequencies converge toward the population-weighted target distribution."
+      ],
+      "quickActions": [
+        { "type": "reset", "amount": 0, "copyKey": "reset" }
       ],
       "controls": [
         {

@@ -4,6 +4,7 @@ import path from "node:path";
 import { load as yamlLoad } from "js-yaml";
 import type { AppConfig, Question } from "./types";
 import { normalizeTopicIds } from "./topic-mapping";
+import { getTextbookChapterIdsForTopics } from "./textbook-chapters";
 
 // 数据目录：默认取 Program 的上级 Data/Formed，可用 DATA_DIR 环境变量覆盖。
 export function getDataDir(): string {
@@ -170,6 +171,7 @@ export function loadAllQuestions(): Question[] {
             ? Math.floor(q.part_count)
             : detectPartCount(content);
         const keywords = Array.isArray(q.keywords) ? q.keywords : [];
+        const topicIds = normalizeTopicIds(ch.id, keywords, q.topic_ids);
         all.push({
           id: q.id,
           groupId,
@@ -186,7 +188,8 @@ export function loadAllQuestions(): Question[] {
           difficulty: typeof q.difficulty === "number" ? q.difficulty : 1,
           estimatedMinutes: Math.max(1, Math.min(60, (typeof q.difficulty === "number" ? q.difficulty : 1) * (inferQuestionType(q.type, content) === "综合题" ? 5 : 3))),
           keywords,
-          topicIds: normalizeTopicIds(ch.id, keywords, q.topic_ids),
+          topicIds,
+          textbookChapterIds: getTextbookChapterIdsForTopics(topicIds),
           dataRefs,
           attachments,
           answer,

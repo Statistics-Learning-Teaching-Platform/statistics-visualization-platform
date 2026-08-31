@@ -89,6 +89,17 @@ export const moduleConfig: ModuleConfig = {
           ]
         },
         {
+          "id": "showReference",
+          "label": "Show reference",
+          "type": "select",
+          "group": "display",
+          "defaultValue": "yes",
+          "options": [
+            { "value": "yes", "label": "Yes" },
+            { "value": "no", "label": "No" }
+          ]
+        },
+        {
           "id": "a",
           "label": "Location or first shape parameter",
           "labelByValue": {

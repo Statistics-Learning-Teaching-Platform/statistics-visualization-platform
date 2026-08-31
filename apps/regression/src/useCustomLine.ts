@@ -82,12 +82,21 @@ export function useCustomLine({ scales, chartLayoutMargin, resetDeps }: UseCusto
 
   const clear = useCallback(() => setCustomLine({ start: null, end: null }), []);
 
+  const setNumericParams = useCallback((slope: number, intercept: number) => {
+    const [xMin, xMax] = scales.xScale.domain();
+    setCustomLine({
+      start: { x: xMin, y: intercept + slope * xMin },
+      end: { x: xMax, y: intercept + slope * xMax },
+    });
+  }, [scales]);
+
   return {
     customLine,
     tempLine,
     isDragging,
     handlers: { handlePointerDown, handlePointerMove, handlePointerUp },
     clear,
+    setNumericParams,
   };
 }
 

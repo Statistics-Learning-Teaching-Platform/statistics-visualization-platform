@@ -1,5 +1,11 @@
 import { Suspense, useState } from "react";
+import type { CSSProperties } from "react";
 import { useLanguage } from "@stats-viz/shared/i18n";
+import {
+  loadWorkspaceLayout,
+  PanelResizeHandle,
+  saveWorkspaceLayout,
+} from "@stats-viz/shared/visualization";
 import { appRegistry } from "../../shell/appRegistry";
 import { LanguageTabs } from "../../shell/Sidebar";
 import { chapterManifests, courseManifests } from "../courseManifest";
@@ -33,7 +39,7 @@ function localize(value: LocalizedText, language: Language): string {
   return value[language];
 }
 
-function LearningHeader() {
+export function LearningHeader() {
   const language = useLanguage();
   return (
     <header className="learn-header">
@@ -43,6 +49,7 @@ function LearningHeader() {
       </a>
       <nav className="learn-header__links" aria-label={language === "zh" ? "平台导航" : "Platform navigation"}>
         <a href="/">{language === "zh" ? "平台首页" : "Platform home"}</a>
+        <a href="/catalog">{language === "zh" ? "教材目录" : "Textbook catalog"}</a>
         <a href="/r-learning?returnTo=%2F">R</a>
         <a href="/python-learning?returnTo=%2F">Python</a>
       </nav>
@@ -185,6 +192,9 @@ function TopicPage({ topicId }: { topicId: string }) {
 
 function ActivityPage({ activityId, topicId }: { activityId: string; topicId: string }) {
   const language = useLanguage();
+  const [courseNavWidth, setCourseNavWidth] = useState(
+    () => loadWorkspaceLayout().leftPanelWidth,
+  );
   const activity = activityManifests.find(({ id }) => id === activityId);
   const topic = getTopicById(topicId);
   if (!activity || !topic) return <NotFound />;
@@ -195,13 +205,21 @@ function ActivityPage({ activityId, topicId }: { activityId: string; topicId: st
   const ActiveApp = activity.appId ? appRegistry[activity.appId] : undefined;
   const returnTo = getActivityRoute(activity.id);
   const codingHref = activity.type === "r-lab" ? `/r-learning?topicId=${topic.id}&lessonId=${activity.lessonId ?? ""}&returnTo=${encodeURIComponent(returnTo)}` : `/python-learning?topicId=${topic.id}&lessonId=${activity.lessonId ?? ""}&returnTo=${encodeURIComponent(returnTo)}`;
+  const updateCourseNavWidth = (width: number) => {
+    setCourseNavWidth(width);
+    const current = loadWorkspaceLayout();
+    saveWorkspaceLayout({ ...current, leftPanelWidth: width });
+  };
   return (
     <main className="learn-activity-page">
       <div className="learn-activity-toolbar">
         <Breadcrumbs items={[{ label: language === "zh" ? "统计教学平台" : "Teaching platform", href: "/teaching-platform" }, { label: localize(topic.title, language), href: getTopicRoute(topic.id) }, { label: localize(activity.title, language) }]} />
         <span>{activity.type}</span>
       </div>
-      <section className="learn-activity-stage">
+      <section
+        className="learn-activity-stage"
+        style={{ "--course-nav-width": `${courseNavWidth}px` } as CSSProperties}
+      >
         <aside className="learn-activity-course-nav">
           <details open>
             <summary>{chapter ? localize(chapter.title, language) : (language === "zh" ? "课程目录" : "Course outline")}</summary>
@@ -215,6 +233,15 @@ function ActivityPage({ activityId, topicId }: { activityId: string; topicId: st
             </nav>
           </details>
         </aside>
+        <PanelResizeHandle
+          side="left"
+          value={courseNavWidth}
+          min={220}
+          max={380}
+          ariaLabel={language === "zh" ? "调整课程目录宽度" : "Resize course navigation"}
+          containerSelector=".learn-activity-stage"
+          onChange={updateCourseNavWidth}
+        />
         <div className="learn-activity-visualizer">
           {ActiveApp ? <Suspense fallback={<div className="learn-route-loading" role="status">{language === "zh" ? "正在加载实验…" : "Loading activity…"}</div>}><ActiveApp /></Suspense> : <div className="learn-coding-handoff"><h1>{localize(activity.title, language)}</h1><p>{language === "zh" ? "此活动将在共享编程工作室中打开，并携带当前知识点。" : "This activity opens in the shared coding workspace with the current topic context."}</p><a className="learn-primary-link" href={codingHref}>{language === "zh" ? "打开编程实验" : "Open coding lab"} →</a></div>}
         </div>

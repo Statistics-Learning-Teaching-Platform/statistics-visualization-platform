@@ -9,7 +9,7 @@ interface ParameterPanelProps {
 export function ParameterPanel({ eyebrow, children, className = "" }: ParameterPanelProps) {
   return (
     <section
-      className={`teaching-panel parameter-panel ${className}`.trim()}
+      className={`teaching-panel parameter-panel lab-parameter-panel ${className}`.trim()}
       data-parameter-panel="true"
     >
       <p className="eyebrow">{eyebrow}</p>

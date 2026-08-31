@@ -5,10 +5,10 @@ import { computeSSE } from "@stats-viz/shared/regression";
 import { createLinearScales } from "@stats-viz/shared/chart-utils";
 import {
   ChartFrame,
+  ExperimentMetricStrip,
   FormulaCard,
-  MetricGrid,
+  localizedExperimentMetadata,
   ObservationCard,
-  ReadingGuide,
   VisualizationFrame,
   VisualizationHeader,
 } from "@stats-viz/shared/visualization";
@@ -27,6 +27,7 @@ import { ControlPanel } from "./ControlPanel";
 export default function RegressionApp() {
   const language = useLanguage();
   const copy = regressionCopy[language];
+  const metadata = localizedExperimentMetadata("regression", language);
   const t = (text: string) => localizeText(text, language);
 
   const { datasets, initialId } = useDatasets();
@@ -76,8 +77,9 @@ export default function RegressionApp() {
   );
 
   const regression = useMemo(() => linearRegression(visibleData), [visibleData]);
+  const correlation = Math.sign(regression.slope) * Math.sqrt(Math.max(0, regression.rSquared));
 
-  const { customLine, tempLine, isDragging, handlers, clear } = useCustomLine({
+  const { customLine, tempLine, isDragging, handlers, clear, setNumericParams } = useCustomLine({
     scales: scalesRaw,
     chartLayoutMargin: CHART_LAYOUT.margin,
     resetDeps: [selectedId, showOutliers],
@@ -102,101 +104,118 @@ export default function RegressionApp() {
 
   return (
     <VisualizationFrame
+      moduleId="regression"
       content={
         <>
-          <VisualizationHeader eyebrow={copy.coreVisualizer} title={copy.title} description={copy.description} />
-          <section className="output-dock">
-            <div className="output-heading">
-              <p className="eyebrow">{copy.modelOutput}</p>
-              <h2>{copy.chartTitle}</h2>
-              <p>{copy.chartDescription}</p>
-            </div>
-            <div className="regression-line-guide" role="list" aria-label={copy.lineType}>
-              {showRegression && (
-                <span className="regression-line-guide__item" role="listitem">
-                  <span className="regression-line-guide__swatch regression-line-guide__swatch--fit" aria-hidden="true" />
-                  {copy.regressionLine}
-                </span>
-              )}
-              {customLineParams ? (
-                <span className="regression-line-guide__item regression-line-guide__item--active" role="listitem">
-                  <span className="regression-line-guide__swatch regression-line-guide__swatch--custom" aria-hidden="true" />
-                  {copy.customLine}
-                </span>
-              ) : (
-                <span className="regression-line-guide__hint">{copy.chartDescription}</span>
-              )}
-            </div>
-            <ReadingGuide title={copy.residualsExplainFit}>
-              <p>{copy.residualsBody}</p>
-            </ReadingGuide>
-            <MetricGrid>
+          <VisualizationHeader eyebrow={copy.coreVisualizer} title={copy.title} description={copy.description} experimentNumber={metadata?.number} category={metadata?.localizedCategory} researchQuestion={metadata?.localizedQuestion} />
+          <div className="regression-workbench">
+            <section className="regression-stage" aria-labelledby="regression-chart-title">
+              <div className="regression-stage__header">
+                <div className="regression-stage__intro">
+                  <p className="eyebrow">{copy.modelOutput}</p>
+                  <h2 id="regression-chart-title">{copy.chartTitle}</h2>
+                  <p>{copy.chartDescription}</p>
+                </div>
+                <div className="regression-line-guide" role="list" aria-label={copy.lineType}>
+                  {showRegression && (
+                    <span className="regression-line-guide__item" role="listitem">
+                      <span className="regression-line-guide__swatch regression-line-guide__swatch--fit" aria-hidden="true" />
+                      {copy.regressionLine}
+                    </span>
+                  )}
+                  {customLineParams ? (
+                    <span className="regression-line-guide__item regression-line-guide__item--active" role="listitem">
+                      <span className="regression-line-guide__swatch regression-line-guide__swatch--custom" aria-hidden="true" />
+                      {copy.customLine}
+                    </span>
+                  ) : (
+                    <span className="regression-line-guide__hint">{copy.chartDescription}</span>
+                  )}
+                </div>
+              </div>
+
+              <ChartFrame>
+                <div className="chart-shell">
+                  <RegressionChart
+                    visibleData={visibleData}
+                    domains={domains}
+                    scales={scales}
+                    showRegression={showRegression}
+                    regression={regression}
+                    customLineParams={customLineParams}
+                    tempLine={tempLine}
+                    isDragging={isDragging}
+                    hoverInfo={hoverInfo}
+                    xAxisLabel={t(selectedDataset?.xLabel || copy.explanatoryVariable)}
+                    yAxisLabel={t(selectedDataset?.yLabel || copy.response)}
+                    onPointerDown={handlers.handlePointerDown}
+                    onPointerMove={handlers.handlePointerMove}
+                    onPointerUp={handlers.handlePointerUp}
+                    onHoverPoint={setHoverPoint}
+                  />
+                </div>
+              </ChartFrame>
+
+              <ExperimentMetricStrip
+                ariaLabel={copy.statistics}
+                metrics={[
+                  { key: "current-sse", label: copy.sse, value: sse.value.toFixed(3), semantics: "derived" as const },
+                  { key: "ols-sse", label: language === "zh" ? "OLS SSE" : "OLS SSE", value: regression.sse.toFixed(3), semantics: "comparison" as const },
+                  { key: "delta-sse", label: language === "zh" ? "SSE 差值" : "SSE delta", value: (sse.value - regression.sse).toFixed(3), semantics: "comparison" as const },
+                  { key: "r", label: "r", value: correlation.toFixed(3), semantics: "derived" as const },
+                  { key: "r2", label: "R²", value: regression.rSquared.toFixed(3), semantics: "derived" as const },
+                ]}
+              />
               <StatisticsPanel sse={sse} hoverInfo={hoverInfo} copy={copy} />
-            </MetricGrid>
-            <ChartFrame>
-              <div className="chart-shell">
-                <RegressionChart
-                  visibleData={visibleData}
-                  domains={domains}
-                  scales={scales}
-                  showRegression={showRegression}
-                  regression={regression}
-                  customLineParams={customLineParams}
-                  tempLine={tempLine}
-                  isDragging={isDragging}
-                  hoverInfo={hoverInfo}
-                  xAxisLabel={t(selectedDataset?.xLabel || copy.explanatoryVariable)}
-                  yAxisLabel={t(selectedDataset?.yLabel || copy.response)}
-                  onPointerDown={handlers.handlePointerDown}
-                  onPointerMove={handlers.handlePointerMove}
-                  onPointerUp={handlers.handlePointerUp}
-                  onHoverPoint={setHoverPoint}
-                />
-              </div>
-            </ChartFrame>
-          </section>
+            </section>
+
+            <aside className="regression-control-rail" aria-label={copy.parameters}>
+              <ControlPanel
+                copy={copy}
+                datasets={datasets}
+                selectedId={selectedId}
+                showRegression={showRegression}
+                showOutliers={showOutliers}
+                selectedDataset={selectedDataset}
+                onSelectDataset={setSelectedId}
+                onToggleRegression={setShowRegression}
+                onToggleOutliers={setShowOutliers}
+                onClearCustomLine={clear}
+                customLineParams={customLineParams}
+                onNumericLine={setNumericParams}
+                translate={t}
+              />
+            </aside>
+
+            <section className="regression-learning-grid" aria-label={copy.teachingNotes}>
+              <section className="teaching-panel regression-concept-card">
+                <p className="eyebrow">{copy.conceptKeyIdea}</p>
+                <h2>{copy.leastSquaresRegression}</h2>
+                <p>{copy.regressionBody}</p>
+                <h3>{copy.residualsExplainFit}</h3>
+                <p>{copy.residualsBody}</p>
+              </section>
+              <FormulaCard
+                eyebrow={copy.formula}
+                formula={
+                  <div className="math-expression">
+                    <span>SSE =</span>
+                    <span className="math-symbol">Σ</span>
+                    <span>(y<sub>i</sub> − ŷ<sub>i</sub>)</span>
+                    <sup>2</sup>
+                  </div>
+                }
+              >
+                <p>{copy.formulaNote}</p>
+              </FormulaCard>
+              <ObservationCard eyebrow={copy.teachingNotes} title={copy.classroomFocus}>
+                <p>{copy.classroomFocusBody}</p>
+              </ObservationCard>
+            </section>
+          </div>
         </>
       }
-      sidebar={
-        <>
-          <ControlPanel
-            copy={copy}
-            datasets={datasets}
-            selectedId={selectedId}
-            showRegression={showRegression}
-            showOutliers={showOutliers}
-            selectedDataset={selectedDataset}
-            onSelectDataset={setSelectedId}
-            onToggleRegression={setShowRegression}
-            onToggleOutliers={setShowOutliers}
-            onClearCustomLine={clear}
-            translate={t}
-          />
-          <section className="teaching-panel">
-            <p className="eyebrow">{copy.conceptKeyIdea}</p>
-            <h2>{copy.leastSquaresRegression}</h2>
-            <p>{copy.regressionBody}</p>
-            <h3>{copy.residualsExplainFit}</h3>
-            <p>{copy.residualsBody}</p>
-          </section>
-          <FormulaCard
-            eyebrow={copy.formula}
-            formula={
-              <div className="math-expression">
-                <span>SSE =</span>
-                <span className="math-symbol">Σ</span>
-                <span>(y<sub>i</sub> − ŷ<sub>i</sub>)</span>
-                <sup>2</sup>
-              </div>
-            }
-          >
-            <p>{copy.formulaNote}</p>
-          </FormulaCard>
-          <ObservationCard eyebrow={copy.teachingNotes} title={copy.classroomFocus}>
-            <p>{copy.classroomFocusBody}</p>
-          </ObservationCard>
-        </>
-      }
+      sidebar={null}
     />
   );
 }

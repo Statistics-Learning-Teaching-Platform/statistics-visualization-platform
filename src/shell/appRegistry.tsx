@@ -1,4 +1,4 @@
-import { lazy, type ComponentType } from "react";
+import { type ComponentType, lazy } from "react";
 import { apps } from "../../scripts/apps";
 
 type AppComponent = ComponentType;
@@ -8,20 +8,43 @@ type AppComponent = ComponentType;
 // no need to touch this file.
 const tsxModules = import.meta.glob("../../apps/*/src/main.tsx");
 
-function lazyReactApp(path: string): AppComponent {
-  return lazy(async () => {
-    const mod = await tsxModules[path]();
-    return { default: (mod as { default: ComponentType }).default };
-  });
+const modulePathByAppId: Record<string, string> = {};
+
+export async function loadVisualizerComponent(
+	appId: string,
+): Promise<AppComponent> {
+	const path = modulePathByAppId[appId];
+	const loadModule = path ? tsxModules[path] : undefined;
+	if (!loadModule) {
+		throw new Error(`Visualizer entry is unavailable: ${appId}`);
+	}
+	const mod = await loadModule();
+	const component = (mod as { default?: ComponentType }).default;
+	if (!component) {
+		throw new Error(`Visualizer entry has no default component: ${appId}`);
+	}
+	return component;
+}
+
+function lazyReactApp(appId: string): AppComponent {
+	return lazy(async () => {
+		const component = await loadVisualizerComponent(appId);
+		return { default: component };
+	});
 }
 
 // Build the registry from the single source of truth (scripts/apps.ts).
 export const appRegistry: Record<string, AppComponent> = {};
 for (const app of apps) {
-  const tsxPath = `../../apps/${app.id}/src/main.tsx`;
-  if (tsxModules[tsxPath]) {
-    appRegistry[app.id] = lazyReactApp(tsxPath);
-  } else {
-    console.warn(`[appRegistry] No main.tsx found for app "${app.id}"`);
-  }
+	// Vite and Vitest can expose different relative prefixes for the same glob.
+	// Match the stable app suffix so dev, test, and production all register the
+	// exact same visualizer entry.
+	const suffix = `/apps/${app.id}/src/main.tsx`;
+	const tsxPath = Object.keys(tsxModules).find((path) => path.endsWith(suffix));
+	if (tsxPath) {
+		modulePathByAppId[app.id] = tsxPath;
+		appRegistry[app.id] = lazyReactApp(app.id);
+	} else {
+		console.warn(`[appRegistry] No main.tsx found for app "${app.id}"`);
+	}
 }
