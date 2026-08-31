@@ -49,7 +49,8 @@ export const moduleConfig: ModuleConfig = {
       ],
       "quickActions": [
         { "type": "bumpControl", "control": "sampleSize", "amount": 1, "copyKey": "addOneSample" },
-        { "type": "bumpControl", "control": "sampleSize", "amount": 20, "copyKey": "addTwentySamples" }
+        { "type": "bumpControl", "control": "sampleSize", "amount": 20, "copyKey": "addTwentySamples" },
+        { "type": "reset", "amount": 0, "copyKey": "reset" }
       ]
     },
     {
@@ -84,7 +85,8 @@ export const moduleConfig: ModuleConfig = {
       ],
       "quickActions": [
         { "type": "bumpControl", "control": "sampleSize", "amount": 1, "copyKey": "addOneSample" },
-        { "type": "bumpControl", "control": "sampleSize", "amount": 20, "copyKey": "addTwentySamples" }
+        { "type": "bumpControl", "control": "sampleSize", "amount": 20, "copyKey": "addTwentySamples" },
+        { "type": "reset", "amount": 0, "copyKey": "reset" }
       ]
     },
     {
@@ -128,7 +130,8 @@ export const moduleConfig: ModuleConfig = {
       ],
       "quickActions": [
         { "type": "bumpControl", "control": "sampleSize", "amount": 1, "copyKey": "addOneSample" },
-        { "type": "bumpControl", "control": "sampleSize", "amount": 20, "copyKey": "addTwentySamples" }
+        { "type": "bumpControl", "control": "sampleSize", "amount": 20, "copyKey": "addTwentySamples" },
+        { "type": "reset", "amount": 0, "copyKey": "reset" }
       ]
     }
   ]

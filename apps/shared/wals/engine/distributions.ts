@@ -7,6 +7,7 @@ import { num, result, str, type ControlMap } from "./internal";
 export function distribution(controls: ControlMap): SimulationResult {
   const dist = str(controls, "dist", "norm");
   const mode = str(controls, "mode", "PDF");
+  const showReference = str(controls, "showReference", "yes") === "yes";
   const a = num(controls, "a", 0);
   const rawB = num(controls, "b", 1);
   // Most distributions use slot b as a positive scale/rate/shape parameter,
@@ -38,6 +39,26 @@ export function distribution(controls: ControlMap): SimulationResult {
     prob:      Math.min(0.99, Math.max(0.01, a || 0.5)), // slot a → binom/geom success p
     binomN:    Math.max(1, Math.round(b)),               // slot b → binomial trials n
   };
+
+  // Closed-form moments for the same parameterisation used by the density and
+  // CDF branches above. Keeping these derived values beside the existing
+  // engine output makes the learner-facing metric strip mathematically
+  // explicit without introducing a second calculation path.
+  const moments: { mean: number; variance: number } = (() => {
+    switch (dist) {
+      case "norm": return { mean: a, variance: b ** 2 };
+      case "t": return { mean: params.tDf > 1 ? 0 : Number.NaN, variance: params.tDf > 2 ? params.tDf / (params.tDf - 2) : Number.POSITIVE_INFINITY };
+      case "beta": return { mean: params.shape / (params.shape + params.betaParam), variance: (params.shape * params.betaParam) / ((params.shape + params.betaParam) ** 2 * (params.shape + params.betaParam + 1)) };
+      case "gamma": return { mean: params.shape / b, variance: params.shape / (b ** 2) };
+      case "chisq": return { mean: params.chisqDf, variance: 2 * params.chisqDf };
+      case "exp": return { mean: 1 / b, variance: 1 / (b ** 2) };
+      case "unif": return { mean: (uniformLower + uniformUpper) / 2, variance: (uniformUpper - uniformLower) ** 2 / 12 };
+      case "pois": return { mean: b, variance: b };
+      case "binom": return { mean: params.binomN * params.prob, variance: params.binomN * params.prob * (1 - params.prob) };
+      case "geom": return { mean: (1 - params.prob) / params.prob, variance: (1 - params.prob) / (params.prob ** 2) };
+      default: return { mean: a, variance: b ** 2 };
+    }
+  })();
 
   const pdfAt = (x: number): number => {
     switch (dist) {
@@ -114,7 +135,7 @@ export function distribution(controls: ControlMap): SimulationResult {
     : Array.from({ length: 180 }, (_, index) => continuousMin + (index * (continuousMax - continuousMin)) / 179);
 
   const points = xs.map((x) => ({ x, y: mode === "CDF" ? cdfAt(x) : pdfAt(x) }));
-  const normalReferencePoints = dist === "norm"
+  const normalReferencePoints = dist === "norm" && showReference
     ? xs.map((x) => ({ x, y: mode === "CDF" ? normalCdf(x, 0, 1) : normalPdf(x, 0, 1) }))
     : [];
 
@@ -131,9 +152,15 @@ export function distribution(controls: ControlMap): SimulationResult {
     "Distribution explorer",
     `${mode} view for ${dist}; ${paramSummary[dist] ?? paramSummary.norm}.`,
     [
-      { label: "distribution", value: dist, detail: mode },
+      { label: "E(X)", value: formatNumber(moments.mean, 4), detail: "theoretical mean" },
+      { label: "Var(X)", value: formatNumber(moments.variance, 4), detail: "theoretical variance" },
+      { label: "interval probability", value: formatNumber(probability, 4), detail: `P(${intervalLower} <= X <= ${intervalUpper})` },
+      { label: "current distribution", value: dist, detail: mode },
+      // Preserve the original keys for downstream readers; the shared strip
+      // intentionally keeps these compatibility details out of the visible
+      // metric set so parameter values are not repeated.
       { label: "resolved parameters", value: paramSummary[dist] ?? paramSummary.norm },
-      { label: "interval probability", value: formatNumber(probability, 4), detail: `P(${intervalLower} <= X <= ${intervalUpper})` }
+      { label: "distribution", value: dist, detail: mode },
     ],
     isDiscrete
       ? {
@@ -144,11 +171,11 @@ export function distribution(controls: ControlMap): SimulationResult {
           bars: points.map((point) => ({
             label: String(point.x),
             value: point.y,
-            color: point.x >= intervalLower && point.x <= intervalUpper ? "#c8665a" : "#2f6f64",
+            color: point.x >= intervalLower && point.x <= intervalUpper ? "var(--lab-orange)" : "var(--lab-teal)",
           })),
           legend: [
-            { label: "selected interval", color: "#c8665a", shape: "bar" },
-            { label: "outside interval", color: "#2f6f64", shape: "bar" },
+            { label: "selected interval", color: "var(--lab-orange)", shape: "bar" },
+            { label: "outside interval", color: "var(--lab-teal)", shape: "bar" },
           ],
         }
       : {
@@ -160,13 +187,16 @@ export function distribution(controls: ControlMap): SimulationResult {
           yLabel: verticalLabel,
           series: dist === "norm"
             ? [
-                { label: "current N(μ, σ²)", points, color: "#2f6f64" },
-                { label: "reference N(0, 1)", points: normalReferencePoints, color: "#8d75b5", dashed: true, opacity: 0.92 },
+                { label: "current N(μ, σ²)", points, color: "var(--lab-teal)" },
+                ...(showReference ? [{ label: "reference N(0, 1)", points: normalReferencePoints, color: "var(--lab-purple)", dashed: true, opacity: 0.92 }] : []),
               ]
-            : [{ label: mode === "CDF" ? "F(x)" : "f(x)", points, color: "#2f6f64" }],
+            : [{ label: mode === "CDF" ? "F(x)" : "f(x)", points, color: "var(--lab-teal)" }],
+          areas: mode === "PDF"
+            ? [{ label: "selected interval", points: points.filter((point) => point.x >= intervalLower && point.x <= intervalUpper), color: "var(--lab-orange)", opacity: 0.24 }]
+            : undefined,
           references: [
-            { axis: "x", value: intervalLower, label: "lower", color: "#c8665a" },
-            { axis: "x", value: intervalUpper, label: "upper", color: "#c8665a" },
+                { axis: "x", value: intervalLower, label: "lower", color: "var(--lab-orange)" },
+                { axis: "x", value: intervalUpper, label: "upper", color: "var(--lab-orange)" },
           ],
           xDomain: dist === "norm" ? [-12, 12] : undefined,
           yDomain: dist === "norm" ? (mode === "CDF" ? [0, 1.02] : [0, 0.85]) : undefined,

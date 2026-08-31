@@ -18,6 +18,9 @@ export const moduleConfig: ModuleConfig = {
         "ANOVA partitions total variability into between-group and within-group components.",
         "The F statistic grows when group means differ relative to within-group noise."
       ],
+      "quickActions": [
+        { "type": "reset", "amount": 0, "copyKey": "reset" }
+      ],
       "controls": [
         {
           "id": "dataset",
@@ -49,24 +52,6 @@ export const moduleConfig: ModuleConfig = {
           "defaultValue": 5
         },
         {
-          "id": "n2",
-          "label": "Group 2 size",
-          "type": "number",
-          "min": 5,
-          "max": 100,
-          "step": 1,
-          "defaultValue": 5
-        },
-        {
-          "id": "n3",
-          "label": "Group 3 size",
-          "type": "number",
-          "min": 5,
-          "max": 100,
-          "step": 1,
-          "defaultValue": 5
-        },
-        {
           "id": "mu1",
           "label": "Group 1 mean",
           "type": "number",
@@ -76,6 +61,15 @@ export const moduleConfig: ModuleConfig = {
           "defaultValue": 1
         },
         {
+          "id": "n2",
+          "label": "Group 2 size",
+          "type": "number",
+          "min": 5,
+          "max": 100,
+          "step": 1,
+          "defaultValue": 5
+        },
+        {
           "id": "mu2",
           "label": "Group 2 mean",
           "type": "number",
@@ -83,6 +77,15 @@ export const moduleConfig: ModuleConfig = {
           "max": 10,
           "step": 0.5,
           "defaultValue": 2
+        },
+        {
+          "id": "n3",
+          "label": "Group 3 size",
+          "type": "number",
+          "min": 5,
+          "max": 100,
+          "step": 1,
+          "defaultValue": 5
         },
         {
           "id": "mu3",

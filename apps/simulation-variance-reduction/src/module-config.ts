@@ -18,6 +18,7 @@ export const moduleConfig: ModuleConfig = {
         "Simple Monte Carlo turns an integral into an average.",
         "Sampling error is visible even when the estimator is unbiased."
       ],
+      "quickActions": [{ "type": "reset", "amount": 0, "copyKey": "reset" }],
       "controls": [
         {
           "id": "sampleSize",
@@ -40,6 +41,7 @@ export const moduleConfig: ModuleConfig = {
         "Changing the sampling distribution can reduce variance.",
         "Estimator design matters as much as sample size."
       ],
+      "quickActions": [{ "type": "reset", "amount": 0, "copyKey": "reset" }],
       "controls": [
         {
           "id": "sampleSize",
@@ -62,6 +64,7 @@ export const moduleConfig: ModuleConfig = {
         "Two unbiased estimators can have different precision.",
         "A grid of x values shows where approximation error changes."
       ],
+      "quickActions": [{ "type": "reset", "amount": 0, "copyKey": "reset" }],
       "controls": [
         {
           "id": "low",
@@ -102,6 +105,7 @@ export const moduleConfig: ModuleConfig = {
         "Negative correlation between paired samples can reduce variance.",
         "The mean is unchanged while the estimator spread shrinks."
       ],
+      "quickActions": [{ "type": "reset", "amount": 0, "copyKey": "reset" }],
       "controls": [
         {
           "id": "sampleSize",
@@ -124,6 +128,7 @@ export const moduleConfig: ModuleConfig = {
         "Antithetic sampling can apply beyond simple exponential integrals.",
         "Standard error is the comparison target."
       ],
+      "quickActions": [{ "type": "reset", "amount": 0, "copyKey": "reset" }],
       "controls": [
         {
           "id": "sampleSize",
@@ -146,6 +151,7 @@ export const moduleConfig: ModuleConfig = {
         "A correlated variable with known expectation can lower variance.",
         "The coefficient controls how much adjustment is applied."
       ],
+      "quickActions": [{ "type": "reset", "amount": 0, "copyKey": "reset" }],
       "controls": [
         {
           "id": "sampleSize",
@@ -177,6 +183,7 @@ export const moduleConfig: ModuleConfig = {
         "The control coefficient can be estimated from pilot samples.",
         "Variance reduction is reported as a percent change."
       ],
+      "quickActions": [{ "type": "reset", "amount": 0, "copyKey": "reset" }],
       "controls": [
         {
           "id": "sampleSize",
@@ -199,6 +206,7 @@ export const moduleConfig: ModuleConfig = {
         "Importance sampling spends more draws where the integrand matters.",
         "A good proposal can make variance collapse."
       ],
+      "quickActions": [{ "type": "reset", "amount": 0, "copyKey": "reset" }],
       "controls": [
         {
           "id": "sampleSize",
@@ -221,6 +229,7 @@ export const moduleConfig: ModuleConfig = {
         "Conditioning replaces a noisy indicator with a smoother expectation.",
         "The target mean is similar, but estimator variance falls."
       ],
+      "quickActions": [{ "type": "reset", "amount": 0, "copyKey": "reset" }],
       "controls": [
         {
           "id": "sampleSize",

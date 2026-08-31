@@ -144,19 +144,30 @@ export function bootstrapMax(controls: ControlMap, seed: number): SimulationResu
     );
     return sortedValues[Math.min(rank, sortedValues.length - 1)];
   });
+  const observed = Math.max(...values);
+  const bootstrapMean = mean(maxima);
+  const ciLower = quantile(maxima, 0.025);
+  const ciUpper = quantile(maxima, 0.975);
   return result(
     "Bootstrap distribution of the maximum",
     "Each bootstrap replicate samples observed values with replacement and records the maximum.",
     [
-      { label: "bootstrap mean max", value: formatNumber(mean(maxima), 4), detail: "mean of maxima" },
-      { label: "95% interval", value: `${formatNumber(quantile(maxima, 0.025), 3)} - ${formatNumber(quantile(maxima, 0.975), 3)}`, detail: "percentile interval" },
+      { label: "observed statistic", value: formatNumber(observed, 4), detail: "maximum of observed data" },
+      { label: "bootstrap mean", value: formatNumber(bootstrapMean, 4), detail: "mean of bootstrap maxima" },
+      { label: "bias", value: formatNumber(bootstrapMean - observed, 4), detail: "bootstrap mean − observed" },
+      { label: "bootstrap SE", value: formatNumber(standardDeviation(maxima), 4), detail: "SD of bootstrap statistics" },
+      { label: "95% CI", value: `${formatNumber(ciLower, 3)} - ${formatNumber(ciUpper, 3)}`, detail: "percentile interval" },
       {
         label: "replicates",
         value: String(replicates),
         detail: `${values.length} observed values${inputWasLimited ? " (input limit applied)" : ""}`,
       }
     ],
-    { type: "bars", title: "Bootstrap maxima", xLabel: "max value bin", yLabel: "count", bars: histogram(maxima) }
+    { type: "bars", title: "Bootstrap maxima", xLabel: "max value bin", yLabel: "count", bars: histogram(maxima), references: [
+      { axis: "x", value: observed, label: "observed", color: "var(--lab-blue)" },
+      { axis: "x", value: ciLower, label: "95% lower", color: "var(--lab-orange)" },
+      { axis: "x", value: ciUpper, label: "95% upper", color: "var(--lab-orange)" },
+    ] }
   );
 }
 export function meanBootstrap(controls: ControlMap, seed: number): SimulationResult {
@@ -168,7 +179,8 @@ export function meanBootstrap(controls: ControlMap, seed: number): SimulationRes
   const replicates = budget.replicates;
   const sample = Array.from({ length: n }, () => normalRandom(rng, 5, 2));
   // Preserve the mathematical bootstrap size n while avoiding per-replicate
-  // arrays. The total number of indexed draws is capped by the budget helper.
+  // arrays. The total number of indexed draws is capped by the budget helper,
+  // which only reduces the replicate count — never the resample size n.
   const bootMeans = Array.from({ length: replicates }, () => {
     let sum = 0;
     for (let draw = 0; draw < n; draw += 1) {
@@ -176,6 +188,10 @@ export function meanBootstrap(controls: ControlMap, seed: number): SimulationRes
     }
     return sum / n;
   });
+  const observed = mean(sample);
+  const bootstrapMean = mean(bootMeans);
+  const ciLower = quantile(bootMeans, 0.025);
+  const ciUpper = quantile(bootMeans, 0.975);
   const requestedReplicateCount = Math.min(
     5000,
     Math.max(MIN_BOOTSTRAP_REPLICATES, Math.round(requestedReplicates)),
@@ -187,10 +203,11 @@ export function meanBootstrap(controls: ControlMap, seed: number): SimulationRes
       ? "Every bootstrap replicate resamples exactly n observations; the replicate count was reduced to keep the total draw budget responsive."
       : "Every bootstrap replicate resamples exactly n observations with replacement from the generated sample.",
     [
-      { label: "sample mean", value: formatNumber(mean(sample), 4), detail: "generated sample" },
-      { label: "bootstrap mean", value: formatNumber(mean(bootMeans), 4), detail: "mean of bootstrap means" },
-      { label: "bootstrap sd", value: formatNumber(standardDeviation(bootMeans), 4), detail: "bootstrap standard error" },
-      { label: "resample size", value: String(n), detail: "same size as observed sample" },
+      { label: "observed statistic", value: formatNumber(observed, 4), detail: "mean of observed sample" },
+      { label: "bootstrap mean", value: formatNumber(bootstrapMean, 4), detail: "mean of bootstrap means" },
+      { label: "bias", value: formatNumber(bootstrapMean - observed, 4), detail: "bootstrap mean − observed" },
+      { label: "bootstrap SE", value: formatNumber(standardDeviation(bootMeans), 4), detail: "SD of bootstrap statistics" },
+      { label: "95% CI", value: `${formatNumber(ciLower, 3)} - ${formatNumber(ciUpper, 3)}`, detail: "percentile interval" },
       {
         label: "bootstrap replicates",
         value: String(replicates),
@@ -199,7 +216,11 @@ export function meanBootstrap(controls: ControlMap, seed: number): SimulationRes
           : `${budget.draws.toLocaleString("en-US")} total draws`,
       }
     ],
-    { type: "bars", title: "Bootstrap means", xLabel: "mean bin", yLabel: "count", bars: histogram(bootMeans) }
+    { type: "bars", title: "Bootstrap means", xLabel: "mean bin", yLabel: "count", bars: histogram(bootMeans), references: [
+      { axis: "x", value: observed, label: "observed", color: "var(--lab-blue)" },
+      { axis: "x", value: ciLower, label: "95% lower", color: "var(--lab-orange)" },
+      { axis: "x", value: ciUpper, label: "95% upper", color: "var(--lab-orange)" },
+    ] }
   );
 }
 
@@ -219,7 +240,14 @@ export function permutationMeanDifference(controls: ControlMap, seed: number): S
   });
   const extreme = nullDifferences.filter((value) => Math.abs(value) >= Math.abs(observed)).length;
   const pValue = (extreme + 1) / (replicates + 1);
-  const bars = permutationHistogram(nullDifferences, observed);
+  // The tail-aware histogram keeps bins split at the observed statistic so the
+  // visual tail area matches the reported p value. Keep the engine payload
+  // serialisable and backwards-compatible; the shared chart renderer maps the
+  // semantic swatches to lab tokens.
+  const bars = permutationHistogram(nullDifferences, observed).map((bar) => ({
+    ...bar,
+    semanticColor: bar.color === "#c8665a" ? "var(--lab-coral)" : "var(--lab-teal)",
+  }));
   return result(
     "Permutation test for a difference in means",
     "Group labels are shuffled while the observed values stay fixed. The red tails are permutation differences at least as extreme as the observed difference.",
@@ -236,8 +264,8 @@ export function permutationMeanDifference(controls: ControlMap, seed: number): S
       yLabel: "permutation count",
       bars,
       legend: [
-        { label: "central null outcomes", color: "#2f6f64", shape: "bar" },
-        { label: "as extreme as observed", color: "#c8665a", shape: "bar" },
+        { label: "central null outcomes", color: "var(--lab-teal)", shape: "bar" },
+        { label: "as extreme as observed", color: "var(--lab-coral)", shape: "bar" },
       ],
     },
   );

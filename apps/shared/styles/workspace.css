@@ -11,14 +11,12 @@
   padding: 14px;
   overflow: hidden;
   color: var(--text-primary);
-  background:
-    radial-gradient(circle at 88% 2%, rgba(111, 143, 122, 0.1), transparent 22rem),
-    linear-gradient(135deg, var(--bg-soft), var(--bg));
+  background: var(--bg);
 }
 
 .module-layout {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) clamp(320px, 24vw, 360px);
+  grid-template-columns: minmax(0, 1fr) clamp(270px, 22vw, 340px);
   gap: 14px;
   width: 100%;
   height: 100%;
@@ -31,8 +29,6 @@
 .studio-control-bar {
   border: 1px solid var(--border);
   background: var(--card);
-  box-shadow: 0 12px 30px rgba(40, 35, 25, 0.055);
-  backdrop-filter: blur(10px);
 }
 
 .experiment-board {
@@ -47,7 +43,7 @@
   overflow-x: hidden;
   overflow-y: auto !important;
   overscroll-behavior: contain;
-  border-radius: 24px;
+  border-radius: 12px;
   scrollbar-gutter: stable;
 }
 
@@ -71,13 +67,16 @@
   flex: 0 0 auto;
   min-width: 0;
   padding: 20px;
-  border-radius: 22px;
+  border-radius: 10px;
 }
 
 .experiment-header h1 {
   margin-block: 4px 8px;
-  font-size: clamp(32px, 2.8vw, 48px);
-  line-height: 1.03;
+  font-family: var(--font-display);
+  font-size: clamp(30px, 2.5vw, 42px);
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  line-height: 1.14;
 }
 
 .output-dock {
@@ -112,14 +111,14 @@
   align-items: center;
   align-self: start;
   width: 100%;
-  height: auto;
-  min-height: 64px;
+  height: auto !important;
+  min-height: max(64px, 4.5em) !important;
   max-height: none;
   padding: 11px 14px;
   overflow: visible;
   border: 1px solid rgba(47, 111, 100, 0.14);
-  border-radius: 16px;
-  background: linear-gradient(135deg, rgba(183, 214, 204, 0.22), rgba(255, 253, 248, 0.6));
+  border-radius: 8px;
+  background: var(--sage-soft);
 }
 
 .observation-prompt > div {
@@ -134,7 +133,7 @@
   border-radius: 50%;
   color: var(--teal);
   background: var(--sage-soft);
-  font-weight: 900;
+  font-weight: 700;
 }
 
 .observation-prompt strong {
@@ -161,8 +160,8 @@
   place-items: center;
   overflow: hidden;
   border: 1px solid var(--border);
-  border-radius: 20px;
-  background: linear-gradient(180deg, var(--card-strong), var(--chart-bg));
+  border-radius: 10px;
+  background: var(--chart-bg);
 }
 
 .chart-frame > svg,
@@ -197,7 +196,7 @@
   min-height: 76px !important;
   padding: 11px 13px !important;
   border-color: var(--border);
-  border-radius: 18px;
+  border-radius: var(--sm-radius-md);
   background: rgba(255, 253, 248, 0.78);
 }
 
@@ -230,18 +229,18 @@
 .control-panel__label {
   color: var(--text-primary);
   font-size: 13px;
-  font-weight: 800;
+  font-weight: 650;
 }
 
 .control-value,
 .control-panel__value {
   min-width: 48px;
   padding: 4px 9px;
-  border-radius: 999px;
+  border-radius: 6px;
   color: var(--teal);
   background: var(--sage-soft);
   font-size: 12px;
-  font-weight: 850;
+  font-weight: 650;
   text-align: center;
 }
 
@@ -252,7 +251,7 @@
   min-height: 44px;
   padding: 0 13px;
   border: 1px solid var(--border);
-  border-radius: 14px;
+  border-radius: 8px;
   color: var(--text-primary);
   background: var(--card-strong);
   outline: none;
@@ -264,7 +263,7 @@
 .control-range:focus-visible,
 .control-panel__input:focus-visible,
 .form-range:focus-visible {
-  outline: 3px solid rgba(141, 117, 181, 0.2);
+  outline: 3px solid rgba(73, 109, 132, 0.22);
   outline-offset: 3px;
 }
 
@@ -299,7 +298,7 @@
 .sample-quick-button {
   min-height: 38px;
   border: 1px solid var(--border);
-  border-radius: 999px;
+  border-radius: 7px;
   color: var(--text-secondary);
   background: var(--card-strong);
   cursor: pointer;
@@ -315,8 +314,8 @@
 .run-button,
 .studio-button--primary {
   min-height: 48px;
-  border-radius: 15px;
-  background: linear-gradient(135deg, var(--teal), var(--sage));
+  border-radius: 8px;
+  background: var(--teal);
 }
 
 .module-shell[aria-busy="true"] .chart-frame {
@@ -326,7 +325,7 @@
 
 @media (max-width: 1120px) {
   .module-layout {
-    grid-template-columns: minmax(0, 1fr) 320px;
+    grid-template-columns: minmax(0, 1fr) 300px;
   }
 }
 
@@ -368,14 +367,14 @@
   .teaching-panel,
   .studio-control-bar {
     padding: 16px;
-    border-radius: 18px;
+    border-radius: var(--sm-radius-md);
   }
 
   .chart-frame {
     height: auto;
     min-height: 260px;
     aspect-ratio: 4 / 3;
-    border-radius: 16px;
+    border-radius: var(--sm-radius-lg);
   }
 
   .metrics-grid {
@@ -391,5 +390,1432 @@
     transition-duration: 0.01ms !important;
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
+  }
+}
+
+/* Unified geometry contract. These selectors intentionally outrank legacy
+ * module rules so lazy-loaded visualizer CSS cannot change the workspace size. */
+.visualization-frame.module-shell {
+  container-name: visualization-workspace;
+  container-type: inline-size;
+  width: 100%;
+  min-width: 0;
+  height: 100%;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.visualization-frame.module-shell > .module-layout {
+  grid-template-columns: minmax(0, 1fr) 12px var(--module-sidebar-width, 285px);
+  grid-template-rows: minmax(0, 1fr);
+  grid-template-areas: "main resize side";
+  gap: 14px;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  min-width: 0;
+  align-items: stretch;
+  overflow: hidden;
+}
+
+.visualization-frame.module-shell[data-has-sidebar="false"] > .module-layout {
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-areas: "main";
+}
+
+.visualization-frame.module-shell .experiment-board {
+  grid-area: main;
+  width: auto;
+  height: 100%;
+  min-height: 0;
+  min-width: 0;
+  max-height: none;
+  overflow-x: hidden;
+  overflow-y: auto !important;
+  grid-template-columns: minmax(0, 1fr);
+  justify-content: stretch;
+  align-content: start;
+}
+
+.visualization-frame.module-shell .teaching-area {
+  grid-area: side;
+  width: auto;
+  height: 100%;
+  min-width: 0;
+  max-height: none;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+/* Charts use one predictable canvas ratio. Module-specific minimum heights
+ * previously left a large empty slot above or below the actual SVG. */
+.visualization-frame.module-shell .chart-frame {
+  width: 100%;
+  height: auto;
+  min-height: 0 !important;
+  max-height: none;
+  aspect-ratio: 760 / 360;
+  overflow: visible;
+}
+
+.visualization-frame.module-shell .output-dock {
+  width: 100%;
+}
+
+/* Keep chart legends in their own flow row. Some module styles previously
+ * allowed legend text to sit on top of the reading guide when the board was
+ * narrowed, so the legend now has explicit wrapping and vertical breathing
+ * room without forcing the whole board wider. */
+.visualization-frame.module-shell .output-dock > .chart-legend {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  column-gap: 16px;
+  row-gap: 7px;
+  min-width: 0;
+  min-height: 24px;
+  margin: 0;
+  padding: 4px 0 6px;
+  line-height: 1.4;
+  isolation: isolate;
+}
+
+.visualization-frame.module-shell .output-dock > .chart-legend .legend-item {
+  min-width: 0;
+  max-width: 100%;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  line-height: 1.4;
+}
+
+.visualization-frame.module-shell .output-dock > .observation-prompt[data-reading-guide="true"] {
+  position: relative;
+  z-index: 0;
+  clear: both;
+  margin-top: 0;
+  align-self: stretch;
+}
+
+/* Reserve a real flow gap after the guide. This keeps long two-line guidance
+ * from being visually covered by the metric grid when a module is zoomed or
+ * the center column becomes narrow. */
+.visualization-frame.module-shell .output-dock > .metrics-grid {
+  position: relative;
+  z-index: 0;
+  margin-top: 4px;
+}
+
+.visualization-frame.module-shell .metrics-grid[data-metric-count="6"] {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.visualization-frame.module-shell .teaching-chart {
+  min-height: 0 !important;
+  width: 100%;
+  height: auto !important;
+  max-width: 100%;
+  max-height: none !important;
+  object-fit: contain;
+}
+
+.visualization-frame.module-shell .chart-frame > svg,
+.visualization-frame.module-shell .chart-frame .confidence-chart,
+.visualization-frame.module-shell .chart-frame .regression-chart {
+  width: 100%;
+  height: auto !important;
+  max-width: 100%;
+  max-height: none !important;
+  object-fit: contain;
+}
+
+.visualization-frame.module-shell .metric-card {
+  min-height: 72px !important;
+  padding: 9px 12px !important;
+  gap: 2px;
+}
+
+.workspace-resize-handle {
+  position: relative;
+  z-index: 5;
+  grid-area: resize;
+  min-width: 12px;
+  min-height: 48px;
+  align-self: stretch;
+  height: 100%;
+  cursor: col-resize;
+  touch-action: none;
+  outline: none;
+}
+
+.workspace-resize-handle::before {
+  position: absolute;
+  inset: 8px 4px;
+  border-radius: 999px;
+  background: rgba(111, 143, 122, 0.2);
+  content: "";
+  transition: background 160ms ease, box-shadow 160ms ease;
+}
+
+.workspace-resize-handle:hover::before,
+.workspace-resize-handle:focus-visible::before {
+  background: rgba(47, 111, 100, 0.55);
+  box-shadow: 0 0 0 5px rgba(111, 143, 122, 0.12);
+}
+
+@container visualization-workspace (max-width: 900px) {
+  .visualization-frame.module-shell {
+    height: auto;
+    min-height: 0;
+    overflow: visible;
+  }
+
+  .visualization-frame.module-shell > .module-layout,
+  .visualization-frame.module-shell[data-has-sidebar="true"] > .module-layout {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto auto;
+    grid-template-areas: "main" "side";
+    height: auto;
+    overflow: visible;
+  }
+
+  .visualization-frame.module-shell .workspace-resize-handle {
+    display: none;
+  }
+
+  .visualization-frame.module-shell .experiment-board,
+  .visualization-frame.module-shell .teaching-area {
+    width: 100%;
+    height: auto;
+    max-height: none;
+    overflow: visible;
+  }
+
+  .visualization-frame.module-shell .metrics-grid[data-metric-count="6"] {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 980px) {
+  .visualization-frame.module-shell {
+    height: auto;
+    min-height: 0;
+    overflow: visible;
+  }
+}
+
+@media (max-width: 899px) {
+  .visualization-frame.module-shell {
+    height: auto;
+    min-height: 0;
+    overflow: visible;
+  }
+
+  /* Container queries cannot style their own container. Keep the tablet
+   * fallback explicit so the side panel stacks and the resize rail does not
+   * consume a narrow middle column. */
+  .visualization-frame.module-shell > .module-layout,
+  .visualization-frame.module-shell[data-has-sidebar="true"] > .module-layout {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto auto;
+    grid-template-areas: "main" "side";
+    height: auto;
+    overflow: visible;
+  }
+
+  .visualization-frame.module-shell .workspace-resize-handle {
+    display: none;
+  }
+
+  .visualization-frame.module-shell .experiment-board,
+  .visualization-frame.module-shell .teaching-area {
+    width: 100%;
+    height: auto;
+    max-height: none;
+    overflow: visible;
+  }
+
+  .visualization-frame.module-shell .metrics-grid[data-metric-count="6"] {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* ANOVA standard right-parameter layout ----------------------------------
+ * Results belong to the main output; experiment controls use the same right
+ * rail as the other laboratory modules. */
+.visualization-frame.module-shell[data-module-id="mes-anova"] > .module-layout > .ed-parameter-rail {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: stretch;
+  gap: 12px;
+}
+
+.visualization-frame.module-shell[data-module-id="mes-anova"] .anova-parameter-rail {
+  width: 100%;
+}
+
+.visualization-frame.module-shell[data-module-id="mes-anova"] .anova-parameter-rail > .eyebrow {
+  display: none;
+}
+
+.visualization-frame.module-shell[data-module-id="mes-anova"] .anova-parameter-rail .control-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.visualization-frame.module-shell[data-module-id="mes-anova"] .anova-dataset-group .control-label {
+  display: none;
+}
+
+.visualization-frame.module-shell[data-module-id="mes-anova"] .anova-dataset-group .control-grid > .control-field:first-child {
+  grid-column: 1 / -1;
+}
+
+.visualization-frame.module-shell[data-module-id="mes-anova"] .anova-inline-results,
+.visualization-frame.module-shell[data-module-id="mes-anova"] .anova-statistics-stack {
+  min-width: 0;
+}
+
+.visualization-frame.module-shell[data-module-id="mes-anova"] .anova-statistics-stack {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: stretch;
+  gap: 14px;
+}
+
+.visualization-frame.module-shell[data-module-id="mes-anova"] .anova-table-panel {
+  display: grid;
+  align-content: start;
+  gap: 8px;
+  min-width: 0;
+  min-height: 100%;
+  margin: 0;
+  padding: 18px 16px;
+  border: 1px solid var(--lab-border);
+  border-radius: var(--lab-radius-md);
+  background: var(--lab-surface);
+  box-shadow: none;
+}
+
+.visualization-frame.module-shell[data-module-id="mes-anova"] .anova-table-panel .eyebrow {
+  margin: 0;
+  color: var(--lab-text-secondary);
+  font-family: var(--lab-font-sans);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+}
+
+.visualization-frame.module-shell[data-module-id="mes-anova"] .anova-table-panel h2 {
+  margin: 0;
+  color: var(--lab-text);
+  font-family: var(--lab-font-sans);
+  font-size: 19px;
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+.visualization-frame.module-shell[data-module-id="mes-anova"] .anova-table-panel .statistics-table-wrap {
+  min-width: 0;
+  overflow-x: auto;
+}
+
+.visualization-frame.module-shell[data-module-id="mes-anova"] .anova-table-panel .statistics-table {
+  width: 100%;
+  min-width: 300px;
+  border-collapse: collapse;
+  color: var(--lab-text);
+  font-family: var(--lab-font-sans);
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+}
+
+.visualization-frame.module-shell[data-module-id="mes-anova"] .anova-table-panel .statistics-table th,
+.visualization-frame.module-shell[data-module-id="mes-anova"] .anova-table-panel .statistics-table td {
+  padding: 9px 7px;
+  border-bottom: 1px solid var(--lab-divider);
+  text-align: right;
+  white-space: nowrap;
+}
+
+.visualization-frame.module-shell[data-module-id="mes-anova"] .anova-table-panel .statistics-table th:first-child,
+.visualization-frame.module-shell[data-module-id="mes-anova"] .anova-table-panel .statistics-table td:first-child {
+  text-align: left;
+}
+
+.visualization-frame.module-shell[data-module-id="mes-anova"] .anova-table-panel .statistics-table thead th {
+  color: var(--lab-text-secondary);
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.visualization-frame.module-shell[data-module-id="mes-anova"] .anova-table-panel .statistics-table tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+@container visualization-workspace (max-width: 760px) {
+  .visualization-frame.module-shell[data-module-id="mes-anova"] .anova-statistics-stack {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .visualization-frame.module-shell[data-module-id="mes-anova"] .anova-parameter-rail .control-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .visualization-frame.module-shell[data-module-id="mes-anova"] .anova-dataset-group .control-grid > .control-field:first-child {
+    grid-column: auto;
+  }
+}
+
+/* Readability contract shared by every statistics module.
+ * It sits last so legacy module styles cannot shrink core learning content. */
+.visualization-frame.module-shell .experiment-header {
+  padding-bottom: 20px;
+  border-bottom-color: var(--border);
+}
+
+.visualization-frame.module-shell .experiment-header .eyebrow {
+  margin-bottom: 10px;
+  color: var(--lavender);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  line-height: 1.3;
+}
+
+.visualization-frame.module-shell .experiment-header h1 {
+  margin: 0;
+  color: var(--text-primary);
+  font-family: var(--font-display);
+  font-size: clamp(40px, 3.7vw, 52px) !important;
+  font-weight: 500;
+  letter-spacing: -0.035em;
+  line-height: 1.1;
+  text-wrap: balance;
+}
+
+.visualization-frame.module-shell .experiment-header .module-kicker {
+  margin: 10px 0 6px;
+  color: var(--teal);
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.visualization-frame.module-shell .experiment-header .module-description,
+.visualization-frame.module-shell .experiment-header > p:last-child {
+  max-width: 72ch;
+  margin: 10px 0 0;
+  color: #3f596a;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.55;
+  text-wrap: pretty;
+}
+
+.visualization-frame.module-shell .output-heading h2 {
+  margin: 0 0 6px;
+  color: var(--text-primary);
+  font-family: var(--font-display);
+  font-size: clamp(24px, 2.2vw, 28px);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+  text-wrap: balance;
+}
+
+.visualization-frame.module-shell .output-heading p {
+  max-width: 74ch;
+  color: var(--text-secondary);
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+.visualization-frame.module-shell .output-dock > .chart-legend .legend-item {
+  color: var(--text-secondary);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.visualization-frame.module-shell .metric-card {
+  min-height: 86px !important;
+  padding: 12px 14px !important;
+  gap: 4px;
+  border-color: var(--border);
+  background: var(--card-strong);
+}
+
+.visualization-frame.module-shell .metric-label {
+  color: var(--text-secondary);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  line-height: 1.3;
+}
+
+.visualization-frame.module-shell .metric-value {
+  color: var(--text-primary);
+  font-family: var(--font-mono);
+  font-size: clamp(24px, 2vw, 30px);
+  font-weight: 650;
+  line-height: 1.15;
+  font-variant-numeric: tabular-nums;
+}
+
+.visualization-frame.module-shell .metric-note {
+  color: var(--text-secondary);
+  font-size: 12.5px;
+  line-height: 1.45;
+}
+
+.visualization-frame.module-shell .control-panel__label,
+.visualization-frame.module-shell .control-label {
+  color: var(--text-primary);
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.visualization-frame.module-shell .control-panel__value,
+.visualization-frame.module-shell .control-value {
+  color: var(--teal);
+  background: var(--soft-teal);
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 650;
+  font-variant-numeric: tabular-nums;
+}
+
+.visualization-frame.module-shell .control-panel__hint,
+.visualization-frame.module-shell .control-panel__info-box,
+.visualization-frame.module-shell .studio-control-bar__hint {
+  color: var(--text-secondary);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.visualization-frame.module-shell .studio-control-bar--side {
+  border-color: rgba(34, 95, 122, 0.18);
+  background: var(--soft-teal);
+}
+
+.visualization-frame.module-shell .sample-pill {
+  border-color: rgba(34, 95, 122, 0.18);
+  border-radius: 7px;
+  color: var(--teal);
+  background: var(--soft-teal);
+  font-size: 13px;
+  font-weight: 650;
+}
+
+.visualization-frame.module-shell .control-panel__select,
+.visualization-frame.module-shell .control-input,
+.visualization-frame.module-shell .form-select {
+  min-height: 44px;
+  color: var(--text-primary);
+  font-size: 14px;
+}
+
+.visualization-frame.module-shell .teaching-panel .eyebrow {
+  color: var(--lavender);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  line-height: 1.35;
+}
+
+.visualization-frame.module-shell .teaching-panel h2,
+.visualization-frame.module-shell .teaching-panel h3 {
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  line-height: 1.35;
+}
+
+.visualization-frame.module-shell .teaching-panel p {
+  color: var(--text-secondary);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.visualization-frame.module-shell .latex-formula {
+  color: var(--teal);
+  background: var(--soft-teal);
+  font-size: 20px;
+  line-height: 1.4;
+}
+
+.visualization-frame.module-shell .studio-button,
+.visualization-frame.module-shell .run-button,
+.visualization-frame.module-shell .studio-button--primary {
+  min-height: 44px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 650;
+}
+
+.visualization-frame.module-shell .observation-prompt {
+  border-color: rgba(34, 95, 122, 0.18);
+  background: var(--soft-teal);
+}
+
+.visualization-frame.module-shell .observation-prompt > span {
+  color: var(--teal);
+  background: var(--card-strong);
+}
+
+.visualization-frame.module-shell .observation-prompt strong,
+.visualization-frame.module-shell .observation-prompt p {
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.visualization-frame.module-shell .chart-axis-label,
+.visualization-frame.module-shell .true-mean-text {
+  font-size: 13px;
+}
+
+.workspace-resize-handle::before {
+  background: rgba(34, 95, 122, 0.18);
+}
+
+.workspace-resize-handle:hover::before,
+.workspace-resize-handle:focus-visible::before {
+  background: rgba(34, 95, 122, 0.52);
+  box-shadow: 0 0 0 5px rgba(62, 111, 155, 0.14);
+}
+
+@media (max-width: 640px) {
+  .visualization-frame.module-shell .experiment-header h1 {
+    font-size: clamp(34px, 10vw, 42px) !important;
+  }
+
+  .visualization-frame.module-shell .experiment-header .module-description,
+  .visualization-frame.module-shell .experiment-header > p:last-child {
+    font-size: 15px;
+  }
+
+  .visualization-frame.module-shell .output-heading h2 {
+    font-size: clamp(22px, 7vw, 26px);
+  }
+}
+
+/* Phase-two laboratory contract: these rules are intentionally last so a
+ * legacy module cannot reintroduce gradients, oversized dashboards, or
+ * ambiguous control/value styling. */
+.visualization-frame.module-shell {
+  background: var(--lab-bg);
+}
+
+.visualization-frame.module-shell .experiment-header__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.visualization-frame.module-shell .experiment-header__number {
+  color: var(--lab-blue);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+}
+
+.visualization-frame.module-shell .experiment-header__meta .eyebrow {
+  margin: 0;
+  color: var(--lab-purple);
+}
+
+.visualization-frame.module-shell .research-question {
+  max-width: 72ch;
+  margin: 12px 0 0;
+  color: var(--lab-text);
+  font-size: 15px;
+  line-height: 1.55;
+}
+
+.visualization-frame.module-shell .experiment-header p:not(.eyebrow),
+.visualization-frame.module-shell .output-heading p {
+  display: block !important;
+}
+
+.visualization-frame.module-shell .research-question strong {
+  color: var(--lab-blue);
+  font-weight: 700;
+}
+
+.visualization-frame.module-shell .chart-frame {
+  background: var(--lab-surface);
+  border-color: var(--lab-border);
+  border-radius: 8px;
+  box-shadow: none;
+}
+.visualization-frame.module-shell .chart-frame > svg,
+.visualization-frame.module-shell .chart-frame > .chart-shell {
+  background: var(--lab-plot-bg);
+}
+
+.visualization-frame.module-shell .metric-card[data-metric-semantics="input"] .metric-value { color: var(--lab-teal); }
+.visualization-frame.module-shell .metric-card[data-metric-semantics="derived"] .metric-value { color: var(--lab-text); }
+.visualization-frame.module-shell .metric-card[data-metric-semantics="comparison"] .metric-value { color: var(--lab-purple); }
+.visualization-frame.module-shell .metric-card[data-metric-semantics="decision"] .metric-value { color: var(--lab-orange); }
+.visualization-frame.module-shell .metric-comparison { color: var(--lab-purple); font-variant-numeric: tabular-nums; }
+
+.visualization-frame.module-shell .control-group {
+  display: grid;
+  gap: 8px;
+  padding-top: 12px;
+  border-top: 1px solid var(--lab-border);
+}
+
+.visualization-frame.module-shell .control-group:first-child { padding-top: 0; border-top: 0; }
+.visualization-frame.module-shell .control-group__heading h3 {
+  margin: 0;
+  color: var(--lab-text);
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.visualization-frame.module-shell .control-group__heading p,
+.visualization-frame.module-shell .control-description,
+.visualization-frame.module-shell .run-controls__hint {
+  display: block;
+  margin: 3px 0 0;
+  color: var(--lab-muted);
+  font-size: 12px;
+  line-height: 1.45;
+}
+.visualization-frame.module-shell .control-description { max-width: 32ch; }
+.visualization-frame.module-shell .control-group__body { display: grid; gap: 12px; }
+.visualization-frame.module-shell .control-number-input {
+  width: 76px;
+  min-height: 32px;
+  padding: 3px 7px;
+  border: 1px solid var(--lab-border);
+  border-radius: var(--sm-radius-sm);
+  color: var(--lab-teal);
+  background: var(--lab-surface);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+}
+.visualization-frame.module-shell .control-number-input:focus-visible { outline: 3px solid color-mix(in srgb, var(--lab-blue) 24%, transparent); outline-offset: 2px; }
+.visualization-frame.module-shell .run-controls { display: grid; gap: 6px; }
+.visualization-frame.module-shell .run-button,
+.visualization-frame.module-shell .studio-button--primary { background: var(--lab-blue); box-shadow: none; }
+.visualization-frame.module-shell .run-button:hover,
+.visualization-frame.module-shell .studio-button--primary:hover { background: color-mix(in srgb, var(--lab-blue) 88%, var(--lab-text)); transform: none; box-shadow: none; }
+
+.visualization-frame.module-shell .change-summary {
+  display: grid;
+  gap: 4px;
+  padding: 12px 14px;
+  border: 1px solid color-mix(in srgb, var(--lab-orange) 45%, var(--lab-border));
+  border-radius: var(--sm-radius-md);
+  background: color-mix(in srgb, var(--lab-orange) 9%, var(--lab-bg));
+}
+.visualization-frame.module-shell .change-summary p { margin: 0; color: var(--lab-muted); font-size: 13px; }
+.visualization-frame.module-shell .change-summary strong { color: var(--lab-text); }
+.visualization-frame.module-shell .change-summary__interpretation { color: var(--lab-text) !important; }
+
+.visualization-frame.module-shell .lab-explanation { border-top: 1px solid var(--lab-border); }
+.visualization-frame.module-shell .lab-explanation__trigger { color: var(--lab-blue); background: var(--lab-bg); }
+.visualization-frame.module-shell .lab-explanation__content { display: grid; gap: 10px; padding-top: 10px; }
+
+.visualization-frame.module-shell .visualization-tabs { display: grid; gap: 12px; min-width: 0; }
+.visualization-frame.module-shell .visualization-tabs__list { display: flex; flex-wrap: wrap; gap: 6px; border-bottom: 1px solid var(--lab-border); }
+.visualization-frame.module-shell .visualization-tabs__tab { min-height: 36px; padding: 0 11px; border: 0; border-bottom: 2px solid transparent; color: var(--lab-muted); background: transparent; cursor: pointer; }
+.visualization-frame.module-shell .visualization-tabs__tab[data-active="true"] { border-bottom-color: var(--lab-blue); color: var(--lab-blue); font-weight: 700; }
+.visualization-frame.module-shell .statistics-table caption { padding-bottom: 8px; color: var(--lab-muted); font-size: 12px; text-align: left; }
+.visualization-frame.module-shell .table-panel details { display: grid; gap: 10px; }
+.visualization-frame.module-shell .table-panel summary { cursor: pointer; color: var(--lab-text); font-size: 14px; font-weight: 700; }
+
+@media (min-width: 1180px) {
+  .editorial-demo .ed-live-lab-shell.platform-shell { grid-template-columns: 195px 1px minmax(0, 1fr); }
+  .visualization-frame.module-shell > .module-layout { grid-template-columns: minmax(0, 1fr) 12px 285px; }
+}
+
+@media (min-width: 900px) and (max-width: 1179px) {
+  .visualization-frame.module-shell > .module-layout { grid-template-columns: minmax(0, 1fr) 12px 285px; }
+}
+
+@media (max-width: 899px) {
+  .visualization-frame.module-shell .lab-mobile-controls { position: sticky; top: 0; z-index: 4; }
+  .visualization-frame.module-shell .experiment-board { border-radius: var(--sm-radius-md); }
+}
+
+/* Laboratory Visual System -------------------------------------------------
+ * This is the shared presentation contract for all thirteen experiments.
+ * Modules keep their own state, chart geometry and control semantics; these
+ * selectors only provide the common shell, type scale and density. */
+.visualization-frame.module-shell {
+  color: var(--lab-text);
+  background: var(--lab-bg);
+  font-family: var(--lab-font-sans);
+}
+
+.visualization-frame.module-shell .experiment-board {
+  gap: var(--lab-board-gap) !important;
+  padding: 0 clamp(24px, 2.6vw, 32px) 32px !important;
+  border: 1px solid var(--lab-border) !important;
+  border-radius: var(--lab-radius-lg) !important;
+  background: var(--lab-surface) !important;
+  box-shadow: none !important;
+}
+
+.visualization-frame.module-shell .experiment-header {
+  padding-top: 28px !important;
+  padding-bottom: 22px !important;
+  border-bottom: 0 !important;
+}
+
+.visualization-frame.module-shell .experiment-header__meta {
+  gap: 6px;
+  margin-bottom: 6px !important;
+}
+
+.visualization-frame.module-shell .experiment-header__meta .eyebrow,
+.visualization-frame.module-shell .lab-experiment-eyebrow {
+  margin: 0 !important;
+  color: var(--lab-text-secondary);
+  font-family: var(--lab-font-sans);
+  font-size: 11px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.08em;
+  line-height: 1.3;
+}
+
+.visualization-frame.module-shell .experiment-header__number {
+  color: var(--lab-text-secondary);
+  font-family: var(--lab-font-sans);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+}
+
+.visualization-frame.module-shell .experiment-header h1,
+.visualization-frame.module-shell .lab-experiment-title {
+  margin: 0 !important;
+  color: var(--lab-text);
+  font-family: var(--lab-font-sans) !important;
+  font-size: clamp(30px, 2.4vw, 34px) !important;
+  font-weight: 600 !important;
+  letter-spacing: -0.02em;
+  line-height: 1.12 !important;
+  text-wrap: balance;
+}
+
+.visualization-frame.module-shell .experiment-header div > p:not(.eyebrow):not(.research-question),
+.visualization-frame.module-shell .lab-experiment-description {
+  max-width: 72ch;
+  margin: 8px 0 0 !important;
+  color: var(--lab-text-secondary);
+  font-family: var(--lab-font-sans);
+  font-size: 14px !important;
+  font-weight: 400 !important;
+  line-height: 1.55 !important;
+}
+
+.visualization-frame.module-shell .experiment-header .research-question {
+  margin: 8px 0 0;
+  color: var(--lab-text-secondary);
+  font-family: var(--lab-font-sans);
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+.visualization-frame.module-shell .output-dock {
+  gap: var(--lab-section-gap) !important;
+}
+
+.visualization-frame.module-shell .probability-output {
+  gap: 0 !important;
+  margin-block: 0 !important;
+}
+
+.visualization-frame.module-shell .lab-metric-strip,
+.visualization-frame.module-shell .experiment-metric-strip {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0;
+  min-width: 0;
+  border: 1px solid var(--lab-border);
+  border-radius: var(--lab-radius-md);
+  background: var(--lab-surface);
+  overflow: hidden;
+}
+
+.visualization-frame.module-shell .lab-metric-strip[data-metric-count="3"],
+.visualization-frame.module-shell .experiment-metric-strip[data-metric-count="3"] {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.visualization-frame.module-shell .lab-metric-strip[data-metric-count="5"],
+.visualization-frame.module-shell .experiment-metric-strip[data-metric-count="5"] {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+}
+
+.visualization-frame.module-shell .lab-metric-strip[data-metric-count="6"],
+.visualization-frame.module-shell .experiment-metric-strip[data-metric-count="6"] {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.visualization-frame.module-shell .lab-metric,
+.visualization-frame.module-shell .experiment-metric {
+  min-width: 0;
+  min-height: 68px !important;
+  max-height: 88px;
+  height: 76px;
+  padding: 12px 16px !important;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+}
+
+.visualization-frame.module-shell .lab-metric + .lab-metric,
+.visualization-frame.module-shell .experiment-metric + .experiment-metric {
+  border-left: 1px solid var(--lab-divider);
+}
+
+.visualization-frame.module-shell .lab-metric-label,
+.visualization-frame.module-shell .metric-label {
+  color: var(--lab-text-secondary);
+  font-family: var(--lab-font-sans);
+  font-size: 11px !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.04em;
+  line-height: 1.3;
+}
+
+.visualization-frame.module-shell .lab-metric-value,
+.visualization-frame.module-shell .metric-value {
+  color: var(--lab-text) !important;
+  font-family: var(--lab-font-sans) !important;
+  font-size: clamp(24px, 2vw, 26px) !important;
+  font-weight: 600 !important;
+  line-height: 1.15;
+  font-variant-numeric: tabular-nums;
+}
+
+.visualization-frame.module-shell .lab-metric[data-metric-semantics="input"] .metric-value,
+.visualization-frame.module-shell .lab-metric[data-metric-semantics="decision"] .metric-value {
+  color: var(--lab-blue) !important;
+}
+
+.visualization-frame.module-shell .metric-note,
+.visualization-frame.module-shell .metric-comparison {
+  color: var(--lab-text-secondary);
+  font-family: var(--lab-font-sans);
+  font-size: 11px;
+  line-height: 1.35;
+}
+
+.visualization-frame.module-shell .lab-visualization-panel,
+.visualization-frame.module-shell .chart-frame {
+  min-width: 0;
+  min-height: 0 !important;
+  padding: 16px !important;
+  border: 1px solid var(--lab-border);
+  border-radius: var(--lab-radius-md);
+  background: var(--lab-surface);
+  box-shadow: none;
+}
+
+.visualization-frame.module-shell .lab-visualization-panel > svg,
+.visualization-frame.module-shell .chart-frame > svg,
+.visualization-frame.module-shell .chart-frame > .chart-shell,
+.visualization-frame.module-shell .chart-frame .teaching-chart {
+  background: var(--lab-plot-bg);
+}
+
+.visualization-frame.module-shell .chart-frame > svg,
+.visualization-frame.module-shell .chart-frame .teaching-chart,
+.visualization-frame.module-shell .chart-frame .confidence-chart,
+.visualization-frame.module-shell .chart-frame .regression-chart {
+  max-width: 100%;
+  font-family: var(--lab-font-sans);
+}
+
+.visualization-frame.module-shell .chart-frame .chart-axis-label,
+.visualization-frame.module-shell .chart-frame .true-mean-text {
+  fill: var(--lab-text-secondary);
+  font-family: var(--lab-font-sans);
+  font-size: 12px;
+}
+
+.visualization-frame.module-shell .output-heading h2,
+.visualization-frame.module-shell .chart-frame h2,
+.visualization-frame.module-shell .section-heading h2 {
+  color: var(--lab-text);
+  font-family: var(--lab-font-sans);
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.visualization-frame.module-shell .lab-parameter-panel,
+.visualization-frame.module-shell .parameter-panel {
+  gap: 12px !important;
+  padding: 16px 18px 20px !important;
+  border: 1px solid var(--lab-border);
+  border-radius: var(--lab-radius-md);
+  background: var(--lab-surface);
+  box-shadow: none;
+}
+
+.visualization-frame.module-shell .lab-parameter-panel > .eyebrow,
+.visualization-frame.module-shell .parameter-panel > .eyebrow {
+  margin: 0;
+  color: var(--lab-text-secondary);
+  font-family: var(--lab-font-sans);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+}
+
+.visualization-frame.module-shell .control-group {
+  gap: 10px;
+  padding-top: 12px;
+  border-top: 1px solid var(--lab-divider);
+}
+
+.visualization-frame.module-shell .control-group:first-child {
+  padding-top: 0;
+  border-top: 0;
+}
+
+.visualization-frame.module-shell .control-group__body,
+.visualization-frame.module-shell .control-grid,
+.visualization-frame.module-shell .control-panel {
+  gap: 10px;
+}
+
+.visualization-frame.module-shell .control-field,
+.visualization-frame.module-shell .control-panel__group,
+.visualization-frame.module-shell .control-panel__slider {
+  gap: 6px;
+  min-width: 0;
+}
+
+.visualization-frame.module-shell .control-label-row,
+.visualization-frame.module-shell .control-panel__label-row {
+  min-height: 30px;
+  align-items: center;
+}
+
+.visualization-frame.module-shell .control-label,
+.visualization-frame.module-shell .control-panel__label {
+  color: var(--lab-text);
+  font-family: var(--lab-font-sans);
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  line-height: 1.35;
+}
+
+.visualization-frame.module-shell .control-description,
+.visualization-frame.module-shell .control-panel__intro {
+  max-width: 34ch;
+  margin: 0;
+  color: var(--lab-text-secondary);
+  font-size: 11px;
+  line-height: 1.35;
+}
+
+.visualization-frame.module-shell .control-description {
+  display: none;
+}
+
+.visualization-frame.module-shell .control-number-input,
+.visualization-frame.module-shell .control-panel__value,
+.visualization-frame.module-shell .control-value {
+  min-width: 56px;
+  width: auto;
+  height: 30px;
+  min-height: 30px;
+  padding: 4px 8px;
+  border: 1px solid var(--lab-border);
+  border-radius: var(--lab-radius-sm);
+  color: var(--lab-text);
+  background: var(--lab-surface-soft);
+  font-family: var(--lab-font-sans);
+  font-size: 12px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+}
+
+.visualization-frame.module-shell .control-input,
+.visualization-frame.module-shell .control-panel__select,
+.visualization-frame.module-shell .form-select {
+  min-height: 38px !important;
+  height: 38px;
+  padding: 0 11px;
+  border: 1px solid var(--lab-border);
+  border-radius: var(--lab-radius-sm);
+  color: var(--lab-text);
+  background: var(--lab-surface);
+  font-family: var(--lab-font-sans);
+  font-size: 13px;
+}
+
+.visualization-frame.module-shell .control-range,
+.visualization-frame.module-shell .control-panel__input[type="range"],
+.visualization-frame.module-shell .form-range {
+  width: 100%;
+  height: 16px;
+  margin: 0;
+  accent-color: var(--lab-blue);
+}
+
+.visualization-frame.module-shell .control-range-bounds {
+  color: var(--lab-text-muted, var(--lab-muted));
+  font-family: var(--lab-font-sans);
+  font-size: 10px;
+  line-height: 1;
+}
+
+.visualization-frame.module-shell .control-panel__hint,
+.visualization-frame.module-shell .control-panel__info-box,
+.visualization-frame.module-shell .run-controls__hint {
+  color: var(--lab-text-secondary);
+  font-family: var(--lab-font-sans);
+  font-size: 11px;
+  line-height: 1.35;
+}
+
+.visualization-frame.module-shell .run-controls {
+  display: grid;
+  gap: 6px;
+  padding-top: 12px;
+  border-top: 1px solid var(--lab-divider);
+}
+
+.visualization-frame.module-shell .run-button,
+.visualization-frame.module-shell .studio-button--primary {
+  min-height: 38px;
+  border: 1px solid var(--lab-blue);
+  border-radius: var(--lab-radius-sm);
+  color: #fff;
+  background: var(--lab-blue);
+  box-shadow: none;
+  font-family: var(--lab-font-sans);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.visualization-frame.module-shell .run-button:hover,
+.visualization-frame.module-shell .studio-button--primary:hover {
+  background: color-mix(in srgb, var(--lab-blue) 88%, var(--lab-text));
+  transform: none;
+}
+
+.visualization-frame.module-shell .studio-button--secondary,
+.visualization-frame.module-shell .probability-reset-button,
+.visualization-frame.module-shell .control-panel__button {
+  min-height: 36px;
+  border: 1px solid var(--lab-border);
+  border-radius: var(--lab-radius-sm);
+  color: var(--lab-text);
+  background: var(--lab-surface);
+  font-family: var(--lab-font-sans);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.visualization-frame.module-shell .sample-quick-actions {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.visualization-frame.module-shell .sample-quick-button {
+  min-height: 36px;
+  border: 1px solid var(--lab-border);
+  border-radius: var(--lab-radius-sm);
+  color: var(--lab-blue);
+  background: var(--lab-surface-soft);
+  font-family: var(--lab-font-sans);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.visualization-frame.module-shell .teaching-panel:not(.parameter-panel),
+.visualization-frame.module-shell .statistics-panel {
+  padding: 16px;
+  border: 1px solid var(--lab-border);
+  border-radius: var(--lab-radius-md);
+  background: var(--lab-surface);
+  box-shadow: none;
+}
+
+.visualization-frame.module-shell .teaching-panel h2,
+.visualization-frame.module-shell .teaching-panel h3,
+.visualization-frame.module-shell .statistics-title {
+  color: var(--lab-text);
+  font-family: var(--lab-font-sans);
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.visualization-frame.module-shell .teaching-panel p,
+.visualization-frame.module-shell .statistics-panel,
+.visualization-frame.module-shell .teaching-list {
+  color: var(--lab-text-secondary);
+  font-family: var(--lab-font-sans);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+@container visualization-workspace (max-width: 760px) {
+  .visualization-frame.module-shell .experiment-metric-strip[data-metric-count="5"],
+  .visualization-frame.module-shell .lab-metric-strip[data-metric-count="5"] {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 899px) {
+  .visualization-frame.module-shell .experiment-board {
+    gap: 20px !important;
+    padding: 0 18px 28px !important;
+  }
+
+  .visualization-frame.module-shell .lab-visualization-panel,
+  .visualization-frame.module-shell .chart-frame {
+    padding: 10px !important;
+  }
+
+  .visualization-frame.module-shell .experiment-metric-strip[data-metric-count="5"],
+  .visualization-frame.module-shell .lab-metric-strip[data-metric-count="5"] {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 560px) {
+  .visualization-frame.module-shell .experiment-metric-strip,
+  .visualization-frame.module-shell .lab-metric-strip {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .visualization-frame.module-shell .lab-metric + .lab-metric,
+  .visualization-frame.module-shell .experiment-metric + .experiment-metric {
+    border-left: 0;
+    border-top: 1px solid var(--lab-divider);
+  }
+}
+
+/* ANOVA workbench ----------------------------------------------------------
+ * Experiment 07 keeps the shared header/metrics/chart primitives but uses the
+ * MESOCP-style three-zone reading order: parameters → plot → result tables. */
+.visualization-frame[data-layout="three-column"] > .ed-three-column-layout {
+  grid-template: "left main right" minmax(0, 1fr) / 285px minmax(0, 1fr) 370px !important;
+  grid-template-columns: 285px minmax(0, 1fr) 370px !important;
+  grid-template-areas: "left main right" !important;
+  grid-template-rows: minmax(0, 1fr) !important;
+  gap: 14px;
+  overflow: hidden;
+}
+
+.visualization-frame[data-layout="three-column"] > .ed-three-column-layout > .ed-leading-rail {
+  grid-area: left;
+  display: flex;
+  width: auto;
+  height: 100%;
+  min-width: 0;
+  max-height: none;
+  flex-direction: column;
+  gap: 12px;
+  padding: 24px 0 36px;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.visualization-frame[data-layout="three-column"] > .ed-three-column-layout > .experiment-board {
+  grid-area: main;
+  width: auto;
+  height: 100%;
+}
+
+.visualization-frame[data-layout="three-column"] > .ed-three-column-layout > .ed-trailing-rail {
+  grid-area: right;
+  display: flex;
+  width: auto;
+  height: 100%;
+  min-width: 0;
+  max-height: none;
+  flex-direction: column;
+  gap: 14px;
+  padding: 24px 0 36px;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.visualization-frame[data-layout="three-column"] .anova-parameter-rail {
+  width: 100%;
+}
+
+.visualization-frame[data-layout="three-column"] .anova-parameter-rail > .eyebrow {
+  display: none;
+}
+
+.visualization-frame[data-layout="three-column"] .anova-parameter-rail .control-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.visualization-frame[data-layout="three-column"] .anova-dataset-group .control-label {
+  display: none;
+}
+
+.visualization-frame[data-layout="three-column"] .anova-dataset-group .control-grid > .control-field:first-child {
+  grid-column: 1 / -1;
+}
+
+.visualization-frame[data-layout="three-column"] .anova-statistics-stack {
+  display: grid;
+  gap: 14px;
+  min-width: 0;
+}
+
+.visualization-frame[data-layout="three-column"] .anova-table-panel {
+  display: grid;
+  gap: 8px;
+  min-width: 0;
+  margin: 0;
+  padding: 18px 16px;
+  border: 1px solid var(--lab-border);
+  border-radius: var(--lab-radius-md);
+  background: var(--lab-surface);
+  box-shadow: none;
+}
+
+.visualization-frame[data-layout="three-column"] .anova-table-panel .eyebrow {
+  margin: 0;
+  color: var(--lab-text-secondary);
+  font-family: var(--lab-font-sans);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+}
+
+.visualization-frame[data-layout="three-column"] .anova-table-panel h2 {
+  margin: 0;
+  color: var(--lab-text);
+  font-family: var(--lab-font-sans);
+  font-size: 19px;
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+.visualization-frame[data-layout="three-column"] .anova-table-panel .statistics-table-wrap {
+  min-width: 0;
+  overflow-x: auto;
+}
+
+.visualization-frame[data-layout="three-column"] .anova-table-panel .statistics-table {
+  width: 100%;
+  min-width: 300px;
+  border-collapse: collapse;
+  color: var(--lab-text);
+  font-family: var(--lab-font-sans);
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+}
+
+.visualization-frame[data-layout="three-column"] .anova-table-panel .statistics-table th,
+.visualization-frame[data-layout="three-column"] .anova-table-panel .statistics-table td {
+  padding: 9px 7px;
+  border-bottom: 1px solid var(--lab-divider);
+  text-align: right;
+  white-space: nowrap;
+}
+
+.visualization-frame[data-layout="three-column"] .anova-table-panel .statistics-table th:first-child,
+.visualization-frame[data-layout="three-column"] .anova-table-panel .statistics-table td:first-child {
+  text-align: left;
+}
+
+.visualization-frame[data-layout="three-column"] .anova-table-panel .statistics-table thead th {
+  color: var(--lab-text-secondary);
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.visualization-frame[data-layout="three-column"] .anova-table-panel .statistics-table tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+@media (min-width: 900px) and (max-width: 1179px) {
+  .visualization-frame[data-layout="three-column"] > .ed-three-column-layout {
+    grid-template-columns: 250px minmax(0, 1fr) 330px !important;
+  }
+}
+
+@media (min-width: 900px) and (max-width: 1350px) {
+  .visualization-frame[data-layout="three-column"] .experiment-metric-strip[data-metric-count="5"],
+  .visualization-frame[data-layout="three-column"] .lab-metric-strip[data-metric-count="5"] {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .visualization-frame[data-layout="three-column"] .experiment-metric-strip[data-metric-count="5"] .experiment-metric,
+  .visualization-frame[data-layout="three-column"] .lab-metric-strip[data-metric-count="5"] .lab-metric {
+    grid-template-columns: 1fr;
+    grid-template-areas: "label" "value" "note";
+    height: auto;
+    min-height: 92px !important;
+    max-height: none;
+    padding: 10px 12px !important;
+  }
+
+  .visualization-frame[data-layout="three-column"] .experiment-metric-strip[data-metric-count="5"] .metric-value,
+  .visualization-frame[data-layout="three-column"] .lab-metric-strip[data-metric-count="5"] .metric-value {
+    font-size: 22px !important;
+  }
+}
+
+@media (max-width: 899px) {
+  .visualization-frame[data-layout="three-column"] > .ed-three-column-layout {
+    grid-template: "main" "left" "right" / minmax(0, 1fr) !important;
+    grid-template-columns: minmax(0, 1fr) !important;
+    grid-template-rows: auto auto auto;
+    grid-template-areas: "main" "left" "right";
+    height: auto;
+    overflow: visible;
+  }
+
+  .visualization-frame[data-layout="three-column"] > .ed-three-column-layout > .experiment-board,
+  .visualization-frame[data-layout="three-column"] > .ed-three-column-layout > .ed-leading-rail,
+  .visualization-frame[data-layout="three-column"] > .ed-three-column-layout > .ed-trailing-rail {
+    width: 100%;
+    height: auto;
+    max-height: none;
+    overflow: visible;
+  }
+
+  .visualization-frame[data-layout="three-column"] > .ed-three-column-layout > .ed-leading-rail {
+    display: none;
+    padding: 18px 0 24px;
+  }
+
+  .visualization-frame[data-layout="three-column"] > .ed-three-column-layout > .ed-leading-rail[data-parameter-open="true"] {
+    display: flex;
+  }
+
+  .visualization-frame[data-layout="three-column"] > .ed-three-column-layout > .ed-trailing-rail {
+    padding: 18px 0 28px;
+  }
+
+  .visualization-frame[data-layout="three-column"] .anova-parameter-rail .control-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .visualization-frame[data-layout="three-column"] .anova-dataset-group .control-grid > .control-field:first-child {
+    grid-column: auto;
   }
 }

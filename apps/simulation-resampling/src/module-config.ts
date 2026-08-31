@@ -18,6 +18,9 @@ export const moduleConfig: ModuleConfig = {
         "Bootstrap distributions approximate sampling variability from observed data.",
         "The maximum is sensitive to tail behavior and sample size."
       ],
+      "quickActions": [
+        { "type": "reset", "amount": 0, "copyKey": "reset" }
+      ],
       "controls": [
         {
           "id": "data",
@@ -46,6 +49,9 @@ export const moduleConfig: ModuleConfig = {
       "teachingPoints": [
         "Bootstrap samples reuse the observed data with replacement.",
         "The bootstrap standard error estimates sampling variability."
+      ],
+      "quickActions": [
+        { "type": "reset", "amount": 0, "copyKey": "reset" }
       ],
       "controls": [
         {
@@ -77,6 +83,9 @@ export const moduleConfig: ModuleConfig = {
       "teachingPoints": [
         "Under the null hypothesis, group labels are exchangeable.",
         "The p value is the proportion of shuffled differences at least as extreme as the observed difference."
+      ],
+      "quickActions": [
+        { "type": "reset", "amount": 0, "copyKey": "reset" }
       ],
       "controls": [
         {

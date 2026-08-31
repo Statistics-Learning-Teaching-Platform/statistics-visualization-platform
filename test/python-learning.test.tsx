@@ -28,6 +28,14 @@ function renderWorkspace() {
   );
 }
 
+function courseNavigation() {
+  return screen.getByRole("navigation", { name: "Python 练习" });
+}
+
+async function openTutorDrawer() {
+  await userEvent.click(screen.getByRole("button", { name: /AI Python 助教/ }));
+}
+
 describe("Python Coding Studio", () => {
   beforeEach(() => {
     localStorage.clear();
@@ -35,11 +43,11 @@ describe("Python Coding Studio", () => {
     window.history.replaceState({}, "", "/python-learning");
   });
 
-  it("renders the expanded thirty-one-lesson curriculum and Python starter editor", () => {
+  it("renders the expanded forty-three-lesson curriculum and Python starter editor", () => {
     renderWorkspace();
-    expect(screen.getByText("Python 语言编程工作室")).toBeInTheDocument();
-    const navigation = screen.getByRole("navigation", { name: "课程" });
-    expect(within(navigation).getAllByRole("button")).toHaveLength(31);
+    expect(screen.getByText("Python 练习")).toBeInTheDocument();
+    const navigation = courseNavigation();
+    expect(within(navigation).getAllByRole("button")).toHaveLength(43);
     expect(
       (screen.getByRole("textbox", { name: "Python 代码编辑器" }) as HTMLTextAreaElement).value,
     ).toContain("mean_score =");
@@ -69,22 +77,26 @@ describe("Python Coding Studio", () => {
 
   it("cancels and resets the worker when switching lessons", async () => {
     renderWorkspace();
-    const navigation = screen.getByRole("navigation", { name: "课程" });
+    const navigation = courseNavigation();
 
     await userEvent.click(within(navigation).getAllByRole("button")[1]);
 
     expect(disposePythonRuntime).toHaveBeenCalledTimes(1);
-    expect(screen.getByText("点击运行时加载 Python")).toHaveAttribute("data-status", "idle");
+    expect(screen.getByText(/点击运行时加载 Python/)).toBeInTheDocument();
+    expect(document.querySelector(".ed-code-cell")).toHaveAttribute("data-engine-status", "idle");
   });
 
-  it("reveals a hint and records a passed automatic check", async () => {
+  it("reveals staged hints and records a passed automatic check", async () => {
     renderWorkspace();
-    await userEvent.click(screen.getByRole("button", { name: "? 提示 +" }));
-    expect(screen.getByText(/sum\(scores\)/)).toBeInTheDocument();
+    // Stage-based hint disclosure replaces the single-shot hint button.
+    await userEvent.click(screen.getByRole("button", { name: /卡住了？给我一个提示/ }));
+    expect(screen.getByText(/先确认要保存的是一个计算结果/)).toBeInTheDocument();
 
-    await userEvent.click(screen.getByRole("button", { name: "✓ 检查答案" }));
+    // The check action appears once a run has produced output.
+    await userEvent.click(screen.getByRole("button", { name: "运行代码" }));
+    await userEvent.click(await screen.findByRole("button", { name: "检查答案" }));
     expect(await screen.findByText(/列表与样本均值均正确/)).toBeInTheDocument();
-    expect(screen.getByLabelText("学习进度: 3%")).toBeInTheDocument();
+    expect(screen.getByLabelText("学习进度: 2%")).toBeInTheDocument();
   });
 
   it("sends the current lesson context to the AI Python tutor", async () => {
@@ -93,6 +105,8 @@ describe("Python Coding Studio", () => {
     }), { status: 200, headers: { "Content-Type": "application/json" } }));
     renderWorkspace();
 
+    // The tutor lives in an on-demand drawer behind its launcher.
+    await openTutorDrawer();
     const input = screen.getByRole("textbox", { name: /问报错原因/ });
     await userEvent.type(input, "为什么这段代码报错？");
     await userEvent.click(screen.getByRole("button", { name: "发送" }));
@@ -114,9 +128,10 @@ describe("Python Coding Studio", () => {
     });
     renderWorkspace();
 
+    await openTutorDrawer();
     await userEvent.type(screen.getByRole("textbox", { name: /问报错原因/ }), "旧课程问题");
     await userEvent.click(screen.getByRole("button", { name: "发送" }));
-    const navigation = screen.getByRole("navigation", { name: "课程" });
+    const navigation = courseNavigation();
     await userEvent.click(within(navigation).getAllByRole("button")[1]);
     expect(requestSignal).not.toBeNull();
     expect((requestSignal as unknown as AbortSignal).aborted).toBe(true);

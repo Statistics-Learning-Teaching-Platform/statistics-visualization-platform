@@ -16,8 +16,10 @@ export function randomNormal(controls: ControlMap, seed: number): SimulationResu
     "Histogram bins show the simulated distribution around the requested mean and standard deviation.",
     [
       { label: "sample mean", value: formatNumber(mean(sample), 4), detail: `target ${formatNumber(targetMean, 2)}` },
-      { label: "sample sd", value: formatNumber(standardDeviation(sample), 4), detail: `target ${formatNumber(sd, 2)}` },
-      { label: "sample size", value: String(n), detail: "Box-Muller draws" }
+      { label: "sample SD", value: formatNumber(standardDeviation(sample), 4), detail: `target ${formatNumber(sd, 2)}` },
+      { label: "theoretical mean", value: formatNumber(targetMean, 4), detail: "population parameter" },
+      { label: "theoretical SD", value: formatNumber(sd, 4), detail: "population parameter" },
+      { label: "mean error", value: formatNumber(mean(sample) - targetMean, 4), detail: "sample mean − theoretical mean" }
     ],
     { type: "bars", title: "Normal sample histogram", xLabel: "bin center", yLabel: "count", bars: histogram(sample) }
     ),
@@ -35,9 +37,10 @@ export function randomExponential(controls: ControlMap, seed: number): Simulatio
     "The histogram displays right-skew and tail length controlled by lambda.",
     [
       { label: "sample mean", value: formatNumber(mean(sample), 4), detail: `theory ${formatNumber(1 / lambda, 4)}` },
-      { label: "sample sd", value: formatNumber(standardDeviation(sample), 4), detail: `theory ${formatNumber(1 / lambda, 4)}` },
-      { label: "lambda", value: formatNumber(lambda, 3), detail: "rate parameter" },
-      { label: "sample size", value: String(n), detail: "inverse-transform draws" }
+      { label: "sample SD", value: formatNumber(standardDeviation(sample), 4), detail: `theory ${formatNumber(1 / lambda, 4)}` },
+      { label: "theoretical mean", value: formatNumber(1 / lambda, 4), detail: "1 / λ" },
+      { label: "theoretical SD", value: formatNumber(1 / lambda, 4), detail: "1 / λ" },
+      { label: "mean error", value: formatNumber(mean(sample) - 1 / lambda, 4), detail: "sample mean − theoretical mean" }
     ],
     { type: "bars", title: "Exponential sample histogram", xLabel: "bin center", yLabel: "count", bars: histogram(sample) }
     ),

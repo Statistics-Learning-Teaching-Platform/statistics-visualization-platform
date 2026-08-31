@@ -4,6 +4,7 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { load as yamlLoad } from "js-yaml";
 import { normalizeTopicIds } from "../src/lib/topic-mapping.ts";
+import { getTextbookChapterIdsForTopics } from "../src/lib/textbook-chapters.ts";
 
 const scriptDir = path.dirname(fileURLToPath(import.meta.url));
 const programDir = path.resolve(scriptDir, "..");
@@ -233,6 +234,7 @@ for (const chapter of config.chapters || []) {
     const attachments = dataRefs.map((name) => ({ name, available: Boolean(resolveAsset(chapterDir, name)) }));
 
     const keywords = Array.isArray(question.keywords) ? question.keywords : [];
+    const topicIds = normalizeTopicIds(String(chapter.id), keywords, question.topic_ids);
     questions.push({
       id: question.id,
       groupId: String(question.group_id || question.id),
@@ -250,7 +252,8 @@ for (const chapter of config.chapters || []) {
       difficulty: typeof question.difficulty === "number" ? question.difficulty : 1,
       estimatedMinutes: Math.max(1, Math.min(60, (typeof question.difficulty === "number" ? question.difficulty : 1) * (question.type === "综合题" ? 5 : 3))),
       keywords,
-      topicIds: normalizeTopicIds(String(chapter.id), keywords, question.topic_ids),
+      topicIds,
+      textbookChapterIds: getTextbookChapterIdsForTopics(topicIds),
       dataRefs,
       attachments,
       answer,
@@ -305,9 +308,11 @@ const body = {
 
 const serialized = JSON.stringify(body);
 fs.mkdirSync(path.dirname(outputModule), { recursive: true });
+// Use a relative import: the portal's demo pages also compile this generated
+// module, and their tsconfig does not provide the "@/" alias.
 fs.writeFileSync(
   outputModule,
-  `import type { QuestionsResponse } from "@/lib/types";\n\nexport const reviewedQuestionIndex: QuestionsResponse = ${serialized};\n`
+  `import type { QuestionsResponse } from "../lib/types";\n\nexport const reviewedQuestionIndex: QuestionsResponse = ${serialized};\n`
 );
 fs.writeFileSync(
   assetManifestFile,

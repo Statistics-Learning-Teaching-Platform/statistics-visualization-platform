@@ -1,3 +1,5 @@
+import { ParameterPanel } from "@stats-viz/shared/visualization";
+
 interface ControlSidebarProps {
   collapsed: boolean;
   onToggleCollapsed: () => void;
@@ -7,6 +9,8 @@ interface ControlSidebarProps {
     controlsIntro: string;
     sampleSize: string;
     sampleSizeHint: string;
+    populationMean: string;
+    populationMeanHint: string;
     populationSD: string;
     populationSDHint: string;
     confidenceLevel: string;
@@ -19,10 +23,15 @@ interface ControlSidebarProps {
     sigmaUnknown: string;
   };
   sampleSize: number;
+  populationMean: number;
   populationSD: number;
   confidenceLevel: number;
   sigmaKnown: boolean;
+  recentMeans: number[];
+  recentMeansTitle: string;
+  recentMeanLabel: string;
   onSampleSize: (v: number) => void;
+  onPopulationMean: (v: number) => void;
   onPopulationSD: (v: number) => void;
   onConfidenceLevel: (v: number) => void;
   onSigmaKnown: (v: boolean) => void;
@@ -33,16 +42,25 @@ export function ControlSidebar({
   onToggleCollapsed,
   copy,
   sampleSize,
+  populationMean,
   populationSD,
   confidenceLevel,
   sigmaKnown,
+  recentMeans,
+  recentMeansTitle,
+  recentMeanLabel,
   onSampleSize,
+  onPopulationMean,
   onPopulationSD,
   onConfidenceLevel,
   onSigmaKnown,
 }: ControlSidebarProps) {
   return (
     <ParameterPanel eyebrow={copy.parameters}>
+      <div className="ci-reference-control-copy">
+        <h2>{copy.controlsTitle}</h2>
+        <p>{copy.controlsIntro}</p>
+      </div>
       <div id="sidebar" className={`control-sidebar${collapsed ? " collapsed" : ""}`}>
         <button
           id="toggleSidebar"
@@ -62,7 +80,7 @@ export function ControlSidebar({
             <div className="control-panel__group">
               <div className="control-panel__label-row">
                 <label className="control-panel__label" htmlFor="sampleSize">{copy.sampleSize}</label>
-                <div className="control-panel__value">{sampleSize}</div>
+                <input className="control-number-input" aria-label={`${copy.sampleSize} numeric value`} type="number" min={1} max={100} step={1} value={sampleSize} onChange={(e) => onSampleSize(Number(e.target.value))} />
               </div>
               <div className="control-panel__hint">{copy.sampleSizeHint}</div>
               <input
@@ -75,10 +93,33 @@ export function ControlSidebar({
                 onChange={(e) => onSampleSize(Number(e.target.value))}
               />
             </div>
+            <section className="ci-recent-means" aria-label={recentMeansTitle}>
+              <h3>{recentMeansTitle}</h3>
+              <div className="ci-recent-means__list">
+                {Array.from({ length: 3 }, (_, index) => {
+                  const value = recentMeans[index];
+                  const label = recentMeanLabel.replace("{index}", String(index + 1));
+                  return (
+                    <div className="ci-recent-mean" key={label}>
+                      <span>{label}</span>
+                      <output aria-label={label}>{value === undefined ? "—" : value.toFixed(3)}</output>
+                    </div>
+                  );
+                })}
+              </div>
+            </section>
+            <div className="control-panel__group">
+              <div className="control-panel__label-row">
+                <label className="control-panel__label" htmlFor="populationMean">{copy.populationMean}</label>
+                <input className="control-number-input" aria-label={`${copy.populationMean} numeric value`} type="number" min={-10} max={30} step={0.5} value={populationMean} onChange={(e) => onPopulationMean(Number(e.target.value))} />
+              </div>
+              <div className="control-panel__hint">{copy.populationMeanHint}</div>
+              <input id="populationMean" type="range" className="form-range control-panel__input" min={-10} max={30} step={0.5} value={populationMean} onChange={(e) => onPopulationMean(Number(e.target.value))} />
+            </div>
             <div className="control-panel__group">
               <div className="control-panel__label-row">
                 <label className="control-panel__label" htmlFor="populationSD">{copy.populationSD}</label>
-                <div className="control-panel__value">{populationSD.toFixed(1)}</div>
+                <input className="control-number-input" aria-label={`${copy.populationSD} numeric value`} type="number" min={0.1} max={10} step={0.1} value={populationSD} onChange={(e) => onPopulationSD(Number(e.target.value))} />
               </div>
               <div className="control-panel__hint">{copy.populationSDHint}</div>
               <input
@@ -138,4 +179,3 @@ export function ControlSidebar({
     </ParameterPanel>
   );
 }
-import { ParameterPanel } from "@stats-viz/shared/visualization";

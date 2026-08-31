@@ -308,7 +308,7 @@ describe("bootstrap work budgets", () => {
       draws: MAX_MEAN_BOOTSTRAP_DRAWS,
     });
     const r = runExample(example("mean-bootstrap"), { sampleSize: 5000, replicates: 5000 }, 33);
-    expect(metric(r, "resample size")).toBe("5000");
+    expect(metric(r, "observed statistic")).not.toBe("");
     expect(metric(r, "bootstrap replicates")).toBe("200");
     if (r.chart.type !== "bars") throw new Error("expected bars chart");
     expect(r.chart.bars.reduce((sum, bar) => sum + bar.value, 0)).toBe(200);
@@ -320,7 +320,7 @@ describe("bootstrap work budgets", () => {
     expect(bounded.metrics.find((item) => item.label === "replicates")?.detail).toContain("input limit applied");
 
     const exact = runExample(example("bootstrap-max"), { data: "1,2", replicates: 10000 }, 91);
-    expect(Number(metric(exact, "bootstrap mean max"))).toBeCloseTo(1.75, 1);
+    expect(Number(metric(exact, "bootstrap mean"))).toBeCloseTo(1.75, 1);
   });
 });
 

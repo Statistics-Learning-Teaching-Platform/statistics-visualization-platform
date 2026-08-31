@@ -1,8 +1,17 @@
 import type { CodeLesson } from "../code-learning/types";
+import {
+  getTextbookChapterIdForTopic,
+  type TextbookChapterId,
+} from "../course/textbookChapters";
 
 export type LessonUnit = "foundations" | "data" | "statistics";
 
-export type RLesson = CodeLesson<LessonUnit, "r">;
+export type RLesson = CodeLesson<LessonUnit, "r"> & {
+  /** Internal textbook binding. The workspace intentionally does not display it yet. */
+  textbookChapterId: TextbookChapterId;
+};
+
+type RLessonDraft = Omit<RLesson, "textbookChapterId">;
 
 const normalizeCode = (code: string) => code.replace(/\\n/g, "\n").replace(/\\t/g, "\t");
 
@@ -28,7 +37,7 @@ export const lessonUnits = [
   { id: "statistics", zh: "统计分析", en: "Statistical Analysis", number: "03" },
 ] as const;
 
-const rawRLessons: RLesson[] = [
+const rawRLessons: RLessonDraft[] = [
   {
     language: "r",
     prerequisites: [],
@@ -645,10 +654,217 @@ mae`,
   { language: "r", prerequisites: ["anova"], id: "r-anova-posthoc", topicId: "anova", unit: "statistics", order: 30, eyebrow: { zh: "第三十课 · 多重比较", en: "Lesson 30 · Multiple comparisons" }, title: { zh: "用 Tukey 方法比较组均值", en: "Compare group means with Tukey's method" }, objective: { zh: "在整体 ANOVA 后控制多重比较错误率。", en: "Control family-wise error after an overall ANOVA." }, explanation: { zh: "校正后的两两比较避免反复检验扩大错误率。", en: "Adjusted pairwise comparisons avoid inflated error rates." }, task: { zh: "保存 Tukey 结果 `posthoc`。", en: "Save Tukey results as `posthoc`." }, concepts: ["aov()", "TukeyHSD()"], starterCode: "group <- factor(rep(c(\"A\", \"B\", \"C\"), each = 4))\\nscore <- c(70, 72, 71, 69, 76, 78, 75, 77, 82, 84, 83, 81)\\nmodel <- aov(score ~ group)\\nposthoc <-", hint: { zh: "使用 `TukeyHSD(model)`。", en: "Use `TukeyHSD(model)`." }, solution: "group <- factor(rep(c(\"A\", \"B\", \"C\"), each = 4))\\nscore <- c(70, 72, 71, 69, 76, 78, 75, 77, 82, 84, 83, 81)\\nmodel <- aov(score ~ group)\\nposthoc <- TukeyHSD(model)", checkCode: "inherits(model, \"aov\") && is.list(posthoc)", success: { zh: "完成：整体 ANOVA 与校正后的两两比较已经连接。", en: "Complete: ANOVA is connected to adjusted pairwise comparisons." } },
   { language: "r", prerequisites: ["chi-square-contingency"], id: "r-chi-square-goodness-fit", topicId: "chi-square-test", unit: "statistics", order: 31, eyebrow: { zh: "第三十一课 · 拟合优度", en: "Lesson 31 · Goodness of fit" }, title: { zh: "检验分类频数是否符合理论比例", en: "Test frequencies against theoretical proportions" }, objective: { zh: "使用卡方拟合优度检验比较观察和期望频数。", en: "Use a chi-square goodness-of-fit test." }, explanation: { zh: "原假设给出各类别的理论比例。", en: "The null hypothesis specifies theoretical category proportions." }, task: { zh: "保存 `gof_result`。", en: "Save `gof_result`." }, concepts: ["chisq.test()", "goodness of fit"], starterCode: "observed <- c(28, 34, 38)\\nexpected_prob <- c(1/3, 1/3, 1/3)\\ngof_result <-", hint: { zh: "使用 `chisq.test(observed, p = expected_prob)`。", en: "Use `chisq.test(observed, p = expected_prob)`." }, solution: "observed <- c(28, 34, 38)\\nexpected_prob <- c(1/3, 1/3, 1/3)\\ngof_result <- chisq.test(observed, p = expected_prob)", checkCode: "inherits(gof_result, \"htest\")", success: { zh: "完成：观察频数已经与理论比例比较。", en: "Complete: observed counts are compared with expected counts." } },
   { language: "r", prerequisites: ["chi-square-contingency"], id: "r-nonparametric-ranks", topicId: "nonparametric-tests", unit: "statistics", order: 32, eyebrow: { zh: "第三十二课 · 秩检验", en: "Lesson 32 · Rank tests" }, title: { zh: "用 Wilcoxon 检验比较两组", en: "Compare two groups with Wilcoxon tests" }, objective: { zh: "在分布假设不合适时使用秩方法。", en: "Use rank methods when distributional assumptions are unsuitable." }, explanation: { zh: "Wilcoxon 检验比较秩而不直接等同于均值检验。", en: "Wilcoxon tests compare ranks rather than means directly." }, task: { zh: "保存独立样本检验结果 `rank_result`。", en: "Save the rank test result." }, concepts: ["wilcox.test()", "rank sum"], starterCode: "group_a <- c(12, 14, 15, 16, 18)\\ngroup_b <- c(9, 10, 11, 13, 14)\\nrank_result <-", hint: { zh: "使用 `wilcox.test(group_a, group_b, alternative = \"greater\")`。", en: "Use `wilcox.test(group_a, group_b, alternative = \"greater\")`." }, solution: "group_a <- c(12, 14, 15, 16, 18)\\ngroup_b <- c(9, 10, 11, 13, 14)\\nrank_result <- wilcox.test(group_a, group_b, alternative = \"greater\")", checkCode: "inherits(rank_result, \"htest\")", success: { zh: "完成：秩检验减少了对正态分布的依赖。", en: "Complete: the rank test relies less on normality." } },
+  {
+    language: "r",
+    prerequisites: ["data-frame-filter"],
+    id: "r-sampling-designs",
+    topicId: "sampling-methods",
+    unit: "data",
+    order: 33,
+    eyebrow: { zh: "第三十三课 · 抽样设计", en: "Lesson 33 · Sampling designs" },
+    title: { zh: "实施系统抽样与分层抽样", en: "Implement systematic and stratified samples" },
+    objective: { zh: "用 R 把抽样设计转化为可复现的样本索引。", en: "Turn sampling designs into reproducible sample indices in R." },
+    explanation: { zh: "系统抽样使用随机起点和固定间隔；分层抽样则从每个层内独立抽取。", en: "Systematic sampling uses a random start and fixed interval; stratified sampling samples independently within each stratum." },
+    task: { zh: "从 40 个单位中每隔 5 个抽取一次，并从两个地区各抽取 3 个单位。", en: "Select every fifth unit from 40 units and sample three units from each of two regions." },
+    concepts: ["sample()", "seq()", "split()"],
+    starterCode: `set.seed(2026)
+frame <- data.frame(
+  id = 1:40,
+  region = rep(c("north", "south"), each = 20)
+)
+
+start <- sample(1:5, 1)
+systematic_ids <-
+stratified_ids <-`,
+    hint: { zh: "系统抽样可用 `seq(start, 40, by = 5)`；分层后对每组 id 使用 `sample(x, 3)`。", en: "Use `seq(start, 40, by = 5)` and sample three IDs inside each split group." },
+    solution: `set.seed(2026)
+frame <- data.frame(id = 1:40, region = rep(c("north", "south"), each = 20))
+start <- sample(1:5, 1)
+systematic_ids <- seq(start, 40, by = 5)
+stratified_ids <- unlist(lapply(split(frame$id, frame$region), sample, size = 3), use.names = FALSE)`,
+    checkCode: `length(systematic_ids) == 8 && all(diff(systematic_ids) == 5) &&
+      length(stratified_ids) == 6 &&
+      sum(stratified_ids <= 20) == 3 && sum(stratified_ids > 20) == 3`,
+    success: { zh: "完成：两个抽样设计都形成了可复现的样本索引。", en: "Complete: both designs produced reproducible sample indices." },
+  },
+  {
+    language: "r",
+    prerequisites: ["r-data-import"],
+    id: "r-delimited-import",
+    topicId: "data-and-variables",
+    unit: "data",
+    order: 34,
+    eyebrow: { zh: "第三十四课 · 分隔文本", en: "Lesson 34 · Delimited text" },
+    title: { zh: "正确读取带表头的制表符数据", en: "Read tab-delimited data with headers" },
+    objective: { zh: "理解表头与分隔符设置如何决定导入后的数据结构。", en: "Understand how header and separator settings determine imported structure." },
+    explanation: { zh: "导入时应显式确认表头、分隔符和缺失值编码，不能依赖文件扩展名猜测。", en: "Confirm headers, delimiters, and missing-value codes explicitly instead of guessing from a file extension." },
+    task: { zh: "把给定制表符文本读取为 `survey`，并保存变量名。", en: "Read the tab-delimited text into `survey` and save its column names." },
+    concepts: ["read.table()", "header", "sep"],
+    starterCode: `raw_text <- "id\tgroup\tscore\n1\tA\t82\n2\tB\t76\n3\tA\t91"
+survey <-
+variable_names <-`,
+    hint: { zh: "使用 `read.table(text = raw_text, header = TRUE, sep = \"\\t\")`。", en: "Use `read.table(text = raw_text, header = TRUE, sep = \"\\t\")`." },
+    solution: `raw_text <- "id\tgroup\tscore\n1\tA\t82\n2\tB\t76\n3\tA\t91"
+survey <- read.table(text = raw_text, header = TRUE, sep = "\t")
+variable_names <- names(survey)`,
+    checkCode: `is.data.frame(survey) && identical(dim(survey), c(3L, 3L)) &&
+      identical(variable_names, c("id", "group", "score"))`,
+    success: { zh: "完成：表头、分隔符和三列数据均已正确识别。", en: "Complete: the header, delimiter, and three columns were recognised correctly." },
+  },
+  {
+    language: "r",
+    prerequisites: ["r-grouped-barplot"],
+    id: "r-grouped-mean-barplot",
+    topicId: "visual-encoding",
+    unit: "data",
+    order: 35,
+    eyebrow: { zh: "第三十五课 · 分组条形图", en: "Lesson 35 · Grouped bar charts" },
+    title: { zh: "把双分类均值编码成并列条形图", en: "Encode two-way means as grouped bars" },
+    objective: { zh: "把 `tapply()` 的均值矩阵转换为可检查的条形图结构。", en: "Convert a `tapply()` mean matrix into an inspectable grouped-bar structure." },
+    explanation: { zh: "并列条形图适合比较离散组别，但图形必须保留清楚的分组与图例语义。", en: "Grouped bars compare discrete groups, but grouping and legend semantics must remain explicit." },
+    task: { zh: "计算方式×班级均值，并在不绘图的情况下保存每根条形的位置。", en: "Calculate method-by-class means and save bar positions without drawing the plot." },
+    concepts: ["tapply()", "barplot()", "beside"],
+    starterCode: `method <- c("video", "video", "text", "text", "video", "text")
+class <- c("A", "B", "A", "B", "A", "B")
+score <- c(78, 84, 72, 76, 81, 79)
+
+mean_table <-
+bar_positions <-`,
+    hint: { zh: "先用 `tapply()`，再用 `barplot(mean_table, beside = TRUE, plot = FALSE)`。", en: "Use `tapply()` followed by `barplot(..., beside = TRUE, plot = FALSE)`." },
+    solution: `method <- c("video", "video", "text", "text", "video", "text")
+class <- c("A", "B", "A", "B", "A", "B")
+score <- c(78, 84, 72, 76, 81, 79)
+mean_table <- tapply(score, list(method, class), mean)
+bar_positions <- barplot(mean_table, beside = TRUE, plot = FALSE)`,
+    checkCode: `is.matrix(mean_table) && identical(dim(mean_table), c(2L, 2L)) &&
+      is.matrix(bar_positions) && identical(dim(bar_positions), c(2L, 2L))`,
+    success: { zh: "完成：双分类均值和四根条形的位置均已生成。", en: "Complete: the two-way means and four bar positions are ready." },
+  },
+  {
+    language: "r",
+    prerequisites: ["summary-and-boxplot"],
+    id: "r-missing-summary",
+    topicId: "descriptive-statistics",
+    unit: "data",
+    order: 36,
+    eyebrow: { zh: "第三十六课 · 缺失值", en: "Lesson 36 · Missing values" },
+    title: { zh: "汇总含缺失值的数据", en: "Summarise data with missing values" },
+    objective: { zh: "在描述统计前识别缺失数量，并显式选择缺失值处理方式。", en: "Count missing values and choose their treatment explicitly before summarising data." },
+    explanation: { zh: "直接忽略缺失值可能改变分析对象，因此应同时报告有效样本量。", en: "Dropping missing values can change the analysed population, so report the valid sample size as well." },
+    task: { zh: "保存缺失数、有效样本量以及忽略缺失值后的均值。", en: "Save the missing count, valid sample size, and mean after explicit NA removal." },
+    concepts: ["is.na()", "complete.cases()", "na.rm"],
+    starterCode: `scores <- c(72, 81, NA, 90, 85, NA, 77)
+missing_count <-
+valid_n <-
+mean_score <-`,
+    hint: { zh: "分别使用 `sum(is.na(scores))`、`sum(!is.na(scores))` 和 `mean(..., na.rm = TRUE)`。", en: "Use `sum(is.na(...))`, count non-missing values, and call `mean(..., na.rm = TRUE)`." },
+    solution: `scores <- c(72, 81, NA, 90, 85, NA, 77)
+missing_count <- sum(is.na(scores))
+valid_n <- sum(!is.na(scores))
+mean_score <- mean(scores, na.rm = TRUE)`,
+    checkCode: `missing_count == 2 && valid_n == 5 && abs(mean_score - 81) < 1e-12`,
+    success: { zh: "完成：均值与它实际使用的有效样本量已经同时记录。", en: "Complete: the mean and its valid sample size are recorded together." },
+  },
+  {
+    language: "r",
+    prerequisites: ["summary-and-boxplot"],
+    id: "r-boxplot-outliers",
+    topicId: "descriptive-statistics",
+    unit: "data",
+    order: 37,
+    eyebrow: { zh: "第三十七课 · 箱线图", en: "Lesson 37 · Box plots" },
+    title: { zh: "提取箱线图标记的异常值", en: "Extract outliers flagged by a box plot" },
+    objective: { zh: "连接四分位距规则与箱线图中的异常值标记。", en: "Connect the IQR rule with outlier flags in a box plot." },
+    explanation: { zh: "箱线图标记的是规则意义上的潜在异常值，不能自动判定为数据错误。", en: "Box plots flag potential outliers by a rule; they do not prove that an observation is erroneous." },
+    task: { zh: "在不绘图的情况下保存箱线图统计量和被标记的观测。", en: "Save box-plot statistics and flagged observations without drawing the plot." },
+    concepts: ["boxplot()", "IQR", "outliers"],
+    starterCode: `values <- c(12, 13, 13, 14, 15, 16, 17, 42)
+box_info <-
+flagged_values <-`,
+    hint: { zh: "使用 `boxplot(values, plot = FALSE)`，异常值保存在 `$out`。", en: "Use `boxplot(values, plot = FALSE)` and read `$out`." },
+    solution: `values <- c(12, 13, 13, 14, 15, 16, 17, 42)
+box_info <- boxplot(values, plot = FALSE)
+flagged_values <- box_info$out`,
+    checkCode: `is.list(box_info) && identical(as.numeric(flagged_values), 42)`,
+    success: { zh: "完成：42 被 IQR 规则标记，接下来仍需结合情境判断。", en: "Complete: 42 is flagged by the IQR rule and still needs contextual review." },
+  },
+  {
+    language: "r",
+    prerequisites: ["r-regression-anova"],
+    id: "r-regression-anova-manual",
+    topicId: "linear-regression",
+    unit: "statistics",
+    order: 38,
+    eyebrow: { zh: "第三十八课 · 手工方差分解", en: "Lesson 38 · Manual variance decomposition" },
+    title: { zh: "核对回归中的 SST、SSR 与 SSE", en: "Verify SST, SSR, and SSE in regression" },
+    objective: { zh: "从拟合值和残差手工验证回归平方和分解。", en: "Verify the regression sum-of-squares identity from fitted values and residuals." },
+    explanation: { zh: "在线性回归含截距时，总平方和等于回归平方和与误差平方和之和。", en: "For linear regression with an intercept, total variation splits into regression and error sums of squares." },
+    task: { zh: "拟合模型并保存 `sst`、`ssr`、`sse` 以及分解误差。", en: "Fit the model and save `sst`, `ssr`, `sse`, and the decomposition error." },
+    concepts: ["fitted()", "residuals()", "sum of squares"],
+    starterCode: `x <- 1:7
+y <- c(52, 56, 60, 63, 69, 73, 78)
+model <- lm(y ~ x)
+
+sst <-
+ssr <-
+sse <-
+decomposition_error <-`,
+    hint: { zh: "SST 围绕 `mean(y)`；SSR 使用拟合值；SSE 使用残差。", en: "Build SST around `mean(y)`, SSR from fitted values, and SSE from residuals." },
+    solution: `x <- 1:7
+y <- c(52, 56, 60, 63, 69, 73, 78)
+model <- lm(y ~ x)
+sst <- sum((y - mean(y))^2)
+ssr <- sum((fitted(model) - mean(y))^2)
+sse <- sum(residuals(model)^2)
+decomposition_error <- abs(sst - ssr - sse)`,
+    checkCode: `sst > 0 && ssr > 0 && sse > 0 && decomposition_error < 1e-8`,
+    success: { zh: "完成：SST = SSR + SSE 已通过数值核验。", en: "Complete: SST = SSR + SSE has been verified numerically." },
+  },
+  {
+    language: "r",
+    prerequisites: ["r-stepwise-selection"],
+    id: "r-stepwise-directions",
+    topicId: "linear-regression",
+    unit: "statistics",
+    order: 39,
+    eyebrow: { zh: "第三十九课 · 选择方向", en: "Lesson 39 · Selection directions" },
+    title: { zh: "比较向前与向后逐步选择", en: "Compare forward and backward selection" },
+    objective: { zh: "比较不同起点和方向产生的模型，并记录其 AIC。", en: "Compare models produced from different starts and directions and record their AIC values." },
+    explanation: { zh: "逐步算法可能因起点和候选范围得到不同结果，应把它视为探索而非最终证明。", en: "Stepwise algorithms can depend on their starting model and scope, so treat them as exploratory." },
+    task: { zh: "分别运行向前和向后选择，并保存两个模型的 AIC。", en: "Run forward and backward selection and save both AIC values." },
+    concepts: ["step()", "scope", "AIC"],
+    starterCode: `data <- data.frame(
+  y = c(52, 56, 60, 63, 69, 73, 78, 82),
+  x1 = 1:8,
+  x2 = c(3, 2, 4, 3, 5, 4, 6, 5),
+  x3 = c(8, 7, 7, 6, 5, 5, 4, 3)
+)
+null_model <- lm(y ~ 1, data = data)
+full_model <- lm(y ~ x1 + x2 + x3, data = data)
+forward_model <-
+backward_model <-
+aic_values <-`,
+    hint: { zh: "向前模型需要 `scope = formula(full_model)`；向后模型从完整模型开始。", en: "Give the forward model `scope = formula(full_model)` and start backward selection from the full model." },
+    solution: `data <- data.frame(
+  y = c(52, 56, 60, 63, 69, 73, 78, 82),
+  x1 = 1:8,
+  x2 = c(3, 2, 4, 3, 5, 4, 6, 5),
+  x3 = c(8, 7, 7, 6, 5, 5, 4, 3)
+)
+null_model <- lm(y ~ 1, data = data)
+full_model <- lm(y ~ x1 + x2 + x3, data = data)
+forward_model <- step(null_model, scope = formula(full_model), direction = "forward", trace = 0)
+backward_model <- step(full_model, direction = "backward", trace = 0)
+aic_values <- c(forward = AIC(forward_model), backward = AIC(backward_model))`,
+    checkCode: `inherits(forward_model, "lm") && inherits(backward_model, "lm") &&
+      length(aic_values) == 2 && all(is.finite(aic_values))`,
+    success: { zh: "完成：两个方向的选择结果及 AIC 已保存，可继续做独立验证。", en: "Complete: both selected models and AIC values are ready for independent validation." },
+  },
 ];
 
 export const rLessons: RLesson[] = rawRLessons.map((lesson) => ({
   ...lesson,
+  textbookChapterId: getTextbookChapterIdForTopic(lesson.topicId),
   starterCode: normalizeCode(lesson.starterCode),
   solution: normalizeCode(lesson.solution),
   checkCode: isolateCheckCode(lesson.checkCode, lesson.id === "first-histogram"),

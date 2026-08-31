@@ -2361,3 +2361,577 @@ body {
   display: none !important;
   content: none !important;
 }
+
+/* Regression workbench ----------------------------------------------------
+ * Keep the visualizer, metrics, and controls in one module-owned layout.
+ * This intentionally bypasses the legacy output-dock/sidebar overrides above. */
+.visualization-frame.module-shell[data-module-id="regression"] > .module-layout {
+  grid-template-columns: minmax(0, 1fr) !important;
+  grid-template-areas: "main" !important;
+  height: 100% !important;
+  min-height: 0 !important;
+  overflow: hidden !important;
+}
+
+.visualization-frame.module-shell[data-module-id="regression"] .experiment-board {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 0 !important;
+  width: auto !important;
+  height: 100% !important;
+  max-height: none !important;
+  min-width: 0 !important;
+  min-height: 0 !important;
+  padding: 0 32px 32px !important;
+  overflow-x: hidden !important;
+  overflow-y: auto !important;
+}
+
+.visualization-frame.module-shell[data-module-id="regression"] .experiment-header {
+  flex: 0 0 auto;
+  min-height: 0 !important;
+  margin: 0 !important;
+  padding: 24px 0 20px !important;
+  border-bottom: 1px solid var(--lab-divider, var(--border));
+}
+
+.visualization-frame.module-shell[data-module-id="regression"] .experiment-header > div {
+  max-width: none;
+}
+
+.visualization-frame.module-shell[data-module-id="regression"] .experiment-header h1 {
+  margin: 6px 0 0 !important;
+  font-size: clamp(30px, 3vw, 42px) !important;
+  line-height: 1.05 !important;
+}
+
+.visualization-frame.module-shell[data-module-id="regression"] .experiment-header .lab-experiment-description,
+.visualization-frame.module-shell[data-module-id="regression"] .experiment-header .research-question {
+  display: block !important;
+  max-width: 920px;
+  margin: 8px 0 0 !important;
+  line-height: 1.5 !important;
+}
+
+.visualization-frame.module-shell[data-module-id="regression"] .regression-workbench {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-areas:
+    "stage"
+    "controls"
+    "learning";
+  align-items: start;
+  gap: 20px;
+  width: 100%;
+  min-width: 0;
+  padding-top: 20px;
+}
+
+.visualization-frame.module-shell[data-module-id="regression"] .regression-stage {
+  grid-area: stage;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 16px;
+  min-width: 0;
+  padding: 20px;
+  border: 1px solid var(--lab-border, var(--border));
+  border-radius: var(--lab-radius-lg, 14px);
+  background: var(--lab-surface, var(--surface, #fff));
+}
+
+.visualization-frame.module-shell[data-module-id="regression"] .regression-stage__header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 18px;
+  min-width: 0;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--lab-divider, var(--border));
+}
+
+.visualization-frame.module-shell[data-module-id="regression"] .regression-stage__intro {
+  min-width: 0;
+}
+
+.visualization-frame.module-shell[data-module-id="regression"] .regression-stage__intro .eyebrow {
+  margin: 0 0 5px !important;
+  color: var(--lab-blue, #2f61d4);
+  font-size: 10px !important;
+  letter-spacing: 0.12em !important;
+}
+
+.visualization-frame.module-shell[data-module-id="regression"] .regression-stage__intro h2 {
+  margin: 0 !important;
+  color: var(--lab-text, #17233c);
+  font-size: clamp(20px, 2.2vw, 28px) !important;
+  line-height: 1.15 !important;
+}
+
+.visualization-frame.module-shell[data-module-id="regression"] .regression-stage__intro > p:last-child {
+  max-width: 580px;
+  margin: 7px 0 0 !important;
+  color: var(--lab-text-secondary, #667085);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.visualization-frame.module-shell[data-module-id="regression"] .regression-line-guide {
+  display: flex !important;
+  flex: 0 1 330px;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px 14px !important;
+  min-width: 0;
+  min-height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+}
+
+.visualization-frame.module-shell[data-module-id="regression"] .regression-line-guide__item {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  min-height: 24px;
+  color: var(--lab-text, #17233c);
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.visualization-frame.module-shell[data-module-id="regression"] .regression-line-guide__hint {
+  flex-basis: 100%;
+  color: var(--lab-text-secondary, #667085);
+  font-size: 11px;
+  line-height: 1.4;
+  text-align: right;
+}
+
+.visualization-frame.module-shell[data-module-id="regression"] .chart-frame {
+  display: grid !important;
+  place-items: center;
+  width: 100%;
+  min-width: 0 !important;
+  min-height: 0 !important;
+  max-height: none !important;
+  aspect-ratio: 860 / 520 !important;
+  margin: 0 !important;
+  padding: 12px !important;
+  overflow: hidden !important;
+  border-radius: var(--lab-radius-md, 10px);
+}
+
+.visualization-frame.module-shell[data-module-id="regression"] .chart-shell {
+  display: grid !important;
+  place-items: center;
+  width: 100% !important;
+  height: auto !important;
+  min-width: 0 !important;
+  min-height: 0 !important;
+  aspect-ratio: 860 / 520;
+}
+
+.visualization-frame.module-shell[data-module-id="regression"] .chart-svg,
+.visualization-frame.module-shell[data-module-id="regression"] .regression-chart {
+  display: block;
+  width: 100% !important;
+  max-width: 100% !important;
+  height: auto !important;
+  min-height: 0 !important;
+  aspect-ratio: 860 / 520;
+}
+
+.visualization-frame.module-shell[data-module-id="regression"] .metrics-grid {
+  display: grid !important;
+  grid-template-columns: repeat(5, minmax(0, 1fr)) !important;
+  gap: 0 !important;
+  width: 100%;
+  height: auto !important;
+  min-width: 0;
+  margin: 0 !important;
+  padding: 0 !important;
+  border-top: 1px solid var(--lab-border, var(--border)) !important;
+  overflow: hidden !important;
+}
+
+.visualization-frame.module-shell[data-module-id="regression"] .metrics-grid .experiment-metric {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 4px;
+  width: auto;
+  min-width: 0;
+  min-height: 76px !important;
+  height: auto !important;
+  max-height: none !important;
+  padding: 11px 13px !important;
+}
+
+.visualization-frame.module-shell[data-module-id="regression"] .metrics-grid .metric-label {
+  overflow-wrap: anywhere;
+}
+
+.visualization-frame.module-shell[data-module-id="regression"] .metrics-grid .metric-value {
+  font-size: clamp(19px, 1.8vw, 25px) !important;
+  overflow-wrap: anywhere;
+}
+
+.visualization-frame.module-shell[data-module-id="regression"] .statistics-panel {
+  display: grid !important;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.35fr) !important;
+  align-items: stretch;
+  gap: 0 !important;
+  width: 100%;
+  min-width: 0;
+  min-height: 0 !important;
+  height: auto !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  border: 1px solid var(--lab-border, var(--border));
+  border-radius: var(--lab-radius-md, 10px);
+  background: var(--lab-surface-muted, var(--surface, #fbfaf6));
+}
+
+.visualization-frame.module-shell[data-module-id="regression"] .sse-section {
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  gap: 0 !important;
+  min-width: 0;
+}
+
+.visualization-frame.module-shell[data-module-id="regression"] .stat-row,
+.visualization-frame.module-shell[data-module-id="regression"] .residual-section {
+  min-width: 0;
+  min-height: 70px;
+  margin: 0 !important;
+  padding: 12px 14px !important;
+  border: 0 !important;
+  border-right: 1px solid var(--lab-divider, var(--border)) !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+}
+
+.visualization-frame.module-shell[data-module-id="regression"] .residual-section {
+  display: flex !important;
+  align-items: center;
+  border-right: 0 !important;
+}
+
+.visualization-frame.module-shell[data-module-id="regression"] .residual-row,
+.visualization-frame.module-shell[data-module-id="regression"] .residual-row > div {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  min-width: 0;
+  gap: 6px 10px;
+  overflow-wrap: anywhere;
+}
+
+.visualization-frame.module-shell[data-module-id="regression"] .statistics-panel .stat-label {
+  font-size: 10px !important;
+  letter-spacing: 0.08em;
+}
+
+.visualization-frame.module-shell[data-module-id="regression"] .statistics-panel .stat-value {
+  font-size: 16px !important;
+}
+
+.visualization-frame.module-shell[data-module-id="regression"] .regression-control-rail {
+  grid-area: controls;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  align-content: start;
+  gap: 16px;
+  min-width: 0;
+}
+
+.visualization-frame.module-shell[data-module-id="regression"] .regression-learning-grid {
+  grid-area: learning;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  align-items: stretch;
+  gap: 16px;
+  min-width: 0;
+}
+
+.visualization-frame.module-shell[data-module-id="regression"] .regression-control-rail > * {
+  width: 100% !important;
+  min-width: 0 !important;
+  height: auto !important;
+  max-height: none !important;
+  margin: 0 !important;
+  overflow: visible !important;
+}
+
+.visualization-frame.module-shell[data-module-id="regression"] .regression-control-rail > .parameter-panel,
+.visualization-frame.module-shell[data-module-id="regression"] .regression-control-rail > .teaching-panel,
+.visualization-frame.module-shell[data-module-id="regression"] .regression-control-rail > [data-formula-card],
+.visualization-frame.module-shell[data-module-id="regression"] .regression-control-rail > [data-observation-card],
+.visualization-frame.module-shell[data-module-id="regression"] .regression-learning-grid > .teaching-panel,
+.visualization-frame.module-shell[data-module-id="regression"] .regression-learning-grid > [data-formula-card],
+.visualization-frame.module-shell[data-module-id="regression"] .regression-learning-grid > [data-observation-card] {
+  display: block !important;
+  padding: 18px !important;
+  border: 1px solid var(--lab-border, var(--border));
+  border-radius: var(--lab-radius-md, 10px) !important;
+  background: var(--lab-surface, var(--surface, #fff));
+}
+
+.visualization-frame.module-shell[data-module-id="regression"] .parameter-panel > .eyebrow {
+  display: block !important;
+  margin: 0 0 10px !important;
+}
+
+.visualization-frame.module-shell[data-module-id="regression"] .regression-control-rail .control-panel {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) !important;
+  gap: 0 !important;
+  width: 100% !important;
+  min-width: 0;
+}
+
+.visualization-frame.module-shell[data-module-id="regression"] .control-panel__title,
+.visualization-frame.module-shell[data-module-id="regression"] .control-panel__intro,
+.visualization-frame.module-shell[data-module-id="regression"] .control-panel__hint,
+.visualization-frame.module-shell[data-module-id="regression"] .control-panel__summary-card {
+  display: block !important;
+}
+
+.visualization-frame.module-shell[data-module-id="regression"] .control-panel__title {
+  margin: 0 !important;
+  font-size: 19px !important;
+  line-height: 1.25 !important;
+}
+
+.visualization-frame.module-shell[data-module-id="regression"] .control-panel__intro {
+  margin: 7px 0 4px !important;
+  color: var(--lab-text-secondary, #667085);
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.visualization-frame.module-shell[data-module-id="regression"] .control-panel__group,
+.visualization-frame.module-shell[data-module-id="regression"] .control-panel__actions {
+  display: block !important;
+  min-width: 0;
+  margin: 0 !important;
+  padding: 14px 0 !important;
+  border: 0 !important;
+  border-top: 1px solid var(--lab-divider, var(--border)) !important;
+}
+
+.visualization-frame.module-shell[data-module-id="regression"] .control-panel__group:first-of-type {
+  margin-top: 8px !important;
+}
+
+.visualization-frame.module-shell[data-module-id="regression"] .control-panel__label-row,
+.visualization-frame.module-shell[data-module-id="regression"] .toggle-row {
+  display: flex !important;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-width: 0;
+}
+
+.visualization-frame.module-shell[data-module-id="regression"] .toggle-row {
+  min-height: 44px;
+}
+
+.visualization-frame.module-shell[data-module-id="regression"] .toggle-row__copy {
+  min-width: 0;
+}
+
+.visualization-frame.module-shell[data-module-id="regression"] .control-panel__label {
+  font-size: 13px !important;
+  line-height: 1.35;
+  writing-mode: horizontal-tb !important;
+  word-break: normal;
+}
+
+.visualization-frame.module-shell[data-module-id="regression"] .control-panel__hint {
+  margin: 5px 0 9px !important;
+  font-size: 11px !important;
+  line-height: 1.45;
+}
+
+.visualization-frame.module-shell[data-module-id="regression"] .control-panel__select,
+.visualization-frame.module-shell[data-module-id="regression"] .control-panel__button,
+.visualization-frame.module-shell[data-module-id="regression"] .control-input {
+  width: 100% !important;
+  min-width: 0 !important;
+  min-height: 44px !important;
+}
+
+.visualization-frame.module-shell[data-module-id="regression"] .control-panel__button {
+  white-space: normal;
+}
+
+.visualization-frame.module-shell[data-module-id="regression"] .numeric-line-controls {
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  gap: 10px 12px !important;
+}
+
+.visualization-frame.module-shell[data-module-id="regression"] .numeric-line-controls > .control-panel__label-row,
+.visualization-frame.module-shell[data-module-id="regression"] .numeric-line-controls > .control-panel__hint {
+  grid-column: 1 / -1;
+  margin-bottom: 0 !important;
+}
+
+.visualization-frame.module-shell[data-module-id="regression"] .control-field {
+  display: grid;
+  gap: 6px;
+  min-width: 0;
+}
+
+.visualization-frame.module-shell[data-module-id="regression"] .control-panel__summary-card {
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 0 !important;
+  padding: 14px 0 0 !important;
+  border-top: 1px solid var(--lab-divider, var(--border));
+}
+
+.visualization-frame.module-shell[data-module-id="regression"] .control-panel__summary-card .info-item {
+  min-width: 0;
+}
+
+.visualization-frame.module-shell[data-module-id="regression"] .control-panel__summary-card .metric-value {
+  font-size: 13px !important;
+  overflow-wrap: anywhere;
+}
+
+.visualization-frame.module-shell[data-module-id="regression"] .regression-concept-card h2,
+.visualization-frame.module-shell[data-module-id="regression"] .regression-concept-card h3 {
+  margin: 6px 0 8px !important;
+}
+
+.visualization-frame.module-shell[data-module-id="regression"] .regression-concept-card h3 {
+  margin-top: 16px !important;
+  font-size: 15px !important;
+}
+
+.visualization-frame.module-shell[data-module-id="regression"] .regression-control-rail .math-expression {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px;
+  max-width: 100%;
+  overflow-wrap: anywhere;
+}
+
+.visualization-frame.module-shell[data-module-id="regression"] .regression-learning-grid > * {
+  width: 100% !important;
+  min-width: 0 !important;
+  height: 100% !important;
+  max-height: none !important;
+  margin: 0 !important;
+  overflow: visible !important;
+}
+
+.visualization-frame.module-shell[data-module-id="regression"] .regression-learning-grid .math-expression {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px;
+  max-width: 100%;
+  overflow-wrap: anywhere;
+}
+
+@container visualization-workspace (min-width: 980px) {
+  .visualization-frame.module-shell[data-module-id="regression"] .regression-workbench {
+    grid-template-columns: minmax(0, 1fr) minmax(280px, 310px);
+    grid-template-areas:
+      "stage controls"
+      "learning controls";
+    gap: 24px;
+  }
+}
+
+@container visualization-workspace (min-width: 680px) and (max-width: 979px) {
+  .visualization-frame.module-shell[data-module-id="regression"] .regression-learning-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@container visualization-workspace (max-width: 720px) {
+  .visualization-frame.module-shell[data-module-id="regression"] .experiment-board {
+    padding: 0 18px 24px !important;
+  }
+
+  .visualization-frame.module-shell[data-module-id="regression"] .experiment-header {
+    padding: 20px 0 18px !important;
+  }
+
+  .visualization-frame.module-shell[data-module-id="regression"] .regression-stage {
+    padding: 14px;
+  }
+
+  .visualization-frame.module-shell[data-module-id="regression"] .regression-stage__header {
+    display: grid;
+    align-items: start;
+    gap: 12px;
+  }
+
+  .visualization-frame.module-shell[data-module-id="regression"] .regression-line-guide {
+    justify-content: flex-start;
+  }
+
+  .visualization-frame.module-shell[data-module-id="regression"] .regression-line-guide__hint {
+    text-align: left;
+  }
+
+  .visualization-frame.module-shell[data-module-id="regression"] .metrics-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+
+  .visualization-frame.module-shell[data-module-id="regression"] .metrics-grid .experiment-metric:last-child {
+    grid-column: 1 / -1;
+  }
+
+  .visualization-frame.module-shell[data-module-id="regression"] .statistics-panel {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+
+  .visualization-frame.module-shell[data-module-id="regression"] .regression-learning-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .visualization-frame.module-shell[data-module-id="regression"] .sse-section {
+    border-bottom: 1px solid var(--lab-divider, var(--border));
+  }
+
+  .visualization-frame.module-shell[data-module-id="regression"] .sse-section .stat-row:last-child {
+    border-right: 0 !important;
+  }
+}
+
+@container visualization-workspace (max-width: 420px) {
+  .visualization-frame.module-shell[data-module-id="regression"] .experiment-board {
+    padding-inline: 12px !important;
+  }
+
+  .visualization-frame.module-shell[data-module-id="regression"] .regression-stage,
+  .visualization-frame.module-shell[data-module-id="regression"] .regression-control-rail > .parameter-panel,
+  .visualization-frame.module-shell[data-module-id="regression"] .regression-control-rail > .teaching-panel,
+  .visualization-frame.module-shell[data-module-id="regression"] .regression-control-rail > [data-formula-card],
+  .visualization-frame.module-shell[data-module-id="regression"] .regression-control-rail > [data-observation-card],
+  .visualization-frame.module-shell[data-module-id="regression"] .regression-learning-grid > .teaching-panel,
+  .visualization-frame.module-shell[data-module-id="regression"] .regression-learning-grid > [data-formula-card],
+  .visualization-frame.module-shell[data-module-id="regression"] .regression-learning-grid > [data-observation-card] {
+    padding: 12px !important;
+  }
+
+  .visualization-frame.module-shell[data-module-id="regression"] .numeric-line-controls,
+  .visualization-frame.module-shell[data-module-id="regression"] .control-panel__summary-card {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+
+  .visualization-frame.module-shell[data-module-id="regression"] .numeric-line-controls > .control-panel__label-row,
+  .visualization-frame.module-shell[data-module-id="regression"] .numeric-line-controls > .control-panel__hint {
+    grid-column: 1;
+  }
+}

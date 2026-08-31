@@ -94,6 +94,8 @@ describe("WalsApp rendering", () => {
   it("applies a numeric confidence-level select value to the simulation", async () => {
     withLanguage(<WalsApp moduleConfig={mesConfidenceConfig} />);
     await userEvent.selectOptions(screen.getByRole("combobox", { name: "置信水平" }), "0.8");
+    // This experiment is stochastic: applied controls update after a Run.
+    await userEvent.click(screen.getByRole("button", { name: "运行" }));
     await waitFor(() => {
       const metric = screen.getByText("置信水平", { selector: ".metric-label" }).closest("article");
       expect(metric).not.toBeNull();
@@ -147,5 +149,11 @@ describe("core visualizer apps mount", () => {
   it("renders the Type I / II Error app", () => {
     withLanguage(<TypeErrorApp />);
     expect(screen.getByRole("heading", { name: "一类/二类错误", level: 1 })).toBeInTheDocument();
+    expect(screen.getByText("p 值")).toBeInTheDocument();
+    expect(screen.getByText("检验决策")).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "左尾" })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "右尾" })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "双边" })).toBeInTheDocument();
+    expect(screen.getByText(/在 H₀ 成立时，得到当前或更极端统计量的概率/)).toBeInTheDocument();
   });
 });

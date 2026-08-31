@@ -1,7 +1,7 @@
 import type { ChartPoint, SimulationResult } from "../types";
 import { createRandom, exponentialRandom, normalRandom } from "@stats-viz/shared/random";
 import { formatNumber, mean, ratioOrNa, variance } from "@stats-viz/shared/format";
-import { histogram, normalCdf } from "@stats-viz/shared/math";
+import { normalCdf } from "@stats-viz/shared/math";
 import { num, result, type ControlMap } from "./internal";
 
 export function piCircle(controls: ControlMap, seed: number): SimulationResult {
@@ -14,7 +14,7 @@ export function piCircle(controls: ControlMap, seed: number): SimulationResult {
     const y = rng() * 2 - 1;
     const hit = x * x + y * y <= 1;
     if (hit) inside += 1;
-    if (i < 1200) points.push({ x, y, color: hit ? "#2f6f64" : "#c8665a" });
+    if (i < 1200) points.push({ x, y, color: hit ? "var(--lab-teal)" : "var(--lab-coral)" });
   }
   const estimate = 4 * inside / n;
   return result(
@@ -22,8 +22,10 @@ export function piCircle(controls: ControlMap, seed: number): SimulationResult {
     "The chart displays a capped preview of simulated points; the metrics use all generated points.",
     [
       { label: "pi estimate", value: formatNumber(estimate, 5), detail: "4 x inside proportion" },
+      { label: "reference value", value: formatNumber(Math.PI, 5), detail: "analytic π" },
       { label: "inside points", value: String(inside), detail: `${n} total draws` },
-      { label: "absolute error", value: formatNumber(Math.abs(Math.PI - estimate), 5), detail: "Compared with Math.PI" }
+      { label: "absolute error", value: formatNumber(Math.abs(Math.PI - estimate), 5), detail: "Compared with Math.PI" },
+      { label: "simulation count", value: String(n), detail: "points generated" }
     ],
     {
       type: "scatter",
@@ -31,15 +33,15 @@ export function piCircle(controls: ControlMap, seed: number): SimulationResult {
       xLabel: "horizontal coordinate x",
       yLabel: "vertical coordinate y",
       points,
-      circles: [{ cx: 0, cy: 0, radius: 1, label: "unit circle", color: "#8d75b5" }],
+      circles: [{ cx: 0, cy: 0, radius: 1, label: "unit circle", color: "var(--lab-purple)" }],
       references: [
-        { axis: "x", value: 0, color: "#b9b3a7", dashed: false },
-        { axis: "y", value: 0, color: "#b9b3a7", dashed: false },
+        { axis: "x", value: 0, color: "var(--lab-border)", dashed: false },
+        { axis: "y", value: 0, color: "var(--lab-border)", dashed: false },
       ],
       legend: [
-        { label: "inside circle", color: "#2f6f64", shape: "dot" },
-        { label: "outside circle", color: "#c8665a", shape: "dot" },
-        { label: "circle boundary", color: "#8d75b5", shape: "line" },
+        { label: "inside circle", color: "var(--lab-teal)", shape: "dot" },
+        { label: "outside circle", color: "var(--lab-coral)", shape: "dot" },
+        { label: "circle boundary", color: "var(--lab-purple)", shape: "line" },
       ],
       xDomain: [-1, 1],
       yDomain: [-1, 1],
@@ -71,16 +73,18 @@ export function buffon(controls: ControlMap, seed: number): SimulationResult {
     "Each point is the cumulative pi estimate after another experiment.",
     [
       { label: "pi estimate", value: formatNumber(final, 5), detail: "Cumulative estimate" },
+      { label: "reference value", value: formatNumber(Math.PI, 5), detail: "analytic π" },
       { label: "crossing rate", value: formatNumber(totalCrosses / (trials * experiments), 4), detail: "Needles crossing a line" },
-      { label: "experiments", value: String(experiments), detail: `${trials} trials each` }
+      { label: "absolute error", value: formatNumber(Math.abs(Math.PI - final), 5), detail: "Compared with Math.PI" },
+      { label: "simulation count", value: String(trials * experiments), detail: `${trials} trials each` }
     ],
     {
       type: "line",
       title: "Cumulative estimate by experiment",
       xLabel: "completed experiments",
       yLabel: "estimate of π",
-      series: [{ label: "Monte Carlo estimate", points: estimates, color: "#2f6f64" }],
-      references: [{ axis: "y", value: Math.PI, label: "π", color: "#8d75b5" }],
+      series: [{ label: "Monte Carlo estimate", points: estimates, color: "var(--lab-teal)" }],
+      references: [{ axis: "y", value: Math.PI, label: "π", color: "var(--lab-purple)" }],
       yDomain: [Math.max(0, Math.min(...estimates.map((point) => point.y), Math.PI) - 0.8), Math.max(...estimates.map((point) => point.y), Math.PI) + 0.8],
     }
   );
@@ -91,6 +95,12 @@ export function mcIntegralExp(controls: ControlMap, seed: number): SimulationRes
   const values = Array.from({ length: n }, () => Math.exp(-(2 + 2 * rng())) * 2);
   const estimate = mean(values);
   const exact = Math.exp(-2) - Math.exp(-4);
+  let running = 0;
+  const convergence = values.filter((_, index) => index % Math.max(1, Math.floor(n / 80)) === 0).map((_, index) => {
+    const end = Math.min(values.length, (index + 1) * Math.max(1, Math.floor(n / 80)));
+    running = values.slice(0, end).reduce((sum, draw) => sum + draw, 0) / end;
+    return { x: end, y: running };
+  });
   return result(
     "Monte Carlo integral estimate",
     "The integral is estimated by averaging transformed uniform draws.",
@@ -99,7 +109,7 @@ export function mcIntegralExp(controls: ControlMap, seed: number): SimulationRes
       { label: "exact value", value: formatNumber(exact, 6), detail: "exp(-2) - exp(-4)" },
       { label: "absolute error", value: formatNumber(Math.abs(estimate - exact), 6), detail: `${n} draws` }
     ],
-    { type: "bars", title: "Contribution histogram", xLabel: "estimate contribution", yLabel: "count", bars: histogram(values) }
+    { type: "line", title: "Monte Carlo convergence", xLabel: "simulation count N", yLabel: "running estimate", series: [{ label: "estimate", points: convergence, color: "var(--lab-teal)" }], references: [{ axis: "y", value: exact, label: "exact", color: "var(--lab-purple)" }] }
   );
 }
 export function mcTransform(controls: ControlMap, seed: number): SimulationResult {
@@ -152,8 +162,8 @@ export function normalCdfExample(controls: ControlMap, seed: number): Simulation
       xLabel: "threshold x",
       yLabel: "P(Z ≤ x)",
       series: [
-        { label: "indicator estimate", points: xs.map((xValue, index) => ({ x: xValue, y: Number(rows[index][1]) })), color: "#2f6f64" },
-        { label: "analytic Φ(x)", points: xs.map((xValue) => ({ x: xValue, y: normalCdf(xValue) })), color: "#c8665a", dashed: true },
+        { label: "indicator estimate", points: xs.map((xValue, index) => ({ x: xValue, y: Number(rows[index][1]) })), color: "var(--lab-teal)" },
+        { label: "analytic Φ(x)", points: xs.map((xValue) => ({ x: xValue, y: normalCdf(xValue) })), color: "var(--lab-purple)", dashed: true },
       ],
       yDomain: [0, 1],
     },

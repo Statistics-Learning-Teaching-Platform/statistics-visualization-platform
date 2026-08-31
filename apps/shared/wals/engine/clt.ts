@@ -70,7 +70,8 @@ export function centralLimitTheorem(
   const populationMean = moments.mean;
   const populationSd = moments.sd;
   const standardError = populationSd / Math.sqrt(sampleSize);
-  const shownMeans = sampleMeans ?? generateSampleMeans(controls, DEFAULT_CLT_SAMPLE_COUNT, seed);
+  const repetitions = Math.max(1, Math.round(num(controls, "repetitions", DEFAULT_CLT_SAMPLE_COUNT)));
+  const shownMeans = sampleMeans ?? generateSampleMeans(controls, repetitions, seed);
 
   // Standardize the sample means and keep a fixed domain. Previously every n
   // received a newly centered/scaled x-axis, which visually hid both the CLT
@@ -105,20 +106,16 @@ export function centralLimitTheorem(
     "Sampling distribution of sample means",
     stabilityNarrative,
     [
-      { label: "repeated samples", value: String(shownMeans.length), detail: "sample means in histogram" },
       { label: "sample size n", value: String(sampleSize), detail: "observations per sample" },
-      { label: "population mean", value: formatNumber(populationMean, 3), detail: "theoretical value" },
+      { label: "repeated samples", value: String(shownMeans.length), detail: "sample means in histogram" },
+      { label: "mean of sample means", value: shownMeans.length > 0 ? formatNumber(mean(shownMeans), 4) : "n/a", detail: "empirical center" },
+      { label: "empirical SE", value: shownMeans.length > 1 ? formatNumber(standardDeviation(shownMeans), 4) : "n/a", detail: "SD of sample means" },
       { label: "theoretical SE", value: formatNumber(standardError, 4), detail: "sigma / sqrt(n)" },
-      {
-        label: "observed SD",
-        value: shownMeans.length > 1 ? formatNumber(standardDeviation(shownMeans), 4) : "n/a",
-        detail: "SD of sample means"
-      },
-      {
-        label: "shape stability",
-        value: shownMeans.length < 100 ? "still unstable" : "ready to compare",
-        detail: shownMeans.length < 100 ? "collect at least 100 repeated samples" : "enough repetitions for a first visual comparison",
-      },
+      // Keep the former diagnostic labels in the payload for backwards
+      // compatibility with engine consumers while the shared metric strip
+      // presents the five teaching metrics above.
+      { label: "observed SD", value: shownMeans.length > 1 ? formatNumber(standardDeviation(shownMeans), 4) : "n/a", detail: "SD of sample means" },
+      { label: "shape stability", value: shownMeans.length < 100 ? "still unstable" : "ready to compare", detail: shownMeans.length < 100 ? "collect at least 100 repeated samples" : "enough repetitions for a first visual comparison" },
     ],
     {
       type: "clt",

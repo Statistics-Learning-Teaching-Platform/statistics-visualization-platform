@@ -153,6 +153,7 @@ export function localizeModuleConfig<T extends Record<string, any>>(config: T, l
       teachingPoints: example.teachingPoints?.map((point: string) => localizeOptionalText(point, language)),
       controls: example.controls?.map((control: Record<string, any>) => ({
         ...control,
+        description: localizeOptionalText(control.description, language),
         label: localizeOptionalText(control.label, language),
         labelByValue: control.labelByValue ? {
           ...control.labelByValue,
@@ -215,6 +216,10 @@ function localizeChartSpec<T extends Record<string, any>>(chart: T, language: La
       ...series,
       label: localizeOptionalText(series.label, language)
     })),
+    areas: chart.areas?.map((area: Record<string, any>) => ({
+      ...area,
+      label: localizeOptionalText(area.label, language)
+    })),
     lines: chart.lines?.map((series: Record<string, any>) => ({
       ...series,
       label: localizeOptionalText(series.label, language)
@@ -253,9 +258,16 @@ export function localizeSimulationResult<T extends Record<string, any>>(result: 
     chart: result.chart ? localizeChartSpec(result.chart, language) : result.chart,
     table: result.table ? {
       ...result.table,
+      title: localizeOptionalText(result.table.title, language),
       columns: result.table.columns?.map((column: string) => localizeOptionalText(column, language)),
       rows: localizeTableRows(result.table.rows, language)
-    } : result.table
+    } : result.table,
+    tables: result.tables?.map((table: Record<string, any>) => ({
+      ...table,
+      title: localizeOptionalText(table.title, language),
+      columns: table.columns?.map((column: string) => localizeOptionalText(column, language)),
+      rows: localizeTableRows(table.rows, language),
+    }))
   };
 }
 

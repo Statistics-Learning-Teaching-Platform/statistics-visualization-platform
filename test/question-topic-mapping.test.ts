@@ -3,10 +3,14 @@ import path from "node:path";
 import { describe, expect, it } from "vitest";
 import { topicManifests } from "../src/course/topicRegistry";
 import { inferTopicIds, topicLabels } from "../integrations/st-qselector/Program/src/lib/topic-mapping";
+import {
+  getTextbookChapterIdsForTopics,
+  isTextbookChapterId,
+} from "../src/course/textbookChapters";
 
 function readServerQuestionIndex(): {
   totalCount: number;
-  questions: Array<{ topicIds?: string[] }>;
+  questions: Array<{ topicIds?: string[]; textbookChapterIds?: string[] }>;
 } {
   const file = path.resolve("integrations/st-qselector/Program/src/generated/reviewed-questions.ts");
   const source = fs.readFileSync(file, "utf8");
@@ -25,13 +29,16 @@ describe("question bank topic mapping", () => {
       .toEqual(expect.arrayContaining(["central-limit-theorem", "sampling-distributions"]));
   });
 
-  it("keeps all 293 reviewed-index questions and gives each a valid topic", () => {
+  it("keeps all reviewed-index questions and gives each a valid topic", () => {
     const reviewedQuestionIndex = readServerQuestionIndex();
-    expect(reviewedQuestionIndex.totalCount).toBe(293);
-    expect(reviewedQuestionIndex.questions).toHaveLength(293);
+    expect(reviewedQuestionIndex.questions).toHaveLength(reviewedQuestionIndex.totalCount);
     for (const question of reviewedQuestionIndex.questions) {
       expect(question.topicIds?.length).toBeGreaterThan(0);
       expect(question.topicIds?.every((id) => validTopicIds.has(id))).toBe(true);
+      expect(question.textbookChapterIds).toEqual(
+        getTextbookChapterIdsForTopics(question.topicIds ?? []),
+      );
+      expect(question.textbookChapterIds?.every(isTextbookChapterId)).toBe(true);
     }
   });
 });

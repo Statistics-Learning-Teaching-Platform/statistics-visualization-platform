@@ -25,6 +25,10 @@ function renderWorkspace() {
   );
 }
 
+function courseNavigation() {
+  return screen.getByRole("navigation", { name: "R 练习" });
+}
+
 describe("R Coding Studio", () => {
   beforeEach(() => {
     localStorage.clear();
@@ -32,11 +36,11 @@ describe("R Coding Studio", () => {
     window.history.replaceState({}, "", "/r-learning");
   });
 
-  it("renders the expanded thirty-two-lesson curriculum and the starter editor", () => {
+  it("renders the expanded thirty-nine-lesson curriculum and the starter editor", () => {
     renderWorkspace();
-    expect(screen.getByText("R 语言编程工作室")).toBeInTheDocument();
-    const navigation = screen.getByRole("navigation", { name: "课程" });
-    expect(within(navigation).getAllByRole("button")).toHaveLength(32);
+    expect(screen.getByText("R 练习")).toBeInTheDocument();
+    const navigation = courseNavigation();
+    expect(within(navigation).getAllByRole("button")).toHaveLength(39);
     expect(
       (screen.getByRole("textbox", { name: "R 代码编辑器" }) as HTMLTextAreaElement).value,
     ).toContain("average_score <-");
@@ -61,20 +65,24 @@ describe("R Coding Studio", () => {
 
   it("cancels and resets the runtime when switching lessons", async () => {
     renderWorkspace();
-    const navigation = screen.getByRole("navigation", { name: "课程" });
+    const navigation = courseNavigation();
 
     await userEvent.click(within(navigation).getAllByRole("button")[1]);
 
     expect(disposeWebRRuntime).toHaveBeenCalledTimes(1);
-    expect(screen.getByText("点击运行时加载 R")).toHaveAttribute("data-status", "idle");
+    expect(screen.getByText(/点击运行时加载 R/)).toBeInTheDocument();
+    expect(document.querySelector(".ed-code-cell")).toHaveAttribute("data-engine-status", "idle");
   });
 
-  it("reveals a hint and records a passed automatic check", async () => {
+  it("reveals staged hints and records a passed automatic check", async () => {
     renderWorkspace();
-    await userEvent.click(screen.getByRole("button", { name: "? 提示 +" }));
-    expect(screen.getByText(/接受一个数值向量/)).toBeInTheDocument();
+    // Stage-based hint disclosure replaces the single-shot hint button.
+    await userEvent.click(screen.getByRole("button", { name: /卡住了？给我一个提示/ }));
+    expect(screen.getByText(/先确认要保存的是一个计算结果/)).toBeInTheDocument();
 
-    await userEvent.click(screen.getByRole("button", { name: "✓ 检查答案" }));
+    // The check action appears once a run has produced output.
+    await userEvent.click(screen.getByRole("button", { name: "运行代码" }));
+    await userEvent.click(await screen.findByRole("button", { name: "检查答案" }));
     expect(await screen.findByText(/正确保存了它的均值 80.8/)).toBeInTheDocument();
     expect(screen.getByLabelText("学习进度: 3%")).toBeInTheDocument();
   });
@@ -88,7 +96,7 @@ describe("R Coding Studio", () => {
 
     await userEvent.click(screen.getByRole("button", { name: "运行代码" }));
     expect(await screen.findByLabelText("R plot output")).toBeInTheDocument();
-    const navigation = screen.getByRole("navigation", { name: "课程" });
+    const navigation = courseNavigation();
     await userEvent.click(within(navigation).getAllByRole("button")[1]);
     expect(close).toHaveBeenCalledTimes(1);
   });
@@ -99,6 +107,8 @@ describe("R Coding Studio", () => {
     }), { status: 200, headers: { "Content-Type": "application/json" } }));
     renderWorkspace();
 
+    // The tutor lives in an on-demand drawer behind its launcher.
+    await userEvent.click(screen.getByRole("button", { name: /AI R 助教/ }));
     const input = screen.getByRole("textbox", { name: /问报错原因/ });
     await userEvent.type(input, "为什么这段代码报错？");
     await userEvent.click(screen.getByRole("button", { name: "发送" }));

@@ -1178,6 +1178,13 @@ body {
   opacity: 0.3;
 }
 
+/* Semantic chart vocabulary shared with the rest of the laboratory. */
+.visualization-frame.module-shell .chart-inline-legend__line--null { stroke: var(--lab-purple); }
+.visualization-frame.module-shell .chart-inline-legend__line--critical { stroke: var(--lab-orange); }
+.visualization-frame.module-shell .chart-inline-legend__line--observed { stroke: var(--lab-blue); }
+.visualization-frame.module-shell .chart-inline-legend__area--type1 { fill: var(--lab-orange); }
+.visualization-frame.module-shell .chart-inline-legend__area--type2 { fill: var(--lab-coral); }
+
 @media (max-width: 1100px) {
   body {
     overflow: auto;

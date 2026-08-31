@@ -1,174 +1,265 @@
-import { useCallback, useEffect, useRef, useState, Suspense } from "react";
-import { Sidebar, LanguageTabs } from "./Sidebar";
-import { appRegistry } from "./appRegistry";
 import {
-  useLanguage,
-  getPlatformCopy,
-  getVisualizerLabel,
+	getPlatformCopy,
+	getVisualizerLabel,
+	useLanguage,
 } from "@stats-viz/shared/i18n";
+import {
+	PanelResizeHandle,
+	loadWorkspaceLayout,
+	saveWorkspaceLayout,
+} from "@stats-viz/shared/visualization";
+import { Component, Suspense, useCallback, useEffect, useState } from "react";
+import type { CSSProperties, ComponentType, ErrorInfo, ReactNode } from "react";
 import { getDefaultVisualizer } from "../../scripts/apps";
-import { AppErrorBoundary } from "./AppErrorBoundary";
+import { EditorialDemoShell } from "../visual-demo/editorial/EditorialPrimitives";
+import { Sidebar } from "./Sidebar";
+import { appRegistry, loadVisualizerComponent } from "./appRegistry";
+import "../visual-demo/editorial-tailwind.css";
+import "../visual-demo/editorial/editorial-demo.css";
+import "./editorial-platform.css";
 
-const PLATFORM_SIDEBAR_WIDTH_KEY = "statistics-platform-sidebar-width";
+interface VisualizerErrorBoundaryProps {
+	appId: string;
+	language: "zh" | "en";
+	children: ReactNode;
+}
+
+interface VisualizerErrorBoundaryState {
+	error: Error | null;
+}
+
+class VisualizerErrorBoundary extends Component<
+	VisualizerErrorBoundaryProps,
+	VisualizerErrorBoundaryState
+> {
+	state: VisualizerErrorBoundaryState = { error: null };
+
+	static getDerivedStateFromError(error: Error): VisualizerErrorBoundaryState {
+		return { error };
+	}
+
+	componentDidCatch(error: Error, info: ErrorInfo) {
+		console.error(
+			`[AppShell] Failed to render visualizer "${this.props.appId}"`,
+			error,
+			info,
+		);
+	}
+
+	render() {
+		if (!this.state.error) return this.props.children;
+
+		const isChinese = this.props.language === "zh";
+		return (
+			<section className="visualizer-error" role="alert">
+				<p className="visualizer-error__eyebrow">
+					{isChinese ? "MODULE LOAD ERROR" : "MODULE LOAD ERROR"}
+				</p>
+				<h2>
+					{isChinese ? "实验模块未能正常载入" : "The lab module could not load"}
+				</h2>
+				<p>
+					{isChinese
+						? "页面没有丢失。请重新载入实验模块；如果问题持续，错误信息会保留在控制台中用于定位。"
+						: "Your work is safe. Reload the lab module; diagnostic details remain available in the console."}
+				</p>
+				<code>{this.state.error.message}</code>
+				<button type="button" onClick={() => window.location.reload()}>
+					{isChinese ? "重新载入实验" : "Reload lab"}
+				</button>
+			</section>
+		);
+	}
+}
 
 function getHashId(): string {
-  return window.location.hash.replace(/^#\/?/, "");
+	return window.location.hash.replace(/^#\/?/, "");
 }
 
 function resolveVisualizerId(id: string): string {
-  return id in appRegistry ? id : getDefaultVisualizer().id;
+	return id in appRegistry ? id : getDefaultVisualizer().id;
 }
 
 function setHashId(id: string): void {
-  if (getHashId() !== id) {
-    window.location.hash = id;
-  }
-}
-
-function clamp(value: number, min: number, max: number): number {
-  return Math.min(max, Math.max(min, value));
-}
-
-interface ResizeHandleProps {
-  onResize: (width: number) => void;
-  ariaLabel: string;
-}
-
-function ResizeHandle({ onResize, ariaLabel }: ResizeHandleProps) {
-  const shellRef = useRef<HTMLElement | null>(null);
-
-  const handlePointerDown = useCallback(
-    (event: React.PointerEvent<HTMLDivElement>) => {
-      event.preventDefault();
-      const handle = event.currentTarget;
-      handle.setPointerCapture(event.pointerId);
-      document.body.classList.add("is-resizing-panels");
-
-      const shell = handle.closest<HTMLElement>(".platform-shell");
-      if (!shell) return;
-      shellRef.current = shell;
-
-      const onPointerMove = (moveEvent: PointerEvent): void => {
-        if (!shellRef.current) return;
-        const rect = shellRef.current.getBoundingClientRect();
-        const maxWidth = Math.min(380, rect.width * 0.38);
-        const width = clamp(moveEvent.clientX - rect.left, 230, maxWidth);
-        onResize(width);
-      };
-
-      const onPointerUp = (): void => {
-        document.body.classList.remove("is-resizing-panels");
-        window.removeEventListener("pointermove", onPointerMove);
-        window.removeEventListener("pointerup", onPointerUp);
-      };
-
-      window.addEventListener("pointermove", onPointerMove);
-      window.addEventListener("pointerup", onPointerUp, { once: true });
-    },
-    [onResize],
-  );
-
-  return (
-    <div
-      className="platform-resize-handle"
-      role="separator"
-      aria-orientation="vertical"
-      aria-label={ariaLabel}
-      onPointerDown={handlePointerDown}
-    />
-  );
+	if (getHashId() !== id) {
+		window.location.hash = id;
+	}
 }
 
 export function AppShell() {
-  const lang = useLanguage();
-  const [activeId, setActiveId] = useState<string>(() => {
-    const hashId = getHashId();
-    return resolveVisualizerId(hashId);
-  });
-  const [sidebarWidth, setSidebarWidth] = useState<string | null>(() => {
-    try {
-      return localStorage.getItem(PLATFORM_SIDEBAR_WIDTH_KEY);
-    } catch {
-      return null;
-    }
-  });
+	const lang = useLanguage();
+	const [activeId, setActiveId] = useState<string>(() => {
+		const hashId = getHashId();
+		return resolveVisualizerId(hashId);
+	});
+	const [sidebarWidth, setSidebarWidth] = useState(
+		() => loadWorkspaceLayout().leftPanelWidth,
+	);
+	const [directoryOpen, setDirectoryOpen] = useState(false);
 
-  // Sync hash on mount
-  useEffect(() => {
-    const resolvedId = resolveVisualizerId(getHashId());
-    if (getHashId() !== resolvedId) {
-      setHashId(resolvedId);
-    }
-  }, []);
+	useEffect(() => {
+		const closeDirectory = (event: KeyboardEvent) => {
+			if (event.key === "Escape") setDirectoryOpen(false);
+		};
+		window.addEventListener("keydown", closeDirectory);
+		return () => window.removeEventListener("keydown", closeDirectory);
+	}, []);
+	const [ActiveApp, setActiveApp] = useState<ComponentType | null>(null);
+	const [loadError, setLoadError] = useState<Error | null>(null);
+	const [isLoading, setIsLoading] = useState(true);
 
-  // Listen for hash changes
-  useEffect(() => {
-    const onHashChange = () => {
-      const hashId = getHashId();
-      const resolvedId = resolveVisualizerId(hashId);
-      setActiveId(resolvedId);
-      if (hashId !== resolvedId) setHashId(resolvedId);
-    };
-    window.addEventListener("hashchange", onHashChange);
-    return () => window.removeEventListener("hashchange", onHashChange);
-  }, []);
+	// Sync hash on mount
+	useEffect(() => {
+		const resolvedId = resolveVisualizerId(getHashId());
+		if (getHashId() !== resolvedId) {
+			setHashId(resolvedId);
+		}
+	}, []);
 
-  // Update document title and lang
-  useEffect(() => {
-    const copy = getPlatformCopy(lang);
-    const [, pageTitle] = getVisualizerLabel(activeId, lang);
-    document.documentElement.lang = lang === "zh" ? "zh-CN" : "en";
-    document.title = `${pageTitle} | ${copy.documentSuffix}`;
-  }, [activeId, lang]);
+	// Listen for hash changes
+	useEffect(() => {
+		const onHashChange = () => {
+			const hashId = getHashId();
+			const resolvedId = resolveVisualizerId(hashId);
+			setActiveId(resolvedId);
+			if (hashId !== resolvedId) setHashId(resolvedId);
+		};
+		window.addEventListener("hashchange", onHashChange);
+		return () => window.removeEventListener("hashchange", onHashChange);
+	}, []);
 
-  const handleNavigate = useCallback((id: string) => {
-    setHashId(id);
-    setActiveId(id);
-  }, []);
+	// Update document title and lang
+	useEffect(() => {
+		const copy = getPlatformCopy(lang);
+		const [, pageTitle] = getVisualizerLabel(activeId, lang);
+		document.documentElement.lang = lang === "zh" ? "zh-CN" : "en";
+		document.title = `${pageTitle} | ${copy.documentSuffix}`;
+	}, [activeId, lang]);
 
-  const handleSidebarResize = useCallback((width: number) => {
-    const cssWidth = `${Math.round(width)}px`;
-    setSidebarWidth(cssWidth);
-    try {
-      localStorage.setItem(PLATFORM_SIDEBAR_WIDTH_KEY, cssWidth);
-    } catch {
-      // localStorage may be unavailable
-    }
-  }, []);
+	useEffect(() => {
+		let cancelled = false;
+		setIsLoading(true);
+		setLoadError(null);
+		setActiveApp(null);
 
-  const ActiveApp = appRegistry[activeId] ?? appRegistry[getDefaultVisualizer().id];
-  const copy = getPlatformCopy(lang);
+		loadVisualizerComponent(activeId)
+			.then((component) => {
+				if (cancelled) return;
+				setActiveApp(() => component);
+				setIsLoading(false);
+			})
+			.catch((error: unknown) => {
+				if (cancelled) return;
+				setLoadError(
+					error instanceof Error
+						? error
+						: new Error("Unknown visualizer loading error"),
+				);
+				setIsLoading(false);
+			});
 
-  return (
-    <section
-      className="platform-shell"
-      style={sidebarWidth ? ({ "--platform-sidebar-width": sidebarWidth } as React.CSSProperties) : undefined}
-    >
-      <div className="platform-utility-nav">
-        <a className="platform-home-link" href="/" aria-label={copy.homeLabel}>
-          <span aria-hidden="true">←</span>
-          <span>{copy.homeLabel}</span>
-        </a>
-        <LanguageTabs />
-      </div>
-      <Sidebar activeId={activeId} onNavigate={handleNavigate} />
-      <ResizeHandle onResize={handleSidebarResize} ariaLabel={copy.resizeLabel} />
-      <main className="visualizer-frame" data-loading="false">
-        <AppErrorBoundary
-          key={activeId}
-          title={lang === "zh" ? "可视化模块加载失败" : "Visualizer failed to load"}
-          message={
-            lang === "zh"
-              ? "请重新加载后再试。已保存的设置不会被清除。"
-              : "Reload and try again. Your saved settings will be kept."
-          }
-          retryLabel={lang === "zh" ? "重新加载" : "Reload"}
-        >
-          <Suspense fallback={<div className="app-loading" role="status" aria-live="polite">{copy.loadingLabel}</div>}>
-            <ActiveApp />
-          </Suspense>
-        </AppErrorBoundary>
-      </main>
-    </section>
-  );
+		return () => {
+			cancelled = true;
+		};
+	}, [activeId]);
+
+	const handleNavigate = useCallback((id: string) => {
+		setHashId(id);
+		setActiveId(id);
+	}, []);
+
+	const handleSidebarResize = useCallback((width: number) => {
+		setSidebarWidth(width);
+		const current = loadWorkspaceLayout();
+		saveWorkspaceLayout({ ...current, leftPanelWidth: width });
+	}, []);
+
+	const copy = getPlatformCopy(lang);
+
+	return (
+		<EditorialDemoShell
+			current="experiment"
+			mode="workspace"
+			siteMode="product"
+		>
+			<section
+				id="main-content"
+				className="platform-shell ed-live-lab-shell"
+				data-directory-open={String(directoryOpen)}
+				style={
+					{ "--platform-sidebar-width": `${sidebarWidth}px` } as CSSProperties
+				}
+			>
+				<button
+					type="button"
+					className="lab-directory-toggle"
+					aria-expanded={directoryOpen}
+					aria-controls="lab-directory-sidebar"
+					onClick={() => setDirectoryOpen((open) => !open)}
+				>
+					{lang === "zh" ? "实验目录" : "Lab index"}
+				</button>
+				<Sidebar
+					activeId={activeId}
+					onNavigate={handleNavigate}
+					id="lab-directory-sidebar"
+				/>
+				<PanelResizeHandle
+					side="left"
+					value={sidebarWidth}
+					min={185}
+					max={240}
+					ariaLabel={copy.resizeLabel}
+					containerSelector=".platform-shell"
+					onChange={handleSidebarResize}
+				/>
+				<main className="visualizer-frame" data-loading={isLoading}>
+					{loadError ? (
+						<section className="visualizer-error" role="alert">
+							<p className="visualizer-error__eyebrow">MODULE LOAD ERROR</p>
+							<h2>
+								{lang === "zh"
+									? "实验模块未能正常载入"
+									: "The lab module could not load"}
+							</h2>
+							<code>{loadError.message}</code>
+							<button type="button" onClick={() => window.location.reload()}>
+								{lang === "zh" ? "重新载入实验" : "Reload lab"}
+							</button>
+						</section>
+					) : isLoading ? (
+						<output className="app-loading" aria-live="polite">
+							{copy.loadingLabel}
+						</output>
+					) : ActiveApp ? (
+						<VisualizerErrorBoundary
+							key={activeId}
+							appId={activeId}
+							language={lang}
+						>
+							<Suspense
+								fallback={
+									<output className="app-loading" aria-live="polite">
+										{copy.loadingLabel}
+									</output>
+								}
+							>
+								<ActiveApp />
+							</Suspense>
+						</VisualizerErrorBoundary>
+					) : (
+						<section className="visualizer-error" role="alert">
+							<p className="visualizer-error__eyebrow">MODULE NOT FOUND</p>
+							<h2>
+								{lang === "zh" ? "没有找到实验模块" : "Lab module not found"}
+							</h2>
+							<button type="button" onClick={() => window.location.reload()}>
+								{lang === "zh" ? "重新载入" : "Reload"}
+							</button>
+						</section>
+					)}
+				</main>
+			</section>
+		</EditorialDemoShell>
+	);
 }

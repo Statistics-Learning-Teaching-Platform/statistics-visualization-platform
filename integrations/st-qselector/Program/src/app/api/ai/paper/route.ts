@@ -9,6 +9,7 @@ import { requireRequestSession, verifyCsrf } from "@/lib/auth/session";
 import { assertSafeOrigin, authErrorResponse, AuthError, readLimitedJson } from "@/lib/auth/security";
 import type { Question } from "@/lib/types";
 import { normalizeTopicIds } from "@/lib/topic-mapping";
+import { getTextbookChapterIdsForTopics } from "@/lib/textbook-chapters";
 
 export const runtime = "nodejs";
 export const maxDuration = 180;
@@ -143,6 +144,7 @@ function sanitizeDraft(draft: GeneratedDraft, job: GenerationJob, position: numb
   const suffix = randomUUID().replace(/-/g, "").slice(0, 10);
   const id = `ai_${chapterId.toLowerCase()}_${Date.now()}_${position + 1}_${suffix}`;
   const keywords = [String(draft.concept ?? job.concept).trim() || job.concept];
+  const topicIds = normalizeTopicIds(chapterId, keywords);
   return {
     id,
     groupId: id,
@@ -159,7 +161,8 @@ function sanitizeDraft(draft: GeneratedDraft, job: GenerationJob, position: numb
     difficulty,
     estimatedMinutes: Math.max(1, Math.min(60, difficulty * (type === "综合题" ? 5 : 3))),
     keywords,
-    topicIds: normalizeTopicIds(chapterId, keywords),
+    topicIds,
+    textbookChapterIds: getTextbookChapterIdsForTopics(topicIds),
     dataRefs: [],
     attachments: [],
     answer,
