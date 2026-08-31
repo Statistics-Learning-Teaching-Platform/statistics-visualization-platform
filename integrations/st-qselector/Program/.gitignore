@@ -15,6 +15,8 @@
 
 # next.js
 /.next/
+/.open-next/
+/.wrangler/
 /out/
 
 # formula conversion cache (generated PNGs from emf/wmf)
@@ -35,9 +37,7 @@ yarn-error.log*
 
 # env files (can opt-in for committing if needed)
 .env*
-
-# vercel
-.vercel
+!bootstrap.env.example
 
 # typescript
 *.tsbuildinfo

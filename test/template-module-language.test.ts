@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
-import { createState } from "../apps/shared/wals/WalsApp";
 import { moduleConfig } from "../apps/mes-anova/src/module-config";
+import { createState } from "../apps/shared/wals/WalsApp";
 
 describe("template module language rendering", () => {
   it("localizes template config, controls, and generated output in Chinese mode", () => {

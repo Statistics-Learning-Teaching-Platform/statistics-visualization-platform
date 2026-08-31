@@ -190,7 +190,7 @@
   "This setting has low power, which makes Type II errors common even when a real effect exists.": "当前设置检验功效较低，即使存在真实效应也容易发生二类错误。",
   "The true mean is still close to the null mean, so the two curves overlap heavily.": "真实均值仍接近原假设均值，所以两条曲线重叠很多。",
   "A strict alpha protects against false positives, but it can widen the acceptance region and raise beta.": "更严格的 α 可以减少误报，但也会扩大接受域并提高 β。",
-  "A larger alpha lowers beta here, but the blue Type I region also expands.": "在这里更大的 α 会降低 β，但一类错误区域也会扩大。",
+  "A larger alpha lowers beta here, but the shaded Type I region also expands.": "在这里更大的 α 会降低 β，但一类错误区域也会扩大。",
   "Current hypotheses": "当前假设",
   "Critical value": "临界值",
   "Test Statistic": "检验统计量",
@@ -413,7 +413,6 @@
   "E(X)": "E(X)",
   "Var(X)": "方差",
   "current distribution": "当前分布",
-  "theoretical mean": "理论均值",
   "theoretical variance": "理论方差",
   "observed": "观察值",
   "95% lower": "95% 下界",
@@ -432,7 +431,6 @@
   "bootstrap SE": "自助法标准误",
   "SD of bootstrap statistics": "自助法统计量的标准差",
   "95% CI": "95% 置信区间",
-  "percentile interval": "百分位区间",
   "Box-Muller draws": "正态变换抽样",
   "bin center": "分组中心",
   "count": "计数",
@@ -548,6 +546,7 @@
   "PDF/PMF or CDF/CMF": "PDF/PMF 或 CDF/CMF",
   "Over many repeated samples the observed coverage approaches the confidence level.": "随着重复抽样次数增多，观察覆盖率会逐渐接近置信水平。",
   "Each interval is a z-interval from a fresh sample drawn from N(mu, sigma); the reference line marks the true mean.": "每个区间都是由 N(μ,σ) 的一次新抽样构造的 z 区间；参考线标记真实均值。",
+  "Each interval is a t-interval from a fresh sample drawn from N(mu, sigma); the reference line marks the true mean.": "每个区间都是由 N(μ,σ) 的一次新抽样构造的 t 区间；参考线标记真实均值。",
   "value": "数值",
   "interval": "区间",
   "WALS/MES city skyscraper regression template rebuilt with static data.": "使用静态数据重构的 WALS/MES 城市摩天楼回归模板。",
@@ -640,27 +639,33 @@
   "Exam score": "考试成绩",
   "Outlier Impact Dataset": "异常值影响数据集",
   "Strong Linear Relationship": "强线性关系",
-  "Constructed classroom example for influence and outlier teaching": "用于讲解影响点与异常值的课堂示例"
-  ,"Accepted sample size": "接受样本量"
-  ,"inverse-transform draws": "逆变换抽样"
-  ,"latest mean": "最新样本均值"
-  ,"Normal approximation": "正态近似"
-  ,"observations": "观测值"
-  ,"group mean": "组均值"
-  ,"current state": "当前状态"
-  ,"target density": "目标密度"
-  ,"recent path": "最近路径"
-  ,"t": "t"
-  ,"beta": "贝塔"
-  ,"gamma": "伽马"
-  ,"chisq": "卡方"
-  ,"exp": "指数"
-  ,"unif": "均匀"
-  ,"binom": "二项"
-  ,"pois": "泊松"
-  ,"geom": "几何"
-  ,"cumulative distribution": "累积分布"
-  ,"probability mass": "概率质量"
-  ,"density": "密度"
-  ,"PMF  P(X = x)": "概率质量 P(X = x)"
+  "Constructed classroom example for influence and outlier teaching": "用于讲解影响点与异常值的课堂示例",
+  "Accepted sample size": "接受样本量",
+  "inverse-transform draws": "逆变换抽样",
+  "latest mean": "最新样本均值",
+  "Normal approximation": "正态近似",
+  "observations": "观测值",
+  "group mean": "组均值",
+  "current state": "当前状态",
+  "target density": "目标密度",
+  "recent path": "最近路径",
+  "t": "t",
+  "beta": "贝塔",
+  "gamma": "伽马",
+  "chisq": "卡方",
+  "exp": "指数",
+  "unif": "均匀",
+  "binom": "二项",
+  "pois": "泊松",
+  "geom": "几何",
+  "cumulative distribution": "累积分布",
+  "probability mass": "概率质量",
+  "density": "密度",
+  "PMF  P(X = x)": "概率质量 P(X = x)",
+  "Every bootstrap replicate resamples exactly n observations; the replicate count was reduced to keep the total draw budget responsive.": "每次自助法重复仍抽取恰好 n 个观测；为保持响应速度，重复次数已按总抽样预算下调。",
+  "Every bootstrap replicate resamples exactly n observations with replacement from the generated sample.": "每次自助法重复都从生成样本中有放回地抽取恰好 n 个观测。",
+  "bootstrap replicates": "自助法重复次数",
+  "not reported until both modes are explored": "在两个模态都得到探索前不报告",
+  "Initial-positive-sequence autocorrelation estimate. It is withheld when the chain has not demonstrated movement between both target modes.": "使用初始正序列自相关估计；当链尚未显示在两个目标模态之间移动时，不报告该值。",
+  "mode coverage": "模态覆盖"
 }

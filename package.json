@@ -1,55 +1,65 @@
 {
-  "name": "statistics-visualization-platform",
-  "private": true,
-  "version": "0.1.0",
-  "type": "module",
-  "workspaces": [
-    "apps/shared"
-  ],
-  "scripts": {
-    "dev": "node scripts/dev.mjs",
-    "dev:portal": "vite --host 127.0.0.1 --port 5173",
-    "dev:qselector": "npm --prefix integrations/st-qselector/Program run dev",
-    "test": "vitest run",
-    "check:privacy": "node scripts/check-content-privacy.mjs",
-    "prebuild": "npm run check:privacy",
-    "prebuild:pages": "npm run check:privacy",
-    "build": "node scripts/build.mjs",
-    "build:pages": "BASE_PATH=/statistics-visualization-platform/ node scripts/build.mjs",
-    "preview": "vite preview --host 127.0.0.1"
-  },
-  "devDependencies": {
-    "@biomejs/biome": "^1.9.4",
-    "@tailwindcss/vite": "^4.3.3",
-    "@testing-library/jest-dom": "^6.9.1",
-    "@testing-library/react": "^16.3.2",
-    "@testing-library/user-event": "^14.6.1",
-    "@types/d3": "^7.4.3",
-    "@types/node": "^22.19.15",
-    "@types/react": "^19.2.17",
-    "@types/react-dom": "^19.2.3",
-    "@vitejs/plugin-react": "^4.7.0",
-    "jsdom": "^25.0.1",
-    "tailwindcss": "^4.3.3",
-    "typescript": "~5.9.3",
-    "vite": "^7.2.7",
-    "vitest": "^3.2.4"
-  },
-  "dependencies": {
-    "@base-ui/react": "^1.7.0",
-    "@fontsource-variable/geist": "^5.3.0",
-    "bootstrap": "^5.3.8",
-    "class-variance-authority": "^0.7.1",
-    "clsx": "^2.1.1",
-    "d3": "^7.9.0",
-    "jstat": "^1.9.6",
-    "lucide-react": "^1.33.0",
-    "pyodide": "^314.0.3",
-    "react": "^19.2.7",
-    "react-dom": "^19.2.7",
-    "shadcn": "^4.19.0",
-    "tailwind-merge": "^3.6.0",
-    "tw-animate-css": "^1.4.0",
-    "webr": "^0.6.0"
-  }
+	"name": "statistics-visualization-platform",
+	"private": true,
+	"version": "0.1.0",
+	"type": "module",
+	"packageManager": "npm@10.9.8",
+	"engines": {
+		"node": ">=22.12.0 <25",
+		"npm": ">=10.9.0 <12"
+	},
+	"workspaces": [
+		"apps/shared"
+	],
+	"scripts": {
+		"sync:runtimes": "node scripts/sync-browser-runtimes.mjs",
+		"predev": "npm run sync:runtimes",
+		"dev": "node scripts/dev.mjs",
+		"dev:portal": "vite --host 127.0.0.1 --port 5173",
+		"dev:qselector": "npm --prefix integrations/st-qselector/Program run dev",
+		"test": "vitest run",
+		"check:privacy": "node scripts/check-content-privacy.mjs",
+		"prebuild:pages": "npm run check:privacy",
+		"lint": "biome lint --files-ignore-unknown=true src apps scripts test vite.config.ts",
+		"format": "biome format --write --files-ignore-unknown=true src apps scripts test vite.config.ts",
+		"typecheck": "tsc --noEmit",
+		"check": "npm run lint && npm run typecheck && npm test",
+		"prebuild": "npm run check:privacy && npm run sync:runtimes",
+		"build": "node scripts/build.mjs",
+		"preview": "vite preview --host 127.0.0.1"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "^2.5.11",
+		"@tailwindcss/vite": "^4.3.3",
+		"@testing-library/jest-dom": "^7.0.1",
+		"@testing-library/react": "^16.3.3",
+		"@testing-library/user-event": "^14.6.6",
+		"@types/d3": "^7.4.3",
+		"@types/node": "^22.20.1",
+		"@types/react": "^19.2.18",
+		"@types/react-dom": "^19.2.5",
+		"@vitejs/plugin-react": "^6.1.1",
+		"jsdom": "^30.0.1",
+		"tailwindcss": "^4.3.3",
+		"typescript": "^7.0.2",
+		"vite": "^8.2.2",
+		"vitest": "^4.1.11"
+	},
+	"dependencies": {
+		"@base-ui/react": "^1.7.0",
+		"@fontsource-variable/geist": "^5.3.0",
+		"bootstrap": "^5.3.8",
+		"class-variance-authority": "^0.7.1",
+		"clsx": "^2.1.1",
+		"d3": "^7.9.0",
+		"jstat": "^1.9.6",
+		"lucide-react": "^1.38.0",
+		"pyodide": "^314.0.6",
+		"react": "^19.2.8",
+		"react-dom": "^19.2.8",
+		"shadcn": "^4.19.1",
+		"tailwind-merge": "^3.6.0",
+		"tw-animate-css": "^1.4.0",
+		"webr": "^0.6.0"
+	}
 }

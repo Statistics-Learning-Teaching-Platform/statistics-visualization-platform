@@ -21,14 +21,20 @@ export function LessonSidebar<Unit extends string>({
   const language = useLanguage();
   return (
     <aside className="r-lesson-sidebar">
-      <div className="r-sidebar-heading"><span>{label}</span><b>{String(lessons.length).padStart(2, "0")}</b></div>
+      <div className="r-sidebar-heading">
+        <span>{label}</span>
+        <b>{String(lessons.length).padStart(2, "0")}</b>
+      </div>
       <nav className="r-lesson-nav" aria-label={label}>
         {units.map((unit) => {
           const unitLessons = lessons.filter((lesson) => lesson.unit === unit.id);
           if (!unitLessons.length) return null;
           return (
             <section key={unit.id} className="r-lesson-nav__unit">
-              <div className="r-lesson-nav__unit-title"><span>{unit.number}</span><strong>{unit[language]}</strong></div>
+              <div className="r-lesson-nav__unit-title">
+                <span>{unit.number}</span>
+                <strong>{unit[language]}</strong>
+              </div>
               {unitLessons.map((lesson) => {
                 const complete = completedLessonIds.includes(lesson.id);
                 const active = lesson.id === activeLessonId;
@@ -41,9 +47,20 @@ export function LessonSidebar<Unit extends string>({
                     onClick={() => onSelect(lesson.id)}
                     aria-current={active ? "page" : undefined}
                   >
-                    <span className="r-lesson-nav__number">{String(lesson.order).padStart(2, "0")}</span>
-                    <span className="r-lesson-nav__copy"><strong>{lesson.title[language]}</strong><small>{lesson.concepts.join(" · ")}</small></span>
-                    <span className="r-lesson-nav__state" data-complete={complete} aria-label={complete ? "complete" : "not complete"}>{complete ? "✓" : ""}</span>
+                    <span className="r-lesson-nav__number">
+                      {String(lesson.order).padStart(2, "0")}
+                    </span>
+                    <span className="r-lesson-nav__copy">
+                      <strong>{lesson.title[language]}</strong>
+                      <small>{lesson.concepts.join(" · ")}</small>
+                    </span>
+                    <span
+                      className="r-lesson-nav__state"
+                      data-complete={complete}
+                      aria-label={complete ? "complete" : "not complete"}
+                    >
+                      {complete ? "✓" : ""}
+                    </span>
                   </button>
                 );
               })}

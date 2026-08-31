@@ -1,10 +1,10 @@
 import { describe, expect, it } from "vitest";
-import { createState } from "../apps/shared/wals/WalsApp";
-import { moduleConfig as cltConfig } from "../apps/simulation-clt/src/module-config";
 import { moduleConfig as anovaConfig } from "../apps/mes-anova/src/module-config";
 import { moduleConfig as mesConfidenceConfig } from "../apps/mes-confidence-interval/src/module-config";
 import { moduleConfig as distributionsConfig } from "../apps/mes-distributions/src/module-config";
 import { moduleConfig as mesRegressionConfig } from "../apps/mes-linear-regression/src/module-config";
+import { createState } from "../apps/shared/wals/WalsApp";
+import { moduleConfig as cltConfig } from "../apps/simulation-clt/src/module-config";
 import { moduleConfig as introductionConfig } from "../apps/simulation-introduction/src/module-config";
 import { moduleConfig as mcmcConfig } from "../apps/simulation-mcmc/src/module-config";
 import { moduleConfig as randomVariableConfig } from "../apps/simulation-random-variable/src/module-config";
@@ -28,7 +28,7 @@ const allowedLatinWords = new Set([
   "exp",
   "int",
   "sigma",
-  "sqrt"
+  "sqrt",
 ]);
 
 function collectStrings(value: unknown, strings: string[] = []): string[] {
@@ -63,8 +63,8 @@ function collectVisibleStateStrings(state: any): string[] {
         teachingPoints: example.teachingPoints,
         controls: example.controls.map((control: any) => ({
           label: control.label,
-          options: control.options?.map((option: any) => option.label)
-        }))
+          options: control.options?.map((option: any) => option.label),
+        })),
       })),
       activeExample: {
         title: state.activeExample.title,
@@ -72,8 +72,8 @@ function collectVisibleStateStrings(state: any): string[] {
         teachingPoints: state.activeExample.teachingPoints,
         controls: state.activeExample.controls.map((control: any) => ({
           label: control.label,
-          options: control.options?.map((option: any) => option.label)
-        }))
+          options: control.options?.map((option: any) => option.label),
+        })),
       },
       result: {
         headline: state.result.headline,
@@ -91,12 +91,12 @@ function collectVisibleStateStrings(state: any): string[] {
           intervals: state.result.chart.intervals?.map((interval: any) => interval.label),
           series: state.result.chart.series?.map((series: any) => series.label),
           points: state.result.chart.points?.map((point: any) => point.label),
-          line: state.result.chart.line?.label
+          line: state.result.chart.line?.label,
         },
-        tableColumns: state.result.table?.columns
-      }
+        tableColumns: state.result.table?.columns,
+      },
     },
-    strings
+    strings,
   );
 
   return strings;
@@ -119,10 +119,14 @@ describe("template modules Chinese completeness", () => {
       createState(anovaConfig, undefined, undefined, 510, "zh"),
       createState(mesConfidenceConfig, undefined, undefined, 510, "zh"),
       createState(distributionsConfig, undefined, undefined, 510, "zh"),
-      createState(mesRegressionConfig, undefined, undefined, 510, "zh")
+      createState(mesRegressionConfig, undefined, undefined, 510, "zh"),
     ];
 
-    const leftovers = [...new Set(states.flatMap((state) => collectVisibleStateStrings(state)).filter(unexpectedLatin))];
+    const leftovers = [
+      ...new Set(
+        states.flatMap((state) => collectVisibleStateStrings(state)).filter(unexpectedLatin),
+      ),
+    ];
 
     expect(leftovers).toEqual([]);
   });

@@ -12,6 +12,24 @@ export interface AppConfig {
   chapters: ChapterConfig[];
 }
 
+export type ReviewGateName =
+  | "english"
+  | "source"
+  | "grouping"
+  | "independent_solution"
+  | "verification"
+  | "metadata"
+  | "render";
+
+export interface StructuredReview {
+  schema_version: 1;
+  status: "pending" | "approved" | "rejected";
+  pack_id: string;
+  question_hash: string;
+  answer_hash: string;
+  gates: Record<ReviewGateName, "pending" | "passed" | "failed">;
+}
+
 export interface Question {
   id: string; // 如 "ch01_q01"
   groupId: string; // 组卷原子；同一大题的所有小问共享此 ID
@@ -47,8 +65,10 @@ export interface Question {
 }
 
 export interface QuestionsResponse {
+  revision?: string;
   totalCount?: number;
   chapters: { id: string; title: string; num: number; count: number }[];
   difficulties: number[];
+  coverage?: { isComplete: boolean; emptyChapterIds: string[] };
   questions: Question[];
 }

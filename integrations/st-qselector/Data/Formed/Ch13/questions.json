@@ -14,7 +14,23 @@
       "formula_refs": [],
       "data_refs": [],
       "review_status": "independently solved and reviewed",
-      "audit_pack": "ch13-review-v1"
+      "audit_pack": "ch13-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch13-review-v1",
+        "question_hash": "82b53aa00796af3b8e04a5f1c5e2c7b6540e474de9a2033a8080cc6537e20ab9",
+        "answer_hash": "83bc2ea372c69cbf88ed17c2470dd5810b48ca1cb6358f018c1789215002ef86",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
     },
     {
       "id": "ch13_q02",
@@ -31,7 +47,23 @@
       "formula_refs": [],
       "data_refs": [],
       "review_status": "independently solved and reviewed",
-      "audit_pack": "ch13-review-v1"
+      "audit_pack": "ch13-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch13-review-v1",
+        "question_hash": "3a628938f609f675ff12ad80c2df696b657b83ee1c110e4fb71047d9743020fd",
+        "answer_hash": "ae1d6ed263ef50927d3035237d8d377c1113462e5eb3cffaaff1001fe23e9d64",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
     },
     {
       "id": "rotel_ch13_line_01",
@@ -50,7 +82,23 @@
       ],
       "formula_refs": [],
       "data_refs": [],
-      "audit_pack": "ch13-review-v1"
+      "audit_pack": "ch13-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch13-review-v1",
+        "question_hash": "7d7eb8316b2a9518388ae24d66b595ebf3d1673ac11a03004d5f25fb201c8840",
+        "answer_hash": "ed41d5ca1c67b403e928b45ccc450f745dd05356ebdabecbb90f6c906da39ae8",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
     },
     {
       "id": "rotel_ch13_line_02",
@@ -69,7 +117,23 @@
       ],
       "formula_refs": [],
       "data_refs": [],
-      "audit_pack": "ch13-review-v1"
+      "audit_pack": "ch13-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch13-review-v1",
+        "question_hash": "71e0347e3c5de8fcd98e1436fa85920d3b79010b938aa79edc604aee4f166aa1",
+        "answer_hash": "84fdd663a45b6fa388bc643c7c959067175c292a86e31c00750aa6ccd27a03fb",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
     },
     {
       "id": "rotel_ch13_causation_01",
@@ -89,7 +153,23 @@
       ],
       "formula_refs": [],
       "data_refs": [],
-      "audit_pack": "ch13-review-v1"
+      "audit_pack": "ch13-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch13-review-v1",
+        "question_hash": "c51a99c534fd0657721f49f8a5590af1ad46b098845a9457580682e1d54b89b3",
+        "answer_hash": "d2d52729058b60b42fed0e37b5c1c4e8dfbca8f4c0ecc8cbffb3348cda46bf33",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
     },
     {
       "id": "rotel_ch13_slope_01",
@@ -108,7 +188,23 @@
       ],
       "formula_refs": [],
       "data_refs": [],
-      "audit_pack": "ch13-review-v1"
+      "audit_pack": "ch13-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch13-review-v1",
+        "question_hash": "673b596800099516baf3ee8b7a1802fae7c4aac24fc33ed71352d92c2719421d",
+        "answer_hash": "224477707e53b831f3eebeb82f7d321d28dfe2b34144fdc0aec6fa98ed100893",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
     },
     {
       "id": "rotel_ch13_regression_01",
@@ -127,7 +223,23 @@
       ],
       "formula_refs": [],
       "data_refs": [],
-      "audit_pack": "ch13-review-v1"
+      "audit_pack": "ch13-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch13-review-v1",
+        "question_hash": "3712c48dedd0b7f6af9b3197a6085958e00969938eb7372b3726a026d9270cfa",
+        "answer_hash": "a51e3cfdce069de57013c4c606bd027eeb90b627604dbdb3f9098cd6556705bf",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
     },
     {
       "id": "opl_nau_ch13_regression_01",
@@ -150,7 +262,23 @@
         "regression equation"
       ],
       "formula_refs": [],
-      "data_refs": []
+      "data_refs": [],
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "opl-nau-curated-v1",
+        "question_hash": "1ba83167d6b57b1d38945d44abf6a5aa427116bbed47ed53f1fd6204143a3dd0",
+        "answer_hash": "ed9170cf75d6763895599bac4f31a6b0375e247e2c19429c2e4134de45d0b522",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
     },
     {
       "id": "opl_nau_ch13_regression_02",
@@ -173,7 +301,23 @@
         "prediction"
       ],
       "formula_refs": [],
-      "data_refs": []
+      "data_refs": [],
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "opl-nau-curated-v1",
+        "question_hash": "898516fcb9d25cf72320a16b632dd55d6cf43151a3450eaa1e213e39482f91b3",
+        "answer_hash": "e799486c2363d2e47054d4052c62461cbea92e2c6b5a5b351b24dcfbd7b05055",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
     }
   ]
 }

@@ -1,148 +1,116 @@
-import fs from "node:fs";
-import path from "node:path";
 import { NextRequest, NextResponse } from "next/server";
-import { getChapterDir, invalidateQuestionCache, loadAllQuestions, loadConfig } from "@/lib/data";
 import { reviewedQuestionIndex } from "@/generated/reviewed-questions";
-import type { Question } from "@/lib/types";
+import { adoptOwnedAiDrafts, getOwnedAiDrafts, reviewAiDrafts } from "@/lib/ai-drafts";
+import { consumeRateLimit, requestPrincipal } from "@/lib/auth/rate-limit";
+import { requireRequestSession, verifyCsrf } from "@/lib/auth/session";
+import { assertSafeOrigin, authErrorResponse, AuthError, readLimitedJson } from "@/lib/auth/security";
+import { withTransaction } from "@/lib/db";
 
 export const runtime = "nodejs";
-
-const QUESTION_TYPES = new Set(["选择题", "判断题", "填空题", "计算题", "简答题", "综合题"]);
 
 function normalized(value: string): string {
   return value.toLowerCase().replace(/[\p{P}\p{S}\s]+/gu, "");
 }
 
-function validQuestion(value: unknown, chapterIds: Set<string>): value is Question {
-  if (!value || typeof value !== "object") return false;
-  const question = value as Partial<Question>;
-  return Boolean(
-    typeof question.id === "string" && /^ai_[a-z0-9_]+$/i.test(question.id) &&
-    (question.origin === "variant" || question.origin === "generated") &&
-    typeof question.content === "string" && question.content.trim().length >= 20 && question.content.length <= 30_000 &&
-    typeof question.answer === "string" && question.answer.trim().length >= 8 && question.answer.length <= 30_000 &&
-    typeof question.chapterId === "string" && chapterIds.has(question.chapterId) &&
-    typeof question.type === "string" && QUESTION_TYPES.has(question.type) &&
-    typeof question.difficulty === "number" && question.difficulty >= 1 && question.difficulty <= 5 &&
-    Array.isArray(question.keywords) && question.keywords.length > 0 &&
-    Array.isArray(question.attachments) && question.attachments.length === 0 &&
-    Array.isArray(question.dataRefs) && question.dataRefs.length === 0 &&
-    typeof question.verification === "string" && question.verification.trim().length > 0
-  );
+function requestedIds(value: unknown): string[] {
+  if (!Array.isArray(value)) return [];
+  return [...new Set(value.map((item) => {
+    if (typeof item === "string") return item;
+    if (item && typeof item === "object" && typeof (item as { id?: unknown }).id === "string") {
+      return (item as { id: string }).id;
+    }
+    return "";
+  }).filter((id) => /^ai_[a-z0-9_]+$/i.test(id)))].slice(0, 60);
 }
 
-function writeJsonAtomic(file: string, value: unknown): void {
-  const temp = `${file}.tmp-${process.pid}`;
-  fs.writeFileSync(temp, `${JSON.stringify(value, null, 2)}\n`, "utf8");
-  fs.renameSync(temp, file);
+export async function GET(request: NextRequest) {
+  try {
+    const session = await requireRequestSession(request, ["teacher", "superadmin"]);
+    const drafts = await getOwnedAiDrafts(session.user.id);
+    const response = NextResponse.json({
+      questions: drafts.map((draft) => ({
+        ...draft.question,
+        reviewStatus: `${draft.reviewStatus}:server-stored`,
+      })),
+    });
+    response.headers.set("Cache-Control", "no-store");
+    return response;
+  } catch (error) {
+    return authErrorResponse(error);
+  }
 }
 
 export async function POST(request: NextRequest) {
   try {
-    const body = await request.json() as { questions?: unknown[]; teacherConfirmedIds?: unknown[] };
-    const incoming = Array.isArray(body.questions) ? body.questions.slice(0, 40) : [];
-    if (!incoming.length) return NextResponse.json({ imported: 0, reused: 0, idMap: {} });
-    const teacherConfirmedIds = new Set(Array.isArray(body.teacherConfirmedIds) ? body.teacherConfirmedIds.filter((id): id is string => typeof id === "string") : []);
-    if (!incoming.every((question) => question && typeof question === "object" && teacherConfirmedIds.has(String((question as { id?: unknown }).id ?? "")))) {
-      return NextResponse.json({ error: "AI 候选题必须逐题由教师确认后才能入库" }, { status: 400 });
+    assertSafeOrigin(request);
+    const session = await requireRequestSession(request, ["teacher", "superadmin"]);
+    await verifyCsrf(request, session);
+    await consumeRateLimit({
+      principal: await requestPrincipal(request, session.user.id),
+      route: "questions-import-generated",
+      limit: 30,
+      windowSeconds: 60 * 60,
+    });
+    const body = await readLimitedJson(request, 64 * 1024) as { ids?: unknown; questions?: unknown };
+    const ids = requestedIds(body.ids ?? body.questions);
+    if (!ids.length) return NextResponse.json({ imported: 0, reused: 0, idMap: {}, questions: [], persisted: true });
+
+    const owned = await getOwnedAiDrafts(session.user.id, { ids });
+    if (owned.length !== ids.length) {
+      throw new AuthError(400, "只能采用由当前账号服务端生成的 AI 草稿");
     }
 
-    const readOnlyDeployment = process.env.VERCEL === "1";
-    const chapterIds = new Set(
-      (readOnlyDeployment ? reviewedQuestionIndex.chapters : loadConfig().chapters).map((chapter) => chapter.id),
+    const bankByContent = new Map(
+      reviewedQuestionIndex.questions.map((question) => [normalized(question.content), question.id]),
     );
-    if (!incoming.every((question) => validQuestion(question, chapterIds))) {
-      return NextResponse.json({ error: "AI 题目未通过入库校验" }, { status: 400 });
-    }
-
-    const existing = readOnlyDeployment ? reviewedQuestionIndex.questions : loadAllQuestions();
-    const existingIds = new Set(existing.map((question) => question.id));
-    const contentToId = new Map(existing.map((question) => [normalized(question.content), question.id]));
     const idMap: Record<string, string> = {};
-    const acceptedByChapter = new Map<string, Question[]>();
+    const adoptIds: string[] = [];
     let reused = 0;
-
-    for (const question of incoming as Question[]) {
-      if (existingIds.has(question.id)) {
-        idMap[question.id] = question.id;
-        reused++;
-        continue;
-      }
-      const duplicateId = contentToId.get(normalized(question.content));
+    for (const draft of owned) {
+      const duplicateId = bankByContent.get(normalized(draft.question.content));
       if (duplicateId) {
-        idMap[question.id] = duplicateId;
-        reused++;
-        continue;
+        idMap[draft.question.id] = duplicateId;
+        reused += 1;
+      } else {
+        idMap[draft.question.id] = draft.question.id;
+        adoptIds.push(draft.question.id);
       }
-      const group = acceptedByChapter.get(question.chapterId) ?? [];
-      group.push(question);
-      acceptedByChapter.set(question.chapterId, group);
-      existingIds.add(question.id);
-      contentToId.set(normalized(question.content), question.id);
-      idMap[question.id] = question.id;
     }
-
-    // Serverless deployments have a read-only bundle. The browser selection
-    // store is the durable session-level bank for generated questions there;
-    // return the accepted IDs so the teacher can continue assembling/exporting.
-    if (readOnlyDeployment) {
-      return NextResponse.json({
-        imported: [...acceptedByChapter.values()].reduce((sum, questions) => sum + questions.length, 0),
-        reused,
-        idMap,
-        persisted: false,
-      });
-    }
-
-    let imported = 0;
-    for (const [chapterId, questions] of acceptedByChapter) {
-      const chapterDir = getChapterDir(chapterId);
-      if (!chapterDir) throw new Error(`找不到章节 ${chapterId}`);
-      const questionFile = path.join(chapterDir, "questions.json");
-      const answerFile = path.join(chapterDir, "answers.json");
-      const questionData = JSON.parse(fs.readFileSync(questionFile, "utf8")) as { chapter?: string; questions?: unknown[] };
-      const answerData = fs.existsSync(answerFile)
-        ? JSON.parse(fs.readFileSync(answerFile, "utf8")) as { chapter?: string; answers?: unknown[] }
-        : { chapter: chapterId, answers: [] };
-      const rawQuestions = Array.isArray(questionData.questions) ? questionData.questions : [];
-      const rawAnswers = Array.isArray(answerData.answers) ? answerData.answers : [];
-      for (const question of questions) {
-        const reviewStatus = "AI generated, independently verified, and accepted by teacher during paper assembly; reviewed";
-        rawQuestions.push({
-          id: question.id,
-          group_id: question.groupId,
-          part_count: question.partCount,
-          content: question.content,
-          source: question.source,
-          type: question.type,
-          difficulty: question.difficulty,
-          keywords: question.keywords,
-          topic_ids: question.topicIds,
-          formula_refs: [],
-          data_refs: [],
-          origin: question.origin,
-          variant_kind: question.variantKind,
-          parent_question_id: question.parentQuestionId ?? null,
-          verification: question.verification,
-          review_status: reviewStatus,
-          audit_pack: "ai-paper-assembly-v1",
-        });
-        rawAnswers.push({
-          id: question.id,
-          answer: question.answer,
-          review_status: reviewStatus,
-          audit_pack: "ai-paper-assembly-v1",
-        });
-        imported++;
-      }
-      writeJsonAtomic(questionFile, { ...questionData, questions: rawQuestions });
-      writeJsonAtomic(answerFile, { ...answerData, answers: rawAnswers });
-    }
-
-    invalidateQuestionCache();
-    return NextResponse.json({ imported, reused, idMap });
+    const adopted = await adoptOwnedAiDrafts(session.user.id, adoptIds);
+    return NextResponse.json({
+      imported: adopted.length,
+      reused,
+      idMap,
+      questions: adopted.map((draft) => draft.question),
+      persisted: true,
+      reviewStatus: "pending",
+    });
   } catch (error) {
-    const message = error instanceof Error ? error.message : "AI 题目入库失败";
-    return NextResponse.json({ error: message }, { status: 500 });
+    return authErrorResponse(error);
+  }
+}
+
+export async function PATCH(request: NextRequest) {
+  try {
+    assertSafeOrigin(request);
+    const session = await requireRequestSession(request, ["superadmin"]);
+    await verifyCsrf(request, session);
+    const body = await readLimitedJson(request, 32 * 1024) as { ids?: unknown; status?: unknown };
+    const ids = requestedIds(body.ids);
+    if (!ids.length || (body.status !== "approved" && body.status !== "rejected")) {
+      throw new AuthError(400, "审核状态或草稿 ID 无效");
+    }
+    const updated = await withTransaction(async (client) => {
+      const count = await reviewAiDrafts(client, session.user.id, ids, body.status as "approved" | "rejected");
+      await client.query(
+        `INSERT INTO audit_log (actor_user_id, action, details)
+         VALUES ($1, 'ai_draft.reviewed', $2::jsonb)`,
+        [session.user.id, JSON.stringify({ ids, status: body.status, updated: count })],
+      );
+      return count;
+    });
+    return NextResponse.json({ updated });
+  } catch (error) {
+    return authErrorResponse(error);
   }
 }

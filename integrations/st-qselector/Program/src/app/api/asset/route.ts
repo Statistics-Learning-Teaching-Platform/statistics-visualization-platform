@@ -1,86 +1,69 @@
 import { NextRequest, NextResponse } from "next/server";
-import fs from "node:fs";
-import path from "node:path";
-import { getChapterDir } from "@/lib/data";
-import { isMetafile, metafileToPng } from "@/lib/formula";
+import { requireRequestSession } from "@/lib/auth/session";
+import { authErrorResponse, AuthError } from "@/lib/auth/security";
+import { consumeRateLimit, requestPrincipal } from "@/lib/auth/rate-limit";
+import { getPrivateAssetContent, getPrivateAssetMetadata } from "@/lib/private-assets";
 
-const MIME: Record<string, string> = {
-  ".png": "image/png",
-  ".jpg": "image/jpeg",
-  ".jpeg": "image/jpeg",
-  ".gif": "image/gif",
-  ".webp": "image/webp",
-  ".svg": "image/svg+xml",
-  ".pdf": "application/pdf",
-  ".xls": "application/vnd.ms-excel",
-  ".xlsx": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-};
-
-// 提供章节附件（题目/答案中的图片、数据文件）。
-// 用法: /api/asset?chapter=Ch01&file=Assests/xxx.jpeg  或  file=Answers/Q1.png
+function safeRelativePath(value: string): string | null {
+  const normalized = value.replaceAll("\\", "/").replace(/^\/+/, "");
+  const segments = normalized.split("/");
+  if (!normalized || segments.some((segment) => !segment || segment === "." || segment === ".." || segment.includes("\0"))) {
+    return null;
+  }
+  return segments.join("/");
+}
 export async function GET(request: NextRequest) {
-  const sp = request.nextUrl.searchParams;
-  const chapter = sp.get("chapter") || "";
-  const file = sp.get("file") || "";
-  const forceDownload = sp.get("download") === "1";
-  if (!chapter || !file) {
-    return NextResponse.json({ error: "缺少 chapter 或 file 参数" }, { status: 400 });
-  }
-
-  // In production the small set of referenced attachments is copied into
-  // public/assets. Keep the original filesystem path for local development.
-  let chapterDir: string | null = null;
   try {
-    chapterDir = getChapterDir(chapter);
-  } catch {
-    // The Vercel bundle intentionally omits the repository-level Data/Formed
-    // directory; the public asset fallback below remains available there.
-  }
-  const publicAssetRoot = path.resolve(process.cwd(), "public", "assets", chapter);
-
-  // 依次尝试：<章节目录>/<file>，再退回 <章节目录>/Assests/<file>
-  const candidates = [
-    ...(chapterDir ? [path.resolve(chapterDir, file), path.resolve(chapterDir, "Assests", file)] : []),
-    path.resolve(publicAssetRoot, file),
-    path.resolve(publicAssetRoot, "Assests", file),
-  ];
-
-  for (const abs of candidates) {
-    // 越界保护：解析后的路径必须仍在章节目录内。
-    const allowedRoots = [chapterDir, publicAssetRoot].filter((root): root is string => Boolean(root));
-    if (!allowedRoots.some((root) => abs === root || abs.startsWith(root + path.sep))) continue;
-    if (fs.existsSync(abs) && fs.statSync(abs).isFile()) {
-      // emf/wmf（Word 公式矢量图）浏览器无法渲染，转成 PNG 再返回。
-      // 非下载请求才转换；download=1 时保留原始矢量文件。
-      if (isMetafile(abs) && !forceDownload) {
-        const png = await metafileToPng(abs);
-        if (png) {
-          const buf = fs.readFileSync(png);
-          return new NextResponse(new Uint8Array(buf), {
-            status: 200,
-            headers: {
-              "Content-Type": "image/png",
-              "Cache-Control": "public, max-age=3600",
-            },
-          });
-        }
-        // 转换失败：返回 415，前端据此回退到占位符。
-        return NextResponse.json({ error: "公式转换失败" }, { status: 415 });
-      }
-
-      const buf = fs.readFileSync(abs);
-      const ext = path.extname(abs).toLowerCase();
-      const headers: Record<string, string> = {
-        "Content-Type": MIME[ext] || "application/octet-stream",
-        "Cache-Control": "public, max-age=3600",
-      };
-      if (forceDownload) {
-        const base = path.basename(abs);
-        headers["Content-Disposition"] = `attachment; filename*=UTF-8''${encodeURIComponent(base)}`;
-      }
-      return new NextResponse(new Uint8Array(buf), { status: 200, headers });
+    const session = await requireRequestSession(request);
+    await consumeRateLimit({
+      principal: await requestPrincipal(request, session.user.id),
+      route: "asset-get",
+      limit: 180,
+      windowSeconds: 60,
+    });
+    const chapter = request.nextUrl.searchParams.get("chapter") ?? "";
+    const requestedFile = safeRelativePath(request.nextUrl.searchParams.get("file") ?? "");
+    const forceDownload = request.nextUrl.searchParams.get("download") === "1";
+    if (!/^Ch(?:0[1-9]|1[0-3])$/.test(chapter) || !requestedFile) {
+      return NextResponse.json({ error: "chapter 或 file 参数无效" }, { status: 400 });
     }
-  }
 
-  return NextResponse.json({ error: "文件不存在" }, { status: 404 });
+    const extension = requestedFile.split(".").at(-1)?.toLowerCase();
+    if (!forceDownload && (extension === "emf" || extension === "wmf")) {
+      return NextResponse.json({ error: "该矢量公式尚未生成浏览器预览图" }, { status: 415 });
+    }
+
+    const relativeCandidates = requestedFile.startsWith("Assests/")
+      ? [requestedFile]
+      : [requestedFile, `Assests/${requestedFile}`];
+    const asset = await getPrivateAssetMetadata(relativeCandidates.map((candidate) => `${chapter}/${candidate}`));
+    if (!asset) return NextResponse.json({ error: "文件不存在" }, { status: 404 });
+    if (asset.accessScope === "answer" && session.user.role === "student") {
+      return NextResponse.json({ error: "当前账号没有查看答案附件的权限" }, { status: 403 });
+    }
+
+    const etag = `"${asset.sha256}"`;
+    const headers = new Headers({
+      "Content-Type": asset.contentType,
+      "Cache-Control": "private, max-age=3600, must-revalidate",
+      "ETag": etag,
+      "X-Content-Type-Options": "nosniff",
+    });
+    if (request.headers.get("if-none-match") === etag) {
+      return new NextResponse(null, { status: 304, headers });
+    }
+    if (forceDownload) {
+      const baseName = asset.key.split("/").at(-1) ?? "attachment";
+      headers.set("Content-Disposition", `attachment; filename*=UTF-8''${encodeURIComponent(baseName)}`);
+    }
+    const content = await getPrivateAssetContent(asset);
+    if (!content) throw new AuthError(409, "附件在读取期间发生变化，请重试");
+    const body = content.buffer.slice(
+      content.byteOffset,
+      content.byteOffset + content.byteLength,
+    ) as ArrayBuffer;
+    return new NextResponse(body, { status: 200, headers });
+  } catch (error) {
+    return authErrorResponse(error);
+  }
 }

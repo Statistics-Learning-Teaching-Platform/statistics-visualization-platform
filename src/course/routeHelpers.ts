@@ -97,8 +97,7 @@ export function parseLearnRoute(pathname: string): ParsedLearnRoute {
   }
 
   const activity = activityManifests.find(
-    ({ id, topicId }) =>
-      topicId === topic.id && (activityRouteSegments[id] ?? id) === segments[3],
+    ({ id, topicId }) => topicId === topic.id && (activityRouteSegments[id] ?? id) === segments[3],
   );
   if (!activity) return { kind: "not-found" };
   return {

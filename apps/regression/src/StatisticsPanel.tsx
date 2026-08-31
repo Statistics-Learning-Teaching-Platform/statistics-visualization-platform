@@ -28,13 +28,15 @@ export function StatisticsPanel({ sse, hoverInfo, copy }: StatisticsPanelProps) 
         </div>
         <div className="stat-row">
           <span className="stat-label">{copy.lineType}</span>
-          <span className={`line-badge ${
-            sse.lineType === "regression"
-              ? "line-badge--regression"
-              : sse.lineType === "custom"
-                ? "line-badge--custom"
-                : "line-badge--none"
-          }`}>
+          <span
+            className={`line-badge ${
+              sse.lineType === "regression"
+                ? "line-badge--regression"
+                : sse.lineType === "custom"
+                  ? "line-badge--custom"
+                  : "line-badge--none"
+            }`}
+          >
             {sse.lineType === "regression"
               ? copy.regressionLine
               : sse.lineType === "custom"

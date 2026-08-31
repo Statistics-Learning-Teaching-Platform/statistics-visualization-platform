@@ -9,6 +9,7 @@ import QuestionContent from "@/components/QuestionContent";
 import { useSelection } from "@/lib/selection";
 import type { QuestionsResponse, Question } from "@/lib/types";
 import { withBasePath } from "@/lib/base-path";
+import { authenticatedFetch } from "@/lib/auth/client";
 
 export default function PaperPage() {
   const { selected, generatedQuestions, remove, clear, ready } = useSelection();
@@ -38,10 +39,10 @@ export default function PaperPage() {
   async function downloadDocx() {
     setDownloading(true);
     try {
-      const res = await fetch(withBasePath("/api/export/docx"), {
+      const res = await authenticatedFetch("/api/export/docx", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ids: selected, generatedQuestions, withAnswer, title }),
+        body: JSON.stringify({ ids: selected, withAnswer, title }),
       });
       if (!res.ok) throw new Error("导出失败");
       const blob = await res.blob();

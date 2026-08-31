@@ -39,12 +39,7 @@ export type TopicManifest = {
   reviewStatus: ReviewStatus;
 };
 
-export type ActivityType =
-  | "visualization"
-  | "example"
-  | "r-lab"
-  | "python-lab"
-  | "practice";
+export type ActivityType = "visualization" | "example" | "r-lab" | "python-lab" | "practice";
 
 export type ActivityManifest = {
   id: string;

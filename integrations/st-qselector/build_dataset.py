@@ -19,6 +19,7 @@ import json
 import shutil
 import hashlib
 import subprocess
+import tempfile
 from pathlib import Path
 from urllib.parse import unquote
 
@@ -953,14 +954,12 @@ def write_audit_report():
     print(f"  audit -> {audit_path}")
 
 
-def main():
+def build_dataset():
     # _work 中已有的 pandoc markdown 质量更高；当前机器未必有 pandoc，不能删除。
     WORK.mkdir(parents=True, exist_ok=True)
     (WORK / "md").mkdir(parents=True, exist_ok=True)
     (WORK / "media").mkdir(parents=True, exist_ok=True)
     (WORK / "docx").mkdir(parents=True, exist_ok=True)
-    if FORMED.exists():
-        shutil.rmtree(FORMED)
     FORMED.mkdir(parents=True, exist_ok=True)
     for ch in range(1, 14):
         (FORMED / f"Ch{ch:02d}" / "Assests").mkdir(parents=True, exist_ok=True)
@@ -975,6 +974,7 @@ def main():
             results = process_file(rel_path, spec, converted_cache)
         except Exception as e:
             print(f"  !! ERROR processing {rel_path}: {e}")
+            AUDIT["conversion_warnings"].append({"source": rel_path, "error": str(e)})
             continue
         for ch, is_answer, items in results:
             if ch not in chapters_data:
@@ -999,6 +999,10 @@ def main():
                 # 答案：暂存，待最后按 (source, qid) 匹配
                 chapters_data[ch]['pending_answers'].extend(items)
 
+    if AUDIT["missing_sources"] or AUDIT["conversion_warnings"]:
+        problems = len(AUDIT["missing_sources"]) + len(AUDIT["conversion_warnings"])
+        raise RuntimeError(f"dataset conversion failed with {problems} source errors; existing Formed was not touched")
+
     # 拷贝外部数据集
     print("\n=== Copying external datasets ===")
     copy_external_datasets()
@@ -1012,6 +1016,7 @@ def main():
 
         merge_pending_answers(ch, data)
         questions = dedupe_questions(questions)
+        answer_records = []
 
         # 重新分配 id（ch{NN}_q{seq:02d}），按题目在列表中的顺序
         for i, q in enumerate(questions, 1):
@@ -1026,6 +1031,10 @@ def main():
             q.pop('qid', None)
             q.pop('raw_num', None)
             q.pop('_source_key', None)
+            answer_records.append({
+                'id': q['id'],
+                'answer': q.pop('answer', ''),
+            })
         out = {
             'chapter': ch,
             'questions': questions,
@@ -1034,11 +1043,77 @@ def main():
             out['orphan_answers'] = data['orphan_answers']
         out_path = FORMED / f"Ch{ch:02d}" / "questions.json"
         out_path.write_text(json.dumps(out, ensure_ascii=False, indent=2), encoding='utf-8')
-        n_ans = sum(1 for q in questions if q.get('answer'))
-        print(f"  Ch{ch:02d}: {len(questions)} questions ({n_ans} with answer) -> {out_path}")
+        answer_out = {
+            'chapter': ch,
+            'answers': answer_records,
+        }
+        answer_path = FORMED / f"Ch{ch:02d}" / "answers.json"
+        answer_path.write_text(json.dumps(answer_out, ensure_ascii=False, indent=2), encoding='utf-8')
+        n_ans = sum(1 for answer in answer_records if answer.get('answer'))
+        print(f"  Ch{ch:02d}: {len(questions)} questions ({n_ans} with answer) -> {out_path}, {answer_path}")
 
     write_audit_report()
     print("\n=== DONE ===")
+
+
+def validate_staging(staging: Path):
+    config_path = staging / "config.yaml"
+    if not config_path.is_file():
+        raise RuntimeError("staging dataset is missing config.yaml")
+    for ch in range(1, 14):
+        chapter_dir = staging / f"Ch{ch:02d}"
+        question_path = chapter_dir / "questions.json"
+        answer_path = chapter_dir / "answers.json"
+        if not question_path.is_file() or not answer_path.is_file():
+            raise RuntimeError(f"staging dataset is missing chapter JSON for Ch{ch:02d}")
+        questions = json.loads(question_path.read_text(encoding="utf-8")).get("questions", [])
+        answers = json.loads(answer_path.read_text(encoding="utf-8")).get("answers", [])
+        question_ids = [str(item.get("id") or "") for item in questions]
+        answer_ids = [str(item.get("id") or "") for item in answers]
+        if not all(question_ids) or len(question_ids) != len(set(question_ids)):
+            raise RuntimeError(f"staging dataset has missing or duplicate question IDs in Ch{ch:02d}")
+        if question_ids != answer_ids:
+            raise RuntimeError(f"staging question/answer IDs are not aligned in Ch{ch:02d}")
+        if any("answer" in item for item in questions):
+            raise RuntimeError(f"staging questions.json still embeds answers in Ch{ch:02d}")
+
+
+def main():
+    global FORMED, AUDIT
+    target = ROOT / "Data" / "Formed"
+    config_source = target / "config.yaml"
+    if not config_source.is_file():
+        raise RuntimeError(f"missing required configuration: {config_source}")
+
+    staging = Path(tempfile.mkdtemp(prefix=".formed-build-", dir=ROOT / "Data"))
+    backup = target.parent / f".Formed-backup-{os.getpid()}"
+    original_formed = FORMED
+    AUDIT = {
+        "missing_sources": [],
+        "conversion_warnings": [],
+        "unmatched_answers": [],
+        "unconverted_pdf_sources": [],
+    }
+    try:
+        FORMED = staging
+        shutil.copy2(config_source, staging / "config.yaml")
+        build_dataset()
+        validate_staging(staging)
+
+        if backup.exists():
+            raise RuntimeError(f"refusing to overwrite stale backup directory: {backup}")
+        target.rename(backup)
+        try:
+            staging.rename(target)
+        except Exception:
+            backup.rename(target)
+            raise
+        shutil.rmtree(backup)
+        print(f"Atomically replaced {target} after full staging validation.")
+    finally:
+        FORMED = original_formed
+        if staging.exists():
+            shutil.rmtree(staging)
 
 
 if __name__ == '__main__':

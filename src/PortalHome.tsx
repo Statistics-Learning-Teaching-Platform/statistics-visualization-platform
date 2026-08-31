@@ -8,7 +8,7 @@ import { EditorialHomePage } from "./visual-demo/editorial/EditorialHomePage";
  * real workspaces and connects the global language state.
  */
 export function PortalHome() {
-	return <EditorialHomePage siteMode="product" />;
+  return <EditorialHomePage siteMode="product" />;
 }
 
 export default PortalHome;

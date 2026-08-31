@@ -1,130 +1,106 @@
-import { loadPyodide, version as pyodideVersion, type PyodideInterface } from "pyodide";
-
 export type PythonExecutionResult = {
   console: string[];
   plotUrl: string | null;
   environment: Array<{ name: string; type: string; preview: string }>;
 };
 
-const BASE_PACKAGES = ["numpy", "pandas", "matplotlib", "scipy"];
-let pyodidePromise: Promise<PyodideInterface> | null = null;
+type RequestKind = "init" | "run" | "check";
+type WorkerResponse =
+  | { id: number; ok: true; result: unknown }
+  | { id: number; ok: false; error: string };
 
-const PRELUDE = `
-import io
-import sys
-import traceback
-import base64
-from contextlib import redirect_stdout, redirect_stderr
+interface PendingRequest {
+  resolve: (value: unknown) => void;
+  reject: (reason: Error) => void;
+  timer: number;
+}
 
-def __statmind_preview(value):
-    try:
-        text = repr(value)
-    except Exception:
-        text = "<unavailable>"
-    return text if len(text) <= 160 else text[:157] + "..."
-`;
+let worker: Worker | null = null;
+let requestId = 0;
+let initialization: Promise<void> | null = null;
+const pending = new Map<number, PendingRequest>();
+const MAX_SOURCE_LENGTH = 50_000;
 
-export async function getPyodide(): Promise<PyodideInterface> {
-  if (!pyodidePromise) {
-    pyodidePromise = loadPyodide({
-      indexURL: `https://cdn.jsdelivr.net/pyodide/v${pyodideVersion}/full/`,
-      packageBaseUrl: `https://cdn.jsdelivr.net/pyodide/v${pyodideVersion}/full/`,
-    })
-      .then(async (instance) => {
-        await instance.loadPackage(BASE_PACKAGES);
-        await instance.runPythonAsync(`${PRELUDE}
-import matplotlib
-matplotlib.use("Agg")
-`);
-        return instance;
-      })
-      .catch((error: unknown) => {
-        pyodidePromise = null;
+function terminateWorker(reason: Error) {
+  worker?.terminate();
+  worker = null;
+  initialization = null;
+  for (const request of pending.values()) {
+    window.clearTimeout(request.timer);
+    request.reject(reason);
+  }
+  pending.clear();
+}
+
+function getWorker(): Worker {
+  if (worker) return worker;
+  worker = new Worker(new URL("./pyodide.worker.ts", import.meta.url), {
+    type: "module",
+    name: "statmind-python",
+  });
+  worker.addEventListener("message", (event: MessageEvent<WorkerResponse>) => {
+    const request = pending.get(event.data.id);
+    if (!request) return;
+    pending.delete(event.data.id);
+    window.clearTimeout(request.timer);
+    if (event.data.ok) request.resolve(event.data.result);
+    else request.reject(new Error(event.data.error));
+  });
+  worker.addEventListener("error", (event) => {
+    terminateWorker(new Error(event.message || "Python Worker 意外停止"));
+  });
+  return worker;
+}
+
+function requestWorker<T>(
+  kind: RequestKind,
+  value: string | undefined,
+  timeoutMs: number,
+): Promise<T> {
+  const activeWorker = getWorker();
+  const id = ++requestId;
+  return new Promise<T>((resolve, reject) => {
+    const timer = window.setTimeout(() => {
+      terminateWorker(
+        new Error(
+          kind === "init"
+            ? "Python 环境加载超时，请检查网络后重试"
+            : "Python 运行超过时间限制，环境已安全重置",
+        ),
+      );
+    }, timeoutMs);
+    pending.set(id, { resolve: resolve as (result: unknown) => void, reject, timer });
+    activeWorker.postMessage(value === undefined ? { id, kind } : { id, kind, value });
+  });
+}
+
+async function ensureReady(): Promise<void> {
+  if (!initialization) {
+    initialization = requestWorker<boolean>("init", undefined, 150_000)
+      .then(() => undefined)
+      .catch((error) => {
+        initialization = null;
         throw error;
       });
   }
-  return pyodidePromise;
+  return initialization;
 }
 
 export async function runPythonCode(code: string): Promise<PythonExecutionResult> {
-  const pyodide = await getPyodide();
-  pyodide.globals.set("__statmind_user_code", code);
-  const payloadProxy = await pyodide.runPythonAsync(`
-import json
-import matplotlib.pyplot as plt
-
-__statmind_stdout = io.StringIO()
-__statmind_stderr = io.StringIO()
-__statmind_error = ""
-plt.close("all")
-
-try:
-    with redirect_stdout(__statmind_stdout), redirect_stderr(__statmind_stderr):
-        exec(compile(__statmind_user_code, "<statmind>", "exec"), globals(), globals())
-except Exception:
-    __statmind_error = traceback.format_exc()
-
-__statmind_plot = None
-if plt.get_fignums():
-    __statmind_buffer = io.BytesIO()
-    plt.gcf().savefig(__statmind_buffer, format="png", dpi=130, bbox_inches="tight", facecolor="#fffdf8")
-    __statmind_plot = "data:image/png;base64," + base64.b64encode(__statmind_buffer.getvalue()).decode("ascii")
-
-__statmind_hidden = {name for name in globals() if name.startswith("__statmind_")}
-__statmind_skip_types = {"module", "function", "type", "builtin_function_or_method"}
-__statmind_environment = [
-    {
-        "name": name,
-        "type": type(value).__name__,
-        "preview": __statmind_preview(value),
-    }
-    for name, value in sorted(globals().items())
-    if not name.startswith("_")
-    and name not in __statmind_hidden
-    and type(value).__name__ not in __statmind_skip_types
-][:50]
-
-json.dumps({
-    "stdout": __statmind_stdout.getvalue(),
-    "stderr": __statmind_stderr.getvalue(),
-    "error": __statmind_error,
-    "plot": __statmind_plot,
-    "environment": __statmind_environment,
-})
-`);
-  let payload: {
-    stdout: string;
-    stderr: string;
-    error: string;
-    plot: string | null;
-    environment: Array<{ name: string; type: string; preview: string }>;
-  };
-  try {
-    payload = JSON.parse(String(payloadProxy)) as typeof payload;
-  } finally {
-    payloadProxy.destroy?.();
-  }
-
-  const console = [payload.stdout.trim(), payload.stderr.trim(), payload.error.trim()].filter(Boolean);
-  if (payload.error) throw new Error(payload.error.trim());
-  return {
-    console: console.length ? console : ["Code completed without printed output."],
-    plotUrl: payload.plot,
-    environment: payload.environment,
-  };
+  if (code.length > MAX_SOURCE_LENGTH) throw new Error("Python 代码不能超过 50,000 个字符");
+  await ensureReady();
+  return requestWorker<PythonExecutionResult>("run", code, 20_000);
 }
 
 export async function checkPythonCode(checkCode: string): Promise<boolean> {
-  const pyodide = await getPyodide();
-  pyodide.globals.set("__statmind_check_code", checkCode);
-  return Boolean(await pyodide.runPythonAsync(`bool(eval(__statmind_check_code, globals(), globals()))`));
+  await ensureReady();
+  return requestWorker<boolean>("check", checkCode, 10_000);
 }
 
 export async function resetPythonSession(): Promise<void> {
-  const pyodide = await getPyodide();
-  await pyodide.runPythonAsync(`
-for __statmind_name in list(globals()):
-    if not __statmind_name.startswith("__") and __statmind_name not in {"io", "sys", "traceback", "base64", "redirect_stdout", "redirect_stderr", "matplotlib"}:
-        globals().pop(__statmind_name, None)
-`);
+  terminateWorker(new Error("Python 会话已重置"));
+}
+
+export function disposePythonRuntime(): void {
+  terminateWorker(new Error("Python 环境已关闭"));
 }

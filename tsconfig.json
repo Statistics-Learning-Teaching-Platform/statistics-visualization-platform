@@ -12,7 +12,6 @@
 		"isolatedModules": true,
 		"noEmit": true,
 		"strict": true,
-		"baseUrl": ".",
 		"paths": {
 			"@/*": ["./src/*"]
 		},
@@ -21,5 +20,5 @@
 		"noFallthroughCasesInSwitch": true,
 		"jsx": "react-jsx"
 	},
-	"include": ["src", "test", "apps", "vite.config.ts"]
+	"include": ["src", "test", "apps", "functions", "vite.config.ts"]
 }

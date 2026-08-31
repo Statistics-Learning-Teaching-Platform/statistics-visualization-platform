@@ -12,6 +12,8 @@ import { formatNumber, mean } from "./format";
 export interface ChartBar {
   label: string;
   value: number;
+  /** Exact numeric bin center; labels are presentation-only and may round. */
+  x?: number;
 }
 
 export function normalPdf(x: number, mu = 0, sd = 1): number {
@@ -61,18 +63,17 @@ export function linearRegression(points: Array<{ x: number; y: number }>) {
  * The two guards key off mutually-exclusive runtime conditions, so they coexist.
  */
 export function histogram(values: number[], count = 18, domain?: [number, number]): ChartBar[] {
+  if (values.length === 0) return [];
+  count = Math.max(1, Math.round(count));
   const min = domain?.[0] ?? values.reduce((a, b) => Math.min(a, b), Infinity);
   const max = domain?.[1] ?? values.reduce((a, b) => Math.max(a, b), -Infinity);
   const range = max - min;
 
-  // All values identical: show a single centered spike instead of piling
-  // everything into bin[0], which made a constant sample look left-skewed.
+  // All values identical: one bar is both statistically honest and gives the
+  // renderer a unique identity. Returning many bars with the same rounded
+  // label used to collapse their band scale onto one x position.
   if (range === 0) {
-    const centerIndex = Math.floor(count / 2);
-    return Array.from({ length: count }, (_, index) => ({
-      label: formatNumber(min, 2),
-      value: index === centerIndex ? values.length : 0,
-    }));
+    return [{ label: formatNumber(min, 2), value: values.length, x: min }];
   }
 
   const width = range / count;
@@ -82,8 +83,8 @@ export function histogram(values: number[], count = 18, domain?: [number, number
     const index = Math.min(count - 1, Math.max(0, Math.floor((value - min) / width)));
     counts[index] += 1;
   }
-  return Array.from(counts, (value, index) => ({
-    label: formatNumber(min + width * (index + 0.5), 2),
-    value,
-  }));
+  return Array.from(counts, (value, index) => {
+    const x = min + width * (index + 0.5);
+    return { label: formatNumber(x, 2), value, x };
+  });
 }

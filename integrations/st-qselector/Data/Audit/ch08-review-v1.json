@@ -3,44 +3,643 @@
   "pack_id": "ch08-review-v1",
   "chapter": "Ch08",
   "baseline_records": 37,
-  "summary": {"reviewed_and_retained": 30, "deleted": 7},
+  "summary": {
+    "reviewed_and_retained": 30,
+    "deleted": 7
+  },
   "records": [
-    {"id":"ch08_q01","chapter":"Ch08","decision":"rewrite","question_type":"计算题","difficulty":2,"keywords":["confidence interval","known standard deviation"],"formula_refs":[],"data_refs":[],"clean_question":"A sample has $\\bar x=85$, known population standard deviation $\\sigma=8$, and $n=64$. Construct a 95% confidence interval for the population mean $\\mu$.","clean_answer":"The margin of error is $1.96(8/\\sqrt{64})=1.96$. Therefore the 95% confidence interval is $85\\pm1.96=[83.04,86.96]$."},
-    {"id":"ch08_q02","chapter":"Ch08","decision":"rewrite","question_type":"简答题","difficulty":1,"keywords":["confidence interval interpretation"],"formula_refs":[],"data_refs":[],"clean_question":"A market researcher states that she has 95% confidence that the true average monthly sales of a product lie between USD 170,000 and USD 200,000. Explain this statement correctly.","clean_answer":"The interval is from USD 170,000 to USD 200,000. In repeated sampling, about 95% of intervals constructed by this method would contain the fixed population mean. It is not correct to assign a 95% probability to this already-computed interval containing the mean."},
-    {"id":"ch08_q03","chapter":"Ch08","decision":"rewrite","question_type":"综合题","difficulty":3,"keywords":["confidence interval","t distribution"],"formula_refs":[],"data_refs":[],"clean_question":"Assume normal populations and construct 95% confidence intervals for the mean for each data set:\n\nSet 1: $1,1,1,1,8,8,8,8$\n\nSet 2: $1,2,3,4,5,6,7,8$\n\nExplain why the intervals differ even though the sets have the same mean and range.","clean_answer":"Both sample means are $4.5$. For Set 1, $s=3.7417$, so with $df=7$ the margin is $2.365(3.7417/\\sqrt8)\\approx3.128$ and the interval is [1.372, 7.628] dollars. For Set 2, $s=2.4495$, the margin is about $2.048$, and the interval is [2.452, 6.548] dollars. The intervals differ because their sample standard deviations differ."},
-    {"id":"ch08_q04","chapter":"Ch08","decision":"rewrite","question_type":"综合题","difficulty":3,"keywords":["confidence interval","known standard deviation"],"formula_refs":[],"data_refs":[],"clean_question":"The amount of paint in one-gallon cans has known standard deviation $\\sigma=0.02$ gallon. A random sample of 50 cans has mean 0.995 gallon.\n\na. Construct a 99% confidence interval for the population mean.\n\nb. Does the result justify a complaint about cans being short of one gallon?\n\nc. Must the population be normal?\n\nd. Repeat parts a and b using a 95% confidence level.","clean_answer":"a. The 99% interval is $0.995\\pm2.576(0.02/\\sqrt{50})=[0.9877,1.0023]$ gallons.\n\nb. One gallon lies inside the interval, so the data do not show a statistically significant shortage at the 1% level.\n\nc. With $n=50$, the CLT makes the z interval reasonably robust; exact normality is not essential if the population is not extremely skewed.\n\nd. The 95% interval is $0.995\\pm1.96(0.02/\\sqrt{50})=[0.9895,1.0005]$, which also contains one gallon, so there is still no clear evidence of a shortage."},
-    {"id":"ch08_q05","chapter":"Ch08","decision":"delete","reason":"The final subquestion is truncated (it ends after 'why an observed tread wear index of 210'), so the multipart task is not complete."},
-    {"id":"ch08_q06","chapter":"Ch08","decision":"rewrite","question_type":"综合题","difficulty":2,"keywords":["confidence interval","t distribution"],"formula_refs":[],"data_refs":[],"clean_question":"A random sample of 20 greeting cards has mean retail value USD 1.67 and sample standard deviation USD 0.32. Assume a normal population.\n\na. Construct a 95% confidence interval for the mean value.\n\nb. Explain how the interval can help estimate the total value of an inventory of $N$ cards.","clean_answer":"a. With $df=19$, $t_{0.975,19}=2.093$ and the margin is $2.093(0.32/\\sqrt{20})\\approx0.150$. The interval is [1.520, 1.820] dollars dollars.\n\nb. If the inventory contains $N$ cards, multiplying the endpoints by $N$ gives an interval estimate for the total inventory value (subject to the sampling assumptions)."},
-    {"id":"ch08_q07","chapter":"Ch08","decision":"rewrite","question_type":"计算题","difficulty":2,"keywords":["confidence interval","population proportion"],"formula_refs":[],"data_refs":[],"clean_question":"In a random sample of 100 bank depositors, 30 have more than one account. Construct a 90% confidence interval for the population proportion.","clean_answer":"$\\hat p=0.30$ and $\\operatorname{SE}=\\sqrt{0.3(0.7)/100}=0.0458$. With $z_{0.95}=1.645$, the margin is $0.0753$, giving [0.2247, 0.3753] dollars."},
-    {"id":"ch08_q08","chapter":"Ch08","decision":"rewrite","question_type":"综合题","difficulty":2,"keywords":["confidence interval","population proportion"],"formula_refs":[],"data_refs":[],"clean_question":"An auditor samples 200 health-insurance claims and finds that 80 were paid within two months.\n\na. Construct a 99% confidence interval for the population proportion paid within two months.\n\nb. If at least 90% are supposed to be paid within two months, what should the auditor report?","clean_answer":"a. $\\hat p=0.40$ and $\\operatorname{SE}=\\sqrt{0.4(0.6)/200}=0.0346$. With $z_{0.995}=2.576$, the interval is $0.40\\pm0.0892=[0.311,0.489]$.\n\nb. The entire interval is far below 0.90, so the company is not meeting the stated 90% performance target; the auditor should report this deficiency."},
-    {"id":"ch08_q09","chapter":"Ch08","decision":"rewrite","question_type":"计算题","difficulty":2,"keywords":["confidence interval","sample size"],"formula_refs":[],"data_refs":[],"clean_question":"A survey should estimate mean annual family medical expenses with 95% confidence and margin of error at most USD 50. A pilot study estimates $\\sigma=400$ dollars. Find the minimum sample size.","clean_answer":"$n=(1.96\\cdot400/50)^2=245.86$, so round up to $n=246$."},
-    {"id":"ch08_q10","chapter":"Ch08","decision":"rewrite","question_type":"综合题","difficulty":2,"keywords":["confidence interval","sample size","population proportion"],"formula_refs":[],"data_refs":[],"clean_question":"For a proportion estimate with 99% confidence, determine the minimum sample size for:\n\na. maximum tolerable error rate $p=0.05$ and precision $\\pm0.02$;\n\nb. $p=0.10$ and precision $\\pm0.02$;\n\nc. $p=0.05$ and precision $\\pm0.05$.","clean_answer":"Use $n=z_{0.995}^2p(1-p)/E^2$ with $z_{0.995}=2.576$.\n\na. $n=2.576^2(0.05)(0.95)/0.02^2=787.9$, so $n=788$.\n\nb. $n=2.576^2(0.10)(0.90)/0.02^2=1492.9$, so $n=1493$.\n\nc. $n=2.576^2(0.05)(0.95)/0.05^2=126.1$, so $n=127$ to ensure the stated precision."},
-    {"id":"ch08_q11","chapter":"Ch08","decision":"rewrite","question_type":"简答题","difficulty":1,"keywords":["confidence interval","margin of error"],"formula_refs":[],"data_refs":[],"clean_question":"What factors affect the width of a confidence interval, and how do they affect it?","clean_answer":"For a fixed method, increasing the confidence level widens the interval, increasing the sample size narrows it, and increasing the standard error widens it. The margin of error is the critical value multiplied by the standard error."},
-    {"id":"ch08_q12","chapter":"Ch08","decision":"rewrite","question_type":"选择题","difficulty":1,"keywords":["confidence interval interpretation"],"formula_refs":[],"data_refs":[],"clean_question":"Which statement correctly interprets a 96% confidence level?\n\nA. There is a 96% chance that this fixed interval contains the parameter.\n\nB. About 96 out of 100 intervals constructed by this method would contain the fixed parameter.\n\nC. There is a 4% chance that this fixed interval misses the parameter.\n\nD. Both A and C are true.","clean_answer":"B. The confidence level describes the long-run coverage rate of the interval procedure, not a probability assigned to a fixed interval after it has been computed."},
-    {"id":"ch08_q13","chapter":"Ch08","decision":"rewrite","question_type":"综合题","difficulty":2,"keywords":["confidence interval","known standard deviation","central limit theorem"],"formula_refs":[],"data_refs":[],"clean_question":"A random sample of 40 from a population has $\\bar x=6.05$ and known $\\sigma=2.44$.\n\na. Construct a 95% confidence interval for $\\mu$.\n\nb. Would mild population skewness change the result substantially?","clean_answer":"a. $6.05\\pm1.96(2.44/\\sqrt{40})=6.05\\pm0.756$, giving [5.294, 6.806] dollars.\n\nb. With $n=40$, the CLT makes the interval reasonably robust to mild skewness, although severe skewness or outliers could affect it."},
-    {"id":"ch08_q14","chapter":"Ch08","decision":"rewrite","question_type":"综合题","difficulty":2,"keywords":["confidence interval","known standard deviation","planning"],"formula_refs":[],"data_refs":[],"clean_question":"The number of soda cans needed per student is normal with known $\\sigma=1.2$. A random sample of 25 students has mean 3.2 cans.\n\na. Construct a 99% confidence interval for the population mean.\n\nb. If 300 students attend, give a conservative number of cans based on the upper endpoint.","clean_answer":"a. The 99% interval is $3.2\\pm2.576(1.2/\\sqrt{25})=3.2\\pm0.618$, or [2.582, 3.818] dollars cans per student.\n\nb. Using the upper endpoint to plan for demand, $300(3.818)=1145.4$, so prepare at least 1,146 cans."},
-    {"id":"ch08_q15","chapter":"Ch08","decision":"delete","reason":"Duplicate of the complete video-game satisfaction confidence-interval question retained in Ch07, and the source depends on missing table images."},
-    {"id":"ch08_q16","chapter":"Ch08","decision":"rewrite","question_type":"综合题","difficulty":3,"keywords":["one-sample t interval","confidence interval"],"formula_refs":[],"data_refs":[],"clean_question":"A sample of 20 chickens has mean monthly egg production 20 and sample standard deviation 2.\n\na. Give a point estimate of the population mean.\n\nb. Explain why a t interval is used and state the assumption.\n\nc. Construct a 95% confidence interval.\n\nd. Is a population mean of 21 plausible? What about 25?","clean_answer":"a. The point estimate is $\\bar x=20$.\n\nb. Use a t interval because $\\sigma$ is unknown and $n=20$ is small; assume the population is approximately normal with no strong outliers.\n\nc. With $df=19$, $t_{0.975}=2.093$, so $20\\pm2.093(2/\\sqrt{20})=[19.064,20.936]$.\n\nd. 21 is just above the interval and is not supported by this 95% interval; 25 is far outside and is not plausible under this model."},
-    {"id":"ch08_q17","chapter":"Ch08","decision":"rewrite","question_type":"综合题","difficulty":3,"keywords":["one-sample t interval","confidence interval"],"formula_refs":[],"data_refs":[],"clean_question":"Delivery times (minutes) for 14 randomly selected pizza orders are 22, 15, 18, 30, 12, 31, 18, 15, 23, 13, 19, 25, 17, 32. Assume a normal population.\n\na. Construct a 95% confidence interval for the mean delivery time.\n\nb. Does the interval support the claim that the mean is less than 25 minutes?","clean_answer":"The sample mean is $20.714$ and $s=6.661$. With $df=13$, $t_{0.975}=2.160$, the margin is $2.160(6.661/\\sqrt{14})\\approx3.847$. The interval is [16.867, 24.561] dollars minutes. Its upper endpoint is below 25, so the interval supports the claim at the 95% confidence level."},
-    {"id":"ch08_q18","chapter":"Ch08","decision":"rewrite","question_type":"综合题","difficulty":3,"keywords":["confidence interval","population proportion","Wilson interval"],"formula_refs":[],"data_refs":[],"clean_question":"Of 18 UIC students, 10 are definitely not willing to pay for an app, so 8 are willing.\n\na. Construct a 95% confidence interval for the proportion willing to pay.\n\nb. If development stops whenever the proportion is below 80%, should they continue?","clean_answer":"The sample proportion is $\\hat p=8/18=0.4444$. Because the sample is small, use the Wilson 95% interval: [0.246, 0.663] dollars. This interval is entirely below 0.80, so they should stop under the stated rule."},
-    {"id":"ch08_q19","chapter":"Ch08","decision":"rewrite","question_type":"计算题","difficulty":2,"keywords":["confidence interval","sample size"],"formula_refs":[],"data_refs":[],"clean_question":"Using the pilot standard deviation $s=6.661$ minutes from the 14 pizza deliveries, how many orders are needed to estimate the mean delivery time with 95% confidence and margin of error at most 5 minutes?","clean_answer":"For planning, use $n=(1.96s/E)^2=(1.96\\cdot6.661/5)^2\\approx6.82$. Round up to $n=7$ orders. This is a planning approximation based on the pilot standard deviation."},
-    {"id":"ch08_q20","chapter":"Ch08","decision":"rewrite","question_type":"综合题","difficulty":3,"keywords":["confidence interval","population proportion","sample size"],"formula_refs":[],"data_refs":[],"clean_question":"Among 35 employees, 16 prefer shuttle plan A, 11 prefer plan B, and the rest prefer neither.\n\na. Construct 95% confidence intervals for $p_A$ and $p_B$.\n\nb. How many questionnaires are needed for each proportion to have margin of error at most 0.05 at 95% confidence, using the observed proportions for planning?","clean_answer":"a. For A, $\\hat p_A=16/35=0.4571$, giving [0.292, 0.622] dollars. For B, $\\hat p_B=11/35=0.3143$, giving [0.160, 0.468] dollars.\n\nb. Using $n=z_{0.975}^2\\hat p(1-\\hat p)/0.05^2$, plan for $n_A=382$ and $n_B=332$ questionnaires."},
-    {"id":"ch08_q21","chapter":"Ch08","decision":"rewrite","question_type":"简答题","difficulty":1,"keywords":["critical value","hypothesis testing"],"formula_refs":[],"data_refs":[],"clean_question":"What is a critical value, and how is it used to test a hypothesis?","clean_answer":"A critical value is a cutoff for a test statistic chosen so that the probability of falling in the rejection region under $H_0$ equals the significance level $\\alpha$. Reject $H_0$ when the observed statistic lies beyond the cutoff in the direction specified by $H_a$."},
-    {"id":"ch08_q22","chapter":"Ch08","decision":"rewrite","question_type":"简答题","difficulty":1,"keywords":["p-value","hypothesis testing"],"formula_refs":[],"data_refs":[],"clean_question":"What is a p-value, and how is it used to test a hypothesis?","clean_answer":"A p-value is the probability, assuming $H_0$ is true, of observing a test statistic at least as extreme as the one obtained in the direction of $H_a$. Reject $H_0$ when the p-value is at most the chosen significance level $\\alpha$."},
-    {"id":"ch08_q23","chapter":"Ch08","decision":"delete","reason":"Duplicate of the complete midsize-car z-test retained in Ch07."},
-    {"id":"ch08_q24","chapter":"Ch08","decision":"delete","reason":"Duplicate of the complete credit-card interest-rate t-test retained in Ch07."},
-    {"id":"ch08_q25","chapter":"Ch08","decision":"delete","reason":"Duplicate of the complete watch-rate t-test retained in Ch07."},
-    {"id":"ch08_q26","chapter":"Ch08","decision":"delete","reason":"Duplicate of the complete condominium-moving proportion test retained in Ch07."},
-    {"id":"ch08_q27","chapter":"Ch08","decision":"rewrite","question_type":"综合题","difficulty":2,"keywords":["confidence interval","population proportion"],"formula_refs":[],"data_refs":[],"clean_question":"In a random sample of 2,221 U.S. MBA students, 20% expect to remain at their first job for at least five years. Construct a 95% confidence interval for the population proportion and determine whether it supports a proportion below one-fourth.","clean_answer":"With $\\hat p=0.20$, $\\operatorname{SE}=\\sqrt{0.2(0.8)/2221}\\approx0.00847$. The 95% interval is $0.20\\pm1.96(0.00847)=[0.1834,0.2166]$. Since the entire interval is below 0.25, the data support that fewer than one-fourth expect to stay at least five years."},
-    {"id":"ch08_q28","chapter":"Ch08","decision":"delete","reason":"The hypothesis-test prompt is truncated after asking to set up H0 and Ha; the sample mean and standard deviation needed for the requested test are absent."},
-    {"id":"ch08_q29","chapter":"Ch08","decision":"rewrite","question_type":"综合题","difficulty":3,"keywords":["one-sample t test","hypothesis testing"],"formula_refs":[],"data_refs":[],"clean_question":"A company historically has mean receivables outstanding of 50 days with standard deviation 10 days. A random sample of 25 accounts has mean 54 days and sample standard deviation 8 days. Test $H_0:\\mu\\le50$ against $H_a:\\mu>50$ at $\\alpha=0.10$, $0.05$, and $0.01$.","clean_answer":"Use a one-sample t test with $df=24$: $t=(54-50)/(8/\\sqrt{25})=2.50$. The one-sided p-value is approximately $0.0098$. Reject $H_0$ at 0.10, 0.05, and 0.01, but not at 0.001. There is strong evidence that the mean receivables outstanding exceeds 50 days."},
-    {"id":"ch08_q30","chapter":"Ch08","decision":"rewrite","question_type":"综合题","difficulty":3,"keywords":["linear regression","correlation"],"formula_refs":[],"data_refs":[],"clean_question":"For five one-hour production trials, the number of assemblers $x$ and units produced $y$ were $(1,10),(2,15),(3,30),(4,25),(5,40)$.\n\na. Does a linear relationship appear plausible?\n\nb. Find the least-squares regression equation.\n\nc. Find the correlation coefficient.\n\nd. Predict production with 6 assemblers.","clean_answer":"a. The points show a strong positive, approximately linear association.\n\nb. $\\bar x=3$, $\\bar y=24$, slope $b=7$, and intercept $a=3$, so $\\hat y=3+7x$.\n\nc. $r\\approx0.9272$.\n\nd. At $x=6$, predicted production is $\\hat y=3+7(6)=45$ units."},
-    {"id":"ch08_q31","chapter":"Ch08","decision":"rewrite","question_type":"综合题","difficulty":3,"keywords":["two-sample z test","hypothesis testing"],"formula_refs":[],"data_refs":[],"clean_question":"A sample of 100 students without cars has mean GPA 2.68; a sample of 100 students with cars has mean GPA 2.55. Assume independent populations with known standard deviations $\\sigma_1=0.7$ and $\\sigma_2=0.6$. Test whether non-car owners have a higher mean GPA at $\\alpha=0.05$.","clean_answer":"Let $H_0:\\mu_1-\\mu_2\\le0$ and $H_a:\\mu_1-\\mu_2>0$. The observed difference is 0.13 and $\\operatorname{SE}=\\sqrt{0.7^2/100+0.6^2/100}=0.0922$. Thus $z=0.13/0.0922=1.41$, with one-sided p-value $\\approx0.080$. Fail to reject $H_0$ at 0.05; the sample does not provide sufficient evidence that car ownership lowers GPA."},
-    {"id":"ch08_q32","chapter":"Ch08","decision":"rewrite","question_type":"综合题","difficulty":3,"keywords":["two-sample t test","hypothesis testing"],"formula_refs":[],"data_refs":[],"clean_question":"Computer Anxiety Rating Scale scores are summarized as follows, with equal population variances assumed:\n\n| Group | Mean | SD | n |\n|---|---:|---:|---:|\n| Male | 40.26 | 13.35 | 100 |\n| Female | 36.85 | 9.42 | 72 |\n\nTest at $\\alpha=0.05$ whether the population means differ, report the p-value, and state the assumptions.","clean_answer":"The pooled variance is $s_p^2=140.849$, giving $\\operatorname{SE}=1.834$ and $t=(40.26-36.85)/1.834=1.859$ with $df=170$. The two-sided p-value is approximately 0.0648, so fail to reject equality at 0.05; evidence of a difference is insufficient. Assumptions: independent random samples, quantitative measurements, approximately normal populations (or adequate sample sizes), and equal population variances for the pooled test."},
-    {"id":"ch08_q33","chapter":"Ch08","decision":"rewrite","question_type":"综合题","difficulty":3,"keywords":["paired t test","confidence interval","hypothesis testing"],"formula_refs":[],"data_refs":[],"clean_question":"Bone-marrow microvessel densities were measured before and after transplant for seven patients:\n\n| Patient | Before | After |\n|---:|---:|---:|\n| 1 | 158 | 284 |\n| 2 | 189 | 214 |\n| 3 | 202 | 101 |\n| 4 | 353 | 227 |\n| 5 | 416 | 290 |\n| 6 | 426 | 176 |\n| 7 | 441 | 290 |\n\nLet $d=$ before $-$ after. Test at $\\alpha=0.05$ whether mean density is higher before treatment, report the p-value, and give a 95% confidence interval for the mean difference.","clean_answer":"The differences are $-126,-25,101,126,126,250,151$, with $\\bar d=86.143$, $s_d=123.700$, and $n=7$. Test $H_0:\\mu_d=0$ versus $H_a:\\mu_d>0$: $t=86.143/(123.700/\\sqrt7)=1.842$ with $df=6$, p-value $\\approx0.0575$. Fail to reject at 0.05. The 95% CI is $86.143\\pm2.447(123.700/\\sqrt7)=[-28.26,200.55]$, which includes 0 and is consistent with insufficient evidence of a positive mean difference."},
-    {"id":"rotel_ch08_ci_01","chapter":"Ch08","decision":"rewrite","question_type":"综合题","difficulty":2,"keywords":["confidence interval","sample size"],"formula_refs":[],"data_refs":[],"clean_question":"A report gives a mean systolic-blood-pressure reduction of 24 mmHg with margin of error 4 mmHg at 95% confidence.\n\na. Find the lower endpoint.\n\nb. If $\\sigma=9$ mmHg, find the minimum sample size for margin of error less than 2 mmHg.","clean_answer":"a. The lower endpoint is $24-4=20$ mmHg.\n\nb. $n>(1.96\\cdot9/2)^2=77.79$, so at least 78 participants are required."},
-    {"id":"rotel_ch08_ci_02","chapter":"Ch08","decision":"rewrite","question_type":"综合题","difficulty":2,"keywords":["confidence interval","known standard deviation"],"formula_refs":[],"data_refs":[],"clean_question":"A random sample of 30 used-car transactions has mean sale price USD 2,000, and the population standard deviation is known to be USD 300.\n\na. Find the 99% confidence interval for the population mean.\n\nb. Interpret it correctly.","clean_answer":"The standard error is $300/\\sqrt{30}=54.7723$ and the 99% margin is $2.5758(54.7723)=141.08$. The interval is from USD 1,858.92 to USD 2,141.08. In repeated samples, about 99% of intervals made this way would contain the fixed population mean; it is not a statement about individual car prices."},
-    {"id":"rotel_ch08_ci_03","chapter":"Ch08","decision":"rewrite","question_type":"计算题","difficulty":3,"keywords":["one-sample t interval","confidence interval"],"formula_refs":[],"data_refs":[],"clean_question":"Prize amounts for 15 television quiz-show winners (dollars) are 43,460; 38,213; 42,876; 38,921; 36,709; 26,735; 35,472; 31,319; 42,833; 27,159; 32,799; 39,271; 44,016; 28,191; 37,087. With unknown population standard deviation, construct a 94% confidence interval for the mean prize.","clean_answer":"The sample statistics are $n=15$, $\\bar x=36{,}337.4$, and $s\\approx5{,}948.61$. With $df=14$, $t_{0.97,14}=2.046$, so the margin is $2.046(5948.61/\\sqrt{15})\\approx3142.76$. The 94% interval is from USD 33,194.64 to USD 39,480.16."},
-    {"id":"rotel_ch08_proportion_n_01","chapter":"Ch08","decision":"rewrite","question_type":"计算题","difficulty":2,"keywords":["confidence interval","sample size","population proportion"],"formula_refs":[],"data_refs":[],"clean_question":"With no prior estimate of the proportion of students who attend home basketball games, find the minimum sample size needed for a 99% confidence interval with margin of error less than 0.01.","clean_answer":"Use the conservative $p=0.5$: $n>(2.5758)^2(0.5)(0.5)/0.01^2=16{,}587.24$. Because the margin must be strictly less than 0.01, sample at least 16,588 students."}
-  ]
+    {
+      "id": "ch08_q01",
+      "chapter": "Ch08",
+      "decision": "rewrite",
+      "question_type": "计算题",
+      "difficulty": 2,
+      "keywords": [
+        "confidence interval",
+        "known standard deviation"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "clean_question": "A sample has $\\bar x=85$, known population standard deviation $\\sigma=8$, and $n=64$. Construct a 95% confidence interval for the population mean $\\mu$.",
+      "clean_answer": "The margin of error is $1.96(8/\\sqrt{64})=1.96$. Therefore the 95% confidence interval is $85\\pm1.96=[83.04,86.96]$.",
+      "expected_question_hash": "cd75efe8c8c22eac973e662efa69f46a60bdc524f5f99ae586d40318334fe367",
+      "expected_answer_hash": "2ecc8535aaafd62baac18e141cb6f213af1c520e986bf17fb92756818eb745c8",
+      "reviewed_question_hash": "ecb204646778c6e6cc15761180bca1cde87310f94d7369ffe9b8202999af0542",
+      "reviewed_answer_hash": "82495c7d5a222cd5b9ea7ba6d86ac93673fb94714b53a31f07c1b69d7f9e6f62"
+    },
+    {
+      "id": "ch08_q02",
+      "chapter": "Ch08",
+      "decision": "rewrite",
+      "question_type": "简答题",
+      "difficulty": 1,
+      "keywords": [
+        "confidence interval interpretation"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "clean_question": "A market researcher states that she has 95% confidence that the true average monthly sales of a product lie between USD 170,000 and USD 200,000. Explain this statement correctly.",
+      "clean_answer": "The interval is from USD 170,000 to USD 200,000. In repeated sampling, about 95% of intervals constructed by this method would contain the fixed population mean. It is not correct to assign a 95% probability to this already-computed interval containing the mean.",
+      "expected_question_hash": "b2ddab2a625facc30e2bede4aab2ae019317318ea3e8274e3002c5e6d013e64b",
+      "expected_answer_hash": "32f9d34aea2bb9f30139fb7f448a07a67280177c3bd6e50206d3f9bc4f104f67",
+      "reviewed_question_hash": "16caa32fb50cdbb3866641490521d3674ccec9b8da1105007c8b02956f05077a",
+      "reviewed_answer_hash": "1c0dbeea31b43c7764f78707bcb93c2ee70b202c1834616fa278df14af0cd877"
+    },
+    {
+      "id": "ch08_q03",
+      "chapter": "Ch08",
+      "decision": "rewrite",
+      "question_type": "综合题",
+      "difficulty": 3,
+      "keywords": [
+        "confidence interval",
+        "t distribution"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "clean_question": "Assume normal populations and construct 95% confidence intervals for the mean for each data set:\n\nSet 1: $1,1,1,1,8,8,8,8$\n\nSet 2: $1,2,3,4,5,6,7,8$\n\nExplain why the intervals differ even though the sets have the same mean and range.",
+      "clean_answer": "Both sample means are $4.5$. For Set 1, $s=3.7417$, so with $df=7$ the margin is $2.365(3.7417/\\sqrt8)\\approx3.128$ and the interval is [1.372, 7.628] dollars. For Set 2, $s=2.4495$, the margin is about $2.048$, and the interval is [2.452, 6.548] dollars. The intervals differ because their sample standard deviations differ.",
+      "expected_question_hash": "eb97e480ef00f3d743a632d221d3ed1f1024c60e2d6cdc5fb7526b24d9c6de8e",
+      "expected_answer_hash": "a6215c24da8fdf374f57f324eff60a31fa322ee79afae39cdbaf1fa1d0cd58ef",
+      "reviewed_question_hash": "272dccaafa52c558aa385b03a65405dacb1e24ccc398a4180c09704c788ad318",
+      "reviewed_answer_hash": "a99b42ac2ae2931d225db3fc3a6160ba996b5d236b5c62e8937c2da70cad6668"
+    },
+    {
+      "id": "ch08_q04",
+      "chapter": "Ch08",
+      "decision": "rewrite",
+      "question_type": "综合题",
+      "difficulty": 3,
+      "keywords": [
+        "confidence interval",
+        "known standard deviation"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "clean_question": "The amount of paint in one-gallon cans has known standard deviation $\\sigma=0.02$ gallon. A random sample of 50 cans has mean 0.995 gallon.\n\na. Construct a 99% confidence interval for the population mean.\n\nb. Does the result justify a complaint about cans being short of one gallon?\n\nc. Must the population be normal?\n\nd. Repeat parts a and b using a 95% confidence level.",
+      "clean_answer": "a. The 99% interval is $0.995\\pm2.576(0.02/\\sqrt{50})=[0.9877,1.0023]$ gallons.\n\nb. One gallon lies inside the interval, so the data do not show a statistically significant shortage at the 1% level.\n\nc. With $n=50$, the CLT makes the z interval reasonably robust; exact normality is not essential if the population is not extremely skewed.\n\nd. The 95% interval is $0.995\\pm1.96(0.02/\\sqrt{50})=[0.9895,1.0005]$, which also contains one gallon, so there is still no clear evidence of a shortage.",
+      "expected_question_hash": "f76bc40d0d3848af3f73a590b714b8d2360e90ba41b958d488323b61b6349155",
+      "expected_answer_hash": "8adeed77ba77e436bec62458cf90a51c9369a54b6fe4bb33b76721e135ab15d8",
+      "reviewed_question_hash": "82a67bf729be9aa7845e278649f6aea145bc436e4d009cd7149773d8e9eaf69f",
+      "reviewed_answer_hash": "cb1c34d703d74c4be858bf7929849e8da9e7cd96999bfe15bb6111a80baa3af7"
+    },
+    {
+      "id": "ch08_q05",
+      "chapter": "Ch08",
+      "decision": "delete",
+      "reason": "The final subquestion is truncated (it ends after 'why an observed tread wear index of 210'), so the multipart task is not complete.",
+      "expected_question_hash": "080abf2fe6a451842ab47b5390f7bc26f764920fc279dbe630b702eac93490ae",
+      "expected_answer_hash": "08e5ae2ff5830ab04fdc49332e675f7a691ad0d419a9976d82da017dd7129378"
+    },
+    {
+      "id": "ch08_q06",
+      "chapter": "Ch08",
+      "decision": "rewrite",
+      "question_type": "综合题",
+      "difficulty": 2,
+      "keywords": [
+        "confidence interval",
+        "t distribution"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "clean_question": "A random sample of 20 greeting cards has mean retail value USD 1.67 and sample standard deviation USD 0.32. Assume a normal population.\n\na. Construct a 95% confidence interval for the mean value.\n\nb. Explain how the interval can help estimate the total value of an inventory of $N$ cards.",
+      "clean_answer": "a. With $df=19$, $t_{0.975,19}=2.093$ and the margin is $2.093(0.32/\\sqrt{20})\\approx0.150$. The interval is [1.520, 1.820] dollars dollars.\n\nb. If the inventory contains $N$ cards, multiplying the endpoints by $N$ gives an interval estimate for the total inventory value (subject to the sampling assumptions).",
+      "expected_question_hash": "c58b1f4fc80a3e514a703c0aefdcc668d4ac062683c1e620766a901d18de120c",
+      "expected_answer_hash": "b6ac9b952c5f349d11f421bbe7081da43aea7e0ad580cfe87e10e743d6ca17c5",
+      "reviewed_question_hash": "8ab284db7be6bce98a4573bbc71b008468ae1204fa66bb07f0ea52140e04fd1d",
+      "reviewed_answer_hash": "a7c62ad816f2eea4cbe7e19a8fbf0b98df557e5571018c1e6a052cb40c3b67a4"
+    },
+    {
+      "id": "ch08_q07",
+      "chapter": "Ch08",
+      "decision": "rewrite",
+      "question_type": "计算题",
+      "difficulty": 2,
+      "keywords": [
+        "confidence interval",
+        "population proportion"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "clean_question": "In a random sample of 100 bank depositors, 30 have more than one account. Construct a 90% confidence interval for the population proportion.",
+      "clean_answer": "$\\hat p=0.30$ and $\\operatorname{SE}=\\sqrt{0.3(0.7)/100}=0.0458$. With $z_{0.95}=1.645$, the margin is $0.0753$, giving [0.2247, 0.3753] dollars.",
+      "expected_question_hash": "244474ff02aaeaf518aca33b601a64f7f5a999af89232b8f0ab3eb92d1c105db",
+      "expected_answer_hash": "4136de28b053091c2d5246e05b7ddbc85f47f011acdaee6a3a5266539070894e",
+      "reviewed_question_hash": "4b31cd56684cb1deb71e0be5e6beb670e7326b2bd51ae5819ec25ff3353d08aa",
+      "reviewed_answer_hash": "ff7e1e44321ec00bd6b30df39c3878285f314d1a1a12e8459da9ee307d791999"
+    },
+    {
+      "id": "ch08_q08",
+      "chapter": "Ch08",
+      "decision": "rewrite",
+      "question_type": "综合题",
+      "difficulty": 2,
+      "keywords": [
+        "confidence interval",
+        "population proportion"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "clean_question": "An auditor samples 200 health-insurance claims and finds that 80 were paid within two months.\n\na. Construct a 99% confidence interval for the population proportion paid within two months.\n\nb. If at least 90% are supposed to be paid within two months, what should the auditor report?",
+      "clean_answer": "a. $\\hat p=0.40$ and $\\operatorname{SE}=\\sqrt{0.4(0.6)/200}=0.0346$. With $z_{0.995}=2.576$, the interval is $0.40\\pm0.0892=[0.311,0.489]$.\n\nb. The entire interval is far below 0.90, so the company is not meeting the stated 90% performance target; the auditor should report this deficiency.",
+      "expected_question_hash": "22078d36bb3af6b90ae4b798787afa5f32284f3c6d51e88cad330486b8f11555",
+      "expected_answer_hash": "1e0598c1a11f1cba6ef46fad3c7312e2dcf111a4289b5ee9cdfd5f482a85d92e",
+      "reviewed_question_hash": "949bfcaae63161b8aabff485551cb9ca3f4246a22893ec8f5e74620fb3a5f8f2",
+      "reviewed_answer_hash": "8cd5591317cf8253b04f870d57b2eb1c35afbb29c6064c2ff60abd2ce4b4a54a"
+    },
+    {
+      "id": "ch08_q09",
+      "chapter": "Ch08",
+      "decision": "rewrite",
+      "question_type": "计算题",
+      "difficulty": 2,
+      "keywords": [
+        "confidence interval",
+        "sample size"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "clean_question": "A survey should estimate mean annual family medical expenses with 95% confidence and margin of error at most USD 50. A pilot study estimates $\\sigma=400$ dollars. Find the minimum sample size.",
+      "clean_answer": "$n=(1.96\\cdot400/50)^2=245.86$, so round up to $n=246$.",
+      "expected_question_hash": "88394aab11e0f4028cff2f8179384b07b024da8b143a010cfc610a9bc0558d46",
+      "expected_answer_hash": "9423c4f384f595165597a3666f0c04cbae39feb1c99ec414eab8ff2d48c385b1",
+      "reviewed_question_hash": "72907e773ff2f87dfc381aea11f86f4305338b818c0f988b1c96465e1712701c",
+      "reviewed_answer_hash": "5022feaebf9fd347659cc5da2dd730a1b2a6868eb7d59f20ffcf1f27594d727e"
+    },
+    {
+      "id": "ch08_q10",
+      "chapter": "Ch08",
+      "decision": "rewrite",
+      "question_type": "综合题",
+      "difficulty": 2,
+      "keywords": [
+        "confidence interval",
+        "sample size",
+        "population proportion"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "clean_question": "For a proportion estimate with 99% confidence, determine the minimum sample size for:\n\na. maximum tolerable error rate $p=0.05$ and precision $\\pm0.02$;\n\nb. $p=0.10$ and precision $\\pm0.02$;\n\nc. $p=0.05$ and precision $\\pm0.05$.",
+      "clean_answer": "Use $n=z_{0.995}^2p(1-p)/E^2$ with $z_{0.995}=2.576$.\n\na. $n=2.576^2(0.05)(0.95)/0.02^2=787.9$, so $n=788$.\n\nb. $n=2.576^2(0.10)(0.90)/0.02^2=1492.9$, so $n=1493$.\n\nc. $n=2.576^2(0.05)(0.95)/0.05^2=126.1$, so $n=127$ to ensure the stated precision.",
+      "expected_question_hash": "1bbd13b985224a0ecb615a1d9c2e7aa575733c68e24c27e4f1def24736ace9ef",
+      "expected_answer_hash": "3cfa2042ec12a829fb7b5a098087feebecdf4323eb829f9f0b727ba2bf473a5d",
+      "reviewed_question_hash": "ee02af8d93317eec9d9344304a9ca6b5d2cde6d63d0b90ca2d7095e669397571",
+      "reviewed_answer_hash": "1cd7278250efc8ab89d3f28a382cc34eaa94e245e049d09dcc600753b4512212"
+    },
+    {
+      "id": "ch08_q11",
+      "chapter": "Ch08",
+      "decision": "rewrite",
+      "question_type": "简答题",
+      "difficulty": 1,
+      "keywords": [
+        "confidence interval",
+        "margin of error"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "clean_question": "What factors affect the width of a confidence interval, and how do they affect it?",
+      "clean_answer": "For a fixed method, increasing the confidence level widens the interval, increasing the sample size narrows it, and increasing the standard error widens it. The margin of error is the critical value multiplied by the standard error.",
+      "expected_question_hash": "fd20a76e3a2c9898954d8615288b7092c03012e94cadcc8ac743771ebe92455d",
+      "expected_answer_hash": "2546e1e62d0bef9cdb9004d49bde2840d11b2b7737e5954374af874a252a8d06",
+      "reviewed_question_hash": "6c76b76e951a2d940418b73e129817c7b4c0fe49fa5e96a05c4ae5a21a4a1f63",
+      "reviewed_answer_hash": "fbe191169790640eed6b642b4bb0f2295a8879bf24bf58899644c8c486fd5856"
+    },
+    {
+      "id": "ch08_q12",
+      "chapter": "Ch08",
+      "decision": "rewrite",
+      "question_type": "选择题",
+      "difficulty": 1,
+      "keywords": [
+        "confidence interval interpretation"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "clean_question": "Which statement correctly interprets a 96% confidence level?\n\nA. There is a 96% chance that this fixed interval contains the parameter.\n\nB. About 96 out of 100 intervals constructed by this method would contain the fixed parameter.\n\nC. There is a 4% chance that this fixed interval misses the parameter.\n\nD. Both A and C are true.",
+      "clean_answer": "B. The confidence level describes the long-run coverage rate of the interval procedure, not a probability assigned to a fixed interval after it has been computed.",
+      "expected_question_hash": "718ad58bb1950438dd33ba46998243f2e1f9435b111663111c67afa1c6ae3128",
+      "expected_answer_hash": "2b9e97e157949143b513cc970ec5263e61072727c524dc11ebaffaf1c3e1b45d",
+      "reviewed_question_hash": "72abe5525373343528279f8c653242ff9c5d6f273b69d3dc8a8a944afaae5831",
+      "reviewed_answer_hash": "541059123e88d0d19284a0782101a9dac46af71e9dbfdf20f8819aa66b9b0faa"
+    },
+    {
+      "id": "ch08_q13",
+      "chapter": "Ch08",
+      "decision": "rewrite",
+      "question_type": "综合题",
+      "difficulty": 2,
+      "keywords": [
+        "confidence interval",
+        "known standard deviation",
+        "central limit theorem"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "clean_question": "A random sample of 40 from a population has $\\bar x=6.05$ and known $\\sigma=2.44$.\n\na. Construct a 95% confidence interval for $\\mu$.\n\nb. Would mild population skewness change the result substantially?",
+      "clean_answer": "a. $6.05\\pm1.96(2.44/\\sqrt{40})=6.05\\pm0.756$, giving [5.294, 6.806] dollars.\n\nb. With $n=40$, the CLT makes the interval reasonably robust to mild skewness, although severe skewness or outliers could affect it.",
+      "expected_question_hash": "52d3712307cf9d08f11463e5e14bb83cd20c95069a57df7ab6e4d3a0fcdbf733",
+      "expected_answer_hash": "95e829944c5524156867dadf5f9683670961910a70654d9e4c644cb5290cf0fe",
+      "reviewed_question_hash": "aee1ea929b7ed6a357397332a14dd5ec70bfee73004a9f8be6a966a2a595ed48",
+      "reviewed_answer_hash": "a68c8ab00637d7bf78a20b711717d52db475167e51fcfbb6792f26c75998f05e"
+    },
+    {
+      "id": "ch08_q14",
+      "chapter": "Ch08",
+      "decision": "rewrite",
+      "question_type": "综合题",
+      "difficulty": 2,
+      "keywords": [
+        "confidence interval",
+        "known standard deviation",
+        "planning"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "clean_question": "The number of soda cans needed per student is normal with known $\\sigma=1.2$. A random sample of 25 students has mean 3.2 cans.\n\na. Construct a 99% confidence interval for the population mean.\n\nb. If 300 students attend, give a conservative number of cans based on the upper endpoint.",
+      "clean_answer": "a. The 99% interval is $3.2\\pm2.576(1.2/\\sqrt{25})=3.2\\pm0.618$, or [2.582, 3.818] dollars cans per student.\n\nb. Using the upper endpoint to plan for demand, $300(3.818)=1145.4$, so prepare at least 1,146 cans.",
+      "expected_question_hash": "614c11439fed786b3b6fa9424b20dcbafad4fd5a8d934441c102f37288f72602",
+      "expected_answer_hash": "99badd22e425910a5ea3297d95938fda02996e073280d140e9010b88d67c09da",
+      "reviewed_question_hash": "c049aaa920b18f0f4b22ea82e4544b216a8e8f50852f2bd304e99bf849394d49",
+      "reviewed_answer_hash": "eaef3e06334541142ed00c4b63e95e4e14ebd0fa9aaf10eb44223d2450c3160b"
+    },
+    {
+      "id": "ch08_q15",
+      "chapter": "Ch08",
+      "decision": "delete",
+      "reason": "Duplicate of the complete video-game satisfaction confidence-interval question retained in Ch07, and the source depends on missing table images.",
+      "expected_question_hash": "9efc72cc951bc056b86414326f5cdba175250a673cbb0e86ca9b3bdd1766af01",
+      "expected_answer_hash": "725df69d1a57c0d5a7b6d75fb7a7e00cdae9bb145e97787189ab226faa761d99"
+    },
+    {
+      "id": "ch08_q16",
+      "chapter": "Ch08",
+      "decision": "rewrite",
+      "question_type": "综合题",
+      "difficulty": 3,
+      "keywords": [
+        "one-sample t interval",
+        "confidence interval"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "clean_question": "A sample of 20 chickens has mean monthly egg production 20 and sample standard deviation 2.\n\na. Give a point estimate of the population mean.\n\nb. Explain why a t interval is used and state the assumption.\n\nc. Construct a 95% confidence interval.\n\nd. Is a population mean of 21 plausible? What about 25?",
+      "clean_answer": "a. The point estimate is $\\bar x=20$.\n\nb. Use a t interval because $\\sigma$ is unknown and $n=20$ is small; assume the population is approximately normal with no strong outliers.\n\nc. With $df=19$, $t_{0.975}=2.093$, so $20\\pm2.093(2/\\sqrt{20})=[19.064,20.936]$.\n\nd. 21 is just above the interval and is not supported by this 95% interval; 25 is far outside and is not plausible under this model.",
+      "expected_question_hash": "6645999c38c0f13679853fae53867db91e0c3189d5ad01567a43ad970a20c679",
+      "expected_answer_hash": "25bb8e12f5c94a2802a244808fcb6ac30fcc4ea96f47150e90924d4b60183c11",
+      "reviewed_question_hash": "0b6f3188925b4e32012e7f6d355474706279f444d3c194543baa70ae2eef29af",
+      "reviewed_answer_hash": "ec8d43e77346e24006885630deb3ecf61cb4293a67e8ab690373b254eba033d3"
+    },
+    {
+      "id": "ch08_q17",
+      "chapter": "Ch08",
+      "decision": "rewrite",
+      "question_type": "综合题",
+      "difficulty": 3,
+      "keywords": [
+        "one-sample t interval",
+        "confidence interval"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "clean_question": "Delivery times (minutes) for 14 randomly selected pizza orders are 22, 15, 18, 30, 12, 31, 18, 15, 23, 13, 19, 25, 17, 32. Assume a normal population.\n\na. Construct a 95% confidence interval for the mean delivery time.\n\nb. Does the interval support the claim that the mean is less than 25 minutes?",
+      "clean_answer": "The sample mean is $20.714$ and $s=6.661$. With $df=13$, $t_{0.975}=2.160$, the margin is $2.160(6.661/\\sqrt{14})\\approx3.847$. The interval is [16.867, 24.561] dollars minutes. Its upper endpoint is below 25, so the interval supports the claim at the 95% confidence level.",
+      "expected_question_hash": "f488debfbbcd7be7a1071d593546cca37a35a2858a87508808319d71acc94cfd",
+      "expected_answer_hash": "f000ef29ae5ba91c2f924bd3d30233f95e3f9513c93bbd6cdce6cbb0915fb86a",
+      "reviewed_question_hash": "04d10eee7d302fb4b51cecdf57ffd124b858f4336664bccafecf7c28f1c17cdf",
+      "reviewed_answer_hash": "969c8d1b7ed46a109f46e4fe6ef62911d972287a43a2542dc4769b0432b6394c"
+    },
+    {
+      "id": "ch08_q18",
+      "chapter": "Ch08",
+      "decision": "rewrite",
+      "question_type": "综合题",
+      "difficulty": 3,
+      "keywords": [
+        "confidence interval",
+        "population proportion",
+        "Wilson interval"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "clean_question": "Of 18 UIC students, 10 are definitely not willing to pay for an app, so 8 are willing.\n\na. Construct a 95% confidence interval for the proportion willing to pay.\n\nb. If development stops whenever the proportion is below 80%, should they continue?",
+      "clean_answer": "The sample proportion is $\\hat p=8/18=0.4444$. Because the sample is small, use the Wilson 95% interval: [0.246, 0.663] dollars. This interval is entirely below 0.80, so they should stop under the stated rule.",
+      "expected_question_hash": "d10384c1007373b316ba86c109226b0871aa8a1e91ec291767867f18c8ef7e44",
+      "expected_answer_hash": "5c9801a5a1025c05b182bdf36d160a50e6bfff58ccf37d9927e0518a47bfb8f1",
+      "reviewed_question_hash": "445824ba9768d36209dd66aae9a04793cb86754a81f71720a64169f899025cfa",
+      "reviewed_answer_hash": "7703768d6102e8043090e5aa3cbc3ce03be3013e2009566570bd44d9039d6bff"
+    },
+    {
+      "id": "ch08_q19",
+      "chapter": "Ch08",
+      "decision": "rewrite",
+      "question_type": "计算题",
+      "difficulty": 2,
+      "keywords": [
+        "confidence interval",
+        "sample size"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "clean_question": "Using the pilot standard deviation $s=6.661$ minutes from the 14 pizza deliveries, how many orders are needed to estimate the mean delivery time with 95% confidence and margin of error at most 5 minutes?",
+      "clean_answer": "For planning, use $n=(1.96s/E)^2=(1.96\\cdot6.661/5)^2\\approx6.82$. Round up to $n=7$ orders. This is a planning approximation based on the pilot standard deviation.",
+      "expected_question_hash": "afe70b695896c799d7fba01593a348a660db3a9ed0ad097938f4740ad1250215",
+      "expected_answer_hash": "ec1443041e8c2519eb30fddbd78421bb3169b3cd55d59b79b94804f2ca101f96",
+      "reviewed_question_hash": "59b709d82d0b472d36a38b55199fc5fd9d3a19e44ee352e9db452dd88e14c7c6",
+      "reviewed_answer_hash": "c989a9226bb5cde479d043bae49fc5a803c7a7bee46ec6ec7d6c8e7e15ac541b"
+    },
+    {
+      "id": "ch08_q20",
+      "chapter": "Ch08",
+      "decision": "rewrite",
+      "question_type": "综合题",
+      "difficulty": 3,
+      "keywords": [
+        "confidence interval",
+        "population proportion",
+        "sample size"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "clean_question": "Among 35 employees, 16 prefer shuttle plan A, 11 prefer plan B, and the rest prefer neither.\n\na. Construct 95% confidence intervals for $p_A$ and $p_B$.\n\nb. How many questionnaires are needed for each proportion to have margin of error at most 0.05 at 95% confidence, using the observed proportions for planning?",
+      "clean_answer": "a. For A, $\\hat p_A=16/35=0.4571$, giving [0.292, 0.622] dollars. For B, $\\hat p_B=11/35=0.3143$, giving [0.160, 0.468] dollars.\n\nb. Using $n=z_{0.975}^2\\hat p(1-\\hat p)/0.05^2$, plan for $n_A=382$ and $n_B=332$ questionnaires.",
+      "expected_question_hash": "d9e96dcba9b8baea187695eb741a27be7d11e171c04bc08b5ac807502c1adc6c",
+      "expected_answer_hash": "0d442597b287d9cc3857cfc2740f4bd3bfacc048291a2667dc741f2d4aa8877d",
+      "reviewed_question_hash": "946e46b4139bdfc9b10e85c2915af83ef3045819679b951e3186a483c351cb22",
+      "reviewed_answer_hash": "53a7812160f3c2ec4dc8e2a175453c1e2ffb2defc1e3edf353a4739284cc188c"
+    },
+    {
+      "id": "ch08_q21",
+      "chapter": "Ch08",
+      "decision": "rewrite",
+      "question_type": "简答题",
+      "difficulty": 1,
+      "keywords": [
+        "critical value",
+        "hypothesis testing"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "clean_question": "What is a critical value, and how is it used to test a hypothesis?",
+      "clean_answer": "A critical value is a cutoff for a test statistic chosen so that the probability of falling in the rejection region under $H_0$ equals the significance level $\\alpha$. Reject $H_0$ when the observed statistic lies beyond the cutoff in the direction specified by $H_a$.",
+      "expected_question_hash": "ff9e8229d12a954863201554a31a8ab83f6379042f2aff9fba36132be7c98735",
+      "expected_answer_hash": "e2fce5682cc0ea0227289c0db171bac459374491815a57a344396eb7764ff4e5",
+      "reviewed_question_hash": "a50c72b3d6d607ef62ae0374d4ccea59ad929721c8e200c2a340f22b31985e06",
+      "reviewed_answer_hash": "275baafec1b036d29965c0eb32a2c141cace8369c86c44d2458979fc7f88ffce"
+    },
+    {
+      "id": "ch08_q22",
+      "chapter": "Ch08",
+      "decision": "rewrite",
+      "question_type": "简答题",
+      "difficulty": 1,
+      "keywords": [
+        "p-value",
+        "hypothesis testing"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "clean_question": "What is a p-value, and how is it used to test a hypothesis?",
+      "clean_answer": "A p-value is the probability, assuming $H_0$ is true, of observing a test statistic at least as extreme as the one obtained in the direction of $H_a$. Reject $H_0$ when the p-value is at most the chosen significance level $\\alpha$.",
+      "expected_question_hash": "3bd5ea73c3316aeb571cb7b7006b607f06d54db67ede7f54e81427f528d3c9a2",
+      "expected_answer_hash": "d6731ffb5013bfbf9dcb777ac74e9d57540175231414785c1ca0068a570168eb",
+      "reviewed_question_hash": "608cec617417d26a00318e14c0e975aa89b1397705195aaeebb7c1f09f55a8cc",
+      "reviewed_answer_hash": "535570f524b61edfb20c2384ba1c40ba11a4a3c44099411368ca04c7181f0b67"
+    },
+    {
+      "id": "ch08_q23",
+      "chapter": "Ch08",
+      "decision": "delete",
+      "reason": "Duplicate of the complete midsize-car z-test retained in Ch07.",
+      "expected_question_hash": "bdbedab3fb93e5e99ba659502ab4752e83590003d35e50456f0c80b2088bbfd9",
+      "expected_answer_hash": "89ebd16d6f3409bd7156f3e70a0bc84f9819c86137a349b6f6bb8155f2741370"
+    },
+    {
+      "id": "ch08_q24",
+      "chapter": "Ch08",
+      "decision": "delete",
+      "reason": "Duplicate of the complete credit-card interest-rate t-test retained in Ch07.",
+      "expected_question_hash": "24d699645fca5e5fc7d5c9916dbd654df9c9df2c8e0d9173a13c584a4a276da7",
+      "expected_answer_hash": "5d97a639e6e305599ec1548b6353e2734d2743d430d8d5ed717f3b0b6d8c7d69"
+    },
+    {
+      "id": "ch08_q25",
+      "chapter": "Ch08",
+      "decision": "delete",
+      "reason": "Duplicate of the complete watch-rate t-test retained in Ch07.",
+      "expected_question_hash": "849b55e3afd79b121f1c992c67109201a0315079b2b114ed2cf8cb735e0b06c2",
+      "expected_answer_hash": "0064be6da6ba771595d8e72aa1cfbeb9e990b059f32f25b9b30bb8ae94b040f8"
+    },
+    {
+      "id": "ch08_q26",
+      "chapter": "Ch08",
+      "decision": "delete",
+      "reason": "Duplicate of the complete condominium-moving proportion test retained in Ch07.",
+      "expected_question_hash": "04f959d883b14d11a2779d71990051cfc76fcce3eb7f61771e3a887a6d81b6e5",
+      "expected_answer_hash": "1d6b2791bde4a1adc4dd25124289bf957ed488859bc5c001a179925eaea6c7ee"
+    },
+    {
+      "id": "ch08_q27",
+      "chapter": "Ch08",
+      "decision": "rewrite",
+      "question_type": "综合题",
+      "difficulty": 2,
+      "keywords": [
+        "confidence interval",
+        "population proportion"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "clean_question": "In a random sample of 2,221 U.S. MBA students, 20% expect to remain at their first job for at least five years. Construct a 95% confidence interval for the population proportion and determine whether it supports a proportion below one-fourth.",
+      "clean_answer": "With $\\hat p=0.20$, $\\operatorname{SE}=\\sqrt{0.2(0.8)/2221}\\approx0.00847$. The 95% interval is $0.20\\pm1.96(0.00847)=[0.1834,0.2166]$. Since the entire interval is below 0.25, the data support that fewer than one-fourth expect to stay at least five years.",
+      "expected_question_hash": "709bc4f6fea26ebd71ee590c945fcc9394ad2e2b207cc03a87c0aedf2c6a22dd",
+      "expected_answer_hash": "8da9429da68e7c0affbf54858dc41c1616eb4e143d8ffbd1c3bb86e844746e55",
+      "reviewed_question_hash": "d07da3db6207216817e86fe39f15598423a5dad16d16c195c247b1f330e748cd",
+      "reviewed_answer_hash": "23604e5740c1b00984e6b5fc5438b2eb5b8c8c6c1b3494d185ce83c4aa700bc3"
+    },
+    {
+      "id": "ch08_q28",
+      "chapter": "Ch08",
+      "decision": "delete",
+      "reason": "The hypothesis-test prompt is truncated after asking to set up H0 and Ha; the sample mean and standard deviation needed for the requested test are absent.",
+      "expected_question_hash": "0e3516073bbc74685d7847c2c9e6f7ee6471435496de2caf0dba885306752760",
+      "expected_answer_hash": "784728bddf23b1212deee05c180e83a4f21a15f7469593dfbe2e6efc33878c2d"
+    },
+    {
+      "id": "ch08_q29",
+      "chapter": "Ch08",
+      "decision": "rewrite",
+      "question_type": "综合题",
+      "difficulty": 3,
+      "keywords": [
+        "one-sample t test",
+        "hypothesis testing"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "clean_question": "A company historically has mean receivables outstanding of 50 days with standard deviation 10 days. A random sample of 25 accounts has mean 54 days and sample standard deviation 8 days. Test $H_0:\\mu\\le50$ against $H_a:\\mu>50$ at $\\alpha=0.10$, $0.05$, and $0.01$.",
+      "clean_answer": "Use a one-sample t test with $df=24$: $t=(54-50)/(8/\\sqrt{25})=2.50$. The one-sided p-value is approximately $0.0098$. Reject $H_0$ at 0.10, 0.05, and 0.01, but not at 0.001. There is strong evidence that the mean receivables outstanding exceeds 50 days.",
+      "expected_question_hash": "098534935ba5d4e14609b8e342dd907e828acf5b08a2ab4de2a5d4213d7582a2",
+      "expected_answer_hash": "8a08c04fbda9e5bef5ef637cef7947de668e9730dbf2eac46e99b5a9f0da85bf",
+      "reviewed_question_hash": "94958655e3e730b04c54613c93277bf0c67a6bb32bfbce3b902f14f10db6eee2",
+      "reviewed_answer_hash": "0b8243fadae987ac0377a4a862f7bdd73d1d6e79d158680a202b95f8d53a4037"
+    },
+    {
+      "id": "ch08_q30",
+      "chapter": "Ch08",
+      "decision": "rewrite",
+      "question_type": "综合题",
+      "difficulty": 3,
+      "keywords": [
+        "linear regression",
+        "correlation"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "clean_question": "For five one-hour production trials, the number of assemblers $x$ and units produced $y$ were $(1,10),(2,15),(3,30),(4,25),(5,40)$.\n\na. Does a linear relationship appear plausible?\n\nb. Find the least-squares regression equation.\n\nc. Find the correlation coefficient.\n\nd. Predict production with 6 assemblers.",
+      "clean_answer": "a. The points show a strong positive, approximately linear association.\n\nb. $\\bar x=3$, $\\bar y=24$, slope $b=7$, and intercept $a=3$, so $\\hat y=3+7x$.\n\nc. $r\\approx0.9272$.\n\nd. At $x=6$, predicted production is $\\hat y=3+7(6)=45$ units.",
+      "expected_question_hash": "1eb3cb4ff42054bfe94f420dab39c676e236cb3fecaa6b13017c3a835ff30b80",
+      "expected_answer_hash": "0310d0ee09091104801cad87b45285372f3550eed2e37044550c45bc165eccc4",
+      "reviewed_question_hash": "1c279689dc12dfb229ed4d1245dced8a992ab9dd29eec60a16dfc40b8da08e52",
+      "reviewed_answer_hash": "62ce579a97c97088ad3862ad097626a6e2e2653dbcab9cf078601d05e5450bfd"
+    },
+    {
+      "id": "ch08_q31",
+      "chapter": "Ch08",
+      "decision": "rewrite",
+      "question_type": "综合题",
+      "difficulty": 3,
+      "keywords": [
+        "two-sample z test",
+        "hypothesis testing"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "clean_question": "A sample of 100 students without cars has mean GPA 2.68; a sample of 100 students with cars has mean GPA 2.55. Assume independent populations with known standard deviations $\\sigma_1=0.7$ and $\\sigma_2=0.6$. Test whether non-car owners have a higher mean GPA at $\\alpha=0.05$.",
+      "clean_answer": "Let $H_0:\\mu_1-\\mu_2\\le0$ and $H_a:\\mu_1-\\mu_2>0$. The observed difference is 0.13 and $\\operatorname{SE}=\\sqrt{0.7^2/100+0.6^2/100}=0.0922$. Thus $z=0.13/0.0922=1.41$, with one-sided p-value $\\approx0.080$. Fail to reject $H_0$ at 0.05; the sample does not provide sufficient evidence that car ownership lowers GPA.",
+      "expected_question_hash": "fa51f2dbe7b822a56b13d20c75b5a9e33d8d7a33bc0ff8fe340a0fcaa126447a",
+      "expected_answer_hash": "d7e5142be6e344f33f5eb92e4a02a122396330acc41907e17fe799cd08226dc3",
+      "reviewed_question_hash": "241843bac66d4cafe133bd1f0c9eede4857d07f5d452e6617b251df4e106e2a6",
+      "reviewed_answer_hash": "8ac72c3b74b8ad07d79af3451a9fb2f4d9cacce36566fe3ca74b6b944ae33a9a"
+    },
+    {
+      "id": "ch08_q32",
+      "chapter": "Ch08",
+      "decision": "rewrite",
+      "question_type": "综合题",
+      "difficulty": 3,
+      "keywords": [
+        "two-sample t test",
+        "hypothesis testing"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "clean_question": "Computer Anxiety Rating Scale scores are summarized as follows, with equal population variances assumed:\n\n| Group | Mean | SD | n |\n|---|---:|---:|---:|\n| Male | 40.26 | 13.35 | 100 |\n| Female | 36.85 | 9.42 | 72 |\n\nTest at $\\alpha=0.05$ whether the population means differ, report the p-value, and state the assumptions.",
+      "clean_answer": "The pooled variance is $s_p^2=140.849$, giving $\\operatorname{SE}=1.834$ and $t=(40.26-36.85)/1.834=1.859$ with $df=170$. The two-sided p-value is approximately 0.0648, so fail to reject equality at 0.05; evidence of a difference is insufficient. Assumptions: independent random samples, quantitative measurements, approximately normal populations (or adequate sample sizes), and equal population variances for the pooled test.",
+      "expected_question_hash": "1c5a94009f8cf55e2bfc65ee0b824aab9e028ae42c98c9991a7ff730aaaddf61",
+      "expected_answer_hash": "36cc56ba9d0a34352dc4bb39a516cc688f3708457b889604bb88b29fc6126910",
+      "reviewed_question_hash": "76f5981894e569e8a094752ce1b7d4eb5fb359b3705baa5667f58f9dd8aa7c26",
+      "reviewed_answer_hash": "7e0220aa675b24ff357db5fde0781e94b4d299e89d019c3e1761c0669875eecc"
+    },
+    {
+      "id": "ch08_q33",
+      "chapter": "Ch08",
+      "decision": "rewrite",
+      "question_type": "综合题",
+      "difficulty": 3,
+      "keywords": [
+        "paired t test",
+        "confidence interval",
+        "hypothesis testing"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "clean_question": "Bone-marrow microvessel densities were measured before and after transplant for seven patients:\n\n| Patient | Before | After |\n|---:|---:|---:|\n| 1 | 158 | 284 |\n| 2 | 189 | 214 |\n| 3 | 202 | 101 |\n| 4 | 353 | 227 |\n| 5 | 416 | 290 |\n| 6 | 426 | 176 |\n| 7 | 441 | 290 |\n\nLet $d=$ before $-$ after. Test at $\\alpha=0.05$ whether mean density is higher before treatment, report the p-value, and give a 95% confidence interval for the mean difference.",
+      "clean_answer": "The differences are $-126,-25,101,126,126,250,151$, with $\\bar d=86.143$, $s_d=123.700$, and $n=7$. Test $H_0:\\mu_d=0$ versus $H_a:\\mu_d>0$: $t=86.143/(123.700/\\sqrt7)=1.842$ with $df=6$, p-value $\\approx0.0575$. Fail to reject at 0.05. The 95% CI is $86.143\\pm2.447(123.700/\\sqrt7)=[-28.26,200.55]$, which includes 0 and is consistent with insufficient evidence of a positive mean difference.",
+      "expected_question_hash": "400c5f49752b8ea2d87769f6fb722c500afae82c57e58148dc622a7aa39ffd3c",
+      "expected_answer_hash": "dcbabeb82097c3fc7cedc4dabf79ec50fe84a368fe4263e9ca21f29b7c911511",
+      "reviewed_question_hash": "0a4910854ab9cfd37a2f3f13e39f573eabff8d979707f43b2bc3b9771996b608",
+      "reviewed_answer_hash": "e3ee7aa414469d94a07477449f7139ff9efe47745721246be026b4b22e8e13df"
+    },
+    {
+      "id": "rotel_ch08_ci_01",
+      "chapter": "Ch08",
+      "decision": "rewrite",
+      "question_type": "综合题",
+      "difficulty": 2,
+      "keywords": [
+        "confidence interval",
+        "sample size"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "clean_question": "A report gives a mean systolic-blood-pressure reduction of 24 mmHg with margin of error 4 mmHg at 95% confidence.\n\na. Find the lower endpoint.\n\nb. If $\\sigma=9$ mmHg, find the minimum sample size for margin of error less than 2 mmHg.",
+      "clean_answer": "a. The lower endpoint is $24-4=20$ mmHg.\n\nb. $n>(1.96\\cdot9/2)^2=77.79$, so at least 78 participants are required.",
+      "expected_question_hash": "0ece33f01b49fdd111358dfbe01ba7a5ad8d7e93ac91bc4eb37d873d6432cc06",
+      "expected_answer_hash": "9eda55f49b514de5ff1bd62ad34962e1ea517d34479719a126696369359104b4",
+      "reviewed_question_hash": "ad7f94f8dab8b5c5a16393a7cb86865ecd0567f9df5d67da4a31e29a2dc754ca",
+      "reviewed_answer_hash": "e4b22a819e6c107ce95e831dd29b50a2d6bd7741583c272afafd0924152a72ce"
+    },
+    {
+      "id": "rotel_ch08_ci_02",
+      "chapter": "Ch08",
+      "decision": "rewrite",
+      "question_type": "综合题",
+      "difficulty": 2,
+      "keywords": [
+        "confidence interval",
+        "known standard deviation"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "clean_question": "A random sample of 30 used-car transactions has mean sale price USD 2,000, and the population standard deviation is known to be USD 300.\n\na. Find the 99% confidence interval for the population mean.\n\nb. Interpret it correctly.",
+      "clean_answer": "The standard error is $300/\\sqrt{30}=54.7723$ and the 99% margin is $2.5758(54.7723)=141.08$. The interval is from USD 1,858.92 to USD 2,141.08. In repeated samples, about 99% of intervals made this way would contain the fixed population mean; it is not a statement about individual car prices.",
+      "expected_question_hash": "03b9ff2a5ced9791b1b09cf8adb97da1b4d610f193912c374e1982f2131f068f",
+      "expected_answer_hash": "01a79aa1099d9c7dda881d225fd22b262cbf034015a959457b1f5b9b085b5b8b",
+      "reviewed_question_hash": "1a4947f7396acb66bbc26159c03ef0329d862b45aaa087e0318b1561c7adc364",
+      "reviewed_answer_hash": "23a131909974adaa66b1c20f95efdaa29c5c9d4b87dd308ef318c797dabe463f"
+    },
+    {
+      "id": "rotel_ch08_ci_03",
+      "chapter": "Ch08",
+      "decision": "rewrite",
+      "question_type": "计算题",
+      "difficulty": 3,
+      "keywords": [
+        "one-sample t interval",
+        "confidence interval"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "clean_question": "Prize amounts for 15 television quiz-show winners (dollars) are 43,460; 38,213; 42,876; 38,921; 36,709; 26,735; 35,472; 31,319; 42,833; 27,159; 32,799; 39,271; 44,016; 28,191; 37,087. With unknown population standard deviation, construct a 94% confidence interval for the mean prize.",
+      "clean_answer": "The sample statistics are $n=15$, $\\bar x=36{,}337.4$, and $s\\approx5{,}948.61$. With $df=14$, $t_{0.97,14}=2.046$, so the margin is $2.046(5948.61/\\sqrt{15})\\approx3142.76$. The 94% interval is from USD 33,194.64 to USD 39,480.16.",
+      "expected_question_hash": "eb4960aa0d774c035c25a87a1d2db2c26b71ecf4f0b8c419bed1b11705a7f4ac",
+      "expected_answer_hash": "28ea52d4a680914175c3ccebc2aed9002af71c09def944a082c6d23474f600de",
+      "reviewed_question_hash": "2788dbb5a6363a5a5ee34ed76ed3d4fa86181390309267c41a4b4bdf91b7c5a2",
+      "reviewed_answer_hash": "3349d50d0113f3b8e74e1c4f4c18c60667575a18c9d0ded2d81996a9b200c94d"
+    },
+    {
+      "id": "rotel_ch08_proportion_n_01",
+      "chapter": "Ch08",
+      "decision": "rewrite",
+      "question_type": "计算题",
+      "difficulty": 2,
+      "keywords": [
+        "confidence interval",
+        "sample size",
+        "population proportion"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "clean_question": "With no prior estimate of the proportion of students who attend home basketball games, find the minimum sample size needed for a 99% confidence interval with margin of error less than 0.01.",
+      "clean_answer": "Use the conservative $p=0.5$: $n>(2.5758)^2(0.5)(0.5)/0.01^2=16{,}587.24$. Because the margin must be strictly less than 0.01, sample at least 16,588 students.",
+      "expected_question_hash": "bf663bcf183d982a79a3255e9aadff6812a730e8a8439f4523fa0afecc221773",
+      "expected_answer_hash": "99f50fcb792c7b2728d896311bd9ca92f1049ab02b50430293bc4e46315e9c29",
+      "reviewed_question_hash": "c17db4f2d328d6f03645d65bc8d7009217ef02fcc6cba22a0374a2e664918b5e",
+      "reviewed_answer_hash": "3237c0a102c48bbd9756ec8b45319a1d0ede39705c73db22120e9cd6994073e1"
+    }
+  ],
+  "hash_algorithm": "sha256",
+  "baseline_commit": "b5d0b3626f442da44b42a038e924e91d1be3ca69"
 }

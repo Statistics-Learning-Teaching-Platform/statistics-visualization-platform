@@ -3,43 +3,518 @@
   "pack_id": "ch05-review-v1",
   "chapter": "Ch05",
   "baseline_records": 36,
-  "summary": {"reviewed_and_retained": 24, "deleted": 12},
+  "summary": {
+    "reviewed_and_retained": 24,
+    "deleted": 12
+  },
   "records": [
-    {"id":"ch05_q01","chapter":"Ch05","decision":"rewrite","question_type":"计算题","difficulty":2,"keywords":["binomial distribution"],"clean_question":"A calculator is defective with probability $0.10$. If 10 calculators are selected independently, find the probability that at least 3 are defective.","clean_answer":"Let $X\\sim\\operatorname{Binomial}(10,0.1)$. Then $P(X\\ge3)=1-P(X\\le2)\\approx1-0.9298=0.0702$."},
-    {"id":"ch05_q02","chapter":"Ch05","decision":"rewrite","question_type":"计算题","difficulty":1,"keywords":["binomial mean","binomial standard deviation"],"formula_refs":[],"data_refs":[],"clean_question":"A calculator is defective with probability $0.10$. For 100 independently selected calculators, find the mean and standard deviation of the number of defectives.","clean_answer":"For $X\\sim\\operatorname{Binomial}(100,0.1)$, $\\mu=np=10$ and $\\sigma=\\sqrt{np(1-p)}=\\sqrt9=3$."},
-    {"id":"ch05_q03","chapter":"Ch05","decision":"rewrite","question_type":"计算题","difficulty":2,"keywords":["Poisson distribution"],"formula_refs":[],"data_refs":[],"clean_question":"Patient arrivals follow a Poisson process averaging 3 patients every 2 hours. Find the probability of exactly 6 arrivals during a 5-hour period.","clean_answer":"The 5-hour mean is $\\lambda=3(5/2)=7.5$. Thus $P(X=6)=e^{-7.5}7.5^6/6!\\approx0.1367$."},
-    {"id":"ch05_q04","chapter":"Ch05","decision":"rewrite","question_type":"计算题","difficulty":2,"keywords":["Poisson distribution"],"clean_question":"Patient arrivals follow a Poisson process averaging 3 patients every 2 hours. Find the probability of at least 4 but no more than 8 arrivals during a 3-hour period.","clean_answer":"The 3-hour mean is $\\lambda=4.5$. Therefore $P(4\\le X\\le8)=\\sum_{x=4}^{8}e^{-4.5}4.5^x/x!\\approx0.6174$."},
-    {"id":"ch05_q05","chapter":"Ch05","decision":"delete","reason":"The probability distribution is supplied only as an unreadable WMF image; its values cannot be independently recovered from the question record."},
-    {"id":"ch05_q06","chapter":"Ch05","decision":"rewrite","question_type":"计算题","difficulty":3,"keywords":["binomial distribution","hypothesis assessment"],"clean_question":"An auditor claims that exactly 10% of invoices contain errors. In a random sample of 20 invoices, 5 contain errors. Using $X\\sim\\operatorname{Binomial}(20,0.10)$, assess the claim with the one-sided probability $P(X\\ge5)$.","clean_answer":"Under the claim, $P(X\\ge5)=1-P(X\\le4)\\approx0.0432$. Because this probability is below 0.05, observing 5 or more errors is unusually unlikely under the claim; reject the claim at the 5% level. This is evidence against the claim, not proof that the true rate is different."},
-    {"id":"ch05_q07","chapter":"Ch05","decision":"delete","reason":"The question asks for the standard deviation of a number of deliveries but gives no sample size or number of trials."},
-    {"id":"ch05_q08","chapter":"Ch05","decision":"delete","reason":"The question asks for a probability for a number of deliveries but gives no sample size or number of trials."},
-    {"id":"ch05_q09","chapter":"Ch05","decision":"rewrite","question_type":"计算题","difficulty":2,"keywords":["expected value","insurance"],"formula_refs":[],"data_refs":[],"clean_question":"An insurer charges a USD 1,500 annual premium for a USD 75,000 Hummer. The probability of theft is 0.0075. Find the insurer's expected net profit per policy.","clean_answer":"Expected claim cost is $0.0075(75{,}000)=562.50$ dollars. Expected net profit is $1{,}500-562.50=937.50$ dollars."},
-    {"id":"ch05_q10","chapter":"Ch05","decision":"rewrite","question_type":"计算题","difficulty":2,"keywords":["expected value","insurance premium"],"clean_question":"The probability of theft of a USD 75,000 Hummer is 0.0075. What premium should an insurer charge to obtain an expected net profit of USD 2,000 per policy?","clean_answer":"If the premium is $c$, then $c-0.0075(75{,}000)=2{,}000$. Hence $c=2{,}562.50$ dollars."},
-    {"id":"ch05_q11","chapter":"Ch05","decision":"rewrite","question_type":"计算题","difficulty":2,"keywords":["discrete probability distribution","expected value","variance"],"clean_question":"A random variable $X$ has probabilities $P(X=1)=0.1$, $P(X=2)=0.5$, $P(X=3)=0.2$, and an unknown $P(X=4)$. Find the missing probability, $E(X)$, and $\\operatorname{Var}(X)$. ","clean_answer":"The probabilities must sum to 1, so $P(X=4)=1-0.1-0.5-0.2=0.2$. Then $E(X)=1(0.1)+2(0.5)+3(0.2)+4(0.2)=2.5$. Also, $E(X^2)=1^2(0.1)+2^2(0.5)+3^2(0.2)+4^2(0.2)=7.1$, so $\\operatorname{Var}(X)=7.1-2.5^2=0.85$."},
-    {"id":"ch05_q12","chapter":"Ch05","decision":"rewrite","question_type":"计算题","difficulty":2,"keywords":["expected value","decision analysis"],"clean_question":"A drug's six-month profit contribution is USD -30,000 with probability 0.2, USD 50,000 with probability 0.5, and USD 200,000 with probability 0.3. Management will market the drug only if expected profit exceeds USD 90,000. Decide.","clean_answer":"$$E(X)=(-30{,}000)(0.2)+(50{,}000)(0.5)+(200{,}000)(0.3)=79{,}000\\ \\text{dollars}.$$ Since $79{,}000<90{,}000$, management should not market the drug under this rule."},
-    {"id":"ch05_q13","chapter":"Ch05","decision":"rewrite","question_type":"计算题","difficulty":2,"keywords":["expected value","net gain"],"clean_question":"A lawyer has probability 0.3 of winning a case and earns USD 40,000 if she wins and nothing if she loses. She must spend USD 5,000 preparing the case in either outcome. Find her expected net gain.","clean_answer":"The net gain is $35{,}000$ if she wins and $-5{,}000$ if she loses. Thus $E(X)=0.3(35{,}000)+0.7(-5{,}000)=7{,}000$ dollars."},
-    {"id":"ch05_q14","chapter":"Ch05","decision":"rewrite","question_type":"计算题","difficulty":2,"keywords":["binomial distribution","complement probability"],"clean_question":"A vaccine is 95% effective. For 20 independent individuals, find the probability that it is ineffective for exactly one individual.","clean_answer":"Let $X\\sim\\operatorname{Binomial}(20,0.05)$. Then $P(X=1)=\\binom{20}{1}(0.05)(0.95)^{19}\\approx0.3774$."},
-    {"id":"ch05_q15","chapter":"Ch05","decision":"rewrite","question_type":"计算题","difficulty":2,"keywords":["binomial distribution","complement probability"],"clean_question":"A vaccine is 95% effective. For 20 independent individuals, find the probability that it is ineffective for more than one individual.","clean_answer":"With $X\\sim\\operatorname{Binomial}(20,0.05)$, $P(X>1)=1-P(X=0)-P(X=1)\\approx1-0.3585-0.3774=0.2641$."},
-    {"id":"ch05_q16","chapter":"Ch05","decision":"rewrite","question_type":"计算题","difficulty":2,"keywords":["binomial mean","binomial standard deviation"],"clean_question":"The probability that a reported residential-service problem is repaired the same day is 0.75. For the first five reported problems, find the mean and standard deviation of the number repaired the same day.","clean_answer":"For $X\\sim\\operatorname{Binomial}(5,0.75)$, $\\mu=np=3.75$ and $\\sigma=\\sqrt{5(0.75)(0.25)}\\approx0.9682$."},
-    {"id":"ch05_q17","chapter":"Ch05","decision":"rewrite","question_type":"计算题","difficulty":3,"keywords":["binomial distribution","Empirical Rule"],"clean_question":"Thirty percent of a cleaning company's jobs finish within the bid time. For a random sample of 8 jobs, find the probability that the number finished on time is within one standard deviation of its mean.","clean_answer":"For $X\\sim\\operatorname{Binomial}(8,0.3)$, $\\mu=2.4$ and $\\sigma=\\sqrt{8(0.3)(0.7)}\\approx1.296$. The integer values in [2.4-1.296, 2.4+1.296] dollars are 2 and 3, so $P(2\\le X\\le3)=P(X=2)+P(X=3)\\approx0.2965+0.2541=0.5506$."},
-    {"id":"ch05_q18","chapter":"Ch05","decision":"rewrite","question_type":"计算题","difficulty":2,"keywords":["Poisson distribution"],"clean_question":"A grocery-store service desk serves an average of 4 customers per half-hour. Assuming a Poisson distribution, find the probability that at most 2 customers use the desk in a half-hour.","clean_answer":"For $X\\sim\\operatorname{Poisson}(4)$, $P(X\\le2)=\\sum_{x=0}^{2}e^{-4}4^x/x!\\approx0.2381$."},
-    {"id":"ch05_q19","chapter":"Ch05","decision":"rewrite","question_type":"计算题","difficulty":2,"keywords":["Poisson distribution"],"clean_question":"A grocery-store service desk serves an average of 4 customers per half-hour. Assuming a Poisson process, find the probability that exactly 2 customers use the desk in a one-hour period.","clean_answer":"The one-hour mean is $\\lambda=8$. Thus $P(X=2)=e^{-8}8^2/2!\\approx0.0107$."},
-    {"id":"ch05_q20","chapter":"Ch05","decision":"rewrite","question_type":"计算题","difficulty":2,"keywords":["binomial distribution","hypothesis assessment"],"clean_question":"State blood-program data claim that 40% of individuals have group A blood. In a random sample of 6, exactly 3 have group A blood. Using the one-sided probability $P(X\\ge3)$ under $X\\sim\\operatorname{Binomial}(6,0.4)$, assess the claim.","clean_answer":"$P(X\\ge3)=\\sum_{x=3}^{6}\\binom6x(0.4)^x(0.6)^{6-x}\\approx0.4557$. This is not small, so 3 or more observations is not unusual under the claim; the sample does not provide evidence against the 40% rate."},
-    {"id":"ch05_q21","chapter":"Ch05","decision":"delete","reason":"Duplicate of the complete uniform-distribution question retained in Ch04, and the stored formulas are image placeholders."},
-    {"id":"ch05_q22","chapter":"Ch05","decision":"rewrite","question_type":"综合题","difficulty":2,"keywords":["uniform distribution","probability density"],"formula_refs":[],"data_refs":[],"clean_question":"A flight's actual time $X$, in minutes, is uniformly distributed on [120, 140] dollars.\n\na. Give the density.\n\nb. Describe its graph.\n\nc. Find $P(125\\le X\\le135)$.\n\nd. Find the probability that a flight is at least 5 minutes late when the quoted time is 130 minutes.","clean_answer":"a. $f(x)=1/20$ for $120\\le x\\le140$ and 0 otherwise.\n\nb. The graph is a horizontal line of height $1/20$ on [120, 140] dollars.\n\nc. $P(125\\le X\\le135)=10/20=0.50$.\n\nd. At least 5 minutes late means $X\\ge135$, so $P(X\\ge135)=5/20=0.25$."},
-    {"id":"ch05_q23","chapter":"Ch05","decision":"delete","reason":"Duplicate of the complete normal-score reconstruction in Ch03."},
-    {"id":"ch05_q24","chapter":"Ch05","decision":"delete","reason":"Duplicate of the complete 33rd-percentile health-expense question in Ch03."},
-    {"id":"ch05_q25","chapter":"Ch05","decision":"delete","reason":"Duplicate of the complete normal-approximation binomial question in Ch03."},
-    {"id":"ch05_q26","chapter":"Ch05","decision":"delete","reason":"Duplicate of the complete uniform-distribution question in Ch04 and contains conversion residue."},
-    {"id":"ch05_q27","chapter":"Ch05","decision":"delete","reason":"References Exercise 1 and duplicates the completed uniform-distribution summary in Ch04."},
-    {"id":"ch05_q28","chapter":"Ch05","decision":"delete","reason":"The figure defining the continuous density is absent, so the normalizing constant cannot be determined."},
-    {"id":"ch05_q29","chapter":"Ch05","decision":"delete","reason":"Duplicate of the complete standard-normal critical-value question in Ch04."},
-    {"id":"ch05_q30","chapter":"Ch05","decision":"delete","reason":"Duplicate of the complete IQ normal-probability question in Ch04."},
-    {"id":"ch05_q31","chapter":"Ch05","decision":"rewrite","question_type":"计算题","difficulty":2,"keywords":["sampling distribution of the mean"],"clean_question":"For a population with mean $\\mu$ and standard deviation $\\sigma$, find the mean, variance, and standard deviation of the sampling distribution of $\\bar X$ in each case.\n\na. $\\mu=10$, $\\sigma=2$, $n=25$\n\nb. $\\mu=3$, $\\sigma=0.1$, $n=4$\n\nc. $\\mu=500$, $\\sigma=0.5$, $n=100$","clean_answer":"Use $E(\\bar X)=\\mu$, $\\operatorname{Var}(\\bar X)=\\sigma^2/n$, and $\\operatorname{SD}(\\bar X)=\\sigma/\\sqrt n$.\n\na. Mean 10, variance $4/25=0.16$, standard deviation 0.4.\n\nb. Mean 3, variance $0.01/4=0.0025$, standard deviation 0.05.\n\nc. Mean 500, variance $0.25/100=0.0025$, standard deviation 0.05."},
-    {"id":"ch05_q32","chapter":"Ch05","decision":"rewrite","question_type":"综合题","difficulty":3,"keywords":["sampling distribution","z-test","central limit theorem"],"clean_question":"A bank's population waiting-time standard deviation is known to be $2.47$ minutes. For a random sample of 100 customers, $\\bar x=5.46$. Investigate $H_0:\\mu=6$ against $H_a:\\mu<6$.\n\na. Describe the sampling distribution of $\\bar X$.\n\nb. Find its mean and standard deviation under $H_0$.\n\nc. Find $P(\\bar X\\le5.46\\mid\\mu=6)$.\n\nd. State the conclusion.","clean_answer":"a. By the central limit theorem, the sampling distribution is approximately normal.\n\nb. Under $H_0$, $E(\\bar X)=6$ and $\\operatorname{SD}(\\bar X)=2.47/\\sqrt{100}=0.247$.\n\nc. $z=(5.46-6)/0.247\\approx-2.186$, so $P(\\bar X\\le5.46)\\approx0.0144$.\n\nd. This small p-value is evidence against $\\mu=6$ in favor of $\\mu<6$; conclude that the new system likely reduced the population mean below six minutes."},
-    {"id":"ch05_q33","chapter":"Ch05","decision":"rewrite","question_type":"简答题","difficulty":2,"keywords":["sampling distribution of a proportion","normal approximation"],"clean_question":"Use the rule $np\\ge10$ and $n(1-p)\\ge10$ to decide whether the sampling distribution of $\\hat p$ can be treated as normal.\n\na. $p=0.4,n=100$\n\nb. $p=0.1,n=10$\n\nc. $p=0.1,n=50$\n\nd. $p=0.8,n=400$\n\ne. $p=0.98,n=1000$\n\nf. $p=0.99,n=400$","clean_answer":"a. Yes: $np=40$, $n(1-p)=60$.\n\nb. No: $np=1$.\n\nc. No: $np=5$.\n\nd. Yes: $np=320$, $n(1-p)=80$.\n\ne. Yes: $np=980$, $n(1-p)=20$.\n\nf. No: $n(1-p)=4$."},
-    {"id":"ch05_q34","chapter":"Ch05","decision":"rewrite","question_type":"计算题","difficulty":3,"keywords":["sampling distribution of a proportion","normal approximation"],"clean_question":"A poll of 1,000 parents found $\\hat p=0.17$ using V-chips. To test the claim $p<0.20$, assume $p=0.20$ and use a normal approximation to find $P(\\hat p\\le0.17)$.","clean_answer":"Under $p=0.20$, $\\operatorname{SD}(\\hat p)=\\sqrt{0.2(0.8)/1000}\\approx0.01265$. Thus $z=(0.17-0.20)/0.01265\\approx-2.37$, giving $P(\\hat p\\le0.17)\\approx0.0088$. This small probability supports the conclusion that the true proportion is below 0.20."},
-    {"id":"ch05_q35","chapter":"Ch05","decision":"rewrite","question_type":"计算题","difficulty":3,"keywords":["sampling distribution of a proportion","normal approximation"],"clean_question":"In a random sample of 1,031 adults, $\\hat p=0.42$ had vacationed for at least six days. To assess $H_0:p=0.40$ versus $H_a:p>0.40$, use a normal approximation to find $P(\\hat p\\ge0.42)$.","clean_answer":"Under $p=0.40$, $\\operatorname{SD}(\\hat p)=\\sqrt{0.4(0.6)/1031}\\approx0.01525$. Thus $z=(0.42-0.40)/0.01525\\approx1.31$, and $P(\\hat p\\ge0.42)\\approx0.095$. The evidence is weak; at the 5% level it is not enough to conclude that more than 40% of adults meet the criterion."},
-    {"id":"rotel_ch05_expectation_01","chapter":"Ch05","decision":"keep","question_type":"计算题","difficulty":2,"keywords":["expected value","net payoff"]}
-  ]
+    {
+      "id": "ch05_q01",
+      "chapter": "Ch05",
+      "decision": "rewrite",
+      "question_type": "计算题",
+      "difficulty": 2,
+      "keywords": [
+        "binomial distribution"
+      ],
+      "clean_question": "A calculator is defective with probability $0.10$. If 10 calculators are selected independently, find the probability that at least 3 are defective.",
+      "clean_answer": "Let $X\\sim\\operatorname{Binomial}(10,0.1)$. Then $P(X\\ge3)=1-P(X\\le2)\\approx1-0.9298=0.0702$.",
+      "expected_question_hash": "6b33d0a956004be863d1765dd95164ee70b0dbe5b6ab1597950a8845e45a68b0",
+      "expected_answer_hash": "f58df726431953d6eb83337ff54894896fb3e4f05cfd41cc989639d24e4aa844",
+      "reviewed_question_hash": "10bf3e00548bce6497a27a31a03989ae785033501a378cd4a40ddf8759d2f8cc",
+      "reviewed_answer_hash": "7fdabbf10acfbbf0dab6fedc48330f01c31e1a543d9899a5a1d6b507f4b6d02c"
+    },
+    {
+      "id": "ch05_q02",
+      "chapter": "Ch05",
+      "decision": "rewrite",
+      "question_type": "计算题",
+      "difficulty": 1,
+      "keywords": [
+        "binomial mean",
+        "binomial standard deviation"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "clean_question": "A calculator is defective with probability $0.10$. For 100 independently selected calculators, find the mean and standard deviation of the number of defectives.",
+      "clean_answer": "For $X\\sim\\operatorname{Binomial}(100,0.1)$, $\\mu=np=10$ and $\\sigma=\\sqrt{np(1-p)}=\\sqrt9=3$.",
+      "expected_question_hash": "dac7c272e13203b3ced7257730cf97fccaf49ee2d926d0f1d98ad0390a37a2ae",
+      "expected_answer_hash": "3c57b0576c502fc4bc01b5f72c08dc3fc19ed00a1b47a2a98e2f28ecc9e27c36",
+      "reviewed_question_hash": "d0e944421ba9dad52dc5d97884bb99dcef58e616f4c4103af06e4e3ea9be1269",
+      "reviewed_answer_hash": "21fee2972ee74c938bb5f18431e49fc0a3baef774e4b587f7b169d85a5d46ad8"
+    },
+    {
+      "id": "ch05_q03",
+      "chapter": "Ch05",
+      "decision": "rewrite",
+      "question_type": "计算题",
+      "difficulty": 2,
+      "keywords": [
+        "Poisson distribution"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "clean_question": "Patient arrivals follow a Poisson process averaging 3 patients every 2 hours. Find the probability of exactly 6 arrivals during a 5-hour period.",
+      "clean_answer": "The 5-hour mean is $\\lambda=3(5/2)=7.5$. Thus $P(X=6)=e^{-7.5}7.5^6/6!\\approx0.1367$.",
+      "expected_question_hash": "3a079dcc5f51bae2389b407ca8f5bce216a0447776ab9df10fa6d89c738ebfad",
+      "expected_answer_hash": "81b57208668f46f47931bf9cb13f13764a616194f90bcc66371ead72a6c06210",
+      "reviewed_question_hash": "8f9167de2d6b1500b4d841ceb3f8c58a605a952d655c7bf301b483866940d015",
+      "reviewed_answer_hash": "730fd2b4a673ccb31caa56af43fb01be223ad5135e54406f48821ab0f79dad40"
+    },
+    {
+      "id": "ch05_q04",
+      "chapter": "Ch05",
+      "decision": "rewrite",
+      "question_type": "计算题",
+      "difficulty": 2,
+      "keywords": [
+        "Poisson distribution"
+      ],
+      "clean_question": "Patient arrivals follow a Poisson process averaging 3 patients every 2 hours. Find the probability of at least 4 but no more than 8 arrivals during a 3-hour period.",
+      "clean_answer": "The 3-hour mean is $\\lambda=4.5$. Therefore $P(4\\le X\\le8)=\\sum_{x=4}^{8}e^{-4.5}4.5^x/x!\\approx0.6174$.",
+      "expected_question_hash": "aa79192906d827ac5e281d10d3986972da0ee23022d4b10fdba170b287d302af",
+      "expected_answer_hash": "842dd8668ed79e79007ff61569581d15c00ff6989e877a0dfffa68a411ab942e",
+      "reviewed_question_hash": "7a6363f83e5a0955fc0abd7ef6e6f1474d09f478fb030b351e4442a545e9ee92",
+      "reviewed_answer_hash": "852bf820a190a568e807f946411cdd83156c8d4661018ed1922a78196b3712ca"
+    },
+    {
+      "id": "ch05_q05",
+      "chapter": "Ch05",
+      "decision": "delete",
+      "reason": "The probability distribution is supplied only as an unreadable WMF image; its values cannot be independently recovered from the question record.",
+      "expected_question_hash": "053f3d41dceb217bf2bac35e947394001c1e024cd953d4462f5f80409edfa19f",
+      "expected_answer_hash": "ca5708dc7ab392196f649a326ec53b3891d17adc1d2308ffdfc521a92b16ddc7"
+    },
+    {
+      "id": "ch05_q06",
+      "chapter": "Ch05",
+      "decision": "rewrite",
+      "question_type": "计算题",
+      "difficulty": 3,
+      "keywords": [
+        "binomial distribution",
+        "hypothesis assessment"
+      ],
+      "clean_question": "An auditor claims that exactly 10% of invoices contain errors. In a random sample of 20 invoices, 5 contain errors. Using $X\\sim\\operatorname{Binomial}(20,0.10)$, assess the claim with the one-sided probability $P(X\\ge5)$.",
+      "clean_answer": "Under the claim, $P(X\\ge5)=1-P(X\\le4)\\approx0.0432$. Because this probability is below 0.05, observing 5 or more errors is unusually unlikely under the claim; reject the claim at the 5% level. This is evidence against the claim, not proof that the true rate is different.",
+      "expected_question_hash": "a98fd29cd35930cd78cf2a324949f282cff70f6e3a53d2c4fa5787f7ef431d65",
+      "expected_answer_hash": "94a69ad2b15a31b03dbe613a67a3665263eec1fcbe9d9f99b19ae6eb96c7e6d4",
+      "reviewed_question_hash": "c846503721a13d36710924334abe29d51c0c08cad06f42e397b76578f1eec1db",
+      "reviewed_answer_hash": "f0e576f185fbf2052e5cc16140126515b1d03dbabb6402531eb07c4a9a1ad908"
+    },
+    {
+      "id": "ch05_q07",
+      "chapter": "Ch05",
+      "decision": "delete",
+      "reason": "The question asks for the standard deviation of a number of deliveries but gives no sample size or number of trials.",
+      "expected_question_hash": "cfed0a565ad0c06b94466bb05f0afeb817a1f026f275863a7bbd89ef006dae0f",
+      "expected_answer_hash": "320d386996af960012bca2ab64b4c4125b2bb239b5c040c87ae3d26f88ed17ea"
+    },
+    {
+      "id": "ch05_q08",
+      "chapter": "Ch05",
+      "decision": "delete",
+      "reason": "The question asks for a probability for a number of deliveries but gives no sample size or number of trials.",
+      "expected_question_hash": "23502cd98a424ec59a1c54261314de795ab7d21e1a717299c7906c61d82a682b",
+      "expected_answer_hash": "3359926d1231b4eb97b3b97c7d39dfc6cf534636a584ec405be933d89c014afa"
+    },
+    {
+      "id": "ch05_q09",
+      "chapter": "Ch05",
+      "decision": "rewrite",
+      "question_type": "计算题",
+      "difficulty": 2,
+      "keywords": [
+        "expected value",
+        "insurance"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "clean_question": "An insurer charges a USD 1,500 annual premium for a USD 75,000 Hummer. The probability of theft is 0.0075. Find the insurer's expected net profit per policy.",
+      "clean_answer": "Expected claim cost is $0.0075(75{,}000)=562.50$ dollars. Expected net profit is $1{,}500-562.50=937.50$ dollars.",
+      "expected_question_hash": "e9b2727cff516453ca9110c82c26d7d0c168a14abe95cd35e264c073e51fded5",
+      "expected_answer_hash": "e6587761f0340106c6de0281907c0a9d7d96dcab86e414d8cd1a1f874c816b91",
+      "reviewed_question_hash": "11b121f2a0959d29484cda08b82243365866fee6ce951cac348b34a113cfb438",
+      "reviewed_answer_hash": "dbdf1bc295d13a92deba707b84ca748315ce130e55bd4b2aca93428379867d94"
+    },
+    {
+      "id": "ch05_q10",
+      "chapter": "Ch05",
+      "decision": "rewrite",
+      "question_type": "计算题",
+      "difficulty": 2,
+      "keywords": [
+        "expected value",
+        "insurance premium"
+      ],
+      "clean_question": "The probability of theft of a USD 75,000 Hummer is 0.0075. What premium should an insurer charge to obtain an expected net profit of USD 2,000 per policy?",
+      "clean_answer": "If the premium is $c$, then $c-0.0075(75{,}000)=2{,}000$. Hence $c=2{,}562.50$ dollars.",
+      "expected_question_hash": "de0c9fcd3c15af14acaf2dcb6c6a956bd6bcbb470f51d0fa73d106653d51f2a2",
+      "expected_answer_hash": "26a0c0ada7c044a611691ec45a34b7c5d7cc1277c7d89c05266e4c11723e339d",
+      "reviewed_question_hash": "9394f931f9a3447de906fe0727fff69a52e601435abe4b48dd1f6bbdf44eb233",
+      "reviewed_answer_hash": "22265c76e89d639d64fdf042db6d314d58c84e8b92b573e54a5d8c9474a1f57a"
+    },
+    {
+      "id": "ch05_q11",
+      "chapter": "Ch05",
+      "decision": "rewrite",
+      "question_type": "计算题",
+      "difficulty": 2,
+      "keywords": [
+        "discrete probability distribution",
+        "expected value",
+        "variance"
+      ],
+      "clean_question": "A random variable $X$ has probabilities $P(X=1)=0.1$, $P(X=2)=0.5$, $P(X=3)=0.2$, and an unknown $P(X=4)$. Find the missing probability, $E(X)$, and $\\operatorname{Var}(X)$. ",
+      "clean_answer": "The probabilities must sum to 1, so $P(X=4)=1-0.1-0.5-0.2=0.2$. Then $E(X)=1(0.1)+2(0.5)+3(0.2)+4(0.2)=2.5$. Also, $E(X^2)=1^2(0.1)+2^2(0.5)+3^2(0.2)+4^2(0.2)=7.1$, so $\\operatorname{Var}(X)=7.1-2.5^2=0.85$.",
+      "expected_question_hash": "add7cc9208938d7e9cd9a8194e414905efb046a03e82bc5ac4791dbc687bb64f",
+      "expected_answer_hash": "1aaf3cbbd1d10f7d8bee4c3f43dda21f701a255b9de12287aa7c3d244e9df4c0",
+      "reviewed_question_hash": "45c443f4bad1eb458973115ceb633efdba28b3e9d9850bd5e24f9fd99ddf8b8a",
+      "reviewed_answer_hash": "46ece23ecda3f077853ea3cd23e42f0f912313ab4880ce97ae646a38ff9e6a28"
+    },
+    {
+      "id": "ch05_q12",
+      "chapter": "Ch05",
+      "decision": "rewrite",
+      "question_type": "计算题",
+      "difficulty": 2,
+      "keywords": [
+        "expected value",
+        "decision analysis"
+      ],
+      "clean_question": "A drug's six-month profit contribution is USD -30,000 with probability 0.2, USD 50,000 with probability 0.5, and USD 200,000 with probability 0.3. Management will market the drug only if expected profit exceeds USD 90,000. Decide.",
+      "clean_answer": "$$E(X)=(-30{,}000)(0.2)+(50{,}000)(0.5)+(200{,}000)(0.3)=79{,}000\\ \\text{dollars}.$$ Since $79{,}000<90{,}000$, management should not market the drug under this rule.",
+      "expected_question_hash": "1e8357e6342a7954c7578c343e9e9c6470c6aeba624f5cae7bef859100d44521",
+      "expected_answer_hash": "28c95ac5f6e65c5052f033349e29d62d8ebc56dab83891879a803c3d35d2b8ab",
+      "reviewed_question_hash": "d3c384a92e326ef1d9cc3b61730467c8f83e0fa6c6f15f3ea42c0dcb36c19663",
+      "reviewed_answer_hash": "28da2cf86213fd2625f3d3b598378a9b0801f6c83c5ecd8feac0d1b3ffe62474"
+    },
+    {
+      "id": "ch05_q13",
+      "chapter": "Ch05",
+      "decision": "rewrite",
+      "question_type": "计算题",
+      "difficulty": 2,
+      "keywords": [
+        "expected value",
+        "net gain"
+      ],
+      "clean_question": "A lawyer has probability 0.3 of winning a case and earns USD 40,000 if she wins and nothing if she loses. She must spend USD 5,000 preparing the case in either outcome. Find her expected net gain.",
+      "clean_answer": "The net gain is $35{,}000$ if she wins and $-5{,}000$ if she loses. Thus $E(X)=0.3(35{,}000)+0.7(-5{,}000)=7{,}000$ dollars.",
+      "expected_question_hash": "567114fb4764786d375abcc677b8470b3bfe141d01b1a6d7eaf18a26a495f95e",
+      "expected_answer_hash": "a684cb8c31a2089b848b4b58359c94844ae8f258bc9ffda74bb6726bab040541",
+      "reviewed_question_hash": "060182637828e56d6e2cf538ea7c7460786ed79ac5bde7fd3ccf2b40890197e7",
+      "reviewed_answer_hash": "aa3b1024c33916207635d5a7719e947ae38b74874720b1897ff548ed6a989609"
+    },
+    {
+      "id": "ch05_q14",
+      "chapter": "Ch05",
+      "decision": "rewrite",
+      "question_type": "计算题",
+      "difficulty": 2,
+      "keywords": [
+        "binomial distribution",
+        "complement probability"
+      ],
+      "clean_question": "A vaccine is 95% effective. For 20 independent individuals, find the probability that it is ineffective for exactly one individual.",
+      "clean_answer": "Let $X\\sim\\operatorname{Binomial}(20,0.05)$. Then $P(X=1)=\\binom{20}{1}(0.05)(0.95)^{19}\\approx0.3774$.",
+      "expected_question_hash": "c3b454e4f7c8db8dd199dd31ee39bb2950b5b61afc38875ee3d4e766df4f1bbd",
+      "expected_answer_hash": "c9047d5403f07bb97dc4e57b2291fff110b97eb7c108ad29d76b084e63166e82",
+      "reviewed_question_hash": "a0010d18165ba8b22476056fcf561a0896a7e10e3d2ba8da5fb1d792059bccf6",
+      "reviewed_answer_hash": "f1f346937c6008edf5cf4358691b5aef1d5a1e0f365eeec65fb9146837948f7e"
+    },
+    {
+      "id": "ch05_q15",
+      "chapter": "Ch05",
+      "decision": "rewrite",
+      "question_type": "计算题",
+      "difficulty": 2,
+      "keywords": [
+        "binomial distribution",
+        "complement probability"
+      ],
+      "clean_question": "A vaccine is 95% effective. For 20 independent individuals, find the probability that it is ineffective for more than one individual.",
+      "clean_answer": "With $X\\sim\\operatorname{Binomial}(20,0.05)$, $P(X>1)=1-P(X=0)-P(X=1)\\approx1-0.3585-0.3774=0.2641$.",
+      "expected_question_hash": "ae2689828a69bae25383b21010d266d5c6fbd2ab2ae4725907e25d27fda51fa9",
+      "expected_answer_hash": "bcb08cd5fc4c3d0ffe357b95e109f7bc7453b1412dbf651d90fbac3a1ac3a2d2",
+      "reviewed_question_hash": "006fd732f9a0c16aa4c67a9c8b47f0deb9bf7625e06ea8c6aa6cbff255c64ed6",
+      "reviewed_answer_hash": "7ddc59c01a3c2aee3f3ffbad971ec90ab99396dca10dfe42c5769eda80b79aa9"
+    },
+    {
+      "id": "ch05_q16",
+      "chapter": "Ch05",
+      "decision": "rewrite",
+      "question_type": "计算题",
+      "difficulty": 2,
+      "keywords": [
+        "binomial mean",
+        "binomial standard deviation"
+      ],
+      "clean_question": "The probability that a reported residential-service problem is repaired the same day is 0.75. For the first five reported problems, find the mean and standard deviation of the number repaired the same day.",
+      "clean_answer": "For $X\\sim\\operatorname{Binomial}(5,0.75)$, $\\mu=np=3.75$ and $\\sigma=\\sqrt{5(0.75)(0.25)}\\approx0.9682$.",
+      "expected_question_hash": "fc718931c0c408c21b4486ec7cf43ebf1dbb182cb20504625615a415e4873fbd",
+      "expected_answer_hash": "40ad3b2888e2d9d3b79a46c7d93e7929fd8a4015257bc43e61f8d7a4b8b9e279",
+      "reviewed_question_hash": "604d519ea2fb6140084f80554652cddb2cf51f385cb740c69d2701a12d4f97c8",
+      "reviewed_answer_hash": "2836c42e6ec913bcf6a046b30d957d264047a1e9b889a16003c093450de14c6c"
+    },
+    {
+      "id": "ch05_q17",
+      "chapter": "Ch05",
+      "decision": "rewrite",
+      "question_type": "计算题",
+      "difficulty": 3,
+      "keywords": [
+        "binomial distribution",
+        "Empirical Rule"
+      ],
+      "clean_question": "Thirty percent of a cleaning company's jobs finish within the bid time. For a random sample of 8 jobs, find the probability that the number finished on time is within one standard deviation of its mean.",
+      "clean_answer": "For $X\\sim\\operatorname{Binomial}(8,0.3)$, $\\mu=2.4$ and $\\sigma=\\sqrt{8(0.3)(0.7)}\\approx1.296$. The integer values in [2.4-1.296, 2.4+1.296] dollars are 2 and 3, so $P(2\\le X\\le3)=P(X=2)+P(X=3)\\approx0.2965+0.2541=0.5506$.",
+      "expected_question_hash": "290ad5556977027786813c25f937950d7dfa2d57a047a9d01d11e87ee51b5fbb",
+      "expected_answer_hash": "d86f4d749b293c18d21e51f2096d8903de84f6b773b4037fdc4392930f243fa1",
+      "reviewed_question_hash": "091e6f427fbf6480b460a4216e6d572b3a2a6c86db6d131dc7bbb8a9cc41e7ad",
+      "reviewed_answer_hash": "8f8d6b5cece9a59558a0d053a9bb4e4c753e1473811c101afc7e9f8af4bf1121"
+    },
+    {
+      "id": "ch05_q18",
+      "chapter": "Ch05",
+      "decision": "rewrite",
+      "question_type": "计算题",
+      "difficulty": 2,
+      "keywords": [
+        "Poisson distribution"
+      ],
+      "clean_question": "A grocery-store service desk serves an average of 4 customers per half-hour. Assuming a Poisson distribution, find the probability that at most 2 customers use the desk in a half-hour.",
+      "clean_answer": "For $X\\sim\\operatorname{Poisson}(4)$, $P(X\\le2)=\\sum_{x=0}^{2}e^{-4}4^x/x!\\approx0.2381$.",
+      "expected_question_hash": "e04bb46f4518ba0414b21d7a62fe1012e8d7b99c83892a0d6826df6eb87ed992",
+      "expected_answer_hash": "ee481d1eb0a208cb8752e134ed57c8fdc55b6598a1fa0e5553445d8116ae7f98",
+      "reviewed_question_hash": "f581e9b8850658d715abde26592ca5f617d6c4e5d13642998b3e0af18fafaccd",
+      "reviewed_answer_hash": "9728d38d9246912f1e1cc8a79d3d41d29a0f19dc6ab09f53e3afbae9a829b000"
+    },
+    {
+      "id": "ch05_q19",
+      "chapter": "Ch05",
+      "decision": "rewrite",
+      "question_type": "计算题",
+      "difficulty": 2,
+      "keywords": [
+        "Poisson distribution"
+      ],
+      "clean_question": "A grocery-store service desk serves an average of 4 customers per half-hour. Assuming a Poisson process, find the probability that exactly 2 customers use the desk in a one-hour period.",
+      "clean_answer": "The one-hour mean is $\\lambda=8$. Thus $P(X=2)=e^{-8}8^2/2!\\approx0.0107$.",
+      "expected_question_hash": "eaa9a4b939f33be0b82600d4e58cdda01a480f735ca57d385b6492825780fef6",
+      "expected_answer_hash": "be296e5e054c5b5adcf3d8d8c8db17a73c1353e2fafe2eef76070880910f53e4",
+      "reviewed_question_hash": "ee1684298de32c00f0184e024c88b45051b1748f2047b8256cb9979a94fc08f6",
+      "reviewed_answer_hash": "749da0fe1e9b596c5029201892f45eb6b9a9b9cd4cf250a644798bcc97ff0b47"
+    },
+    {
+      "id": "ch05_q20",
+      "chapter": "Ch05",
+      "decision": "rewrite",
+      "question_type": "计算题",
+      "difficulty": 2,
+      "keywords": [
+        "binomial distribution",
+        "hypothesis assessment"
+      ],
+      "clean_question": "State blood-program data claim that 40% of individuals have group A blood. In a random sample of 6, exactly 3 have group A blood. Using the one-sided probability $P(X\\ge3)$ under $X\\sim\\operatorname{Binomial}(6,0.4)$, assess the claim.",
+      "clean_answer": "$P(X\\ge3)=\\sum_{x=3}^{6}\\binom6x(0.4)^x(0.6)^{6-x}\\approx0.4557$. This is not small, so 3 or more observations is not unusual under the claim; the sample does not provide evidence against the 40% rate.",
+      "expected_question_hash": "75346cb6861b6b95dbdb7bc6690b12f584157844a271e3cf9a32c993e43189bf",
+      "expected_answer_hash": "cf36aa36c11f20028b1cfe749f125dbdcdc28d42eb3317180e519212ac761f5e",
+      "reviewed_question_hash": "b4a28a6e0d4c7b72d646435444abe313afde121cac5975b2d25486465890b570",
+      "reviewed_answer_hash": "1fc0b12a3a18a8768ff27e0764ddcf517d200fc12ec06dba2168ab0a1c8c629d"
+    },
+    {
+      "id": "ch05_q21",
+      "chapter": "Ch05",
+      "decision": "delete",
+      "reason": "Duplicate of the complete uniform-distribution question retained in Ch04, and the stored formulas are image placeholders.",
+      "expected_question_hash": "81b8afaeb8866341260506951f81c75a88b9afb9d0a852687d9233117171c6e6",
+      "expected_answer_hash": "74c7b8909e0cb231c77f6e43c20f4d8f15041ac26cf88b97ab85cf2fb2348982"
+    },
+    {
+      "id": "ch05_q22",
+      "chapter": "Ch05",
+      "decision": "rewrite",
+      "question_type": "综合题",
+      "difficulty": 2,
+      "keywords": [
+        "uniform distribution",
+        "probability density"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "clean_question": "A flight's actual time $X$, in minutes, is uniformly distributed on [120, 140] dollars.\n\na. Give the density.\n\nb. Describe its graph.\n\nc. Find $P(125\\le X\\le135)$.\n\nd. Find the probability that a flight is at least 5 minutes late when the quoted time is 130 minutes.",
+      "clean_answer": "a. $f(x)=1/20$ for $120\\le x\\le140$ and 0 otherwise.\n\nb. The graph is a horizontal line of height $1/20$ on [120, 140] dollars.\n\nc. $P(125\\le X\\le135)=10/20=0.50$.\n\nd. At least 5 minutes late means $X\\ge135$, so $P(X\\ge135)=5/20=0.25$.",
+      "expected_question_hash": "b8687876c96be09968cdf699c671765d76617c8d39958777859ced64805ba1b1",
+      "expected_answer_hash": "fa8e6a08616c8e20d8c05f671f1c646f34448630a548dd1900550442a195e58d",
+      "reviewed_question_hash": "e84dd6435513504301ca5c54d2e3b4ec41d4c2ec9cfd0dc3198c954284a59e52",
+      "reviewed_answer_hash": "775f951619e0234a186f99f0b28ae341cf99e9ebe24b63d18b9c97f46815c1d0"
+    },
+    {
+      "id": "ch05_q23",
+      "chapter": "Ch05",
+      "decision": "delete",
+      "reason": "Duplicate of the complete normal-score reconstruction in Ch03.",
+      "expected_question_hash": "9478e83b54db5377f80934c30c67d86070e54385f729434fa5e3694a5a604e11",
+      "expected_answer_hash": "d38dc3d1b326b848a22d0694ce38767fb0bfa500581601cae6634927fe1f4b9c"
+    },
+    {
+      "id": "ch05_q24",
+      "chapter": "Ch05",
+      "decision": "delete",
+      "reason": "Duplicate of the complete 33rd-percentile health-expense question in Ch03.",
+      "expected_question_hash": "e81004e8f97a65107b757fdfe696b0175c5feabce3ea18285a187157410d09ac",
+      "expected_answer_hash": "a9a72359cbda1b2802aefbb8933985d53dcab0a8e423d85b955e9fedfd76b44b"
+    },
+    {
+      "id": "ch05_q25",
+      "chapter": "Ch05",
+      "decision": "delete",
+      "reason": "Duplicate of the complete normal-approximation binomial question in Ch03.",
+      "expected_question_hash": "973cd61cad1924c8a9ab2a93c6a27905a15373e1faab34dc2bec777c688296bb",
+      "expected_answer_hash": "b04a4d0091fe1ae9f2e2ce50653d3c537ddef02ab6cc2aaa1646c9f24b8671c9"
+    },
+    {
+      "id": "ch05_q26",
+      "chapter": "Ch05",
+      "decision": "delete",
+      "reason": "Duplicate of the complete uniform-distribution question in Ch04 and contains conversion residue.",
+      "expected_question_hash": "843ca3a23991ca404428dd9ff71262019f2a79490ce0b0f93767bfbcc45913d7",
+      "expected_answer_hash": "4dd517b7c57bee2e08b3a9de178b10d5479aa50ccf0faef695db3858fc6c7972"
+    },
+    {
+      "id": "ch05_q27",
+      "chapter": "Ch05",
+      "decision": "delete",
+      "reason": "References Exercise 1 and duplicates the completed uniform-distribution summary in Ch04.",
+      "expected_question_hash": "53ed76548f6475b082373f8d60c2ad5550c736aa62b90d6527260e345d60bea2",
+      "expected_answer_hash": "9869014c3a4b38ecdd6bfdbdcb854faaddddf249a4744202084c8775b2ea5b65"
+    },
+    {
+      "id": "ch05_q28",
+      "chapter": "Ch05",
+      "decision": "delete",
+      "reason": "The figure defining the continuous density is absent, so the normalizing constant cannot be determined.",
+      "expected_question_hash": "f2702339ce529e56e13c3a7ab8d47d087178a247ef58163d75f7c6ca7e603ffa",
+      "expected_answer_hash": "ad98411e923af246f8b856fad1e0f449c0df95adc465f48eebb983549a3af562"
+    },
+    {
+      "id": "ch05_q29",
+      "chapter": "Ch05",
+      "decision": "delete",
+      "reason": "Duplicate of the complete standard-normal critical-value question in Ch04.",
+      "expected_question_hash": "6769957ae755e0134e065385627db33b8b736931bd0ed29b7456e17366f228fe",
+      "expected_answer_hash": "9d1208c7ee35c2ae9136d09982271f601bbe6f36af3c391def0495e5064be7a7"
+    },
+    {
+      "id": "ch05_q30",
+      "chapter": "Ch05",
+      "decision": "delete",
+      "reason": "Duplicate of the complete IQ normal-probability question in Ch04.",
+      "expected_question_hash": "28aa944b06aae82a4a711872e88227dffafec30db7d2d2a6ec41f5b383d8415e",
+      "expected_answer_hash": "362404e9e0c9135629797c14deb86bef176ff40fa78e7eda175a12d06083da42"
+    },
+    {
+      "id": "ch05_q31",
+      "chapter": "Ch05",
+      "decision": "rewrite",
+      "question_type": "计算题",
+      "difficulty": 2,
+      "keywords": [
+        "sampling distribution of the mean"
+      ],
+      "clean_question": "For a population with mean $\\mu$ and standard deviation $\\sigma$, find the mean, variance, and standard deviation of the sampling distribution of $\\bar X$ in each case.\n\na. $\\mu=10$, $\\sigma=2$, $n=25$\n\nb. $\\mu=3$, $\\sigma=0.1$, $n=4$\n\nc. $\\mu=500$, $\\sigma=0.5$, $n=100$",
+      "clean_answer": "Use $E(\\bar X)=\\mu$, $\\operatorname{Var}(\\bar X)=\\sigma^2/n$, and $\\operatorname{SD}(\\bar X)=\\sigma/\\sqrt n$.\n\na. Mean 10, variance $4/25=0.16$, standard deviation 0.4.\n\nb. Mean 3, variance $0.01/4=0.0025$, standard deviation 0.05.\n\nc. Mean 500, variance $0.25/100=0.0025$, standard deviation 0.05.",
+      "expected_question_hash": "13a096cd81844d8681fc19ab5e19f6e4cdb3a3b36a59bf7f59c8d5bc142c8234",
+      "expected_answer_hash": "f517424829d06484d5c99db2c3d2fed8fe1d5a209f19285ad256d688b1166cea",
+      "reviewed_question_hash": "a5fdbc230f322354f2e4eaab755c07bb0fd7d377dbd143a6b2a3b8e66fa725b9",
+      "reviewed_answer_hash": "63d95faf97f695b91568493cc53e03059a4eb3855bb3280136d0a26f96041c89"
+    },
+    {
+      "id": "ch05_q32",
+      "chapter": "Ch05",
+      "decision": "rewrite",
+      "question_type": "综合题",
+      "difficulty": 3,
+      "keywords": [
+        "sampling distribution",
+        "z-test",
+        "central limit theorem"
+      ],
+      "clean_question": "A bank's population waiting-time standard deviation is known to be $2.47$ minutes. For a random sample of 100 customers, $\\bar x=5.46$. Investigate $H_0:\\mu=6$ against $H_a:\\mu<6$.\n\na. Describe the sampling distribution of $\\bar X$.\n\nb. Find its mean and standard deviation under $H_0$.\n\nc. Find $P(\\bar X\\le5.46\\mid\\mu=6)$.\n\nd. State the conclusion.",
+      "clean_answer": "a. By the central limit theorem, the sampling distribution is approximately normal.\n\nb. Under $H_0$, $E(\\bar X)=6$ and $\\operatorname{SD}(\\bar X)=2.47/\\sqrt{100}=0.247$.\n\nc. $z=(5.46-6)/0.247\\approx-2.186$, so $P(\\bar X\\le5.46)\\approx0.0144$.\n\nd. This small p-value is evidence against $\\mu=6$ in favor of $\\mu<6$; conclude that the new system likely reduced the population mean below six minutes.",
+      "expected_question_hash": "f7578d0600d349897a3c30d688685e0a70a71bb9267a8aa12079e1d66f1b106c",
+      "expected_answer_hash": "aac7593038a5e9df3121d93ed88b524cc973d66189c996027aa7e2dfd9c4669b",
+      "reviewed_question_hash": "957b09257bf522e197e251304f8b0b824e99314c67f2c0737236cdefb5ca24bc",
+      "reviewed_answer_hash": "e46d739cd6280855718ee841d1f47dee261972007c192a08b8635f3dd7b39053"
+    },
+    {
+      "id": "ch05_q33",
+      "chapter": "Ch05",
+      "decision": "rewrite",
+      "question_type": "简答题",
+      "difficulty": 2,
+      "keywords": [
+        "sampling distribution of a proportion",
+        "normal approximation"
+      ],
+      "clean_question": "Use the rule $np\\ge10$ and $n(1-p)\\ge10$ to decide whether the sampling distribution of $\\hat p$ can be treated as normal.\n\na. $p=0.4,n=100$\n\nb. $p=0.1,n=10$\n\nc. $p=0.1,n=50$\n\nd. $p=0.8,n=400$\n\ne. $p=0.98,n=1000$\n\nf. $p=0.99,n=400$",
+      "clean_answer": "a. Yes: $np=40$, $n(1-p)=60$.\n\nb. No: $np=1$.\n\nc. No: $np=5$.\n\nd. Yes: $np=320$, $n(1-p)=80$.\n\ne. Yes: $np=980$, $n(1-p)=20$.\n\nf. No: $n(1-p)=4$.",
+      "expected_question_hash": "6b9176c7517289314715c5c71d16f422f8b5997ff8419c7343bbb2b6c6007db8",
+      "expected_answer_hash": "0e3af22002d1e734c072370fb076bae68cac73d25cf8f490127f96b61040de9b",
+      "reviewed_question_hash": "03a3d5f47b96744a0dc26ad37922c7a8eac5d4cdf2cf604c9de768f2d003ebc9",
+      "reviewed_answer_hash": "4d8eef192d6af6430558c296e07567f3314a53c6b0ba51048be486cb43c310e1"
+    },
+    {
+      "id": "ch05_q34",
+      "chapter": "Ch05",
+      "decision": "rewrite",
+      "question_type": "计算题",
+      "difficulty": 3,
+      "keywords": [
+        "sampling distribution of a proportion",
+        "normal approximation"
+      ],
+      "clean_question": "A poll of 1,000 parents found $\\hat p=0.17$ using V-chips. To test the claim $p<0.20$, assume $p=0.20$ and use a normal approximation to find $P(\\hat p\\le0.17)$.",
+      "clean_answer": "Under $p=0.20$, $\\operatorname{SD}(\\hat p)=\\sqrt{0.2(0.8)/1000}\\approx0.01265$. Thus $z=(0.17-0.20)/0.01265\\approx-2.37$, giving $P(\\hat p\\le0.17)\\approx0.0088$. This small probability supports the conclusion that the true proportion is below 0.20.",
+      "expected_question_hash": "a565faa41bc3a7e347e329922bdd3eba620305c51decd388c4c0f5fb19e19981",
+      "expected_answer_hash": "e55f5fd38a5f298a4879cee27311f699b9cd98912b30fd84798253a52c4f9e8f",
+      "reviewed_question_hash": "7a96f9cab779f973d2c0188c6b2417e29d74bdaf3e50aed6f2c2f5aa129f0b28",
+      "reviewed_answer_hash": "d2543ed2e8a81a67c359e796bf29ecb4a89940211abfd643eaa567f8e737a6f4"
+    },
+    {
+      "id": "ch05_q35",
+      "chapter": "Ch05",
+      "decision": "rewrite",
+      "question_type": "计算题",
+      "difficulty": 3,
+      "keywords": [
+        "sampling distribution of a proportion",
+        "normal approximation"
+      ],
+      "clean_question": "In a random sample of 1,031 adults, $\\hat p=0.42$ had vacationed for at least six days. To assess $H_0:p=0.40$ versus $H_a:p>0.40$, use a normal approximation to find $P(\\hat p\\ge0.42)$.",
+      "clean_answer": "Under $p=0.40$, $\\operatorname{SD}(\\hat p)=\\sqrt{0.4(0.6)/1031}\\approx0.01525$. Thus $z=(0.42-0.40)/0.01525\\approx1.31$, and $P(\\hat p\\ge0.42)\\approx0.095$. The evidence is weak; at the 5% level it is not enough to conclude that more than 40% of adults meet the criterion.",
+      "expected_question_hash": "d2845c447c6dee8d3e847120b66312799ed105e8b5939054c056a366a34b188a",
+      "expected_answer_hash": "2d4079d294b47ea99429e7b068633b55d15c215cd34b8bf7f69b44ef229bd631",
+      "reviewed_question_hash": "6612332e891616ca7d1f0857449dc6e084ea9a6b8992bd74f1478bf2430f924c",
+      "reviewed_answer_hash": "dcd8d4e57b72d82410b9f7e5456916b030641d0fb454a5c8a9d80a14f2490ef9"
+    },
+    {
+      "id": "rotel_ch05_expectation_01",
+      "chapter": "Ch05",
+      "decision": "keep",
+      "question_type": "计算题",
+      "difficulty": 2,
+      "keywords": [
+        "expected value",
+        "net payoff"
+      ],
+      "expected_question_hash": "827c00617a55950dd76c73ca9aebb911dc3c85ab3e7ed4e2e2a0f2dae5a0b777",
+      "expected_answer_hash": "a4462eb1e990a906eaba71848ac2c70cb4ef3f8a14ed284455f0808669c0e434",
+      "reviewed_question_hash": "827c00617a55950dd76c73ca9aebb911dc3c85ab3e7ed4e2e2a0f2dae5a0b777",
+      "reviewed_answer_hash": "a4462eb1e990a906eaba71848ac2c70cb4ef3f8a14ed284455f0808669c0e434"
+    }
+  ],
+  "hash_algorithm": "sha256",
+  "baseline_commit": "af9f46b10f466ba7efbe840ac28f38225a84a73d"
 }

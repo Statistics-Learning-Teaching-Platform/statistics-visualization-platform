@@ -26,7 +26,6 @@ import QuestionContent from "@/components/QuestionContent";
 import { useSelection } from "@/lib/selection";
 import type { QuestionsResponse, Question } from "@/lib/types";
 import { withBasePath } from "@/lib/base-path";
-import { reviewedQuestionIndex } from "@/generated/reviewed-questions";
 import { topicLabels } from "@/lib/topic-mapping";
 import {
   isTextbookChapterId,
@@ -52,6 +51,10 @@ function toggleSet<T>(setter: React.Dispatch<React.SetStateAction<Set<T>>>, valu
     else next.add(value);
     return next;
   });
+}
+
+function normalizeForDuplicate(value: string) {
+  return value.toLowerCase().replace(/\s+/g, "").replace(/[\p{P}\p{S}]/gu, "");
 }
 
 function shortQuestionTitle(value: string) {
@@ -80,7 +83,9 @@ export default function Home({ searchParams }: { searchParams: Promise<{ topicId
   const requestedTextbookChapter = isTextbookChapterId(routeParams.textbookChapterId)
     ? routeParams.textbookChapterId
     : undefined;
-  const [data, setData] = useState<QuestionsResponse>(() => reviewedQuestionIndex);
+  // The full question bank is loaded through the authenticated API instead of
+  // a bundled public index; the initial state stays empty until it arrives.
+  const [data, setData] = useState<QuestionsResponse>(() => ({ questions: [], chapters: [], difficulties: [] }));
   const [search, setSearch] = useState("");
   const [chapterSel, setChapterSel] = useState<Set<string>>(new Set());
   const [textbookChapterSel, setTextbookChapterSel] = useState<Set<TextbookChapterId>>(
@@ -183,6 +188,15 @@ export default function Home({ searchParams }: { searchParams: Promise<{ topicId
     () => data?.questions.filter((question) => question.isReviewed) ?? [],
     [data]
   );
+
+  const duplicateCount = useMemo(() => {
+    const counts = new Map<string, number>();
+    for (const question of data?.questions ?? []) {
+      const key = normalizeForDuplicate(question.content);
+      if (key) counts.set(key, (counts.get(key) ?? 0) + 1);
+    }
+    return [...counts.values()].reduce((total, count) => total + Math.max(0, count - 1), 0);
+  }, [data]);
   const selectedQuestionObjects = useMemo(() => {
     const byId = new Map([...data.questions, ...generatedQuestions].map((question) => [question.id, question]));
     return selected.map((id) => byId.get(id)).filter((question): question is Question => Boolean(question));
@@ -332,6 +346,7 @@ export default function Home({ searchParams }: { searchParams: Promise<{ topicId
               {item.label}
             </a>
           ))}
+          <Link className="qb-preview-button" href="/account">账号管理</Link>
         </nav>
 
         <div className="qb-global-actions">
@@ -499,6 +514,16 @@ export default function Home({ searchParams }: { searchParams: Promise<{ topicId
               {fullDataLoading && <p className="qb-review-note">正在载入其余题目…</p>}
               {fullDataError && <p className="qb-review-note qb-review-note--error">{fullDataError}</p>}
             </FilterGroup>
+
+            <div className="qb-quality">
+              <h3>题目质量概览</h3>
+              <p><strong>{reviewedQuestions.length}</strong> 题已完成独立审核</p>
+              <p><strong>{duplicateCount}</strong> 题与其他题目内容重复</p>
+              {data?.coverage && !data.coverage.isComplete && (
+                <p><strong>{data.coverage.emptyChapterIds.join("、")}</strong> 尚无通过审核的正式题目</p>
+              )}
+              <small>界面只把数据中具有明确审核标记的题目计为“已审核”。</small>
+            </div>
           </div>
 
           <div className="qb-sidebar__footer">

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import "katex/dist/katex.min.css";
 import { SelectionProvider } from "@/lib/selection";
+import { AuthGate } from "@/components/AuthGate";
 
 export const metadata: Metadata = {
   title: "统计学组卷系统",
@@ -19,7 +20,7 @@ export default function RootLayout({
         className="min-h-full flex flex-col bg-slate-50 text-slate-900"
         suppressHydrationWarning
       >
-        <SelectionProvider>{children}</SelectionProvider>
+        <AuthGate><SelectionProvider>{children}</SelectionProvider></AuthGate>
       </body>
     </html>
   );

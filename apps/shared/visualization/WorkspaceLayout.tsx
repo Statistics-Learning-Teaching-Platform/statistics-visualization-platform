@@ -26,15 +26,27 @@ function finiteWidth(value: unknown, fallback: number, min: number, max: number)
   return Number.isFinite(numeric) ? clamp(Math.round(numeric), min, max) : fallback;
 }
 
-export function loadWorkspaceLayout(storage: Pick<Storage, "getItem"> = localStorage): WorkspaceLayout {
+export function loadWorkspaceLayout(
+  storage: Pick<Storage, "getItem"> = localStorage,
+): WorkspaceLayout {
   try {
     const raw = storage.getItem(WORKSPACE_LAYOUT_KEY);
     const parsed = raw ? (JSON.parse(raw) as Partial<WorkspaceLayout>) : {};
     const legacyLeft = storage.getItem(LEGACY_LEFT_KEY);
     return {
       version: 2,
-      leftPanelWidth: finiteWidth(parsed.leftPanelWidth ?? legacyLeft, WORKSPACE_LAYOUT_DEFAULTS.leftPanelWidth, 185, 240),
-      rightPanelWidth: finiteWidth(parsed.rightPanelWidth, WORKSPACE_LAYOUT_DEFAULTS.rightPanelWidth, 270, 340),
+      leftPanelWidth: finiteWidth(
+        parsed.leftPanelWidth ?? legacyLeft,
+        WORKSPACE_LAYOUT_DEFAULTS.leftPanelWidth,
+        185,
+        240,
+      ),
+      rightPanelWidth: finiteWidth(
+        parsed.rightPanelWidth,
+        WORKSPACE_LAYOUT_DEFAULTS.rightPanelWidth,
+        270,
+        340,
+      ),
     };
   } catch {
     return { version: 2, ...WORKSPACE_LAYOUT_DEFAULTS };

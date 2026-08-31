@@ -15,6 +15,7 @@ export interface ControlConfig {
   defaultValue: ControlValue;
   min?: number;
   max?: number;
+  maxLength?: number;
   step?: number;
   options?: SelectOption[];
   /** Change the visible label according to another control's current value. */
@@ -32,7 +33,13 @@ export interface ControlConfig {
   group?: "mode" | "core" | "display";
 }
 
-export type QuickActionType = "drawSampleMeans" | "bumpControl" | "setControl" | "runWithControl" | "reset" | "resetAndDrawSampleMeans";
+export type QuickActionType =
+  | "drawSampleMeans"
+  | "bumpControl"
+  | "setControl"
+  | "runWithControl"
+  | "reset"
+  | "resetAndDrawSampleMeans";
 export type QuickActionCopyKey =
   | "addOneSample"
   | "addTwentySamples"
@@ -165,6 +172,8 @@ export interface ChartReference {
 export interface ChartBar {
   label: string;
   value: number;
+  /** Exact numeric bin center; the formatted label is not an identity. */
+  x?: number;
   color?: string;
   /** Semantic theme color used by the shared renderer; color is retained for legacy consumers. */
   semanticColor?: string;

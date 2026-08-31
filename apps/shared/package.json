@@ -21,7 +21,9 @@
     "./styles/tokens": "./styles/tokens.css",
     "./styles/tokens.css": "./styles/tokens.css",
     "./styles/workspace": "./styles/workspace.css",
-    "./styles/workspace.css": "./styles/workspace.css"
+    "./styles/workspace.css": "./styles/workspace.css",
+    "./styles/wals-custom": "./styles/wals-custom.css",
+    "./styles/wals-custom.css": "./styles/wals-custom.css"
   },
   "types": "./index.ts"
 }

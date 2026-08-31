@@ -7,6 +7,8 @@ import json
 from pathlib import Path
 from typing import Any
 
+from review_schema import stamp_approved_review
+
 
 ROOT = Path(__file__).resolve().parents[1]
 FORMED = ROOT / "Data" / "Formed"
@@ -60,6 +62,7 @@ def main() -> None:
                     "audit_pack": pack["pack_id"],
                 }
             )
+            stamp_approved_review(question_map[qid], answer_map[qid], pack_id=pack["pack_id"])
             updated += 1
 
         write(question_path, questions)

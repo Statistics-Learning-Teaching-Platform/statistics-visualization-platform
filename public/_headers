@@ -1,0 +1,31 @@
+/*
+  Strict-Transport-Security: max-age=31536000; includeSubDomains
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: accelerometer=(), camera=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), payment=(), usb=()
+  Content-Security-Policy: default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; form-action 'self'; script-src 'self' 'wasm-unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; worker-src 'self' blob:; connect-src 'self' https://alist.tlljyang.pp.ua wss://alist.tlljyang.pp.ua; manifest-src 'self'; upgrade-insecure-requests
+
+/index.html
+  Cache-Control: public, max-age=0, must-revalidate
+
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/runtime/*
+  Cache-Control: public, max-age=86400, stale-while-revalidate=604800
+
+/runtime/runtime-manifest.json
+  Cache-Control: public, max-age=0, must-revalidate
+
+# webR's worker needs a CSP that permits eval (see functions/runtime/webr/[[path]].ts):
+# Pages _headers CONCATENATES values from every matching rule, so a relaxed
+# policy here would still be intersected with the strict /* policy above.
+# The Pages Function replaces the header only on webr-worker.js's own
+# response, which is the policy the dedicated worker actually inherits.
+
+/brand/*
+  Cache-Control: public, max-age=604800, stale-while-revalidate=86400
+
+/*.wasm
+  Content-Type: application/wasm

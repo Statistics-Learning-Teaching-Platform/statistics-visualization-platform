@@ -6,6 +6,13 @@ import JSZip from "jszip";
 
 const MAX_FILE_BYTES = 15 * 1024 * 1024;
 const MAX_TEXT_LENGTH = 80_000;
+const MAX_ARCHIVE_ENTRIES = 2_000;
+const MAX_UNCOMPRESSED_BYTES = 64 * 1024 * 1024;
+const MAX_ARCHIVE_ENTRY_BYTES = 12 * 1024 * 1024;
+const MAX_SLIDES = 300;
+const MAX_SLIDE_XML_BYTES = 1024 * 1024;
+const MAX_PDF_PAGES = 300;
+const PARSE_TIMEOUT_MS = 35_000;
 
 export class CoursewareInputError extends Error {
   status: 400 | 413;
@@ -27,12 +34,17 @@ function decodeXml(value: string): string {
 }
 
 async function extractPptx(buffer: Buffer): Promise<string> {
-  const zip = await JSZip.loadAsync(buffer);
+  const zip = await inspectOfficeArchive(buffer);
   const slideNames = Object.keys(zip.files)
     .filter((name) => /^ppt\/slides\/slide\d+\.xml$/i.test(name))
     .sort((a, b) => Number(a.match(/slide(\d+)/i)?.[1] ?? 0) - Number(b.match(/slide(\d+)/i)?.[1] ?? 0));
+  if (slideNames.length > MAX_SLIDES) {
+    throw new CoursewareInputError(`PPTX 不能超过 ${MAX_SLIDES} 张幻灯片`, 413);
+  }
   const slides: string[] = [];
   for (const name of slideNames) {
+    const size = archiveEntrySize(zip.files[name]);
+    if (size > MAX_SLIDE_XML_BYTES) throw new CoursewareInputError("PPTX 单页内容异常过大", 413);
     const xml = await zip.file(name)?.async("text");
     if (!xml) continue;
     const text = [...xml.matchAll(/<a:t>([\s\S]*?)<\/a:t>/g)]
@@ -51,10 +63,59 @@ async function extractPdf(buffer: Buffer): Promise<string> {
   const { PDFParse } = await import("pdf-parse");
   const parser = new PDFParse({ data: new Uint8Array(buffer) });
   try {
-    const result = await parser.getText();
+    const info = await withParseTimeout(parser.getInfo({ parsePageInfo: false }));
+    if (info.total > MAX_PDF_PAGES) {
+      throw new CoursewareInputError(`PDF 不能超过 ${MAX_PDF_PAGES} 页`, 413);
+    }
+    const result = await withParseTimeout(parser.getText({ first: 1, last: info.total }));
     return result.text;
   } finally {
     await parser.destroy();
+  }
+}
+
+type ZipEntryWithSize = JSZip.JSZipObject & { _data?: { uncompressedSize?: number } };
+
+function archiveEntrySize(entry: JSZip.JSZipObject): number {
+  return Number((entry as ZipEntryWithSize)._data?.uncompressedSize ?? 0);
+}
+
+async function inspectOfficeArchive(buffer: Buffer): Promise<JSZip> {
+  let zip: JSZip;
+  try {
+    zip = await JSZip.loadAsync(buffer, { createFolders: false });
+  } catch {
+    throw new CoursewareInputError("Office 文件结构损坏或不是有效的 ZIP 文档");
+  }
+  const entries = Object.values(zip.files).filter((entry) => !entry.dir);
+  if (entries.length > MAX_ARCHIVE_ENTRIES) {
+    throw new CoursewareInputError("Office 文件包含过多内部条目", 413);
+  }
+  let total = 0;
+  for (const entry of entries) {
+    const size = archiveEntrySize(entry);
+    if (!Number.isSafeInteger(size) || size < 0 || size > MAX_ARCHIVE_ENTRY_BYTES) {
+      throw new CoursewareInputError("Office 文件包含异常大的内部条目", 413);
+    }
+    total += size;
+    if (total > MAX_UNCOMPRESSED_BYTES) {
+      throw new CoursewareInputError("Office 文件解压后内容不能超过 64 MB", 413);
+    }
+  }
+  return zip;
+}
+
+async function withParseTimeout<T>(operation: Promise<T>): Promise<T> {
+  let timer: ReturnType<typeof setTimeout> | undefined;
+  try {
+    return await Promise.race([
+      operation,
+      new Promise<T>((_, reject) => {
+        timer = setTimeout(() => reject(new CoursewareInputError("课件解析超时，请缩小文件后重试", 413)), PARSE_TIMEOUT_MS);
+      }),
+    ]);
+  } finally {
+    if (timer) clearTimeout(timer);
   }
 }
 
@@ -67,7 +128,8 @@ export async function extractCoursewareText(file: File): Promise<string> {
   if ([".txt", ".md", ".markdown", ".csv"].includes(extension)) {
     text = buffer.toString("utf8");
   } else if (extension === ".docx") {
-    text = (await mammoth.extractRawText({ buffer })).value;
+    await inspectOfficeArchive(buffer);
+    text = (await withParseTimeout(mammoth.extractRawText({ buffer }))).value;
   } else if (extension === ".pptx") {
     text = await extractPptx(buffer);
   } else if (extension === ".pdf") {

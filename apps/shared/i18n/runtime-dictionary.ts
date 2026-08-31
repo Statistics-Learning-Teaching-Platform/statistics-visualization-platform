@@ -15,7 +15,6 @@ export interface TemplateCopy {
   formulaHelper: string;
 }
 
-
 import enZhDictionary from "./en-zh-dictionary.json";
 
 const enToZh: TranslationDictionary = enZhDictionary;
@@ -40,7 +39,7 @@ const zhToEn: TranslationDictionary = Object.entries(enToZh).reduce<TranslationD
     }
     return translations;
   },
-  {}
+  {},
 );
 
 // Data-driven dynamic templates: each entry pairs a regex with a translator
@@ -64,6 +63,19 @@ const DYNAMIC_TEMPLATES: DynamicTemplate[] = [
   { pattern: /^(\d+) pairs$/, translate: (m) => `${m[1]} 对样本` },
   { pattern: /^(\d+) repeated samples$/, translate: (m) => `${m[1]} 次重复抽样` },
   { pattern: /^(\d+) observed values$/, translate: (m) => `${m[1]} 个观测值` },
+  {
+    pattern: /^(\d+) observed values \(input limit applied\)$/,
+    translate: (m) => `${m[1]} 个观测值（已应用输入上限）`,
+  },
+  {
+    pattern: /^(\d+) requested; ([\d,]+) total draws$/,
+    translate: (m) => `请求 ${m[1]} 次重复；实际共 ${m[2]} 次抽样`,
+  },
+  { pattern: /^(\d+) between-mode transitions$/, translate: (m) => `${m[1]} 次模态间转移` },
+  {
+    pattern: /^target density ([\d.]+) mode (\d+)$/,
+    translate: (m) => `目标密度 ${m[1]}，模态 ${m[2]}`,
+  },
   { pattern: /^(\d+) burn-in draws$/, translate: (m) => `${m[1]} 次预热抽样` },
   { pattern: /^of (\d+) retained draws$/, translate: (m) => `共 ${m[1]} 个保留样本` },
   { pattern: /^F\((\d+), (\d+)\) tail area$/, translate: (m) => `F(${m[1]}, ${m[2]}) 的尾部面积` },
@@ -72,8 +84,14 @@ const DYNAMIC_TEMPLATES: DynamicTemplate[] = [
   { pattern: /^(\d+) retained sweeps$/, translate: (m) => `${m[1]} 次保留扫描` },
   { pattern: /^(\d+) discarded sweeps$/, translate: (m) => `${m[1]} 次丢弃扫描` },
   { pattern: /^(\d+) cities$/, translate: (m) => `${m[1]} 个城市` },
-  { pattern: /^predictor: (.+)$/, translate: (m, lang) => `预测变量：${localizeText(m[1] ?? "", lang)}` },
-  { pattern: /^Population distribution: (.+)$/, translate: (m, lang) => `总体分布：${localizeText(m[1] ?? "", lang)}` },
+  {
+    pattern: /^predictor: (.+)$/,
+    translate: (m, lang) => `预测变量：${localizeText(m[1] ?? "", lang)}`,
+  },
+  {
+    pattern: /^Population distribution: (.+)$/,
+    translate: (m, lang) => `总体分布：${localizeText(m[1] ?? "", lang)}`,
+  },
   {
     pattern: /^(PDF|CDF) view for ([a-z]+); (.+)\.$/,
     translate: (m, lang) => `当前为${localizeText(m[2] ?? "", lang)}分布的 ${m[1]} 视图；${m[3]}。`,
@@ -99,9 +117,7 @@ function localizeDynamicText(value: string, language: Language): string {
 // This lets the dictionary hold one canonical casing per phrase instead of
 // duplicating every entry for upper/lower/title variants.
 function titleCase(value: string): string {
-  return value
-    .toLowerCase()
-    .replace(/\b[a-z]/g, (char) => char.toUpperCase());
+  return value.toLowerCase().replace(/\b[a-z]/g, (char) => char.toUpperCase());
 }
 
 export function localizeText(value: string, language: Language): string {
@@ -136,7 +152,10 @@ function localizeOptionalText<T>(value: T, language: Language): T {
   return (typeof value === "string" ? localizeText(value, language) : value) as T;
 }
 
-export function localizeModuleConfig<T extends Record<string, any>>(config: T, language: Language): T {
+export function localizeModuleConfig<T extends Record<string, any>>(
+  config: T,
+  language: Language,
+): T {
   return {
     ...config,
     title: localizeOptionalText(config.title, language),
@@ -146,21 +165,30 @@ export function localizeModuleConfig<T extends Record<string, any>>(config: T, l
       ...example,
       title: localizeOptionalText(example.title, language),
       description: localizeOptionalText(example.description, language),
-      teachingPoints: example.teachingPoints?.map((point: string) => localizeOptionalText(point, language)),
+      teachingPoints: example.teachingPoints?.map((point: string) =>
+        localizeOptionalText(point, language),
+      ),
       controls: example.controls?.map((control: Record<string, any>) => ({
         ...control,
         description: localizeOptionalText(control.description, language),
         label: localizeOptionalText(control.label, language),
-        labelByValue: control.labelByValue ? {
-          ...control.labelByValue,
-          labels: Object.fromEntries(Object.entries(control.labelByValue.labels).map(([key, label]) => [key, localizeOptionalText(label, language)]))
-        } : control.labelByValue,
+        labelByValue: control.labelByValue
+          ? {
+              ...control.labelByValue,
+              labels: Object.fromEntries(
+                Object.entries(control.labelByValue.labels).map(([key, label]) => [
+                  key,
+                  localizeOptionalText(label, language),
+                ]),
+              ),
+            }
+          : control.labelByValue,
         options: control.options?.map((option: Record<string, any>) => ({
           ...option,
-          label: localizeOptionalText(option.label, language)
-        }))
-      }))
-    }))
+          label: localizeOptionalText(option.label, language),
+        })),
+      })),
+    })),
   };
 }
 
@@ -186,60 +214,65 @@ function localizeChartSpec<T extends Record<string, any>>(chart: T, language: La
     referenceLabel: localizeOptionalText(chart.referenceLabel, language),
     bars: chart.bars?.map((bar: Record<string, any>) => ({
       ...bar,
-      label: localizeOptionalText(bar.label, language)
+      label: localizeOptionalText(bar.label, language),
     })),
     populationBars: chart.populationBars?.map((bar: Record<string, any>) => ({
       ...bar,
-      label: localizeOptionalText(bar.label, language)
+      label: localizeOptionalText(bar.label, language),
     })),
     sampleMeanBars: chart.sampleMeanBars?.map((bar: Record<string, any>) => ({
       ...bar,
-      label: localizeOptionalText(bar.label, language)
+      label: localizeOptionalText(bar.label, language),
     })),
     points: chart.points?.map((point: Record<string, any>) => ({
       ...point,
-      label: localizeOptionalText(point.label, language)
+      label: localizeOptionalText(point.label, language),
     })),
     intervals: chart.intervals?.map((interval: Record<string, any>) => ({
       ...interval,
-      label: localizeOptionalText(interval.label, language)
+      label: localizeOptionalText(interval.label, language),
     })),
     groups: chart.groups?.map((group: Record<string, any>) => ({
       ...group,
-      label: localizeOptionalText(group.label, language)
+      label: localizeOptionalText(group.label, language),
     })),
     series: chart.series?.map((series: Record<string, any>) => ({
       ...series,
-      label: localizeOptionalText(series.label, language)
+      label: localizeOptionalText(series.label, language),
     })),
     areas: chart.areas?.map((area: Record<string, any>) => ({
       ...area,
-      label: localizeOptionalText(area.label, language)
+      label: localizeOptionalText(area.label, language),
     })),
     lines: chart.lines?.map((series: Record<string, any>) => ({
       ...series,
-      label: localizeOptionalText(series.label, language)
+      label: localizeOptionalText(series.label, language),
     })),
     contours: chart.contours?.map((series: Record<string, any>) => ({
       ...series,
-      label: localizeOptionalText(series.label, language)
+      label: localizeOptionalText(series.label, language),
     })),
     legend: chart.legend?.map((item: Record<string, any>) => ({
       ...item,
-      label: localizeOptionalText(item.label, language)
+      label: localizeOptionalText(item.label, language),
     })),
     references: chart.references?.map((reference: Record<string, any>) => ({
       ...reference,
-      label: localizeOptionalText(reference.label, language)
+      label: localizeOptionalText(reference.label, language),
     })),
-    line: chart.line ? {
-      ...chart.line,
-      label: localizeOptionalText(chart.line.label, language)
-    } : chart.line
+    line: chart.line
+      ? {
+          ...chart.line,
+          label: localizeOptionalText(chart.line.label, language),
+        }
+      : chart.line,
   };
 }
 
-export function localizeSimulationResult<T extends Record<string, any>>(result: T, language: Language): T {
+export function localizeSimulationResult<T extends Record<string, any>>(
+  result: T,
+  language: Language,
+): T {
   return {
     ...result,
     headline: localizeOptionalText(result.headline, language),
@@ -249,30 +282,34 @@ export function localizeSimulationResult<T extends Record<string, any>>(result: 
       label: localizeOptionalText(metric.label, language),
       value: localizeOptionalText(metric.value, language),
       detail: localizeOptionalText(metric.detail, language),
-      help: localizeOptionalText(metric.help, language)
+      help: localizeOptionalText(metric.help, language),
     })),
     chart: result.chart ? localizeChartSpec(result.chart, language) : result.chart,
-    table: result.table ? {
-      ...result.table,
-      title: localizeOptionalText(result.table.title, language),
-      columns: result.table.columns?.map((column: string) => localizeOptionalText(column, language)),
-      rows: localizeTableRows(result.table.rows, language)
-    } : result.table,
+    table: result.table
+      ? {
+          ...result.table,
+          title: localizeOptionalText(result.table.title, language),
+          columns: result.table.columns?.map((column: string) =>
+            localizeOptionalText(column, language),
+          ),
+          rows: localizeTableRows(result.table.rows, language),
+        }
+      : result.table,
     tables: result.tables?.map((table: Record<string, any>) => ({
       ...table,
       title: localizeOptionalText(table.title, language),
       columns: table.columns?.map((column: string) => localizeOptionalText(column, language)),
       rows: localizeTableRows(table.rows, language),
-    }))
+    })),
   };
 }
 
 export function localizeTableRows<T extends Array<Array<string | number>>>(
   rows: T,
-  language: Language
+  language: Language,
 ): T {
   return rows.map((row) =>
-    row.map((cell) => (typeof cell === "string" ? localizeText(cell, language) : cell))
+    row.map((cell) => (typeof cell === "string" ? localizeText(cell, language) : cell)),
   ) as T;
 }
 

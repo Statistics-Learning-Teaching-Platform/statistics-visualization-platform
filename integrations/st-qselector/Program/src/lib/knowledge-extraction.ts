@@ -1,4 +1,5 @@
 import "server-only";
+import { callStatAi } from "@/lib/ai-client";
 
 export interface ExtractedKnowledgePoint {
   id: string;
@@ -78,36 +79,19 @@ function validConcepts(value: unknown): ExtractedKnowledgePoint[] {
     .slice(0, 16);
 }
 
-export async function aiKnowledgeExtraction(text: string): Promise<ExtractedKnowledgePoint[] | null> {
-  const apiKey = process.env.OPENAI_API_KEY?.trim();
-  if (!apiKey) return null;
-  const baseUrl = (process.env.OPENAI_BASE_URL?.trim() || "https://api.openai.com/v1").replace(/\/$/, "");
-  const model = process.env.OPENAI_MODEL?.trim() || "gpt-4.1-mini";
+export async function aiKnowledgeExtraction(text: string, requestSignal?: AbortSignal): Promise<ExtractedKnowledgePoint[] | null> {
   const controller = new AbortController();
-  const timeout = setTimeout(() => controller.abort(), 35_000);
+  const timeout = setTimeout(() => controller.abort(), 55_000);
   try {
-    const response = await fetch(`${baseUrl}/chat/completions`, {
-      method: "POST",
-      headers: { Authorization: `Bearer ${apiKey}`, "Content-Type": "application/json" },
-      signal: controller.signal,
-      body: JSON.stringify({
-        model,
-        temperature: 0.1,
-        response_format: { type: "json_object" },
-        messages: [
-          {
-            role: "system",
-            content: "You extract assessable statistics knowledge points from teaching material. Return JSON only: {concepts:[{id,label,confidence,evidence}]}. Labels must be concise English concepts, confidence is 0..1, evidence briefly cites the supplied text. Merge duplicates and return no more than 16 concepts.",
-          },
-          { role: "user", content: text.slice(0, 60_000) },
-        ],
-      }),
+    const content = await callStatAi({
+      signal: requestSignal ? AbortSignal.any([requestSignal, controller.signal]) : controller.signal,
+      systemPrompt: "You extract assessable statistics knowledge points from teaching material. Return JSON only with this schema: {\"concepts\":[{\"id\":\"...\",\"label\":\"...\",\"confidence\":0.0,\"evidence\":\"...\"}]}. Labels must be concise English statistics concepts, confidence is 0..1, evidence briefly cites the supplied text. Merge duplicates and return no more than 16 concepts. Do not wrap the JSON in Markdown.",
+      input: text.slice(0, 60_000),
     });
-    if (!response.ok) throw new Error(`AI 服务返回 ${response.status}`);
-    const payload = await response.json() as { choices?: Array<{ message?: { content?: string } }> };
-    const content = payload.choices?.[0]?.message?.content;
-    if (!content) throw new Error("AI 没有返回知识点");
-    const parsed = JSON.parse(content) as { concepts?: unknown };
+    const start = content.indexOf("{");
+    const end = content.lastIndexOf("}");
+    if (start < 0 || end <= start) throw new Error("AI 没有返回有效 JSON");
+    const parsed = JSON.parse(content.slice(start, end + 1)) as { concepts?: unknown };
     const concepts = validConcepts(parsed.concepts);
     if (!concepts.length) throw new Error("AI 返回的知识点格式不正确");
     return concepts;

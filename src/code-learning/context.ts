@@ -5,7 +5,7 @@ function safeJsonObject(value: string | null): Record<string, unknown> {
   try {
     const parsed: unknown = JSON.parse(value);
     return parsed && typeof parsed === "object" && !Array.isArray(parsed)
-      ? parsed as Record<string, unknown>
+      ? (parsed as Record<string, unknown>)
       : {};
   } catch {
     return {};
@@ -23,8 +23,9 @@ export function resolveCodeLearningContext(
   const query = new URLSearchParams(search);
   const requestedLesson = query.get("lessonId");
   const requestedTopic = query.get("topicId") ?? undefined;
-  const matchingLesson = lessons.find((lesson) =>
-    lesson.id === requestedLesson && (!requestedTopic || lesson.topicId === requestedTopic),
+  const matchingLesson = lessons.find(
+    (lesson) =>
+      lesson.id === requestedLesson && (!requestedTopic || lesson.topicId === requestedTopic),
   );
   const topicLesson = requestedTopic
     ? lessons.find((lesson) => lesson.topicId === requestedTopic)
@@ -41,5 +42,8 @@ export function resolveCodeLearningContext(
 }
 
 export function createMessageId(): string {
-  return globalThis.crypto?.randomUUID?.() ?? `message-${Date.now()}-${Math.random().toString(36).slice(2)}`;
+  return (
+    globalThis.crypto?.randomUUID?.() ??
+    `message-${Date.now()}-${Math.random().toString(36).slice(2)}`
+  );
 }

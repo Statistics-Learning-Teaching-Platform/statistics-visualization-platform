@@ -1,8 +1,7 @@
-import { useEffect, useMemo, useState } from "react";
+import { createLinearScales } from "@stats-viz/shared/chart-utils";
 import { localizeText, regressionCopy, useLanguage } from "@stats-viz/shared/i18n";
 import { linearRegression } from "@stats-viz/shared/math";
 import { computeSSE } from "@stats-viz/shared/regression";
-import { createLinearScales } from "@stats-viz/shared/chart-utils";
 import {
   ChartFrame,
   ExperimentMetricStrip,
@@ -12,17 +11,13 @@ import {
   VisualizationFrame,
   VisualizationHeader,
 } from "@stats-viz/shared/visualization";
-
+import { useEffect, useMemo, useState } from "react";
+import { ControlPanel } from "./ControlPanel";
 import { CHART_LAYOUT, type Point } from "./constants";
-import { useDatasets } from "./useDatasets";
-import {
-  useCustomLine,
-  getCustomLineParams,
-  computeHoverInfo,
-} from "./useCustomLine";
 import { RegressionChart } from "./RegressionChart";
 import { StatisticsPanel } from "./StatisticsPanel";
-import { ControlPanel } from "./ControlPanel";
+import { computeHoverInfo, getCustomLineParams, useCustomLine } from "./useCustomLine";
+import { useDatasets } from "./useDatasets";
 
 export default function RegressionApp() {
   const language = useLanguage();
@@ -52,8 +47,12 @@ export default function RegressionApp() {
   }, [selectedDataset, showOutliers]);
 
   const domains = useMemo(() => {
-    if (visibleData.length === 0) return { x: [0, 1] as [number, number], y: [0, 1] as [number, number] };
-    let xMin = Infinity, xMax = -Infinity, yMin = Infinity, yMax = -Infinity;
+    if (visibleData.length === 0)
+      return { x: [0, 1] as [number, number], y: [0, 1] as [number, number] };
+    let xMin = Infinity,
+      xMax = -Infinity,
+      yMin = Infinity,
+      yMax = -Infinity;
     for (const p of visibleData) {
       if (p.x < xMin) xMin = p.x;
       if (p.x > xMax) xMax = p.x;
@@ -62,10 +61,16 @@ export default function RegressionApp() {
     }
     const xPad = (xMax - xMin) * 0.1 || 1;
     const yPad = (yMax - yMin) * 0.1 || 1;
-    return { x: [xMin - xPad, xMax + xPad] as [number, number], y: [yMin - yPad, yMax + yPad] as [number, number] };
+    return {
+      x: [xMin - xPad, xMax + xPad] as [number, number],
+      y: [yMin - yPad, yMax + yPad] as [number, number],
+    };
   }, [visibleData]);
 
-  const scalesRaw = useMemo(() => createLinearScales(CHART_LAYOUT, domains.x, domains.y), [domains]);
+  const scalesRaw = useMemo(
+    () => createLinearScales(CHART_LAYOUT, domains.x, domains.y),
+    [domains],
+  );
   const scales = useMemo(
     () => ({
       xScale: scalesRaw.xScale,
@@ -89,7 +94,10 @@ export default function RegressionApp() {
 
   const sse = useMemo(() => {
     if (customLineParams) {
-      return { value: computeSSE(visibleData, customLineParams.slope, customLineParams.intercept), lineType: "custom" as const };
+      return {
+        value: computeSSE(visibleData, customLineParams.slope, customLineParams.intercept),
+        lineType: "custom" as const,
+      };
     }
     if (showRegression) {
       return { value: regression.sse, lineType: "regression" as const };
@@ -107,7 +115,14 @@ export default function RegressionApp() {
       moduleId="regression"
       content={
         <>
-          <VisualizationHeader eyebrow={copy.coreVisualizer} title={copy.title} description={copy.description} experimentNumber={metadata?.number} category={metadata?.localizedCategory} researchQuestion={metadata?.localizedQuestion} />
+          <VisualizationHeader
+            eyebrow={copy.coreVisualizer}
+            title={copy.title}
+            description={copy.description}
+            experimentNumber={metadata?.number}
+            category={metadata?.localizedCategory}
+            researchQuestion={metadata?.localizedQuestion}
+          />
           <div className="regression-workbench">
             <section className="regression-stage" aria-labelledby="regression-chart-title">
               <div className="regression-stage__header">
@@ -119,13 +134,22 @@ export default function RegressionApp() {
                 <div className="regression-line-guide" role="list" aria-label={copy.lineType}>
                   {showRegression && (
                     <span className="regression-line-guide__item" role="listitem">
-                      <span className="regression-line-guide__swatch regression-line-guide__swatch--fit" aria-hidden="true" />
+                      <span
+                        className="regression-line-guide__swatch regression-line-guide__swatch--fit"
+                        aria-hidden="true"
+                      />
                       {copy.regressionLine}
                     </span>
                   )}
                   {customLineParams ? (
-                    <span className="regression-line-guide__item regression-line-guide__item--active" role="listitem">
-                      <span className="regression-line-guide__swatch regression-line-guide__swatch--custom" aria-hidden="true" />
+                    <span
+                      className="regression-line-guide__item regression-line-guide__item--active"
+                      role="listitem"
+                    >
+                      <span
+                        className="regression-line-guide__swatch regression-line-guide__swatch--custom"
+                        aria-hidden="true"
+                      />
                       {copy.customLine}
                     </span>
                   ) : (
@@ -151,6 +175,7 @@ export default function RegressionApp() {
                     onPointerDown={handlers.handlePointerDown}
                     onPointerMove={handlers.handlePointerMove}
                     onPointerUp={handlers.handlePointerUp}
+                    onPointerCancel={handlers.handlePointerCancel}
                     onHoverPoint={setHoverPoint}
                   />
                 </div>
@@ -159,11 +184,36 @@ export default function RegressionApp() {
               <ExperimentMetricStrip
                 ariaLabel={copy.statistics}
                 metrics={[
-                  { key: "current-sse", label: copy.sse, value: sse.value.toFixed(3), semantics: "derived" as const },
-                  { key: "ols-sse", label: language === "zh" ? "OLS SSE" : "OLS SSE", value: regression.sse.toFixed(3), semantics: "comparison" as const },
-                  { key: "delta-sse", label: language === "zh" ? "SSE 差值" : "SSE delta", value: (sse.value - regression.sse).toFixed(3), semantics: "comparison" as const },
-                  { key: "r", label: "r", value: correlation.toFixed(3), semantics: "derived" as const },
-                  { key: "r2", label: "R²", value: regression.rSquared.toFixed(3), semantics: "derived" as const },
+                  {
+                    key: "current-sse",
+                    label: copy.sse,
+                    value: sse.value.toFixed(3),
+                    semantics: "derived" as const,
+                  },
+                  {
+                    key: "ols-sse",
+                    label: language === "zh" ? "OLS SSE" : "OLS SSE",
+                    value: regression.sse.toFixed(3),
+                    semantics: "comparison" as const,
+                  },
+                  {
+                    key: "delta-sse",
+                    label: language === "zh" ? "SSE 差值" : "SSE delta",
+                    value: (sse.value - regression.sse).toFixed(3),
+                    semantics: "comparison" as const,
+                  },
+                  {
+                    key: "r",
+                    label: "r",
+                    value: correlation.toFixed(3),
+                    semantics: "derived" as const,
+                  },
+                  {
+                    key: "r2",
+                    label: "R²",
+                    value: regression.rSquared.toFixed(3),
+                    semantics: "derived" as const,
+                  },
                 ]}
               />
               <StatisticsPanel sse={sse} hoverInfo={hoverInfo} copy={copy} />
@@ -201,7 +251,9 @@ export default function RegressionApp() {
                   <div className="math-expression">
                     <span>SSE =</span>
                     <span className="math-symbol">Σ</span>
-                    <span>(y<sub>i</sub> − ŷ<sub>i</sub>)</span>
+                    <span>
+                      (y<sub>i</sub> − ŷ<sub>i</sub>)
+                    </span>
                     <sup>2</sup>
                   </div>
                 }

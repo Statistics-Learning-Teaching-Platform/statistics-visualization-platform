@@ -1,7 +1,7 @@
 import path from "node:path";
 import tailwindcss from "@tailwindcss/vite";
 import react from "@vitejs/plugin-react";
-import { defineConfig } from "vite";
+import { defineConfig } from "vitest/config";
 
 export default defineConfig({
 	plugins: [react(), tailwindcss()],
@@ -18,7 +18,7 @@ export default defineConfig({
 				// Next.js dev mode completes client hydration through its development
 				// runtime websocket. Proxy the upgrade as well as ordinary HTTP;
 				// otherwise the server-rendered question bank is visible but remains
-				// inert when it is opened through the shared 4174 portal.
+				// inert when it is opened through the shared portal.
 				ws: true,
 			},
 		},
@@ -28,6 +28,23 @@ export default defineConfig({
 		// Public source maps expose implementation details and can retain local
 		// build paths. Keep them out of deployment artifacts.
 		sourcemap: false,
+		rollupOptions: {
+			output: {
+				// The -cf2 suffix versions the chunk URL space. Cloudflare keys
+				// edge entries partly by Sec-Fetch-Dest and caches /assets/* as
+				// immutable, so a fallback served during a deploy-propagation
+				// window sticks for browser fetches until the URL changes (see
+				// functions/assets/[[path]].ts for the structural guard; this
+				// suffix is the escape hatch when an entry is already poisoned).
+				chunkFileNames: "assets/[name]-[hash]-cf3.js",
+				entryFileNames: "assets/[name]-[hash]-cf3.js",
+			},
+		},
+	},
+	// Pyodide's worker uses split ESM imports, which cannot be emitted in
+	// Vite's default IIFE worker format.
+	worker: {
+		format: "es",
 	},
 	test: {
 		// jsdom so component render tests have a DOM; Node APIs (fs, process)

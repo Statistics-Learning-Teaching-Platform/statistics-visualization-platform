@@ -36,7 +36,8 @@ export function VisualizationHeader({
         {description && <p className="lab-experiment-description">{description}</p>}
         {researchQuestion && (
           <p className="research-question">
-            <strong>{language === "zh" ? "研究问题：" : "Research question:"}</strong> {researchQuestion}
+            <strong>{language === "zh" ? "研究问题：" : "Research question:"}</strong>{" "}
+            {researchQuestion}
           </p>
         )}
         {children}

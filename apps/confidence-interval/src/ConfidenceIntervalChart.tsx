@@ -26,7 +26,9 @@ function normalDensity(x: number, mean: number, sd: number): number {
 }
 
 function linePath(points: Array<{ x: number; y: number }>): string {
-  return points.map((point, index) => `${index === 0 ? "M" : "L"}${point.x.toFixed(2)} ${point.y.toFixed(2)}`).join(" ");
+  return points
+    .map((point, index) => `${index === 0 ? "M" : "L"}${point.x.toFixed(2)} ${point.y.toFixed(2)}`)
+    .join(" ");
 }
 
 export function ConfidenceIntervalChart({
@@ -70,16 +72,19 @@ export function ConfidenceIntervalChart({
   const theoreticalUpper = trueMean + criticalMultiplier * standardError;
   const bandValues = [
     theoreticalLower,
-    ...curvePoints.filter((point) => point.value > theoreticalLower && point.value < theoreticalUpper).map((point) => point.value),
+    ...curvePoints
+      .filter((point) => point.value > theoreticalLower && point.value < theoreticalUpper)
+      .map((point) => point.value),
     theoreticalUpper,
   ].filter((value) => value >= domainStart && value <= domainEnd);
   const bandPoints = bandValues.map((value) => ({
     x: scales.xScale(value),
     y: densityY(normalDensity(value, trueMean, standardError)),
   }));
-  const bandPath = bandPoints.length > 1
-    ? `M${bandPoints[0].x.toFixed(2)} ${baselineY} ${linePath(bandPoints).replace(/^M/, "L")} L${bandPoints[bandPoints.length - 1].x.toFixed(2)} ${baselineY} Z`
-    : "";
+  const bandPath =
+    bandPoints.length > 1
+      ? `M${bandPoints[0].x.toFixed(2)} ${baselineY} ${linePath(bandPoints).replace(/^M/, "L")} L${bandPoints[bandPoints.length - 1].x.toFixed(2)} ${baselineY} Z`
+      : "";
   const trueMeanX = scales.xScale(trueMean);
   const visibleStart = Math.max(0, samples.length - MAX_VISIBLE_INTERVALS);
   const visibleCount = Math.min(samples.length, MAX_VISIBLE_INTERVALS);
@@ -124,7 +129,12 @@ export function ConfidenceIntervalChart({
         <text className="ci-true-mean-label" x={trueMeanX + 8} y={curveTop + 12}>
           {trueMeanLabel}
         </text>
-        <text className="ci-confidence-band-label" x={scales.xScale(theoreticalUpper) - 6} y={baselineY - 12} textAnchor="end">
+        <text
+          className="ci-confidence-band-label"
+          x={scales.xScale(theoreticalUpper) - 6}
+          y={baselineY - 12}
+          textAnchor="end"
+        >
           {Math.round(confidenceLevel * 100)}%
         </text>
         <text className="ci-interval-section-label" x={0} y={intervalStartY - 19}>
@@ -141,45 +151,59 @@ export function ConfidenceIntervalChart({
               y2={intervalStartY + 6}
             />
             <circle className="ci-empty-point" cx={trueMeanX} cy={intervalStartY + 6} r={4.5} />
-            <text className="ci-empty-label" x={innerWidth / 2} y={intervalStartY + 40} textAnchor="middle">
+            <text
+              className="ci-empty-label"
+              x={innerWidth / 2}
+              y={intervalStartY + 40}
+              textAnchor="middle"
+            >
               {emptyPrompt}
             </text>
           </g>
-        ) : samples.map((sample, index) => {
-          const visible = index >= visibleStart;
-          const visibleIndex = index - visibleStart;
-          const y = intervalStartY + Math.max(0, visibleIndex) * intervalGap;
-          const x1 = scales.xScale(sample.lower);
-          const x2 = scales.xScale(sample.upper);
-          const meanX = scales.xScale(sample.mean);
-          const statusClass = sample.contains ? "ci-group--capture" : "ci-group--miss";
-          return (
-            <g
-              key={index}
-              className={`ci-group ${statusClass}`}
-              visibility={visible ? "visible" : "hidden"}
-              aria-hidden={visible ? undefined : true}
-            >
-              <title>{sampleTooltip(index + 1, sample.lower, sample.upper, sample.contains)}</title>
-              <text className="ci-interval-index" x={0} y={y + 4}>
-                #{index + 1} {sample.contains ? "✓" : "×"}
-              </text>
-              <line className="ci-line" y1={y} y2={y} x1={x1} x2={x2} />
-              <line className="ci-endpoint" x1={x1} x2={x1} y1={y - 5} y2={y + 5} />
-              <line className="ci-endpoint" x1={x2} x2={x2} y1={y - 5} y2={y + 5} />
-              <circle className="sample-mean" cx={meanX} cy={y} r={4.8} />
-              <text className="ci-bound-label ci-bound-label--lower" x={x1 - 5} y={y - 7} textAnchor="end">
-                {sample.lower.toFixed(2)}
-              </text>
-              <text className="ci-mean-label" x={meanX} y={y - 7} textAnchor="middle">
-                x̄={sample.mean.toFixed(2)}
-              </text>
-              <text className="ci-bound-label ci-bound-label--upper" x={x2 + 5} y={y - 7}>
-                {sample.upper.toFixed(2)}
-              </text>
-            </g>
-          );
-        })}
+        ) : (
+          samples.map((sample, index) => {
+            const visible = index >= visibleStart;
+            const visibleIndex = index - visibleStart;
+            const y = intervalStartY + Math.max(0, visibleIndex) * intervalGap;
+            const x1 = scales.xScale(sample.lower);
+            const x2 = scales.xScale(sample.upper);
+            const meanX = scales.xScale(sample.mean);
+            const statusClass = sample.contains ? "ci-group--capture" : "ci-group--miss";
+            return (
+              <g
+                key={index}
+                className={`ci-group ${statusClass}`}
+                visibility={visible ? "visible" : "hidden"}
+                aria-hidden={visible ? undefined : true}
+              >
+                <title>
+                  {sampleTooltip(index + 1, sample.lower, sample.upper, sample.contains)}
+                </title>
+                <text className="ci-interval-index" x={0} y={y + 4}>
+                  #{index + 1} {sample.contains ? "✓" : "×"}
+                </text>
+                <line className="ci-line" y1={y} y2={y} x1={x1} x2={x2} />
+                <line className="ci-endpoint" x1={x1} x2={x1} y1={y - 5} y2={y + 5} />
+                <line className="ci-endpoint" x1={x2} x2={x2} y1={y - 5} y2={y + 5} />
+                <circle className="sample-mean" cx={meanX} cy={y} r={4.8} />
+                <text
+                  className="ci-bound-label ci-bound-label--lower"
+                  x={x1 - 5}
+                  y={y - 7}
+                  textAnchor="end"
+                >
+                  {sample.lower.toFixed(2)}
+                </text>
+                <text className="ci-mean-label" x={meanX} y={y - 7} textAnchor="middle">
+                  x̄={sample.mean.toFixed(2)}
+                </text>
+                <text className="ci-bound-label ci-bound-label--upper" x={x2 + 5} y={y - 7}>
+                  {sample.upper.toFixed(2)}
+                </text>
+              </g>
+            );
+          })
+        )}
       </g>
       <text className="chart-axis-label" x={width / 2} y={height - 9} textAnchor="middle">
         {populationScaleLabel}
