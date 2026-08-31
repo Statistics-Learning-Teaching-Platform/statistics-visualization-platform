@@ -93,6 +93,8 @@ type Props<Unit extends string> = {
 	tutorMessages: readonly EditorialTutorMessage[];
 	tutorStatus: TutorStatus;
 	tutorMessagesRef: RefObject<HTMLDivElement | null>;
+	/** When provided, the tutor drawer shows this node instead of the composer. */
+	tutorGate?: ReactNode;
 	onSelectLesson: (lessonId: string) => void;
 	onCodeChange: (code: string) => void;
 	onRun: () => void;
@@ -192,6 +194,7 @@ export function EditorialLearningWorkspace<Unit extends string>({
 	tutorMessages,
 	tutorStatus,
 	tutorMessagesRef,
+	tutorGate,
 	onSelectLesson,
 	onCodeChange,
 	onRun,
@@ -403,20 +406,26 @@ export function EditorialLearningWorkspace<Unit extends string>({
 
 			<button ref={tutorLauncherRef} type="button" className="ed-ai-launcher" onClick={() => setTutorOpen(true)} aria-expanded={tutorOpen} aria-controls={aiDrawerId}><span aria-hidden="true">AI</span>{copy.tutor}</button>
 			{tutorOpen ? <button type="button" tabIndex={-1} className="ed-ai-drawer-backdrop" aria-label={language === "zh" ? "关闭 AI 助教" : "Close AI tutor"} onClick={() => { setTutorOpen(false); requestAnimationFrame(() => tutorLauncherRef.current?.focus()); }} /> : null}
-			{tutorOpen ? (
-				<aside id={aiDrawerId} className="ed-ai-drawer" role="dialog" aria-modal="false" aria-labelledby={aiTitleId}>
-					<header className="ed-ai-drawer__header"><div><span aria-hidden="true">AI</span><div><p className="ed-kicker">{englishTitle}</p><h2 id={aiTitleId}>{copy.tutor}</h2></div></div><button ref={tutorCloseRef} type="button" onClick={() => { setTutorOpen(false); requestAnimationFrame(() => tutorLauncherRef.current?.focus()); }} aria-label={language === "zh" ? "关闭 AI 助教" : "Close AI tutor"}><XIcon aria-hidden="true" /></button></header>
-					<p className="ed-ai-drawer__intro">{copy.tutorIntro}</p>
-					<div ref={tutorMessagesRef} className="ed-live-ai-messages" aria-live="polite">
+				{tutorOpen ? (
+					<aside id={aiDrawerId} className="ed-ai-drawer" role="dialog" aria-modal="false" aria-labelledby={aiTitleId}>
+						<header className="ed-ai-drawer__header"><div><span aria-hidden="true">AI</span><div><p className="ed-kicker">{englishTitle}</p><h2 id={aiTitleId}>{copy.tutor}</h2></div></div><button ref={tutorCloseRef} type="button" onClick={() => { setTutorOpen(false); requestAnimationFrame(() => tutorLauncherRef.current?.focus()); }} aria-label={language === "zh" ? "关闭 AI 助教" : "Close AI tutor"}><XIcon aria-hidden="true" /></button></header>
+						<p className="ed-ai-drawer__intro">{copy.tutorIntro}</p>
+						{tutorGate ? (
+							<div className="ed-tutor-note">{tutorGate}</div>
+						) : (
+							<>
+						<div ref={tutorMessagesRef} className="ed-live-ai-messages" aria-live="polite">
 						{!tutorMessages.length ? (
 							<div className="ed-tutor-note"><strong>{activeLesson.title[language]}</strong><p>{language === "zh" ? "结合当前题目、代码和运行结果提问。" : "Ask about the current task, code, or run result."}</p><div className="ed-live-suggestions"><button type="button" onClick={() => onAskTutor(language === "zh" ? "为什么这里使用 mean()？" : "Why use mean() here?")}>{language === "zh" ? "为什么这里使用 mean()？" : "Why use mean() here?"}</button><button type="button" onClick={() => onAskTutor(language === "zh" ? "<- 是什么意思？" : "What does <- mean?")}>{language === "zh" ? "<- 是什么意思？" : "What does <- mean?"}</button><button type="button" onClick={() => onAskTutor(copy.explainError)}>{copy.explainError}</button></div></div>
 						) : tutorMessages.map((message) => <article key={message.id} data-role={message.role}><small>{message.role === "user" ? (language === "zh" ? "你" : "You") : "AI"}</small>{message.role === "assistant" ? <TutorAnswer content={message.content} /> : <p>{message.content}</p>}</article>)}
 						{tutorStatus === "asking" ? <p className="ed-live-tutor-thinking">{copy.tutorThinking}</p> : null}
 					</div>
-					<form className="ed-live-tutor-composer" onSubmit={(event) => { event.preventDefault(); onAskTutor(); }}><textarea value={tutorPrompt} onChange={(event) => onTutorPromptChange(event.target.value)} onKeyDown={(event) => { if (event.key === "Enter" && !event.shiftKey) { event.preventDefault(); onAskTutor(); } }} rows={2} placeholder={copy.tutorPlaceholder} aria-label={copy.tutorPlaceholder} /><button type="submit" disabled={!tutorPrompt.trim() || tutorStatus === "asking"} aria-label={copy.tutorSend}>↑</button></form>
-					<p className="ed-ai-drawer__context">{copy.contextAttached}</p>
-				</aside>
-			) : null}
+						<form className="ed-live-tutor-composer" onSubmit={(event) => { event.preventDefault(); onAskTutor(); }}><textarea value={tutorPrompt} onChange={(event) => onTutorPromptChange(event.target.value)} onKeyDown={(event) => { if (event.key === "Enter" && !event.shiftKey) { event.preventDefault(); onAskTutor(); } }} rows={2} placeholder={copy.tutorPlaceholder} aria-label={copy.tutorPlaceholder} /><button type="submit" disabled={!tutorPrompt.trim() || tutorStatus === "asking"} aria-label={copy.tutorSend}>↑</button></form>
+						<p className="ed-ai-drawer__context">{copy.contextAttached}</p>
+							</>
+						)}
+					</aside>
+				) : null}
 		</EditorialDemoShell>
 	);
 }

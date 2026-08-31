@@ -3,8 +3,13 @@ import { StrictMode, Suspense, lazy, useEffect } from "react";
 import { createRoot } from "react-dom/client";
 import { AppErrorBoundary } from "./shell/AppErrorBoundary";
 import { getLegacyTeachingRoute } from "./course/routeHelpers";
+import { bootstrapProgressSync } from "./course/progressSync";
 import { AppShell } from "./shell/AppShell";
 import "./styles.css";
+
+// Fan localStorage progress writes out to the signed-in account store; a
+// no-op for anonymous visitors.
+bootstrapProgressSync();
 
 const PortalHome = lazy(() => import("./PortalHome"));
 const ProfilePage = lazy(() => import("./profile/ProfilePage"));

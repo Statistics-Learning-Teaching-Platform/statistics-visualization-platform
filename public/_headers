@@ -18,6 +18,16 @@
 /runtime/runtime-manifest.json
   Cache-Control: public, max-age=0, must-revalidate
 
+# webR's worker compiles R to WebAssembly and evaluates JS shims through
+# Emscripten's eval() during R startup; without 'unsafe-eval' the worker dies
+# silently and the R studio spins until its 150s init timeout. This relaxed
+# policy rides on webr-worker.js, so it governs only the worker scope, never
+# the portal document. Accept-Ranges lets Emscripten's LazyFiles range-chunk
+# the vfs archives instead of force-downloading each whole file.
+/runtime/webr/*
+  Content-Security-Policy: script-src 'self' 'wasm-unsafe-eval' 'unsafe-eval'; connect-src 'self'
+  Accept-Ranges: bytes
+
 /brand/*
   Cache-Control: public, max-age=604800, stale-while-revalidate=86400
 

@@ -5,6 +5,7 @@ import { LanguageProvider } from "@stats-viz/shared/i18n";
 import { RLearningWorkspace } from "../src/r-learning/RLearningWorkspace";
 import { rLessons } from "../src/r-learning/lessons";
 import { disposeWebRRuntime, runRCode } from "../src/r-learning/webrRuntime";
+import { resetPortalSessionCache } from "../src/auth/session";
 
 vi.mock("../src/r-learning/webrRuntime", () => ({
   runRCode: vi.fn(async () => ({
@@ -33,6 +34,7 @@ describe("R Coding Studio", () => {
   beforeEach(() => {
     localStorage.clear();
     vi.clearAllMocks();
+    resetPortalSessionCache();
     window.history.replaceState({}, "", "/r-learning");
   });
 
@@ -102,9 +104,17 @@ describe("R Coding Studio", () => {
   });
 
   it("sends the current lesson context to the AI R tutor", async () => {
-    const fetchMock = vi.spyOn(globalThis, "fetch").mockResolvedValueOnce(new Response(JSON.stringify({
-      answer: "The assignment is incomplete because the right-hand side is missing.",
-    }), { status: 200, headers: { "Content-Type": "application/json" } }));
+    const fetchMock = vi.spyOn(globalThis, "fetch").mockImplementation(async (input) => {
+      if (String(input).includes("/api/auth/me")) {
+        return new Response(JSON.stringify({ user: { username: "student01", role: "student" } }), {
+          status: 200,
+          headers: { "Content-Type": "application/json" },
+        });
+      }
+      return new Response(JSON.stringify({
+        answer: "The assignment is incomplete because the right-hand side is missing.",
+      }), { status: 200, headers: { "Content-Type": "application/json" } });
+    });
     renderWorkspace();
 
     // The tutor lives in an on-demand drawer behind its launcher.
@@ -114,10 +124,29 @@ describe("R Coding Studio", () => {
     await userEvent.click(screen.getByRole("button", { name: "发送" }));
 
     expect(await screen.findByText(/right-hand side is missing/)).toBeInTheDocument();
-    const request = JSON.parse(String(fetchMock.mock.calls[0][1]?.body));
+    const tutorCall = fetchMock.mock.calls.find(([, init]) => Boolean(init?.body));
+    expect(tutorCall?.[0]).toContain("/st-qselector/api/ai/r-tutor");
+    const request = JSON.parse(String(tutorCall?.[1]?.body));
     expect(request.question).toBe("为什么这段代码报错？");
     expect(request.lesson.title).toBe("保存一组成绩并计算均值");
     expect(request.code).toContain("average_score <-");
+    fetchMock.mockRestore();
+  });
+
+  it("gates the AI tutor behind sign-in while anonymous", async () => {
+    const fetchMock = vi.spyOn(globalThis, "fetch").mockImplementation(async () =>
+      new Response(JSON.stringify({ error: "请先登录" }), {
+        status: 401,
+        headers: { "Content-Type": "application/json" },
+      }));
+    renderWorkspace();
+
+    await userEvent.click(screen.getByRole("button", { name: /AI R 助教/ }));
+    expect(await screen.findByText("AI 助教需要登录")).toBeInTheDocument();
+    const loginLink = screen.getByRole("link", { name: "前往登录" });
+    expect(loginLink.getAttribute("href")).toContain("/st-qselector/login?next=");
+    expect(screen.queryByRole("textbox", { name: /问报错原因/ })).not.toBeInTheDocument();
+    expect(fetchMock.mock.calls.every(([url]) => !String(url).includes("/api/ai/r-tutor"))).toBe(true);
     fetchMock.mockRestore();
   });
 

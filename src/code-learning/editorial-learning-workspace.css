@@ -1016,6 +1016,29 @@
 	font-size: 17px;
 }
 
+.ed-ai-drawer .ed-tutor-note p {
+	margin: 8px 0 0;
+	line-height: 1.7;
+}
+
+.ed-tutor-login-link {
+	display: inline-block;
+	margin-top: 14px;
+	padding: 8px 16px;
+	border: 1px solid currentColor;
+	border-radius: 999px;
+	font-size: 13px;
+	font-weight: 600;
+	text-decoration: none;
+	color: inherit;
+}
+
+.ed-tutor-login-link:hover,
+.ed-tutor-login-link:focus-visible {
+	background: var(--ed-ink, #1c1a17);
+	color: var(--ed-paper, #fbf7ef);
+}
+
 .ed-ai-drawer .ed-live-tutor-composer {
 	margin-top: 16px;
 }

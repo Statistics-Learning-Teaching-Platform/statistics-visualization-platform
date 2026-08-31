@@ -2,8 +2,10 @@ import "../visual-demo/editorial-tailwind.css";
 import "../visual-demo/editorial/editorial-demo.css";
 import { buttonVariants } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
-import { loadLearningProgress } from "@/course/progressStore";
-import { cn } from "@/lib/utils";
+import { loadLearningProgress } from "../course/progressStore";
+import { ensureLearningProgressSynced } from "../course/progressSync";
+import { cn } from "../lib/utils";
+import { portalLoginUrl, usePortalSession, type PortalUserRole } from "../auth/session";
 import { useLanguage } from "@stats-viz/shared/i18n";
 import {
 	ArrowRightIcon,
@@ -12,13 +14,20 @@ import {
 	ChartNoAxesCombinedIcon,
 	FileCheck2Icon,
 	FlaskConicalIcon,
+	LogInIcon,
 } from "lucide-react";
-import { useMemo } from "react";
+import { useEffect, useState } from "react";
 import { EditorialDemoShell } from "../visual-demo/editorial/EditorialPrimitives";
 
 type Language = "zh" | "en";
 
 const LESSON_TOTALS = { r: 39, python: 43 } as const;
+
+const roleLabels: Record<PortalUserRole, Record<Language, string>> = {
+	student: { zh: "学生账号", en: "Student account" },
+	teacher: { zh: "教师账号", en: "Teacher account" },
+	superadmin: { zh: "管理员账号", en: "Admin account" },
+};
 
 const copy = {
 	zh: {
@@ -27,6 +36,15 @@ const copy = {
 		lead: "把教材阅读、模拟观察、编程复现与练习检验连接成一条学习证据链。",
 		identity: "StatMind 学习者",
 		localNote: "学习记录仅保存在当前浏览器",
+		checkingSession: "正在确认登录状态…",
+		loginTitle: "登录后查看学习档案",
+		loginLead:
+			"个人学习档案与账号绑定。请使用学校分配的账号登录后查看；AI 助教、题库与组卷同样需要登录。",
+		loginAction: "前往登录",
+		loginScopeEyebrow: "LOGIN-PROTECTED SPACES",
+		loginScopeTitle: "登录后可以访问的内容",
+		loginScopeIntro:
+			"以下操作与个人账号相关，需要登录后使用，而不是依赖浏览器本地缓存。",
 		continueLabel: "继续学习",
 		startLabel: "从教材开始",
 		spacesEyebrow: "FIVE CONNECTED SPACES",
@@ -53,6 +71,15 @@ const copy = {
 		lead: "Connect textbook reading, simulation, reproducible code, and practice into one chain of evidence.",
 		identity: "StatMind learner",
 		localNote: "Learning records are stored in this browser only",
+		checkingSession: "Checking your sign-in state…",
+		loginTitle: "Sign in to view your learning record",
+		loginLead:
+			"This personal record is tied to your account. Sign in with your school account to view it; the AI tutors, question bank, and paper composition also require sign-in.",
+		loginAction: "Go to sign-in",
+		loginScopeEyebrow: "LOGIN-PROTECTED SPACES",
+		loginScopeTitle: "What sign-in unlocks",
+		loginScopeIntro:
+			"These operations involve your personal account and require sign-in rather than browser-local caches.",
 		continueLabel: "Continue learning",
 		startLabel: "Start with the textbook",
 		spacesEyebrow: "FIVE CONNECTED SPACES",
@@ -116,7 +143,19 @@ function getResumeDestination(route: string, language: Language) {
 export function ProfilePage() {
 	const language = useLanguage() as Language;
 	const text = copy[language];
-	const progress = useMemo(() => loadLearningProgress(), []);
+	const session = usePortalSession();
+	const [progress, setProgress] = useState(() => loadLearningProgress());
+	useEffect(() => {
+		let active = true;
+		void ensureLearningProgressSynced().finally(() => {
+			// After the account merge, local storage is the merged view.
+			if (active) setProgress(loadLearningProgress());
+		});
+		return () => {
+			active = false;
+		};
+	}, []);
+
 	const hasRecordedProgress =
 		progress.completedTopics.length +
 			progress.completedActivities.length +
@@ -201,6 +240,95 @@ export function ProfilePage() {
 		{ label: text.simulations, value: progress.completedActivities.length },
 	];
 
+	const identityName =
+		session.status === "authenticated" ? session.username : text.identity;
+	const identityRole =
+		session.status === "authenticated"
+			? roleLabels[session.role][language]
+			: text.localNote;
+	const syncedNote =
+		session.status === "authenticated"
+			? (language === "zh" ? "学习进度已与账号同步" : "Progress synced to your account")
+			: text.localNote;
+
+	if (session.status === "loading") {
+		return (
+			<EditorialDemoShell current="profile" siteMode="product">
+				<main id="main-content" className="ed-profile-page">
+					<header className="ed-profile-hero">
+						<p className="ed-kicker">{text.eyebrow}</p>
+						<h1>{text.title}</h1>
+						<p>{text.checkingSession}</p>
+					</header>
+				</main>
+			</EditorialDemoShell>
+		);
+	}
+
+	if (session.status === "anonymous") {
+		return (
+			<EditorialDemoShell current="profile" siteMode="product">
+				<main id="main-content" className="ed-profile-page">
+					<header className="ed-profile-hero">
+						<div className="ed-profile-identity" aria-hidden="true">
+							<LogInIcon />
+						</div>
+						<div className="ed-profile-hero__copy">
+							<p className="ed-kicker">{text.eyebrow}</p>
+							<h1>{text.loginTitle}</h1>
+							<p>{text.loginLead}</p>
+						</div>
+						<div className="ed-profile-resume">
+							<span>{text.continueLabel}</span>
+							<a
+								href={portalLoginUrl("/profile")}
+								className={cn(
+									buttonVariants({ variant: "default" }),
+									"ed-profile-resume__action",
+								)}
+							>
+								{text.loginAction}
+								<ArrowRightIcon data-icon="inline-end" />
+							</a>
+						</div>
+					</header>
+					<section
+						className="ed-profile-section"
+						aria-labelledby="profile-login-scope-title"
+					>
+						<header className="ed-profile-section__heading">
+							<div>
+								<p className="ed-kicker">{text.loginScopeEyebrow}</p>
+								<h2 id="profile-login-scope-title">
+									{text.loginScopeTitle}
+								</h2>
+							</div>
+							<p>{text.loginScopeIntro}</p>
+						</header>
+						<ol className="ed-profile-path__steps">
+							{(language === "zh"
+								? [
+										"查看这份个人学习档案（本页）",
+										"在 R / Python 工作区使用 AI 助教",
+										"浏览题库、查看题目内容与附件",
+										"生成与导出试卷（教师账号）",
+									]
+								: [
+										"View this personal learning record (this page)",
+										"Use the AI tutor in the R / Python studios",
+										"Browse the question bank with full content",
+										"Generate and export papers (teacher accounts)",
+									]
+							).map((step) => (
+								<li key={step}>{step}</li>
+							))}
+						</ol>
+					</section>
+				</main>
+			</EditorialDemoShell>
+		);
+	}
+
 	return (
 		<EditorialDemoShell current="profile" siteMode="product">
 			<main id="main-content" className="ed-profile-page">
@@ -213,8 +341,9 @@ export function ProfilePage() {
 						<h1>{text.title}</h1>
 						<p>{text.lead}</p>
 						<div className="ed-profile-identity-line">
-							<strong>{text.identity}</strong>
-							<span>{text.localNote}</span>
+							<strong>{identityName}</strong>
+							<span>{identityRole}</span>
+							<span>{syncedNote}</span>
 						</div>
 					</div>
 					<div className="ed-profile-resume">

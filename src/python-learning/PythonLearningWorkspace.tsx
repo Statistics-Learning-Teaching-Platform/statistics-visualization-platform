@@ -17,6 +17,7 @@ import {
 } from "../course/progressStore";
 import { EditorialLearningWorkspace } from "../code-learning/EditorialLearningWorkspace";
 import { authenticatedFetch } from "../authenticatedFetch";
+import { portalLoginUrl, usePortalSession } from "../auth/session";
 
 type EngineStatus = "idle" | "loading" | "ready" | "running" | "error";
 type ReviewState = { kind: "idle" | "success" | "failure"; message: string };
@@ -65,6 +66,10 @@ const uiCopy = {
 		tutorSend: "发送",
 		tutorThinking: "正在分析当前代码…",
 		tutorError: "AI 助教暂时无法连接，请稍后再试。",
+		tutorLoginTitle: "AI 助教需要登录",
+		tutorLoginBody:
+			"AI 助教按账号提供并有用量限制。登录后即可结合当前题目、代码与运行结果提问。",
+		tutorLoginAction: "前往登录",
 		contextAttached: "已附带：题目 · 当前代码 · 运行结果",
 		explainError: "解释这个报错",
 		nextStep: "给我下一步提示",
@@ -115,6 +120,10 @@ const uiCopy = {
 		tutorSend: "Send",
 		tutorThinking: "Analyzing your current code…",
 		tutorError: "The AI tutor is temporarily unavailable. Please try again.",
+		tutorLoginTitle: "Sign in to use the AI tutor",
+		tutorLoginBody:
+			"The AI tutor is account-scoped and rate limited. Sign in to ask about the current task, your code, and the latest run.",
+		tutorLoginAction: "Go to sign-in",
 		contextAttached: "Attached: task · current code · run result",
 		explainError: "Explain this error",
 		nextStep: "Give me the next hint",
@@ -130,6 +139,7 @@ function ImagePlot({ url }: { url: string }) {
 export function PythonLearningWorkspace() {
 	const language = useLanguage();
 	const t = uiCopy[language];
+	const session = usePortalSession();
 	const [learningContext] = useState(() =>
 		resolveCodeLearningContext(window.location.search, pythonLessons),
 	);
@@ -361,7 +371,13 @@ export function PythonLearningWorkspace() {
 				error?: string;
 			};
 			if (!response.ok || !payload.answer)
-				throw new Error(payload.error || "AI request failed");
+				throw new Error(
+					response.status === 401
+						? `${t.tutorLoginTitle}（${portalLoginUrl(
+								`${window.location.pathname}${window.location.search}`,
+						)}）`
+						: (payload.error ?? "AI request failed"),
+				);
 			if (!isCurrentRequest()) return;
 			setTutorMessages((current) => [
 				...current,
@@ -425,6 +441,22 @@ export function PythonLearningWorkspace() {
 			tutorMessages={tutorMessages}
 			tutorStatus={tutorStatus}
 			tutorMessagesRef={tutorMessagesRef}
+			tutorGate={
+				session.status === "anonymous" ? (
+					<>
+						<strong>{t.tutorLoginTitle}</strong>
+						<p>{t.tutorLoginBody}</p>
+						<a
+							className="ed-tutor-login-link"
+							href={portalLoginUrl(
+								`${window.location.pathname}${window.location.search}`,
+							)}
+						>
+							{t.tutorLoginAction}
+						</a>
+					</>
+				) : undefined
+			}
 			onSelectLesson={selectLesson}
 			onCodeChange={(nextCode) =>
 				setCodes((current) => ({ ...current, [activeLesson.id]: nextCode }))

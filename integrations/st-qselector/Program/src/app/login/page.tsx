@@ -5,6 +5,23 @@ import { LockKeyhole, Loader2, UserRound } from "lucide-react";
 import Link from "next/link";
 import { withBasePath } from "@/lib/base-path";
 
+function resolvePostLoginTarget(mustChangePassword: boolean): string {
+  if (mustChangePassword) return withBasePath("/account");
+  const next = new URLSearchParams(window.location.search).get("next");
+  if (next) {
+    // Only same-origin destinations: bare in-app paths, or absolute URLs on
+    // this origin. Anything else (protocol-relative, other hosts) is ignored.
+    if (next.startsWith("/") && !next.startsWith("//")) return next;
+    try {
+      const resolved = new URL(next, window.location.origin);
+      if (resolved.origin === window.location.origin) return resolved.href;
+    } catch {
+      // Malformed next value falls through to the default.
+    }
+  }
+  return withBasePath("/");
+}
+
 export default function LoginPage() {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
@@ -23,7 +40,7 @@ export default function LoginPage() {
       });
       const payload = (await response.json()) as { error?: string; user?: { mustChangePassword?: boolean } };
       if (!response.ok) throw new Error(payload.error ?? "登录失败");
-      window.location.assign(withBasePath(payload.user?.mustChangePassword ? "/account" : "/"));
+      window.location.assign(resolvePostLoginTarget(Boolean(payload.user?.mustChangePassword)));
     } catch (reason) {
       setError(reason instanceof Error ? reason.message : "登录失败");
       setLoading(false);

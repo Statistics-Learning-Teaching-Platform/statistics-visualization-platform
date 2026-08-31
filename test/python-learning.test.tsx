@@ -5,6 +5,7 @@ import { LanguageProvider } from "@stats-viz/shared/i18n";
 import { PythonLearningWorkspace } from "../src/python-learning/PythonLearningWorkspace";
 import { pythonLessons } from "../src/python-learning/lessons";
 import { disposePythonRuntime } from "../src/python-learning/pyodideRuntime";
+import { resetPortalSessionCache } from "../src/auth/session";
 
 vi.mock("../src/python-learning/pyodideRuntime", () => ({
   runPythonCode: vi.fn(async () => ({
@@ -40,6 +41,7 @@ describe("Python Coding Studio", () => {
   beforeEach(() => {
     localStorage.clear();
     vi.clearAllMocks();
+    resetPortalSessionCache();
     window.history.replaceState({}, "", "/python-learning");
   });
 
@@ -100,9 +102,17 @@ describe("Python Coding Studio", () => {
   });
 
   it("sends the current lesson context to the AI Python tutor", async () => {
-    const fetchMock = vi.spyOn(globalThis, "fetch").mockResolvedValueOnce(new Response(JSON.stringify({
-      answer: "The assignment needs an expression on its right-hand side.",
-    }), { status: 200, headers: { "Content-Type": "application/json" } }));
+    const fetchMock = vi.spyOn(globalThis, "fetch").mockImplementation(async (input) => {
+      if (String(input).includes("/api/auth/me")) {
+        return new Response(JSON.stringify({ user: { username: "student01", role: "student" } }), {
+          status: 200,
+          headers: { "Content-Type": "application/json" },
+        });
+      }
+      return new Response(JSON.stringify({
+        answer: "The assignment needs an expression on its right-hand side.",
+      }), { status: 200, headers: { "Content-Type": "application/json" } });
+    });
     renderWorkspace();
 
     // The tutor lives in an on-demand drawer behind its launcher.
@@ -112,17 +122,42 @@ describe("Python Coding Studio", () => {
     await userEvent.click(screen.getByRole("button", { name: "发送" }));
 
     expect(await screen.findByText(/right-hand side/)).toBeInTheDocument();
-    const request = JSON.parse(String(fetchMock.mock.calls[0][1]?.body));
+    const tutorCall = fetchMock.mock.calls.find(([, init]) => Boolean(init?.body));
+    expect(tutorCall?.[0]).toContain("/st-qselector/api/ai/python-tutor");
+    const request = JSON.parse(String(tutorCall?.[1]?.body));
     expect(request.question).toBe("为什么这段代码报错？");
     expect(request.lesson.title).toBe("用列表计算样本均值");
     expect(request.code).toContain("mean_score =");
     fetchMock.mockRestore();
   });
 
+  it("gates the AI tutor behind sign-in while anonymous", async () => {
+    const fetchMock = vi.spyOn(globalThis, "fetch").mockImplementation(async () =>
+      new Response(JSON.stringify({ error: "请先登录" }), {
+        status: 401,
+        headers: { "Content-Type": "application/json" },
+      }));
+    renderWorkspace();
+
+    await openTutorDrawer();
+    expect(await screen.findByText("AI 助教需要登录")).toBeInTheDocument();
+    const loginLink = screen.getByRole("link", { name: "前往登录" });
+    expect(loginLink.getAttribute("href")).toContain("/st-qselector/login?next=");
+    expect(screen.queryByRole("textbox", { name: /问报错原因/ })).not.toBeInTheDocument();
+    expect(fetchMock.mock.calls.every(([url]) => !String(url).includes("/api/ai/python-tutor"))).toBe(true);
+    fetchMock.mockRestore();
+  });
+
   it("aborts and ignores a tutor response after switching lessons", async () => {
     let resolveFetch!: (response: Response) => void;
     let requestSignal: AbortSignal | null = null;
-    const fetchMock = vi.spyOn(globalThis, "fetch").mockImplementationOnce((_input, init) => {
+    const fetchMock = vi.spyOn(globalThis, "fetch").mockImplementation(async (input, init) => {
+      if (String(input).includes("/api/auth/me")) {
+        return new Response(JSON.stringify({ user: { username: "student01", role: "student" } }), {
+          status: 200,
+          headers: { "Content-Type": "application/json" },
+        });
+      }
       requestSignal = init?.signal as AbortSignal;
       return new Promise<Response>((resolve) => { resolveFetch = resolve; });
     });
