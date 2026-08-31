@@ -28,6 +28,18 @@ export default defineConfig({
 		// Public source maps expose implementation details and can retain local
 		// build paths. Keep them out of deployment artifacts.
 		sourcemap: false,
+		rollupOptions: {
+			output: {
+				// The -cf2 suffix versions the chunk URL space. Cloudflare keys
+				// edge entries partly by Sec-Fetch-Dest and caches /assets/* as
+				// immutable, so a fallback served during a deploy-propagation
+				// window sticks for browser fetches until the URL changes (see
+				// functions/assets/[[path]].ts for the structural guard; this
+				// suffix is the escape hatch when an entry is already poisoned).
+				chunkFileNames: "assets/[name]-[hash]-cf2.js",
+				entryFileNames: "assets/[name]-[hash]-cf2.js",
+			},
+		},
 	},
 	// Pyodide's worker uses split ESM imports, which cannot be emitted in
 	// Vite's default IIFE worker format.

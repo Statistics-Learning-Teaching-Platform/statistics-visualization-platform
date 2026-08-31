@@ -1,5 +1,7 @@
 import { useLanguage } from "@stats-viz/shared/i18n";
 import { useEffect, useMemo, useRef, useState } from "react";
+// Session awareness powers the tutor sign-in gate; the runtime itself stays
+// fully local so the studio works offline once the WebR assets are cached.
 import { portalLoginUrl, usePortalSession } from "../auth/session";
 import { authenticatedFetch } from "../authenticatedFetch";
 import { createMessageId, resolveCodeLearningContext } from "../code-learning/context";
