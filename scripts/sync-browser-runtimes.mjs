@@ -19,7 +19,7 @@ const webRVersion = "0.6.0";
 // Served directory for webR. The "-cf2" suffix versions the URL space: edge
 // caches hold immutable responses per URL, and only fresh URLs reach the
 // Pages Function that swaps in the eval-permitting CSP the worker needs.
-const webRDirectory = "0.6.0-cf2";
+const webRDirectory = "0.6.0-cf3";
 
 async function sha256(path) {
   const hash = createHash("sha256");

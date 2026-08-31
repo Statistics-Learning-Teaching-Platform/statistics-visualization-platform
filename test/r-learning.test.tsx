@@ -220,7 +220,7 @@ describe("WebR runtime lifecycle", () => {
     expect(selectedClose).not.toHaveBeenCalled();
     expect(destroy).toHaveBeenCalledWith(capturedResult);
     expect(constructorOptions).toEqual([
-      expect.objectContaining({ baseUrl: expect.stringContaining("/runtime/webr/0.6.0-cf2/") }),
+      expect.objectContaining({ baseUrl: expect.stringContaining("/runtime/webr/0.6.0-cf3/") }),
     ]);
 
     result.image?.close();

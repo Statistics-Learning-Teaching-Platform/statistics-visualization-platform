@@ -21,6 +21,18 @@ const WEBR_WORKER_CSP =
 
 export const onRequest = async (context: PagesEventContext): Promise<Response> => {
 	const response = await context.next();
+	const contentType = response.headers.get("content-type") ?? "";
+	if (contentType.includes("text/html")) {
+		// The SPA fallback must never masquerade as a runtime file: serving
+		// index.html from a worker-script URL breaks loading AND lets the
+		// fallback get edge-cached under the long /runtime/* cache rules
+		// (Cloudflare keys include Sec-Fetch-Dest, so a fallback cached for
+		// a worker fetch sticks for browsers while plain probes look fine).
+		return new Response("runtime asset not found", {
+			status: 404,
+			headers: { "Cache-Control": "no-store" },
+		});
+	}
 	const headers = new Headers(response.headers);
 	headers.set("Content-Security-Policy", WEBR_WORKER_CSP);
 	// Lets Emscripten's LazyFiles range-chunk the vfs archives instead of
