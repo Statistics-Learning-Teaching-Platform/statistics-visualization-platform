@@ -11,7 +11,10 @@ let activeWebR: WebR | null = null;
 let lastExecutionHadPlot = false;
 let runtimeGeneration = 0;
 
-const WEBR_RUNTIME_PATH = "/runtime/webr/0.6.0/";
+// Must match `webRDirectory` in scripts/sync-browser-runtimes.mjs. The -cf2
+// suffix versions the URL space so edge-cached copies from before the
+// CSP-rewriting Pages Function never shadow fresh responses.
+const WEBR_RUNTIME_PATH = "/runtime/webr/0.6.0-cf2/";
 const MAX_SOURCE_LENGTH = 50_000;
 const MAX_OUTPUT_LENGTH = 64 * 1024;
 const INITIALIZATION_TIMEOUT_MS = 150_000;

@@ -16,6 +16,10 @@ const mirror = process.env.PYODIDE_CHINA_MIRROR?.replace(/\/$/, "")
   ?? `https://cdn.jsdmirror.com/pyodide/v${pyodideVersion}/full`;
 const basePackages = ["numpy", "pandas", "matplotlib", "scipy"];
 const webRVersion = "0.6.0";
+// Served directory for webR. The "-cf2" suffix versions the URL space: edge
+// caches hold immutable responses per URL, and only fresh URLs reach the
+// Pages Function that swaps in the eval-permitting CSP the worker needs.
+const webRDirectory = "0.6.0-cf2";
 
 async function sha256(path) {
   const hash = createHash("sha256");
@@ -85,7 +89,7 @@ async function syncPyodide() {
 
 async function syncWebR() {
   const runtimeRoot = resolve(publicRuntime, "webr");
-  const destination = resolve(runtimeRoot, webRVersion);
+  const destination = resolve(runtimeRoot, webRDirectory);
   await rm(runtimeRoot, { recursive: true, force: true });
   await mkdir(destination, { recursive: true });
   for (const file of ["R.js", "R.wasm", "libRblas.so", "libRlapack.so", "webr-worker.js"]) {
@@ -102,7 +106,7 @@ await writeFile(
   JSON.stringify({
     generatedAt: new Date().toISOString(),
     pyodide: { version: pyodideVersion, source: mirror, packages: pyodideFiles },
-    webR: { version: webRVersion, source: "local npm package" },
+    webR: { version: webRVersion, directory: webRDirectory, source: "local npm package" },
   }, null, 2),
   "utf8",
 );
