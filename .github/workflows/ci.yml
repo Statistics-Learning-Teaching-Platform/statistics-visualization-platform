@@ -42,7 +42,7 @@ jobs:
           node-version-file: .node-version
           cache: npm
           cache-dependency-path: integrations/st-qselector/Program/package-lock.json
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v7
         with:
           python-version: "3.12"
       - run: npm ci
