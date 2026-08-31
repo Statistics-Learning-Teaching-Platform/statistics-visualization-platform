@@ -12,31 +12,27 @@
  *     → ./runtime-dictionary.ts（原 legacy.ts，此处改名以反映其作用）
  */
 
-import { createContext, useContext, useState, useCallback, useEffect, type ReactNode } from "react";
-
-// ── 数据驱动内容翻译引擎（./runtime-dictionary.ts）─────────────────
-export {
-  localizeText,
-  localizeModuleConfig,
-  localizeSimulationResult,
-  localizeTableRows,
-  hasUnexpectedLatin,
-  type TemplateCopy,
-} from "./runtime-dictionary";
+import { createContext, type ReactNode, useCallback, useContext, useEffect, useState } from "react";
 
 // ── Keyed 文案数据表（./copy.ts）──────────────────────────────────
 // 重新导出各 core app 直接消费的 copy 表，保持 barrel 导出不变。
 export {
   confidenceIntervalCopy,
-  walsCopy,
-  typeErrorCopy,
   regressionCopy,
+  typeErrorCopy,
+  walsCopy,
 } from "./copy";
-import {
-  allTranslations,
-  platformCopy,
-  visualizerLabels,
-} from "./copy";
+// ── 数据驱动内容翻译引擎（./runtime-dictionary.ts）─────────────────
+export {
+  hasUnexpectedLatin,
+  localizeModuleConfig,
+  localizeSimulationResult,
+  localizeTableRows,
+  localizeText,
+  type TemplateCopy,
+} from "./runtime-dictionary";
+
+import { allTranslations, platformCopy, visualizerLabels } from "./copy";
 
 // ── 语言类型 ──────────────────────────────────────────────────────
 export type Language = "zh" | "en";
@@ -53,9 +49,7 @@ export function normalizeLanguage(value: unknown): Language {
 export function getLanguage(): Language {
   try {
     return normalizeLanguage(
-      typeof localStorage !== "undefined"
-        ? localStorage.getItem(LANGUAGE_STORAGE_KEY)
-        : "zh",
+      typeof localStorage !== "undefined" ? localStorage.getItem(LANGUAGE_STORAGE_KEY) : "zh",
     );
   } catch {
     return "zh";
@@ -125,11 +119,7 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
     return subscribeLanguage(setLang);
   }, []);
 
-  return (
-    <LanguageContext.Provider value={lang}>
-      {children}
-    </LanguageContext.Provider>
-  );
+  return <LanguageContext.Provider value={lang}>{children}</LanguageContext.Provider>;
 }
 
 export function useLanguage(): Language {

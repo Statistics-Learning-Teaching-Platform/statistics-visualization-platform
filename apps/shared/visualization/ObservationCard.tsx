@@ -14,7 +14,10 @@ export function ObservationCard({
   className = "",
 }: ObservationCardProps) {
   return (
-    <section className={`teaching-panel observation-card ${className}`.trim()} data-observation-card="true">
+    <section
+      className={`teaching-panel observation-card ${className}`.trim()}
+      data-observation-card="true"
+    >
       <p className="eyebrow">{eyebrow}</p>
       {title && <h3>{title}</h3>}
       {children}

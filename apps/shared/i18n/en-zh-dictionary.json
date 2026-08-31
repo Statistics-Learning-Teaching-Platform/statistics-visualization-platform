@@ -639,33 +639,33 @@
   "Exam score": "考试成绩",
   "Outlier Impact Dataset": "异常值影响数据集",
   "Strong Linear Relationship": "强线性关系",
-  "Constructed classroom example for influence and outlier teaching": "用于讲解影响点与异常值的课堂示例"
-  ,"Accepted sample size": "接受样本量"
-  ,"inverse-transform draws": "逆变换抽样"
-  ,"latest mean": "最新样本均值"
-  ,"Normal approximation": "正态近似"
-  ,"observations": "观测值"
-  ,"group mean": "组均值"
-  ,"current state": "当前状态"
-  ,"target density": "目标密度"
-  ,"recent path": "最近路径"
-  ,"t": "t"
-  ,"beta": "贝塔"
-  ,"gamma": "伽马"
-  ,"chisq": "卡方"
-  ,"exp": "指数"
-  ,"unif": "均匀"
-  ,"binom": "二项"
-  ,"pois": "泊松"
-  ,"geom": "几何"
-  ,"cumulative distribution": "累积分布"
-  ,"probability mass": "概率质量"
-  ,"density": "密度"
-  ,"PMF  P(X = x)": "概率质量 P(X = x)"
-  ,"Every bootstrap replicate resamples exactly n observations; the replicate count was reduced to keep the total draw budget responsive.": "每次自助法重复仍抽取恰好 n 个观测；为保持响应速度，重复次数已按总抽样预算下调。"
-  ,"Every bootstrap replicate resamples exactly n observations with replacement from the generated sample.": "每次自助法重复都从生成样本中有放回地抽取恰好 n 个观测。"
-  ,"bootstrap replicates": "自助法重复次数"
-  ,"not reported until both modes are explored": "在两个模态都得到探索前不报告"
-  ,"Initial-positive-sequence autocorrelation estimate. It is withheld when the chain has not demonstrated movement between both target modes.": "使用初始正序列自相关估计；当链尚未显示在两个目标模态之间移动时，不报告该值。"
-  ,"mode coverage": "模态覆盖"
+  "Constructed classroom example for influence and outlier teaching": "用于讲解影响点与异常值的课堂示例",
+  "Accepted sample size": "接受样本量",
+  "inverse-transform draws": "逆变换抽样",
+  "latest mean": "最新样本均值",
+  "Normal approximation": "正态近似",
+  "observations": "观测值",
+  "group mean": "组均值",
+  "current state": "当前状态",
+  "target density": "目标密度",
+  "recent path": "最近路径",
+  "t": "t",
+  "beta": "贝塔",
+  "gamma": "伽马",
+  "chisq": "卡方",
+  "exp": "指数",
+  "unif": "均匀",
+  "binom": "二项",
+  "pois": "泊松",
+  "geom": "几何",
+  "cumulative distribution": "累积分布",
+  "probability mass": "概率质量",
+  "density": "密度",
+  "PMF  P(X = x)": "概率质量 P(X = x)",
+  "Every bootstrap replicate resamples exactly n observations; the replicate count was reduced to keep the total draw budget responsive.": "每次自助法重复仍抽取恰好 n 个观测；为保持响应速度，重复次数已按总抽样预算下调。",
+  "Every bootstrap replicate resamples exactly n observations with replacement from the generated sample.": "每次自助法重复都从生成样本中有放回地抽取恰好 n 个观测。",
+  "bootstrap replicates": "自助法重复次数",
+  "not reported until both modes are explored": "在两个模态都得到探索前不报告",
+  "Initial-positive-sequence autocorrelation estimate. It is withheld when the chain has not demonstrated movement between both target modes.": "使用初始正序列自相关估计；当链尚未显示在两个目标模态之间移动时，不报告该值。",
+  "mode coverage": "模态覆盖"
 }

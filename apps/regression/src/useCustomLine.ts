@@ -1,6 +1,6 @@
-import { useCallback, useEffect, useRef, useState } from "react";
 import type { ScaleLinear } from "d3";
-import type { Point, CustomLineState } from "./constants";
+import { useCallback, useEffect, useRef, useState } from "react";
+import type { CustomLineState, Point } from "./constants";
 
 interface UseCustomLineOptions {
   scales: { xScale: ScaleLinear<number, number>; yScale: ScaleLinear<number, number> };
@@ -82,9 +82,11 @@ export function useCustomLine({ scales, chartLayoutMargin, resetDeps }: UseCusto
       const start = dragStartRef.current;
       dragStartRef.current = null;
       const end = { x: scales.xScale.invert(x), y: scales.yScale.invert(y) };
-      setCustomLine(!start || (start.x === end.x && start.y === end.y)
-        ? { start: null, end: null }
-        : { start, end });
+      setCustomLine(
+        !start || (start.x === end.x && start.y === end.y)
+          ? { start: null, end: null }
+          : { start, end },
+      );
     },
     [getChartCoords, scales],
   );
@@ -105,13 +107,16 @@ export function useCustomLine({ scales, chartLayoutMargin, resetDeps }: UseCusto
     setIsDragging(false);
   }, []);
 
-  const setNumericParams = useCallback((slope: number, intercept: number) => {
-    const [xMin, xMax] = scales.xScale.domain();
-    setCustomLine({
-      start: { x: xMin, y: intercept + slope * xMin },
-      end: { x: xMax, y: intercept + slope * xMax },
-    });
-  }, [scales]);
+  const setNumericParams = useCallback(
+    (slope: number, intercept: number) => {
+      const [xMin, xMax] = scales.xScale.domain();
+      setCustomLine({
+        start: { x: xMin, y: intercept + slope * xMin },
+        end: { x: xMax, y: intercept + slope * xMax },
+      });
+    },
+    [scales],
+  );
 
   return {
     customLine,
@@ -124,7 +129,9 @@ export function useCustomLine({ scales, chartLayoutMargin, resetDeps }: UseCusto
 }
 
 /** Returns slope/intercept for the committed custom line, or null when incomplete. */
-export function getCustomLineParams(customLine: CustomLineState): { slope: number; intercept: number } | null {
+export function getCustomLineParams(
+  customLine: CustomLineState,
+): { slope: number; intercept: number } | null {
   if (!customLine.start || !customLine.end) return null;
   const dx = customLine.end.x - customLine.start.x;
   // A vertical stroke is not a function y = mx + b and therefore has no

@@ -19,7 +19,7 @@ export const moduleConfig: ModuleConfig = {
       teachingPoints: [
         "The population can be skewed or uneven while the sample means become more bell-shaped.",
         "Larger sample sizes make sample means less variable.",
-        "The observed SD of sample means should move toward the standard error sigma / sqrt(n)."
+        "The observed SD of sample means should move toward the standard error sigma / sqrt(n).",
       ],
       controls: [
         {
@@ -32,8 +32,8 @@ export const moduleConfig: ModuleConfig = {
             { value: "uniform", label: "Uniform" },
             { value: "exponential", label: "Exponential" },
             { value: "skewed", label: "Right-skewed" },
-            { value: "bimodal", label: "Bimodal" }
-          ]
+            { value: "bimodal", label: "Bimodal" },
+          ],
         },
         {
           id: "sampleSize",
@@ -42,7 +42,7 @@ export const moduleConfig: ModuleConfig = {
           min: 1,
           max: 200,
           step: 1,
-          defaultValue: 5
+          defaultValue: 5,
         },
         {
           id: "repetitions",
@@ -52,8 +52,8 @@ export const moduleConfig: ModuleConfig = {
           max: 5000,
           step: 100,
           defaultValue: 500,
-          description: "Number of sample means used in the sampling distribution."
-        }
+          description: "Number of sample means used in the sampling distribution.",
+        },
       ],
       accumulateSampleMeans: true,
       quickActions: [
@@ -65,8 +65,8 @@ export const moduleConfig: ModuleConfig = {
         { type: "setControl", control: "sampleSize", amount: 1, copyKey: "setN1" },
         { type: "setControl", control: "sampleSize", amount: 5, copyKey: "setN5" },
         { type: "setControl", control: "sampleSize", amount: 30, copyKey: "setN30" },
-        { type: "setControl", control: "sampleSize", amount: 100, copyKey: "setN100" }
-      ]
-    }
-  ]
+        { type: "setControl", control: "sampleSize", amount: 100, copyKey: "setN100" },
+      ],
+    },
+  ],
 };

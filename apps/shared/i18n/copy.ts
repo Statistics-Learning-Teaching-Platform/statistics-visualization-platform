@@ -191,7 +191,8 @@ export const confidenceIntervalCopy = {
     trueMean: "True Mean (μ = {mean})",
     populationScale: "Population scale",
     sampleIndex: "Sample index",
-    chartAriaDescription: "Green intervals contain the true mean; red intervals miss it. Each dot is a sample mean.",
+    chartAriaDescription:
+      "Green intervals contain the true mean; red intervals miss it. Each dot is a sample mean.",
     sampleTooltip: "Sample {number}: {lower} to {upper}; {coverage} the true mean",
     tooltipCovers: "covers",
     tooltipMisses: "misses",
@@ -207,7 +208,8 @@ export const confidenceIntervalCopy = {
     generateOne: "Generate 1 Sample",
     generateTwenty: "Generate 20 Samples",
     reset: "Reset",
-    controlHint: "Use repeated samples to compare interval behavior with the target confidence level.",
+    controlHint:
+      "Use repeated samples to compare interval behavior with the target confidence level.",
     conceptKeyIdea: "Concept + key idea",
     whatIsTitle: "What is a Confidence Interval?",
     whatIsBody:
@@ -219,7 +221,8 @@ export const confidenceIntervalCopy = {
     estimate: "estimate",
     criticalValue: "critical value",
     se: "SE",
-    formulaNote: "Current critical value: {zValue}. Population mean shown in the chart: {populationMean}.",
+    formulaNote:
+      "Current critical value: {zValue}. Population mean shown in the chart: {populationMean}.",
     howToReadThis: "How to read this",
     currentInterpretation: "Current interpretation",
     emptyInterpretation:
@@ -241,9 +244,11 @@ export const confidenceIntervalCopy = {
     populationMean: "Population mean μ",
     populationMeanHint: "Move the true parameter and observe interval coverage.",
     populationSD: "Population SD",
-    populationSDHint: "Higher variability makes intervals wider and coverage noisier in small samples.",
+    populationSDHint:
+      "Higher variability makes intervals wider and coverage noisier in small samples.",
     confidenceLevel: "Confidence Level",
-    confidenceLevelHint: "Higher confidence captures the true mean more often, but also widens the interval.",
+    confidenceLevelHint:
+      "Higher confidence captures the true mean more often, but also widens the interval.",
     confidenceInfo:
       "A 95% confidence level means that over the long run, about 95% of intervals constructed this way will contain the true population mean.",
     sigmaAssumption: "Population sigma assumption",
@@ -300,7 +305,8 @@ export const walsCopy = {
     run: "Run",
     addOneSample: "+1 Sample",
     addTwentySamples: "+20 Samples",
-    formulaHelper: "Use the formula as the anchor, then connect each symbol back to the controls and chart.",
+    formulaHelper:
+      "Use the formula as the anchor, then connect each symbol back to the controls and chart.",
     estimate: "estimate",
     criticalValue: "critical value",
     simulationResult: "simulation result",
@@ -400,10 +406,12 @@ export const typeErrorCopy = {
   en: {
     coreVisualizer: "Core Visualizer",
     title: "Type I / II Error",
-    description: "Adjust alpha, move the true mean, and watch rejection regions, beta, and power update together.",
+    description:
+      "Adjust alpha, move the true mean, and watch rejection regions, beta, and power update together.",
     modelOutput: "Model output",
     chartTitle: "Decision regions and overlapping distributions",
-    chartDescription: "The blue curve represents the null hypothesis, the red curve the true distribution, and the shaded regions show the two kinds of error.",
+    chartDescription:
+      "The blue curve represents the null hypothesis, the red curve the true distribution, and the shaded regions show the two kinds of error.",
     testStatistic: "Test Statistic",
     density: "Density",
     legend: "Legend",
@@ -433,7 +441,8 @@ export const typeErrorCopy = {
     rightTailed: "Right tail",
     twoSided: "Two-sided",
     controlPanel: "Control Panel",
-    controlIntro: "Change the decision rule and effect size to see how the shaded error regions respond.",
+    controlIntro:
+      "Change the decision rule and effect size to see how the shaded error regions respond.",
     alphaLabel: "Alpha (α)",
     alphaHint: "Sets the false-positive rate and controls the rejection region.",
     nullMeanLabel: "Null Mean (μ₀)",
@@ -448,13 +457,19 @@ export const typeErrorCopy = {
     observedStatisticHint: "Move the observed statistic to see the p value and decision change.",
     conceptKeyIdea: "Concept + key idea",
     twoKindsOfError: "Two kinds of error",
-    twoKindsOfErrorBody: "A Type I error rejects a true null hypothesis. A Type II error fails to reject the null when a real effect exists.",
+    twoKindsOfErrorBody:
+      "A Type I error rejects a true null hypothesis. A Type II error fails to reject the null when a real effect exists.",
     alphaPowerTradeOff: "Alpha and power trade off",
-    strongPower: "This setting has strong power, so the test is fairly likely to detect the true effect.",
-    moderatePower: "This setting has moderate power. Students can discuss how alpha, spread, and effect size interact.",
-    lowPower: "This setting has low power, which makes Type II errors common even when a real effect exists.",
-    closeTrueMean: "The true mean is still close to the null mean, so the two curves overlap heavily.",
-    strictAlpha: "A strict alpha protects against false positives, but it can widen the acceptance region and raise beta.",
+    strongPower:
+      "This setting has strong power, so the test is fairly likely to detect the true effect.",
+    moderatePower:
+      "This setting has moderate power. Students can discuss how alpha, spread, and effect size interact.",
+    lowPower:
+      "This setting has low power, which makes Type II errors common even when a real effect exists.",
+    closeTrueMean:
+      "The true mean is still close to the null mean, so the two curves overlap heavily.",
+    strictAlpha:
+      "A strict alpha protects against false positives, but it can widen the acceptance region and raise beta.",
     largerAlpha: "A larger alpha lowers beta here, but the shaded Type I region also expands.",
     formula: "Formula",
     howToReadThis: "How to read this",
@@ -464,7 +479,8 @@ export const typeErrorCopy = {
     leftTailedTest: "Left-tailed test",
     rightTailedTest: "Right-tailed test",
     twoSidedTest: "Two-sided test",
-    pValueWarning: "The p value is not the probability that the null hypothesis is true, nor the probability that chance caused the result.",
+    pValueWarning:
+      "The p value is not the probability that the null hypothesis is true, nor the probability that chance caused the result.",
     and: "and",
   },
 } as const;
@@ -527,10 +543,12 @@ export const regressionCopy = {
   en: {
     coreVisualizer: "Core Visualizer",
     title: "Regression",
-    description: "Choose a dataset, draw a custom line, and compare it with the least-squares regression fit.",
+    description:
+      "Choose a dataset, draw a custom line, and compare it with the least-squares regression fit.",
     modelOutput: "Model output",
     chartTitle: "Scatterplot and fitted lines",
-    chartDescription: "Click and drag on the graph to draw a custom line, then compare it with the regression line.",
+    chartDescription:
+      "Click and drag on the graph to draw a custom line, then compare it with the regression line.",
     explanatoryVariable: "Explanatory variable",
     response: "Response",
     statistics: "Statistics",
@@ -545,7 +563,8 @@ export const regressionCopy = {
     hoverOverAPoint: "Hover over a point",
     parameters: "Parameters",
     controlPanel: "Control Panel",
-    controlIntro: "Choose a dataset, reveal the regression line, and clear your hand-drawn line when you want to try again.",
+    controlIntro:
+      "Choose a dataset, reveal the regression line, and clear your hand-drawn line when you want to try again.",
     dataset: "Dataset",
     datasetHint: "Switch the scatterplot students are reasoning from.",
     selectDataset: "Select Dataset",
@@ -568,14 +587,17 @@ export const regressionCopy = {
     yVariable: "Y variable",
     conceptKeyIdea: "Concept + key idea",
     leastSquaresRegression: "Least-squares regression",
-    regressionBody: "Regression uses a line to describe the relationship between an explanatory variable and a response variable.",
+    regressionBody:
+      "Regression uses a line to describe the relationship between an explanatory variable and a response variable.",
     residualsExplainFit: "Residuals explain fit",
-    residualsBody: "The least-squares line is the line that minimizes the sum of squared residuals across the dataset.",
+    residualsBody:
+      "The least-squares line is the line that minimizes the sum of squared residuals across the dataset.",
     formula: "Formula",
     formulaNote: "Compare the custom line and regression line by watching how SSE changes.",
     teachingNotes: "Teaching notes",
     classroomFocus: "Classroom focus",
-    classroomFocusBody: "Ask students to predict the slope first, draw their line, and then use residuals to explain why one line fits better.",
+    classroomFocusBody:
+      "Ask students to predict the slope first, draw their line, and then use residuals to explain why one line fits better.",
   },
 } as const;
 

@@ -1,8 +1,8 @@
-import type { ChartPoint, SimulationResult } from "../types";
-import { createRandom, exponentialRandom, normalRandom } from "@stats-viz/shared/random";
 import { formatNumber, mean, ratioOrNa, variance } from "@stats-viz/shared/format";
 import { normalCdf } from "@stats-viz/shared/math";
-import { num, result, type ControlMap } from "./internal";
+import { createRandom, exponentialRandom, normalRandom } from "@stats-viz/shared/random";
+import type { ChartPoint, SimulationResult } from "../types";
+import { type ControlMap, num, result } from "./internal";
 
 export function piCircle(controls: ControlMap, seed: number): SimulationResult {
   const rng = createRandom(seed);
@@ -16,7 +16,7 @@ export function piCircle(controls: ControlMap, seed: number): SimulationResult {
     if (hit) inside += 1;
     if (i < 1200) points.push({ x, y, color: hit ? "var(--lab-teal)" : "var(--lab-coral)" });
   }
-  const estimate = 4 * inside / n;
+  const estimate = (4 * inside) / n;
   return result(
     "Circle-area Monte Carlo estimate",
     "The chart displays a capped preview of simulated points; the metrics use all generated points.",
@@ -24,8 +24,12 @@ export function piCircle(controls: ControlMap, seed: number): SimulationResult {
       { label: "pi estimate", value: formatNumber(estimate, 5), detail: "4 x inside proportion" },
       { label: "reference value", value: formatNumber(Math.PI, 5), detail: "analytic π" },
       { label: "inside points", value: String(inside), detail: `${n} total draws` },
-      { label: "absolute error", value: formatNumber(Math.abs(Math.PI - estimate), 5), detail: "Compared with Math.PI" },
-      { label: "simulation count", value: String(n), detail: "points generated" }
+      {
+        label: "absolute error",
+        value: formatNumber(Math.abs(Math.PI - estimate), 5),
+        detail: "Compared with Math.PI",
+      },
+      { label: "simulation count", value: String(n), detail: "points generated" },
     ],
     {
       type: "scatter",
@@ -45,7 +49,7 @@ export function piCircle(controls: ControlMap, seed: number): SimulationResult {
       ],
       xDomain: [-1, 1],
       yDomain: [-1, 1],
-    }
+    },
   );
 }
 export function buffon(controls: ControlMap, seed: number): SimulationResult {
@@ -65,7 +69,10 @@ export function buffon(controls: ControlMap, seed: number): SimulationResult {
     }
     totalCrosses += crosses;
     const probability = totalCrosses / (trials * experiment);
-    estimates.push({ x: experiment, y: probability > 0 ? (2 * needleLength) / (planeWidth * probability) : 0 });
+    estimates.push({
+      x: experiment,
+      y: probability > 0 ? (2 * needleLength) / (planeWidth * probability) : 0,
+    });
   }
   const final = estimates.at(-1)?.y ?? 0;
   return result(
@@ -74,9 +81,21 @@ export function buffon(controls: ControlMap, seed: number): SimulationResult {
     [
       { label: "pi estimate", value: formatNumber(final, 5), detail: "Cumulative estimate" },
       { label: "reference value", value: formatNumber(Math.PI, 5), detail: "analytic π" },
-      { label: "crossing rate", value: formatNumber(totalCrosses / (trials * experiments), 4), detail: "Needles crossing a line" },
-      { label: "absolute error", value: formatNumber(Math.abs(Math.PI - final), 5), detail: "Compared with Math.PI" },
-      { label: "simulation count", value: String(trials * experiments), detail: `${trials} trials each` }
+      {
+        label: "crossing rate",
+        value: formatNumber(totalCrosses / (trials * experiments), 4),
+        detail: "Needles crossing a line",
+      },
+      {
+        label: "absolute error",
+        value: formatNumber(Math.abs(Math.PI - final), 5),
+        detail: "Compared with Math.PI",
+      },
+      {
+        label: "simulation count",
+        value: String(trials * experiments),
+        detail: `${trials} trials each`,
+      },
     ],
     {
       type: "line",
@@ -85,8 +104,11 @@ export function buffon(controls: ControlMap, seed: number): SimulationResult {
       yLabel: "estimate of π",
       series: [{ label: "Monte Carlo estimate", points: estimates, color: "var(--lab-teal)" }],
       references: [{ axis: "y", value: Math.PI, label: "π", color: "var(--lab-purple)" }],
-      yDomain: [Math.max(0, Math.min(...estimates.map((point) => point.y), Math.PI) - 0.8), Math.max(...estimates.map((point) => point.y), Math.PI) + 0.8],
-    }
+      yDomain: [
+        Math.max(0, Math.min(...estimates.map((point) => point.y), Math.PI) - 0.8),
+        Math.max(...estimates.map((point) => point.y), Math.PI) + 0.8,
+      ],
+    },
   );
 }
 export function mcIntegralExp(controls: ControlMap, seed: number): SimulationResult {
@@ -96,20 +118,33 @@ export function mcIntegralExp(controls: ControlMap, seed: number): SimulationRes
   const estimate = mean(values);
   const exact = Math.exp(-2) - Math.exp(-4);
   let running = 0;
-  const convergence = values.filter((_, index) => index % Math.max(1, Math.floor(n / 80)) === 0).map((_, index) => {
-    const end = Math.min(values.length, (index + 1) * Math.max(1, Math.floor(n / 80)));
-    running = values.slice(0, end).reduce((sum, draw) => sum + draw, 0) / end;
-    return { x: end, y: running };
-  });
+  const convergence = values
+    .filter((_, index) => index % Math.max(1, Math.floor(n / 80)) === 0)
+    .map((_, index) => {
+      const end = Math.min(values.length, (index + 1) * Math.max(1, Math.floor(n / 80)));
+      running = values.slice(0, end).reduce((sum, draw) => sum + draw, 0) / end;
+      return { x: end, y: running };
+    });
   return result(
     "Monte Carlo integral estimate",
     "The integral is estimated by averaging transformed uniform draws.",
     [
       { label: "estimate", value: formatNumber(estimate, 6), detail: "Monte Carlo" },
       { label: "exact value", value: formatNumber(exact, 6), detail: "exp(-2) - exp(-4)" },
-      { label: "absolute error", value: formatNumber(Math.abs(estimate - exact), 6), detail: `${n} draws` }
+      {
+        label: "absolute error",
+        value: formatNumber(Math.abs(estimate - exact), 6),
+        detail: `${n} draws`,
+      },
     ],
-    { type: "line", title: "Monte Carlo convergence", xLabel: "simulation count N", yLabel: "running estimate", series: [{ label: "estimate", points: convergence, color: "var(--lab-teal)" }], references: [{ axis: "y", value: exact, label: "exact", color: "var(--lab-purple)" }] }
+    {
+      type: "line",
+      title: "Monte Carlo convergence",
+      xLabel: "simulation count N",
+      yLabel: "running estimate",
+      series: [{ label: "estimate", points: convergence, color: "var(--lab-teal)" }],
+      references: [{ axis: "y", value: exact, label: "exact", color: "var(--lab-purple)" }],
+    },
   );
 }
 export function mcTransform(controls: ControlMap, seed: number): SimulationResult {
@@ -123,17 +158,38 @@ export function mcTransform(controls: ControlMap, seed: number): SimulationResul
     return 5 * (1 / (u * u)) * Math.sqrt(1 / u - 1) * Math.exp(-(1 / u - 1));
   });
   const exponentialValues = Array.from({ length: n }, () => 5 * Math.sqrt(exponentialRandom(rng)));
-  const exact = 5 * Math.sqrt(Math.PI) / 2;
+  const exact = (5 * Math.sqrt(Math.PI)) / 2;
   return result(
     "Estimator comparison",
     "Both estimators target the same quantity with different sampling distributions.",
     [
-      { label: "uniform estimate", value: formatNumber(mean(uniformValues), 5), detail: `variance ${formatNumber(variance(uniformValues), 4)}` },
-      { label: "exponential estimate", value: formatNumber(mean(exponentialValues), 5), detail: `variance ${formatNumber(variance(exponentialValues), 4)}` },
+      {
+        label: "uniform estimate",
+        value: formatNumber(mean(uniformValues), 5),
+        detail: `variance ${formatNumber(variance(uniformValues), 4)}`,
+      },
+      {
+        label: "exponential estimate",
+        value: formatNumber(mean(exponentialValues), 5),
+        detail: `variance ${formatNumber(variance(exponentialValues), 4)}`,
+      },
       { label: "exact target", value: formatNumber(exact, 5), detail: "5Γ(3/2)" },
-      { label: "variance ratio", value: ratioOrNa(variance(uniformValues), variance(exponentialValues), 3), detail: "uniform / exponential" }
+      {
+        label: "variance ratio",
+        value: ratioOrNa(variance(uniformValues), variance(exponentialValues), 3),
+        detail: "uniform / exponential",
+      },
     ],
-    { type: "bars", title: "Estimator variance", xLabel: "method", yLabel: "variance", bars: [{ label: "uniform", value: variance(uniformValues) }, { label: "exponential", value: variance(exponentialValues) }] }
+    {
+      type: "bars",
+      title: "Estimator variance",
+      xLabel: "method",
+      yLabel: "variance",
+      bars: [
+        { label: "uniform", value: variance(uniformValues) },
+        { label: "exponential", value: variance(exponentialValues) },
+      ],
+    },
   );
 }
 export function normalCdfExample(controls: ControlMap, seed: number): SimulationResult {
@@ -146,7 +202,12 @@ export function normalCdfExample(controls: ControlMap, seed: number): Simulation
   const rows = xs.map((xValue) => {
     const indicator = mean(z.map((value) => (value <= xValue ? 1 : 0)));
     const exact = normalCdf(xValue);
-    return [formatNumber(xValue, 3), formatNumber(indicator, 4), formatNumber(exact, 4), formatNumber(Math.abs(indicator - exact), 4)];
+    return [
+      formatNumber(xValue, 3),
+      formatNumber(indicator, 4),
+      formatNumber(exact, 4),
+      formatNumber(Math.abs(indicator - exact), 4),
+    ];
   });
   return result(
     "Normal CDF simulation grid",
@@ -154,7 +215,11 @@ export function normalCdfExample(controls: ControlMap, seed: number): Simulation
     [
       { label: "grid points", value: String(xs.length), detail: `from ${low} to ${high}` },
       { label: "draws", value: String(n), detail: "standard normal sample" },
-      { label: "max error", value: formatNumber(Math.max(...rows.map((row) => Number(row[3]))), 4), detail: "indicator vs Phi" }
+      {
+        label: "max error",
+        value: formatNumber(Math.max(...rows.map((row) => Number(row[3]))), 4),
+        detail: "indicator vs Phi",
+      },
     ],
     {
       type: "line",
@@ -162,11 +227,20 @@ export function normalCdfExample(controls: ControlMap, seed: number): Simulation
       xLabel: "threshold x",
       yLabel: "P(Z ≤ x)",
       series: [
-        { label: "indicator estimate", points: xs.map((xValue, index) => ({ x: xValue, y: Number(rows[index][1]) })), color: "var(--lab-teal)" },
-        { label: "analytic Φ(x)", points: xs.map((xValue) => ({ x: xValue, y: normalCdf(xValue) })), color: "var(--lab-purple)", dashed: true },
+        {
+          label: "indicator estimate",
+          points: xs.map((xValue, index) => ({ x: xValue, y: Number(rows[index][1]) })),
+          color: "var(--lab-teal)",
+        },
+        {
+          label: "analytic Φ(x)",
+          points: xs.map((xValue) => ({ x: xValue, y: normalCdf(xValue) })),
+          color: "var(--lab-purple)",
+          dashed: true,
+        },
       ],
       yDomain: [0, 1],
     },
-    { columns: ["x", "Indicator MC", "Phi(x)", "Abs. error"], rows }
+    { columns: ["x", "Indicator MC", "Phi(x)", "Abs. error"], rows },
   );
 }

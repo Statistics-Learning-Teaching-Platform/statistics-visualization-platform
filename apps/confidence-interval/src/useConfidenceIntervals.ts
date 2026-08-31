@@ -1,17 +1,17 @@
-import { useCallback, useMemo, useState } from "react";
-import { createRandom, normalRandom } from "@stats-viz/shared/random";
+import { type ChartLayout, createLinearScales } from "@stats-viz/shared/chart-utils";
 import {
-  createLinearScales,
-  type ChartLayout,
-} from "@stats-viz/shared/chart-utils";
-import {
-  computeInterval,
   calculateCoverage,
+  computeInterval,
   type IntervalSample,
 } from "@stats-viz/shared/confidence-interval";
+import { createRandom, normalRandom } from "@stats-viz/shared/random";
+import { useCallback, useMemo, useState } from "react";
 import { defaultConfig, MAX_CI_SAMPLES, type Sample, type Scales } from "./constants";
 
-export function confidenceIntervalXDomain(samples: Sample[], populationMean = 10): [number, number] {
+export function confidenceIntervalXDomain(
+  samples: Sample[],
+  populationMean = 10,
+): [number, number] {
   const finiteLowerBounds = samples.map((sample) => sample.lower).filter(Number.isFinite);
   const finiteUpperBounds = samples.map((sample) => sample.upper).filter(Number.isFinite);
   if (finiteLowerBounds.length === 0 || finiteUpperBounds.length === 0) {
@@ -21,7 +21,10 @@ export function confidenceIntervalXDomain(samples: Sample[], populationMean = 10
   const observedLower = Math.min(...finiteLowerBounds);
   const observedUpper = Math.max(...finiteUpperBounds);
   const padding = Math.max((observedUpper - observedLower) * 0.1, 0.1);
-  return [Math.min(observedLower - padding, populationMean - 5), Math.max(observedUpper + padding, populationMean + 5)];
+  return [
+    Math.min(observedLower - padding, populationMean - 5),
+    Math.max(observedUpper + padding, populationMean + 5),
+  ];
 }
 
 function createScales(layout: ChartLayout, samples: Sample[], populationMean: number): Scales {
@@ -66,7 +69,10 @@ export function useConfidenceIntervals(): UseConfidenceIntervalsResult {
   const [seed, setSeed] = useState(42);
 
   const coverage = useMemo(() => calculateCoverage(samples), [samples]);
-  const scales = useMemo(() => createScales(defaultConfig.layout, samples, populationMean), [samples, populationMean]);
+  const scales = useMemo(
+    () => createScales(defaultConfig.layout, samples, populationMean),
+    [samples, populationMean],
+  );
 
   const addSamples = useCallback(
     (count: number) => {
@@ -77,7 +83,9 @@ export function useConfidenceIntervals(): UseConfidenceIntervalsResult {
           const arr = Array.from({ length: sampleSize }, () =>
             normalRandom(rng, populationMean, populationSD),
           );
-          newSamples.push(computeInterval(arr, confidenceLevel, populationMean, populationSD, sigmaKnown));
+          newSamples.push(
+            computeInterval(arr, confidenceLevel, populationMean, populationSD, sigmaKnown),
+          );
         }
         const combined = [...prev, ...newSamples];
         return combined.length > MAX_CI_SAMPLES
@@ -95,27 +103,42 @@ export function useConfidenceIntervals(): UseConfidenceIntervalsResult {
   }, []);
 
   // Wrap each setter so parameter changes also clear accumulated samples.
-  const setSampleSize = useCallback((value: number) => {
-    setSampleSizeState(sigmaKnown ? value : Math.max(2, value));
-    reset();
-  }, [reset, sigmaKnown]);
-  const setPopulationMean = useCallback((value: number) => {
-    setPopulationMeanState(value);
-    reset();
-  }, [reset]);
-  const setPopulationSD = useCallback((value: number) => {
-    setPopulationSDState(value);
-    reset();
-  }, [reset]);
-  const setConfidenceLevel = useCallback((value: number) => {
-    setConfidenceLevelState(value);
-    reset();
-  }, [reset]);
-  const setSigmaKnown = useCallback((value: boolean) => {
-    setSigmaKnownState(value);
-    if (!value) setSampleSizeState((current) => Math.max(2, current));
-    reset();
-  }, [reset]);
+  const setSampleSize = useCallback(
+    (value: number) => {
+      setSampleSizeState(sigmaKnown ? value : Math.max(2, value));
+      reset();
+    },
+    [reset, sigmaKnown],
+  );
+  const setPopulationMean = useCallback(
+    (value: number) => {
+      setPopulationMeanState(value);
+      reset();
+    },
+    [reset],
+  );
+  const setPopulationSD = useCallback(
+    (value: number) => {
+      setPopulationSDState(value);
+      reset();
+    },
+    [reset],
+  );
+  const setConfidenceLevel = useCallback(
+    (value: number) => {
+      setConfidenceLevelState(value);
+      reset();
+    },
+    [reset],
+  );
+  const setSigmaKnown = useCallback(
+    (value: boolean) => {
+      setSigmaKnownState(value);
+      if (!value) setSampleSizeState((current) => Math.max(2, current));
+      reset();
+    },
+    [reset],
+  );
 
   return {
     sampleSize,

@@ -1,12 +1,12 @@
-import { authenticatedFetch } from "../authenticatedFetch";
 import { loadPortalSession } from "../auth/session";
+import { authenticatedFetch } from "../authenticatedFetch";
 import {
   hasRecordedProgress,
+  type LearningProgress,
   loadLearningProgress,
   mergeLearningProgress,
   saveLearningProgress,
   setProgressChangeHandler,
-  type LearningProgress,
 } from "./progressStore";
 
 const ENDPOINT = "/st-qselector/api/learning/progress";
@@ -39,11 +39,17 @@ function sameProgress(a: LearningProgress, b: LearningProgress): boolean {
   return key(a) === key(b);
 }
 
-function normalizeServerProgress(value: ServerProgressResponse["progress"]): LearningProgress | null {
+function normalizeServerProgress(
+  value: ServerProgressResponse["progress"],
+): LearningProgress | null {
   if (!value || typeof value !== "object") return null;
   const list = (items: unknown): string[] =>
     Array.isArray(items)
-      ? [...new Set(items.filter((item): item is string => typeof item === "string" && item.length > 0))]
+      ? [
+          ...new Set(
+            items.filter((item): item is string => typeof item === "string" && item.length > 0),
+          ),
+        ]
       : [];
   return {
     version: 1,

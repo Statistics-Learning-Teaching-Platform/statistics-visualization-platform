@@ -33,9 +33,7 @@ export function criticalValue(
   // both s and the t distribution's degrees of freedom are undefined.
   if (!sigmaKnown && sampleSize < 2) return Number.NaN;
   const p = 0.5 + confidenceLevel / 2;
-  return sigmaKnown
-    ? normalInv(p, 0, 1)
-    : jStat.studentt.inv(p, sampleSize - 1);
+  return sigmaKnown ? normalInv(p, 0, 1) : jStat.studentt.inv(p, sampleSize - 1);
 }
 
 /**

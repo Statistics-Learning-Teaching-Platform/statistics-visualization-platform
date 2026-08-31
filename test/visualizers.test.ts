@@ -3,7 +3,7 @@ import {
   apps,
   DEFAULT_VISUALIZER_ID,
   getDefaultVisualizer,
-  getVisualizerById
+  getVisualizerById,
 } from "../scripts/apps";
 
 describe("visualizer registry", () => {
@@ -21,7 +21,7 @@ describe("visualizer registry", () => {
       "simulation-introduction",
       "simulation-resampling",
       "simulation-mcmc",
-      "simulation-variance-reduction"
+      "simulation-variance-reduction",
     ]);
   });
 
@@ -39,7 +39,7 @@ describe("visualizer registry", () => {
       "Statistical Simulation",
       "Statistical Simulation",
       "Statistical Simulation",
-      "Statistical Simulation"
+      "Statistical Simulation",
     ]);
   });
 

@@ -1,5 +1,5 @@
-import { render, screen } from "@testing-library/react";
 import { LanguageProvider } from "@stats-viz/shared/i18n";
+import { render, screen } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
 import { apps } from "../scripts/apps";
 import { LearnRouter } from "../src/course/components/LearnRouter";
@@ -14,9 +14,7 @@ import {
 describe("course route helpers", () => {
   it("builds canonical chapter, topic, and activity paths centrally", () => {
     expect(getChapterRoute("probability-distributions")).toBe("/learn/distributions");
-    expect(getTopicRoute("normal-distribution")).toBe(
-      "/learn/distributions/normal-distribution",
-    );
+    expect(getTopicRoute("normal-distribution")).toBe("/learn/distributions/normal-distribution");
     expect(getActivityRoute("normal-distribution-comparison")).toBe(
       "/learn/distributions/normal-distribution/comparison",
     );
@@ -49,9 +47,7 @@ describe("course route helpers", () => {
 
   it("maps every legacy teaching hash to its registered activity", () => {
     for (const app of apps) {
-      expect(getLegacyTeachingRoute(`#${app.id}`)).toBe(
-        getActivityRoute(app.activityId),
-      );
+      expect(getLegacyTeachingRoute(`#${app.id}`)).toBe(getActivityRoute(app.activityId));
     }
     expect(getLegacyTeachingRoute("#unknown")).toBe(
       "/learn/inference/confidence-interval/coverage",
@@ -61,9 +57,18 @@ describe("course route helpers", () => {
 
 describe("learning course pages", () => {
   it("does not expose the retired chapter landing page", () => {
-    render(<LanguageProvider><LearnRouter pathname="/learn" /></LanguageProvider>);
-    expect(screen.queryByRole("heading", { name: "从一个问题，走到可信的统计结论" })).not.toBeInTheDocument();
-    expect(screen.getByRole("link", { name: /返回统计教学平台/ })).toHaveAttribute("href", "/teaching-platform");
+    render(
+      <LanguageProvider>
+        <LearnRouter pathname="/learn" />
+      </LanguageProvider>,
+    );
+    expect(
+      screen.queryByRole("heading", { name: "从一个问题，走到可信的统计结论" }),
+    ).not.toBeInTheDocument();
+    expect(screen.getByRole("link", { name: /返回统计教学平台/ })).toHaveAttribute(
+      "href",
+      "/teaching-platform",
+    );
   });
 
   it("renders a topic page with prerequisite, activity, coding, and practice links", () => {

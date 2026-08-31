@@ -79,8 +79,19 @@ export function ControlSidebar({
             <div className="control-panel__intro">{copy.controlsIntro}</div>
             <div className="control-panel__group">
               <div className="control-panel__label-row">
-                <label className="control-panel__label" htmlFor="sampleSize">{copy.sampleSize}</label>
-                <input className="control-number-input" aria-label={`${copy.sampleSize} numeric value`} type="number" min={1} max={100} step={1} value={sampleSize} onChange={(e) => onSampleSize(Number(e.target.value))} />
+                <label className="control-panel__label" htmlFor="sampleSize">
+                  {copy.sampleSize}
+                </label>
+                <input
+                  className="control-number-input"
+                  aria-label={`${copy.sampleSize} numeric value`}
+                  type="number"
+                  min={1}
+                  max={100}
+                  step={1}
+                  value={sampleSize}
+                  onChange={(e) => onSampleSize(Number(e.target.value))}
+                />
               </div>
               <div className="control-panel__hint">{copy.sampleSizeHint}</div>
               <input
@@ -102,7 +113,9 @@ export function ControlSidebar({
                   return (
                     <div className="ci-recent-mean" key={label}>
                       <span>{label}</span>
-                      <output aria-label={label}>{value === undefined ? "—" : value.toFixed(3)}</output>
+                      <output aria-label={label}>
+                        {value === undefined ? "—" : value.toFixed(3)}
+                      </output>
                     </div>
                   );
                 })}
@@ -110,16 +123,47 @@ export function ControlSidebar({
             </section>
             <div className="control-panel__group">
               <div className="control-panel__label-row">
-                <label className="control-panel__label" htmlFor="populationMean">{copy.populationMean}</label>
-                <input className="control-number-input" aria-label={`${copy.populationMean} numeric value`} type="number" min={-10} max={30} step={0.5} value={populationMean} onChange={(e) => onPopulationMean(Number(e.target.value))} />
+                <label className="control-panel__label" htmlFor="populationMean">
+                  {copy.populationMean}
+                </label>
+                <input
+                  className="control-number-input"
+                  aria-label={`${copy.populationMean} numeric value`}
+                  type="number"
+                  min={-10}
+                  max={30}
+                  step={0.5}
+                  value={populationMean}
+                  onChange={(e) => onPopulationMean(Number(e.target.value))}
+                />
               </div>
               <div className="control-panel__hint">{copy.populationMeanHint}</div>
-              <input id="populationMean" type="range" className="form-range control-panel__input" min={-10} max={30} step={0.5} value={populationMean} onChange={(e) => onPopulationMean(Number(e.target.value))} />
+              <input
+                id="populationMean"
+                type="range"
+                className="form-range control-panel__input"
+                min={-10}
+                max={30}
+                step={0.5}
+                value={populationMean}
+                onChange={(e) => onPopulationMean(Number(e.target.value))}
+              />
             </div>
             <div className="control-panel__group">
               <div className="control-panel__label-row">
-                <label className="control-panel__label" htmlFor="populationSD">{copy.populationSD}</label>
-                <input className="control-number-input" aria-label={`${copy.populationSD} numeric value`} type="number" min={0.1} max={10} step={0.1} value={populationSD} onChange={(e) => onPopulationSD(Number(e.target.value))} />
+                <label className="control-panel__label" htmlFor="populationSD">
+                  {copy.populationSD}
+                </label>
+                <input
+                  className="control-number-input"
+                  aria-label={`${copy.populationSD} numeric value`}
+                  type="number"
+                  min={0.1}
+                  max={10}
+                  step={0.1}
+                  value={populationSD}
+                  onChange={(e) => onPopulationSD(Number(e.target.value))}
+                />
               </div>
               <div className="control-panel__hint">{copy.populationSDHint}</div>
               <input
@@ -135,7 +179,9 @@ export function ControlSidebar({
             </div>
             <div className="control-panel__group">
               <div className="control-panel__label-row">
-                <label className="control-panel__label" htmlFor="confidenceLevel">{copy.confidenceLevel}</label>
+                <label className="control-panel__label" htmlFor="confidenceLevel">
+                  {copy.confidenceLevel}
+                </label>
                 <div className="control-panel__value">{Math.round(confidenceLevel * 100)}%</div>
               </div>
               <div className="control-panel__hint">{copy.confidenceLevelHint}</div>
@@ -153,7 +199,9 @@ export function ControlSidebar({
             </div>
             <div className="control-panel__group">
               <div className="control-panel__label-row">
-                <label className="control-panel__label" htmlFor="sigmaAssumption">{copy.sigmaAssumption}</label>
+                <label className="control-panel__label" htmlFor="sigmaAssumption">
+                  {copy.sigmaAssumption}
+                </label>
                 <div className="control-panel__value">{sigmaKnown ? "z" : "t"}</div>
               </div>
               <div className="control-panel__hint">

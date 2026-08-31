@@ -1,11 +1,11 @@
+import { LanguageProvider } from "@stats-viz/shared/i18n";
 import { act, render, screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { beforeEach, describe, expect, it, vi } from "vitest";
-import { LanguageProvider } from "@stats-viz/shared/i18n";
-import { PythonLearningWorkspace } from "../src/python-learning/PythonLearningWorkspace";
-import { pythonLessons } from "../src/python-learning/lessons";
-import { disposePythonRuntime } from "../src/python-learning/pyodideRuntime";
 import { resetPortalSessionCache } from "../src/auth/session";
+import { pythonLessons } from "../src/python-learning/lessons";
+import { PythonLearningWorkspace } from "../src/python-learning/PythonLearningWorkspace";
+import { disposePythonRuntime } from "../src/python-learning/pyodideRuntime";
 
 vi.mock("../src/python-learning/pyodideRuntime", () => ({
   runPythonCode: vi.fn(async () => ({
@@ -56,7 +56,10 @@ describe("Python Coding Studio", () => {
   });
 
   it("ignores progress entries that do not belong to the current curriculum", () => {
-    localStorage.setItem("statmind-python-learning-progress-v1", JSON.stringify(["removed-lesson"]));
+    localStorage.setItem(
+      "statmind-python-learning-progress-v1",
+      JSON.stringify(["removed-lesson"]),
+    );
     renderWorkspace();
     expect(screen.getByLabelText("学习进度: 0%")).toBeInTheDocument();
   });
@@ -67,8 +70,12 @@ describe("Python Coding Studio", () => {
     expect(pythonLessons[5].checkCode).toContain('getattr(user.get("model"), "slope"');
     expect(pythonLessons[7].checkCode).toContain("'wait' in user");
     expect(pythonLessons[7].checkCode).not.toContain("globals()");
-    expect(pythonLessons[14].checkCode).toContain('isinstance(user.get("python_version"), type(""))');
-    expect(pythonLessons[29].checkCode).toContain('getattr(user.get("posthoc"), \'summary\', None)');
+    expect(pythonLessons[14].checkCode).toContain(
+      'isinstance(user.get("python_version"), type(""))',
+    );
+    expect(pythonLessons[29].checkCode).toContain(
+      "getattr(user.get(\"posthoc\"), 'summary', None)",
+    );
   });
 
   it("disposes the Python worker when the workspace unmounts", () => {
@@ -109,9 +116,12 @@ describe("Python Coding Studio", () => {
           headers: { "Content-Type": "application/json" },
         });
       }
-      return new Response(JSON.stringify({
-        answer: "The assignment needs an expression on its right-hand side.",
-      }), { status: 200, headers: { "Content-Type": "application/json" } });
+      return new Response(
+        JSON.stringify({
+          answer: "The assignment needs an expression on its right-hand side.",
+        }),
+        { status: 200, headers: { "Content-Type": "application/json" } },
+      );
     });
     renderWorkspace();
 
@@ -132,11 +142,13 @@ describe("Python Coding Studio", () => {
   });
 
   it("gates the AI tutor behind sign-in while anonymous", async () => {
-    const fetchMock = vi.spyOn(globalThis, "fetch").mockImplementation(async () =>
-      new Response(JSON.stringify({ error: "请先登录" }), {
-        status: 401,
-        headers: { "Content-Type": "application/json" },
-      }));
+    const fetchMock = vi.spyOn(globalThis, "fetch").mockImplementation(
+      async () =>
+        new Response(JSON.stringify({ error: "请先登录" }), {
+          status: 401,
+          headers: { "Content-Type": "application/json" },
+        }),
+    );
     renderWorkspace();
 
     await openTutorDrawer();
@@ -144,7 +156,9 @@ describe("Python Coding Studio", () => {
     const loginLink = screen.getByRole("link", { name: "前往登录" });
     expect(loginLink.getAttribute("href")).toContain("/st-qselector/login?next=");
     expect(screen.queryByRole("textbox", { name: /问报错原因/ })).not.toBeInTheDocument();
-    expect(fetchMock.mock.calls.every(([url]) => !String(url).includes("/api/ai/python-tutor"))).toBe(true);
+    expect(
+      fetchMock.mock.calls.every(([url]) => !String(url).includes("/api/ai/python-tutor")),
+    ).toBe(true);
     fetchMock.mockRestore();
   });
 
@@ -159,7 +173,9 @@ describe("Python Coding Studio", () => {
         });
       }
       requestSignal = init?.signal as AbortSignal;
-      return new Promise<Response>((resolve) => { resolveFetch = resolve; });
+      return new Promise<Response>((resolve) => {
+        resolveFetch = resolve;
+      });
     });
     renderWorkspace();
 
@@ -172,10 +188,12 @@ describe("Python Coding Studio", () => {
     expect((requestSignal as unknown as AbortSignal).aborted).toBe(true);
 
     await act(async () => {
-      resolveFetch(new Response(JSON.stringify({ answer: "不应显示的旧课程回答" }), {
-        status: 200,
-        headers: { "Content-Type": "application/json" },
-      }));
+      resolveFetch(
+        new Response(JSON.stringify({ answer: "不应显示的旧课程回答" }), {
+          status: 200,
+          headers: { "Content-Type": "application/json" },
+        }),
+      );
       await Promise.resolve();
     });
     expect(screen.queryByText("不应显示的旧课程回答")).not.toBeInTheDocument();
@@ -184,10 +202,17 @@ describe("Python Coding Studio", () => {
   });
 
   it("selects a valid lesson from the course query and keeps the return route", () => {
-    window.history.replaceState({}, "", "/python-learning?topicId=central-limit-theorem&lessonId=sampling-simulation&returnTo=%2Flearn%2Fsampling%2Fcentral-limit-theorem");
+    window.history.replaceState(
+      {},
+      "",
+      "/python-learning?topicId=central-limit-theorem&lessonId=sampling-simulation&returnTo=%2Flearn%2Fsampling%2Fcentral-limit-theorem",
+    );
     renderWorkspace();
     expect(screen.getByRole("heading", { level: 1 })).toHaveTextContent(/抽样分布/);
-    expect(screen.getByRole("link", { name: /返回主界面/ })).toHaveAttribute("href", "/learn/sampling/central-limit-theorem");
+    expect(screen.getByRole("link", { name: /返回主界面/ })).toHaveAttribute(
+      "href",
+      "/learn/sampling/central-limit-theorem",
+    );
   });
 });
 
@@ -213,12 +238,15 @@ describe("Pyodide worker lifecycle", () => {
 
       postMessage(request: { id: number; kind: string }) {
         if (request.kind === "run" && this.number === 1) return;
-        const result = request.kind === "run"
-          ? { console: ["recovered"], plotUrl: null, environment: [] }
-          : true;
-        queueMicrotask(() => this.messageListener?.({
-          data: { id: request.id, ok: true, result },
-        }));
+        const result =
+          request.kind === "run"
+            ? { console: ["recovered"], plotUrl: null, environment: [] }
+            : true;
+        queueMicrotask(() =>
+          this.messageListener?.({
+            data: { id: request.id, ok: true, result },
+          }),
+        );
       }
     }
 

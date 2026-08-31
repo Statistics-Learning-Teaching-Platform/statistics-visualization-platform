@@ -12,8 +12,9 @@ describe("learning progress storage", () => {
   });
 
   it("drops stale ids when the current curriculum is provided", () => {
-    expect(normalizeProgress(["lesson-1", "removed", "lesson-2"], ["lesson-1", "lesson-2"]))
-      .toEqual(["lesson-1", "lesson-2"]);
+    expect(
+      normalizeProgress(["lesson-1", "removed", "lesson-2"], ["lesson-1", "lesson-2"]),
+    ).toEqual(["lesson-1", "lesson-2"]);
 
     localStorage.setItem("progress", JSON.stringify(["lesson-1", "removed"]));
     expect(loadProgress("progress", ["lesson-1"])).toEqual(["lesson-1"]);

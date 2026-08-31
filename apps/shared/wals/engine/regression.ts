@@ -1,9 +1,13 @@
-import type { ChartSeries, CityRecord, SimulationResult } from "../types";
 import { formatNumber } from "@stats-viz/shared/format";
 import { linearRegression } from "@stats-viz/shared/math";
-import { result, str, type ControlMap } from "./internal";
+import type { ChartSeries, CityRecord, SimulationResult } from "../types";
+import { type ControlMap, result, str } from "./internal";
 
-export function linearRegressionExample(controls: ControlMap, _seed: number, data?: { cities?: CityRecord[] }): SimulationResult {
+export function linearRegressionExample(
+  controls: ControlMap,
+  _seed: number,
+  data?: { cities?: CityRecord[] },
+): SimulationResult {
   const feature = str(controls, "feature", "completed") as "completed" | "GDP";
   const exclude = str(controls, "excludeHighLeverage", "no") === "yes";
   const source = data?.cities ?? [];
@@ -12,7 +16,14 @@ export function linearRegressionExample(controls: ControlMap, _seed: number, dat
   const fit = linearRegression(points);
   const xMin = points.map((point) => point.x).reduce((a, b) => Math.min(a, b), Infinity);
   const xMax = points.map((point) => point.x).reduce((a, b) => Math.max(a, b), -Infinity);
-  const line: ChartSeries = { label: "least squares fit", color: "var(--lab-blue)", points: [{ x: xMin, y: fit.intercept + fit.slope * xMin }, { x: xMax, y: fit.intercept + fit.slope * xMax }] };
+  const line: ChartSeries = {
+    label: "least squares fit",
+    color: "var(--lab-blue)",
+    points: [
+      { x: xMin, y: fit.intercept + fit.slope * xMin },
+      { x: xMax, y: fit.intercept + fit.slope * xMax },
+    ],
+  };
   const residuals: ChartSeries[] = points.map((point) => ({
     label: `residual for ${point.label ?? "observation"}`,
     color: "var(--lab-purple)",
@@ -28,7 +39,7 @@ export function linearRegressionExample(controls: ControlMap, _seed: number, dat
       { label: "intercept", value: formatNumber(fit.intercept, 4), detail: "least-squares fit" },
       { label: "R-squared", value: formatNumber(fit.rSquared, 4), detail: `${kept.length} cities` },
       { label: "SSE", value: formatNumber(fit.sse, 3), detail: "sum of squared residuals" },
-      { label: "n", value: String(kept.length), detail: "included cities" }
+      { label: "n", value: String(kept.length), detail: "included cities" },
     ],
     {
       type: "scatter",
@@ -44,6 +55,9 @@ export function linearRegressionExample(controls: ControlMap, _seed: number, dat
         { label: "residual", color: "var(--lab-purple)", shape: "dashed" },
       ],
     },
-    { columns: ["City", feature, "planned"], rows: kept.map((city) => [city.city, city[feature], city.planning]) }
+    {
+      columns: ["City", feature, "planned"],
+      rows: kept.map((city) => [city.city, city[feature], city.planning]),
+    },
   );
 }

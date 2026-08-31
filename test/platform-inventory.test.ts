@@ -27,7 +27,7 @@ describe("platform integration inventory", () => {
     // Apps are source directories, not workspace packages. The root package.json
     // owns all dependencies and scripts. Only apps/shared remains a workspace.
     const rootPackageJson = JSON.parse(
-      readFileSync(resolve(process.cwd(), "package.json"), "utf8")
+      readFileSync(resolve(process.cwd(), "package.json"), "utf8"),
     ) as { dependencies?: Record<string, string>; workspaces?: string[] };
 
     expect(rootPackageJson.workspaces).toEqual(["apps/shared"]);
@@ -42,7 +42,7 @@ describe("platform integration inventory", () => {
 
   it("builds via a single vite build of the shell (no per-app builds)", () => {
     const rootPackageJson = JSON.parse(
-      readFileSync(resolve(process.cwd(), "package.json"), "utf8")
+      readFileSync(resolve(process.cwd(), "package.json"), "utf8"),
     ) as { scripts?: Record<string, string> };
     expect(rootPackageJson.scripts?.build).toBe("node scripts/build.mjs");
 
@@ -73,10 +73,7 @@ describe("platform integration inventory", () => {
     expect(walsApps).toHaveLength(10);
 
     for (const app of walsApps) {
-      const entry = readFileSync(
-        resolve(process.cwd(), app.path, "src/main.tsx"),
-        "utf8",
-      );
+      const entry = readFileSync(resolve(process.cwd(), app.path, "src/main.tsx"), "utf8");
       expect(entry).toContain('import "@stats-viz/shared/styles/wals-custom.css"');
       expect(existsSync(resolve(process.cwd(), app.path, "src/styles/custom.css"))).toBe(false);
     }

@@ -1,9 +1,13 @@
 import { act, renderHook } from "@testing-library/react";
 import { scaleLinear } from "d3";
 import { describe, expect, it, vi } from "vitest";
-import { useDatasets } from "../apps/regression/src/useDatasets";
 import { DATASET_PATHS } from "../apps/regression/src/constants";
-import { computeHoverInfo, getCustomLineParams, useCustomLine } from "../apps/regression/src/useCustomLine";
+import {
+  computeHoverInfo,
+  getCustomLineParams,
+  useCustomLine,
+} from "../apps/regression/src/useCustomLine";
+import { useDatasets } from "../apps/regression/src/useDatasets";
 
 describe("regression app bootstrap", () => {
   it("bundles all declared datasets at build time", () => {
@@ -48,14 +52,16 @@ describe("regression app bootstrap", () => {
       preventDefault: vi.fn(),
       currentTarget: svg,
     } as unknown as React.PointerEvent<SVGSVGElement>;
-    const { result } = renderHook(() => useCustomLine({
-      scales: {
-        xScale: scaleLinear().domain([0, 10]).range([0, 100]),
-        yScale: scaleLinear().domain([0, 10]).range([100, 0]),
-      },
-      chartLayoutMargin: { left: 0, top: 0 },
-      resetDeps: [],
-    }));
+    const { result } = renderHook(() =>
+      useCustomLine({
+        scales: {
+          xScale: scaleLinear().domain([0, 10]).range([0, 100]),
+          yScale: scaleLinear().domain([0, 10]).range([100, 0]),
+        },
+        chartLayoutMargin: { left: 0, top: 0 },
+        resetDeps: [],
+      }),
+    );
 
     act(() => result.current.handlers.handlePointerDown(pointer));
     expect(result.current.isDragging).toBe(true);

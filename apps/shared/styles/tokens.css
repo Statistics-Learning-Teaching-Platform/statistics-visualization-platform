@@ -2,59 +2,60 @@
    Apps may add module-specific variables in their own custom.css :root block. */
 
 :root {
-	--lab-bg: #FFFFFF;
-	--lab-plot-bg: #FAF8F3;
-	--lab-surface: #FFFFFF;
-	--lab-surface-soft: #F7F8FA;
-	--lab-text: #17243D;
-	--lab-muted: #687386;
-	--lab-text-muted: var(--lab-muted);
-	--lab-text-secondary: var(--lab-muted);
-	--lab-border: #E2E7ED;
-	--lab-divider: #EDF0F4;
-	--lab-blue: #2563D9;
-	--lab-teal: #279E96;
-	--lab-purple: #8067B3;
-	--lab-green: #65A96E;
-	--lab-orange: #E89A45;
-	--lab-coral: #D86E62;
-	--lab-left-rail: 195px;
-	--lab-right-rail: 285px;
-	--lab-radius-sm: 6px;
-	--lab-radius-md: 8px;
-	--lab-radius-lg: 10px;
-	--lab-board-gap: 24px;
-	--lab-section-gap: 22px;
-	--lab-font-sans: "Geist Variable", "Geist Sans", "Source Han Sans SC",
-		"Noto Sans CJK SC", "Noto Sans SC", "PingFang SC", system-ui, sans-serif;
-	--bg: var(--lab-bg);
-	--bg-soft: var(--lab-plot-bg);
-	--card: var(--lab-surface);
-	--card-strong: var(--lab-surface);
-	--chart-bg: var(--lab-plot-bg);
-	--text-primary: var(--lab-text);
-	--text-secondary: var(--lab-muted);
-	--border: var(--lab-border);
+  --lab-bg: #ffffff;
+  --lab-plot-bg: #faf8f3;
+  --lab-surface: #ffffff;
+  --lab-surface-soft: #f7f8fa;
+  --lab-text: #17243d;
+  --lab-muted: #687386;
+  --lab-text-muted: var(--lab-muted);
+  --lab-text-secondary: var(--lab-muted);
+  --lab-border: #e2e7ed;
+  --lab-divider: #edf0f4;
+  --lab-blue: #2563d9;
+  --lab-teal: #279e96;
+  --lab-purple: #8067b3;
+  --lab-green: #65a96e;
+  --lab-orange: #e89a45;
+  --lab-coral: #d86e62;
+  --lab-left-rail: 195px;
+  --lab-right-rail: 285px;
+  --lab-radius-sm: 6px;
+  --lab-radius-md: 8px;
+  --lab-radius-lg: 10px;
+  --lab-board-gap: 24px;
+  --lab-section-gap: 22px;
+  --lab-font-sans:
+    "Geist Variable", "Geist Sans", "Source Han Sans SC", "Noto Sans CJK SC", "Noto Sans SC",
+    "PingFang SC", system-ui, sans-serif;
+  --bg: var(--lab-bg);
+  --bg-soft: var(--lab-plot-bg);
+  --card: var(--lab-surface);
+  --card-strong: var(--lab-surface);
+  --chart-bg: var(--lab-plot-bg);
+  --text-primary: var(--lab-text);
+  --text-secondary: var(--lab-muted);
+  --border: var(--lab-border);
 
-	--sage: var(--lab-green);
-	--sage-soft: color-mix(in srgb, var(--lab-green) 12%, var(--lab-bg));
-	--teal: var(--lab-teal);
-	--soft-teal: color-mix(in srgb, var(--lab-teal) 12%, var(--lab-bg));
-	--lavender: var(--lab-purple);
-	--soft-lavender: color-mix(in srgb, var(--lab-purple) 10%, var(--lab-bg));
-	--danger: var(--lab-coral);
-	--danger-soft: color-mix(in srgb, var(--lab-coral) 12%, var(--lab-bg));
-	--chart-blue: var(--lab-blue);
+  --sage: var(--lab-green);
+  --sage-soft: color-mix(in srgb, var(--lab-green) 12%, var(--lab-bg));
+  --teal: var(--lab-teal);
+  --soft-teal: color-mix(in srgb, var(--lab-teal) 12%, var(--lab-bg));
+  --lavender: var(--lab-purple);
+  --soft-lavender: color-mix(in srgb, var(--lab-purple) 10%, var(--lab-bg));
+  --danger: var(--lab-coral);
+  --danger-soft: color-mix(in srgb, var(--lab-coral) 12%, var(--lab-bg));
+  --chart-blue: var(--lab-blue);
 
-	--shadow-soft: none;
-  --font-display: "Source Han Serif SC", "Noto Serif CJK SC", "Noto Serif SC",
-    "Songti SC", STSong, serif;
-	--font-sans: var(--lab-font-sans);
-	--font-lab: var(--lab-font-sans);
-	--font-sans-legacy: "Geist Sans", "Source Han Sans SC", "Noto Sans CJK SC",
-	  "Noto Sans SC", "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
-  --font-mono: "Geist Mono", "JetBrains Mono", "SFMono-Regular", Consolas,
-    monospace;
+  --shadow-soft: none;
+  --font-display:
+    "Source Han Serif SC", "Noto Serif CJK SC", "Noto Serif SC", "Songti SC", STSong, serif;
+  --font-sans: var(--lab-font-sans);
+  --font-lab: var(--lab-font-sans);
+  --font-sans-legacy:
+    "Geist Sans", "Source Han Sans SC", "Noto Sans CJK SC", "Noto Sans SC", "PingFang SC",
+    "Microsoft YaHei", system-ui, sans-serif;
+  --font-mono: "Geist Mono", "JetBrains Mono", "SFMono-Regular", Consolas, monospace;
 
   color: var(--text-primary);
   background: var(--bg);

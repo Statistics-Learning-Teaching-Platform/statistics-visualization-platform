@@ -31,7 +31,16 @@ describe("shared teaching charts", () => {
       yLabel: "y",
       points: [{ x: 0.2, y: 0.3, label: "draw 1" }],
       circles: [{ cx: 0, cy: 0, radius: 1, label: "unit circle", color: "#8d75b5" }],
-      lines: [{ label: "path", points: [{ x: -1, y: -1 }, { x: 1, y: 1 }], dashed: true }],
+      lines: [
+        {
+          label: "path",
+          points: [
+            { x: -1, y: -1 },
+            { x: 1, y: 1 },
+          ],
+          dashed: true,
+        },
+      ],
       legend: [{ label: "recent path", color: "#c8665a", shape: "dashed" }],
       xDomain: [-1.2, 1.2],
       yDomain: [-1.2, 1.2],
@@ -43,7 +52,9 @@ describe("shared teaching charts", () => {
     expect(container.querySelector('path[stroke-dasharray="7 5"]')).toBeInTheDocument();
     const dataCircle = container.querySelector(".chart-data-circle");
     expect(dataCircle?.tagName.toLowerCase()).toBe("ellipse");
-    expect(Number(dataCircle?.getAttribute("rx"))).toBeGreaterThan(Number(dataCircle?.getAttribute("ry")));
+    expect(Number(dataCircle?.getAttribute("rx"))).toBeGreaterThan(
+      Number(dataCircle?.getAttribute("ry")),
+    );
   });
 
   it("shows MCMC target geometry, ordered traces, and current state", () => {
@@ -58,10 +69,28 @@ describe("shared teaching charts", () => {
       targetDensityLabel: "target density",
       recentPathLabel: "recent path",
       samples: [{ x: 0, y: 0 }],
-      path: [{ x: 0, y: 0 }, { x: 1, y: 1 }],
-      contours: [{ label: "level", points: [{ x: -1, y: 0 }, { x: 0, y: 1 }, { x: 1, y: 0 }] }],
-      traceX: [{ x: 1, y: 0 }, { x: 2, y: 1 }],
-      traceY: [{ x: 1, y: 0 }, { x: 2, y: 1 }],
+      path: [
+        { x: 0, y: 0 },
+        { x: 1, y: 1 },
+      ],
+      contours: [
+        {
+          label: "level",
+          points: [
+            { x: -1, y: 0 },
+            { x: 0, y: 1 },
+            { x: 1, y: 0 },
+          ],
+        },
+      ],
+      traceX: [
+        { x: 1, y: 0 },
+        { x: 2, y: 1 },
+      ],
+      traceY: [
+        { x: 1, y: 0 },
+        { x: 2, y: 1 },
+      ],
       xDomain: [-2, 2],
       yDomain: [-2, 2],
     };
@@ -90,7 +119,9 @@ describe("shared teaching charts", () => {
     const { container } = render(<Chart spec={spec} />);
     expect(screen.getAllByText("overall mean").length).toBeGreaterThan(0);
     expect(container.querySelector(".chart-legend")?.textContent).toContain("raw observatio…");
-    expect([...container.querySelectorAll(".chart-legend title")].map((node) => node.textContent)).toContain("raw observations");
+    expect(
+      [...container.querySelectorAll(".chart-legend title")].map((node) => node.textContent),
+    ).toContain("raw observations");
     expect(screen.getAllByText("group averages").length).toBeGreaterThanOrEqual(2);
     expect(container.querySelectorAll('circle[opacity="0.7"]')).toHaveLength(6);
   });

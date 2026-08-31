@@ -1,6 +1,6 @@
-import { lazy, Suspense } from "react";
 import { act, render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import { lazy, Suspense } from "react";
 import { afterEach, describe, expect, it, vi } from "vitest";
 import { AppErrorBoundary } from "../src/shell/AppErrorBoundary";
 
@@ -58,11 +58,13 @@ describe("AppErrorBoundary", () => {
     );
 
     act(() => {
-      window.dispatchEvent(new ErrorEvent("error", {
-        error: new Error("window failure"),
-        message: "window failure",
-        cancelable: true,
-      }));
+      window.dispatchEvent(
+        new ErrorEvent("error", {
+          error: new Error("window failure"),
+          message: "window failure",
+          cancelable: true,
+        }),
+      );
     });
 
     expect(screen.getByRole("alert")).toHaveTextContent("页面加载失败");
@@ -94,7 +96,9 @@ describe("AppErrorBoundary", () => {
       </AppErrorBoundary>,
     );
     const errorHandler = addListener.mock.calls.find(([type]) => type === "error")?.[1];
-    const rejectionHandler = addListener.mock.calls.find(([type]) => type === "unhandledrejection")?.[1];
+    const rejectionHandler = addListener.mock.calls.find(
+      ([type]) => type === "unhandledrejection",
+    )?.[1];
 
     unmount();
 

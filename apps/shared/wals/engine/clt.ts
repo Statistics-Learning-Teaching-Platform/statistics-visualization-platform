@@ -1,8 +1,8 @@
-import type { ChartPoint, SimulationResult } from "../types";
-import { createRandom, exponentialRandom, normalRandom } from "@stats-viz/shared/random";
 import { formatNumber, mean, standardDeviation } from "@stats-viz/shared/format";
 import { histogram, normalPdf } from "@stats-viz/shared/math";
-import { num, result, str, type ControlMap } from "./internal";
+import { createRandom, exponentialRandom, normalRandom } from "@stats-viz/shared/random";
+import type { ChartPoint, SimulationResult } from "../types";
+import { type ControlMap, num, result, str } from "./internal";
 
 export const DEFAULT_CLT_SAMPLE_COUNT = 500;
 
@@ -42,26 +42,20 @@ function populationMoments(shape: string): { mean: number; sd: number } {
   // gamma examples are all constructed with mean 0 and standard deviation 1.
   return { mean: 0, sd: 1 };
 }
-export function generateSampleMeans(
-  controls: ControlMap,
-  count: number,
-  seed: number
-): number[] {
+export function generateSampleMeans(controls: ControlMap, count: number, seed: number): number[] {
   const shape = str(controls, "populationShape", "exponential");
   const sampleSize = Math.max(1, Math.round(num(controls, "sampleSize", 5)));
   const rng = createRandom(seed);
 
   return Array.from({ length: count }, () => {
-    const sample = Array.from({ length: sampleSize }, () =>
-      drawPopulationValue(rng, shape)
-    );
+    const sample = Array.from({ length: sampleSize }, () => drawPopulationValue(rng, shape));
     return mean(sample);
   });
 }
 export function centralLimitTheorem(
   controls: ControlMap,
   seed: number,
-  sampleMeans?: number[]
+  sampleMeans?: number[],
 ): SimulationResult {
   const shape = str(controls, "populationShape", "exponential");
   const sampleSize = Math.max(1, Math.round(num(controls, "sampleSize", 5)));
@@ -70,7 +64,10 @@ export function centralLimitTheorem(
   const populationMean = moments.mean;
   const populationSd = moments.sd;
   const standardError = populationSd / Math.sqrt(sampleSize);
-  const repetitions = Math.max(1, Math.round(num(controls, "repetitions", DEFAULT_CLT_SAMPLE_COUNT)));
+  const repetitions = Math.max(
+    1,
+    Math.round(num(controls, "repetitions", DEFAULT_CLT_SAMPLE_COUNT)),
+  );
   const shownMeans = sampleMeans ?? generateSampleMeans(controls, repetitions, seed);
 
   // Standardize the sample means and keep a fixed domain. Previously every n
@@ -96,26 +93,50 @@ export function centralLimitTheorem(
     };
   });
 
-  const stabilityNarrative = shownMeans.length === 0
-    ? "No repeated samples yet. Add samples to begin building the sampling distribution."
-    : shownMeans.length < 100
-      ? "The sampling shape is still unstable. Add more repeated samples before judging its shape."
-      : "Compare the histogram with the theoretical normal curve and the observed SD with sigma / sqrt(n).";
+  const stabilityNarrative =
+    shownMeans.length === 0
+      ? "No repeated samples yet. Add samples to begin building the sampling distribution."
+      : shownMeans.length < 100
+        ? "The sampling shape is still unstable. Add more repeated samples before judging its shape."
+        : "Compare the histogram with the theoretical normal curve and the observed SD with sigma / sqrt(n).";
 
   return result(
     "Sampling distribution of sample means",
     stabilityNarrative,
     [
       { label: "sample size n", value: String(sampleSize), detail: "observations per sample" },
-      { label: "repeated samples", value: String(shownMeans.length), detail: "sample means in histogram" },
-      { label: "mean of sample means", value: shownMeans.length > 0 ? formatNumber(mean(shownMeans), 4) : "n/a", detail: "empirical center" },
-      { label: "empirical SE", value: shownMeans.length > 1 ? formatNumber(standardDeviation(shownMeans), 4) : "n/a", detail: "SD of sample means" },
+      {
+        label: "repeated samples",
+        value: String(shownMeans.length),
+        detail: "sample means in histogram",
+      },
+      {
+        label: "mean of sample means",
+        value: shownMeans.length > 0 ? formatNumber(mean(shownMeans), 4) : "n/a",
+        detail: "empirical center",
+      },
+      {
+        label: "empirical SE",
+        value: shownMeans.length > 1 ? formatNumber(standardDeviation(shownMeans), 4) : "n/a",
+        detail: "SD of sample means",
+      },
       { label: "theoretical SE", value: formatNumber(standardError, 4), detail: "sigma / sqrt(n)" },
       // Keep the former diagnostic labels in the payload for backwards
       // compatibility with engine consumers while the shared metric strip
       // presents the five teaching metrics above.
-      { label: "observed SD", value: shownMeans.length > 1 ? formatNumber(standardDeviation(shownMeans), 4) : "n/a", detail: "SD of sample means" },
-      { label: "shape stability", value: shownMeans.length < 100 ? "still unstable" : "ready to compare", detail: shownMeans.length < 100 ? "collect at least 100 repeated samples" : "enough repetitions for a first visual comparison" },
+      {
+        label: "observed SD",
+        value: shownMeans.length > 1 ? formatNumber(standardDeviation(shownMeans), 4) : "n/a",
+        detail: "SD of sample means",
+      },
+      {
+        label: "shape stability",
+        value: shownMeans.length < 100 ? "still unstable" : "ready to compare",
+        detail:
+          shownMeans.length < 100
+            ? "collect at least 100 repeated samples"
+            : "enough repetitions for a first visual comparison",
+      },
     ],
     {
       type: "clt",
@@ -131,6 +152,6 @@ export function centralLimitTheorem(
       normalApproximationLabel: "Normal approximation",
       populationMeanLabel: "Expected center z = 0",
       xDomain: samplingDomain,
-    }
+    },
   );
 }

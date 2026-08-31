@@ -1,14 +1,12 @@
-import { useMemo, useState } from "react";
-import { range, select, axisBottom, axisLeft, line, area as d3Area } from "d3";
-import { typeErrorCopy, useLanguage } from "@stats-viz/shared/i18n";
-import { normalCdf, normalInv, normalPdf } from "@stats-viz/shared/math";
 import {
+  type ChartLayout,
   createLinearScales,
   innerHeight,
   innerWidth,
-  type ChartLayout,
 } from "@stats-viz/shared/chart-utils";
 import { formatNumber } from "@stats-viz/shared/format";
+import { typeErrorCopy, useLanguage } from "@stats-viz/shared/i18n";
+import { normalCdf, normalInv, normalPdf } from "@stats-viz/shared/math";
 import {
   ChartFrame,
   ExperimentMetricStrip,
@@ -18,6 +16,8 @@ import {
   VisualizationFrame,
   VisualizationHeader,
 } from "@stats-viz/shared/visualization";
+import { axisBottom, axisLeft, area as d3Area, line, range, select } from "d3";
+import { useMemo, useState } from "react";
 
 type TestType = "left-tailed" | "right-tailed" | "two-tailed";
 
@@ -44,9 +44,16 @@ const CHART_LAYOUT: ChartLayout = {
   margin: { top: 50, right: 30, bottom: 50, left: 50 },
 };
 
-function generateDistribution(mean: number, stdDev: number, domain: [number, number]): DistributionPoint[] {
+function generateDistribution(
+  mean: number,
+  stdDev: number,
+  domain: [number, number],
+): DistributionPoint[] {
   const step = (domain[1] - domain[0]) / 320;
-  return range(domain[0], domain[1] + step / 2, step).map((x) => ({ x, y: normalPdf(x, mean, stdDev) }));
+  return range(domain[0], domain[1] + step / 2, step).map((x) => ({
+    x,
+    y: normalPdf(x, mean, stdDev),
+  }));
 }
 
 function createScales(xDomain: [number, number], yMax: number) {
@@ -68,9 +75,7 @@ export function computeCriticalValues(
   return pValues.map((p) => normalInv(p, nullMean, stdDev));
 }
 
-function criticalAreaFn(
-  testType: TestType,
-): (d: DistributionPoint, c: number[]) => boolean {
+function criticalAreaFn(testType: TestType): (d: DistributionPoint, c: number[]) => boolean {
   return (d, c) => {
     if (testType === "right-tailed") return d.x > (c[0] ?? 0);
     if (testType === "left-tailed") return d.x < (c[0] ?? 0);
@@ -102,12 +107,21 @@ export function computeTypeTwoErrorRate(
   return normalCdf(right, trueMean, stdDev) - normalCdf(left, trueMean, stdDev);
 }
 
-export function resolveTestType(mode: "one-tailed" | "two-tailed", nullMean: number, trueMean: number): TestType {
+export function resolveTestType(
+  mode: "one-tailed" | "two-tailed",
+  nullMean: number,
+  trueMean: number,
+): TestType {
   if (mode === "two-tailed") return "two-tailed";
   return trueMean < nullMean ? "left-tailed" : "right-tailed";
 }
 
-export function computeChartDomain(nullMean: number, trueMean: number, stdDev: number, criticalValues: number[]): [number, number] {
+export function computeChartDomain(
+  nullMean: number,
+  trueMean: number,
+  stdDev: number,
+  criticalValues: number[],
+): [number, number] {
   const padding = 4.5 * stdDev;
   return [
     Math.min(nullMean - padding, trueMean - padding, ...criticalValues) - stdDev * 0.15,
@@ -137,9 +151,11 @@ function buildAreaPath(
   const areaGen = d3Area<DistributionPoint>()
     .x((d) => scales.xScale(d.x))
     .y0(scales.yScale(0))
-    .y1((d) => scales.yScale(invert
-      ? (filterFn(d, criticalValue) ? 0 : d.y)
-      : (filterFn(d, criticalValue) ? d.y : 0)));
+    .y1((d) =>
+      scales.yScale(
+        invert ? (filterFn(d, criticalValue) ? 0 : d.y) : filterFn(d, criticalValue) ? d.y : 0,
+      ),
+    );
   return areaGen(data) ?? "";
 }
 
@@ -165,15 +181,30 @@ export default function TypeErrorApp() {
     // a single direction-following one-tailed mode.
     const effectiveTestType = testType;
     const standardError = params.stdDev / Math.sqrt(params.sampleSize);
-    const cv = computeCriticalValues(params.alpha, params.nullMean, standardError, effectiveTestType);
+    const cv = computeCriticalValues(
+      params.alpha,
+      params.nullMean,
+      standardError,
+      effectiveTestType,
+    );
     const xDomain = computeChartDomain(params.nullMean, params.trueMean, standardError, cv);
     const yMax = normalPdf(params.nullMean, params.nullMean, standardError) * 1.12;
     const scales = createScales(xDomain, yMax);
     const nullDistribution = generateDistribution(params.nullMean, standardError, xDomain);
     const trueDistribution = generateDistribution(params.trueMean, standardError, xDomain);
     const filterFn = criticalAreaFn(effectiveTestType);
-    const typeTwoErrorRate = computeTypeTwoErrorRate(cv, params.trueMean, standardError, effectiveTestType);
-    const pValue = computePValue(params.observedStatistic, params.nullMean, standardError, effectiveTestType);
+    const typeTwoErrorRate = computeTypeTwoErrorRate(
+      cv,
+      params.trueMean,
+      standardError,
+      effectiveTestType,
+    );
+    const pValue = computePValue(
+      params.observedStatistic,
+      params.nullMean,
+      standardError,
+      effectiveTestType,
+    );
     return {
       scales,
       nullDistribution,
@@ -218,10 +249,18 @@ export default function TypeErrorApp() {
   const legendRows = [
     { kind: "line", className: "chart-inline-legend__line--null", label: copy.nullDistribution },
     { kind: "line", className: "chart-inline-legend__line--true", label: copy.trueDistribution },
-    { kind: "dash", className: "chart-inline-legend__line--critical", label: copy.criticalBoundary },
+    {
+      kind: "dash",
+      className: "chart-inline-legend__line--critical",
+      label: copy.criticalBoundary,
+    },
     { kind: "area", className: "chart-inline-legend__area--type1", label: copy.typeIErrorArea },
     { kind: "area", className: "chart-inline-legend__area--type2", label: copy.typeIIErrorArea },
-    { kind: "dash", className: "chart-inline-legend__line--observed", label: copy.observedStatistic },
+    {
+      kind: "dash",
+      className: "chart-inline-legend__line--observed",
+      label: copy.observedStatistic,
+    },
   ];
 
   const getCriticalValueLabel = () => {
@@ -256,7 +295,14 @@ export default function TypeErrorApp() {
       moduleId="type-error"
       content={
         <>
-          <VisualizationHeader eyebrow={copy.coreVisualizer} title={copy.title} description={copy.description} experimentNumber={metadata?.number} category={metadata?.localizedCategory} researchQuestion={metadata?.localizedQuestion} />
+          <VisualizationHeader
+            eyebrow={copy.coreVisualizer}
+            title={copy.title}
+            description={copy.description}
+            experimentNumber={metadata?.number}
+            category={metadata?.localizedCategory}
+            researchQuestion={metadata?.localizedQuestion}
+          />
           <div className="output-dock">
             <div className="output-heading">
               <p className="eyebrow">{copy.modelOutput}</p>
@@ -266,15 +312,48 @@ export default function TypeErrorApp() {
             <ExperimentMetricStrip
               ariaLabel={copy.modelOutput}
               metrics={[
-                { key: "alpha", label: copy.alpha, value: formatRate(computed.typeOneErrorRate), note: copy.alphaNote, semantics: "input" as const },
-                { key: "beta", label: copy.betaLabel, value: formatRate(computed.typeTwoErrorRate), note: copy.betaNote },
-                { key: "power", label: copy.power, value: formatRate(computed.power), note: copy.powerNote },
-                { key: "p-value", label: copy.pValue, value: formatNumber(computed.pValue, 4), note: copy.pValueNote },
-                { key: "decision", label: copy.testDecision, value: computed.rejectsNull ? copy.rejectNull : copy.failToRejectNull, note: copy.decisionNote, semantics: "decision" as const },
+                {
+                  key: "alpha",
+                  label: copy.alpha,
+                  value: formatRate(computed.typeOneErrorRate),
+                  note: copy.alphaNote,
+                  semantics: "input" as const,
+                },
+                {
+                  key: "beta",
+                  label: copy.betaLabel,
+                  value: formatRate(computed.typeTwoErrorRate),
+                  note: copy.betaNote,
+                },
+                {
+                  key: "power",
+                  label: copy.power,
+                  value: formatRate(computed.power),
+                  note: copy.powerNote,
+                },
+                {
+                  key: "p-value",
+                  label: copy.pValue,
+                  value: formatNumber(computed.pValue, 4),
+                  note: copy.pValueNote,
+                },
+                {
+                  key: "decision",
+                  label: copy.testDecision,
+                  value: computed.rejectsNull ? copy.rejectNull : copy.failToRejectNull,
+                  note: copy.decisionNote,
+                  semantics: "decision" as const,
+                },
               ]}
             />
             <ChartFrame>
-              <svg width={CHART_LAYOUT.width} height={CHART_LAYOUT.height} viewBox={`0 0 ${CHART_LAYOUT.width} ${CHART_LAYOUT.height}`} role="img" aria-label={`${copy.chartTitle}: ${computed.hypothesisText.H0Text}; ${computed.hypothesisText.H1Text}`}>
+              <svg
+                width={CHART_LAYOUT.width}
+                height={CHART_LAYOUT.height}
+                viewBox={`0 0 ${CHART_LAYOUT.width} ${CHART_LAYOUT.height}`}
+                role="img"
+                aria-label={`${copy.chartTitle}: ${computed.hypothesisText.H0Text}; ${computed.hypothesisText.H1Text}`}
+              >
                 <g transform={`translate(${CHART_LAYOUT.margin.left}, ${CHART_LAYOUT.margin.top})`}>
                   <path d={nullPath} fill="none" stroke="var(--lab-purple)" strokeWidth={2} />
                   <path d={truePath} fill="none" stroke="var(--teal)" strokeWidth={2} />
@@ -300,12 +379,17 @@ export default function TypeErrorApp() {
                     strokeWidth={2}
                     strokeDasharray="3,4"
                   />
-                  <g transform={`translate(0, ${plotHeight})`} ref={(g) => {
-                    if (g) select(g).call(axisBottom(scales.xScale).ticks(6));
-                  }} />
-                  <g ref={(g) => {
-                    if (g) select(g).call(axisLeft(scales.yScale).ticks(6));
-                  }} />
+                  <g
+                    transform={`translate(0, ${plotHeight})`}
+                    ref={(g) => {
+                      if (g) select(g).call(axisBottom(scales.xScale).ticks(6));
+                    }}
+                  />
+                  <g
+                    ref={(g) => {
+                      if (g) select(g).call(axisLeft(scales.yScale).ticks(6));
+                    }}
+                  />
                   <text
                     className="chart-axis-label"
                     x={plotWidth / 2}
@@ -414,23 +498,87 @@ export default function TypeErrorApp() {
             </div>
             <div className="control-panel">
               <div className="control-panel__title">{copy.controlPanel}</div>
-              <p className="control-panel__intro">
-                {copy.controlIntro}
-              </p>
+              <p className="control-panel__intro">{copy.controlIntro}</p>
               {[
-                { id: "alpha", label: copy.alphaLabel, hint: copy.alphaHint, min: 0.01, max: 0.2, step: 0.01, value: params.alpha, key: "alpha" as const },
-                { id: "null-mean", label: copy.nullMeanLabel, hint: copy.nullMeanHint, min: -2, max: 2, step: 0.1, value: params.nullMean, key: "nullMean" as const },
-                { id: "true-mean", label: copy.trueMeanLabel, hint: copy.trueMeanHint, min: -3, max: 3, step: 0.1, value: params.trueMean, key: "trueMean" as const },
-                { id: "std-dev", label: copy.stdDevLabel, hint: copy.stdDevHint, min: 0.1, max: 2, step: 0.1, value: params.stdDev, key: "stdDev" as const },
-                { id: "sample-size", label: copy.sampleSizeLabel, hint: copy.sampleSizeHint, min: 2, max: 200, step: 1, value: params.sampleSize, key: "sampleSize" as const },
-                { id: "observed-statistic", label: copy.observedStatistic, hint: copy.observedStatisticHint, min: -4, max: 6, step: 0.05, value: params.observedStatistic, key: "observedStatistic" as const },
+                {
+                  id: "alpha",
+                  label: copy.alphaLabel,
+                  hint: copy.alphaHint,
+                  min: 0.01,
+                  max: 0.2,
+                  step: 0.01,
+                  value: params.alpha,
+                  key: "alpha" as const,
+                },
+                {
+                  id: "null-mean",
+                  label: copy.nullMeanLabel,
+                  hint: copy.nullMeanHint,
+                  min: -2,
+                  max: 2,
+                  step: 0.1,
+                  value: params.nullMean,
+                  key: "nullMean" as const,
+                },
+                {
+                  id: "true-mean",
+                  label: copy.trueMeanLabel,
+                  hint: copy.trueMeanHint,
+                  min: -3,
+                  max: 3,
+                  step: 0.1,
+                  value: params.trueMean,
+                  key: "trueMean" as const,
+                },
+                {
+                  id: "std-dev",
+                  label: copy.stdDevLabel,
+                  hint: copy.stdDevHint,
+                  min: 0.1,
+                  max: 2,
+                  step: 0.1,
+                  value: params.stdDev,
+                  key: "stdDev" as const,
+                },
+                {
+                  id: "sample-size",
+                  label: copy.sampleSizeLabel,
+                  hint: copy.sampleSizeHint,
+                  min: 2,
+                  max: 200,
+                  step: 1,
+                  value: params.sampleSize,
+                  key: "sampleSize" as const,
+                },
+                {
+                  id: "observed-statistic",
+                  label: copy.observedStatistic,
+                  hint: copy.observedStatisticHint,
+                  min: -4,
+                  max: 6,
+                  step: 0.05,
+                  value: params.observedStatistic,
+                  key: "observedStatistic" as const,
+                },
               ].map((slider) => (
                 <div className="control-panel__slider" key={slider.id}>
                   <div className="control-panel__label-row">
                     <label className="control-panel__label" htmlFor={slider.id}>
                       {slider.label}
                     </label>
-                    <input className="control-number-input" aria-label={`${slider.label} numeric value`} type="number" id={`${slider.id}-numeric`} min={slider.min} max={slider.max} step={slider.step} value={slider.value} onChange={(e) => setParams((p) => ({ ...p, [slider.key]: Number(e.target.value) }))} />
+                    <input
+                      className="control-number-input"
+                      aria-label={`${slider.label} numeric value`}
+                      type="number"
+                      id={`${slider.id}-numeric`}
+                      min={slider.min}
+                      max={slider.max}
+                      step={slider.step}
+                      value={slider.value}
+                      onChange={(e) =>
+                        setParams((p) => ({ ...p, [slider.key]: Number(e.target.value) }))
+                      }
+                    />
                   </div>
                   <p className="control-panel__hint">{slider.hint}</p>
                   <input

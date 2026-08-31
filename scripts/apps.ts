@@ -122,8 +122,7 @@ export const apps: AppRecord[] = [
     textbookChapterIds: ["mes-ch08"],
     group: "Statistical Foundations",
     path: "apps/regression/",
-    repositoryUrl:
-      "https://github.com/Statistics-Learning-Teaching-Platform/regression-visualizer",
+    repositoryUrl: "https://github.com/Statistics-Learning-Teaching-Platform/regression-visualizer",
     source: "existing",
     icon: "β",
   },
@@ -193,9 +192,7 @@ export const apps: AppRecord[] = [
 export const DEFAULT_VISUALIZER_ID = "confidence-interval";
 
 export function getDefaultVisualizer(): AppRecord {
-  const defaultVisualizer = apps.find(
-    (visualizer) => visualizer.id === DEFAULT_VISUALIZER_ID,
-  );
+  const defaultVisualizer = apps.find((visualizer) => visualizer.id === DEFAULT_VISUALIZER_ID);
 
   if (!defaultVisualizer) {
     throw new Error("Default visualizer is not registered.");
@@ -205,7 +202,5 @@ export function getDefaultVisualizer(): AppRecord {
 }
 
 export function getVisualizerById(id: string | null): AppRecord {
-  return (
-    apps.find((visualizer) => visualizer.id === id) ?? getDefaultVisualizer()
-  );
+  return apps.find((visualizer) => visualizer.id === id) ?? getDefaultVisualizer();
 }

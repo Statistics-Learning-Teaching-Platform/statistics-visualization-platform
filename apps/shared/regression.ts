@@ -65,7 +65,8 @@ export function computeOutlierDiagnostics(data: RegressionPoint[]): OutlierFlags
   return data.map((p, i) => {
     const leverage = Math.min(0.999999, 1 / data.length + (p.x - xMean) ** 2 / sxx);
     const studentized = Math.abs(residuals[i]) / (rmse * Math.sqrt(Math.max(1 - leverage, 1e-9)));
-    const cooks = (residuals[i] ** 2 / (2 * mse)) * (leverage / Math.max((1 - leverage) ** 2, 1e-9));
+    const cooks =
+      (residuals[i] ** 2 / (2 * mse)) * (leverage / Math.max((1 - leverage) ** 2, 1e-9));
     return {
       studentized,
       cooks,

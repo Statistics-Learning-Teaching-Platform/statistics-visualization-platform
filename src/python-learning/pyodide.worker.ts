@@ -1,6 +1,6 @@
 /// <reference lib="webworker" />
 
-import { loadPyodide, version as pyodideVersion, type PyodideInterface } from "pyodide";
+import { loadPyodide, type PyodideInterface, version as pyodideVersion } from "pyodide";
 import type { PythonExecutionResult } from "./pyodideRuntime";
 
 type WorkerRequest =
@@ -178,7 +178,9 @@ __statmind_json_dumps({
     payloadProxy.destroy?.();
   }
 
-  const console = [payload.stdout.trim(), payload.stderr.trim(), payload.error.trim()].filter(Boolean);
+  const console = [payload.stdout.trim(), payload.stderr.trim(), payload.error.trim()].filter(
+    Boolean,
+  );
   if (payload.error) throw new Error(payload.error.trim());
   lastExecutionHadPlot = payload.plot !== null;
   return {
@@ -198,7 +200,8 @@ async function handle(request: WorkerRequest): Promise<unknown> {
   if (request.value.length > 10_000) throw new Error("检查表达式过长");
   pyodide.globals.set("__statmind_check_code", request.value);
   pyodide.globals.set("__statmind_had_plot", lastExecutionHadPlot);
-  return Boolean(await pyodide.runPythonAsync(`
+  return Boolean(
+    await pyodide.runPythonAsync(`
 try:
     __statmind_check_builtins = {
         "abs": __statmind_abs,
@@ -225,18 +228,22 @@ try:
 except __StatMindBaseException:
     __statmind_check_result = False
 __statmind_check_result
-`));
+`),
+  );
 }
 
 self.addEventListener("message", (event: MessageEvent<WorkerRequest>) => {
   const request = event.data;
   void handle(request)
     .then((result) => self.postMessage({ id: request.id, ok: true, result }))
-    .catch((error: unknown) => self.postMessage({
-      id: request.id,
-      ok: false,
-      error: error instanceof Error ? error.message.slice(0, 12_000) : String(error).slice(0, 12_000),
-    }));
+    .catch((error: unknown) =>
+      self.postMessage({
+        id: request.id,
+        ok: false,
+        error:
+          error instanceof Error ? error.message.slice(0, 12_000) : String(error).slice(0, 12_000),
+      }),
+    );
 });
 
 export {};

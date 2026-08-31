@@ -1,10 +1,10 @@
 import { createHash } from "node:crypto";
+import { createWriteStream } from "node:fs";
 import { cp, mkdir, readFile, rm, writeFile } from "node:fs/promises";
 import { dirname, resolve } from "node:path";
-import { fileURLToPath } from "node:url";
 import { Readable } from "node:stream";
 import { pipeline } from "node:stream/promises";
-import { createWriteStream } from "node:fs";
+import { fileURLToPath } from "node:url";
 import { version as pyodideVersion } from "pyodide";
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
@@ -12,8 +12,9 @@ const publicRuntime = resolve(root, "public/runtime");
 const cacheRoot = resolve(root, ".runtime-cache");
 const pyodideSource = resolve(root, "node_modules/pyodide");
 const webRSource = resolve(root, "node_modules/webr/dist");
-const mirror = process.env.PYODIDE_CHINA_MIRROR?.replace(/\/$/, "")
-  ?? `https://cdn.jsdmirror.com/pyodide/v${pyodideVersion}/full`;
+const mirror =
+  process.env.PYODIDE_CHINA_MIRROR?.replace(/\/$/, "") ??
+  `https://cdn.jsdmirror.com/pyodide/v${pyodideVersion}/full`;
 const basePackages = ["numpy", "pandas", "matplotlib", "scipy"];
 const webRVersion = "0.6.0";
 // Served directory for webR. The "-cf2" suffix versions the URL space: edge
@@ -49,7 +50,9 @@ async function ensureDownload(fileName, expectedHash) {
   const actualHash = await sha256(temporaryPath);
   if (actualHash !== expectedHash) {
     await rm(temporaryPath, { force: true });
-    throw new Error(`Checksum mismatch for ${fileName}: expected ${expectedHash}, received ${actualHash}`);
+    throw new Error(
+      `Checksum mismatch for ${fileName}: expected ${expectedHash}, received ${actualHash}`,
+    );
   }
   await rm(cachePath, { force: true });
   await cp(temporaryPath, cachePath);
@@ -62,7 +65,12 @@ async function syncPyodide() {
   const destination = resolve(runtimeRoot, pyodideVersion);
   await rm(runtimeRoot, { recursive: true, force: true });
   await mkdir(destination, { recursive: true });
-  for (const file of ["pyodide.asm.mjs", "pyodide.asm.wasm", "python_stdlib.zip", "pyodide-lock.json"]) {
+  for (const file of [
+    "pyodide.asm.mjs",
+    "pyodide.asm.wasm",
+    "python_stdlib.zip",
+    "pyodide-lock.json",
+  ]) {
     await cp(resolve(pyodideSource, file), resolve(destination, file));
   }
 
@@ -103,11 +111,15 @@ const pyodideFiles = await syncPyodide();
 await syncWebR();
 await writeFile(
   resolve(publicRuntime, "runtime-manifest.json"),
-  JSON.stringify({
-    generatedAt: new Date().toISOString(),
-    pyodide: { version: pyodideVersion, source: mirror, packages: pyodideFiles },
-    webR: { version: webRVersion, directory: webRDirectory, source: "local npm package" },
-  }, null, 2),
+  JSON.stringify(
+    {
+      generatedAt: new Date().toISOString(),
+      pyodide: { version: pyodideVersion, source: mirror, packages: pyodideFiles },
+      webR: { version: webRVersion, directory: webRDirectory, source: "local npm package" },
+    },
+    null,
+    2,
+  ),
   "utf8",
 );
 

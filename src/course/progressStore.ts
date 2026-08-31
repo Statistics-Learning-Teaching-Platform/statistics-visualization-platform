@@ -24,16 +24,26 @@ const emptyProgress = (): LearningProgress => ({
 
 function stringList(value: unknown): string[] {
   return Array.isArray(value)
-    ? [...new Set(value.filter((item): item is string => typeof item === "string" && item.length > 0))]
+    ? [
+        ...new Set(
+          value.filter((item): item is string => typeof item === "string" && item.length > 0),
+        ),
+      ]
     : [];
 }
 
 function parseList(value: string | null): string[] {
   if (!value) return [];
-  try { return stringList(JSON.parse(value)); } catch { return []; }
+  try {
+    return stringList(JSON.parse(value));
+  } catch {
+    return [];
+  }
 }
 
-export function loadLearningProgress(storage: Pick<Storage, "getItem"> = localStorage): LearningProgress {
+export function loadLearningProgress(
+  storage: Pick<Storage, "getItem"> = localStorage,
+): LearningProgress {
   const fallback = emptyProgress();
   try {
     const raw = storage.getItem(PROGRESS_KEY);
@@ -45,7 +55,10 @@ export function loadLearningProgress(storage: Pick<Storage, "getItem"> = localSt
         completedActivities: stringList(parsed.completedActivities),
         completedRLessons: stringList(parsed.completedRLessons),
         completedPythonLessons: stringList(parsed.completedPythonLessons),
-        lastVisitedRoute: typeof parsed.lastVisitedRoute === "string" ? parsed.lastVisitedRoute : fallback.lastVisitedRoute,
+        lastVisitedRoute:
+          typeof parsed.lastVisitedRoute === "string"
+            ? parsed.lastVisitedRoute
+            : fallback.lastVisitedRoute,
       };
     }
     return {
@@ -62,7 +75,11 @@ export function saveLearningProgress(
   progress: LearningProgress,
   storage: Pick<Storage, "setItem"> = localStorage,
 ): void {
-  try { storage.setItem(PROGRESS_KEY, JSON.stringify(progress)); } catch { /* storage is optional */ }
+  try {
+    storage.setItem(PROGRESS_KEY, JSON.stringify(progress));
+  } catch {
+    /* storage is optional */
+  }
   progressChangeHandler?.(progress);
 }
 
@@ -73,14 +90,13 @@ export function saveLearningProgress(
  */
 let progressChangeHandler: ((progress: LearningProgress) => void) | null = null;
 
-export function setProgressChangeHandler(handler: ((progress: LearningProgress) => void) | null): void {
+export function setProgressChangeHandler(
+  handler: ((progress: LearningProgress) => void) | null,
+): void {
   progressChangeHandler = handler;
 }
 
-export function mergeLearningProgress(
-  a: LearningProgress,
-  b: LearningProgress,
-): LearningProgress {
+export function mergeLearningProgress(a: LearningProgress, b: LearningProgress): LearningProgress {
   const union = (x: string[], y: string[]) => [...new Set([...x, ...y])];
   return {
     version: 1,
@@ -112,9 +128,12 @@ export function saveCodeLessonProgress(
   const current = loadLearningProgress(storage);
   const next: LearningProgress = {
     ...current,
-    completedTopics: [...new Set([...current.completedTopics, ...(completedTopicId ? [completedTopicId] : [])])],
+    completedTopics: [
+      ...new Set([...current.completedTopics, ...(completedTopicId ? [completedTopicId] : [])]),
+    ],
     completedRLessons: language === "r" ? stringList(lessonIds) : current.completedRLessons,
-    completedPythonLessons: language === "python" ? stringList(lessonIds) : current.completedPythonLessons,
+    completedPythonLessons:
+      language === "python" ? stringList(lessonIds) : current.completedPythonLessons,
     lastVisitedRoute,
   };
   saveLearningProgress(next, storage);

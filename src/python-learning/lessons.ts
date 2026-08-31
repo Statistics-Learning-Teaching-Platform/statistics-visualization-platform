@@ -1,15 +1,33 @@
 import type { CodeLesson } from "../code-learning/types";
-import {
-  getTextbookChapterIdForTopic,
-  type TextbookChapterId,
-} from "../course/textbookChapters";
+import { getTextbookChapterIdForTopic, type TextbookChapterId } from "../course/textbookChapters";
 
 const normalizeCode = (code: string) => code.replace(/\\n/g, "\n").replace(/\\t/g, "\t");
 
 const trustedCheckNames = new Set([
-  "False", "None", "True", "abs", "all", "and", "bool", "callable", "dict", "float",
-  "for", "getattr", "if", "in", "int", "is", "isinstance", "len", "list", "metadata",
-  "not", "or", "type", "user",
+  "False",
+  "None",
+  "True",
+  "abs",
+  "all",
+  "and",
+  "bool",
+  "callable",
+  "dict",
+  "float",
+  "for",
+  "getattr",
+  "if",
+  "in",
+  "int",
+  "is",
+  "isinstance",
+  "len",
+  "list",
+  "metadata",
+  "not",
+  "or",
+  "type",
+  "user",
 ]);
 
 function isolateCheckCode(checkCode: string): string {
@@ -19,7 +37,7 @@ function isolateCheckCode(checkCode: string): string {
     .replace(/\bhasattr\((\w+),\s*(['"][^'"]+['"])\)/g, "getattr($1, $2, None) is not None");
   let result = "";
   let quote: string | null = null;
-  for (let index = 0; index < source.length;) {
+  for (let index = 0; index < source.length; ) {
     const character = source[index];
     if (quote) {
       result += character;
@@ -62,7 +80,10 @@ function isolateCheckCode(checkCode: string): string {
   return result;
 }
 
-export type PythonLesson = CodeLesson<"foundations" | "data" | "visualization" | "statistics", "python"> & {
+export type PythonLesson = CodeLesson<
+  "foundations" | "data" | "visualization" | "statistics",
+  "python"
+> & {
   /** Internal textbook binding. The workspace intentionally does not display it yet. */
   textbookChapterId: TextbookChapterId;
 };
@@ -209,7 +230,7 @@ print(high_scores)
 print(group_means)`,
     hint: {
       zh: '筛选可写为 `students[students["score"] >= 80]`；分组均值使用 `students.groupby("group")["score"].mean()`。',
-      en: "Filter with `students[students[\"score\"] >= 80]`; group with `students.groupby(\"group\")[\"score\"].mean()`.",
+      en: 'Filter with `students[students["score"] >= 80]`; group with `students.groupby("group")["score"].mean()`.',
     },
     solution: `import pandas as pd
 
@@ -263,7 +284,7 @@ ax.set_ylabel("Frequency")
 plt.show()`,
     hint: {
       zh: '在注释下添加 `ax.hist(waiting_time, bins=6, color="#6f8f7a", edgecolor="white")`。',
-      en: "Add `ax.hist(waiting_time, bins=6, color=\"#6f8f7a\", edgecolor=\"white\")`.",
+      en: 'Add `ax.hist(waiting_time, bins=6, color="#6f8f7a", edgecolor="white")`.',
     },
     solution: `import matplotlib.pyplot as plt
 
@@ -524,9 +545,18 @@ abs(ci_upper - (sample_mean + margin_of_error)) < 1e-12`,
     order: 9,
     eyebrow: { zh: "第九课 · 概率分布", en: "Lesson 9 · Probability distributions" },
     title: { zh: "计算二项分布的概率", en: "Calculate binomial probabilities" },
-    objective: { zh: "使用 SciPy 的二项分布计算 PMF、CDF，并解释成功次数的概率。", en: "Use SciPy's binomial distribution to calculate PMF and CDF probabilities." },
-    explanation: { zh: "二项分布描述固定次数、相互独立且成功概率相同的试验；先确认情境满足这些条件。", en: "The binomial model describes a fixed number of independent trials with a common success probability." },
-    task: { zh: "计算 10 次试验中恰好 3 次成功的概率，以及至多 3 次成功的概率。", en: "Calculate the probability of exactly three successes and at most three successes in ten trials." },
+    objective: {
+      zh: "使用 SciPy 的二项分布计算 PMF、CDF，并解释成功次数的概率。",
+      en: "Use SciPy's binomial distribution to calculate PMF and CDF probabilities.",
+    },
+    explanation: {
+      zh: "二项分布描述固定次数、相互独立且成功概率相同的试验；先确认情境满足这些条件。",
+      en: "The binomial model describes a fixed number of independent trials with a common success probability.",
+    },
+    task: {
+      zh: "计算 10 次试验中恰好 3 次成功的概率，以及至多 3 次成功的概率。",
+      en: "Calculate the probability of exactly three successes and at most three successes in ten trials.",
+    },
     concepts: ["scipy.stats.binom", "pmf", "cdf"],
     packages: ["scipy"],
     starterCode: `from scipy import stats
@@ -537,7 +567,10 @@ exactly_three =
 at_most_three =
 
 print(exactly_three, at_most_three)`,
-    hint: { zh: "使用 `stats.binom.pmf(3, n, p)` 和 `stats.binom.cdf(3, n, p)`。", en: "Use `stats.binom.pmf(3, n, p)` and `stats.binom.cdf(3, n, p)`." },
+    hint: {
+      zh: "使用 `stats.binom.pmf(3, n, p)` 和 `stats.binom.cdf(3, n, p)`。",
+      en: "Use `stats.binom.pmf(3, n, p)` and `stats.binom.cdf(3, n, p)`.",
+    },
     solution: `from scipy import stats
 n = 10
 p = 0.4
@@ -545,7 +578,10 @@ exactly_three = float(stats.binom.pmf(3, n, p))
 at_most_three = float(stats.binom.cdf(3, n, p))
 print(exactly_three, at_most_three)`,
     checkCode: `'exactly_three' in globals() and 'at_most_three' in globals() and abs(exactly_three - stats.binom.pmf(3, n, p)) < 1e-12 and abs(at_most_three - stats.binom.cdf(3, n, p)) < 1e-12`,
-    success: { zh: "完成：PMF 和 CDF 都与二项分布模型一致。", en: "Complete: the PMF and CDF agree with the binomial model." },
+    success: {
+      zh: "完成：PMF 和 CDF 都与二项分布模型一致。",
+      en: "Complete: the PMF and CDF agree with the binomial model.",
+    },
   },
   {
     language: "python",
@@ -556,9 +592,18 @@ print(exactly_three, at_most_three)`,
     order: 10,
     eyebrow: { zh: "第十课 · 两组比较", en: "Lesson 10 · Comparing two groups" },
     title: { zh: "比较两组均值", en: "Compare two group means" },
-    objective: { zh: "使用 `ttest_ind()` 比较两组均值，并保存差异的 p 值。", en: "Use `ttest_ind()` to compare two means and save the p-value." },
-    explanation: { zh: "独立样本 t 检验把两组均值差与两组样本的不确定性结合起来；不要只看 p 值。", en: "An independent-samples t test compares a mean difference with uncertainty from both samples; do not report only the p-value." },
-    task: { zh: "比较两种教学方法的成绩，将检验结果保存为 `result`，均值差和 p 值保存为 `mean_difference`、`p_value`。", en: "Compare two teaching methods and save the result, mean difference, and p-value." },
+    objective: {
+      zh: "使用 `ttest_ind()` 比较两组均值，并保存差异的 p 值。",
+      en: "Use `ttest_ind()` to compare two means and save the p-value.",
+    },
+    explanation: {
+      zh: "独立样本 t 检验把两组均值差与两组样本的不确定性结合起来；不要只看 p 值。",
+      en: "An independent-samples t test compares a mean difference with uncertainty from both samples; do not report only the p-value.",
+    },
+    task: {
+      zh: "比较两种教学方法的成绩，将检验结果保存为 `result`，均值差和 p 值保存为 `mean_difference`、`p_value`。",
+      en: "Compare two teaching methods and save the result, mean difference, and p-value.",
+    },
     concepts: ["ttest_ind()", "independent samples", "effect size"],
     packages: ["scipy"],
     starterCode: `import numpy as np
@@ -572,7 +617,10 @@ mean_difference =
 p_value =
 
 print(mean_difference, p_value)`,
-    hint: { zh: "使用 `stats.ttest_ind(method_b, method_a, equal_var=False)`，均值差为 `method_b.mean() - method_a.mean()`。", en: "Use Welch's `stats.ttest_ind(method_b, method_a, equal_var=False)` and subtract the means." },
+    hint: {
+      zh: "使用 `stats.ttest_ind(method_b, method_a, equal_var=False)`，均值差为 `method_b.mean() - method_a.mean()`。",
+      en: "Use Welch's `stats.ttest_ind(method_b, method_a, equal_var=False)` and subtract the means.",
+    },
     solution: `import numpy as np
 from scipy import stats
 method_a = np.array([72, 75, 78, 80, 82, 79])
@@ -582,7 +630,10 @@ mean_difference = float(method_b.mean() - method_a.mean())
 p_value = float(result.pvalue)
 print(mean_difference, p_value)`,
     checkCode: `'result' in globals() and abs(mean_difference - (method_b.mean() - method_a.mean())) < 1e-12 and abs(p_value - result.pvalue) < 1e-12`,
-    success: { zh: "完成：均值差、Welch t 检验和 p 值均已保存。", en: "Complete: the mean difference, Welch t test, and p-value are saved." },
+    success: {
+      zh: "完成：均值差、Welch t 检验和 p 值均已保存。",
+      en: "Complete: the mean difference, Welch t test, and p-value are saved.",
+    },
   },
   {
     language: "python",
@@ -593,9 +644,18 @@ print(mean_difference, p_value)`,
     order: 11,
     eyebrow: { zh: "第十一课 · 方差分析", en: "Lesson 11 · ANOVA" },
     title: { zh: "比较三个总体均值", en: "Compare three population means" },
-    objective: { zh: "使用 `f_oneway()` 完成整体 ANOVA，并解释 F 统计量和 p 值。", en: "Run an overall ANOVA with `f_oneway()` and interpret its F statistic and p-value." },
-    explanation: { zh: "显著的整体检验说明至少有一组均值不同，后续还要做有计划的组间比较。", en: "A significant omnibus test says at least one mean differs; planned pairwise comparisons come next." },
-    task: { zh: "对三组成绩进行 ANOVA，将 F 统计量和 p 值保存为 `f_statistic`、`p_value`。", en: "Run ANOVA on three score groups and save the F statistic and p-value." },
+    objective: {
+      zh: "使用 `f_oneway()` 完成整体 ANOVA，并解释 F 统计量和 p 值。",
+      en: "Run an overall ANOVA with `f_oneway()` and interpret its F statistic and p-value.",
+    },
+    explanation: {
+      zh: "显著的整体检验说明至少有一组均值不同，后续还要做有计划的组间比较。",
+      en: "A significant omnibus test says at least one mean differs; planned pairwise comparisons come next.",
+    },
+    task: {
+      zh: "对三组成绩进行 ANOVA，将 F 统计量和 p 值保存为 `f_statistic`、`p_value`。",
+      en: "Run ANOVA on three score groups and save the F statistic and p-value.",
+    },
     concepts: ["f_oneway()", "F statistic", "omnibus test"],
     packages: ["scipy"],
     starterCode: `from scipy import stats
@@ -609,7 +669,10 @@ f_statistic =
 p_value =
 
 print(f_statistic, p_value)`,
-    hint: { zh: "使用 `stats.f_oneway(group_a, group_b, group_c)`，再读取 `.statistic` 和 `.pvalue`。", en: "Use `stats.f_oneway(group_a, group_b, group_c)` and read `.statistic` and `.pvalue`." },
+    hint: {
+      zh: "使用 `stats.f_oneway(group_a, group_b, group_c)`，再读取 `.statistic` 和 `.pvalue`。",
+      en: "Use `stats.f_oneway(group_a, group_b, group_c)` and read `.statistic` and `.pvalue`.",
+    },
     solution: `from scipy import stats
 group_a = [71, 72, 70, 73, 69]
 group_b = [78, 80, 77, 79, 81]
@@ -619,7 +682,10 @@ f_statistic = float(result.statistic)
 p_value = float(result.pvalue)
 print(f_statistic, p_value)`,
     checkCode: `'result' in globals() and abs(f_statistic - result.statistic) < 1e-12 and abs(p_value - result.pvalue) < 1e-12 and p_value < 0.05`,
-    success: { zh: "完成：整体 F 检验显示三组均值并不完全相同。", en: "Complete: the omnibus F test indicates that the three means are not all equal." },
+    success: {
+      zh: "完成：整体 F 检验显示三组均值并不完全相同。",
+      en: "Complete: the omnibus F test indicates that the three means are not all equal.",
+    },
   },
   {
     language: "python",
@@ -630,9 +696,18 @@ print(f_statistic, p_value)`,
     order: 12,
     eyebrow: { zh: "第十二课 · 分类数据", en: "Lesson 12 · Categorical data" },
     title: { zh: "检验列联表独立性", en: "Test independence in a contingency table" },
-    objective: { zh: "使用 `chi2_contingency()` 计算卡方统计量、期望频数和 p 值。", en: "Use `chi2_contingency()` for the chi-square statistic, expected counts, and p-value." },
-    explanation: { zh: "列联表检验比较观察频数与独立性假设下的期望频数；先检查每个期望频数是否足够大。", en: "A contingency-table test compares observed and expected counts under independence; check expected counts first." },
-    task: { zh: "检验学习方式与是否通过考试的关联，将结果、期望频数和 p 值保存。", en: "Test the association between study mode and passing, saving the result, expected counts, and p-value." },
+    objective: {
+      zh: "使用 `chi2_contingency()` 计算卡方统计量、期望频数和 p 值。",
+      en: "Use `chi2_contingency()` for the chi-square statistic, expected counts, and p-value.",
+    },
+    explanation: {
+      zh: "列联表检验比较观察频数与独立性假设下的期望频数；先检查每个期望频数是否足够大。",
+      en: "A contingency-table test compares observed and expected counts under independence; check expected counts first.",
+    },
+    task: {
+      zh: "检验学习方式与是否通过考试的关联，将结果、期望频数和 p 值保存。",
+      en: "Test the association between study mode and passing, saving the result, expected counts, and p-value.",
+    },
     concepts: ["chi2_contingency()", "expected counts", "categorical association"],
     packages: ["scipy"],
     starterCode: `import numpy as np
@@ -646,7 +721,10 @@ expected =
 p_value =
 
 print(chi2_statistic, p_value)`,
-    hint: { zh: "使用 `stats.chi2_contingency(observed, correction=False)`，返回值依次包含卡方统计量、p 值、自由度和期望频数。", en: "Use `stats.chi2_contingency(observed, correction=False)` and unpack statistic, p-value, degrees of freedom, and expected counts." },
+    hint: {
+      zh: "使用 `stats.chi2_contingency(observed, correction=False)`，返回值依次包含卡方统计量、p 值、自由度和期望频数。",
+      en: "Use `stats.chi2_contingency(observed, correction=False)` and unpack statistic, p-value, degrees of freedom, and expected counts.",
+    },
     solution: `import numpy as np
 from scipy import stats
 observed = np.array([[32, 8], [24, 16]])
@@ -654,7 +732,10 @@ result = stats.chi2_contingency(observed, correction=False)
 chi2_statistic, p_value, dof, expected = result
 print(chi2_statistic, p_value)`,
     checkCode: `'result' in globals() and abs(chi2_statistic - result[0]) < 1e-12 and abs(p_value - result[1]) < 1e-12 and expected.shape == observed.shape`,
-    success: { zh: "完成：卡方统计量、期望频数和独立性检验结果均已得到。", en: "Complete: the chi-square statistic, expected counts, and independence result are available." },
+    success: {
+      zh: "完成：卡方统计量、期望频数和独立性检验结果均已得到。",
+      en: "Complete: the chi-square statistic, expected counts, and independence result are available.",
+    },
   },
   {
     language: "python",
@@ -665,9 +746,18 @@ print(chi2_statistic, p_value)`,
     order: 13,
     eyebrow: { zh: "第十三课 · 多元回归", en: "Lesson 13 · Multiple regression" },
     title: { zh: "拟合多元回归并检查残差", en: "Fit multiple regression and inspect residuals" },
-    objective: { zh: "使用 `linregress` 之外的矩阵公式拟合多元模型，并计算 R² 与残差。", en: "Fit a multiple regression with a matrix formula and calculate R-squared and residuals." },
-    explanation: { zh: "多元回归同时控制多个解释变量；系数解释依赖于其他变量保持不变，残差检查是模型评价的一部分。", en: "Multiple regression controls for several predictors; coefficients are conditional effects and residual checks are essential." },
-    task: { zh: "用截距和两个解释变量拟合成绩模型，保存系数 `coefficients`、R² 和残差。", en: "Fit a score model with an intercept and two predictors, saving coefficients, R-squared, and residuals." },
+    objective: {
+      zh: "使用 `linregress` 之外的矩阵公式拟合多元模型，并计算 R² 与残差。",
+      en: "Fit a multiple regression with a matrix formula and calculate R-squared and residuals.",
+    },
+    explanation: {
+      zh: "多元回归同时控制多个解释变量；系数解释依赖于其他变量保持不变，残差检查是模型评价的一部分。",
+      en: "Multiple regression controls for several predictors; coefficients are conditional effects and residual checks are essential.",
+    },
+    task: {
+      zh: "用截距和两个解释变量拟合成绩模型，保存系数 `coefficients`、R² 和残差。",
+      en: "Fit a score model with an intercept and two predictors, saving coefficients, R-squared, and residuals.",
+    },
     concepts: ["numpy.linalg.lstsq", "R²", "residuals"],
     packages: ["numpy"],
     starterCode: `import numpy as np
@@ -683,7 +773,10 @@ residuals =
 r_squared =
 
 print(coefficients, r_squared)`,
-    hint: { zh: "用 `np.linalg.lstsq(X, score, rcond=None)[0]` 求系数；R² 为 `1 - SSE/SST`。", en: "Use `np.linalg.lstsq(X, score, rcond=None)[0]`; compute R-squared as `1 - SSE/SST`." },
+    hint: {
+      zh: "用 `np.linalg.lstsq(X, score, rcond=None)[0]` 求系数；R² 为 `1 - SSE/SST`。",
+      en: "Use `np.linalg.lstsq(X, score, rcond=None)[0]`; compute R-squared as `1 - SSE/SST`.",
+    },
     solution: `import numpy as np
 hours = np.array([1, 2, 3, 4, 5, 6])
 attendance = np.array([70, 72, 75, 79, 82, 86])
@@ -695,7 +788,10 @@ residuals = score - predicted
 r_squared = 1 - np.sum(residuals ** 2) / np.sum((score - score.mean()) ** 2)
 print(coefficients, r_squared)`,
     checkCode: `'coefficients' in globals() and len(coefficients) == 3 and np.allclose(predicted, X @ coefficients) and np.allclose(residuals, score - predicted) and 0 < r_squared < 1`,
-    success: { zh: "完成：多元回归系数、预测值、残差和 R² 均已计算。", en: "Complete: the coefficients, predictions, residuals, and R-squared are calculated." },
+    success: {
+      zh: "完成：多元回归系数、预测值、残差和 R² 均已计算。",
+      en: "Complete: the coefficients, predictions, residuals, and R-squared are calculated.",
+    },
   },
   {
     language: "python",
@@ -706,9 +802,18 @@ print(coefficients, r_squared)`,
     order: 14,
     eyebrow: { zh: "第十四课 · 时间序列", en: "Lesson 14 · Time series" },
     title: { zh: "计算移动平均并评价误差", en: "Compute a moving average and forecast error" },
-    objective: { zh: "使用 pandas rolling 计算三期移动平均，并用 MAE 评价预测误差。", en: "Use pandas rolling for a three-period moving average and evaluate it with MAE." },
-    explanation: { zh: "移动平均能平滑短期波动，但会降低对新变化的响应速度；误差指标需要和业务尺度结合。", en: "A moving average smooths short-term variation but reacts more slowly; interpret errors on the original scale." },
-    task: { zh: "计算居中的三期移动平均 `moving_average`，并保存非缺失预测的平均绝对误差 `mae`。", en: "Compute a centred three-period moving average and save the MAE for non-missing forecasts." },
+    objective: {
+      zh: "使用 pandas rolling 计算三期移动平均，并用 MAE 评价预测误差。",
+      en: "Use pandas rolling for a three-period moving average and evaluate it with MAE.",
+    },
+    explanation: {
+      zh: "移动平均能平滑短期波动，但会降低对新变化的响应速度；误差指标需要和业务尺度结合。",
+      en: "A moving average smooths short-term variation but reacts more slowly; interpret errors on the original scale.",
+    },
+    task: {
+      zh: "计算居中的三期移动平均 `moving_average`，并保存非缺失预测的平均绝对误差 `mae`。",
+      en: "Compute a centred three-period moving average and save the MAE for non-missing forecasts.",
+    },
     concepts: ["pandas.Series", "rolling()", "MAE"],
     packages: ["numpy", "pandas"],
     starterCode: `import numpy as np
@@ -721,7 +826,10 @@ valid = moving_average.notna()
 mae =
 
 print(mae)`,
-    hint: { zh: "使用 `sales.rolling(window=3, center=True).mean()`，再对 `sales[valid] - moving_average[valid]` 取绝对值平均。", en: "Use `sales.rolling(window=3, center=True).mean()` and average absolute errors where the forecast is non-missing." },
+    hint: {
+      zh: "使用 `sales.rolling(window=3, center=True).mean()`，再对 `sales[valid] - moving_average[valid]` 取绝对值平均。",
+      en: "Use `sales.rolling(window=3, center=True).mean()` and average absolute errors where the forecast is non-missing.",
+    },
     solution: `import numpy as np
 import pandas as pd
 sales = pd.Series([20, 22, 25, 24, 28, 31, 30, 34])
@@ -730,25 +838,602 @@ valid = moving_average.notna()
 mae = float(np.abs(sales[valid] - moving_average[valid]).mean())
 print(mae)`,
     checkCode: `'moving_average' in globals() and moving_average.notna().sum() == 6 and 'mae' in globals() and mae > 0`,
-    success: { zh: "完成：三期移动平均和 MAE 已计算，可继续比较指数平滑。", en: "Complete: the three-period moving average and MAE are ready for comparison." },
+    success: {
+      zh: "完成：三期移动平均和 MAE 已计算，可继续比较指数平滑。",
+      en: "Complete: the three-period moving average and MAE are ready for comparison.",
+    },
   },
-  { language: "python", prerequisites: ["lists-and-mean"], id: "environment-and-notebooks", topicId: "statistics-foundations", unit: "foundations", order: 15, eyebrow: { zh: "第十五课 · Python 环境", en: "Lesson 15 · Python environments" }, title: { zh: "记录可复现的分析环境", en: "Record a reproducible analysis environment" }, objective: { zh: "理解 Notebook、脚本和依赖包的作用。", en: "Understand notebooks, scripts, and package dependencies." }, explanation: { zh: "可复现分析需要记录代码、数据处理步骤和运行环境。", en: "Reproducible analysis records code, data steps, and the runtime environment." }, task: { zh: "保存 Python 版本字符串 `python_version`。", en: "Save the Python version string as `python_version`." }, concepts: ["Jupyter", "script", "version"], packages: ["sys"], starterCode: "import sys\\n\\npython_version = ", hint: { zh: "使用 `sys.version`。", en: "Use `sys.version`." }, solution: "import sys\\npython_version = sys.version", checkCode: "isinstance(python_version, str) and len(python_version) > 0", success: { zh: "完成：运行环境已记录。", en: "Complete: the runtime environment is recorded." } },
-  { language: "python", prerequisites: ["probability-foundations"], id: "conditional-probability-bayes", topicId: "probability-foundations", unit: "statistics", order: 16, eyebrow: { zh: "第十六课 · 条件概率", en: "Lesson 16 · Conditional probability" }, title: { zh: "用全概率和贝叶斯公式更新概率", en: "Update probabilities with Bayes' rule" }, objective: { zh: "区分联合概率、条件概率和后验概率。", en: "Distinguish joint, conditional, and posterior probabilities." }, explanation: { zh: "贝叶斯公式把先验信息与新证据结合，得到后验概率。", en: "Bayes' rule combines prior information with evidence to obtain a posterior probability." }, task: { zh: "计算检测阳性后的患病概率 `posterior`。", en: "Compute the disease probability after a positive test as `posterior`." }, concepts: ["conditional probability", "Bayes rule"], packages: ["numpy"], starterCode: "prior = 0.01\\nsensitivity = 0.95\\nfalse_positive = 0.05\\nposterior = ", hint: { zh: "使用 `prior * sensitivity / (prior * sensitivity + (1 - prior) * false_positive)`。", en: "Use Bayes' formula with the prior, sensitivity, and false-positive rate." }, solution: "prior = 0.01\\nsensitivity = 0.95\\nfalse_positive = 0.05\\nposterior = prior * sensitivity / (prior * sensitivity + (1 - prior) * false_positive)", checkCode: "0 < posterior < 1 and abs(posterior - 0.16101694915254236) < 1e-12", success: { zh: "完成：后验概率不是单独由灵敏度决定的。", en: "Complete: the posterior depends on prevalence as well as sensitivity." } },
-  { language: "python", prerequisites: ["distribution-probabilities"], id: "normal-uniform-exponential", topicId: "probability-distributions", unit: "statistics", order: 17, eyebrow: { zh: "第十七课 · 连续分布", en: "Lesson 17 · Continuous distributions" }, title: { zh: "比较正态、均匀与指数分布", en: "Compare normal, uniform, and exponential distributions" }, objective: { zh: "使用 SciPy 的 CDF 计算不同连续分布下的概率。", en: "Use SciPy CDFs to calculate probabilities under continuous distributions." }, explanation: { zh: "分布选择应由机制和数据形状共同决定。", en: "Distribution choice should reflect both mechanism and observed shape." }, task: { zh: "保存正态左尾概率 `normal_prob` 和指数尾概率 `exponential_tail`。", en: "Save a normal left-tail probability and exponential tail probability." }, concepts: ["norm.cdf", "expon.sf", "continuous distributions"], packages: ["scipy"], starterCode: "from scipy import stats\\n\\nnormal_prob = stats.norm.cdf(1.96)\\nexponential_tail = ", hint: { zh: "使用 `stats.expon.sf(2, scale=1)`。", en: "Use `stats.expon.sf(2, scale=1)`." }, solution: "from scipy import stats\\nnormal_prob = stats.norm.cdf(1.96)\\nexponential_tail = stats.expon.sf(2, scale=1)", checkCode: "0.97 < normal_prob < 0.98 and abs(exponential_tail - 0.1353352832366127) < 1e-12", success: { zh: "完成：CDF 与生存函数分别表达左尾和右尾概率。", en: "Complete: the CDF and survival function express left- and right-tail probabilities." } },
-  { language: "python", prerequisites: ["confidence-interval"], id: "sample-size-planning", topicId: "confidence-interval", unit: "statistics", order: 18, eyebrow: { zh: "第十八课 · 样本量", en: "Lesson 18 · Sample size" }, title: { zh: "根据误差界限规划样本量", en: "Plan sample size from a margin of error" }, objective: { zh: "理解置信水平、标准差和误差界限如何影响样本量。", en: "Understand how confidence, spread, and margin of error affect sample size." }, explanation: { zh: "已知总体标准差时，均值区间的近似样本量为 z 临界值平方乘以方差，再除以误差界限平方。", en: "With known population spread, the approximate sample size is z squared times variance divided by margin squared." }, task: { zh: "按 95% 置信水平、σ=12、误差界限 3 保存 `required_n`。", en: "Save `required_n` for 95% confidence, sigma 12, and margin 3." }, concepts: ["sample size", "margin of error", "z critical"], packages: ["scipy"], starterCode: "from scipy import stats\\nimport math\\n\\nz = stats.norm.ppf(0.975)\\nrequired_n = ", hint: { zh: "使用 `math.ceil((z * 12 / 3) ** 2)`。", en: "Use `math.ceil((z * 12 / 3) ** 2)`." }, solution: "from scipy import stats\\nimport math\\nz = stats.norm.ppf(0.975)\\nrequired_n = math.ceil((z * 12 / 3) ** 2)", checkCode: "required_n == 62", success: { zh: "完成：精度要求越高，所需样本量越大。", en: "Complete: tighter precision requires a larger sample." } },
-  { language: "python", prerequisites: ["mean-confidence-interval"], id: "proportion-confidence-interval", topicId: "confidence-interval", unit: "statistics", order: 19, eyebrow: { zh: "第十九课 · 比例区间", en: "Lesson 19 · Proportion intervals" }, title: { zh: "构造总体比例的近似区间", en: "Construct an approximate proportion interval" }, objective: { zh: "用正态近似计算样本比例的标准误和置信区间。", en: "Use a normal approximation to calculate a proportion interval." }, explanation: { zh: "比例区间的标准误依赖样本比例和样本量；小样本时应考虑更稳健方法。", en: "The proportion standard error depends on the sample proportion and n; small samples need care." }, task: { zh: "保存 `lower` 和 `upper`。", en: "Save `lower` and `upper`." }, concepts: ["proportion", "standard error", "confidence interval"], packages: ["math", "scipy"], starterCode: "from scipy import stats\\nimport math\\n\\nsuccesses, n = 62, 100\\np_hat = successes / n\\nz = stats.norm.ppf(0.975)\\nse = math.sqrt(p_hat * (1 - p_hat) / n)\\nlower =\\nupper =", hint: { zh: "使用 `p_hat - z * se` 与 `p_hat + z * se`。", en: "Use `p_hat - z * se` and `p_hat + z * se`." }, solution: "from scipy import stats\\nimport math\\nsuccesses, n = 62, 100\\np_hat = successes / n\\nz = stats.norm.ppf(0.975)\\nse = math.sqrt(p_hat * (1 - p_hat) / n)\\nlower = p_hat - z * se\\nupper = p_hat + z * se", checkCode: "0 < lower < p_hat < upper < 1", success: { zh: "完成：比例区间的中心和不确定性均已计算。", en: "Complete: the centre and uncertainty of the proportion are calculated." } },
-  { language: "python", prerequisites: ["one-sample-t-test"], id: "z-tests", topicId: "hypothesis-testing", unit: "statistics", order: 20, eyebrow: { zh: "第二十课 · z 检验", en: "Lesson 20 · z tests" }, title: { zh: "完成单样本 z 检验", en: "Run a one-sample z test" }, objective: { zh: "用已知总体标准差计算 z 统计量和双尾 p 值。", en: "Compute a z statistic and two-sided p-value with known population spread." }, explanation: { zh: "z 检验假定总体标准差已知；未知时通常使用 t 检验。", en: "A z test assumes the population standard deviation is known; use a t test when it is estimated." }, task: { zh: "保存 `z_stat` 和 `p_value`。", en: "Save `z_stat` and `p_value`." }, concepts: ["z statistic", "p-value", "known sigma"], packages: ["scipy", "numpy"], starterCode: "import numpy as np\\nfrom scipy import stats\\n\\nsample_mean, mu0, sigma, n = 52, 50, 8, 25\\nz_stat =\\np_value =", hint: { zh: "先算 `(sample_mean - mu0) / (sigma / np.sqrt(n))`，再用 `2 * stats.norm.sf(abs(z_stat))`。", en: "Compute the z statistic, then use `2 * stats.norm.sf(abs(z_stat))`." }, solution: "import numpy as np\\nfrom scipy import stats\\nsample_mean, mu0, sigma, n = 52, 50, 8, 25\\nz_stat = (sample_mean - mu0) / (sigma / np.sqrt(n))\\np_value = 2 * stats.norm.sf(abs(z_stat))", checkCode: "abs(z_stat - 1.25) < 1e-12 and 0.2 < p_value < 0.22", success: { zh: "完成：z 统计量和 p 值已经分开解释。", en: "Complete: the z statistic and p-value are interpreted separately." } },
-  { language: "python", prerequisites: ["two-sample-tests"], id: "paired-test", topicId: "hypothesis-testing", unit: "statistics", order: 21, eyebrow: { zh: "第二十一课 · 配对检验", en: "Lesson 21 · Paired tests" }, title: { zh: "检验前后测量的变化", en: "Test change in paired measurements" }, objective: { zh: "用配对 t 检验分析同一对象的前后测量。", en: "Use a paired t test for before-after measurements on the same subjects." }, explanation: { zh: "配对检验首先利用个体内差值，减少基线差异造成的噪声。", en: "Paired tests use within-subject differences to reduce baseline noise." }, task: { zh: "保存 `change` 和检验结果 `test_result`。", en: "Save `change` and the test result." }, concepts: ["paired t-test", "scipy.stats.ttest_rel"], packages: ["numpy", "scipy"], starterCode: "import numpy as np\\nfrom scipy import stats\\n\\nbefore = np.array([68, 72, 75, 70, 66, 74])\\nafter = np.array([72, 75, 79, 73, 70, 78])\\nchange =\\ntest_result =", hint: { zh: "使用 `after - before` 和 `stats.ttest_rel(after, before)`。", en: "Use `after - before` and `stats.ttest_rel(after, before)`." }, solution: "import numpy as np\\nfrom scipy import stats\\nbefore = np.array([68, 72, 75, 70, 66, 74])\\nafter = np.array([72, 75, 79, 73, 70, 78])\\nchange = after - before\\ntest_result = stats.ttest_rel(after, before)", checkCode: "np.all(change > 0) and test_result.pvalue < 0.01", success: { zh: "完成：检验针对每个对象的前后差值。", en: "Complete: the test targets within-subject changes." } },
-  { language: "python", prerequisites: ["linear-regression"], id: "polynomial-regression", topicId: "linear-regression", unit: "statistics", order: 22, eyebrow: { zh: "第二十二课 · 多项式回归", en: "Lesson 22 · Polynomial regression" }, title: { zh: "拟合带曲率的回归关系", en: "Fit a curved regression relationship" }, objective: { zh: "用多项式特征表示非线性均值趋势。", en: "Represent a nonlinear mean trend with polynomial features." }, explanation: { zh: "多项式回归仍是线性参数模型，但需要检查外推和过拟合。", en: "Polynomial regression is linear in its parameters but needs checks for extrapolation and overfitting." }, task: { zh: "保存二次模型预测 `predicted` 和均方根误差 `rmse`。", en: "Save quadratic predictions and RMSE." }, concepts: ["polyfit", "polynomial regression", "RMSE"], packages: ["numpy"], starterCode: "import numpy as np\\n\\nx = np.arange(1, 8, dtype=float)\\ny = np.array([3, 5, 9, 15, 23, 33, 45], dtype=float)\\ncoefficients = np.polyfit(x, y, deg=2)\\npredicted =\\nrmse =", hint: { zh: "使用 `np.polyval(coefficients, x)`，再计算平方误差均值的平方根。", en: "Use `np.polyval(coefficients, x)` and take the square root of mean squared error." }, solution: "import numpy as np\\nx = np.arange(1, 8, dtype=float)\\ny = np.array([3, 5, 9, 15, 23, 33, 45], dtype=float)\\ncoefficients = np.polyfit(x, y, deg=2)\\npredicted = np.polyval(coefficients, x)\\nrmse = float(np.sqrt(np.mean((y - predicted) ** 2)))", checkCode: "len(coefficients) == 3 and predicted.shape == y.shape and rmse < 1", success: { zh: "完成：曲率和拟合误差都已量化。", en: "Complete: curvature and fit error are quantified." } },
-  { language: "python", prerequisites: ["chi-square-contingency"], id: "nonparametric-tests", topicId: "nonparametric-tests", unit: "statistics", order: 23, eyebrow: { zh: "第二十三课 · 非参数检验", en: "Lesson 23 · Nonparametric tests" }, title: { zh: "使用秩方法比较样本", en: "Compare samples with rank methods" }, objective: { zh: "在分布假设不合适时使用 Mann–Whitney 检验。", en: "Use a Mann–Whitney test when distributional assumptions are unsuitable." }, explanation: { zh: "秩检验比较分布位置或随机优势，不直接等同于均值差。", en: "Rank tests compare distribution location or stochastic dominance, not necessarily means." }, task: { zh: "保存检验结果 `rank_test`。", en: "Save the test result as `rank_test`." }, concepts: ["Mann-Whitney", "rank test", "nonparametric"], packages: ["numpy", "scipy"], starterCode: "import numpy as np\\nfrom scipy import stats\\n\\ngroup_a = np.array([12, 14, 15, 16, 18])\\ngroup_b = np.array([9, 10, 11, 13, 14])\\nrank_test =", hint: { zh: "使用 `stats.mannwhitneyu(group_a, group_b, alternative=\"greater\")`。", en: "Use `stats.mannwhitneyu(group_a, group_b, alternative=\"greater\")`." }, solution: "import numpy as np\\nfrom scipy import stats\\ngroup_a = np.array([12, 14, 15, 16, 18])\\ngroup_b = np.array([9, 10, 11, 13, 14])\\nrank_test = stats.mannwhitneyu(group_a, group_b, alternative=\"greater\")", checkCode: "rank_test.pvalue < 0.05", success: { zh: "完成：秩方法减少了对正态分布形状的依赖。", en: "Complete: the rank method relies less on normality." } },
-  { language: "python", prerequisites: ["correlation-test"], id: "spearman-correlation", topicId: "correlation", unit: "statistics", order: 24, eyebrow: { zh: "第二十四课 · Spearman 相关", en: "Lesson 24 · Spearman correlation" }, title: { zh: "用秩相关描述单调关系", en: "Describe a monotonic relationship with rank correlation" }, objective: { zh: "区分 Pearson 线性相关与 Spearman 秩相关。", en: "Distinguish Pearson linear correlation from Spearman rank correlation." }, explanation: { zh: "Spearman 相关衡量单调关系，对异常值和非线性形状的解释方式不同。", en: "Spearman correlation measures monotonic association and differs in sensitivity and interpretation." }, task: { zh: "保存 Spearman 结果 `spearman_result`。", en: "Save the Spearman result." }, concepts: ["spearmanr", "rank correlation", "monotonicity"], packages: ["scipy"], starterCode: "from scipy import stats\\n\\nx = [1, 2, 3, 4, 5, 6]\\ny = [2, 4, 3, 8, 10, 9]\\nspearman_result =", hint: { zh: "使用 `stats.spearmanr(x, y)`。", en: "Use `stats.spearmanr(x, y)`." }, solution: "from scipy import stats\\nx = [1, 2, 3, 4, 5, 6]\\ny = [2, 4, 3, 8, 10, 9]\\nspearman_result = stats.spearmanr(x, y)", checkCode: "0 < spearman_result.statistic <= 1 and spearman_result.pvalue < 0.1", success: { zh: "完成：秩相关与线性相关的含义已区分。", en: "Complete: rank and linear correlation are distinguished." } },
-  { language: "python", prerequisites: ["time-series-forecasting"], id: "forecast-error-metrics", topicId: "time-series", unit: "statistics", order: 25, eyebrow: { zh: "第二十五课 · 预测评价", en: "Lesson 25 · Forecast evaluation" }, title: { zh: "比较 MAE、RMSE 与 MAPE", en: "Compare MAE, RMSE, and MAPE" }, objective: { zh: "用多个误差指标评价预测质量，并注意零值问题。", en: "Evaluate forecasts with multiple error metrics and notice the zero-value issue." }, explanation: { zh: "MAE 易解释，RMSE 更惩罚大误差，MAPE 对接近零的真实值不稳定。", en: "MAE is interpretable, RMSE penalizes large errors, and MAPE is unstable near zero." }, task: { zh: "保存 `mae`、`rmse` 和 `mape`。", en: "Save `mae`, `rmse`, and `mape`." }, concepts: ["MAE", "RMSE", "MAPE"], packages: ["numpy"], starterCode: "import numpy as np\\n\\nactual = np.array([100, 110, 90, 120], dtype=float)\\npredicted = np.array([98, 114, 87, 125], dtype=float)\\nmae =\\nrmse =\\nmape =", hint: { zh: "分别计算绝对误差均值、平方误差均值开方和百分比绝对误差均值。", en: "Compute mean absolute error, root mean squared error, and mean absolute percentage error." }, solution: "import numpy as np\\nactual = np.array([100, 110, 90, 120], dtype=float)\\npredicted = np.array([98, 114, 87, 125], dtype=float)\\nmae = float(np.mean(np.abs(actual - predicted)))\\nrmse = float(np.sqrt(np.mean((actual - predicted) ** 2)))\\nmape = float(np.mean(np.abs((actual - predicted) / actual)))", checkCode: "0 < mae < rmse and 0 < mape < 0.1", success: { zh: "完成：不同误差指标的惩罚方式已经比较。", en: "Complete: the penalty patterns of several error metrics are compared." } },
-  { language: "python", prerequisites: ["probability-foundations"], id: "probability-events", topicId: "probability-foundations", unit: "statistics", order: 26, eyebrow: { zh: "第二十六课 · 条件概率", en: "Lesson 26 · Conditional probability" }, title: { zh: "用贝叶斯公式更新概率", en: "Update probabilities with Bayes' rule" }, objective: { zh: "区分联合概率、条件概率和后验概率。", en: "Distinguish joint, conditional, and posterior probabilities." }, explanation: { zh: "贝叶斯公式把先验信息与新证据结合。", en: "Bayes' rule combines prior information with evidence." }, task: { zh: "保存阳性检测后的后验概率。", en: "Save the posterior probability after a positive test." }, concepts: ["conditional probability", "Bayes rule"], packages: ["numpy"], starterCode: "prior = 0.01\\nsensitivity = 0.95\\nfalse_positive = 0.05\\nposterior = ", hint: { zh: "使用贝叶斯公式。", en: "Use Bayes' formula." }, solution: "prior = 0.01\\nsensitivity = 0.95\\nfalse_positive = 0.05\\nposterior = prior * sensitivity / (prior * sensitivity + (1 - prior) * false_positive)", checkCode: "0 < posterior < 1", success: { zh: "完成：后验概率同时受到患病率和检测性能影响。", en: "Complete: the posterior depends on prevalence and test performance." } },
-  { language: "python", prerequisites: ["probability-distributions"], id: "random-variable-summary", topicId: "random-variables", unit: "statistics", order: 27, eyebrow: { zh: "第二十七课 · 随机变量", en: "Lesson 27 · Random variables" }, title: { zh: "计算离散随机变量的期望与方差", en: "Calculate expectation and variance" }, objective: { zh: "用概率质量函数计算期望和方差。", en: "Calculate expectation and variance from a PMF." }, explanation: { zh: "期望是长期平均，方差衡量围绕期望的波动。", en: "Expectation is a long-run average; variance measures spread." }, task: { zh: "保存期望 `expected_value` 和方差 `variance_value`。", en: "Save expected value and variance." }, concepts: ["PMF", "expectation", "variance"], packages: ["numpy"], starterCode: "import numpy as np\\nvalues = np.array([0, 1, 2, 3])\\nprobabilities = np.array([0.1, 0.2, 0.4, 0.3])\\nexpected_value =\\nvariance_value =", hint: { zh: "使用 `np.sum(values * probabilities)`。", en: "Use weighted sums with NumPy." }, solution: "import numpy as np\\nvalues = np.array([0, 1, 2, 3])\\nprobabilities = np.array([0.1, 0.2, 0.4, 0.3])\\nexpected_value = np.sum(values * probabilities)\\nvariance_value = np.sum((values - expected_value) ** 2 * probabilities)", checkCode: "abs(expected_value - 1.9) < 1e-12 and abs(variance_value - 1.09) < 1e-12", success: { zh: "完成：期望和方差都由 PMF 加权得到。", en: "Complete: expectation and variance are weighted by the PMF." } },
-  { language: "python", prerequisites: ["t-distribution"], id: "t-distribution-quantiles", topicId: "t-distribution", unit: "statistics", order: 28, eyebrow: { zh: "第二十八课 · t 分布", en: "Lesson 28 · t distribution" }, title: { zh: "比较不同自由度的临界值", en: "Compare critical values across degrees of freedom" }, objective: { zh: "理解自由度如何影响 t 分布尾部。", en: "Understand how degrees of freedom affect t tails." }, explanation: { zh: "自由度越小，尾部越厚。", en: "Smaller degrees of freedom produce heavier tails." }, task: { zh: "保存两个自由度下的临界值。", en: "Save critical values for two degrees of freedom." }, concepts: ["stats.t.ppf", "degrees of freedom"], packages: ["scipy"], starterCode: "from scipy import stats\\n\\ncritical_df5 =\\ncritical_df50 =", hint: { zh: "使用 `stats.t.ppf(0.975, df)`。", en: "Use `stats.t.ppf(0.975, df)`." }, solution: "from scipy import stats\\ncritical_df5 = stats.t.ppf(0.975, df=5)\\ncritical_df50 = stats.t.ppf(0.975, df=50)", checkCode: "critical_df5 > critical_df50", success: { zh: "完成：自由度越大，t 分布越接近正态分布。", en: "Complete: larger degrees of freedom make t closer to normal." } },
-  { language: "python", prerequisites: ["sampling-simulation"], id: "sampling-distribution-sim", topicId: "sampling-distributions", unit: "statistics", order: 29, eyebrow: { zh: "第二十九课 · 抽样分布", en: "Lesson 29 · Sampling distributions" }, title: { zh: "模拟样本均值的标准误", en: "Simulate the standard error of a mean" }, objective: { zh: "区分样本量、重复抽样次数和样本均值的变异。", en: "Distinguish sample size, repetitions, and variation in sample means." }, explanation: { zh: "理论标准误是总体标准差除以样本量平方根。", en: "The theoretical standard error is population spread divided by sqrt(n)." }, task: { zh: "保存样本均值的标准差 `observed_se`。", en: "Save the standard deviation of sample means." }, concepts: ["sampling distribution", "standard error"], packages: ["numpy"], starterCode: "import numpy as np\\nrng = np.random.default_rng(42)\\nmeans = np.array([rng.normal(10, 4, 25).mean() for _ in range(1000)])\\nobserved_se =", hint: { zh: "使用 `means.std(ddof=1)`。", en: "Use `means.std(ddof=1)`." }, solution: "import numpy as np\\nrng = np.random.default_rng(42)\\nmeans = np.array([rng.normal(10, 4, 25).mean() for _ in range(1000)])\\nobserved_se = means.std(ddof=1)", checkCode: "len(means) == 1000 and 0.6 < observed_se < 1", success: { zh: "完成：观察标准误接近理论值 0.8。", en: "Complete: the observed standard error is close to 0.8." } },
-  { language: "python", prerequisites: ["one-way-anova"], id: "anova-posthoc", topicId: "anova", unit: "statistics", order: 30, eyebrow: { zh: "第三十课 · 多重比较", en: "Lesson 30 · Multiple comparisons" }, title: { zh: "在 ANOVA 后进行 Tukey 比较", en: "Run Tukey comparisons after ANOVA" }, objective: { zh: "理解整体检验与校正后的两两比较。", en: "Connect an overall test to adjusted pairwise comparisons." }, explanation: { zh: "多重比较需要控制整体错误率。", en: "Multiple comparisons require family-wise error control." }, task: { zh: "保存 Tukey 结果 `posthoc`。", en: "Save Tukey results as `posthoc`." }, concepts: ["Tukey HSD", "multiple comparisons"], packages: ["numpy", "statsmodels"], starterCode: "import numpy as np\\nfrom statsmodels.stats.multicomp import pairwise_tukeyhsd\\n\\nscores = np.array([70, 72, 71, 69, 76, 78, 75, 77, 82, 84, 83, 81])\\ngroups = np.repeat([\"A\", \"B\", \"C\"], 4)\\nposthoc =", hint: { zh: "使用 `pairwise_tukeyhsd(scores, groups)`。", en: "Use `pairwise_tukeyhsd(scores, groups)`." }, solution: "import numpy as np\\nfrom statsmodels.stats.multicomp import pairwise_tukeyhsd\\nscores = np.array([70, 72, 71, 69, 76, 78, 75, 77, 82, 84, 83, 81])\\ngroups = np.repeat([\"A\", \"B\", \"C\"], 4)\\nposthoc = pairwise_tukeyhsd(scores, groups)", checkCode: "hasattr(posthoc, 'summary')", success: { zh: "完成：整体 ANOVA 与校正后的两两比较已经连接。", en: "Complete: ANOVA is connected to adjusted pairwise comparisons." } },
-  { language: "python", prerequisites: ["chi-square-contingency"], id: "chi-square-goodness-fit", topicId: "chi-square-test", unit: "statistics", order: 31, eyebrow: { zh: "第三十一课 · 拟合优度", en: "Lesson 31 · Goodness of fit" }, title: { zh: "检验频数是否符合理论比例", en: "Test frequencies against theoretical proportions" }, objective: { zh: "使用卡方拟合优度检验比较观察和期望频数。", en: "Use a chi-square goodness-of-fit test." }, explanation: { zh: "原假设给出各类别的理论比例。", en: "The null hypothesis specifies theoretical category proportions." }, task: { zh: "保存检验结果 `gof_result`。", en: "Save `gof_result`." }, concepts: ["chisquare", "goodness of fit"], packages: ["numpy", "scipy"], starterCode: "import numpy as np\\nfrom scipy import stats\\n\\nobserved = np.array([28, 34, 38])\\nexpected = np.array([1/3, 1/3, 1/3])\\ngof_result =", hint: { zh: "使用 `stats chisquare(f_obs=observed, f_exp=observed.sum() * expected)`。", en: "Use `stats chisquare` with expected counts." }, solution: "import numpy as np\\nfrom scipy import stats\\nobserved = np.array([28, 34, 38])\\nexpected = np.array([1/3, 1/3, 1/3])\\ngof_result = stats.chisquare(f_obs=observed, f_exp=observed.sum() * expected)", checkCode: "gof_result.pvalue > 0", success: { zh: "完成：观察频数已经与理论比例比较。", en: "Complete: observed counts are compared with expected counts." } },
+  {
+    language: "python",
+    prerequisites: ["lists-and-mean"],
+    id: "environment-and-notebooks",
+    topicId: "statistics-foundations",
+    unit: "foundations",
+    order: 15,
+    eyebrow: { zh: "第十五课 · Python 环境", en: "Lesson 15 · Python environments" },
+    title: { zh: "记录可复现的分析环境", en: "Record a reproducible analysis environment" },
+    objective: {
+      zh: "理解 Notebook、脚本和依赖包的作用。",
+      en: "Understand notebooks, scripts, and package dependencies.",
+    },
+    explanation: {
+      zh: "可复现分析需要记录代码、数据处理步骤和运行环境。",
+      en: "Reproducible analysis records code, data steps, and the runtime environment.",
+    },
+    task: {
+      zh: "保存 Python 版本字符串 `python_version`。",
+      en: "Save the Python version string as `python_version`.",
+    },
+    concepts: ["Jupyter", "script", "version"],
+    packages: ["sys"],
+    starterCode: "import sys\\n\\npython_version = ",
+    hint: { zh: "使用 `sys.version`。", en: "Use `sys.version`." },
+    solution: "import sys\\npython_version = sys.version",
+    checkCode: "isinstance(python_version, str) and len(python_version) > 0",
+    success: { zh: "完成：运行环境已记录。", en: "Complete: the runtime environment is recorded." },
+  },
+  {
+    language: "python",
+    prerequisites: ["probability-foundations"],
+    id: "conditional-probability-bayes",
+    topicId: "probability-foundations",
+    unit: "statistics",
+    order: 16,
+    eyebrow: { zh: "第十六课 · 条件概率", en: "Lesson 16 · Conditional probability" },
+    title: { zh: "用全概率和贝叶斯公式更新概率", en: "Update probabilities with Bayes' rule" },
+    objective: {
+      zh: "区分联合概率、条件概率和后验概率。",
+      en: "Distinguish joint, conditional, and posterior probabilities.",
+    },
+    explanation: {
+      zh: "贝叶斯公式把先验信息与新证据结合，得到后验概率。",
+      en: "Bayes' rule combines prior information with evidence to obtain a posterior probability.",
+    },
+    task: {
+      zh: "计算检测阳性后的患病概率 `posterior`。",
+      en: "Compute the disease probability after a positive test as `posterior`.",
+    },
+    concepts: ["conditional probability", "Bayes rule"],
+    packages: ["numpy"],
+    starterCode: "prior = 0.01\\nsensitivity = 0.95\\nfalse_positive = 0.05\\nposterior = ",
+    hint: {
+      zh: "使用 `prior * sensitivity / (prior * sensitivity + (1 - prior) * false_positive)`。",
+      en: "Use Bayes' formula with the prior, sensitivity, and false-positive rate.",
+    },
+    solution:
+      "prior = 0.01\\nsensitivity = 0.95\\nfalse_positive = 0.05\\nposterior = prior * sensitivity / (prior * sensitivity + (1 - prior) * false_positive)",
+    checkCode: "0 < posterior < 1 and abs(posterior - 0.16101694915254236) < 1e-12",
+    success: {
+      zh: "完成：后验概率不是单独由灵敏度决定的。",
+      en: "Complete: the posterior depends on prevalence as well as sensitivity.",
+    },
+  },
+  {
+    language: "python",
+    prerequisites: ["distribution-probabilities"],
+    id: "normal-uniform-exponential",
+    topicId: "probability-distributions",
+    unit: "statistics",
+    order: 17,
+    eyebrow: { zh: "第十七课 · 连续分布", en: "Lesson 17 · Continuous distributions" },
+    title: {
+      zh: "比较正态、均匀与指数分布",
+      en: "Compare normal, uniform, and exponential distributions",
+    },
+    objective: {
+      zh: "使用 SciPy 的 CDF 计算不同连续分布下的概率。",
+      en: "Use SciPy CDFs to calculate probabilities under continuous distributions.",
+    },
+    explanation: {
+      zh: "分布选择应由机制和数据形状共同决定。",
+      en: "Distribution choice should reflect both mechanism and observed shape.",
+    },
+    task: {
+      zh: "保存正态左尾概率 `normal_prob` 和指数尾概率 `exponential_tail`。",
+      en: "Save a normal left-tail probability and exponential tail probability.",
+    },
+    concepts: ["norm.cdf", "expon.sf", "continuous distributions"],
+    packages: ["scipy"],
+    starterCode:
+      "from scipy import stats\\n\\nnormal_prob = stats.norm.cdf(1.96)\\nexponential_tail = ",
+    hint: { zh: "使用 `stats.expon.sf(2, scale=1)`。", en: "Use `stats.expon.sf(2, scale=1)`." },
+    solution:
+      "from scipy import stats\\nnormal_prob = stats.norm.cdf(1.96)\\nexponential_tail = stats.expon.sf(2, scale=1)",
+    checkCode: "0.97 < normal_prob < 0.98 and abs(exponential_tail - 0.1353352832366127) < 1e-12",
+    success: {
+      zh: "完成：CDF 与生存函数分别表达左尾和右尾概率。",
+      en: "Complete: the CDF and survival function express left- and right-tail probabilities.",
+    },
+  },
+  {
+    language: "python",
+    prerequisites: ["confidence-interval"],
+    id: "sample-size-planning",
+    topicId: "confidence-interval",
+    unit: "statistics",
+    order: 18,
+    eyebrow: { zh: "第十八课 · 样本量", en: "Lesson 18 · Sample size" },
+    title: { zh: "根据误差界限规划样本量", en: "Plan sample size from a margin of error" },
+    objective: {
+      zh: "理解置信水平、标准差和误差界限如何影响样本量。",
+      en: "Understand how confidence, spread, and margin of error affect sample size.",
+    },
+    explanation: {
+      zh: "已知总体标准差时，均值区间的近似样本量为 z 临界值平方乘以方差，再除以误差界限平方。",
+      en: "With known population spread, the approximate sample size is z squared times variance divided by margin squared.",
+    },
+    task: {
+      zh: "按 95% 置信水平、σ=12、误差界限 3 保存 `required_n`。",
+      en: "Save `required_n` for 95% confidence, sigma 12, and margin 3.",
+    },
+    concepts: ["sample size", "margin of error", "z critical"],
+    packages: ["scipy"],
+    starterCode:
+      "from scipy import stats\\nimport math\\n\\nz = stats.norm.ppf(0.975)\\nrequired_n = ",
+    hint: {
+      zh: "使用 `math.ceil((z * 12 / 3) ** 2)`。",
+      en: "Use `math.ceil((z * 12 / 3) ** 2)`.",
+    },
+    solution:
+      "from scipy import stats\\nimport math\\nz = stats.norm.ppf(0.975)\\nrequired_n = math.ceil((z * 12 / 3) ** 2)",
+    checkCode: "required_n == 62",
+    success: {
+      zh: "完成：精度要求越高，所需样本量越大。",
+      en: "Complete: tighter precision requires a larger sample.",
+    },
+  },
+  {
+    language: "python",
+    prerequisites: ["mean-confidence-interval"],
+    id: "proportion-confidence-interval",
+    topicId: "confidence-interval",
+    unit: "statistics",
+    order: 19,
+    eyebrow: { zh: "第十九课 · 比例区间", en: "Lesson 19 · Proportion intervals" },
+    title: { zh: "构造总体比例的近似区间", en: "Construct an approximate proportion interval" },
+    objective: {
+      zh: "用正态近似计算样本比例的标准误和置信区间。",
+      en: "Use a normal approximation to calculate a proportion interval.",
+    },
+    explanation: {
+      zh: "比例区间的标准误依赖样本比例和样本量；小样本时应考虑更稳健方法。",
+      en: "The proportion standard error depends on the sample proportion and n; small samples need care.",
+    },
+    task: { zh: "保存 `lower` 和 `upper`。", en: "Save `lower` and `upper`." },
+    concepts: ["proportion", "standard error", "confidence interval"],
+    packages: ["math", "scipy"],
+    starterCode:
+      "from scipy import stats\\nimport math\\n\\nsuccesses, n = 62, 100\\np_hat = successes / n\\nz = stats.norm.ppf(0.975)\\nse = math.sqrt(p_hat * (1 - p_hat) / n)\\nlower =\\nupper =",
+    hint: {
+      zh: "使用 `p_hat - z * se` 与 `p_hat + z * se`。",
+      en: "Use `p_hat - z * se` and `p_hat + z * se`.",
+    },
+    solution:
+      "from scipy import stats\\nimport math\\nsuccesses, n = 62, 100\\np_hat = successes / n\\nz = stats.norm.ppf(0.975)\\nse = math.sqrt(p_hat * (1 - p_hat) / n)\\nlower = p_hat - z * se\\nupper = p_hat + z * se",
+    checkCode: "0 < lower < p_hat < upper < 1",
+    success: {
+      zh: "完成：比例区间的中心和不确定性均已计算。",
+      en: "Complete: the centre and uncertainty of the proportion are calculated.",
+    },
+  },
+  {
+    language: "python",
+    prerequisites: ["one-sample-t-test"],
+    id: "z-tests",
+    topicId: "hypothesis-testing",
+    unit: "statistics",
+    order: 20,
+    eyebrow: { zh: "第二十课 · z 检验", en: "Lesson 20 · z tests" },
+    title: { zh: "完成单样本 z 检验", en: "Run a one-sample z test" },
+    objective: {
+      zh: "用已知总体标准差计算 z 统计量和双尾 p 值。",
+      en: "Compute a z statistic and two-sided p-value with known population spread.",
+    },
+    explanation: {
+      zh: "z 检验假定总体标准差已知；未知时通常使用 t 检验。",
+      en: "A z test assumes the population standard deviation is known; use a t test when it is estimated.",
+    },
+    task: { zh: "保存 `z_stat` 和 `p_value`。", en: "Save `z_stat` and `p_value`." },
+    concepts: ["z statistic", "p-value", "known sigma"],
+    packages: ["scipy", "numpy"],
+    starterCode:
+      "import numpy as np\\nfrom scipy import stats\\n\\nsample_mean, mu0, sigma, n = 52, 50, 8, 25\\nz_stat =\\np_value =",
+    hint: {
+      zh: "先算 `(sample_mean - mu0) / (sigma / np.sqrt(n))`，再用 `2 * stats.norm.sf(abs(z_stat))`。",
+      en: "Compute the z statistic, then use `2 * stats.norm.sf(abs(z_stat))`.",
+    },
+    solution:
+      "import numpy as np\\nfrom scipy import stats\\nsample_mean, mu0, sigma, n = 52, 50, 8, 25\\nz_stat = (sample_mean - mu0) / (sigma / np.sqrt(n))\\np_value = 2 * stats.norm.sf(abs(z_stat))",
+    checkCode: "abs(z_stat - 1.25) < 1e-12 and 0.2 < p_value < 0.22",
+    success: {
+      zh: "完成：z 统计量和 p 值已经分开解释。",
+      en: "Complete: the z statistic and p-value are interpreted separately.",
+    },
+  },
+  {
+    language: "python",
+    prerequisites: ["two-sample-tests"],
+    id: "paired-test",
+    topicId: "hypothesis-testing",
+    unit: "statistics",
+    order: 21,
+    eyebrow: { zh: "第二十一课 · 配对检验", en: "Lesson 21 · Paired tests" },
+    title: { zh: "检验前后测量的变化", en: "Test change in paired measurements" },
+    objective: {
+      zh: "用配对 t 检验分析同一对象的前后测量。",
+      en: "Use a paired t test for before-after measurements on the same subjects.",
+    },
+    explanation: {
+      zh: "配对检验首先利用个体内差值，减少基线差异造成的噪声。",
+      en: "Paired tests use within-subject differences to reduce baseline noise.",
+    },
+    task: {
+      zh: "保存 `change` 和检验结果 `test_result`。",
+      en: "Save `change` and the test result.",
+    },
+    concepts: ["paired t-test", "scipy.stats.ttest_rel"],
+    packages: ["numpy", "scipy"],
+    starterCode:
+      "import numpy as np\\nfrom scipy import stats\\n\\nbefore = np.array([68, 72, 75, 70, 66, 74])\\nafter = np.array([72, 75, 79, 73, 70, 78])\\nchange =\\ntest_result =",
+    hint: {
+      zh: "使用 `after - before` 和 `stats.ttest_rel(after, before)`。",
+      en: "Use `after - before` and `stats.ttest_rel(after, before)`.",
+    },
+    solution:
+      "import numpy as np\\nfrom scipy import stats\\nbefore = np.array([68, 72, 75, 70, 66, 74])\\nafter = np.array([72, 75, 79, 73, 70, 78])\\nchange = after - before\\ntest_result = stats.ttest_rel(after, before)",
+    checkCode: "np.all(change > 0) and test_result.pvalue < 0.01",
+    success: {
+      zh: "完成：检验针对每个对象的前后差值。",
+      en: "Complete: the test targets within-subject changes.",
+    },
+  },
+  {
+    language: "python",
+    prerequisites: ["linear-regression"],
+    id: "polynomial-regression",
+    topicId: "linear-regression",
+    unit: "statistics",
+    order: 22,
+    eyebrow: { zh: "第二十二课 · 多项式回归", en: "Lesson 22 · Polynomial regression" },
+    title: { zh: "拟合带曲率的回归关系", en: "Fit a curved regression relationship" },
+    objective: {
+      zh: "用多项式特征表示非线性均值趋势。",
+      en: "Represent a nonlinear mean trend with polynomial features.",
+    },
+    explanation: {
+      zh: "多项式回归仍是线性参数模型，但需要检查外推和过拟合。",
+      en: "Polynomial regression is linear in its parameters but needs checks for extrapolation and overfitting.",
+    },
+    task: {
+      zh: "保存二次模型预测 `predicted` 和均方根误差 `rmse`。",
+      en: "Save quadratic predictions and RMSE.",
+    },
+    concepts: ["polyfit", "polynomial regression", "RMSE"],
+    packages: ["numpy"],
+    starterCode:
+      "import numpy as np\\n\\nx = np.arange(1, 8, dtype=float)\\ny = np.array([3, 5, 9, 15, 23, 33, 45], dtype=float)\\ncoefficients = np.polyfit(x, y, deg=2)\\npredicted =\\nrmse =",
+    hint: {
+      zh: "使用 `np.polyval(coefficients, x)`，再计算平方误差均值的平方根。",
+      en: "Use `np.polyval(coefficients, x)` and take the square root of mean squared error.",
+    },
+    solution:
+      "import numpy as np\\nx = np.arange(1, 8, dtype=float)\\ny = np.array([3, 5, 9, 15, 23, 33, 45], dtype=float)\\ncoefficients = np.polyfit(x, y, deg=2)\\npredicted = np.polyval(coefficients, x)\\nrmse = float(np.sqrt(np.mean((y - predicted) ** 2)))",
+    checkCode: "len(coefficients) == 3 and predicted.shape == y.shape and rmse < 1",
+    success: {
+      zh: "完成：曲率和拟合误差都已量化。",
+      en: "Complete: curvature and fit error are quantified.",
+    },
+  },
+  {
+    language: "python",
+    prerequisites: ["chi-square-contingency"],
+    id: "nonparametric-tests",
+    topicId: "nonparametric-tests",
+    unit: "statistics",
+    order: 23,
+    eyebrow: { zh: "第二十三课 · 非参数检验", en: "Lesson 23 · Nonparametric tests" },
+    title: { zh: "使用秩方法比较样本", en: "Compare samples with rank methods" },
+    objective: {
+      zh: "在分布假设不合适时使用 Mann–Whitney 检验。",
+      en: "Use a Mann–Whitney test when distributional assumptions are unsuitable.",
+    },
+    explanation: {
+      zh: "秩检验比较分布位置或随机优势，不直接等同于均值差。",
+      en: "Rank tests compare distribution location or stochastic dominance, not necessarily means.",
+    },
+    task: { zh: "保存检验结果 `rank_test`。", en: "Save the test result as `rank_test`." },
+    concepts: ["Mann-Whitney", "rank test", "nonparametric"],
+    packages: ["numpy", "scipy"],
+    starterCode:
+      "import numpy as np\\nfrom scipy import stats\\n\\ngroup_a = np.array([12, 14, 15, 16, 18])\\ngroup_b = np.array([9, 10, 11, 13, 14])\\nrank_test =",
+    hint: {
+      zh: '使用 `stats.mannwhitneyu(group_a, group_b, alternative="greater")`。',
+      en: 'Use `stats.mannwhitneyu(group_a, group_b, alternative="greater")`.',
+    },
+    solution:
+      'import numpy as np\\nfrom scipy import stats\\ngroup_a = np.array([12, 14, 15, 16, 18])\\ngroup_b = np.array([9, 10, 11, 13, 14])\\nrank_test = stats.mannwhitneyu(group_a, group_b, alternative="greater")',
+    checkCode: "rank_test.pvalue < 0.05",
+    success: {
+      zh: "完成：秩方法减少了对正态分布形状的依赖。",
+      en: "Complete: the rank method relies less on normality.",
+    },
+  },
+  {
+    language: "python",
+    prerequisites: ["correlation-test"],
+    id: "spearman-correlation",
+    topicId: "correlation",
+    unit: "statistics",
+    order: 24,
+    eyebrow: { zh: "第二十四课 · Spearman 相关", en: "Lesson 24 · Spearman correlation" },
+    title: {
+      zh: "用秩相关描述单调关系",
+      en: "Describe a monotonic relationship with rank correlation",
+    },
+    objective: {
+      zh: "区分 Pearson 线性相关与 Spearman 秩相关。",
+      en: "Distinguish Pearson linear correlation from Spearman rank correlation.",
+    },
+    explanation: {
+      zh: "Spearman 相关衡量单调关系，对异常值和非线性形状的解释方式不同。",
+      en: "Spearman correlation measures monotonic association and differs in sensitivity and interpretation.",
+    },
+    task: { zh: "保存 Spearman 结果 `spearman_result`。", en: "Save the Spearman result." },
+    concepts: ["spearmanr", "rank correlation", "monotonicity"],
+    packages: ["scipy"],
+    starterCode:
+      "from scipy import stats\\n\\nx = [1, 2, 3, 4, 5, 6]\\ny = [2, 4, 3, 8, 10, 9]\\nspearman_result =",
+    hint: { zh: "使用 `stats.spearmanr(x, y)`。", en: "Use `stats.spearmanr(x, y)`." },
+    solution:
+      "from scipy import stats\\nx = [1, 2, 3, 4, 5, 6]\\ny = [2, 4, 3, 8, 10, 9]\\nspearman_result = stats.spearmanr(x, y)",
+    checkCode: "0 < spearman_result.statistic <= 1 and spearman_result.pvalue < 0.1",
+    success: {
+      zh: "完成：秩相关与线性相关的含义已区分。",
+      en: "Complete: rank and linear correlation are distinguished.",
+    },
+  },
+  {
+    language: "python",
+    prerequisites: ["time-series-forecasting"],
+    id: "forecast-error-metrics",
+    topicId: "time-series",
+    unit: "statistics",
+    order: 25,
+    eyebrow: { zh: "第二十五课 · 预测评价", en: "Lesson 25 · Forecast evaluation" },
+    title: { zh: "比较 MAE、RMSE 与 MAPE", en: "Compare MAE, RMSE, and MAPE" },
+    objective: {
+      zh: "用多个误差指标评价预测质量，并注意零值问题。",
+      en: "Evaluate forecasts with multiple error metrics and notice the zero-value issue.",
+    },
+    explanation: {
+      zh: "MAE 易解释，RMSE 更惩罚大误差，MAPE 对接近零的真实值不稳定。",
+      en: "MAE is interpretable, RMSE penalizes large errors, and MAPE is unstable near zero.",
+    },
+    task: { zh: "保存 `mae`、`rmse` 和 `mape`。", en: "Save `mae`, `rmse`, and `mape`." },
+    concepts: ["MAE", "RMSE", "MAPE"],
+    packages: ["numpy"],
+    starterCode:
+      "import numpy as np\\n\\nactual = np.array([100, 110, 90, 120], dtype=float)\\npredicted = np.array([98, 114, 87, 125], dtype=float)\\nmae =\\nrmse =\\nmape =",
+    hint: {
+      zh: "分别计算绝对误差均值、平方误差均值开方和百分比绝对误差均值。",
+      en: "Compute mean absolute error, root mean squared error, and mean absolute percentage error.",
+    },
+    solution:
+      "import numpy as np\\nactual = np.array([100, 110, 90, 120], dtype=float)\\npredicted = np.array([98, 114, 87, 125], dtype=float)\\nmae = float(np.mean(np.abs(actual - predicted)))\\nrmse = float(np.sqrt(np.mean((actual - predicted) ** 2)))\\nmape = float(np.mean(np.abs((actual - predicted) / actual)))",
+    checkCode: "0 < mae < rmse and 0 < mape < 0.1",
+    success: {
+      zh: "完成：不同误差指标的惩罚方式已经比较。",
+      en: "Complete: the penalty patterns of several error metrics are compared.",
+    },
+  },
+  {
+    language: "python",
+    prerequisites: ["probability-foundations"],
+    id: "probability-events",
+    topicId: "probability-foundations",
+    unit: "statistics",
+    order: 26,
+    eyebrow: { zh: "第二十六课 · 条件概率", en: "Lesson 26 · Conditional probability" },
+    title: { zh: "用贝叶斯公式更新概率", en: "Update probabilities with Bayes' rule" },
+    objective: {
+      zh: "区分联合概率、条件概率和后验概率。",
+      en: "Distinguish joint, conditional, and posterior probabilities.",
+    },
+    explanation: {
+      zh: "贝叶斯公式把先验信息与新证据结合。",
+      en: "Bayes' rule combines prior information with evidence.",
+    },
+    task: {
+      zh: "保存阳性检测后的后验概率。",
+      en: "Save the posterior probability after a positive test.",
+    },
+    concepts: ["conditional probability", "Bayes rule"],
+    packages: ["numpy"],
+    starterCode: "prior = 0.01\\nsensitivity = 0.95\\nfalse_positive = 0.05\\nposterior = ",
+    hint: { zh: "使用贝叶斯公式。", en: "Use Bayes' formula." },
+    solution:
+      "prior = 0.01\\nsensitivity = 0.95\\nfalse_positive = 0.05\\nposterior = prior * sensitivity / (prior * sensitivity + (1 - prior) * false_positive)",
+    checkCode: "0 < posterior < 1",
+    success: {
+      zh: "完成：后验概率同时受到患病率和检测性能影响。",
+      en: "Complete: the posterior depends on prevalence and test performance.",
+    },
+  },
+  {
+    language: "python",
+    prerequisites: ["probability-distributions"],
+    id: "random-variable-summary",
+    topicId: "random-variables",
+    unit: "statistics",
+    order: 27,
+    eyebrow: { zh: "第二十七课 · 随机变量", en: "Lesson 27 · Random variables" },
+    title: { zh: "计算离散随机变量的期望与方差", en: "Calculate expectation and variance" },
+    objective: {
+      zh: "用概率质量函数计算期望和方差。",
+      en: "Calculate expectation and variance from a PMF.",
+    },
+    explanation: {
+      zh: "期望是长期平均，方差衡量围绕期望的波动。",
+      en: "Expectation is a long-run average; variance measures spread.",
+    },
+    task: {
+      zh: "保存期望 `expected_value` 和方差 `variance_value`。",
+      en: "Save expected value and variance.",
+    },
+    concepts: ["PMF", "expectation", "variance"],
+    packages: ["numpy"],
+    starterCode:
+      "import numpy as np\\nvalues = np.array([0, 1, 2, 3])\\nprobabilities = np.array([0.1, 0.2, 0.4, 0.3])\\nexpected_value =\\nvariance_value =",
+    hint: { zh: "使用 `np.sum(values * probabilities)`。", en: "Use weighted sums with NumPy." },
+    solution:
+      "import numpy as np\\nvalues = np.array([0, 1, 2, 3])\\nprobabilities = np.array([0.1, 0.2, 0.4, 0.3])\\nexpected_value = np.sum(values * probabilities)\\nvariance_value = np.sum((values - expected_value) ** 2 * probabilities)",
+    checkCode: "abs(expected_value - 1.9) < 1e-12 and abs(variance_value - 1.09) < 1e-12",
+    success: {
+      zh: "完成：期望和方差都由 PMF 加权得到。",
+      en: "Complete: expectation and variance are weighted by the PMF.",
+    },
+  },
+  {
+    language: "python",
+    prerequisites: ["t-distribution"],
+    id: "t-distribution-quantiles",
+    topicId: "t-distribution",
+    unit: "statistics",
+    order: 28,
+    eyebrow: { zh: "第二十八课 · t 分布", en: "Lesson 28 · t distribution" },
+    title: {
+      zh: "比较不同自由度的临界值",
+      en: "Compare critical values across degrees of freedom",
+    },
+    objective: {
+      zh: "理解自由度如何影响 t 分布尾部。",
+      en: "Understand how degrees of freedom affect t tails.",
+    },
+    explanation: {
+      zh: "自由度越小，尾部越厚。",
+      en: "Smaller degrees of freedom produce heavier tails.",
+    },
+    task: {
+      zh: "保存两个自由度下的临界值。",
+      en: "Save critical values for two degrees of freedom.",
+    },
+    concepts: ["stats.t.ppf", "degrees of freedom"],
+    packages: ["scipy"],
+    starterCode: "from scipy import stats\\n\\ncritical_df5 =\\ncritical_df50 =",
+    hint: { zh: "使用 `stats.t.ppf(0.975, df)`。", en: "Use `stats.t.ppf(0.975, df)`." },
+    solution:
+      "from scipy import stats\\ncritical_df5 = stats.t.ppf(0.975, df=5)\\ncritical_df50 = stats.t.ppf(0.975, df=50)",
+    checkCode: "critical_df5 > critical_df50",
+    success: {
+      zh: "完成：自由度越大，t 分布越接近正态分布。",
+      en: "Complete: larger degrees of freedom make t closer to normal.",
+    },
+  },
+  {
+    language: "python",
+    prerequisites: ["sampling-simulation"],
+    id: "sampling-distribution-sim",
+    topicId: "sampling-distributions",
+    unit: "statistics",
+    order: 29,
+    eyebrow: { zh: "第二十九课 · 抽样分布", en: "Lesson 29 · Sampling distributions" },
+    title: { zh: "模拟样本均值的标准误", en: "Simulate the standard error of a mean" },
+    objective: {
+      zh: "区分样本量、重复抽样次数和样本均值的变异。",
+      en: "Distinguish sample size, repetitions, and variation in sample means.",
+    },
+    explanation: {
+      zh: "理论标准误是总体标准差除以样本量平方根。",
+      en: "The theoretical standard error is population spread divided by sqrt(n).",
+    },
+    task: {
+      zh: "保存样本均值的标准差 `observed_se`。",
+      en: "Save the standard deviation of sample means.",
+    },
+    concepts: ["sampling distribution", "standard error"],
+    packages: ["numpy"],
+    starterCode:
+      "import numpy as np\\nrng = np.random.default_rng(42)\\nmeans = np.array([rng.normal(10, 4, 25).mean() for _ in range(1000)])\\nobserved_se =",
+    hint: { zh: "使用 `means.std(ddof=1)`。", en: "Use `means.std(ddof=1)`." },
+    solution:
+      "import numpy as np\\nrng = np.random.default_rng(42)\\nmeans = np.array([rng.normal(10, 4, 25).mean() for _ in range(1000)])\\nobserved_se = means.std(ddof=1)",
+    checkCode: "len(means) == 1000 and 0.6 < observed_se < 1",
+    success: {
+      zh: "完成：观察标准误接近理论值 0.8。",
+      en: "Complete: the observed standard error is close to 0.8.",
+    },
+  },
+  {
+    language: "python",
+    prerequisites: ["one-way-anova"],
+    id: "anova-posthoc",
+    topicId: "anova",
+    unit: "statistics",
+    order: 30,
+    eyebrow: { zh: "第三十课 · 多重比较", en: "Lesson 30 · Multiple comparisons" },
+    title: { zh: "在 ANOVA 后进行 Tukey 比较", en: "Run Tukey comparisons after ANOVA" },
+    objective: {
+      zh: "理解整体检验与校正后的两两比较。",
+      en: "Connect an overall test to adjusted pairwise comparisons.",
+    },
+    explanation: {
+      zh: "多重比较需要控制整体错误率。",
+      en: "Multiple comparisons require family-wise error control.",
+    },
+    task: { zh: "保存 Tukey 结果 `posthoc`。", en: "Save Tukey results as `posthoc`." },
+    concepts: ["Tukey HSD", "multiple comparisons"],
+    packages: ["numpy", "statsmodels"],
+    starterCode:
+      'import numpy as np\\nfrom statsmodels.stats.multicomp import pairwise_tukeyhsd\\n\\nscores = np.array([70, 72, 71, 69, 76, 78, 75, 77, 82, 84, 83, 81])\\ngroups = np.repeat(["A", "B", "C"], 4)\\nposthoc =',
+    hint: {
+      zh: "使用 `pairwise_tukeyhsd(scores, groups)`。",
+      en: "Use `pairwise_tukeyhsd(scores, groups)`.",
+    },
+    solution:
+      'import numpy as np\\nfrom statsmodels.stats.multicomp import pairwise_tukeyhsd\\nscores = np.array([70, 72, 71, 69, 76, 78, 75, 77, 82, 84, 83, 81])\\ngroups = np.repeat(["A", "B", "C"], 4)\\nposthoc = pairwise_tukeyhsd(scores, groups)',
+    checkCode: "hasattr(posthoc, 'summary')",
+    success: {
+      zh: "完成：整体 ANOVA 与校正后的两两比较已经连接。",
+      en: "Complete: ANOVA is connected to adjusted pairwise comparisons.",
+    },
+  },
+  {
+    language: "python",
+    prerequisites: ["chi-square-contingency"],
+    id: "chi-square-goodness-fit",
+    topicId: "chi-square-test",
+    unit: "statistics",
+    order: 31,
+    eyebrow: { zh: "第三十一课 · 拟合优度", en: "Lesson 31 · Goodness of fit" },
+    title: {
+      zh: "检验频数是否符合理论比例",
+      en: "Test frequencies against theoretical proportions",
+    },
+    objective: {
+      zh: "使用卡方拟合优度检验比较观察和期望频数。",
+      en: "Use a chi-square goodness-of-fit test.",
+    },
+    explanation: {
+      zh: "原假设给出各类别的理论比例。",
+      en: "The null hypothesis specifies theoretical category proportions.",
+    },
+    task: { zh: "保存检验结果 `gof_result`。", en: "Save `gof_result`." },
+    concepts: ["chisquare", "goodness of fit"],
+    packages: ["numpy", "scipy"],
+    starterCode:
+      "import numpy as np\\nfrom scipy import stats\\n\\nobserved = np.array([28, 34, 38])\\nexpected = np.array([1/3, 1/3, 1/3])\\ngof_result =",
+    hint: {
+      zh: "使用 `stats chisquare(f_obs=observed, f_exp=observed.sum() * expected)`。",
+      en: "Use `stats chisquare` with expected counts.",
+    },
+    solution:
+      "import numpy as np\\nfrom scipy import stats\\nobserved = np.array([28, 34, 38])\\nexpected = np.array([1/3, 1/3, 1/3])\\ngof_result = stats.chisquare(f_obs=observed, f_exp=observed.sum() * expected)",
+    checkCode: "gof_result.pvalue > 0",
+    success: {
+      zh: "完成：观察频数已经与理论比例比较。",
+      en: "Complete: observed counts are compared with expected counts.",
+    },
+  },
   {
     language: "python",
     prerequisites: ["pandas-filter-summary"],
@@ -758,9 +1443,18 @@ print(mae)`,
     order: 32,
     eyebrow: { zh: "第三十二课 · 抽样设计", en: "Lesson 32 · Sampling designs" },
     title: { zh: "比较简单随机抽样与分层抽样", en: "Compare simple and stratified sampling" },
-    objective: { zh: "使用随机数生成器实施可复现的概率抽样。", en: "Use a random generator to implement reproducible probability samples." },
-    explanation: { zh: "简单随机抽样让每个个体有相同入样机会；分层抽样先按重要群体分层，再在层内随机抽取。", en: "Simple random sampling gives each unit an equal chance; stratified sampling draws randomly within important groups." },
-    task: { zh: "从100个个体中抽取20个简单随机样本，并从A、B两层各抽取10个个体。", en: "Draw a simple random sample of 20 and a stratified sample with 10 units from each stratum." },
+    objective: {
+      zh: "使用随机数生成器实施可复现的概率抽样。",
+      en: "Use a random generator to implement reproducible probability samples.",
+    },
+    explanation: {
+      zh: "简单随机抽样让每个个体有相同入样机会；分层抽样先按重要群体分层，再在层内随机抽取。",
+      en: "Simple random sampling gives each unit an equal chance; stratified sampling draws randomly within important groups.",
+    },
+    task: {
+      zh: "从100个个体中抽取20个简单随机样本，并从A、B两层各抽取10个个体。",
+      en: "Draw a simple random sample of 20 and a stratified sample with 10 units from each stratum.",
+    },
     concepts: ["simple random sampling", "stratified sampling", "reproducibility"],
     packages: ["numpy"],
     starterCode: `import numpy as np
@@ -776,7 +1470,10 @@ stratified_sample =
 
 print(simple_sample)
 print(stratified_sample)`,
-    hint: { zh: "使用 `rng.choice(population, size=20, replace=False)`，再用 `np.concatenate([sample_a, sample_b])`。", en: "Use `rng.choice(..., replace=False)` and concatenate the two stratum samples." },
+    hint: {
+      zh: "使用 `rng.choice(population, size=20, replace=False)`，再用 `np.concatenate([sample_a, sample_b])`。",
+      en: "Use `rng.choice(..., replace=False)` and concatenate the two stratum samples.",
+    },
     solution: `import numpy as np
 rng = np.random.default_rng(42)
 population = np.arange(1, 101)
@@ -786,7 +1483,10 @@ sample_a = rng.choice(population[strata == "A"], size=10, replace=False)
 sample_b = rng.choice(population[strata == "B"], size=10, replace=False)
 stratified_sample = np.concatenate([sample_a, sample_b])`,
     checkCode: `len(simple_sample) == 20 and len(np.unique(simple_sample)) == 20 and len(stratified_sample) == 20 and np.sum(stratified_sample <= 60) == 10 and np.sum(stratified_sample > 60) == 10`,
-    success: { zh: "完成：两种抽样设计均可复现，且分层样本保持了层别配额。", en: "Complete: both samples are reproducible and the stratified sample preserves its quotas." },
+    success: {
+      zh: "完成：两种抽样设计均可复现，且分层样本保持了层别配额。",
+      en: "Complete: both samples are reproducible and the stratified sample preserves its quotas.",
+    },
   },
   {
     language: "python",
@@ -797,21 +1497,36 @@ stratified_sample = np.concatenate([sample_a, sample_b])`,
     order: 33,
     eyebrow: { zh: "第三十三课 · 图表选择", en: "Lesson 33 · Chart selection" },
     title: { zh: "根据变量类型选择统计图", en: "Choose a chart from variable types" },
-    objective: { zh: "区分分类分布、数值分布、变量关系和时间变化四类图形任务。", en: "Distinguish charts for categories, distributions, relationships, and time." },
-    explanation: { zh: "图形由统计问题和变量类型决定，而不是由软件默认样式决定。", en: "A chart should follow the statistical question and variable types, not a software default." },
-    task: { zh: "为分类频数、单个数值变量和两个数值变量分别保存合适的图表名称。", en: "Save suitable chart names for category counts, one numeric variable, and two numeric variables." },
+    objective: {
+      zh: "区分分类分布、数值分布、变量关系和时间变化四类图形任务。",
+      en: "Distinguish charts for categories, distributions, relationships, and time.",
+    },
+    explanation: {
+      zh: "图形由统计问题和变量类型决定，而不是由软件默认样式决定。",
+      en: "A chart should follow the statistical question and variable types, not a software default.",
+    },
+    task: {
+      zh: "为分类频数、单个数值变量和两个数值变量分别保存合适的图表名称。",
+      en: "Save suitable chart names for category counts, one numeric variable, and two numeric variables.",
+    },
     concepts: ["bar chart", "histogram", "scatter plot", "line chart"],
     starterCode: `chart_for_categories =
 chart_for_numeric_distribution =
 chart_for_two_numeric_variables =
 
 print(chart_for_categories, chart_for_numeric_distribution, chart_for_two_numeric_variables)`,
-    hint: { zh: "依次使用 `bar`、`histogram` 和 `scatter`。", en: "Use `bar`, `histogram`, and `scatter`, respectively." },
+    hint: {
+      zh: "依次使用 `bar`、`histogram` 和 `scatter`。",
+      en: "Use `bar`, `histogram`, and `scatter`, respectively.",
+    },
     solution: `chart_for_categories = "bar"
 chart_for_numeric_distribution = "histogram"
 chart_for_two_numeric_variables = "scatter"`,
     checkCode: `chart_for_categories == "bar" and chart_for_numeric_distribution == "histogram" and chart_for_two_numeric_variables == "scatter"`,
-    success: { zh: "完成：图表类型与变量结构正确匹配。", en: "Complete: the chart types match the variable structures." },
+    success: {
+      zh: "完成：图表类型与变量结构正确匹配。",
+      en: "Complete: the chart types match the variable structures.",
+    },
   },
   {
     language: "python",
@@ -822,9 +1537,18 @@ chart_for_two_numeric_variables = "scatter"`,
     order: 34,
     eyebrow: { zh: "第三十四课 · 分组图形", en: "Lesson 34 · Grouped graphics" },
     title: { zh: "绘制分组均值条形图", en: "Plot grouped means" },
-    objective: { zh: "用 pandas 分组汇总，并用 Matplotlib 准确呈现比较。", en: "Summarize groups with pandas and present the comparison with Matplotlib." },
-    explanation: { zh: "先明确统计量，再绘图，能够避免把原始频数与组均值混为一谈。", en: "Computing the statistic before plotting avoids confusing raw counts with group means." },
-    task: { zh: "按学习方式计算平均成绩并绘制条形图。", en: "Calculate mean score by learning method and draw a bar chart." },
+    objective: {
+      zh: "用 pandas 分组汇总，并用 Matplotlib 准确呈现比较。",
+      en: "Summarize groups with pandas and present the comparison with Matplotlib.",
+    },
+    explanation: {
+      zh: "先明确统计量，再绘图，能够避免把原始频数与组均值混为一谈。",
+      en: "Computing the statistic before plotting avoids confusing raw counts with group means.",
+    },
+    task: {
+      zh: "按学习方式计算平均成绩并绘制条形图。",
+      en: "Calculate mean score by learning method and draw a bar chart.",
+    },
     concepts: ["groupby()", "mean()", "bar chart"],
     packages: ["pandas", "matplotlib"],
     starterCode: `import pandas as pd
@@ -839,7 +1563,10 @@ fig, ax = plt.subplots(figsize=(6, 4))
 
 ax.set_ylabel("Mean score")
 plt.show()`,
-    hint: { zh: '使用 `data.groupby("method")["score"].mean()`，再调用 `mean_table.plot.bar(ax=ax)`。', en: "Group by method, take the score mean, then call `mean_table.plot.bar(ax=ax)`." },
+    hint: {
+      zh: '使用 `data.groupby("method")["score"].mean()`，再调用 `mean_table.plot.bar(ax=ax)`。',
+      en: "Group by method, take the score mean, then call `mean_table.plot.bar(ax=ax)`.",
+    },
     solution: `import pandas as pd
 import matplotlib.pyplot as plt
 data = pd.DataFrame({"method": ["video", "video", "text", "text", "video", "text"], "score": [78, 84, 72, 76, 81, 79]})
@@ -849,7 +1576,10 @@ mean_table.plot.bar(ax=ax, color="#2f7d70")
 ax.set_ylabel("Mean score")
 plt.show()`,
     checkCode: `set(mean_table.index) == {"text", "video"} and abs(float(mean_table["video"]) - 81.0) < 1e-12 and len(ax.patches) == 2`,
-    success: { zh: "完成：分组统计量和图形编码一致。", en: "Complete: the grouped statistic and graphic agree." },
+    success: {
+      zh: "完成：分组统计量和图形编码一致。",
+      en: "Complete: the grouped statistic and graphic agree.",
+    },
   },
   {
     language: "python",
@@ -860,9 +1590,18 @@ plt.show()`,
     order: 35,
     eyebrow: { zh: "第三十五课 · 百分位数", en: "Lesson 35 · Percentiles" },
     title: { zh: "用四分位距识别离群值", en: "Identify outliers with the IQR rule" },
-    objective: { zh: "计算四分位数、四分位距和1.5IQR离群值边界。", en: "Calculate quartiles, the IQR, and 1.5-IQR outlier fences." },
-    explanation: { zh: "离群值规则是一种诊断工具，不等于自动删除数据的命令。", en: "An outlier rule is a diagnostic, not an instruction to delete observations automatically." },
-    task: { zh: "保存Q1、Q3、IQR以及识别出的离群值。", en: "Save Q1, Q3, the IQR, and the detected outliers." },
+    objective: {
+      zh: "计算四分位数、四分位距和1.5IQR离群值边界。",
+      en: "Calculate quartiles, the IQR, and 1.5-IQR outlier fences.",
+    },
+    explanation: {
+      zh: "离群值规则是一种诊断工具，不等于自动删除数据的命令。",
+      en: "An outlier rule is a diagnostic, not an instruction to delete observations automatically.",
+    },
+    task: {
+      zh: "保存Q1、Q3、IQR以及识别出的离群值。",
+      en: "Save Q1, Q3, the IQR, and the detected outliers.",
+    },
     concepts: ["percentile", "IQR", "outlier"],
     packages: ["numpy"],
     starterCode: `import numpy as np
@@ -875,7 +1614,10 @@ upper_fence = q3 + 1.5 * iqr
 outliers =
 
 print(outliers)`,
-    hint: { zh: "使用 `np.percentile(scores, [25, 75])`，再用布尔条件筛选边界之外的值。", en: "Use `np.percentile(scores, [25, 75])` and filter values beyond the fences." },
+    hint: {
+      zh: "使用 `np.percentile(scores, [25, 75])`，再用布尔条件筛选边界之外的值。",
+      en: "Use `np.percentile(scores, [25, 75])` and filter values beyond the fences.",
+    },
     solution: `import numpy as np
 scores = np.array([62, 68, 71, 73, 75, 77, 80, 82, 85, 100])
 q1, q3 = np.percentile(scores, [25, 75])
@@ -884,7 +1626,10 @@ lower_fence = q1 - 1.5 * iqr
 upper_fence = q3 + 1.5 * iqr
 outliers = scores[(scores < lower_fence) | (scores > upper_fence)]`,
     checkCode: `q1 < q3 and iqr == q3 - q1 and np.array_equal(outliers, np.array([100]))`,
-    success: { zh: "完成：离群值已按明确规则标记，但没有被自动删除。", en: "Complete: the outlier is flagged by a stated rule without being deleted." },
+    success: {
+      zh: "完成：离群值已按明确规则标记，但没有被自动删除。",
+      en: "Complete: the outlier is flagged by a stated rule without being deleted.",
+    },
   },
   {
     language: "python",
@@ -895,9 +1640,18 @@ outliers = scores[(scores < lower_fence) | (scores > upper_fence)]`,
     order: 36,
     eyebrow: { zh: "第三十六课 · 加权平均", en: "Lesson 36 · Weighted means" },
     title: { zh: "按交易量计算加权均价", en: "Calculate a volume-weighted mean" },
-    objective: { zh: "区分简单平均与按样本规模加权的平均。", en: "Distinguish an unweighted mean from a size-weighted mean." },
-    explanation: { zh: "当各组代表的观测数量不同，简单平均可能不能代表所有个体的总体水平。", en: "When groups represent different numbers of observations, an unweighted mean may not describe the overall level." },
-    task: { zh: "分别保存简单均价和按成交量加权的均价。", en: "Save the simple and transaction-volume-weighted mean prices." },
+    objective: {
+      zh: "区分简单平均与按样本规模加权的平均。",
+      en: "Distinguish an unweighted mean from a size-weighted mean.",
+    },
+    explanation: {
+      zh: "当各组代表的观测数量不同，简单平均可能不能代表所有个体的总体水平。",
+      en: "When groups represent different numbers of observations, an unweighted mean may not describe the overall level.",
+    },
+    task: {
+      zh: "分别保存简单均价和按成交量加权的均价。",
+      en: "Save the simple and transaction-volume-weighted mean prices.",
+    },
     concepts: ["weighted mean", "np.average", "weights"],
     packages: ["numpy"],
     starterCode: `import numpy as np
@@ -908,14 +1662,20 @@ simple_mean =
 weighted_mean =
 
 print(simple_mean, weighted_mean)`,
-    hint: { zh: "简单平均使用 `prices.mean()`；加权平均使用 `np.average(prices, weights=transactions)`。", en: "Use `prices.mean()` and `np.average(prices, weights=transactions)`." },
+    hint: {
+      zh: "简单平均使用 `prices.mean()`；加权平均使用 `np.average(prices, weights=transactions)`。",
+      en: "Use `prices.mean()` and `np.average(prices, weights=transactions)`.",
+    },
     solution: `import numpy as np
 prices = np.array([5200, 6100, 7800, 9000], dtype=float)
 transactions = np.array([500, 420, 180, 80], dtype=float)
 simple_mean = prices.mean()
 weighted_mean = np.average(prices, weights=transactions)`,
     checkCode: `abs(simple_mean - 7025) < 1e-12 and 5000 < weighted_mean < simple_mean`,
-    success: { zh: "完成：权重改变了“总体平均”的统计口径。", en: "Complete: weighting changes the meaning of the overall average." },
+    success: {
+      zh: "完成：权重改变了“总体平均”的统计口径。",
+      en: "Complete: weighting changes the meaning of the overall average.",
+    },
   },
   {
     language: "python",
@@ -925,10 +1685,22 @@ weighted_mean = np.average(prices, weights=transactions)`,
     unit: "statistics",
     order: 37,
     eyebrow: { zh: "第三十七课 · 离散分布", en: "Lesson 37 · Discrete distributions" },
-    title: { zh: "比较二项、几何与泊松模型", en: "Compare binomial, geometric, and Poisson models" },
-    objective: { zh: "根据随机机制选择离散分布并计算尾概率。", en: "Choose a discrete model from its mechanism and calculate tail probabilities." },
-    explanation: { zh: "二项分布描述固定次数中的成功数，几何分布描述首次成功前的等待，泊松分布描述单位区间的事件数。", en: "Binomial models successes in fixed trials, geometric models waiting to first success, and Poisson models event counts in an interval." },
-    task: { zh: "分别计算14次中至少13次成功、20次仍未成功以及一年至少发生一次事故的概率。", en: "Calculate three probabilities under binomial, geometric, and Poisson mechanisms." },
+    title: {
+      zh: "比较二项、几何与泊松模型",
+      en: "Compare binomial, geometric, and Poisson models",
+    },
+    objective: {
+      zh: "根据随机机制选择离散分布并计算尾概率。",
+      en: "Choose a discrete model from its mechanism and calculate tail probabilities.",
+    },
+    explanation: {
+      zh: "二项分布描述固定次数中的成功数，几何分布描述首次成功前的等待，泊松分布描述单位区间的事件数。",
+      en: "Binomial models successes in fixed trials, geometric models waiting to first success, and Poisson models event counts in an interval.",
+    },
+    task: {
+      zh: "分别计算14次中至少13次成功、20次仍未成功以及一年至少发生一次事故的概率。",
+      en: "Calculate three probabilities under binomial, geometric, and Poisson mechanisms.",
+    },
     concepts: ["binomial", "geometric", "Poisson", "survival function"],
     packages: ["scipy"],
     starterCode: `from scipy import stats
@@ -938,13 +1710,19 @@ geometric_tail =
 poisson_at_least_one =
 
 print(binomial_tail, geometric_tail, poisson_at_least_one)`,
-    hint: { zh: "使用 `stats.binom.sf(12, 14, 0.5)`、`stats.geom.sf(20, 0.09)` 和 `stats.poisson.sf(0, 1.45)`。", en: "Use the survival functions of binomial, geometric, and Poisson distributions." },
+    hint: {
+      zh: "使用 `stats.binom.sf(12, 14, 0.5)`、`stats.geom.sf(20, 0.09)` 和 `stats.poisson.sf(0, 1.45)`。",
+      en: "Use the survival functions of binomial, geometric, and Poisson distributions.",
+    },
     solution: `from scipy import stats
 binomial_tail = stats.binom.sf(12, 14, 0.5)
 geometric_tail = stats.geom.sf(20, 0.09)
 poisson_at_least_one = stats.poisson.sf(0, 1.45)`,
     checkCode: `0 < binomial_tail < 0.01 and 0 < geometric_tail < 0.2 and 0.7 < poisson_at_least_one < 0.8`,
-    success: { zh: "完成：三种分布已经按不同随机机制使用。", en: "Complete: all three distributions are used for their distinct mechanisms." },
+    success: {
+      zh: "完成：三种分布已经按不同随机机制使用。",
+      en: "Complete: all three distributions are used for their distinct mechanisms.",
+    },
   },
   {
     language: "python",
@@ -955,9 +1733,18 @@ poisson_at_least_one = stats.poisson.sf(0, 1.45)`,
     order: 38,
     eyebrow: { zh: "第三十八课 · 正态性诊断", en: "Lesson 38 · Normality diagnostics" },
     title: { zh: "用Q-Q图检查正态性", en: "Inspect normality with a Q-Q plot" },
-    objective: { zh: "绘制Q-Q图，并把图形证据与相关系数结合解释。", en: "Draw a Q-Q plot and combine visual evidence with its correlation." },
-    explanation: { zh: "点接近参考直线支持正态近似；偏离可能来自偏态、重尾或离群值。图形诊断不应成为任意删数据的理由。", en: "Points near the line support a normal approximation; departures may reflect skew, heavy tails, or outliers." },
-    task: { zh: "绘制给定样本的正态Q-Q图并保存拟合相关系数。", en: "Draw a normal Q-Q plot and save its fitted correlation." },
+    objective: {
+      zh: "绘制Q-Q图，并把图形证据与相关系数结合解释。",
+      en: "Draw a Q-Q plot and combine visual evidence with its correlation.",
+    },
+    explanation: {
+      zh: "点接近参考直线支持正态近似；偏离可能来自偏态、重尾或离群值。图形诊断不应成为任意删数据的理由。",
+      en: "Points near the line support a normal approximation; departures may reflect skew, heavy tails, or outliers.",
+    },
+    task: {
+      zh: "绘制给定样本的正态Q-Q图并保存拟合相关系数。",
+      en: "Draw a normal Q-Q plot and save its fitted correlation.",
+    },
     concepts: ["Q-Q plot", "probplot", "normality"],
     packages: ["numpy", "scipy", "matplotlib"],
     starterCode: `import numpy as np
@@ -970,7 +1757,10 @@ fig, ax = plt.subplots(figsize=(6, 4))
 qq_result =
 qq_correlation =
 plt.show()`,
-    hint: { zh: '使用 `stats.probplot(sample, dist="norm", plot=ax)`，相关系数位于返回值第二部分的第三项。', en: "Use `stats.probplot(..., plot=ax)`; the correlation is the third item of the fitted tuple." },
+    hint: {
+      zh: '使用 `stats.probplot(sample, dist="norm", plot=ax)`，相关系数位于返回值第二部分的第三项。',
+      en: "Use `stats.probplot(..., plot=ax)`; the correlation is the third item of the fitted tuple.",
+    },
     solution: `import numpy as np
 from scipy import stats
 import matplotlib.pyplot as plt
@@ -981,7 +1771,10 @@ qq_result = stats.probplot(sample, dist="norm", plot=ax)
 qq_correlation = float(qq_result[1][2])
 plt.show()`,
     checkCode: `len(qq_result) == 2 and 0.97 < qq_correlation <= 1 and len(ax.lines) >= 2`,
-    success: { zh: "完成：Q-Q图和拟合指标共同支持正态性判断。", en: "Complete: the Q-Q plot and fitted measure jointly inform the normality assessment." },
+    success: {
+      zh: "完成：Q-Q图和拟合指标共同支持正态性判断。",
+      en: "Complete: the Q-Q plot and fitted measure jointly inform the normality assessment.",
+    },
   },
   {
     language: "python",
@@ -992,9 +1785,18 @@ plt.show()`,
     order: 39,
     eyebrow: { zh: "第三十九课 · 符号秩检验", en: "Lesson 39 · Signed-rank test" },
     title: { zh: "比较配对样本的秩差", en: "Compare paired samples by signed ranks" },
-    objective: { zh: "在配对差值不适合正态假设时使用Wilcoxon符号秩检验。", en: "Use the Wilcoxon signed-rank test when paired differences are not suitably normal." },
-    explanation: { zh: "该检验利用差值的方向和秩，而不是直接检验均值差。", en: "The test uses signs and ranks of differences rather than directly testing a mean difference." },
-    task: { zh: "保存培训前后成绩的Wilcoxon检验结果。", en: "Save the Wilcoxon result for paired before-after scores." },
+    objective: {
+      zh: "在配对差值不适合正态假设时使用Wilcoxon符号秩检验。",
+      en: "Use the Wilcoxon signed-rank test when paired differences are not suitably normal.",
+    },
+    explanation: {
+      zh: "该检验利用差值的方向和秩，而不是直接检验均值差。",
+      en: "The test uses signs and ranks of differences rather than directly testing a mean difference.",
+    },
+    task: {
+      zh: "保存培训前后成绩的Wilcoxon检验结果。",
+      en: "Save the Wilcoxon result for paired before-after scores.",
+    },
     concepts: ["Wilcoxon signed-rank", "paired data", "ranks"],
     packages: ["numpy", "scipy"],
     starterCode: `import numpy as np
@@ -1005,14 +1807,20 @@ after = np.array([66, 72, 73, 78, 69, 75, 74, 80])
 signed_rank_result =
 
 print(signed_rank_result)`,
-    hint: { zh: '使用 `stats.wilcoxon(after, before, alternative="greater")`。', en: 'Use `stats.wilcoxon(after, before, alternative="greater")`.' },
+    hint: {
+      zh: '使用 `stats.wilcoxon(after, before, alternative="greater")`。',
+      en: 'Use `stats.wilcoxon(after, before, alternative="greater")`.',
+    },
     solution: `import numpy as np
 from scipy import stats
 before = np.array([61, 70, 68, 75, 64, 72, 69, 77])
 after = np.array([66, 72, 73, 78, 69, 75, 74, 80])
 signed_rank_result = stats.wilcoxon(after, before, alternative="greater")`,
     checkCode: `hasattr(signed_rank_result, "statistic") and signed_rank_result.pvalue < 0.05`,
-    success: { zh: "完成：配对变化已用符号秩而不是均值差评价。", en: "Complete: paired change is assessed through signed ranks rather than a mean difference." },
+    success: {
+      zh: "完成：配对变化已用符号秩而不是均值差评价。",
+      en: "Complete: paired change is assessed through signed ranks rather than a mean difference.",
+    },
   },
   {
     language: "python",
@@ -1023,9 +1831,18 @@ signed_rank_result = stats.wilcoxon(after, before, alternative="greater")`,
     order: 40,
     eyebrow: { zh: "第四十课 · 多组秩检验", en: "Lesson 40 · Multi-group rank test" },
     title: { zh: "用Kruskal-Wallis检验比较多组", en: "Compare groups with Kruskal-Wallis" },
-    objective: { zh: "在单因素ANOVA假设不合适时比较三个独立组。", en: "Compare three independent groups when one-way ANOVA assumptions are unsuitable." },
-    explanation: { zh: "显著结果说明至少一组分布位置不同，但仍需事后比较确定具体组别。", en: "A significant result indicates at least one group differs and still requires post-hoc comparisons." },
-    task: { zh: "保存三个影院满意度的Kruskal-Wallis检验结果。", en: "Save the Kruskal-Wallis result for three cinema ratings." },
+    objective: {
+      zh: "在单因素ANOVA假设不合适时比较三个独立组。",
+      en: "Compare three independent groups when one-way ANOVA assumptions are unsuitable.",
+    },
+    explanation: {
+      zh: "显著结果说明至少一组分布位置不同，但仍需事后比较确定具体组别。",
+      en: "A significant result indicates at least one group differs and still requires post-hoc comparisons.",
+    },
+    task: {
+      zh: "保存三个影院满意度的Kruskal-Wallis检验结果。",
+      en: "Save the Kruskal-Wallis result for three cinema ratings.",
+    },
     concepts: ["Kruskal-Wallis", "independent groups", "rank test"],
     packages: ["scipy"],
     starterCode: `from scipy import stats
@@ -1036,14 +1853,20 @@ cinema_c = [4, 5, 5, 4, 5, 5]
 kruskal_result =
 
 print(kruskal_result)`,
-    hint: { zh: "使用 `stats.kruskal(cinema_a, cinema_b, cinema_c)`。", en: "Use `stats.kruskal(cinema_a, cinema_b, cinema_c)`." },
+    hint: {
+      zh: "使用 `stats.kruskal(cinema_a, cinema_b, cinema_c)`。",
+      en: "Use `stats.kruskal(cinema_a, cinema_b, cinema_c)`.",
+    },
     solution: `from scipy import stats
 cinema_a = [3, 4, 4, 5, 3, 4]
 cinema_b = [2, 2, 3, 3, 2, 4]
 cinema_c = [4, 5, 5, 4, 5, 5]
 kruskal_result = stats.kruskal(cinema_a, cinema_b, cinema_c)`,
     checkCode: `kruskal_result.statistic > 0 and kruskal_result.pvalue < 0.05`,
-    success: { zh: "完成：多组差异已用秩方法进行整体检验。", en: "Complete: the overall multi-group difference is assessed with ranks." },
+    success: {
+      zh: "完成：多组差异已用秩方法进行整体检验。",
+      en: "Complete: the overall multi-group difference is assessed with ranks.",
+    },
   },
   {
     language: "python",
@@ -1054,9 +1877,18 @@ kruskal_result = stats.kruskal(cinema_a, cinema_b, cinema_c)`,
     order: 41,
     eyebrow: { zh: "第四十一课 · 序列分解", en: "Lesson 41 · Time-series decomposition" },
     title: { zh: "分离趋势与季节性", en: "Separate trend and seasonality" },
-    objective: { zh: "使用移动平均估计趋势，并计算季度季节指数。", en: "Estimate trend with a moving average and calculate quarterly seasonal indices." },
-    explanation: { zh: "分解帮助区分长期变化和重复季节模式；解释结果前应确认季节周期。", en: "Decomposition separates long-run change from repeating seasonal patterns after the period is justified." },
-    task: { zh: "计算四期中心移动平均和四个季度的平均季节指数。", en: "Calculate a centered four-period moving average and four average seasonal indices." },
+    objective: {
+      zh: "使用移动平均估计趋势，并计算季度季节指数。",
+      en: "Estimate trend with a moving average and calculate quarterly seasonal indices.",
+    },
+    explanation: {
+      zh: "分解帮助区分长期变化和重复季节模式；解释结果前应确认季节周期。",
+      en: "Decomposition separates long-run change from repeating seasonal patterns after the period is justified.",
+    },
+    task: {
+      zh: "计算四期中心移动平均和四个季度的平均季节指数。",
+      en: "Calculate a centered four-period moving average and four average seasonal indices.",
+    },
     concepts: ["trend", "seasonality", "moving average", "decomposition"],
     packages: ["numpy", "pandas"],
     starterCode: `import numpy as np
@@ -1068,7 +1900,10 @@ quarter_means = sales.reshape(-1, 4).mean(axis=0)
 seasonal_index =
 
 print(seasonal_index)`,
-    hint: { zh: "趋势使用 `pd.Series(sales).rolling(4, center=True).mean()`；季节指数用季度均值除以所有季度均值的平均。", en: "Use a centered rolling mean; divide quarter means by their overall mean for seasonal indices." },
+    hint: {
+      zh: "趋势使用 `pd.Series(sales).rolling(4, center=True).mean()`；季节指数用季度均值除以所有季度均值的平均。",
+      en: "Use a centered rolling mean; divide quarter means by their overall mean for seasonal indices.",
+    },
     solution: `import numpy as np
 import pandas as pd
 sales = np.array([120, 90, 60, 130, 132, 96, 66, 143, 144, 105, 72, 156], dtype=float)
@@ -1076,7 +1911,10 @@ trend = pd.Series(sales).rolling(4, center=True).mean()
 quarter_means = sales.reshape(-1, 4).mean(axis=0)
 seasonal_index = quarter_means / quarter_means.mean()`,
     checkCode: `len(trend) == len(sales) and np.isnan(trend.iloc[0]) and seasonal_index.shape == (4,) and abs(float(seasonal_index.mean()) - 1) < 1e-12`,
-    success: { zh: "完成：趋势与季度季节模式已分别估计。", en: "Complete: trend and quarterly seasonal patterns are estimated separately." },
+    success: {
+      zh: "完成：趋势与季度季节模式已分别估计。",
+      en: "Complete: trend and quarterly seasonal patterns are estimated separately.",
+    },
   },
   {
     language: "python",
@@ -1087,9 +1925,18 @@ seasonal_index = quarter_means / quarter_means.mean()`,
     order: 42,
     eyebrow: { zh: "第四十二课 · 指数平滑", en: "Lesson 42 · Exponential smoothing" },
     title: { zh: "比较不同平滑参数", en: "Compare smoothing parameters" },
-    objective: { zh: "实现简单指数平滑，并用MSE选择平滑参数。", en: "Implement simple exponential smoothing and compare alpha values with MSE." },
-    explanation: { zh: "较大的alpha更重视最新观测，较小的alpha产生更平滑但反应更慢的预测。", en: "A larger alpha emphasizes recent observations; a smaller alpha is smoother but slower to react." },
-    task: { zh: "完成平滑函数，并比较alpha为0.3和0.5时的MSE。", en: "Complete the smoother and compare MSE for alpha 0.3 and 0.5." },
+    objective: {
+      zh: "实现简单指数平滑，并用MSE选择平滑参数。",
+      en: "Implement simple exponential smoothing and compare alpha values with MSE.",
+    },
+    explanation: {
+      zh: "较大的alpha更重视最新观测，较小的alpha产生更平滑但反应更慢的预测。",
+      en: "A larger alpha emphasizes recent observations; a smaller alpha is smoother but slower to react.",
+    },
+    task: {
+      zh: "完成平滑函数，并比较alpha为0.3和0.5时的MSE。",
+      en: "Complete the smoother and compare MSE for alpha 0.3 and 0.5.",
+    },
     concepts: ["exponential smoothing", "alpha", "MSE"],
     packages: ["numpy"],
     starterCode: `import numpy as np
@@ -1107,7 +1954,10 @@ forecast_03 = smooth(sales, 0.3)
 forecast_05 = smooth(sales, 0.5)
 mse_03 =
 mse_05 =`,
-    hint: { zh: "新预测为 `alpha * value + (1 - alpha) * forecasts[-1]`；MSE是实际值与预测值平方误差的平均。", en: "Update with alpha times the observation plus one minus alpha times the previous forecast, then average squared errors." },
+    hint: {
+      zh: "新预测为 `alpha * value + (1 - alpha) * forecasts[-1]`；MSE是实际值与预测值平方误差的平均。",
+      en: "Update with alpha times the observation plus one minus alpha times the previous forecast, then average squared errors.",
+    },
     solution: `import numpy as np
 sales = np.array([3.2, 4.8, 2.9, 6.1, 5.4, 7.0, 6.5], dtype=float)
 def smooth(values, alpha):
@@ -1120,7 +1970,10 @@ forecast_05 = smooth(sales, 0.5)
 mse_03 = float(np.mean((sales - forecast_03) ** 2))
 mse_05 = float(np.mean((sales - forecast_05) ** 2))`,
     checkCode: `len(forecast_03) == len(sales) and len(forecast_05) == len(sales) and mse_03 > 0 and mse_05 > 0 and mse_03 != mse_05`,
-    success: { zh: "完成：平滑参数已经用同一误差标准比较。", en: "Complete: the smoothing parameters are compared with a common error metric." },
+    success: {
+      zh: "完成：平滑参数已经用同一误差标准比较。",
+      en: "Complete: the smoothing parameters are compared with a common error metric.",
+    },
   },
   {
     language: "python",
@@ -1131,9 +1984,18 @@ mse_05 = float(np.mean((sales - forecast_05) ** 2))`,
     order: 43,
     eyebrow: { zh: "第四十三课 · 模型选择", en: "Lesson 43 · Model comparison" },
     title: { zh: "比较线性与二次回归", en: "Compare linear and quadratic regression" },
-    objective: { zh: "使用训练误差比较模型，同时识别复杂模型的过拟合风险。", en: "Compare models with fitting error while recognizing the overfitting risk of complexity." },
-    explanation: { zh: "训练误差降低不自动证明模型更好；最终还应使用留出数据、残差和业务解释进行评价。", en: "Lower training error does not automatically mean a better model; held-out data, residuals, and context are also needed." },
-    task: { zh: "分别拟合一次与二次多项式，并保存两个RMSE。", en: "Fit degree-one and degree-two polynomials and save both RMSE values." },
+    objective: {
+      zh: "使用训练误差比较模型，同时识别复杂模型的过拟合风险。",
+      en: "Compare models with fitting error while recognizing the overfitting risk of complexity.",
+    },
+    explanation: {
+      zh: "训练误差降低不自动证明模型更好；最终还应使用留出数据、残差和业务解释进行评价。",
+      en: "Lower training error does not automatically mean a better model; held-out data, residuals, and context are also needed.",
+    },
+    task: {
+      zh: "分别拟合一次与二次多项式，并保存两个RMSE。",
+      en: "Fit degree-one and degree-two polynomials and save both RMSE values.",
+    },
     concepts: ["model comparison", "RMSE", "overfitting"],
     packages: ["numpy"],
     starterCode: `import numpy as np
@@ -1146,7 +2008,10 @@ linear_rmse =
 quadratic_rmse =
 
 print(linear_rmse, quadratic_rmse)`,
-    hint: { zh: "对每组预测计算 `np.sqrt(np.mean((y - prediction) ** 2))`。", en: "Calculate the square root of mean squared residuals for each prediction." },
+    hint: {
+      zh: "对每组预测计算 `np.sqrt(np.mean((y - prediction) ** 2))`。",
+      en: "Calculate the square root of mean squared residuals for each prediction.",
+    },
     solution: `import numpy as np
 x = np.arange(1, 9, dtype=float)
 y = np.array([4, 6, 9, 13, 18, 25, 33, 42], dtype=float)
@@ -1155,7 +2020,10 @@ quadratic_fit = np.polyval(np.polyfit(x, y, 2), x)
 linear_rmse = float(np.sqrt(np.mean((y - linear_fit) ** 2)))
 quadratic_rmse = float(np.sqrt(np.mean((y - quadratic_fit) ** 2)))`,
     checkCode: `linear_rmse > 0 and quadratic_rmse >= 0 and quadratic_rmse < linear_rmse`,
-    success: { zh: "完成：二次模型降低了训练误差，同时保留了过拟合警告。", en: "Complete: the quadratic model lowers fitting error while retaining the overfitting warning." },
+    success: {
+      zh: "完成：二次模型降低了训练误差，同时保留了过拟合警告。",
+      en: "Complete: the quadratic model lowers fitting error while retaining the overfitting warning.",
+    },
   },
 ];
 

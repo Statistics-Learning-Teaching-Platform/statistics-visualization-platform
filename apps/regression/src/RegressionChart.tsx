@@ -1,13 +1,18 @@
+import { innerHeight, innerWidth } from "@stats-viz/shared/chart-utils";
+import { axisBottom, axisLeft, line, select } from "d3";
 import { useMemo } from "react";
-import { line, select, axisBottom, axisLeft } from "d3";
-import { innerWidth, innerHeight } from "@stats-viz/shared/chart-utils";
 import type { Point } from "./constants";
 import { CHART_LAYOUT } from "./constants";
 
 export interface RegressionChartProps {
   visibleData: Point[];
   domains: { x: [number, number]; y: [number, number] };
-  scales: { xScale: (v: number) => number; yScale: (v: number) => number; xScaleTicks: number[]; yScaleTicks: number[] };
+  scales: {
+    xScale: (v: number) => number;
+    yScale: (v: number) => number;
+    xScaleTicks: number[];
+    yScaleTicks: number[];
+  };
   showRegression: boolean;
   regression: { slope: number; intercept: number };
   customLineParams: { slope: number; intercept: number } | null;
@@ -49,8 +54,15 @@ export function RegressionChart({
     const [xMin, xMax] = domains.x;
     const y1 = regression.slope * xMin + regression.intercept;
     const y2 = regression.slope * xMax + regression.intercept;
-    const lineGen = line<Point>().x((d) => scales.xScale(d.x)).y((d) => scales.yScale(d.y));
-    return lineGen([{ x: xMin, y: y1 }, { x: xMax, y: y2 }]) ?? "";
+    const lineGen = line<Point>()
+      .x((d) => scales.xScale(d.x))
+      .y((d) => scales.yScale(d.y));
+    return (
+      lineGen([
+        { x: xMin, y: y1 },
+        { x: xMax, y: y2 },
+      ]) ?? ""
+    );
   }, [showRegression, regression, domains, scales]);
 
   const customLinePath = useMemo(() => {
@@ -58,13 +70,22 @@ export function RegressionChart({
     const [xMin, xMax] = domains.x;
     const y1 = customLineParams.slope * xMin + customLineParams.intercept;
     const y2 = customLineParams.slope * xMax + customLineParams.intercept;
-    const lineGen = line<Point>().x((d) => scales.xScale(d.x)).y((d) => scales.yScale(d.y));
-    return lineGen([{ x: xMin, y: y1 }, { x: xMax, y: y2 }]) ?? "";
+    const lineGen = line<Point>()
+      .x((d) => scales.xScale(d.x))
+      .y((d) => scales.yScale(d.y));
+    return (
+      lineGen([
+        { x: xMin, y: y1 },
+        { x: xMax, y: y2 },
+      ]) ?? ""
+    );
   }, [customLineParams, domains, scales]);
 
   const tempLinePath = useMemo(() => {
     if (!tempLine.start || !tempLine.end || !isDragging) return "";
-    const lineGen = line<Point>().x((d) => scales.xScale(d.x)).y((d) => scales.yScale(d.y));
+    const lineGen = line<Point>()
+      .x((d) => scales.xScale(d.x))
+      .y((d) => scales.yScale(d.y));
     return lineGen([tempLine.start, tempLine.end]) ?? "";
   }, [tempLine, isDragging, scales]);
 
@@ -94,19 +115,47 @@ export function RegressionChart({
       onPointerCancel={onPointerCancel}
     >
       <g transform={`translate(${CHART_LAYOUT.margin.left}, ${CHART_LAYOUT.margin.top})`}>
-        <rect className="plot-background" x={0} y={0} width={chartWidth} height={chartHeight} rx={14} />
+        <rect
+          className="plot-background"
+          x={0}
+          y={0}
+          width={chartWidth}
+          height={chartHeight}
+          rx={14}
+        />
         <g className="chart-grid chart-grid--x">
           {scales.xScaleTicks.map((tick, i) => (
-            <line key={i} x1={scales.xScale(tick)} y1={0} x2={scales.xScale(tick)} y2={chartHeight} />
+            <line
+              key={i}
+              x1={scales.xScale(tick)}
+              y1={0}
+              x2={scales.xScale(tick)}
+              y2={chartHeight}
+            />
           ))}
         </g>
         <g className="chart-grid chart-grid--y">
           {scales.yScaleTicks.map((tick, i) => (
-            <line key={i} x1={0} y1={scales.yScale(tick)} x2={chartWidth} y2={scales.yScale(tick)} />
+            <line
+              key={i}
+              x1={0}
+              y1={scales.yScale(tick)}
+              x2={chartWidth}
+              y2={scales.yScale(tick)}
+            />
           ))}
         </g>
-        <g transform={`translate(0, ${chartHeight})`} ref={(g) => { if (g) select(g).call(axisBottom(scales.xScale as any)); }} />
-        <g ref={(g) => { if (g) select(g).call(axisLeft(scales.yScale as any)); }} />
+        <g
+          transform={`translate(0, ${chartHeight})`}
+          ref={(g) => {
+            if (g) select(g).call(axisBottom(scales.xScale as any));
+          }}
+        />
+        <g
+          ref={(g) => {
+            if (g) select(g).call(axisLeft(scales.yScale as any));
+          }}
+        />
         {residualSegments.map(({ point, fittedY }, index) => (
           <line
             key={`residual-${index}`}
@@ -140,13 +189,32 @@ export function RegressionChart({
           />
         ))}
         {regressionLinePath && (
-          <path d={regressionLinePath} className="regression-line" stroke="var(--chart-blue)" strokeWidth={2.4} fill="none" />
+          <path
+            d={regressionLinePath}
+            className="regression-line"
+            stroke="var(--chart-blue)"
+            strokeWidth={2.4}
+            fill="none"
+          />
         )}
         {customLinePath && (
-          <path d={customLinePath} className="custom-line" stroke="var(--danger)" strokeWidth={2} fill="none" />
+          <path
+            d={customLinePath}
+            className="custom-line"
+            stroke="var(--danger)"
+            strokeWidth={2}
+            fill="none"
+          />
         )}
         {tempLinePath && (
-          <path d={tempLinePath} className="temp-line" stroke="var(--text-secondary)" strokeWidth={2} strokeDasharray="5,5" fill="none" />
+          <path
+            d={tempLinePath}
+            className="temp-line"
+            stroke="var(--text-secondary)"
+            strokeWidth={2}
+            strokeDasharray="5,5"
+            fill="none"
+          />
         )}
         {hoverInfo && (
           <>

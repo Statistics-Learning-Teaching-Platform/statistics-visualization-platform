@@ -22,7 +22,7 @@ export function result(
   metrics: SimulationResult["metrics"],
   chart: SimulationResult["chart"],
   table?: TableSpec,
-  extras?: Pick<SimulationResult, "tables">
+  extras?: Pick<SimulationResult, "tables">,
 ): SimulationResult {
   return { headline, narrative, metrics, chart, table, ...extras };
 }

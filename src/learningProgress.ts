@@ -3,9 +3,7 @@ export function normalizeProgress(value: unknown, allowedIds?: readonly string[]
   const allowed = allowedIds ? new Set(allowedIds) : null;
   return [
     ...new Set(
-      value.filter(
-        (id): id is string => typeof id === "string" && (!allowed || allowed.has(id)),
-      ),
+      value.filter((id): id is string => typeof id === "string" && (!allowed || allowed.has(id))),
     ),
   ];
 }

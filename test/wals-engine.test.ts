@@ -1,13 +1,10 @@
-import { describe, expect, it } from "vitest";
 import jStat from "jstat";
-import { generateSampleMeans, runExample } from "../apps/shared/wals/engine";
-import { histogram, linearRegression, normalCdf, normalPdf } from "../apps/shared/math";
-import { mean, reductionPct, ratioOrNa, variance } from "../apps/shared/format";
+import { describe, expect, it } from "vitest";
 import { computeInterval, criticalValue } from "../apps/shared/confidence-interval";
-import {
-  mixtureTargetContours,
-  mixtureTargetDensity,
-} from "../apps/shared/wals/engine/mcmc";
+import { mean, ratioOrNa, reductionPct, variance } from "../apps/shared/format";
+import { histogram, linearRegression, normalCdf, normalPdf } from "../apps/shared/math";
+import { generateSampleMeans, runExample } from "../apps/shared/wals/engine";
+import { mixtureTargetContours, mixtureTargetDensity } from "../apps/shared/wals/engine/mcmc";
 import {
   MAX_MEAN_BOOTSTRAP_DRAWS,
   permutationHistogram,
@@ -19,7 +16,15 @@ import type { ExampleConfig, SimulationResult } from "../apps/shared/wals/types"
 // runExample only consumes example.kind / .id / .sourcePath, so a minimal stub
 // is enough to drive a single example kind directly.
 function example(kind: string): ExampleConfig {
-  return { id: "test", title: "test", kind, sourcePath: "test", description: "", teachingPoints: [], controls: [] };
+  return {
+    id: "test",
+    title: "test",
+    kind,
+    sourcePath: "test",
+    description: "",
+    teachingPoints: [],
+    controls: [],
+  };
 }
 
 function metric(result: SimulationResult, label: string): string {
@@ -31,7 +36,14 @@ function linePoints(result: SimulationResult) {
 }
 
 describe("distribution explorer", () => {
-  const controls = (dist: string, a: number, b: number) => ({ dist, mode: "PDF", a, b, lower: -2, upper: 2 });
+  const controls = (dist: string, a: number, b: number) => ({
+    dist,
+    mode: "PDF",
+    a,
+    b,
+    lower: -2,
+    upper: 2,
+  });
 
   it("matches the trusted jstat PDFs point-for-point (locks the t/beta/gamma/chisq fix)", () => {
     const cases: Array<{ dist: string; a: number; b: number; expected: (x: number) => number }> = [
@@ -79,8 +91,10 @@ describe("distribution explorer", () => {
     expect(r.chart.yDomain).toEqual([0, 0.85]);
 
     const [current, reference] = r.chart.series;
-    const currentPeak = current.points.reduce((best, point) => point.y > best.y ? point : best);
-    const referencePeak = reference.points.reduce((best, point) => point.y > best.y ? point : best);
+    const currentPeak = current.points.reduce((best, point) => (point.y > best.y ? point : best));
+    const referencePeak = reference.points.reduce((best, point) =>
+      point.y > best.y ? point : best,
+    );
     expect(Math.abs(currentPeak.x - 2)).toBeLessThan(0.08);
     expect(Math.abs(referencePeak.x)).toBeLessThan(0.08);
     expect(currentPeak.y).toBeLessThan(referencePeak.y);
@@ -102,7 +116,11 @@ describe("distribution explorer", () => {
 
 describe("gamma rejection sampler (de-biased)", () => {
   it("produces an accepted-sample mean near alpha / beta", () => {
-    const r = runExample(example("gamma-rejection"), { sampleSize: 6000, alpha: 2, beta: 1 }, 12345);
+    const r = runExample(
+      example("gamma-rejection"),
+      { sampleSize: 6000, alpha: 2, beta: 1 },
+      12345,
+    );
     const acceptedMean = Number(metric(r, "accepted mean"));
     expect(acceptedMean).toBeGreaterThan(1.6);
     expect(acceptedMean).toBeLessThan(2.4);
@@ -112,7 +130,11 @@ describe("gamma rejection sampler (de-biased)", () => {
   });
 
   it("supports alpha below one without a finite uniform-envelope bias", () => {
-    const r = runExample(example("gamma-rejection"), { sampleSize: 8000, alpha: 0.3, beta: 2 }, 9182);
+    const r = runExample(
+      example("gamma-rejection"),
+      { sampleSize: 8000, alpha: 0.3, beta: 2 },
+      9182,
+    );
     expect(Number(metric(r, "accepted mean"))).toBeCloseTo(0.15, 1);
     expect(metric(r, "proposal support")).toBe("(0, ∞)");
     expect(r.rawSample?.every((value) => value > 0)).toBe(true);
@@ -168,7 +190,11 @@ describe("central limit theorem", () => {
       const sd = Math.sqrt(variance(values));
       return values.reduce((sum, value) => sum + ((value - center) / sd) ** 3, 0) / values.length;
     };
-    const exponential = generateSampleMeans({ populationShape: "exponential", sampleSize: 1 }, 8000, 81);
+    const exponential = generateSampleMeans(
+      { populationShape: "exponential", sampleSize: 1 },
+      8000,
+      81,
+    );
     const rightSkewed = generateSampleMeans({ populationShape: "skewed", sampleSize: 1 }, 8000, 81);
     expect(rightSkewed).not.toEqual(exponential);
     expect(skewness(rightSkewed)).toBeGreaterThan(0.8);
@@ -233,8 +259,14 @@ describe("permutation test", () => {
     if (r.chart.type !== "bars") throw new Error("expected bars chart");
     expect(r.chart.bars.reduce((sum, bar) => sum + bar.value, 0)).toBe(200);
     expect(new Set(r.chart.bars.map((bar) => bar.color))).toEqual(new Set(["#2f6f64", "#c8665a"]));
-    const extreme = Number(r.metrics.find((item) => item.label === "two-sided p value")?.detail?.split(" ")[0]);
-    expect(r.chart.bars.filter((bar) => bar.color === "#c8665a").reduce((sum, bar) => sum + bar.value, 0)).toBe(extreme);
+    const extreme = Number(
+      r.metrics.find((item) => item.label === "two-sided p value")?.detail?.split(" ")[0],
+    );
+    expect(
+      r.chart.bars
+        .filter((bar) => bar.color === "#c8665a")
+        .reduce((sum, bar) => sum + bar.value, 0),
+    ).toBe(extreme);
     const pValue = Number(metric(r, "two-sided p value"));
     expect(pValue).toBeGreaterThanOrEqual(1 / 201);
     expect(pValue).toBeLessThanOrEqual(1);
@@ -243,20 +275,32 @@ describe("permutation test", () => {
   it("classifies tails from exact bin centers rather than rounded labels", () => {
     expect(permutationTailColor(0.0048, 0.00485)).toBe("#2f6f64");
     expect(permutationTailColor(0.0049, 0.00485)).toBe("#c8665a");
-    expect(0.0048.toFixed(2)).toBe(0.0049.toFixed(2));
+    expect((0.0048).toFixed(2)).toBe((0.0049).toFixed(2));
   });
 
   it("splits a threshold-crossing bin without changing exact tail counts", () => {
     const bars = permutationHistogram([-0.51, -0.49, 0.49, 0.51], 0.5, 1);
-    expect(bars.filter((bar) => bar.color === "#c8665a").reduce((sum, bar) => sum + bar.value, 0)).toBe(2);
-    expect(bars.filter((bar) => bar.color === "#2f6f64").reduce((sum, bar) => sum + bar.value, 0)).toBe(2);
+    expect(
+      bars.filter((bar) => bar.color === "#c8665a").reduce((sum, bar) => sum + bar.value, 0),
+    ).toBe(2);
+    expect(
+      bars.filter((bar) => bar.color === "#2f6f64").reduce((sum, bar) => sum + bar.value, 0),
+    ).toBe(2);
   });
 });
 
 describe("MCMC teaching payloads", () => {
   it("preserves draw order for Metropolis-Hastings and Gibbs traces", () => {
-    const mh = runExample(example("mcmc-mixture"), { burnin: 20, sampleSize: 120, proposalSd: 1 }, 9);
-    const gibbs = runExample(example("gibbs-bivariate"), { burnin: 20, sampleSize: 120, correlation: 0.8 }, 9);
+    const mh = runExample(
+      example("mcmc-mixture"),
+      { burnin: 20, sampleSize: 120, proposalSd: 1 },
+      9,
+    );
+    const gibbs = runExample(
+      example("gibbs-bivariate"),
+      { burnin: 20, sampleSize: 120, correlation: 0.8 },
+      9,
+    );
     for (const r of [mh, gibbs]) {
       if (r.chart.type !== "mcmc") throw new Error("expected mcmc chart");
       expect(r.chart.samples.length).toBeGreaterThan(0);
@@ -269,11 +313,11 @@ describe("MCMC teaching payloads", () => {
 
   it("uses normalized equal mixture weights despite unequal component spreads", () => {
     expect(mixtureTargetDensity(0, 0)).toBeCloseTo(
-      0.5 / (2 * Math.PI) + 0.5 * Math.exp(-18) / (4 * Math.PI),
+      0.5 / (2 * Math.PI) + (0.5 * Math.exp(-18)) / (4 * Math.PI),
       10,
     );
     expect(mixtureTargetDensity(6, 6)).toBeCloseTo(
-      0.5 / (4 * Math.PI) + 0.5 * Math.exp(-36) / (2 * Math.PI),
+      0.5 / (4 * Math.PI) + (0.5 * Math.exp(-36)) / (2 * Math.PI),
       10,
     );
   });
@@ -316,8 +360,14 @@ describe("bootstrap work budgets", () => {
 
   it("bounds pasted bootstrap-max data and samples its exact maximum distribution", () => {
     const oversizedData = Array.from({ length: 2000 }, (_, index) => String(index)).join(",");
-    const bounded = runExample(example("bootstrap-max"), { data: oversizedData, replicates: 100 }, 5);
-    expect(bounded.metrics.find((item) => item.label === "replicates")?.detail).toContain("input limit applied");
+    const bounded = runExample(
+      example("bootstrap-max"),
+      { data: oversizedData, replicates: 100 },
+      5,
+    );
+    expect(bounded.metrics.find((item) => item.label === "replicates")?.detail).toContain(
+      "input limit applied",
+    );
 
     const exact = runExample(example("bootstrap-max"), { data: "1,2", replicates: 10000 }, 91);
     expect(Number(metric(exact, "bootstrap mean"))).toBeCloseTo(1.75, 1);
@@ -369,17 +419,22 @@ describe("shared math + format helpers", () => {
 });
 
 describe("variance reduction budget", () => {
-  it.each(["antithetic-exp", "antithetic-gamma"])("compares %s estimators at equal evaluation counts", (kind) => {
-    const r = runExample(example(kind), { sampleSize: 1000 }, 55);
-    const reduction = r.metrics.find((item) => item.label === "variance reduction");
-    expect(reduction?.detail).toBe("1000 function evaluations each");
-    if (r.chart.type !== "bars" && kind === "antithetic-exp") throw new Error("expected bars chart");
-  });
+  it.each(["antithetic-exp", "antithetic-gamma"])(
+    "compares %s estimators at equal evaluation counts",
+    (kind) => {
+      const r = runExample(example(kind), { sampleSize: 1000 }, 55);
+      const reduction = r.metrics.find((item) => item.label === "variance reduction");
+      expect(reduction?.detail).toBe("1000 function evaluations each");
+      if (r.chart.type !== "bars" && kind === "antithetic-exp")
+        throw new Error("expected bars chart");
+    },
+  );
 
   it("rounds an odd antithetic request down so both methods use the same budget", () => {
     const r = runExample(example("antithetic-exp"), { sampleSize: 1001 }, 55);
-    expect(r.metrics.find((item) => item.label === "variance reduction")?.detail)
-      .toBe("1000 function evaluations each");
+    expect(r.metrics.find((item) => item.label === "variance reduction")?.detail).toBe(
+      "1000 function evaluations each",
+    );
   });
 });
 

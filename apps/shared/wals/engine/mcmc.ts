@@ -1,7 +1,7 @@
-import type { ChartPoint, ChartSeries, SimulationResult } from "../types";
-import { createRandom, normalRandom } from "@stats-viz/shared/random";
 import { formatNumber, mean } from "@stats-viz/shared/format";
-import { num, result, type ControlMap } from "./internal";
+import { createRandom, normalRandom } from "@stats-viz/shared/random";
+import type { ChartPoint, ChartSeries, SimulationResult } from "../types";
+import { type ControlMap, num, result } from "./internal";
 
 /** Equal-weight, fully normalized bivariate-normal mixture target. */
 export function mixtureTargetDensity(x: number, y: number): number {
@@ -30,8 +30,8 @@ export function mixtureTargetContours(): ChartSeries[] {
         // coarse exponential bracket could skip the valley and land in the
         // other mode; small fixed steps preserve the local contour component.
         while (
-          outerRadius < 12
-          && mixtureTargetDensity(mode.x + dx * outerRadius, mode.y + dy * outerRadius) > level
+          outerRadius < 12 &&
+          mixtureTargetDensity(mode.x + dx * outerRadius, mode.y + dy * outerRadius) > level
         ) {
           innerRadius = outerRadius;
           outerRadius += 0.05;
@@ -97,7 +97,8 @@ export function mcmcMixture(controls: ControlMap, seed: number): SimulationResul
   for (let i = 0; i < burnin + sampleSize; i += 1) {
     const px = x + normalRandom(rng, 0, proposalSd);
     const py = y + normalRandom(rng, 0, proposalSd);
-    const ratio = mixtureTargetDensity(px, py) / Math.max(mixtureTargetDensity(x, y), Number.EPSILON);
+    const ratio =
+      mixtureTargetDensity(px, py) / Math.max(mixtureTargetDensity(x, y), Number.EPSILON);
     if (rng() < Math.min(1, ratio)) {
       x = px;
       y = py;
@@ -142,17 +143,36 @@ export function mcmcMixture(controls: ControlMap, seed: number): SimulationResul
     "Metropolis-Hastings sample path",
     "Contours show the target density, the red polyline shows the most recent chain movement, and the trace panels preserve draw order.",
     [
-      { label: "acceptance rate", value: formatNumber(accepted / (burnin + sampleSize), 4), detail: "accepted proposals", help: "Very low values indicate proposals that are too large; very high values can indicate slow exploration." },
-      { label: "proposal step", value: formatNumber(proposalSd, 2), detail: "proposal standard deviation" },
+      {
+        label: "acceptance rate",
+        value: formatNumber(accepted / (burnin + sampleSize), 4),
+        detail: "accepted proposals",
+        help: "Very low values indicate proposals that are too large; very high values can indicate slow exploration.",
+      },
+      {
+        label: "proposal step",
+        value: formatNumber(proposalSd, 2),
+        detail: "proposal standard deviation",
+      },
       {
         label: "effective sample size",
         value: supportsGlobalEss ? formatNumber(localEss, 0) : "n/a",
-        detail: supportsGlobalEss ? `of ${sampleSize} retained draws` : "not reported until both modes are explored",
+        detail: supportsGlobalEss
+          ? `of ${sampleSize} retained draws`
+          : "not reported until both modes are explored",
         help: "Initial-positive-sequence autocorrelation estimate. It is withheld when the chain has not demonstrated movement between both target modes.",
       },
-      { label: "mode coverage", value: `${visitedModes} / 2`, detail: `${modeSwitches} between-mode transitions` },
+      {
+        label: "mode coverage",
+        value: `${visitedModes} / 2`,
+        detail: `${modeSwitches} between-mode transitions`,
+      },
       { label: "burn-in", value: String(burnin), detail: "discarded initial states" },
-      { label: "mean location", value: `(${formatNumber(mean(points.map((p) => p.x)), 2)}, ${formatNumber(mean(points.map((p) => p.y)), 2)})`, detail: "retained sample mean" }
+      {
+        label: "mean location",
+        value: `(${formatNumber(mean(points.map((p) => p.x)), 2)}, ${formatNumber(mean(points.map((p) => p.y)), 2)})`,
+        detail: "retained sample mean",
+      },
     ],
     {
       type: "mcmc",
@@ -171,7 +191,7 @@ export function mcmcMixture(controls: ControlMap, seed: number): SimulationResul
       traceY,
       xDomain: [-4, 10],
       yDomain: [-4, 10],
-    }
+    },
   );
 }
 export function politician(controls: ControlMap, seed: number): SimulationResult {
@@ -189,28 +209,47 @@ export function politician(controls: ControlMap, seed: number): SimulationResult
     if (rng() < accept) current = proposal;
   }
   const totalPopulation = population.reduce((sum, value) => sum + value, 0);
-  const bars = islands.map((island, index) => ({ label: island.replace("Is", "Island "), value: visits[index] / steps }));
-  const target = islands.map((island, index) => ({ label: island.replace("Is", "Island "), value: population[index] / totalPopulation }));
+  const bars = islands.map((island, index) => ({
+    label: island.replace("Is", "Island "),
+    value: visits[index] / steps,
+  }));
+  const target = islands.map((island, index) => ({
+    label: island.replace("Is", "Island "),
+    value: population[index] / totalPopulation,
+  }));
   return result(
     "Metropolis walk over islands",
     "Visit frequencies approximate the target population proportions.",
     [
       { label: "steps", value: String(steps), detail: "single-chain simulation" },
-      { label: "most visited", value: bars.reduce((best, item) => (item.value > best.value ? item : best)).label, detail: "highest empirical frequency" },
-      { label: "target largest", value: "Is7", detail: "largest population" }
+      {
+        label: "most visited",
+        value: bars.reduce((best, item) => (item.value > best.value ? item : best)).label,
+        detail: "highest empirical frequency",
+      },
+      { label: "target largest", value: "Is7", detail: "largest population" },
     ],
     {
       type: "bars",
       title: "Empirical visit frequency by island",
       xLabel: "island",
       yLabel: "visit proportion",
-      bars: bars.map((bar, index) => ({ ...bar, color: Math.abs(bar.value - target[index].value) < 0.02 ? "var(--lab-green)" : "var(--lab-orange)" })),
+      bars: bars.map((bar, index) => ({
+        ...bar,
+        color:
+          Math.abs(bar.value - target[index].value) < 0.02
+            ? "var(--lab-green)"
+            : "var(--lab-orange)",
+      })),
       legend: [
         { label: "close to target", color: "var(--lab-green)", shape: "bar" },
         { label: "still converging", color: "var(--lab-orange)", shape: "bar" },
       ],
-      yDomain: [0, Math.max(...bars.map((bar) => bar.value), ...target.map((bar) => bar.value)) * 1.2],
-    }
+      yDomain: [
+        0,
+        Math.max(...bars.map((bar) => bar.value), ...target.map((bar) => bar.value)) * 1.2,
+      ],
+    },
   );
 }
 
@@ -233,12 +272,13 @@ export function gibbsBivariate(controls: ControlMap, seed: number): SimulationRe
       if (sweep >= burnin + sampleSize - 24) axisPath.push({ x, y });
     }
   }
-  const contour = (radius: number): ChartPoint[] => Array.from({ length: 65 }, (_, index) => {
-    const angle = (index / 64) * Math.PI * 2;
-    const z1 = radius * Math.cos(angle);
-    const z2 = radius * Math.sin(angle);
-    return { x: z1, y: rho * z1 + conditionalSd * z2 };
-  });
+  const contour = (radius: number): ChartPoint[] =>
+    Array.from({ length: 65 }, (_, index) => {
+      const angle = (index / 64) * Math.PI * 2;
+      const z1 = radius * Math.cos(angle);
+      const z2 = radius * Math.sin(angle);
+      return { x: z1, y: rho * z1 + conditionalSd * z2 };
+    });
   const previewStride = Math.max(1, Math.ceil(samples.length / 420));
   const preview = samples.filter((_, index) => index % previewStride === 0);
   const traceWindow = samples.slice(-Math.min(180, samples.length));
@@ -249,25 +289,53 @@ export function gibbsBivariate(controls: ControlMap, seed: number): SimulationRe
   const covariance = mean(samples.map((point) => (point.x - xMean) * (point.y - yMean)));
   const xVariance = mean(samples.map((point) => (point.x - xMean) ** 2));
   const yVariance = mean(samples.map((point) => (point.y - yMean) ** 2));
-  const observedCorrelation = covariance / Math.max(Math.sqrt(xVariance * yVariance), Number.EPSILON);
+  const observedCorrelation =
+    covariance / Math.max(Math.sqrt(xVariance * yVariance), Number.EPSILON);
   const lagOne = (values: number[]): number => {
     if (values.length < 3) return 0;
     const center = mean(values);
     const denominator = values.reduce((sum, value) => sum + (value - center) ** 2, 0);
     if (denominator <= Number.EPSILON) return 0;
-    return values.slice(1).reduce((sum, value, index) => sum + (value - center) * (values[index] - center), 0) / denominator;
+    return (
+      values
+        .slice(1)
+        .reduce((sum, value, index) => sum + (value - center) * (values[index] - center), 0) /
+      denominator
+    );
   };
-  const lagCorrelation = Math.max(-0.99, Math.min(0.99, (lagOne(samples.map((point) => point.x)) + lagOne(samples.map((point) => point.y))) / 2));
-  const ess = sampleSize * (1 - lagCorrelation) / Math.max(1 + lagCorrelation, 0.01);
+  const lagCorrelation = Math.max(
+    -0.99,
+    Math.min(
+      0.99,
+      (lagOne(samples.map((point) => point.x)) + lagOne(samples.map((point) => point.y))) / 2,
+    ),
+  );
+  const ess = (sampleSize * (1 - lagCorrelation)) / Math.max(1 + lagCorrelation, 0.01);
   return result(
     "Gibbs sampling through conditional distributions",
     "Each sweep updates x while y is fixed, then updates y while x is fixed. The recent path therefore alternates horizontal and vertical moves.",
     [
-      { label: "target correlation", value: formatNumber(rho, 3), detail: "bivariate normal target" },
-      { label: "sample correlation", value: formatNumber(observedCorrelation, 3), detail: `${sampleSize} retained sweeps` },
+      {
+        label: "target correlation",
+        value: formatNumber(rho, 3),
+        detail: "bivariate normal target",
+      },
+      {
+        label: "sample correlation",
+        value: formatNumber(observedCorrelation, 3),
+        detail: `${sampleSize} retained sweeps`,
+      },
       { label: "burn-in", value: String(burnin), detail: "discarded sweeps" },
-      { label: "effective sample size", value: formatNumber(Math.min(sampleSize, Math.max(1, ess)), 0), detail: `of ${sampleSize} retained draws` },
-      { label: "posterior mean", value: `(${formatNumber(xMean, 2)}, ${formatNumber(yMean, 2)})`, detail: "retained sample mean" },
+      {
+        label: "effective sample size",
+        value: formatNumber(Math.min(sampleSize, Math.max(1, ess)), 0),
+        detail: `of ${sampleSize} retained draws`,
+      },
+      {
+        label: "posterior mean",
+        value: `(${formatNumber(xMean, 2)}, ${formatNumber(yMean, 2)})`,
+        detail: "retained sample mean",
+      },
       // Keep the conditional spread available to existing consumers; the
       // shared strip presents the five teaching metrics above.
       { label: "conditional SD", value: formatNumber(conditionalSd, 3), detail: "sqrt(1 - rho²)" },
@@ -284,7 +352,12 @@ export function gibbsBivariate(controls: ControlMap, seed: number): SimulationRe
       recentPathLabel: "recent path",
       samples: preview,
       path: axisPath,
-      contours: [0.8, 1.5, 2.3].map((radius) => ({ label: `density level ${radius}`, points: contour(radius), color: "var(--lab-purple)", opacity: 0.55 })),
+      contours: [0.8, 1.5, 2.3].map((radius) => ({
+        label: `density level ${radius}`,
+        points: contour(radius),
+        color: "var(--lab-purple)",
+        opacity: 0.55,
+      })),
       traceX,
       traceY,
       xDomain: [-4, 4],

@@ -1189,8 +1189,12 @@ body {
 
 /* Final compact workbench header override. */
 @media (min-width: 760px) {
-  .experiment-board { gap: 10px !important; }
-  .experiment-header { padding-bottom: 8px !important; }
+  .experiment-board {
+    gap: 10px !important;
+  }
+  .experiment-header {
+    padding-bottom: 8px !important;
+  }
   .experiment-header .eyebrow,
   .output-heading .eyebrow {
     margin: 0 !important;
@@ -1206,7 +1210,9 @@ body {
   .output-heading p {
     display: none !important;
   }
-  .output-dock { gap: 8px !important; }
+  .output-dock {
+    gap: 8px !important;
+  }
   .output-heading {
     display: flex !important;
     align-items: baseline !important;
@@ -1219,7 +1225,9 @@ body {
     font-size: clamp(18px, 1.8vw, 24px) !important;
     line-height: 1.05 !important;
   }
-  .chart-frame { min-height: 0 !important; }
+  .chart-frame {
+    min-height: 0 !important;
+  }
 }
 
 /* Final chart display override: show the complete regression plot, no local zoom. */
@@ -1660,7 +1668,10 @@ body {
   stroke: #fffdf8;
   stroke-width: 2.2;
   cursor: pointer;
-  transition: opacity 160ms ease, r 160ms ease, filter 160ms ease;
+  transition:
+    opacity 160ms ease,
+    r 160ms ease,
+    filter 160ms ease;
 }
 
 .data-point--outlier {
@@ -2018,8 +2029,7 @@ body {
 .chart-frame {
   border: 1px solid rgba(90, 80, 60, 0.1);
   border-radius: 22px;
-  background:
-    linear-gradient(180deg, rgba(255, 253, 248, 0.94), rgba(255, 250, 241, 0.96));
+  background: linear-gradient(180deg, rgba(255, 253, 248, 0.94), rgba(255, 250, 241, 0.96));
 }
 
 .regression-app .metrics-grid {
@@ -2405,8 +2415,12 @@ body {
   line-height: 1.05 !important;
 }
 
-.visualization-frame.module-shell[data-module-id="regression"] .experiment-header .lab-experiment-description,
-.visualization-frame.module-shell[data-module-id="regression"] .experiment-header .research-question {
+.visualization-frame.module-shell[data-module-id="regression"]
+  .experiment-header
+  .lab-experiment-description,
+.visualization-frame.module-shell[data-module-id="regression"]
+  .experiment-header
+  .research-question {
   display: block !important;
   max-width: 920px;
   margin: 8px 0 0 !important;
@@ -2467,7 +2481,9 @@ body {
   line-height: 1.15 !important;
 }
 
-.visualization-frame.module-shell[data-module-id="regression"] .regression-stage__intro > p:last-child {
+.visualization-frame.module-shell[data-module-id="regression"]
+  .regression-stage__intro
+  > p:last-child {
   max-width: 580px;
   margin: 7px 0 0 !important;
   color: var(--lab-text-secondary, #667085);
@@ -2665,13 +2681,27 @@ body {
   overflow: visible !important;
 }
 
-.visualization-frame.module-shell[data-module-id="regression"] .regression-control-rail > .parameter-panel,
-.visualization-frame.module-shell[data-module-id="regression"] .regression-control-rail > .teaching-panel,
-.visualization-frame.module-shell[data-module-id="regression"] .regression-control-rail > [data-formula-card],
-.visualization-frame.module-shell[data-module-id="regression"] .regression-control-rail > [data-observation-card],
-.visualization-frame.module-shell[data-module-id="regression"] .regression-learning-grid > .teaching-panel,
-.visualization-frame.module-shell[data-module-id="regression"] .regression-learning-grid > [data-formula-card],
-.visualization-frame.module-shell[data-module-id="regression"] .regression-learning-grid > [data-observation-card] {
+.visualization-frame.module-shell[data-module-id="regression"]
+  .regression-control-rail
+  > .parameter-panel,
+.visualization-frame.module-shell[data-module-id="regression"]
+  .regression-control-rail
+  > .teaching-panel,
+.visualization-frame.module-shell[data-module-id="regression"]
+  .regression-control-rail
+  > [data-formula-card],
+.visualization-frame.module-shell[data-module-id="regression"]
+  .regression-control-rail
+  > [data-observation-card],
+.visualization-frame.module-shell[data-module-id="regression"]
+  .regression-learning-grid
+  > .teaching-panel,
+.visualization-frame.module-shell[data-module-id="regression"]
+  .regression-learning-grid
+  > [data-formula-card],
+.visualization-frame.module-shell[data-module-id="regression"]
+  .regression-learning-grid
+  > [data-observation-card] {
   display: block !important;
   padding: 18px !important;
   border: 1px solid var(--lab-border, var(--border));
@@ -2684,7 +2714,9 @@ body {
   margin: 0 0 10px !important;
 }
 
-.visualization-frame.module-shell[data-module-id="regression"] .regression-control-rail .control-panel {
+.visualization-frame.module-shell[data-module-id="regression"]
+  .regression-control-rail
+  .control-panel {
   display: grid !important;
   grid-template-columns: minmax(0, 1fr) !important;
   gap: 0 !important;
@@ -2774,8 +2806,12 @@ body {
   gap: 10px 12px !important;
 }
 
-.visualization-frame.module-shell[data-module-id="regression"] .numeric-line-controls > .control-panel__label-row,
-.visualization-frame.module-shell[data-module-id="regression"] .numeric-line-controls > .control-panel__hint {
+.visualization-frame.module-shell[data-module-id="regression"]
+  .numeric-line-controls
+  > .control-panel__label-row,
+.visualization-frame.module-shell[data-module-id="regression"]
+  .numeric-line-controls
+  > .control-panel__hint {
   grid-column: 1 / -1;
   margin-bottom: 0 !important;
 }
@@ -2795,11 +2831,15 @@ body {
   border-top: 1px solid var(--lab-divider, var(--border));
 }
 
-.visualization-frame.module-shell[data-module-id="regression"] .control-panel__summary-card .info-item {
+.visualization-frame.module-shell[data-module-id="regression"]
+  .control-panel__summary-card
+  .info-item {
   min-width: 0;
 }
 
-.visualization-frame.module-shell[data-module-id="regression"] .control-panel__summary-card .metric-value {
+.visualization-frame.module-shell[data-module-id="regression"]
+  .control-panel__summary-card
+  .metric-value {
   font-size: 13px !important;
   overflow-wrap: anywhere;
 }
@@ -2814,7 +2854,9 @@ body {
   font-size: 15px !important;
 }
 
-.visualization-frame.module-shell[data-module-id="regression"] .regression-control-rail .math-expression {
+.visualization-frame.module-shell[data-module-id="regression"]
+  .regression-control-rail
+  .math-expression {
   display: flex;
   flex-wrap: wrap;
   align-items: baseline;
@@ -2832,7 +2874,9 @@ body {
   overflow: visible !important;
 }
 
-.visualization-frame.module-shell[data-module-id="regression"] .regression-learning-grid .math-expression {
+.visualization-frame.module-shell[data-module-id="regression"]
+  .regression-learning-grid
+  .math-expression {
   display: flex;
   flex-wrap: wrap;
   align-items: baseline;
@@ -2888,7 +2932,9 @@ body {
     grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
   }
 
-  .visualization-frame.module-shell[data-module-id="regression"] .metrics-grid .experiment-metric:last-child {
+  .visualization-frame.module-shell[data-module-id="regression"]
+    .metrics-grid
+    .experiment-metric:last-child {
     grid-column: 1 / -1;
   }
 
@@ -2915,13 +2961,27 @@ body {
   }
 
   .visualization-frame.module-shell[data-module-id="regression"] .regression-stage,
-  .visualization-frame.module-shell[data-module-id="regression"] .regression-control-rail > .parameter-panel,
-  .visualization-frame.module-shell[data-module-id="regression"] .regression-control-rail > .teaching-panel,
-  .visualization-frame.module-shell[data-module-id="regression"] .regression-control-rail > [data-formula-card],
-  .visualization-frame.module-shell[data-module-id="regression"] .regression-control-rail > [data-observation-card],
-  .visualization-frame.module-shell[data-module-id="regression"] .regression-learning-grid > .teaching-panel,
-  .visualization-frame.module-shell[data-module-id="regression"] .regression-learning-grid > [data-formula-card],
-  .visualization-frame.module-shell[data-module-id="regression"] .regression-learning-grid > [data-observation-card] {
+  .visualization-frame.module-shell[data-module-id="regression"]
+    .regression-control-rail
+    > .parameter-panel,
+  .visualization-frame.module-shell[data-module-id="regression"]
+    .regression-control-rail
+    > .teaching-panel,
+  .visualization-frame.module-shell[data-module-id="regression"]
+    .regression-control-rail
+    > [data-formula-card],
+  .visualization-frame.module-shell[data-module-id="regression"]
+    .regression-control-rail
+    > [data-observation-card],
+  .visualization-frame.module-shell[data-module-id="regression"]
+    .regression-learning-grid
+    > .teaching-panel,
+  .visualization-frame.module-shell[data-module-id="regression"]
+    .regression-learning-grid
+    > [data-formula-card],
+  .visualization-frame.module-shell[data-module-id="regression"]
+    .regression-learning-grid
+    > [data-observation-card] {
     padding: 12px !important;
   }
 
@@ -2930,8 +2990,12 @@ body {
     grid-template-columns: minmax(0, 1fr) !important;
   }
 
-  .visualization-frame.module-shell[data-module-id="regression"] .numeric-line-controls > .control-panel__label-row,
-  .visualization-frame.module-shell[data-module-id="regression"] .numeric-line-controls > .control-panel__hint {
+  .visualization-frame.module-shell[data-module-id="regression"]
+    .numeric-line-controls
+    > .control-panel__label-row,
+  .visualization-frame.module-shell[data-module-id="regression"]
+    .numeric-line-controls
+    > .control-panel__hint {
     grid-column: 1;
   }
 }

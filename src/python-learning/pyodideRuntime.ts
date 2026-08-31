@@ -5,7 +5,9 @@ export type PythonExecutionResult = {
 };
 
 type RequestKind = "init" | "run" | "check";
-type WorkerResponse = { id: number; ok: true; result: unknown } | { id: number; ok: false; error: string };
+type WorkerResponse =
+  | { id: number; ok: true; result: unknown }
+  | { id: number; ok: false; error: string };
 
 interface PendingRequest {
   resolve: (value: unknown) => void;
@@ -32,7 +34,10 @@ function terminateWorker(reason: Error) {
 
 function getWorker(): Worker {
   if (worker) return worker;
-  worker = new Worker(new URL("./pyodide.worker.ts", import.meta.url), { type: "module", name: "statmind-python" });
+  worker = new Worker(new URL("./pyodide.worker.ts", import.meta.url), {
+    type: "module",
+    name: "statmind-python",
+  });
   worker.addEventListener("message", (event: MessageEvent<WorkerResponse>) => {
     const request = pending.get(event.data.id);
     if (!request) return;
@@ -47,12 +52,22 @@ function getWorker(): Worker {
   return worker;
 }
 
-function requestWorker<T>(kind: RequestKind, value: string | undefined, timeoutMs: number): Promise<T> {
+function requestWorker<T>(
+  kind: RequestKind,
+  value: string | undefined,
+  timeoutMs: number,
+): Promise<T> {
   const activeWorker = getWorker();
   const id = ++requestId;
   return new Promise<T>((resolve, reject) => {
     const timer = window.setTimeout(() => {
-      terminateWorker(new Error(kind === "init" ? "Python 环境加载超时，请检查网络后重试" : "Python 运行超过时间限制，环境已安全重置"));
+      terminateWorker(
+        new Error(
+          kind === "init"
+            ? "Python 环境加载超时，请检查网络后重试"
+            : "Python 运行超过时间限制，环境已安全重置",
+        ),
+      );
     }, timeoutMs);
     pending.set(id, { resolve: resolve as (result: unknown) => void, reject, timer });
     activeWorker.postMessage(value === undefined ? { id, kind } : { id, kind, value });

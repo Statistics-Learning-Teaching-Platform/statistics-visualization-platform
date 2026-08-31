@@ -1,11 +1,11 @@
+import { LanguageProvider } from "@stats-viz/shared/i18n";
 import { act, fireEvent, render, screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { beforeEach, describe, expect, it, vi } from "vitest";
-import { LanguageProvider } from "@stats-viz/shared/i18n";
-import { RLearningWorkspace } from "../src/r-learning/RLearningWorkspace";
-import { rLessons } from "../src/r-learning/lessons";
-import { disposeWebRRuntime, runRCode } from "../src/r-learning/webrRuntime";
 import { resetPortalSessionCache } from "../src/auth/session";
+import { rLessons } from "../src/r-learning/lessons";
+import { RLearningWorkspace } from "../src/r-learning/RLearningWorkspace";
+import { disposeWebRRuntime, runRCode } from "../src/r-learning/webrRuntime";
 
 vi.mock("../src/r-learning/webrRuntime", () => ({
   runRCode: vi.fn(async () => ({
@@ -93,7 +93,9 @@ describe("R Coding Studio", () => {
     const close = vi.fn();
     const image = { width: 2, height: 2, close } as unknown as ImageBitmap;
     vi.mocked(runRCode).mockResolvedValueOnce({ console: [], image, environment: [] });
-    vi.spyOn(HTMLCanvasElement.prototype, "getContext").mockReturnValue({ drawImage: vi.fn() } as unknown as CanvasRenderingContext2D);
+    vi.spyOn(HTMLCanvasElement.prototype, "getContext").mockReturnValue({
+      drawImage: vi.fn(),
+    } as unknown as CanvasRenderingContext2D);
     renderWorkspace();
 
     await userEvent.click(screen.getByRole("button", { name: "运行代码" }));
@@ -111,9 +113,12 @@ describe("R Coding Studio", () => {
           headers: { "Content-Type": "application/json" },
         });
       }
-      return new Response(JSON.stringify({
-        answer: "The assignment is incomplete because the right-hand side is missing.",
-      }), { status: 200, headers: { "Content-Type": "application/json" } });
+      return new Response(
+        JSON.stringify({
+          answer: "The assignment is incomplete because the right-hand side is missing.",
+        }),
+        { status: 200, headers: { "Content-Type": "application/json" } },
+      );
     });
     renderWorkspace();
 
@@ -134,11 +139,13 @@ describe("R Coding Studio", () => {
   });
 
   it("gates the AI tutor behind sign-in while anonymous", async () => {
-    const fetchMock = vi.spyOn(globalThis, "fetch").mockImplementation(async () =>
-      new Response(JSON.stringify({ error: "请先登录" }), {
-        status: 401,
-        headers: { "Content-Type": "application/json" },
-      }));
+    const fetchMock = vi.spyOn(globalThis, "fetch").mockImplementation(
+      async () =>
+        new Response(JSON.stringify({ error: "请先登录" }), {
+          status: 401,
+          headers: { "Content-Type": "application/json" },
+        }),
+    );
     renderWorkspace();
 
     await userEvent.click(screen.getByRole("button", { name: /AI R 助教/ }));
@@ -146,13 +153,20 @@ describe("R Coding Studio", () => {
     const loginLink = screen.getByRole("link", { name: "前往登录" });
     expect(loginLink.getAttribute("href")).toContain("/st-qselector/login?next=");
     expect(screen.queryByRole("textbox", { name: /问报错原因/ })).not.toBeInTheDocument();
-    expect(fetchMock.mock.calls.every(([url]) => !String(url).includes("/api/ai/r-tutor"))).toBe(true);
+    expect(fetchMock.mock.calls.every(([url]) => !String(url).includes("/api/ai/r-tutor"))).toBe(
+      true,
+    );
     fetchMock.mockRestore();
   });
 
   it("does not start duplicate executions from repeated keyboard shortcuts", async () => {
     let resolveRun!: (result: { console: string[]; image: null; environment: string[] }) => void;
-    vi.mocked(runRCode).mockImplementationOnce(() => new Promise((resolve) => { resolveRun = resolve; }));
+    vi.mocked(runRCode).mockImplementationOnce(
+      () =>
+        new Promise((resolve) => {
+          resolveRun = resolve;
+        }),
+    );
     renderWorkspace();
     const editor = screen.getByRole("textbox", { name: "R 代码编辑器" });
 
@@ -168,10 +182,17 @@ describe("R Coding Studio", () => {
   });
 
   it("selects a valid lesson from the course query and keeps the return route", () => {
-    window.history.replaceState({}, "", "/r-learning?topicId=central-limit-theorem&lessonId=sampling-simulation&returnTo=%2Flearn%2Fsampling%2Fcentral-limit-theorem");
+    window.history.replaceState(
+      {},
+      "",
+      "/r-learning?topicId=central-limit-theorem&lessonId=sampling-simulation&returnTo=%2Flearn%2Fsampling%2Fcentral-limit-theorem",
+    );
     renderWorkspace();
     expect(screen.getByRole("heading", { level: 1 })).toHaveTextContent(/抽样分布/);
-    expect(screen.getByRole("link", { name: /返回主界面/ })).toHaveAttribute("href", "/learn/sampling/central-limit-theorem");
+    expect(screen.getByRole("link", { name: /返回主界面/ })).toHaveAttribute(
+      "href",
+      "/learn/sampling/central-limit-theorem",
+    );
   });
 });
 
@@ -232,7 +253,10 @@ describe("WebR runtime lifecycle", () => {
 
   it("closes a timed-out runtime and creates a fresh one for the next run", async () => {
     vi.useFakeTimers();
-    const instances: Array<{ close: ReturnType<typeof vi.fn>; interrupt: ReturnType<typeof vi.fn> }> = [];
+    const instances: Array<{
+      close: ReturnType<typeof vi.fn>;
+      interrupt: ReturnType<typeof vi.fn>;
+    }> = [];
     let instanceNumber = 0;
     let firstCaptureStarted = false;
     vi.doMock("webr", () => ({

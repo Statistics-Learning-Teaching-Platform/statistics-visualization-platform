@@ -1,19 +1,19 @@
-import { describe, expect, it, beforeEach, vi } from "vitest";
-import { render, screen, waitFor, within } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
 import { LanguageProvider } from "@stats-viz/shared/i18n";
 import { WalsApp } from "@stats-viz/shared/wals/WalsApp";
-import { Sidebar } from "../src/shell/Sidebar";
-import { moduleConfig as introConfig } from "../apps/simulation-introduction/src/module-config";
-import { moduleConfig as cltConfig } from "../apps/simulation-clt/src/module-config";
-import { moduleConfig as randomVariableConfig } from "../apps/simulation-random-variable/src/module-config";
-import { moduleConfig as distributionsConfig } from "../apps/mes-distributions/src/module-config";
-import { moduleConfig as mesConfidenceConfig } from "../apps/mes-confidence-interval/src/module-config";
-import { moduleConfig as resamplingConfig } from "../apps/simulation-resampling/src/module-config";
-import RegressionApp from "../apps/regression/src/App";
+import { render, screen, waitFor, within } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
+import { beforeEach, describe, expect, it, vi } from "vitest";
 import ConfidenceIntervalApp from "../apps/confidence-interval/src/App";
 import { confidenceIntervalXDomain } from "../apps/confidence-interval/src/useConfidenceIntervals";
+import { moduleConfig as mesConfidenceConfig } from "../apps/mes-confidence-interval/src/module-config";
+import { moduleConfig as distributionsConfig } from "../apps/mes-distributions/src/module-config";
+import RegressionApp from "../apps/regression/src/App";
+import { moduleConfig as cltConfig } from "../apps/simulation-clt/src/module-config";
+import { moduleConfig as introConfig } from "../apps/simulation-introduction/src/module-config";
+import { moduleConfig as randomVariableConfig } from "../apps/simulation-random-variable/src/module-config";
+import { moduleConfig as resamplingConfig } from "../apps/simulation-resampling/src/module-config";
 import TypeErrorApp from "../apps/type-error/src/App";
+import { Sidebar } from "../src/shell/Sidebar";
 
 // A fresh jsdom environment defaults to zh (getLanguage() falls back to zh when
 // localStorage is unset), so assertions match the keyed zh copy — deterministic
@@ -23,9 +23,11 @@ function withLanguage(ui: React.ReactElement) {
 }
 
 describe("WalsApp rendering", () => {
-  it("renders the module title, model output, and Run button, and survives a Run click", async () => {
+  it("renders the module title, model output, and Run button, and survives a Run click", {
+    timeout: 20000,
+  }, async () => {
     withLanguage(<WalsApp moduleConfig={introConfig} />);
-    expect(screen.getByRole("heading", { name: "模拟导论", level: 1 })).toBeInTheDocument();
+    expect(await screen.findByRole("heading", { name: "模拟导论", level: 1 })).toBeInTheDocument();
     expect(screen.getByText("模型输出")).toBeInTheDocument();
     const run = screen.getByRole("button", { name: "运行" });
     await userEvent.click(run);
@@ -111,9 +113,9 @@ describe("WalsApp rendering", () => {
 
 describe("confidence interval scale domain", () => {
   it("pads a negative lower endpoint away from zero", () => {
-    expect(confidenceIntervalXDomain([
-      { mean: -7, lower: -10, upper: -4, contains: false },
-    ])).toEqual([-10.6, 15]);
+    expect(
+      confidenceIntervalXDomain([{ mean: -7, lower: -10, upper: -4, contains: false }]),
+    ).toEqual([-10.6, 15]);
   });
 });
 

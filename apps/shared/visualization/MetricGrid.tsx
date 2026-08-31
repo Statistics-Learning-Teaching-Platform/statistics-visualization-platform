@@ -24,7 +24,11 @@ export function MetricGrid({ metrics, children, ariaLabel }: MetricGridProps) {
       data-metric-count={metricCount}
     >
       {metrics?.map((metric, index) => (
-        <article className="metric-card" key={metric.key ?? `${String(metric.label)}-${index}`} title={metric.help}>
+        <article
+          className="metric-card"
+          key={metric.key ?? `${String(metric.label)}-${index}`}
+          title={metric.help}
+        >
           <span className="metric-label">{metric.label}</span>
           <strong className="metric-value">{metric.value}</strong>
           {metric.note && <small className="metric-note">{metric.note}</small>}

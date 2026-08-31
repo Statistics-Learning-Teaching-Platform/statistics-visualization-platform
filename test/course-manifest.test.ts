@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { apps } from "../scripts/apps";
-import { courseManifests, chapterManifests } from "../src/course/courseManifest";
+import { chapterManifests, courseManifests } from "../src/course/courseManifest";
+import { getTextbookChapterIdForTopic, textbookChapterIds } from "../src/course/textbookChapters";
 import {
   activityManifests,
   courseCatalog,
@@ -10,10 +11,6 @@ import {
 import { validateCourseCatalog } from "../src/course/validation";
 import { pythonLessons } from "../src/python-learning/lessons";
 import { rLessons } from "../src/r-learning/lessons";
-import {
-  getTextbookChapterIdForTopic,
-  textbookChapterIds,
-} from "../src/course/textbookChapters";
 
 describe("course content model", () => {
   it("defines the thirteen-chapter statistics path in learning order", () => {
@@ -25,9 +22,7 @@ describe("course content model", () => {
     const chapters = chapterManifests
       .filter(({ courseId }) => courseId === "statistics")
       .sort((left, right) => left.order - right.order);
-    expect(chapters.map(({ order }) => order)).toEqual([
-      0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12,
-    ]);
+    expect(chapters.map(({ order }) => order)).toEqual([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]);
   });
 
   it("keeps every id and reference in the shared catalog valid", () => {
@@ -76,8 +71,18 @@ describe("course content model", () => {
 
   it("keeps textbook chapter metadata internal and complete", () => {
     expect(textbookChapterIds).toEqual([
-      "mes-ch00", "mes-ch01", "mes-ch02", "mes-ch03", "mes-ch04", "mes-ch05",
-      "mes-ch06", "mes-ch07", "mes-ch08", "mes-ch09", "mes-ch10", "mes-ch11",
+      "mes-ch00",
+      "mes-ch01",
+      "mes-ch02",
+      "mes-ch03",
+      "mes-ch04",
+      "mes-ch05",
+      "mes-ch06",
+      "mes-ch07",
+      "mes-ch08",
+      "mes-ch09",
+      "mes-ch10",
+      "mes-ch11",
     ]);
     expect(new Set(pythonLessons.map(({ textbookChapterId }) => textbookChapterId))).toEqual(
       new Set(textbookChapterIds),

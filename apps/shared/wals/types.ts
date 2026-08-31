@@ -33,7 +33,13 @@ export interface ControlConfig {
   group?: "mode" | "core" | "display";
 }
 
-export type QuickActionType = "drawSampleMeans" | "bumpControl" | "setControl" | "runWithControl" | "reset" | "resetAndDrawSampleMeans";
+export type QuickActionType =
+  | "drawSampleMeans"
+  | "bumpControl"
+  | "setControl"
+  | "runWithControl"
+  | "reset"
+  | "resetAndDrawSampleMeans";
 export type QuickActionCopyKey =
   | "addOneSample"
   | "addTwentySamples"
