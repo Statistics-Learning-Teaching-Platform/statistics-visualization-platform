@@ -36,8 +36,8 @@ export default defineConfig({
 				// window sticks for browser fetches until the URL changes (see
 				// functions/assets/[[path]].ts for the structural guard; this
 				// suffix is the escape hatch when an entry is already poisoned).
-				chunkFileNames: "assets/[name]-[hash]-cf2.js",
-				entryFileNames: "assets/[name]-[hash]-cf2.js",
+				chunkFileNames: "assets/[name]-[hash]-cf3.js",
+				entryFileNames: "assets/[name]-[hash]-cf3.js",
 			},
 		},
 	},
