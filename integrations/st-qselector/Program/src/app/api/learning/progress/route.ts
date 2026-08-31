@@ -55,24 +55,26 @@ export async function PUT(request: NextRequest) {
         [session.user.id],
       );
       const row = existing.rows[0];
-      if (row && BigInt(row.revision) !== BigInt(baseRevision)) {
+      // Revisions are capped at Number.MAX_SAFE_INTEGER by the request
+      // schema and only ever increment by one, so plain numbers are exact.
+      if (row && Number(row.revision) !== baseRevision) {
         // Another device wrote since our GET: union-merge instead of clobbering.
         const merged = mergeStoredProgress(normalizeStoredProgress(row.payload), incoming);
-        const revision = BigInt(row.revision) + 1n;
+        const revision = Number(row.revision) + 1;
         await client.query(
           "UPDATE learning_progress SET payload = $2, revision = $3, updated_at = now() WHERE user_id = $1",
-          [session.user.id, JSON.stringify(merged), revision.toString()],
+          [session.user.id, JSON.stringify(merged), revision],
         );
-        return { progress: merged, revision: Number(revision), merged: true };
+        return { progress: merged, revision, merged: true };
       }
-      const revision = (row ? BigInt(row.revision) : 0n) + 1n;
+      const revision = (row ? Number(row.revision) : 0) + 1;
       await client.query(
         `INSERT INTO learning_progress (user_id, payload, revision, updated_at)
          VALUES ($1, $2, $3, now())
          ON CONFLICT (user_id) DO UPDATE SET payload = $2, revision = $3, updated_at = now()`,
-        [session.user.id, JSON.stringify(incoming), revision.toString()],
+        [session.user.id, JSON.stringify(incoming), revision],
       );
-      return { progress: incoming, revision: Number(revision), merged: false };
+      return { progress: incoming, revision, merged: false };
     });
     return NextResponse.json(outcome);
   } catch (error) {
