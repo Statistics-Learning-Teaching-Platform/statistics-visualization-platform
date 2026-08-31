@@ -17,7 +17,11 @@ let runtimeGeneration = 0;
 const WEBR_RUNTIME_PATH = "/runtime/webr/0.6.0-cf3/";
 const MAX_SOURCE_LENGTH = 50_000;
 const MAX_OUTPUT_LENGTH = 64 * 1024;
-const INITIALIZATION_TIMEOUT_MS = 150_000;
+// R.wasm alone is ~17MB decompressed (~12MB brotli); on a throttled link the
+// download plus wasm compilation can exceed two minutes on the first visit
+// (subsequent visits hit the browser's disk cache). Keep the ceiling at six
+// minutes so slow first loads succeed instead of resetting mid-download.
+const INITIALIZATION_TIMEOUT_MS = 360_000;
 const EXECUTION_TIMEOUT_MS = 20_000;
 const CONTROL_TIMEOUT_MS = 10_000;
 
