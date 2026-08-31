@@ -168,15 +168,18 @@ export async function runRCode(code: string): Promise<RExecutionResult> {
     );
     selectedImage = captured.images.at(-1) ?? null;
     lastExecutionHadPlot = selectedImage !== null;
-    const environment = await withTimeout(
+    // Deliberately only base-package functions: webR attaches base alone at
+    // startup, so utils::head is absent and namespacing it as base:: throws
+    // "object 'head' not found". Cap the listing on the JS side instead.
+    const environment = (await withTimeout(
       webR.evalRRaw(
-        "base::head(base::sort(base::ls(envir = base::globalenv())), 100L)",
+        "base::sort(base::ls(envir = base::globalenv()))",
         "string[]",
       ),
       webR,
       CONTROL_TIMEOUT_MS,
       "读取 R 环境超时，环境已安全重置",
-    );
+    )).slice(0, 100);
 
     const result = {
       console: limitConsole(captured.output),
