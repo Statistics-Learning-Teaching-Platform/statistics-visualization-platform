@@ -30,9 +30,19 @@ export type TutorModelOption = {
   quantization: string;
   params: string;
   loaded: boolean;
+  legacy?: boolean;
+  selectable?: boolean;
 };
 
 const TUTOR_MODEL_STORAGE_KEY = "stat_tutor_model";
+
+function isLegacyTutorModel(model: TutorModelOption) {
+  return model.legacy === true || /^lfm/i.test(model.key);
+}
+
+function isSelectableTutorModel(model: TutorModelOption) {
+  return model.selectable !== false && !isLegacyTutorModel(model);
+}
 
 export type EditorialTutorMessage = {
   id: string;
@@ -255,7 +265,7 @@ export function EditorialLearningWorkspace<Unit extends string>({
       setTutorModels(models);
       // Drop a stored selection that is no longer online.
       setTutorModel((current) =>
-        current && models.some((model) => model.key === current) ? current : "",
+        current && models.some((model) => model.key === current && isSelectableTutorModel(model)) ? current : "",
       );
       setTutorModelsStatus("idle");
     } catch (error) {
@@ -265,6 +275,8 @@ export function EditorialLearningWorkspace<Unit extends string>({
   }
 
   function changeTutorModel(key: string) {
+    const selected = tutorModels.find((model) => model.key === key);
+    if (selected && !isSelectableTutorModel(selected)) return;
     setTutorModel(key);
     window.localStorage.setItem(TUTOR_MODEL_STORAGE_KEY, key);
   }
@@ -735,13 +747,18 @@ export function EditorialLearningWorkspace<Unit extends string>({
                       {language === "zh" ? "默认模型" : "Default model"}
                     </option>
                     {tutorModels.map((model) => (
-                      <option key={model.key} value={model.key}>
+                      <option key={model.key} value={model.key} disabled={!isSelectableTutorModel(model)}>
                         {model.displayName}
                         {model.quantization ? ` · ${model.quantization}` : ""}
                         {model.loaded
                           ? language === "zh"
                             ? " · 已加载"
                             : " · loaded"
+                          : ""}
+                        {!isSelectableTutorModel(model)
+                          ? language === "zh"
+                            ? " · 已停用"
+                            : " · unavailable"
                           : ""}
                       </option>
                     ))}

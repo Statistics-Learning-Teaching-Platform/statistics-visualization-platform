@@ -4,6 +4,7 @@ const DEFAULT_AI_URL = "http://alist.tlljyang.pp.ua:61235/api/v1/chat";
 export const DEFAULT_AI_MODEL = "qwen3.8-9b-heretic-uncensored-nvfp4@q8_0";
 const MAX_AI_RESPONSE_BYTES = 2 * 1024 * 1024;
 const MODEL_KEY_PATTERN = /^[A-Za-z0-9][A-Za-z0-9._@-]{0,127}$/;
+const LEGACY_MODEL_KEY_PATTERN = /^lfm/i;
 
 export interface StatAiModel {
   key: string;
@@ -11,12 +12,23 @@ export interface StatAiModel {
   quantization: string;
   params: string;
   loaded: boolean;
+  /** Legacy models remain observable for transparency but cannot be selected. */
+  legacy: boolean;
+  selectable: boolean;
+}
+
+export function isLegacyStatAiModel(value: unknown): boolean {
+  return typeof value === "string" && LEGACY_MODEL_KEY_PATTERN.test(value.trim());
 }
 
 export function resolveStatAiModel(value: unknown): string | undefined {
   if (typeof value !== "string") return undefined;
   const model = value.trim();
-  return MODEL_KEY_PATTERN.test(model) ? model : undefined;
+  return MODEL_KEY_PATTERN.test(model) && !isLegacyStatAiModel(model) ? model : undefined;
+}
+
+export function configuredStatAiModel(): string {
+  return resolveStatAiModel(process.env.STAT_AI_MODEL) ?? DEFAULT_AI_MODEL;
 }
 
 export function statAiModelsUrl(): string {
@@ -43,13 +55,20 @@ export async function listStatAiModels(signal?: AbortSignal): Promise<StatAiMode
   };
   return (payload.models ?? [])
     .filter((model) => model.type === "llm" && typeof model.key === "string")
-    .map((model) => ({
-      key: model.key as string,
-      displayName: model.display_name ?? (model.key as string),
-      quantization: model.quantization?.name ?? "",
-      params: model.params_string ?? "",
-      loaded: (model.loaded_instances?.length ?? 0) > 0,
-    }));
+    .flatMap((model) => {
+      const key = (model.key as string).trim();
+      if (!MODEL_KEY_PATTERN.test(key)) return [];
+      const legacy = isLegacyStatAiModel(key);
+      return [{
+        key,
+        displayName: model.display_name ?? key,
+        quantization: model.quantization?.name ?? "",
+        params: model.params_string ?? "",
+        loaded: (model.loaded_instances?.length ?? 0) > 0,
+        legacy,
+        selectable: !legacy,
+      }];
+    });
 }
 
 interface AiOutputItem {
@@ -117,7 +136,7 @@ export async function callStatAi(options: {
   }
 
   const model = resolveStatAiModel(options.model)
-    ?? (process.env.STAT_AI_MODEL?.trim() || DEFAULT_AI_MODEL);
+    ?? configuredStatAiModel();
 
   const body = JSON.stringify({
     model,

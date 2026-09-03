@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { DEFAULT_AI_MODEL, listStatAiModels } from "@/lib/ai-client";
+import { configuredStatAiModel, listStatAiModels } from "@/lib/ai-client";
 import { requireRequestSession } from "@/lib/auth/session";
 import { authErrorResponse } from "@/lib/auth/security";
 
@@ -17,7 +17,7 @@ export async function GET(request: NextRequest) {
     await requireRequestSession(request);
     const models = await listStatAiModels(request.signal);
     return NextResponse.json(
-      { models, defaultModel: DEFAULT_AI_MODEL },
+      { models, defaultModel: configuredStatAiModel() },
       { headers: { "Cache-Control": "no-store" } },
     );
   } catch (error) {

@@ -27,9 +27,19 @@ interface AiModelOption {
   quantization: string;
   params: string;
   loaded: boolean;
+  legacy?: boolean;
+  selectable?: boolean;
 }
 
 const AI_MODEL_STORAGE_KEY = "stat_tutor_model";
+
+function isLegacyAiModel(model: AiModelOption) {
+  return model.legacy === true || /^lfm/i.test(model.key);
+}
+
+function isSelectableAiModel(model: AiModelOption) {
+  return model.selectable !== false && !isLegacyAiModel(model);
+}
 
 interface KnowledgeResponse {
   concepts?: Array<{ id: string; label: string; confidence: number; evidence: string }>;
@@ -148,7 +158,9 @@ export default function AiPaperWorkspace({
         if (!response.ok || !Array.isArray(result.models)) throw new Error(result.error || "在线模型获取失败");
         const models = result.models;
         setAiModels(models);
-        setAiModel((current) => (current && models.some((model) => model.key === current) ? current : ""));
+        setAiModel((current) =>
+          current && models.some((model) => model.key === current && isSelectableAiModel(model)) ? current : "",
+        );
         setAiModelsStatus("idle");
       })
       .catch((error: unknown) => {
@@ -163,6 +175,8 @@ export default function AiPaperWorkspace({
   }
 
   function changeAiModel(key: string) {
+    const selected = aiModels.find((model) => model.key === key);
+    if (selected && !isSelectableAiModel(selected)) return;
     setAiModel(key);
     window.localStorage.setItem(AI_MODEL_STORAGE_KEY, key);
   }
@@ -374,8 +388,9 @@ export default function AiPaperWorkspace({
                 <select id="qb-ai-model" value={aiModel} onChange={(event) => changeAiModel(event.target.value)} disabled={aiModelsStatus === "loading"}>
                   <option value="">默认模型（服务器配置）</option>
                   {aiModels.map((model) => (
-                    <option key={model.key} value={model.key}>
+                    <option key={model.key} value={model.key} disabled={!isSelectableAiModel(model)}>
                       {model.displayName}{model.quantization ? ` · ${model.quantization}` : ""}{model.loaded ? " · 已加载" : ""}
+                      {!isSelectableAiModel(model) ? " · 已停用" : ""}
                     </option>
                   ))}
                 </select>

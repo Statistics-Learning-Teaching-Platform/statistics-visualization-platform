@@ -54,6 +54,13 @@ test("read-only model discovery is not blocked by a missing GET Origin header", 
   assert.match(source, /requireRequestSession\(request\)/);
 });
 
+test("legacy LFM models stay visible for audit but are not selectable", () => {
+  const client = fs.readFileSync(path.join(root, "src/lib/ai-client.ts"), "utf8");
+  assert.match(client, /LEGACY_MODEL_KEY_PATTERN\s*=\s*\/\^lfm\/i/);
+  assert.match(client, /selectable:\s*!legacy/);
+  assert.match(client, /!isLegacyStatAiModel\(model\)/);
+});
+
 test("root proxy instructions allow the fixed Vite development origin", () => {
   const source = fs.readFileSync(path.resolve(root, "../../..", "README.md"), "utf8");
   assert.match(source, /STAT_ALLOWED_ORIGINS=http:\/\/127\.0\.0\.1:4174 npm run dev/);

@@ -1041,6 +1041,11 @@
   outline-offset: 1px;
 }
 
+.ed-ai-model-picker__controls select option:disabled {
+  color: #9aa1a8;
+  background: #eef0f2;
+}
+
 .ed-ai-model-picker__controls button {
   display: grid;
   width: 36px;
