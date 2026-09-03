@@ -61,6 +61,13 @@ test("legacy LFM models stay visible for audit but are not selectable", () => {
   assert.match(client, /!isLegacyStatAiModel\(model\)/);
 });
 
+test("upstream AI authentication is sourced from a Worker secret", () => {
+  const client = fs.readFileSync(path.join(root, "src/lib/ai-client.ts"), "utf8");
+  assert.match(client, /process\.env\.STAT_AI_API_TOKEN/);
+  assert.match(client, /Authorization:\s*`Bearer \$\{token\}`/);
+  assert.doesNotMatch(client, /sk-lm-/);
+});
+
 test("root proxy instructions allow the fixed Vite development origin", () => {
   const source = fs.readFileSync(path.resolve(root, "../../..", "README.md"), "utf8");
   assert.match(source, /STAT_ALLOWED_ORIGINS=http:\/\/127\.0\.0\.1:4174 npm run dev/);

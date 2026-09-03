@@ -152,7 +152,7 @@ export default function AiPaperWorkspace({
     aiModelsAbortRef.current?.abort();
     const controller = new AbortController();
     aiModelsAbortRef.current = controller;
-    return authenticatedFetch("/api/ai/models", { method: "GET", signal: controller.signal })
+    return authenticatedFetch("/api/ai/models", { method: "GET", cache: "no-store", signal: controller.signal })
       .then(async (response) => {
         const result = await response.json() as { models?: AiModelOption[]; error?: string };
         if (!response.ok || !Array.isArray(result.models)) throw new Error(result.error || "在线模型获取失败");

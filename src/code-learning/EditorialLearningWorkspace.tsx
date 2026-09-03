@@ -252,6 +252,7 @@ export function EditorialLearningWorkspace<Unit extends string>({
     try {
       const response = await authenticatedFetch("/st-qselector/api/ai/models", {
         method: "GET",
+        cache: "no-store",
         signal: controller.signal,
       });
       const payload = (await response.json()) as {

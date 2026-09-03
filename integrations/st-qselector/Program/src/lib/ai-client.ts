@@ -6,6 +6,14 @@ const MAX_AI_RESPONSE_BYTES = 2 * 1024 * 1024;
 const MODEL_KEY_PATTERN = /^[A-Za-z0-9][A-Za-z0-9._@-]{0,127}$/;
 const LEGACY_MODEL_KEY_PATTERN = /^lfm/i;
 
+function statAiAuthHeaders(): Record<string, string> {
+  // Keep the upstream LM Studio token in a Worker secret. The legacy name is
+  // accepted as a migration aid for local deployments, but is never exposed
+  // to the browser or included in a response.
+  const token = process.env.STAT_AI_API_TOKEN?.trim() || process.env.LM_API_TOKEN?.trim();
+  return token ? { Authorization: `Bearer ${token}` } : {};
+}
+
 export interface StatAiModel {
   key: string;
   displayName: string;
@@ -39,6 +47,7 @@ export function statAiModelsUrl(): string {
 export async function listStatAiModels(signal?: AbortSignal): Promise<StatAiModel[]> {
   const response = await fetch(statAiModelsUrl(), {
     method: "GET",
+    headers: statAiAuthHeaders(),
     signal,
     cache: "no-store",
   });
@@ -147,7 +156,7 @@ export async function callStatAi(options: {
   for (let attempt = 0; attempt < 3; attempt += 1) {
     const response = await fetch(url, {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: { "Content-Type": "application/json", ...statAiAuthHeaders() },
       signal: options.signal,
       cache: "no-store",
       body,
