@@ -29,6 +29,6 @@
     "STAT_TRUSTED_PROXY": "cloudflare",
     "STAT_ALLOWED_ORIGINS": "https://next.modern-stat.com",
     "STAT_AI_API_URL": "http://alist.tlljyang.pp.ua:61235/api/v1/chat",
-    "STAT_AI_MODEL": "lfm2.5-8b-a1b@q6_k"
+    "STAT_AI_MODEL": "qwen3.8-9b-heretic-uncensored-nvfp4@q8_0"
   }
 }

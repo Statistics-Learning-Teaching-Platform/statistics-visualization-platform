@@ -1005,6 +1005,74 @@
   line-height: 1.7;
 }
 
+.ed-ai-model-picker {
+  display: grid;
+  gap: 6px;
+  margin-bottom: 14px;
+}
+
+.ed-ai-model-picker > label {
+  color: var(--ed-muted);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.ed-ai-model-picker__controls {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 36px;
+  gap: 8px;
+  align-items: center;
+}
+
+.ed-ai-model-picker__controls select {
+  min-height: 38px;
+  padding: 0 10px;
+  border: 1px solid var(--ed-rule);
+  border-radius: 8px;
+  color: var(--ed-ink);
+  background: var(--ed-surface);
+  font-size: 12px;
+}
+
+.ed-ai-model-picker__controls select:focus-visible {
+  outline: 2px solid var(--ed-navy);
+  outline-offset: 1px;
+}
+
+.ed-ai-model-picker__controls button {
+  display: grid;
+  width: 36px;
+  height: 36px;
+  place-items: center;
+  border: 1px solid var(--ed-rule);
+  border-radius: 50%;
+  color: var(--ed-navy);
+  background: var(--ed-surface);
+}
+
+.ed-ai-model-picker__controls button:hover:not(:disabled),
+.ed-ai-model-picker__controls button:focus-visible {
+  border-color: var(--ed-navy);
+}
+
+.ed-ai-model-picker__controls button:disabled {
+  opacity: 0.4;
+}
+
+.ed-ai-model-picker__controls button svg {
+  width: 15px;
+  height: 15px;
+}
+
+.ed-ai-model-picker__hint {
+  margin: 0;
+  color: var(--ed-muted);
+  font-size: 11px;
+  line-height: 1.6;
+}
+
 .ed-ai-drawer .ed-live-ai-messages {
   flex: 1;
   max-height: none;

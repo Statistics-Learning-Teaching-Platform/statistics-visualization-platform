@@ -79,12 +79,13 @@ function validConcepts(value: unknown): ExtractedKnowledgePoint[] {
     .slice(0, 16);
 }
 
-export async function aiKnowledgeExtraction(text: string, requestSignal?: AbortSignal): Promise<ExtractedKnowledgePoint[] | null> {
+export async function aiKnowledgeExtraction(text: string, requestSignal?: AbortSignal, model?: string): Promise<ExtractedKnowledgePoint[] | null> {
   const controller = new AbortController();
   const timeout = setTimeout(() => controller.abort(), 55_000);
   try {
     const content = await callStatAi({
       signal: requestSignal ? AbortSignal.any([requestSignal, controller.signal]) : controller.signal,
+      model,
       systemPrompt: "You extract assessable statistics knowledge points from teaching material. Return JSON only with this schema: {\"concepts\":[{\"id\":\"...\",\"label\":\"...\",\"confidence\":0.0,\"evidence\":\"...\"}]}. Labels must be concise English statistics concepts, confidence is 0..1, evidence briefly cites the supplied text. Merge duplicates and return no more than 16 concepts. Do not wrap the JSON in Markdown.",
       input: text.slice(0, 60_000),
     });

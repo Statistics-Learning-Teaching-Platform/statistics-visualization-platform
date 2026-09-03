@@ -2,7 +2,7 @@ import { randomUUID } from "node:crypto";
 import { NextRequest, NextResponse } from "next/server";
 import { evaluatePaperQuality, questionMatchesKnowledge, selectQuestionsFromBlueprint, type PaperBlueprint } from "@/lib/blueprint";
 import { reviewedQuestionIndex } from "@/generated/reviewed-questions";
-import { callStatAi } from "@/lib/ai-client";
+import { callStatAi, resolveStatAiModel } from "@/lib/ai-client";
 import { persistAiDrafts } from "@/lib/ai-drafts";
 import { consumeRateLimit, requestPrincipal, withConcurrencyLease } from "@/lib/auth/rate-limit";
 import { requireRequestSession, verifyCsrf } from "@/lib/auth/session";
@@ -42,13 +42,14 @@ function safeJson(value: string): unknown {
   return JSON.parse(clean);
 }
 
-async function callJson(system: string, user: string, requestSignal: AbortSignal): Promise<Record<string, unknown>> {
+async function callJson(system: string, user: string, requestSignal: AbortSignal, model?: string): Promise<Record<string, unknown>> {
   const controller = new AbortController();
   const timeout = setTimeout(() => controller.abort(), AI_STAGE_TIMEOUT_MS);
   try {
     const parsed = safeJson(await callStatAi({
       systemPrompt: system,
       input: user,
+      model,
       signal: AbortSignal.any([requestSignal, controller.signal]),
     }));
     if (!parsed || typeof parsed !== "object" || Array.isArray(parsed)) throw new Error("AI 返回的 JSON 结构无效");
@@ -210,8 +211,9 @@ export async function POST(request: NextRequest) {
       limit: 8,
       windowSeconds: 60 * 60,
     });
-    const body = await readLimitedJson(request, 128 * 1024) as { blueprint?: unknown; variantPercent?: unknown };
+    const body = await readLimitedJson(request, 128 * 1024) as { blueprint?: unknown; variantPercent?: unknown; model?: unknown };
     const blueprint = parseBlueprint(body.blueprint);
+    const requestedModel = resolveStatAiModel(body.model);
     const selectedConcepts = blueprint.knowledgePoints.filter((point) => point.selected && point.label.trim());
     if (!selectedConcepts.length) {
       return NextResponse.json({ error: "请先确认至少一个知识点" }, { status: 400 });
@@ -279,6 +281,7 @@ export async function POST(request: NextRequest) {
         "Return compact JSON only: {questions:[{index,concept,type,difficulty,chapterId,content,answer,verification}]}. Write exactly one self-contained English statistics question per job with the same index. Include all data; never require an external figure, file, table, or prior exercise. A variant must change its context and numbers and recompute its answer. Show essential calculations and a conclusion. Keep each content and answer under 1200 characters. Allowed types: 选择题, 判断题, 填空题, 计算题, 简答题, 综合题.",
         JSON.stringify({ targetDifficulty: blueprint.targetDifficulty, allowedTypes: blueprint.types, jobs: seeds }),
         signal,
+        requestedModel,
       );
       const firstPass = indexedDrafts(generatedPayload.questions, jobs, "AI 生成阶段");
 
@@ -286,6 +289,7 @@ export async function POST(request: NextRequest) {
         "Act as a second-pass statistics verifier. Solve each proposed question yourself. Correct any ambiguity, arithmetic, units, rounding, hypotheses, direction, degrees of freedom, p-value, or interval error. In verification, state the concrete checks performed; never claim independent human review. Return compact JSON only: {questions:[{index,concept,type,difficulty,chapterId,content,answer,verification}]}, preserving every index. Questions must remain self-contained. Keep each content and corrected answer under 1200 characters.",
         JSON.stringify({ questions: firstPass.map((item, index) => ({ index, ...item })) }),
         signal,
+        requestedModel,
       );
       const verifiedDrafts = indexedDrafts(verificationPayload.questions, jobs, "AI 二次校验阶段");
       const generatedQuestions = verifiedDrafts

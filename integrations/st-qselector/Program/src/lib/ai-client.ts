@@ -1,8 +1,56 @@
 import "server-only";
 
 const DEFAULT_AI_URL = "http://alist.tlljyang.pp.ua:61235/api/v1/chat";
-const DEFAULT_AI_MODEL = "lfm2.5-8b-a1b@q6_k";
+export const DEFAULT_AI_MODEL = "qwen3.8-9b-heretic-uncensored-nvfp4@q8_0";
 const MAX_AI_RESPONSE_BYTES = 2 * 1024 * 1024;
+const MODEL_KEY_PATTERN = /^[A-Za-z0-9][A-Za-z0-9._@-]{0,127}$/;
+
+export interface StatAiModel {
+  key: string;
+  displayName: string;
+  quantization: string;
+  params: string;
+  loaded: boolean;
+}
+
+export function resolveStatAiModel(value: unknown): string | undefined {
+  if (typeof value !== "string") return undefined;
+  const model = value.trim();
+  return MODEL_KEY_PATTERN.test(model) ? model : undefined;
+}
+
+export function statAiModelsUrl(): string {
+  const endpoint = process.env.STAT_AI_API_URL?.trim() || DEFAULT_AI_URL;
+  return endpoint.replace(/\/api\/v1\/chat\/?$/, "/api/v1/models");
+}
+
+export async function listStatAiModels(signal?: AbortSignal): Promise<StatAiModel[]> {
+  const response = await fetch(statAiModelsUrl(), {
+    method: "GET",
+    signal,
+    cache: "no-store",
+  });
+  if (!response.ok) throw new Error(`AI model service returned ${response.status}`);
+  const payload = (await response.json()) as {
+    models?: Array<{
+      type?: string;
+      key?: string;
+      display_name?: string;
+      params_string?: string | null;
+      quantization?: { name?: string };
+      loaded_instances?: unknown[];
+    }>;
+  };
+  return (payload.models ?? [])
+    .filter((model) => model.type === "llm" && typeof model.key === "string")
+    .map((model) => ({
+      key: model.key as string,
+      displayName: model.display_name ?? (model.key as string),
+      quantization: model.quantization?.name ?? "",
+      params: model.params_string ?? "",
+      loaded: (model.loaded_instances?.length ?? 0) > 0,
+    }));
+}
 
 interface AiOutputItem {
   type?: string;
@@ -59,6 +107,7 @@ async function readLimitedJsonResponse(response: Response): Promise<{ output?: A
 export async function callStatAi(options: {
   systemPrompt: string;
   input: string;
+  model?: string;
   signal?: AbortSignal;
 }): Promise<string> {
   const endpoint = process.env.STAT_AI_API_URL?.trim() || DEFAULT_AI_URL;
@@ -67,8 +116,11 @@ export async function callStatAi(options: {
     throw new Error("STAT_AI_API_URL must use HTTP or HTTPS");
   }
 
+  const model = resolveStatAiModel(options.model)
+    ?? (process.env.STAT_AI_MODEL?.trim() || DEFAULT_AI_MODEL);
+
   const body = JSON.stringify({
-    model: process.env.STAT_AI_MODEL?.trim() || DEFAULT_AI_MODEL,
+    model,
     system_prompt: options.systemPrompt,
     input: options.input,
   });

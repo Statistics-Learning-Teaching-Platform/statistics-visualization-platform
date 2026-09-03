@@ -1,7 +1,7 @@
 "use client";
 
-import React, { useMemo, useRef, useState } from "react";
-import { Check, FileUp, Loader2, Sparkles, WandSparkles } from "lucide-react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
+import { Check, FileUp, Loader2, RotateCcw, Sparkles, WandSparkles } from "lucide-react";
 import QuestionContent from "@/components/QuestionContent";
 import type { Question } from "@/lib/types";
 import {
@@ -20,6 +20,16 @@ interface AiPaperWorkspaceProps {
   onAdd: (ids: string[], generated?: Question[]) => void;
   onReplace: (ids: string[], generated?: Question[]) => void;
 }
+
+interface AiModelOption {
+  key: string;
+  displayName: string;
+  quantization: string;
+  params: string;
+  loaded: boolean;
+}
+
+const AI_MODEL_STORAGE_KEY = "stat_tutor_model";
 
 interface KnowledgeResponse {
   concepts?: Array<{ id: string; label: string; confidence: number; evidence: string }>;
@@ -118,6 +128,51 @@ export default function AiPaperWorkspace({
   const [message, setMessage] = useState<string | null>(null);
   const [candidate, setCandidate] = useState<HybridCandidate | null>(null);
   const [acceptedCandidateIds, setAcceptedCandidateIds] = useState<Set<string>>(new Set());
+  const [aiModels, setAiModels] = useState<AiModelOption[]>([]);
+  const [aiModelsStatus, setAiModelsStatus] = useState<"idle" | "loading" | "error">("idle");
+  const [aiModel, setAiModel] = useState(() => window.localStorage.getItem(AI_MODEL_STORAGE_KEY) ?? "");
+  const aiModelsAbortRef = useRef<AbortController | null>(null);
+
+  // Fetches the currently online models. All state updates happen inside
+  // promise callbacks so callers (including effects) never trigger a
+  // synchronous setState.
+  function scanAiModels(): Promise<void> {
+    aiModelsAbortRef.current?.abort();
+    const controller = new AbortController();
+    aiModelsAbortRef.current = controller;
+    return authenticatedFetch("/api/ai/models", { method: "GET", signal: controller.signal })
+      .then(async (response) => {
+        const result = await response.json() as { models?: AiModelOption[]; error?: string };
+        if (!response.ok || !Array.isArray(result.models)) throw new Error(result.error || "在线模型获取失败");
+        const models = result.models;
+        setAiModels(models);
+        setAiModel((current) => (current && models.some((model) => model.key === current) ? current : ""));
+        setAiModelsStatus("idle");
+      })
+      .catch((error: unknown) => {
+        if (error instanceof DOMException && error.name === "AbortError") return;
+        setAiModelsStatus("error");
+      });
+  }
+
+  function refreshAiModels() {
+    setAiModelsStatus("loading");
+    void scanAiModels();
+  }
+
+  function changeAiModel(key: string) {
+    setAiModel(key);
+    window.localStorage.setItem(AI_MODEL_STORAGE_KEY, key);
+  }
+
+  // Scan the online models when the workspace mounts; the selection is
+  // restored from localStorage and dropped again if it goes offline.
+  useEffect(() => {
+    void scanAiModels();
+    return () => {
+      aiModelsAbortRef.current?.abort();
+    };
+  }, []);
 
   const blueprint: PaperBlueprint = useMemo(() => createPaperBlueprint({
     learningObjectives: concepts.filter((point) => point.selected).map((point) => point.label),
@@ -147,6 +202,7 @@ export default function AiPaperWorkspace({
       const form = new FormData();
       if (sourceText.trim()) form.set("text", sourceText.trim());
       if (file) form.set("file", file);
+      if (aiModel) form.set("model", aiModel);
       const response = await authenticatedFetch("/api/ai/knowledge", { method: "POST", body: form });
       const result = await response.json() as KnowledgeResponse;
       if (!response.ok) throw new Error(result.error || "课件分析失败");
@@ -190,7 +246,7 @@ export default function AiPaperWorkspace({
       const response = await authenticatedFetch("/api/ai/paper", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ blueprint, variantPercent }),
+        body: JSON.stringify({ blueprint, variantPercent, model: aiModel || undefined }),
       });
       const result = await response.json() as HybridCandidate & { error?: string };
       if (!response.ok) throw new Error(result.error || "AI 组卷失败");
@@ -301,6 +357,23 @@ export default function AiPaperWorkspace({
               <label><span>目标难度</span><input type="range" min="1" max="5" step="1" value={targetDifficulty} onChange={(event) => { setTargetDifficulty(Number(event.target.value)); setCandidate(null); }} /><em>{"★".repeat(targetDifficulty)}</em></label>
               <label><span>预计完成时间</span><input type="number" min="10" max="300" value={estimatedMinutes} onChange={(event) => { setEstimatedMinutes(Number(event.target.value)); setCandidate(null); }} /><em>分钟</em></label>
               <label><span>母题变式/新题比例</span><input type="range" min="0" max="70" step="10" value={variantPercent} onChange={(event) => { setVariantPercent(Number(event.target.value)); setCandidate(null); }} /><em>{variantPercent}%</em></label>
+            </div>
+            <div className="qb-ai-model-picker">
+              <label htmlFor="qb-ai-model">AI 模型</label>
+              <div className="qb-ai-model-picker__controls">
+                <select id="qb-ai-model" value={aiModel} onChange={(event) => changeAiModel(event.target.value)} disabled={aiModelsStatus === "loading"}>
+                  <option value="">默认模型（服务器配置）</option>
+                  {aiModels.map((model) => (
+                    <option key={model.key} value={model.key}>
+                      {model.displayName}{model.quantization ? ` · ${model.quantization}` : ""}{model.loaded ? " · 已加载" : ""}
+                    </option>
+                  ))}
+                </select>
+                <button type="button" onClick={refreshAiModels} disabled={aiModelsStatus === "loading"} aria-label="重新扫描在线模型" title="重新扫描在线模型">
+                  {aiModelsStatus === "loading" ? <Loader2 className="animate-spin" /> : <RotateCcw />}
+                </button>
+              </div>
+              {aiModelsStatus === "error" ? <p className="qb-ai-model-picker__hint">在线模型获取失败，点击右侧按钮重试。</p> : null}
             </div>
             <div className="qb-ai-type-grid">
               {availableTypes.map((type) => (

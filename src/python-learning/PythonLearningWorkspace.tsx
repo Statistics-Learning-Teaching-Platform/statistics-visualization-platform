@@ -285,7 +285,7 @@ export function PythonLearningWorkspace() {
     }
   }
 
-  async function askTutor(suggestedQuestion?: string) {
+  async function askTutor(suggestedQuestion?: string, model?: string) {
     const question = (suggestedQuestion ?? tutorPrompt).trim();
     if (!question || tutorBusyRef.current) return;
 
@@ -331,6 +331,7 @@ export function PythonLearningWorkspace() {
             ? "The latest run produced a Python plot."
             : "No plot has been produced.",
           language: requestLanguage,
+          model,
           question,
           lesson: {
             title: lesson.title[requestLanguage],

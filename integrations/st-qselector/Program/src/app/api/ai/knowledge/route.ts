@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { resolveStatAiModel } from "@/lib/ai-client";
 import { CoursewareInputError, extractCoursewareText } from "@/lib/courseware";
 import {
   aiKnowledgeExtraction,
@@ -16,7 +17,7 @@ const MAX_DIRECT_TEXT_LENGTH = 80_000;
 const MAX_COMBINED_TEXT_LENGTH = 100_000;
 const MAX_FORM_BYTES = 16 * 1024 * 1024;
 
-async function readKnowledgeInput(request: NextRequest): Promise<string> {
+async function readKnowledgeInput(request: NextRequest): Promise<{ text: string; model?: string }> {
   return withConcurrencyLease({
     route: "ai-knowledge-parse",
     limit: 3,
@@ -26,6 +27,7 @@ async function readKnowledgeInput(request: NextRequest): Promise<string> {
     work: async (signal) => {
       if (signal.aborted) throw signal.reason;
       const form = await readLimitedFormData(request, MAX_FORM_BYTES);
+      const model = resolveStatAiModel(form.get("model"));
       const directText = String(form.get("text") ?? "").trim();
       if (directText.length > MAX_DIRECT_TEXT_LENGTH) {
         throw new CoursewareInputError("直接输入的文本不能超过 80,000 个字符。", 413);
@@ -41,7 +43,7 @@ async function readKnowledgeInput(request: NextRequest): Promise<string> {
       if (text.length < 12) {
         throw new CoursewareInputError("请上传课件或输入更完整的考试目标。");
       }
-      return text;
+      return { text, model };
     },
   });
 }
@@ -57,7 +59,7 @@ export async function POST(request: NextRequest) {
       limit: 12,
       windowSeconds: 60 * 60,
     });
-    const text = await readKnowledgeInput(request);
+    const { text, model } = await readKnowledgeInput(request);
 
     let mode: "ai" | "local" = "local";
     let warning: string | undefined;
@@ -69,7 +71,7 @@ export async function POST(request: NextRequest) {
         limit: 6,
         ttlSeconds: 58,
         requestSignal: request.signal,
-        work: (signal) => aiKnowledgeExtraction(text, signal),
+        work: (signal) => aiKnowledgeExtraction(text, signal, model),
       });
       if (concepts?.length) mode = "ai";
     } catch (error) {

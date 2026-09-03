@@ -306,7 +306,7 @@ export function RLearningWorkspace() {
     }
   }
 
-  async function askTutor(suggestedQuestion?: string) {
+  async function askTutor(suggestedQuestion?: string, model?: string) {
     const question = (suggestedQuestion ?? tutorPrompt).trim();
     if (!question || tutorBusyRef.current) return;
 
@@ -350,6 +350,7 @@ export function RLearningWorkspace() {
           consoleOutput: consoleLines,
           chartSummary: plot ? "The latest run produced an R plot." : "No plot has been produced.",
           language: requestLanguage,
+          model,
           question,
           lesson: {
             title: lesson.title[requestLanguage],

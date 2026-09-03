@@ -1,7 +1,7 @@
 import "server-only";
 
 import { NextRequest, NextResponse } from "next/server";
-import { callStatAi } from "@/lib/ai-client";
+import { callStatAi, resolveStatAiModel } from "@/lib/ai-client";
 import { consumeRateLimit, requestPrincipal, withConcurrencyLease } from "@/lib/auth/rate-limit";
 import { requireRequestSession, verifyCsrf } from "@/lib/auth/session";
 import { assertSafeOrigin, authErrorResponse, AuthError, readLimitedJson } from "@/lib/auth/security";
@@ -13,6 +13,7 @@ interface TutorMessage {
 
 interface TutorRequest {
   language?: "zh" | "en";
+  model?: string;
   question?: string;
   lesson?: { title?: string; objective?: string; task?: string; concepts?: string[] };
   code?: string;
@@ -73,6 +74,7 @@ export function createTutorPost(options: {
         work: async (signal) => {
           const answer = await callStatAi({
             signal,
+            model: resolveStatAiModel(body.model),
             systemPrompt: `You are StatMind's ${options.runtimeName} programming teaching assistant. Reply in ${language}. ${options.systemDetail} Use the supplied lesson, learner code, console output, and check result as authoritative context. Diagnose the learner's exact current problem, explain the relevant concept, and give one small actionable next step. Prefer hints and short corrected snippets over replacing the whole exercise. Never invent runtime output. If the learner explicitly asks for the full solution, you may provide it with an explanation. Keep the answer concise, well formatted, and under 350 words.`,
             input: `${context}\n\nRECENT CONVERSATION\n${cleanMessages(body.history).map((item) => `${item.role}: ${item.content}`).join("\n")}\n\nLEARNER QUESTION\n${question}`,
           });
