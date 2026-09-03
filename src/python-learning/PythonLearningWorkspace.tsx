@@ -450,7 +450,7 @@ export function PythonLearningWorkspace() {
       onToggleHint={() => setShowHint((value) => !value)}
       onToggleSolution={() => setShowSolution((value) => !value)}
       onTutorPromptChange={setTutorPrompt}
-      onAskTutor={(question) => void askTutor(question)}
+      onAskTutor={(question, model) => void askTutor(question, model)}
     />
   );
 }

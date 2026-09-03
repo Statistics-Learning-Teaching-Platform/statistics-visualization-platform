@@ -49,6 +49,11 @@ try {
   const cases = [
     ["questions", "/api/questions", { method: "GET" }],
     ["asset", "/api/asset?chapter=Ch01&file=Assests%2FData-Chapter01-02.xlsx", { method: "GET" }],
+    // Same-origin browser GET fetches do not reliably include Origin. The
+    // read-only model discovery endpoint must therefore reach session auth
+    // (401 anonymously), rather than being rejected by the mutation origin
+    // guard (403) before authentication.
+    ["AI models", "/api/ai/models", { method: "GET" }],
     ["export", "/api/export/docx", { method: "POST", headers: { Origin: origin, "Content-Type": "application/json" }, body: "{}" }],
     ["AI paper", "/api/ai/paper", { method: "POST", headers: { Origin: origin, "Content-Type": "application/json" }, body: "{}" }],
     ["AI knowledge", "/api/ai/knowledge", { method: "POST", headers: { Origin: origin } }],
@@ -57,6 +62,10 @@ try {
   ];
   for (const [name, pathname, init] of cases) {
     const response = await fetch(`${base}${pathname}`, init);
+    if (name === "AI models") {
+      assert.equal(response.status, 401, `${name} should authenticate anonymous GETs: ${await response.text()}`);
+      continue;
+    }
     assert.ok(
       response.status === 401 || response.status === 403,
       `${name} returned ${response.status}, expected 401/403: ${await response.text()}`,

@@ -130,7 +130,9 @@ export default function AiPaperWorkspace({
   const [acceptedCandidateIds, setAcceptedCandidateIds] = useState<Set<string>>(new Set());
   const [aiModels, setAiModels] = useState<AiModelOption[]>([]);
   const [aiModelsStatus, setAiModelsStatus] = useState<"idle" | "loading" | "error">("idle");
-  const [aiModel, setAiModel] = useState(() => window.localStorage.getItem(AI_MODEL_STORAGE_KEY) ?? "");
+  // Read browser storage after hydration. Client components can still be
+  // rendered on the server, where `window` is unavailable.
+  const [aiModel, setAiModel] = useState("");
   const aiModelsAbortRef = useRef<AbortController | null>(null);
 
   // Fetches the currently online models. All state updates happen inside
@@ -168,8 +170,16 @@ export default function AiPaperWorkspace({
   // Scan the online models when the workspace mounts; the selection is
   // restored from localStorage and dropped again if it goes offline.
   useEffect(() => {
+    const storedModel = window.localStorage.getItem(AI_MODEL_STORAGE_KEY) ?? "";
+    let active = true;
+    // Defer the state update to the external-read callback so hydration does
+    // not perform a synchronous effect update.
+    Promise.resolve().then(() => {
+      if (active) setAiModel(storedModel);
+    });
     void scanAiModels();
     return () => {
+      active = false;
       aiModelsAbortRef.current?.abort();
     };
   }, []);

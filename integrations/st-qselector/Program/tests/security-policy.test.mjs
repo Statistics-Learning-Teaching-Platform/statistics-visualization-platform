@@ -48,6 +48,12 @@ test("knowledge upload parsing and AI calls use separate global leases", () => {
   assert.ok(formRead < fileParse && fileParse < aiLease);
 });
 
+test("read-only model discovery is not blocked by a missing GET Origin header", () => {
+  const source = fs.readFileSync(path.join(root, "src/app/api/ai/models/route.ts"), "utf8");
+  assert.doesNotMatch(source, /assertSafeOrigin\(request\)/);
+  assert.match(source, /requireRequestSession\(request\)/);
+});
+
 test("root proxy instructions allow the fixed Vite development origin", () => {
   const source = fs.readFileSync(path.resolve(root, "../../..", "README.md"), "utf8");
   assert.match(source, /STAT_ALLOWED_ORIGINS=http:\/\/127\.0\.0\.1:4174 npm run dev/);
