@@ -3,6 +3,9 @@ import "server-only";
 const DEFAULT_AI_URL = "http://alist.tlljyang.pp.ua:61235/api/v1/chat";
 export const DEFAULT_AI_MODEL = "qwen3.8-9b-heretic-uncensored-nvfp4@q8_0";
 const MAX_AI_RESPONSE_BYTES = 2 * 1024 * 1024;
+const DEFAULT_MAX_OUTPUT_TOKENS = 4_096;
+const MIN_MAX_OUTPUT_TOKENS = 128;
+const MAX_MAX_OUTPUT_TOKENS = 8_192;
 const MODEL_KEY_PATTERN = /^[A-Za-z0-9][A-Za-z0-9._@-]{0,127}$/;
 const LEGACY_MODEL_KEY_PATTERN = /^lfm/i;
 
@@ -37,6 +40,11 @@ export function resolveStatAiModel(value: unknown): string | undefined {
 
 export function configuredStatAiModel(): string {
   return resolveStatAiModel(process.env.STAT_AI_MODEL) ?? DEFAULT_AI_MODEL;
+}
+
+function normalizeMaxOutputTokens(value: number | undefined): number {
+  if (value === undefined || !Number.isFinite(value)) return DEFAULT_MAX_OUTPUT_TOKENS;
+  return Math.max(MIN_MAX_OUTPUT_TOKENS, Math.min(MAX_MAX_OUTPUT_TOKENS, Math.floor(value)));
 }
 
 export function statAiModelsUrl(): string {
@@ -136,6 +144,7 @@ export async function callStatAi(options: {
   systemPrompt: string;
   input: string;
   model?: string;
+  maxOutputTokens?: number;
   signal?: AbortSignal;
 }): Promise<string> {
   const endpoint = process.env.STAT_AI_API_URL?.trim() || DEFAULT_AI_URL;
@@ -151,6 +160,12 @@ export async function callStatAi(options: {
     model,
     system_prompt: options.systemPrompt,
     input: options.input,
+    max_output_tokens: normalizeMaxOutputTokens(options.maxOutputTokens),
+    // Qwen exposes reasoning by default in LM Studio. Disabling it keeps
+    // interactive requests within the Worker's execution window, while
+    // store=false prevents prompts and answers being retained upstream.
+    reasoning: "off",
+    store: false,
   });
 
   for (let attempt = 0; attempt < 3; attempt += 1) {

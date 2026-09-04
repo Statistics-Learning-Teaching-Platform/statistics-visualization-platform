@@ -68,6 +68,14 @@ test("upstream AI authentication is sourced from a Worker secret", () => {
   assert.doesNotMatch(client, /sk-lm-/);
 });
 
+test("upstream AI generation is bounded, non-persistent and reasoning-free", () => {
+  const client = fs.readFileSync(path.join(root, "src/lib/ai-client.ts"), "utf8");
+  assert.match(client, /max_output_tokens:\s*normalizeMaxOutputTokens\(options\.maxOutputTokens\)/);
+  assert.match(client, /reasoning:\s*"off"/);
+  assert.match(client, /store:\s*false/);
+  assert.match(client, /DEFAULT_MAX_OUTPUT_TOKENS\s*=\s*4_096/);
+});
+
 test("root proxy instructions allow the fixed Vite development origin", () => {
   const source = fs.readFileSync(path.resolve(root, "../../..", "README.md"), "utf8");
   assert.match(source, /STAT_ALLOWED_ORIGINS=http:\/\/127\.0\.0\.1:4174 npm run dev/);
