@@ -104,9 +104,13 @@ test("model choices are populated only by an explicit scan and are not persisted
 
 test("upstream AI authentication is sourced from a Worker secret", () => {
   const client = fs.readFileSync(path.join(root, "src/lib/ai-client.ts"), "utf8");
+  const wrangler = fs.readFileSync(path.join(root, "wrangler.jsonc"), "utf8");
   assert.match(client, /process\.env\.STAT_AI_API_TOKEN/);
   assert.match(client, /Authorization:\s*`Bearer \$\{token\}`/);
   assert.doesNotMatch(client, /sk-lm-/);
+  assert.match(client, /DEFAULT_AI_URL\s*=\s*"https:\/\/models\.ljysvr\.pp\.ua\/api\/v1\/chat"/);
+  assert.match(wrangler, /"STAT_AI_API_URL":\s*"https:\/\/models\.ljysvr\.pp\.ua\/api\/v1\/chat"/);
+  assert.doesNotMatch(`${client}\n${wrangler}`, /http:\/\/[^"\s]+\/api\/v1\/chat/);
 });
 
 test("upstream AI generation is bounded, non-persistent and reasoning is capability-gated", () => {

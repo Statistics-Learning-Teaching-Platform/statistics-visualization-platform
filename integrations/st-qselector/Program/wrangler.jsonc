@@ -29,6 +29,6 @@
     "STAT_TRUSTED_PROXY": "cloudflare",
     "STAT_ALLOWED_ORIGINS": "https://next.modern-stat.com",
     // Set the upstream LM Studio token with `wrangler secret put STAT_AI_API_TOKEN`.
-    "STAT_AI_API_URL": "http://alist.tlljyang.pp.ua:61235/api/v1/chat"
+    "STAT_AI_API_URL": "https://models.ljysvr.pp.ua/api/v1/chat"
   }
 }

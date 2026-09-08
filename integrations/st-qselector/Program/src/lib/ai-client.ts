@@ -15,7 +15,7 @@ export type { StatAiModel } from "@/lib/stat-ai-models";
 export class StatAiModelSelectionError extends AuthError {}
 export class StatAiContextBudgetError extends AuthError {}
 
-const DEFAULT_AI_URL = "http://alist.tlljyang.pp.ua:61235/api/v1/chat";
+const DEFAULT_AI_URL = "https://models.ljysvr.pp.ua/api/v1/chat";
 const MAX_AI_RESPONSE_BYTES = 2 * 1024 * 1024;
 const DEFAULT_MAX_OUTPUT_TOKENS = 4_096;
 const MIN_MAX_OUTPUT_TOKENS = 128;
