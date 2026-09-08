@@ -3,6 +3,7 @@ import "server-only";
 import { queryDatabase, withTransaction, type DatabaseClient } from "@/lib/db";
 import { sha256 } from "@/lib/auth/security";
 import type { Question } from "@/lib/types";
+import { validateQuestionVisualizations } from "@/lib/question-visualizations";
 
 export type AiDraftReviewStatus = "pending" | "approved" | "rejected";
 
@@ -31,7 +32,9 @@ function parsePayload(value: unknown): Question {
   ) {
     throw new Error("AI draft payload failed integrity validation");
   }
-  return question as Question;
+  const visualizations = validateQuestionVisualizations(question.visualizations);
+  if (!visualizations) throw new Error("AI draft visualizations failed integrity validation");
+  return { ...question, visualizations } as Question;
 }
 
 async function draftHash(question: Question): Promise<string> {
@@ -44,6 +47,7 @@ async function draftHash(question: Question): Promise<string> {
     origin: question.origin,
     parentQuestionId: question.parentQuestionId ?? null,
     verification: question.verification ?? null,
+    visualizations: question.visualizations ?? [],
   }));
 }
 

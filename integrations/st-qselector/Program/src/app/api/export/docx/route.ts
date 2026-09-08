@@ -16,6 +16,7 @@ import {
 } from "docx";
 import { reviewedQuestionIndex } from "@/generated/reviewed-questions";
 import type { Question } from "@/lib/types";
+import { resolveQuestionVisualizations } from "@/lib/question-visualizations";
 import { getOwnedAiDrafts } from "@/lib/ai-drafts";
 import { getPrivateAssetContent, getPrivateAssetMetadata } from "@/lib/private-assets";
 import { consumeRateLimit, requestPrincipal, withConcurrencyLease } from "@/lib/auth/rate-limit";
@@ -234,6 +235,25 @@ async function questionBlocks(
     }),
     ...(await textToParagraphs(question.chapterId, question.content, budget, signal)),
   ];
+  // Mermaid renders in the browser and therefore survives browser print/PDF.
+  // DOCX generation runs without a browser/Chromium; retain both the human
+  // description and validated source so the chart is never silently dropped.
+  for (const visualization of question.visualizations ?? []) {
+    blocks.push(
+      new Paragraph({
+        spacing: { before: 100, after: 30 },
+        children: [new TextRun({ text: `图表：${visualization.title}`, bold: true, color: "334155" })],
+      }),
+      new Paragraph({
+        spacing: { after: 30 },
+        children: [new TextRun({ text: visualization.alt, italics: true, color: "475569" })],
+      }),
+      new Paragraph({
+        spacing: { after: 80 },
+        children: [new TextRun({ text: `Mermaid 源码（网页/PDF 中显示为图表）：\n${visualization.source}`, font: "Courier New", size: 18 })],
+      }),
+    );
+  }
   if (!withAnswer) return blocks;
   blocks.push(new Paragraph({ spacing: { before: 120, after: 40 }, children: [new TextRun({ text: "答案：", bold: true, color: "16A34A" })] }));
   if (question.answer == null) {
@@ -274,11 +294,20 @@ export async function POST(request: NextRequest) {
     const generatedIds = ids.filter((id) => id.startsWith("ai_"));
     const generated = await getOwnedAiDrafts(session.user.id, { ids: generatedIds, adoptedOnly: true });
     const byId = new Map([...stored, ...generated.map((draft) => draft.question)].map((question) => [question.id, question]));
-    const questions = ids.map((id) => byId.get(id)).filter((question): question is Question => Boolean(question));
+    const questions = ids.map((id) => byId.get(id)).filter((question): question is Question => Boolean(question))
+      .map((question) => ({
+        ...question,
+        visualizations: resolveQuestionVisualizations(question.content, question.visualizations),
+      }));
     if (!questions.length) throw new AuthError(400, "没有可导出的有效题目");
     if (questions.length !== ids.length) throw new AuthError(400, "试卷包含不存在或不属于当前账号的题目");
     assertExportSourceBudget(title.length + questions.reduce((total, question) =>
-      total + question.content.length + (withAnswer ? question.answer?.length ?? 0 : 0), 0));
+      total
+      + question.content.length
+      + (withAnswer ? question.answer?.length ?? 0 : 0)
+      + (question.visualizations ?? []).reduce((visualTotal, visualization) => (
+        visualTotal + visualization.title.length + visualization.alt.length + visualization.source.length
+      ), 0), 0));
 
     return await withConcurrencyLease({
       route: "export-docx",

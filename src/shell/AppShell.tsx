@@ -9,6 +9,7 @@ import { Component, Suspense, useCallback, useEffect, useState } from "react";
 import { getDefaultVisualizer } from "../../scripts/apps";
 import { EditorialDemoShell } from "../visual-demo/editorial/EditorialPrimitives";
 import { appRegistry, loadVisualizerComponent } from "./appRegistry";
+import { ExperimentTutor } from "./ExperimentTutor";
 import { Sidebar } from "./Sidebar";
 import "../visual-demo/editorial-tailwind.css";
 import "../visual-demo/editorial/editorial-demo.css";
@@ -226,6 +227,7 @@ export function AppShell() {
           )}
         </main>
       </section>
+      <ExperimentTutor activeId={activeId} />
     </EditorialDemoShell>
   );
 }

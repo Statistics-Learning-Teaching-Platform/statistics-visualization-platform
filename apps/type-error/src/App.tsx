@@ -1,4 +1,8 @@
 import {
+  type ExperimentTelemetrySnapshot,
+  useExperimentTelemetryPublisher,
+} from "@stats-viz/shared/ai/experimentTelemetry";
+import {
   type ChartLayout,
   createLinearScales,
   innerHeight,
@@ -43,6 +47,15 @@ const CHART_LAYOUT: ChartLayout = {
   height: 380,
   margin: { top: 50, right: 30, bottom: 50, left: 50 },
 };
+
+const TELEMETRY_DISTRIBUTION_POINT_LIMIT = 25;
+
+function evenlySpacedIndices(total: number, limit: number): number[] {
+  const sent = Math.min(total, limit);
+  if (sent <= 0) return [];
+  if (sent === 1) return [0];
+  return Array.from({ length: sent }, (_, index) => Math.round((index * (total - 1)) / (sent - 1)));
+}
 
 function generateDistribution(
   mean: number,
@@ -289,6 +302,128 @@ export default function TypeErrorApp() {
         : copy.rightTailedTest;
 
   const formatRate = (v: number) => `${(v * 100).toFixed(1)}%`;
+
+  const telemetrySnapshot = useMemo<ExperimentTelemetrySnapshot>(() => {
+    const pairedPointCount = Math.min(nullDistribution.length, trueDistribution.length);
+    const sentIndices = evenlySpacedIndices(pairedPointCount, TELEMETRY_DISTRIBUTION_POINT_LIMIT);
+    const sentCount = sentIndices.length;
+    const truncatedCount = pairedPointCount - sentCount;
+    const [domainStart, domainEnd] = scales.xScale.domain();
+    const criticalValuesText = criticalValue.map((value) => value.toFixed(8)).join(", ");
+    const testTypeLabel = getTestTypeLabel();
+    const decision = computed.rejectsNull ? copy.rejectNull : copy.failToRejectNull;
+
+    return {
+      appId: "type-error",
+      updatedAt: Date.now(),
+      experiment: {
+        title: copy.title,
+        description: copy.description,
+        researchQuestion: metadata?.localizedQuestion,
+        category: metadata?.localizedCategory,
+        exampleTitle: copy.chartTitle,
+        exampleDescription: copy.chartDescription,
+        teachingPoints: [copy.twoKindsOfErrorBody, copy.pValueWarning, getInterpretation()],
+      },
+      parameters: [
+        { id: "test-type", label: copy.hypothesis, value: testTypeLabel },
+        { id: "alpha", label: copy.alphaLabel, value: params.alpha },
+        { id: "null-mean", label: copy.nullMeanLabel, value: params.nullMean },
+        { id: "true-mean", label: copy.trueMeanLabel, value: params.trueMean },
+        { id: "standard-deviation", label: copy.stdDevLabel, value: params.stdDev },
+        { id: "sample-size", label: copy.sampleSizeLabel, value: params.sampleSize },
+        {
+          id: "observed-statistic",
+          label: copy.observedStatistic,
+          value: params.observedStatistic,
+        },
+      ],
+      outputs: {
+        headline: `${decision}: p=${computed.pValue.toFixed(8)} and α=${params.alpha.toFixed(8)}.`,
+        narrative: [
+          `${computed.hypothesisText.H0Text}; ${computed.hypothesisText.H1Text}; test=${testTypeLabel}.`,
+          `Sampling standard error=${(params.stdDev / Math.sqrt(params.sampleSize)).toFixed(8)}; critical boundary/boundaries=${criticalValuesText}.`,
+          `Type I error α=${computed.typeOneErrorRate.toFixed(8)}; Type II error β=${computed.typeTwoErrorRate.toFixed(8)}; power=${computed.power.toFixed(8)}; effect-size distance=${computed.effectSize.toFixed(8)}.`,
+          `Observed statistic=${params.observedStatistic.toFixed(8)}; p=${computed.pValue.toFixed(8)}; decision=${decision}.`,
+          getStrategyTip(),
+        ].join("\n"),
+        metrics: [
+          {
+            label: copy.alpha,
+            value: computed.typeOneErrorRate.toFixed(8),
+            detail: formatRate(computed.typeOneErrorRate),
+          },
+          {
+            label: copy.betaLabel,
+            value: computed.typeTwoErrorRate.toFixed(8),
+            detail: formatRate(computed.typeTwoErrorRate),
+          },
+          {
+            label: copy.power,
+            value: computed.power.toFixed(8),
+            detail: formatRate(computed.power),
+          },
+          { label: copy.effectSize, value: computed.effectSize.toFixed(8) },
+          { label: copy.pValue, value: computed.pValue.toFixed(8) },
+          { label: copy.testDecision, value: decision, detail: copy.decisionNote },
+          {
+            label: "Standard error",
+            value: (params.stdDev / Math.sqrt(params.sampleSize)).toFixed(8),
+          },
+          {
+            label: copy.criticalBoundary,
+            value: criticalValuesText,
+            detail: `${criticalValue.length} boundary value(s) for ${testTypeLabel}`,
+          },
+        ],
+        tables: [
+          {
+            title: `Representative density coordinates — original paired points=${pairedPointCount} (null curve original=${nullDistribution.length}, true curve original=${trueDistribution.length}), sent=${sentCount}, truncated=${truncatedCount}`,
+            columns: [
+              "curve point index",
+              copy.testStatistic,
+              copy.nullDistribution,
+              copy.trueDistribution,
+              copy.typeIErrorArea,
+              copy.typeIIErrorArea,
+            ],
+            rows: sentIndices.map((pointIndex) => {
+              const nullPoint = nullDistribution[pointIndex];
+              const truePoint = trueDistribution[pointIndex];
+              const inRejectionRegion = computed.criticalAreaFn(nullPoint, criticalValue);
+              return [
+                pointIndex + 1,
+                Number(nullPoint.x.toFixed(8)),
+                Number(nullPoint.y.toFixed(8)),
+                Number(truePoint.y.toFixed(8)),
+                inRejectionRegion ? "yes" : "no",
+                inRejectionRegion ? "no" : "yes",
+              ];
+            }),
+          },
+        ],
+        chartTitle: copy.chartTitle,
+        chartSummary: [
+          `Overlapping normal sampling distributions across x-domain=[${domainStart.toFixed(8)}, ${domainEnd.toFixed(8)}].`,
+          `Null curve center=${params.nullMean}, true curve center=${params.trueMean}, shared standard error=${(params.stdDev / Math.sqrt(params.sampleSize)).toFixed(8)}.`,
+          `Critical boundary/boundaries=${criticalValuesText}; rejection tail configuration=${testTypeLabel}; observed-statistic marker=${params.observedStatistic}.`,
+          `The rendered chart uses all null points=${nullDistribution.length} and all true points=${trueDistribution.length}; the telemetry table is only a bounded coordinate preview.`,
+        ].join("\n"),
+        rawSampleSummary: `Paired distribution-coordinate rows: original=${pairedPointCount}, sent=${sentCount}, truncated=${truncatedCount}. Sent rows are evenly spaced across the full x-domain, including both endpoints; they are not consecutive raw observations. Null curve original=${nullDistribution.length}; true curve original=${trueDistribution.length}.`,
+      },
+    };
+  }, [
+    computed,
+    copy,
+    criticalValue,
+    metadata,
+    nullDistribution,
+    params,
+    scales.xScale,
+    testType,
+    trueDistribution,
+  ]);
+  useExperimentTelemetryPublisher(telemetrySnapshot);
 
   return (
     <VisualizationFrame

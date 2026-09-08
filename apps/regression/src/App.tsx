@@ -1,3 +1,7 @@
+import {
+  type ExperimentTelemetrySnapshot,
+  useExperimentTelemetryPublisher,
+} from "@stats-viz/shared/ai/experimentTelemetry";
 import { createLinearScales } from "@stats-viz/shared/chart-utils";
 import { localizeText, regressionCopy, useLanguage } from "@stats-viz/shared/i18n";
 import { linearRegression } from "@stats-viz/shared/math";
@@ -18,6 +22,8 @@ import { RegressionChart } from "./RegressionChart";
 import { StatisticsPanel } from "./StatisticsPanel";
 import { computeHoverInfo, getCustomLineParams, useCustomLine } from "./useCustomLine";
 import { useDatasets } from "./useDatasets";
+
+const TELEMETRY_POINT_LIMIT = 80;
 
 export default function RegressionApp() {
   const language = useLanguage();
@@ -109,6 +115,134 @@ export default function RegressionApp() {
     () => computeHoverInfo(hoverPoint, showRegression, regression, customLineParams),
     [hoverPoint, showRegression, regression, customLineParams],
   );
+
+  const telemetrySnapshot = useMemo<ExperimentTelemetrySnapshot>(() => {
+    const selectedPoints = selectedDataset?.data ?? [];
+    const sentPoints = selectedPoints.slice(0, TELEMETRY_POINT_LIMIT);
+    const originalCount = selectedPoints.length;
+    const sentCount = sentPoints.length;
+    const truncatedCount = originalCount - sentCount;
+    const outlierCount = selectedPoints.reduce((count, point) => count + Number(point.outlier), 0);
+    const excludedCount = originalCount - visibleData.length;
+    const xLabel = localizeText(selectedDataset?.xLabel || copy.explanatoryVariable, language);
+    const yLabel = localizeText(selectedDataset?.yLabel || copy.response, language);
+    const datasetName = selectedDataset
+      ? localizeText(selectedDataset.name, language)
+      : "No dataset selected";
+    const source = selectedDataset?.source
+      ? localizeText(selectedDataset.source, language)
+      : "No source supplied";
+    const activeLine = customLineParams
+      ? `custom line y=${customLineParams.slope.toFixed(8)}x + ${customLineParams.intercept.toFixed(8)}`
+      : showRegression
+        ? `OLS line y=${regression.slope.toFixed(8)}x + ${regression.intercept.toFixed(8)}`
+        : "no active comparison line";
+
+    return {
+      appId: "regression",
+      updatedAt: Date.now(),
+      experiment: {
+        title: copy.title,
+        description: copy.description,
+        researchQuestion: metadata?.localizedQuestion,
+        category: metadata?.localizedCategory,
+        exampleTitle: datasetName,
+        exampleDescription: `${copy.chartDescription} ${copy.regressionBody}`,
+        teachingPoints: [copy.regressionBody, copy.residualsBody, copy.classroomFocusBody],
+      },
+      parameters: [
+        { id: "dataset-id", label: copy.dataset, value: selectedDataset?.id ?? "none" },
+        { id: "dataset-name", label: copy.selectedDataset, value: datasetName },
+        { id: "dataset-source", label: copy.source, value: source },
+        { id: "x-variable", label: copy.xVariable, value: xLabel },
+        { id: "y-variable", label: copy.yVariable, value: yLabel },
+        { id: "show-regression", label: copy.regressionLineLabel, value: showRegression },
+        {
+          id: "include-outliers",
+          label: copy.outliers,
+          value: showOutliers ? copy.included : copy.removed,
+        },
+        {
+          id: "custom-line-slope",
+          label: `${copy.customLine} — ${copy.slope}`,
+          value: customLineParams?.slope ?? "not set",
+        },
+        {
+          id: "custom-line-intercept",
+          label: `${copy.customLine} — ${copy.intercept}`,
+          value: customLineParams?.intercept ?? "not set",
+        },
+      ],
+      outputs: {
+        headline: `${datasetName}: ${visibleData.length} points in the active fit; ${activeLine}.`,
+        narrative: [
+          `Selected dataset id=${selectedDataset?.id ?? "none"}; source=${source}; axes=${xLabel} (x) and ${yLabel} (y).`,
+          `Selected dataset points=${originalCount}; marked outliers=${outlierCount}; visible/used points=${visibleData.length}; excluded by current outlier filter=${excludedCount}.`,
+          `OLS slope=${regression.slope.toFixed(8)}, intercept=${regression.intercept.toFixed(8)}, SSE=${regression.sse.toFixed(8)}, R²=${regression.rSquared.toFixed(8)}, r=${correlation.toFixed(8)}.`,
+          `Current comparison=${activeLine}; current SSE=${sse.value.toFixed(8)}; SSE delta from OLS=${(sse.value - regression.sse).toFixed(8)}.`,
+          hoverInfo
+            ? `Hovered point=(${hoverInfo.point.x}, ${hoverInfo.point.y}); fitted y=${hoverInfo.lineY.toFixed(8)}; residual=${hoverInfo.residual.toFixed(8)}; line type=${hoverInfo.lineType}.`
+            : "No data point is currently hovered.",
+        ].join("\n"),
+        metrics: [
+          {
+            label: copy.dataPoints,
+            value: String(visibleData.length),
+            detail: `${originalCount} selected; ${excludedCount} excluded by current filter`,
+          },
+          { label: `${copy.regressionLine} ${copy.slope}`, value: regression.slope.toFixed(8) },
+          {
+            label: `${copy.regressionLine} ${copy.intercept}`,
+            value: regression.intercept.toFixed(8),
+          },
+          { label: "OLS SSE", value: regression.sse.toFixed(8) },
+          {
+            label: copy.sse,
+            value: sse.value.toFixed(8),
+            detail: sse.lineType ?? "no active line",
+          },
+          { label: "SSE delta", value: (sse.value - regression.sse).toFixed(8) },
+          { label: "r", value: correlation.toFixed(8) },
+          { label: "R²", value: regression.rSquared.toFixed(8) },
+        ],
+        tables: [
+          {
+            title: `${datasetName} — original=${originalCount}, sent=${sentCount}, truncated=${truncatedCount}; active-fit points=${visibleData.length}, filter-excluded=${excludedCount}`,
+            columns: ["original row", xLabel, yLabel, "marked outlier", "included in active fit"],
+            rows: sentPoints.map((point, index) => [
+              index + 1,
+              point.x,
+              point.y,
+              point.outlier ? "yes" : "no",
+              showOutliers || !point.outlier ? "yes" : "no",
+            ]),
+          },
+        ],
+        chartTitle: copy.chartTitle,
+        chartSummary: [
+          `Scatterplot for ${datasetName}; x=${xLabel}, y=${yLabel}; plotted points=${visibleData.length}.`,
+          `Plot domains: x=[${domains.x[0].toFixed(8)}, ${domains.x[1].toFixed(8)}], y=[${domains.y[0].toFixed(8)}, ${domains.y[1].toFixed(8)}].`,
+          `OLS line visible=${showRegression}; custom line visible=${Boolean(customLineParams)}; residual segments use ${activeLine}.`,
+        ].join("\n"),
+        rawSampleSummary: `Selected regression data rows: original=${originalCount}, sent=${sentCount}, truncated=${truncatedCount}. The table sends the first ${sentCount} rows in source order. Active-fit rows=${visibleData.length}; rows excluded by the outlier filter=${excludedCount}.`,
+      },
+    };
+  }, [
+    copy,
+    correlation,
+    customLineParams,
+    domains,
+    hoverInfo,
+    language,
+    metadata,
+    regression,
+    selectedDataset,
+    showOutliers,
+    showRegression,
+    sse,
+    visibleData,
+  ]);
+  useExperimentTelemetryPublisher(telemetrySnapshot);
 
   return (
     <VisualizationFrame

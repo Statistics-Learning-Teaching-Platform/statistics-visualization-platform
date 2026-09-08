@@ -10,10 +10,17 @@ import {
   XIcon,
 } from "lucide-react";
 import type { ReactNode, RefObject } from "react";
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { Button, buttonVariants } from "@/components/ui/button";
-import { authenticatedFetch } from "@/authenticatedFetch";
 import { EditorialDemoShell } from "../visual-demo/editorial/EditorialPrimitives";
+import { CodeMirrorEditor } from "./CodeMirrorEditor";
+import {
+  type EditorialTutorMessage,
+  TutorAssistantMessage,
+  TutorThinkingIndicator,
+  useTutorAutoScroll,
+} from "./TutorAnswer";
+import { isSelectableTutorModel, useTutorModels } from "./tutorModels";
 import type { CodeLesson } from "./types";
 import "../visual-demo/editorial-tailwind.css";
 import "../visual-demo/editorial/editorial-demo.css";
@@ -22,33 +29,6 @@ import "./editorial-learning-workspace.css";
 type Language = "zh" | "en";
 type EngineStatus = "idle" | "loading" | "ready" | "running" | "error";
 type TutorStatus = "idle" | "asking" | "error";
-type TutorModelsStatus = "idle" | "loading" | "error";
-
-export type TutorModelOption = {
-  key: string;
-  displayName: string;
-  quantization: string;
-  params: string;
-  loaded: boolean;
-  legacy?: boolean;
-  selectable?: boolean;
-};
-
-const TUTOR_MODEL_STORAGE_KEY = "stat_tutor_model";
-
-function isLegacyTutorModel(model: TutorModelOption) {
-  return model.legacy === true || /^lfm/i.test(model.key);
-}
-
-function isSelectableTutorModel(model: TutorModelOption) {
-  return model.selectable !== false && !isLegacyTutorModel(model);
-}
-
-export type EditorialTutorMessage = {
-  id: string;
-  role: "user" | "assistant";
-  content: string;
-};
 
 export type EditorialReviewState = {
   kind: "idle" | "success" | "failure";
@@ -77,9 +57,6 @@ type LearningCopy = {
   tutorSend: string;
   tutorThinking: string;
   contextAttached: string;
-  explainError: string;
-  nextStep: string;
-  explainConcept: string;
   runtime: string;
   noOutput: string;
   noObjects: string;
@@ -114,6 +91,7 @@ type Props<Unit extends string> = {
   tutorPrompt: string;
   tutorMessages: readonly EditorialTutorMessage[];
   tutorStatus: TutorStatus;
+  tutorModelResetKey: number;
   tutorMessagesRef: RefObject<HTMLDivElement | null>;
   /** When provided, the tutor drawer shows this node instead of the composer. */
   tutorGate?: ReactNode;
@@ -127,24 +105,8 @@ type Props<Unit extends string> = {
   onToggleSolution: () => void;
   onTutorPromptChange: (prompt: string) => void;
   onAskTutor: (suggestedQuestion?: string, model?: string) => void;
+  onCloseTutor: () => void;
 };
-
-function TutorAnswer({ content }: { content: string }) {
-  const parts = content.split(/```(?:r|python|py)?\s*([\s\S]*?)```/gi);
-  return (
-    <div className="ed-live-tutor-answer">
-      {parts.map((part, index) =>
-        index % 2 === 1 ? (
-          <pre key={`${index}-${part.slice(0, 12)}`}>
-            <code>{part.trim()}</code>
-          </pre>
-        ) : part.trim() ? (
-          <p key={`${index}-${part.slice(0, 12)}`}>{part.replace(/\*\*/g, "").trim()}</p>
-        ) : null,
-      )}
-    </div>
-  );
-}
 
 function compactTask(text: string) {
   return text
@@ -219,6 +181,7 @@ export function EditorialLearningWorkspace<Unit extends string>({
   tutorPrompt,
   tutorMessages,
   tutorStatus,
+  tutorModelResetKey,
   tutorMessagesRef,
   tutorGate,
   onSelectLesson,
@@ -231,88 +194,63 @@ export function EditorialLearningWorkspace<Unit extends string>({
   onToggleSolution,
   onTutorPromptChange,
   onAskTutor,
+  onCloseTutor,
 }: Props<Unit>) {
   const [navCollapsed, setNavCollapsed] = useState(false);
   const [tutorOpen, setTutorOpen] = useState(false);
   const [showVariables, setShowVariables] = useState(false);
   const [hintStage, setHintStage] = useState(0);
   const [reviewChoice, setReviewChoice] = useState<number | null>(null);
-  const [tutorModels, setTutorModels] = useState<TutorModelOption[]>([]);
-  const [tutorModelsStatus, setTutorModelsStatus] = useState<TutorModelsStatus>("idle");
-  const [tutorModel, setTutorModel] = useState("");
+  const {
+    models: tutorModels,
+    status: tutorModelsStatus,
+    selected: tutorModel,
+    hasScanned: hasScannedTutorModels,
+    select: changeTutorModel,
+    reset: resetTutorModels,
+    rescan: scanTutorModels,
+  } = useTutorModels();
   const tutorLauncherRef = useRef<HTMLButtonElement>(null);
   const tutorCloseRef = useRef<HTMLButtonElement>(null);
-  const tutorModelsAbortRef = useRef<AbortController | null>(null);
+  const typedTutorMessageIdsRef = useRef(new Set<string>());
+  const {
+    followLatest: followLatestTutorMessage,
+    scrollToBottom: scrollTutorMessagesToBottom,
+    updateFollowState: updateTutorScrollFollowState,
+  } = useTutorAutoScroll(tutorMessagesRef);
 
-  async function scanTutorModels() {
-    tutorModelsAbortRef.current?.abort();
-    const controller = new AbortController();
-    tutorModelsAbortRef.current = controller;
-    setTutorModelsStatus("loading");
-    try {
-      const response = await authenticatedFetch("/st-qselector/api/ai/models", {
-        method: "GET",
-        cache: "no-store",
-        signal: controller.signal,
-      });
-      const payload = (await response.json()) as {
-        models?: TutorModelOption[];
-        error?: string;
-      };
-      if (!response.ok || !Array.isArray(payload.models)) {
-        throw new Error(payload.error ?? "Failed to load models");
-      }
-      const models = payload.models;
-      setTutorModels(models);
-      // Drop a stored selection that is no longer online.
-      setTutorModel((current) =>
-        current && models.some((model) => model.key === current && isSelectableTutorModel(model)) ? current : "",
-      );
-      setTutorModelsStatus("idle");
-    } catch (error) {
-      if (error instanceof DOMException && error.name === "AbortError") return;
-      setTutorModelsStatus("error");
-    }
-  }
-
-  function changeTutorModel(key: string) {
-    const selected = tutorModels.find((model) => model.key === key);
-    if (selected && !isSelectableTutorModel(selected)) return;
-    setTutorModel(key);
-    window.localStorage.setItem(TUTOR_MODEL_STORAGE_KEY, key);
-  }
-
-  // Every time the drawer opens, scan the currently online models and
-  // restore the user's last selection.
-  useEffect(() => {
-    if (!tutorOpen) return;
-    const stored = window.localStorage.getItem(TUTOR_MODEL_STORAGE_KEY);
-    if (stored) setTutorModel(stored);
-    void scanTutorModels();
-    return () => {
-      tutorModelsAbortRef.current?.abort();
-    };
-  }, [tutorOpen]);
+  const closeTutor = useCallback(() => {
+    onCloseTutor();
+    resetTutorModels();
+    setTutorOpen(false);
+    requestAnimationFrame(() => tutorLauncherRef.current?.focus());
+  }, [onCloseTutor, resetTutorModels]);
 
   useEffect(() => {
     setHintStage(0);
     setShowVariables(false);
     setReviewChoice(null);
+    resetTutorModels();
     setTutorOpen(false);
-  }, [activeLesson.id]);
+  }, [activeLesson.id, resetTutorModels]);
+
+  useEffect(() => {
+    resetTutorModels();
+  }, [resetTutorModels, tutorModelResetKey]);
+
+  useEffect(() => {
+    if (tutorOpen) scrollTutorMessagesToBottom();
+  }, [scrollTutorMessagesToBottom, tutorMessages, tutorOpen, tutorStatus]);
 
   useEffect(() => {
     if (!tutorOpen) return;
     tutorCloseRef.current?.focus();
     const handleEscape = (event: KeyboardEvent) => {
-      if (event.key === "Escape") {
-        setTutorOpen(false);
-        requestAnimationFrame(() => tutorLauncherRef.current?.focus());
-      }
+      if (event.key === "Escape") closeTutor();
     };
     window.addEventListener("keydown", handleEscape);
     return () => window.removeEventListener("keydown", handleEscape);
-  }, [tutorOpen]);
+  }, [closeTutor, tutorOpen]);
 
   const lessonIndex = Math.max(
     0,
@@ -346,6 +284,33 @@ export function EditorialLearningWorkspace<Unit extends string>({
       ? ["比较对象", "保存右侧结果到左侧对象", "打印对象"]
       : ["Compare objects", "Save the right-hand result to the left object", "Print an object"];
   const editorMinHeight = Math.min(360, Math.max(280, code.split("\n").length * 30 + 80));
+  const selectedTutorModel = tutorModels.find(
+    (model) => model.key === tutorModel && isSelectableTutorModel(model),
+  );
+  const tutorModelHint =
+    tutorModelsStatus === "loading"
+      ? language === "zh"
+        ? "正在实时扫描上游模型…"
+        : "Scanning upstream models live…"
+      : tutorModelsStatus === "error"
+        ? language === "zh"
+          ? "在线模型获取失败，请点击按钮重试。"
+          : "Model scan failed. Try again."
+        : !hasScannedTutorModels
+          ? language === "zh"
+            ? "点击右侧按钮手动扫描；列表不会预存或自动刷新。"
+            : "Scan manually; the list is never preloaded or cached."
+          : !tutorModels.length
+            ? language === "zh"
+              ? "本次扫描未发现在线语言模型。"
+              : "No language models were found."
+            : !tutorModels.some(isSelectableTutorModel)
+              ? language === "zh"
+                ? "本次扫描到的模型均未启用。"
+                : "All scanned models are inactive."
+              : language === "zh"
+                ? "请选择一个已启用模型；未启用模型仅供查看。"
+                : "Choose an active model; inactive models are view-only.";
 
   function revealHint() {
     if (hintStage >= 3) return;
@@ -466,21 +431,21 @@ export function EditorialLearningWorkspace<Unit extends string>({
                 {code.split("\n").length} {copy.lines} · {engineLabel}
               </small>
             </header>
-            <label htmlFor={`${kind}-editor`}>{copy.editor}</label>
-            <textarea
+            <label
+              id={`${kind}-editor-label`}
+              onClick={() => document.getElementById(`${kind}-editor`)?.focus()}
+            >
+              {copy.editor}
+            </label>
+            <CodeMirrorEditor
               id={`${kind}-editor`}
+              labelId={`${kind}-editor-label`}
               value={code}
-              onChange={(event) => onCodeChange(event.target.value)}
-              onKeyDown={(event) => {
-                if ((event.metaKey || event.ctrlKey) && event.key === "Enter") {
-                  event.preventDefault();
-                  onRun();
-                }
-              }}
-              spellCheck={false}
-              wrap="soft"
-              style={{ minHeight: editorMinHeight }}
-              aria-label={copy.editor}
+              language={kind}
+              label={copy.editor}
+              minHeight={editorMinHeight}
+              onChange={onCodeChange}
+              onRun={onRun}
             />
             <footer>
               <Button disabled={isBusy} onClick={onRun}>
@@ -681,7 +646,11 @@ export function EditorialLearningWorkspace<Unit extends string>({
         ref={tutorLauncherRef}
         type="button"
         className="ed-ai-launcher"
-        onClick={() => setTutorOpen(true)}
+        onClick={() => {
+          resetTutorModels();
+          followLatestTutorMessage();
+          setTutorOpen(true);
+        }}
         aria-expanded={tutorOpen}
         aria-controls={aiDrawerId}
       >
@@ -694,10 +663,7 @@ export function EditorialLearningWorkspace<Unit extends string>({
           tabIndex={-1}
           className="ed-ai-drawer-backdrop"
           aria-label={language === "zh" ? "关闭 AI 助教" : "Close AI tutor"}
-          onClick={() => {
-            setTutorOpen(false);
-            requestAnimationFrame(() => tutorLauncherRef.current?.focus());
-          }}
+          onClick={closeTutor}
         />
       ) : null}
       {tutorOpen ? (
@@ -719,10 +685,7 @@ export function EditorialLearningWorkspace<Unit extends string>({
             <button
               ref={tutorCloseRef}
               type="button"
-              onClick={() => {
-                setTutorOpen(false);
-                requestAnimationFrame(() => tutorLauncherRef.current?.focus());
-              }}
+              onClick={closeTutor}
               aria-label={language === "zh" ? "关闭 AI 助教" : "Close AI tutor"}
             >
               <XIcon aria-hidden="true" />
@@ -742,47 +705,49 @@ export function EditorialLearningWorkspace<Unit extends string>({
                     id={`${kind}-tutor-model`}
                     value={tutorModel}
                     onChange={(event) => changeTutorModel(event.target.value)}
-                    disabled={tutorModelsStatus === "loading"}
+                    disabled={
+                      tutorModelsStatus === "loading" ||
+                      tutorStatus === "asking" ||
+                      !tutorModels.length
+                    }
                   >
-                    <option value="">
-                      {language === "zh" ? "默认模型" : "Default model"}
+                    <option value="" disabled>
+                      {language === "zh"
+                        ? "请先扫描并选择已启用模型"
+                        : "Scan and choose an active model"}
                     </option>
                     {tutorModels.map((model) => (
-                      <option key={model.key} value={model.key} disabled={!isSelectableTutorModel(model)}>
+                      <option
+                        key={model.key}
+                        value={model.key}
+                        disabled={!isSelectableTutorModel(model)}
+                      >
                         {model.displayName}
                         {model.quantization ? ` · ${model.quantization}` : ""}
-                        {model.loaded
-                          ? language === "zh"
-                            ? " · 已加载"
-                            : " · loaded"
-                          : ""}
-                        {!isSelectableTutorModel(model)
-                          ? language === "zh"
-                            ? " · 已停用"
-                            : " · unavailable"
-                          : ""}
+                        {!model.loaded ? (language === "zh" ? " · 未启用" : " · inactive") : ""}
                       </option>
                     ))}
                   </select>
                   <button
                     type="button"
                     onClick={() => void scanTutorModels()}
-                    disabled={tutorModelsStatus === "loading"}
-                    aria-label={language === "zh" ? "重新扫描在线模型" : "Rescan online models"}
-                    title={language === "zh" ? "重新扫描在线模型" : "Rescan online models"}
+                    disabled={tutorModelsStatus === "loading" || tutorStatus === "asking"}
+                    aria-label={language === "zh" ? "扫描在线模型" : "Scan online models"}
+                    title={language === "zh" ? "扫描在线模型" : "Scan online models"}
                   >
                     <RotateCcwIcon aria-hidden="true" />
                   </button>
                 </div>
-                {tutorModelsStatus === "error" ? (
-                  <p className="ed-ai-model-picker__hint">
-                    {language === "zh"
-                      ? "在线模型获取失败，点击按钮重试。"
-                      : "Failed to load online models, retry with the button."}
-                  </p>
-                ) : null}
+                <p className="ed-ai-model-picker__hint">{tutorModelHint}</p>
               </div>
-              <div ref={tutorMessagesRef} className="ed-live-ai-messages" aria-live="polite">
+              <div
+                ref={tutorMessagesRef}
+                className="ed-live-ai-messages"
+                role="log"
+                aria-label={language === "zh" ? "AI 助教对话" : "AI tutor conversation"}
+                aria-live="polite"
+                onScroll={updateTutorScrollFollowState}
+              >
                 {!tutorMessages.length ? (
                   <div className="ed-tutor-note">
                     <strong>{activeLesson.title[language]}</strong>
@@ -791,30 +756,6 @@ export function EditorialLearningWorkspace<Unit extends string>({
                         ? "结合当前题目、代码和运行结果提问。"
                         : "Ask about the current task, code, or run result."}
                     </p>
-                    <div className="ed-live-suggestions">
-                      <button
-                        type="button"
-                        onClick={() =>
-                          onAskTutor(
-                            language === "zh" ? "为什么这里使用 mean()？" : "Why use mean() here?",
-                            tutorModel,
-                          )
-                        }
-                      >
-                        {language === "zh" ? "为什么这里使用 mean()？" : "Why use mean() here?"}
-                      </button>
-                      <button
-                        type="button"
-                        onClick={() =>
-                          onAskTutor(language === "zh" ? "<- 是什么意思？" : "What does <- mean?", tutorModel)
-                        }
-                      >
-                        {language === "zh" ? "<- 是什么意思？" : "What does <- mean?"}
-                      </button>
-                      <button type="button" onClick={() => onAskTutor(copy.explainError, tutorModel)}>
-                        {copy.explainError}
-                      </button>
-                    </div>
                   </div>
                 ) : (
                   tutorMessages.map((message) => (
@@ -823,7 +764,13 @@ export function EditorialLearningWorkspace<Unit extends string>({
                         {message.role === "user" ? (language === "zh" ? "你" : "You") : "AI"}
                       </small>
                       {message.role === "assistant" ? (
-                        <TutorAnswer content={message.content} />
+                        <TutorAssistantMessage
+                          message={message}
+                          language={language}
+                          animate={!typedTutorMessageIdsRef.current.has(message.id)}
+                          typedMessageIdsRef={typedTutorMessageIdsRef}
+                          onProgress={scrollTutorMessagesToBottom}
+                        />
                       ) : (
                         <p>{message.content}</p>
                       )}
@@ -831,14 +778,20 @@ export function EditorialLearningWorkspace<Unit extends string>({
                   ))
                 )}
                 {tutorStatus === "asking" ? (
-                  <p className="ed-live-tutor-thinking">{copy.tutorThinking}</p>
+                  selectedTutorModel?.supportsReasoning ? (
+                    <TutorThinkingIndicator language={language} />
+                  ) : (
+                    <p className="ed-live-tutor-thinking">
+                      {language === "zh" ? "AI 正在回答…" : "AI is answering…"}
+                    </p>
+                  )
                 ) : null}
               </div>
               <form
                 className="ed-live-tutor-composer"
                 onSubmit={(event) => {
                   event.preventDefault();
-                  onAskTutor(undefined, tutorModel);
+                  if (selectedTutorModel) onAskTutor(undefined, selectedTutorModel.key);
                 }}
               >
                 <textarea
@@ -847,7 +800,7 @@ export function EditorialLearningWorkspace<Unit extends string>({
                   onKeyDown={(event) => {
                     if (event.key === "Enter" && !event.shiftKey) {
                       event.preventDefault();
-                      onAskTutor(undefined, tutorModel);
+                      if (selectedTutorModel) onAskTutor(undefined, selectedTutorModel.key);
                     }
                   }}
                   rows={2}
@@ -856,7 +809,7 @@ export function EditorialLearningWorkspace<Unit extends string>({
                 />
                 <button
                   type="submit"
-                  disabled={!tutorPrompt.trim() || tutorStatus === "asking"}
+                  disabled={!tutorPrompt.trim() || !selectedTutorModel || tutorStatus === "asking"}
                   aria-label={copy.tutorSend}
                 >
                   ↑

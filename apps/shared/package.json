@@ -5,6 +5,7 @@
   "type": "module",
   "exports": {
     ".": "./index.ts",
+    "./ai/experimentTelemetry": "./ai/experimentTelemetry.ts",
     "./i18n": "./i18n/index.tsx",
     "./i18n/runtime-dictionary": "./i18n/runtime-dictionary.ts",
     "./random": "./random.ts",

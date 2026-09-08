@@ -1,11 +1,11 @@
 import { LanguageProvider } from "@stats-viz/shared/i18n";
-import { act, fireEvent, render, screen, within } from "@testing-library/react";
+import { act, fireEvent, render, screen, waitFor, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import { resetPortalSessionCache } from "../src/auth/session";
 import { rLessons } from "../src/r-learning/lessons";
 import { RLearningWorkspace } from "../src/r-learning/RLearningWorkspace";
-import { disposeWebRRuntime, runRCode } from "../src/r-learning/webrRuntime";
+import { disposeWebRRuntime, resetRSession, runRCode } from "../src/r-learning/webrRuntime";
 
 vi.mock("../src/r-learning/webrRuntime", () => ({
   runRCode: vi.fn(async () => ({
@@ -43,9 +43,9 @@ describe("R Coding Studio", () => {
     expect(screen.getByText("R 练习")).toBeInTheDocument();
     const navigation = courseNavigation();
     expect(within(navigation).getAllByRole("button")).toHaveLength(39);
-    expect(
-      (screen.getByRole("textbox", { name: "R 代码编辑器" }) as HTMLTextAreaElement).value,
-    ).toContain("average_score <-");
+    expect(screen.getByRole("textbox", { name: "R 代码编辑器" }).textContent).toContain(
+      "average_score <-",
+    );
   });
 
   it("ignores progress entries that do not belong to the current curriculum", () => {
@@ -73,6 +73,51 @@ describe("R Coding Studio", () => {
 
     expect(disposeWebRRuntime).toHaveBeenCalledTimes(1);
     expect(screen.getByText(/点击运行时加载 R/)).toBeInTheDocument();
+    expect(document.querySelector(".ed-code-cell")).toHaveAttribute("data-engine-status", "idle");
+  });
+
+  it("ignores a late clear-session completion after switching lessons", async () => {
+    let finishReset!: () => void;
+    vi.mocked(resetRSession).mockImplementationOnce(
+      () => new Promise<void>((resolve) => { finishReset = resolve; }),
+    );
+    renderWorkspace();
+
+    await userEvent.click(screen.getByRole("button", { name: "清空 R 会话" }));
+    const navigation = courseNavigation();
+    await userEvent.click(within(navigation).getAllByRole("button")[1]);
+    expect(document.querySelector(".ed-code-cell")).toHaveAttribute("data-engine-status", "idle");
+
+    await act(async () => {
+      finishReset();
+      await Promise.resolve();
+    });
+    expect(screen.queryByText("R 会话已清空。")).not.toBeInTheDocument();
+    expect(document.querySelector(".ed-code-cell")).toHaveAttribute("data-engine-status", "idle");
+  });
+
+  it("drops a late run from the previous lesson and closes its orphaned plot", async () => {
+    let finishRun!: (result: Awaited<ReturnType<typeof runRCode>>) => void;
+    const close = vi.fn();
+    vi.mocked(runRCode).mockImplementationOnce(
+      () => new Promise((resolve) => { finishRun = resolve; }),
+    );
+    renderWorkspace();
+
+    await userEvent.click(screen.getByRole("button", { name: "运行代码" }));
+    const navigation = courseNavigation();
+    await userEvent.click(within(navigation).getAllByRole("button")[1]);
+    await act(async () => {
+      finishRun({
+        console: ["绝不能写回的旧运行结果"],
+        image: { width: 2, height: 2, close } as unknown as ImageBitmap,
+        environment: ["stale"],
+      });
+      await Promise.resolve();
+    });
+
+    expect(close).toHaveBeenCalledOnce();
+    expect(screen.queryByText("绝不能写回的旧运行结果")).not.toBeInTheDocument();
     expect(document.querySelector(".ed-code-cell")).toHaveAttribute("data-engine-status", "idle");
   });
 
@@ -113,6 +158,29 @@ describe("R Coding Studio", () => {
           headers: { "Content-Type": "application/json" },
         });
       }
+      if (String(input).includes("/api/ai/models")) {
+        return new Response(
+          JSON.stringify({
+            models: [
+              {
+                key: "loaded-model",
+                displayName: "Loaded model",
+                quantization: "Q8",
+                params: "9B",
+                loaded: true,
+              },
+              {
+                key: "inactive-model",
+                displayName: "Inactive model",
+                quantization: "Q4",
+                params: "8B",
+                loaded: false,
+              },
+            ],
+          }),
+          { status: 200, headers: { "Content-Type": "application/json" } },
+        );
+      }
       return new Response(
         JSON.stringify({
           answer: "The assignment is incomplete because the right-hand side is missing.",
@@ -124,19 +192,56 @@ describe("R Coding Studio", () => {
 
     // The tutor lives in an on-demand drawer behind its launcher.
     await userEvent.click(screen.getByRole("button", { name: /AI R 助教/ }));
+    const scanButton = await screen.findByRole("button", { name: "扫描在线模型" });
+    expect(fetchMock.mock.calls.some(([url]) => String(url).includes("/api/ai/models"))).toBe(
+      false,
+    );
+    const sendButton = screen.getByRole("button", { name: "发送" });
+    expect(sendButton).toBeDisabled();
+
+    await userEvent.click(scanButton);
+    const modelSelect = await screen.findByLabelText("AI 模型");
+    const inactiveOption = within(modelSelect).getByRole("option", {
+      name: /Inactive model · Q4 · 未启用/,
+    });
+    expect(inactiveOption).toBeDisabled();
+    await userEvent.selectOptions(modelSelect, "inactive-model");
+    expect(modelSelect).toHaveValue("");
+    expect(sendButton).toBeDisabled();
+
+    await userEvent.selectOptions(modelSelect, "loaded-model");
     const input = screen.getByRole("textbox", { name: /问报错原因/ });
     await userEvent.type(input, "为什么这段代码报错？");
-    await userEvent.click(screen.getByRole("button", { name: "发送" }));
+    expect(sendButton).toBeEnabled();
+    await userEvent.click(sendButton);
 
-    expect(await screen.findByText(/right-hand side is missing/)).toBeInTheDocument();
+    // The assistant answer reveals through a typewriter effect (~20ms per
+    // batch of characters), so allow a longer waitFor window than the default.
+    const conversation = screen.getByRole("log", { name: "AI 助教对话" });
+    expect(
+      await within(conversation).findByText(/right-hand side is missing/, {}, { timeout: 5_000 }),
+    ).toBeInTheDocument();
     const tutorCall = fetchMock.mock.calls.find(([, init]) => Boolean(init?.body));
     expect(tutorCall?.[0]).toContain("/st-qselector/api/ai/r-tutor");
     const request = JSON.parse(String(tutorCall?.[1]?.body));
     expect(request.question).toBe("为什么这段代码报错？");
+    expect(request.model).toBe("loaded-model");
     expect(request.lesson.title).toBe("保存一组成绩并计算均值");
     expect(request.code).toContain("average_score <-");
+    const staleModelError = "所选模型当前未启用或已被移除，请重新扫描并选择";
+    fetchMock.mockResolvedValueOnce(new Response(JSON.stringify({ error: staleModelError }), {
+      status: 409,
+      headers: { "Content-Type": "application/json" },
+    }));
+    await userEvent.type(input, "再解释一次");
+    await userEvent.click(sendButton);
+    expect(await within(conversation).findByText(staleModelError, {}, { timeout: 5_000 })).toBeInTheDocument();
+    await waitFor(() => expect(modelSelect).toHaveValue(""));
+    expect(within(modelSelect).queryByRole("option", { name: /Loaded model/ })).not.toBeInTheDocument();
+    expect(scanButton).toBeEnabled();
+    expect(fetchMock.mock.calls.filter(([url]) => String(url).includes("/api/ai/models"))).toHaveLength(1);
     fetchMock.mockRestore();
-  });
+  }, 15_000);
 
   it("gates the AI tutor behind sign-in while anonymous", async () => {
     const fetchMock = vi.spyOn(globalThis, "fetch").mockImplementation(

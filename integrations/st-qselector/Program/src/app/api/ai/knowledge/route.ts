@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { resolveStatAiModel } from "@/lib/ai-client";
+import { resolveStatAiModel, StatAiModelSelectionError } from "@/lib/ai-client";
 import { CoursewareInputError, extractCoursewareText } from "@/lib/courseware";
 import {
   aiKnowledgeExtraction,
@@ -17,7 +17,7 @@ const MAX_DIRECT_TEXT_LENGTH = 80_000;
 const MAX_COMBINED_TEXT_LENGTH = 100_000;
 const MAX_FORM_BYTES = 16 * 1024 * 1024;
 
-async function readKnowledgeInput(request: NextRequest): Promise<{ text: string; model?: string }> {
+async function readKnowledgeInput(request: NextRequest): Promise<{ text: string; model: string }> {
   return withConcurrencyLease({
     route: "ai-knowledge-parse",
     limit: 3,
@@ -75,6 +75,10 @@ export async function POST(request: NextRequest) {
       });
       if (concepts?.length) mode = "ai";
     } catch (error) {
+      // A model disappearing between the manual scan and this request must be
+      // reported to the user. Silently switching models (or disguising the
+      // failure as a local extraction) would make the selection meaningless.
+      if (error instanceof StatAiModelSelectionError) throw error;
       warning = error instanceof Error ? `AI 暂不可用，已使用本地提取：${error.message}` : "AI 暂不可用，已使用本地提取";
     }
     if (!concepts?.length) {

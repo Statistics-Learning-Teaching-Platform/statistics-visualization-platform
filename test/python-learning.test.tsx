@@ -1,11 +1,11 @@
 import { LanguageProvider } from "@stats-viz/shared/i18n";
-import { act, render, screen, within } from "@testing-library/react";
+import { act, render, screen, waitFor, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import { resetPortalSessionCache } from "../src/auth/session";
 import { pythonLessons } from "../src/python-learning/lessons";
 import { PythonLearningWorkspace } from "../src/python-learning/PythonLearningWorkspace";
-import { disposePythonRuntime } from "../src/python-learning/pyodideRuntime";
+import { disposePythonRuntime, resetPythonSession } from "../src/python-learning/pyodideRuntime";
 
 vi.mock("../src/python-learning/pyodideRuntime", () => ({
   runPythonCode: vi.fn(async () => ({
@@ -50,9 +50,9 @@ describe("Python Coding Studio", () => {
     expect(screen.getByText("Python 练习")).toBeInTheDocument();
     const navigation = courseNavigation();
     expect(within(navigation).getAllByRole("button")).toHaveLength(43);
-    expect(
-      (screen.getByRole("textbox", { name: "Python 代码编辑器" }) as HTMLTextAreaElement).value,
-    ).toContain("mean_score =");
+    expect(screen.getByRole("textbox", { name: "Python 代码编辑器" }).textContent).toContain(
+      "mean_score =",
+    );
   });
 
   it("ignores progress entries that do not belong to the current curriculum", () => {
@@ -95,6 +95,50 @@ describe("Python Coding Studio", () => {
     expect(document.querySelector(".ed-code-cell")).toHaveAttribute("data-engine-status", "idle");
   });
 
+  it("ignores a late clear-session completion after switching lessons", async () => {
+    let finishReset!: () => void;
+    vi.mocked(resetPythonSession).mockImplementationOnce(
+      () => new Promise<void>((resolve) => { finishReset = resolve; }),
+    );
+    renderWorkspace();
+
+    await userEvent.click(screen.getByRole("button", { name: "清空 Python 会话" }));
+    const navigation = courseNavigation();
+    await userEvent.click(within(navigation).getAllByRole("button")[1]);
+    expect(document.querySelector(".ed-code-cell")).toHaveAttribute("data-engine-status", "idle");
+
+    await act(async () => {
+      finishReset();
+      await Promise.resolve();
+    });
+    expect(screen.queryByText("Python 会话已清空。")).not.toBeInTheDocument();
+    expect(document.querySelector(".ed-code-cell")).toHaveAttribute("data-engine-status", "idle");
+  });
+
+  it("drops a late run from the previous lesson", async () => {
+    const runtime = await import("../src/python-learning/pyodideRuntime");
+    let finishRun!: (result: Awaited<ReturnType<typeof runtime.runPythonCode>>) => void;
+    vi.mocked(runtime.runPythonCode).mockImplementationOnce(
+      () => new Promise((resolve) => { finishRun = resolve; }),
+    );
+    renderWorkspace();
+
+    await userEvent.click(screen.getByRole("button", { name: "运行代码" }));
+    const navigation = courseNavigation();
+    await userEvent.click(within(navigation).getAllByRole("button")[1]);
+    await act(async () => {
+      finishRun({
+        console: ["绝不能写回的旧运行结果"],
+        plotUrl: null,
+        environment: [{ name: "stale", type: "int", preview: "1" }],
+      });
+      await Promise.resolve();
+    });
+
+    expect(screen.queryByText("绝不能写回的旧运行结果")).not.toBeInTheDocument();
+    expect(document.querySelector(".ed-code-cell")).toHaveAttribute("data-engine-status", "idle");
+  });
+
   it("reveals staged hints and records a passed automatic check", async () => {
     renderWorkspace();
     // Stage-based hint disclosure replaces the single-shot hint button.
@@ -116,6 +160,29 @@ describe("Python Coding Studio", () => {
           headers: { "Content-Type": "application/json" },
         });
       }
+      if (String(input).includes("/api/ai/models")) {
+        return new Response(
+          JSON.stringify({
+            models: [
+              {
+                key: "loaded-model",
+                displayName: "Loaded model",
+                quantization: "Q8",
+                params: "9B",
+                loaded: true,
+              },
+              {
+                key: "inactive-model",
+                displayName: "Inactive model",
+                quantization: "Q4",
+                params: "8B",
+                loaded: false,
+              },
+            ],
+          }),
+          { status: 200, headers: { "Content-Type": "application/json" } },
+        );
+      }
       return new Response(
         JSON.stringify({
           answer: "The assignment needs an expression on its right-hand side.",
@@ -127,21 +194,59 @@ describe("Python Coding Studio", () => {
 
     // The tutor lives in an on-demand drawer behind its launcher.
     await openTutorDrawer();
+    const scanButton = await screen.findByRole("button", { name: "扫描在线模型" });
+    expect(fetchMock.mock.calls.some(([url]) => String(url).includes("/api/ai/models"))).toBe(
+      false,
+    );
+    const sendButton = screen.getByRole("button", { name: "发送" });
+    expect(sendButton).toBeDisabled();
+
+    await userEvent.click(scanButton);
+    const modelSelect = await screen.findByLabelText("AI 模型");
+    const inactiveOption = within(modelSelect).getByRole("option", {
+      name: /Inactive model · Q4 · 未启用/,
+    });
+    expect(inactiveOption).toBeDisabled();
+    await userEvent.selectOptions(modelSelect, "inactive-model");
+    expect(modelSelect).toHaveValue("");
+    expect(sendButton).toBeDisabled();
+
+    await userEvent.selectOptions(modelSelect, "loaded-model");
     const input = screen.getByRole("textbox", { name: /问报错原因/ });
     await userEvent.type(input, "为什么这段代码报错？");
-    await userEvent.click(screen.getByRole("button", { name: "发送" }));
+    expect(sendButton).toBeEnabled();
+    await userEvent.click(sendButton);
 
-    expect(await screen.findByText(/right-hand side/)).toBeInTheDocument();
+    // The assistant answer reveals through a typewriter effect (~20ms per
+    // batch of characters), so allow a longer waitFor window than the default.
+    const conversation = screen.getByRole("log", { name: "AI 助教对话" });
+    expect(
+      await within(conversation).findByText(/right-hand side/, {}, { timeout: 5_000 }),
+    ).toBeInTheDocument();
     const tutorCall = fetchMock.mock.calls.find(([, init]) => Boolean(init?.body));
     expect(tutorCall?.[0]).toContain("/st-qselector/api/ai/python-tutor");
     const request = JSON.parse(String(tutorCall?.[1]?.body));
     expect(request.question).toBe("为什么这段代码报错？");
+    expect(request.model).toBe("loaded-model");
     expect(request.lesson.title).toBe("用列表计算样本均值");
     expect(request.code).toContain("mean_score =");
+    const staleModelError = "所选模型当前未启用或已被移除，请重新扫描并选择";
+    fetchMock.mockResolvedValueOnce(new Response(JSON.stringify({ error: staleModelError }), {
+      status: 409,
+      headers: { "Content-Type": "application/json" },
+    }));
+    await userEvent.type(input, "再解释一次");
+    await userEvent.click(sendButton);
+    expect(await within(conversation).findByText(staleModelError, {}, { timeout: 5_000 })).toBeInTheDocument();
+    await waitFor(() => expect(modelSelect).toHaveValue(""));
+    expect(within(modelSelect).queryByRole("option", { name: /Loaded model/ })).not.toBeInTheDocument();
+    expect(scanButton).toBeEnabled();
+    expect(fetchMock.mock.calls.filter(([url]) => String(url).includes("/api/ai/models"))).toHaveLength(1);
     fetchMock.mockRestore();
-  });
+  }, 15_000);
 
   it("gates the AI tutor behind sign-in while anonymous", async () => {
+    window.history.replaceState({}, "", "/python-learning?topic=mean#editor");
     const fetchMock = vi.spyOn(globalThis, "fetch").mockImplementation(
       async () =>
         new Response(JSON.stringify({ error: "请先登录" }), {
@@ -154,7 +259,10 @@ describe("Python Coding Studio", () => {
     await openTutorDrawer();
     expect(await screen.findByText("AI 助教需要登录")).toBeInTheDocument();
     const loginLink = screen.getByRole("link", { name: "前往登录" });
-    expect(loginLink.getAttribute("href")).toContain("/st-qselector/login?next=");
+    expect(loginLink).toHaveAttribute(
+      "href",
+      "/st-qselector/login?next=%2Fpython-learning%3Ftopic%3Dmean%23editor",
+    );
     expect(screen.queryByRole("textbox", { name: /问报错原因/ })).not.toBeInTheDocument();
     expect(
       fetchMock.mock.calls.every(([url]) => !String(url).includes("/api/ai/python-tutor")),
@@ -172,6 +280,22 @@ describe("Python Coding Studio", () => {
           headers: { "Content-Type": "application/json" },
         });
       }
+      if (String(input).includes("/api/ai/models")) {
+        return new Response(
+          JSON.stringify({
+            models: [
+              {
+                key: "loaded-model",
+                displayName: "Loaded model",
+                quantization: "Q8",
+                params: "9B",
+                loaded: true,
+              },
+            ],
+          }),
+          { status: 200, headers: { "Content-Type": "application/json" } },
+        );
+      }
       requestSignal = init?.signal as AbortSignal;
       return new Promise<Response>((resolve) => {
         resolveFetch = resolve;
@@ -180,6 +304,8 @@ describe("Python Coding Studio", () => {
     renderWorkspace();
 
     await openTutorDrawer();
+    await userEvent.click(screen.getByRole("button", { name: "扫描在线模型" }));
+    await userEvent.selectOptions(await screen.findByLabelText("AI 模型"), "loaded-model");
     await userEvent.type(screen.getByRole("textbox", { name: /问报错原因/ }), "旧课程问题");
     await userEvent.click(screen.getByRole("button", { name: "发送" }));
     const navigation = courseNavigation();
@@ -198,6 +324,57 @@ describe("Python Coding Studio", () => {
     });
     expect(screen.queryByText("不应显示的旧课程回答")).not.toBeInTheDocument();
     expect(within(navigation).getByText("标准化一组观测值")).toBeInTheDocument();
+    fetchMock.mockRestore();
+  });
+
+  it("aborts a pending tutor request when the drawer closes and reopens unlocked", async () => {
+    let resolveFetch!: (response: Response) => void;
+    let requestSignal: AbortSignal | null = null;
+    const fetchMock = vi.spyOn(globalThis, "fetch").mockImplementation(async (input, init) => {
+      if (String(input).includes("/api/auth/me")) {
+        return new Response(JSON.stringify({ user: { username: "student01", role: "student" } }), {
+          status: 200,
+          headers: { "Content-Type": "application/json" },
+        });
+      }
+      if (String(input).includes("/api/ai/models")) {
+        return new Response(
+          JSON.stringify({
+            models: [{ key: "loaded-model", displayName: "Loaded model", loaded: true }],
+          }),
+          { status: 200, headers: { "Content-Type": "application/json" } },
+        );
+      }
+      requestSignal = init?.signal as AbortSignal;
+      return new Promise<Response>((resolve) => {
+        resolveFetch = resolve;
+      });
+    });
+    renderWorkspace();
+
+    await openTutorDrawer();
+    await userEvent.click(screen.getByRole("button", { name: "扫描在线模型" }));
+    await userEvent.selectOptions(await screen.findByLabelText("AI 模型"), "loaded-model");
+    await userEvent.type(screen.getByRole("textbox", { name: /问报错原因/ }), "关闭前的问题");
+    await userEvent.click(screen.getByRole("button", { name: "发送" }));
+
+    const dialog = screen.getByRole("dialog", { name: /AI Python 助教/ });
+    await userEvent.click(within(dialog).getByRole("button", { name: "关闭 AI 助教" }));
+    expect((requestSignal as unknown as AbortSignal).aborted).toBe(true);
+
+    await act(async () => {
+      resolveFetch(
+        new Response(JSON.stringify({ answer: "关闭后不应写回的回答" }), {
+          status: 200,
+          headers: { "Content-Type": "application/json" },
+        }),
+      );
+      await Promise.resolve();
+    });
+    expect(screen.queryByText("关闭后不应写回的回答")).not.toBeInTheDocument();
+
+    await openTutorDrawer();
+    expect(await screen.findByRole("button", { name: "扫描在线模型" })).toBeEnabled();
     fetchMock.mockRestore();
   });
 

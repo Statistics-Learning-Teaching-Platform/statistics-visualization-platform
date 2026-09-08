@@ -2,7 +2,14 @@ import { randomUUID } from "node:crypto";
 import { NextRequest, NextResponse } from "next/server";
 import { evaluatePaperQuality, questionMatchesKnowledge, selectQuestionsFromBlueprint, type PaperBlueprint } from "@/lib/blueprint";
 import { reviewedQuestionIndex } from "@/generated/reviewed-questions";
-import { callStatAi, resolveStatAiModel } from "@/lib/ai-client";
+import {
+  callStatAi,
+  requireLoadedStatAiModel,
+  resolveStatAiModel,
+  StatAiModelSelectionError,
+} from "@/lib/ai-client";
+import { statAiInputByteBudget } from "@/lib/ai-context-budget";
+import { formatPaperGenerationInput, formatPaperVerificationInput } from "@/lib/ai-paper-context";
 import { persistAiDrafts } from "@/lib/ai-drafts";
 import { consumeRateLimit, requestPrincipal, withConcurrencyLease } from "@/lib/auth/rate-limit";
 import { requireRequestSession, verifyCsrf } from "@/lib/auth/session";
@@ -10,11 +17,22 @@ import { assertSafeOrigin, authErrorResponse, AuthError, readLimitedJson } from 
 import type { Question } from "@/lib/types";
 import { normalizeTopicIds } from "@/lib/topic-mapping";
 import { getTextbookChapterIdsForTopics } from "@/lib/textbook-chapters";
+import { canonicalVisualizationAlt, validateQuestionVisualizations, visualizationsMatchQuestionContent } from "@/lib/question-visualizations";
 
 export const runtime = "nodejs";
 export const maxDuration = 180;
 
 const AI_STAGE_TIMEOUT_MS = 80_000;
+const AI_MODEL_PREFLIGHT_TIMEOUT_MS = 20_000;
+const AI_GENERATION_BATCH_SIZE = 3;
+const AI_GENERATION_MAX_OUTPUT_TOKENS = 3_072;
+const AI_VERIFICATION_MAX_OUTPUT_TOKENS = 3_072;
+const AI_GENERATION_SYSTEM_PROMPT = "Return compact JSON only: {questions:[{index,concept,type,difficulty,chapterId,content,answer,visualizations}]}. Write exactly one self-contained English statistics question per job with the same index. Include every raw value in content and state categorical chart data as unambiguous label-value pairs; never require an external figure, file, table, or prior exercise. If a question depends on a categorical bar chart, line chart, or pie chart, visualizations must contain one or two objects {kind:\"mermaid\",title,alt,source}; alt must truthfully list the same label-value pairs. Source may use only this canonical Mermaid subset: xychart-beta with quoted title, quoted-string categorical x-axis JSON array, finite numeric y-axis min --> max, and bar/line numeric JSON arrays; every bar/line must have a unique quoted series name when there is more than one series; or pie showData with an optional quoted title and quoted labels with nonnegative numeric values. Do not emit directives, comments, HTML, links, click handlers, styles, classes, or fenced Markdown. Mermaid does not faithfully support scatterplots, histograms, dotplots, stem-and-leaf displays, or boxplots here: do not create chart-dependent questions of those kinds and never substitute a line or categorical bar chart for them. Otherwise set visualizations to []. A variant must change its context and numbers and recompute its answer. Show essential calculations and a conclusion. Keep each content and answer under 450 characters. Allowed types: 选择题, 判断题, 填空题, 计算题, 简答题, 综合题.";
+const AI_VERIFICATION_SYSTEM_PROMPT = "Act as a second-pass statistics verifier. Solve each proposed question yourself. Correct any ambiguity, arithmetic, units, rounding, hypotheses, direction, degrees of freedom, p-value, interval, and visualization/data mismatch. Return compact JSON only: {questions:[{index,concept,type,difficulty,chapterId,content,answer,verification,visualizations}]}, preserving every index and the exact visualization object contract. Every plotted raw value must also appear in content as an unambiguous label-value pair. For chart-dependent categorical bar, line, or pie questions, preserve or correct the canonical Mermaid visualization and make alt list the same pairs. Use [] for questions without one. Reject the idea by rewriting the question if it would require a scatterplot, histogram, dotplot, stem-and-leaf display, or boxplot because this Mermaid subset cannot faithfully encode those. Never emit directives, comments, HTML, links, clicks, styles, classes, or Mermaid Markdown fences. In verification, state concrete checks performed; never claim independent human review. Questions must remain self-contained. Keep each content and corrected answer under 450 characters.";
+// One generation batch plus one verification batch fits the 175-second lease
+// even when both approach their 80-second stage deadline. More sequential
+// batches could never be guaranteed to finish inside the Worker duration.
+const MAX_AI_GENERATED_QUESTIONS = AI_GENERATION_BATCH_SIZE;
 
 const QUESTION_TYPES = new Set(["选择题", "判断题", "填空题", "计算题", "简答题", "综合题"]);
 
@@ -35,6 +53,7 @@ interface GeneratedDraft {
   content?: string;
   answer?: string;
   verification?: string;
+  visualizations?: unknown;
 }
 
 function safeJson(value: string): unknown {
@@ -42,7 +61,13 @@ function safeJson(value: string): unknown {
   return JSON.parse(clean);
 }
 
-async function callJson(system: string, user: string, requestSignal: AbortSignal, model?: string): Promise<Record<string, unknown>> {
+async function callJson(
+  system: string,
+  user: string,
+  requestSignal: AbortSignal,
+  model: string,
+  maxOutputTokens: number,
+): Promise<Record<string, unknown>> {
   const controller = new AbortController();
   const timeout = setTimeout(() => controller.abort(), AI_STAGE_TIMEOUT_MS);
   try {
@@ -50,6 +75,7 @@ async function callJson(system: string, user: string, requestSignal: AbortSignal
       systemPrompt: system,
       input: user,
       model,
+      maxOutputTokens,
       signal: AbortSignal.any([requestSignal, controller.signal]),
     }));
     if (!parsed || typeof parsed !== "object" || Array.isArray(parsed)) throw new Error("AI 返回的 JSON 结构无效");
@@ -117,7 +143,7 @@ function mapConceptToChapter(label: string): string | null {
   if (/confidence|estimat|margin of error/.test(value)) return "Ch08";
   if (/central limit|sampling distribution/.test(value)) return "Ch07";
   if (/normal|continuous distribution/.test(value)) return "Ch06";
-  if (/binomial|poisson|discrete distribution|random variable/.test(value)) return "Ch05";
+  if (/binomial|poisson|discrete distribution|probability distributions?|random variable/.test(value)) return "Ch05";
   if (/conditional probability|bayes|independence|probability/.test(value)) return "Ch04";
   if (/histogram|box.?plot|stem.?and.?leaf|descriptive|mean|median|variance|standard deviation/.test(value)) return "Ch02";
   if (/bootstrap|permutation|monte carlo|mcmc|gibbs|metropolis|simulation/.test(value)) return "Ch12";
@@ -136,7 +162,16 @@ function requireMappedChapter(concept: string): string {
 function sanitizeDraft(draft: GeneratedDraft, job: GenerationJob, position: number): Question | null {
   const content = String(draft.content ?? "").trim();
   const answer = String(draft.answer ?? "").trim();
-  if (content.length < 20 || answer.length < 8) return null;
+  if (content.length < 20 || content.length > 1_200 || answer.length < 8 || answer.length > 1_200) return null;
+  // Mermaid is accepted only through the structured field below. A Markdown
+  // fence would otherwise bypass the server-side grammar and complexity gate.
+  if (/```\s*mermaid\b/i.test(content) || /```\s*mermaid\b/i.test(answer)) return null;
+  const validatedVisualizations = validateQuestionVisualizations(draft.visualizations);
+  if (!validatedVisualizations || !visualizationsMatchQuestionContent(content, validatedVisualizations)) return null;
+  const visualizations = validatedVisualizations.map((visualization) => ({
+    ...visualization,
+    alt: canonicalVisualizationAlt(visualization) ?? visualization.alt,
+  }));
   const type = QUESTION_TYPES.has(String(draft.type)) ? String(draft.type) : "简答题";
   const difficulty = Math.max(1, Math.min(5, Math.round(Number(draft.difficulty) || 2)));
   const verification = String(draft.verification ?? "").trim();
@@ -175,6 +210,7 @@ function sanitizeDraft(draft: GeneratedDraft, job: GenerationJob, position: numb
     variantKind: job.variantKind,
     parentQuestionId: job.parentQuestionId,
     verification,
+    visualizations,
   };
 }
 
@@ -232,6 +268,13 @@ export async function POST(request: NextRequest) {
     const generatedNeeded = Math.max(0, targetCount - bankSelection.unitCount);
 
     if (!generatedNeeded) {
+      // A bank-only result is still the outcome of an explicitly model-bound
+      // AI-paper action. Do not let a stale selection bypass the same live
+      // loaded-model check used immediately before inference.
+      await requireLoadedStatAiModel(
+        requestedModel,
+        AbortSignal.any([request.signal, AbortSignal.timeout(AI_MODEL_PREFLIGHT_TIMEOUT_MS)]),
+      );
       const report = evaluatePaperQuality(bankQuestions, blueprint);
       return NextResponse.json({
         ids: bankQuestions.map((question) => question.id),
@@ -240,6 +283,12 @@ export async function POST(request: NextRequest) {
         report,
         sources: { bank: bankSelection.unitCount, variant: 0, generated: 0 },
       });
+    }
+    if (generatedNeeded > MAX_AI_GENERATED_QUESTIONS) {
+      throw new AuthError(
+        400,
+        `当前蓝图需要实时生成 ${generatedNeeded} 道题，单次安全上限为 ${MAX_AI_GENERATED_QUESTIONS} 道；请降低题目数量或 AI 比例后重试`,
+      );
     }
 
     const missingConcepts = selectedConcepts.filter((point) =>
@@ -277,21 +326,47 @@ export async function POST(request: NextRequest) {
         ttlSeconds: 175,
         requestSignal: request.signal,
         work: async (signal) => {
-      const generatedPayload = await callJson(
-        "Return compact JSON only: {questions:[{index,concept,type,difficulty,chapterId,content,answer,verification}]}. Write exactly one self-contained English statistics question per job with the same index. Include all data; never require an external figure, file, table, or prior exercise. A variant must change its context and numbers and recompute its answer. Show essential calculations and a conclusion. Keep each content and answer under 1200 characters. Allowed types: 选择题, 判断题, 填空题, 计算题, 简答题, 综合题.",
-        JSON.stringify({ targetDifficulty: blueprint.targetDifficulty, allowedTypes: blueprint.types, jobs: seeds }),
-        signal,
-        requestedModel,
-      );
-      const firstPass = indexedDrafts(generatedPayload.questions, jobs, "AI 生成阶段");
-
-      const verificationPayload = await callJson(
-        "Act as a second-pass statistics verifier. Solve each proposed question yourself. Correct any ambiguity, arithmetic, units, rounding, hypotheses, direction, degrees of freedom, p-value, or interval error. In verification, state the concrete checks performed; never claim independent human review. Return compact JSON only: {questions:[{index,concept,type,difficulty,chapterId,content,answer,verification}]}, preserving every index. Questions must remain self-contained. Keep each content and corrected answer under 1200 characters.",
-        JSON.stringify({ questions: firstPass.map((item, index) => ({ index, ...item })) }),
-        signal,
-        requestedModel,
-      );
-      const verifiedDrafts = indexedDrafts(verificationPayload.questions, jobs, "AI 二次校验阶段");
+      // Keep each generation and verification response comfortably inside an
+      // 8K-context local model. Large single JSON arrays were predictably
+      // truncated; three compact questions per batch remain independently
+      // indexed and no draft is persisted until every batch has passed.
+      const verifiedDrafts: GeneratedDraft[] = [];
+      for (let batchStart = 0; batchStart < jobs.length; batchStart += AI_GENERATION_BATCH_SIZE) {
+        const batchJobs = jobs.slice(batchStart, batchStart + AI_GENERATION_BATCH_SIZE);
+        const batchSeeds = seeds.slice(batchStart, batchStart + AI_GENERATION_BATCH_SIZE);
+        const generatedPayload = await callJson(
+          AI_GENERATION_SYSTEM_PROMPT,
+          formatPaperGenerationInput({
+            targetDifficulty: blueprint.targetDifficulty,
+            allowedTypes: blueprint.types,
+            seeds: batchSeeds,
+            maximumBytes: statAiInputByteBudget(
+              AI_GENERATION_SYSTEM_PROMPT,
+              AI_GENERATION_MAX_OUTPUT_TOKENS,
+            ),
+          }),
+          signal,
+          requestedModel,
+          AI_GENERATION_MAX_OUTPUT_TOKENS,
+        );
+        const firstPass = indexedDrafts(generatedPayload.questions, batchJobs, "AI 生成阶段");
+        const verificationPayload = await callJson(
+          AI_VERIFICATION_SYSTEM_PROMPT,
+          formatPaperVerificationInput(
+            firstPass,
+            statAiInputByteBudget(
+              AI_VERIFICATION_SYSTEM_PROMPT,
+              AI_VERIFICATION_MAX_OUTPUT_TOKENS,
+            ),
+          ),
+          signal,
+          requestedModel,
+          AI_VERIFICATION_MAX_OUTPUT_TOKENS,
+        );
+        verifiedDrafts.push(
+          ...indexedDrafts(verificationPayload.questions, batchJobs, "AI 二次校验阶段"),
+        );
+      }
       const generatedQuestions = verifiedDrafts
         .map((draft, index) => sanitizeDraft(draft, jobs[index], index))
         .filter((question): question is Question => Boolean(question));
@@ -322,6 +397,7 @@ export async function POST(request: NextRequest) {
         },
       });
     } catch (error) {
+      if (error instanceof StatAiModelSelectionError) throw error;
       console.error("AI paper stages failed; considering reviewed-bank fallback", error);
       const fallback = selectQuestionsFromBlueprint(bankQuestionsSource, blueprint, { relevantOnly: true });
       if (missingConcepts.length > 0 || fallback.unitCount < targetCount) throw error;

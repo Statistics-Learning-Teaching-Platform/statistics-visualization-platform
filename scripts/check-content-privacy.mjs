@@ -54,7 +54,9 @@ function inspectText(relative) {
     [/-----BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY-----/, "private key"],
     [/(?:^|[^A-Za-z0-9])sk-[A-Za-z0-9_-]{16,}/, "API key-like value"],
     [/integrations\/st-qselector\/Data\/(?:Origin|Formed)/i, "offline source path"],
-    [/(?:Assignment|Solution)[^"'\n]{0,100}\.(?:docx?|pdf|pptx?)/i, "original document name"],
+    // Require the extension to end here: Mermaid's parser includes code like
+    // addAstNodeRegionWithAssignmentsTo(...).$textRegion.documentURI.
+    [/(?:Assignment|Solution)[^"'\n]{0,100}\.(?:docx?|pdf|pptx?)(?![a-z0-9_])/i, "original document name"],
   ];
   for (const [pattern, label] of checks) {
     if (pattern.test(value)) findings.push(`${relative}: ${label}`);

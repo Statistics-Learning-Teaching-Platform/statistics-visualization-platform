@@ -151,7 +151,7 @@ export default function PaperPage() {
                           <X className="size-3" /> 移除
                         </button>
                       </div>
-                      <QuestionContent text={q.content} chapterId={q.chapterId} />
+                      <QuestionContent text={q.content} chapterId={q.chapterId} visualizations={q.visualizations} />
 
                       {withAnswer && (
                         <div className="mt-2 rounded border border-green-200 bg-green-50/50 p-3">
@@ -168,7 +168,7 @@ export default function PaperPage() {
                               className="max-w-full rounded border border-slate-200"
                             />
                           ) : (
-                            <QuestionContent text={q.answer} chapterId={q.chapterId} />
+                            <QuestionContent text={q.answer} chapterId={q.chapterId} visualizations={[]} />
                           )}
                         </div>
                       )}

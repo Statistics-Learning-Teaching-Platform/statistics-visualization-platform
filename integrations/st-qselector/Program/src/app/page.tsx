@@ -711,7 +711,7 @@ function QuestionCard({
           )}
         </div>
 
-        <QuestionContent text={question.content} chapterId={question.chapterId} className="qb-question__content" />
+        <QuestionContent text={question.content} chapterId={question.chapterId} className="qb-question__content" visualizations={question.visualizations} />
 
         <div className="qb-question__footer">
           <div className="qb-question__links">
@@ -731,7 +731,7 @@ function QuestionCard({
                 alt={`${question.id} 的答案`}
               />
             ) : (
-              <QuestionContent text={question.answer} chapterId={question.chapterId} />
+              <QuestionContent text={question.answer} chapterId={question.chapterId} visualizations={[]} />
             )}
           </div>
         )}

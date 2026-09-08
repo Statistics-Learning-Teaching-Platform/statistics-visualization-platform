@@ -1,26 +1,9 @@
 "use client";
+/* eslint-disable @next/next/no-html-link-for-pages -- this link intentionally leaves the Next basePath for the shared portal */
 
 import { FormEvent, useState } from "react";
 import { LockKeyhole, Loader2, UserRound } from "lucide-react";
-import Link from "next/link";
-import { withBasePath } from "@/lib/base-path";
-
-function resolvePostLoginTarget(mustChangePassword: boolean): string {
-  if (mustChangePassword) return withBasePath("/account");
-  const next = new URLSearchParams(window.location.search).get("next");
-  if (next) {
-    // Only same-origin destinations: bare in-app paths, or absolute URLs on
-    // this origin. Anything else (protocol-relative, other hosts) is ignored.
-    if (next.startsWith("/") && !next.startsWith("//")) return next;
-    try {
-      const resolved = new URL(next, window.location.origin);
-      if (resolved.origin === window.location.origin) return resolved.href;
-    } catch {
-      // Malformed next value falls through to the default.
-    }
-  }
-  return withBasePath("/");
-}
+import { resolvePostLoginTarget, withBasePath } from "@/lib/base-path";
 
 export default function LoginPage() {
   const [error, setError] = useState("");
@@ -40,7 +23,13 @@ export default function LoginPage() {
       });
       const payload = (await response.json()) as { error?: string; user?: { mustChangePassword?: boolean } };
       if (!response.ok) throw new Error(payload.error ?? "登录失败");
-      window.location.assign(resolvePostLoginTarget(Boolean(payload.user?.mustChangePassword)));
+      window.location.assign(
+        resolvePostLoginTarget(
+          Boolean(payload.user?.mustChangePassword),
+          window.location.search,
+          window.location.origin,
+        ),
+      );
     } catch (reason) {
       setError(reason instanceof Error ? reason.message : "登录失败");
       setLoading(false);
@@ -68,7 +57,7 @@ export default function LoginPage() {
             {loading ? <><Loader2 className="auth-spin" /> 正在登录…</> : "登录"}
           </button>
         </form>
-        <Link className="auth-back" href="/">← 返回主界面</Link>
+        <a className="auth-back" href="/">← 返回主界面</a>
       </section>
     </main>
   );

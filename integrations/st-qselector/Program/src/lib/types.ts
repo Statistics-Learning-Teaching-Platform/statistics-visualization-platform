@@ -1,5 +1,6 @@
 // 共享数据类型（前后端通用）
 import type { TextbookChapterId } from "./textbook-chapters";
+import type { QuestionVisualization } from "./question-visualizations";
 
 export interface ChapterConfig {
   id: string; // 如 "Ch01"
@@ -62,6 +63,8 @@ export interface Question {
   parentQuestionId?: string | null;
   /** Short server-side verification summary for AI-authored questions. */
   verification?: string | null;
+  /** Optional, review-gated chart displayed after the question content. */
+  visualizations?: QuestionVisualization[];
 }
 
 export interface QuestionsResponse {

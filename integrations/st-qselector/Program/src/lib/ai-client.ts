@@ -1,13 +1,25 @@
 import "server-only";
 
+import { AuthError } from "@/lib/auth/security";
+import {
+  findLoadedStatAiModel,
+  parseStatAiModelKey,
+  parseStatAiModelsPayload,
+  selectStatAiReasoning,
+  type StatAiModel,
+} from "@/lib/stat-ai-models";
+import { statAiContextUsage } from "@/lib/ai-context-budget";
+
+export type { StatAiModel } from "@/lib/stat-ai-models";
+
+export class StatAiModelSelectionError extends AuthError {}
+export class StatAiContextBudgetError extends AuthError {}
+
 const DEFAULT_AI_URL = "http://alist.tlljyang.pp.ua:61235/api/v1/chat";
-export const DEFAULT_AI_MODEL = "qwen3.8-9b-heretic-uncensored-nvfp4@q8_0";
 const MAX_AI_RESPONSE_BYTES = 2 * 1024 * 1024;
 const DEFAULT_MAX_OUTPUT_TOKENS = 4_096;
 const MIN_MAX_OUTPUT_TOKENS = 128;
 const MAX_MAX_OUTPUT_TOKENS = 8_192;
-const MODEL_KEY_PATTERN = /^[A-Za-z0-9][A-Za-z0-9._@-]{0,127}$/;
-const LEGACY_MODEL_KEY_PATTERN = /^lfm/i;
 
 function statAiAuthHeaders(): Record<string, string> {
   // Keep the upstream LM Studio token in a Worker secret. The legacy name is
@@ -15,31 +27,6 @@ function statAiAuthHeaders(): Record<string, string> {
   // to the browser or included in a response.
   const token = process.env.STAT_AI_API_TOKEN?.trim() || process.env.LM_API_TOKEN?.trim();
   return token ? { Authorization: `Bearer ${token}` } : {};
-}
-
-export interface StatAiModel {
-  key: string;
-  displayName: string;
-  quantization: string;
-  params: string;
-  loaded: boolean;
-  /** Legacy models remain observable for transparency but cannot be selected. */
-  legacy: boolean;
-  selectable: boolean;
-}
-
-export function isLegacyStatAiModel(value: unknown): boolean {
-  return typeof value === "string" && LEGACY_MODEL_KEY_PATTERN.test(value.trim());
-}
-
-export function resolveStatAiModel(value: unknown): string | undefined {
-  if (typeof value !== "string") return undefined;
-  const model = value.trim();
-  return MODEL_KEY_PATTERN.test(model) && !isLegacyStatAiModel(model) ? model : undefined;
-}
-
-export function configuredStatAiModel(): string {
-  return resolveStatAiModel(process.env.STAT_AI_MODEL) ?? DEFAULT_AI_MODEL;
 }
 
 function normalizeMaxOutputTokens(value: number | undefined): number {
@@ -52,6 +39,21 @@ export function statAiModelsUrl(): string {
   return endpoint.replace(/\/api\/v1\/chat\/?$/, "/api/v1/models");
 }
 
+/**
+ * Requires a model key supplied by the current request. There is deliberately
+ * no configured/default model: callers must forward an explicit user choice.
+ */
+export function resolveStatAiModel(value: unknown): string {
+  if (typeof value !== "string" || !value.trim()) {
+    throw new StatAiModelSelectionError(400, "请先手动扫描并选择一个已启用模型");
+  }
+  const model = parseStatAiModelKey(value);
+  if (!model) {
+    throw new StatAiModelSelectionError(400, "所选模型标识无效，请重新扫描并选择");
+  }
+  return model;
+}
+
 export async function listStatAiModels(signal?: AbortSignal): Promise<StatAiModel[]> {
   const response = await fetch(statAiModelsUrl(), {
     method: "GET",
@@ -59,38 +61,38 @@ export async function listStatAiModels(signal?: AbortSignal): Promise<StatAiMode
     signal,
     cache: "no-store",
   });
-  if (!response.ok) throw new Error(`AI model service returned ${response.status}`);
-  const payload = (await response.json()) as {
-    models?: Array<{
-      type?: string;
-      key?: string;
-      display_name?: string;
-      params_string?: string | null;
-      quantization?: { name?: string };
-      loaded_instances?: unknown[];
-    }>;
-  };
-  return (payload.models ?? [])
-    .filter((model) => model.type === "llm" && typeof model.key === "string")
-    .flatMap((model) => {
-      const key = (model.key as string).trim();
-      if (!MODEL_KEY_PATTERN.test(key)) return [];
-      const legacy = isLegacyStatAiModel(key);
-      return [{
-        key,
-        displayName: model.display_name ?? key,
-        quantization: model.quantization?.name ?? "",
-        params: model.params_string ?? "",
-        loaded: (model.loaded_instances?.length ?? 0) > 0,
-        legacy,
-        selectable: !legacy,
-      }];
-    });
+  if (!response.ok) {
+    await response.body?.cancel();
+    throw new Error(`AI model service returned ${response.status}`);
+  }
+  return parseStatAiModelsPayload(await readLimitedJsonResponse<unknown>(response));
+}
+
+export async function requireLoadedStatAiModel(value: unknown, signal?: AbortSignal): Promise<StatAiModel> {
+  const requested = resolveStatAiModel(value);
+  const models = await listStatAiModels(signal);
+  const requestedModel = findLoadedStatAiModel(models, requested);
+  if (requestedModel) return requestedModel;
+  throw new StatAiModelSelectionError(409, "所选模型当前未启用或已被移除，请重新扫描并选择");
 }
 
 interface AiOutputItem {
   type?: string;
   content?: string;
+}
+
+interface StatAiCallOptions {
+  systemPrompt: string;
+  input: string;
+  model: string;
+  maxOutputTokens?: number;
+  signal?: AbortSignal;
+}
+
+export interface StatAiCompletion {
+  message: string;
+  reasoning?: string;
+  model: string;
 }
 
 function waitBeforeRetry(delayMs: number, signal?: AbortSignal): Promise<void> {
@@ -111,7 +113,7 @@ function waitBeforeRetry(delayMs: number, signal?: AbortSignal): Promise<void> {
   });
 }
 
-async function readLimitedJsonResponse(response: Response): Promise<{ output?: AiOutputItem[] }> {
+async function readLimitedJsonResponse<T>(response: Response): Promise<T> {
   const declaredLength = Number(response.headers.get("content-length") ?? "0");
   if (Number.isFinite(declaredLength) && declaredLength > MAX_AI_RESPONSE_BYTES) {
     throw new Error("AI response is too large");
@@ -134,41 +136,43 @@ async function readLimitedJsonResponse(response: Response): Promise<{ output?: A
   }
   text += decoder.decode();
   try {
-    return JSON.parse(text) as { output?: AiOutputItem[] };
+    return JSON.parse(text) as T;
   } catch {
     throw new Error("AI returned invalid JSON");
   }
 }
 
-export async function callStatAi(options: {
-  systemPrompt: string;
-  input: string;
-  model?: string;
-  maxOutputTokens?: number;
-  signal?: AbortSignal;
-}): Promise<string> {
+async function requestStatAi(options: StatAiCallOptions, includeReasoning: boolean): Promise<StatAiCompletion> {
   const endpoint = process.env.STAT_AI_API_URL?.trim() || DEFAULT_AI_URL;
   const url = new URL(endpoint);
   if (url.protocol !== "http:" && url.protocol !== "https:") {
     throw new Error("STAT_AI_API_URL must use HTTP or HTTPS");
   }
 
-  const model = resolveStatAiModel(options.model)
-    ?? configuredStatAiModel();
-
-  const body = JSON.stringify({
-    model,
-    system_prompt: options.systemPrompt,
-    input: options.input,
-    max_output_tokens: normalizeMaxOutputTokens(options.maxOutputTokens),
-    // Qwen exposes reasoning by default in LM Studio. Disabling it keeps
-    // interactive requests within the Worker's execution window, while
-    // store=false prevents prompts and answers being retained upstream.
-    reasoning: "off",
-    store: false,
-  });
+  const maxOutputTokens = normalizeMaxOutputTokens(options.maxOutputTokens);
+  const usage = statAiContextUsage(options.systemPrompt, options.input, maxOutputTokens);
+  if (usage.totalTokens > usage.limitTokens) {
+    throw new StatAiContextBudgetError(
+      413,
+      `AI 上下文超过 8K 安全预算（输入上界 ${usage.systemTokens + usage.inputTokens}，输出预留 ${usage.outputTokens}）`,
+    );
+  }
 
   for (let attempt = 0; attempt < 3; attempt += 1) {
+    // Recheck on every attempt: a failed request or retry delay may coincide
+    // with a model change. This is a preflight check, not an atomic no-load
+    // guarantee; LM Studio must have JIT loading disabled on the server.
+    const model = await requireLoadedStatAiModel(options.model, options.signal);
+    const body = JSON.stringify({
+      model: model.key,
+      system_prompt: options.systemPrompt,
+      input: options.input,
+      max_output_tokens: maxOutputTokens,
+      // Unsupported settings cause an upstream error. Always-on models and
+      // models without exposed controls must retain the server default.
+      reasoning: selectStatAiReasoning(model, includeReasoning),
+      store: false,
+    });
     const response = await fetch(url, {
       method: "POST",
       headers: { "Content-Type": "application/json", ...statAiAuthHeaders() },
@@ -185,13 +189,26 @@ export async function callStatAi(options: {
       }
       throw new Error(`AI service returned ${response.status}`);
     }
-    const payload = await readLimitedJsonResponse(response);
+    const payload = await readLimitedJsonResponse<{ output?: AiOutputItem[] }>(response);
     const message = payload.output
       ?.filter((item) => item.type === "message" && typeof item.content === "string")
       .at(-1)
       ?.content?.trim();
     if (!message) throw new Error("AI returned an empty response");
-    return message;
+    const reasoning = payload.output
+      ?.filter((item) => item.type === "reasoning" && typeof item.content === "string")
+      .map((item) => item.content?.trim())
+      .filter((content): content is string => Boolean(content))
+      .join("\n\n");
+    return { message, reasoning: reasoning || undefined, model: model.key };
   }
   throw new Error("AI service is temporarily unavailable");
+}
+
+export async function callStatAi(options: StatAiCallOptions): Promise<string> {
+  return (await requestStatAi(options, false)).message;
+}
+
+export async function callStatAiWithReasoning(options: StatAiCallOptions): Promise<StatAiCompletion> {
+  return requestStatAi(options, true);
 }

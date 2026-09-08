@@ -1,3 +1,7 @@
+import {
+  type ExperimentTelemetrySnapshot,
+  useExperimentTelemetryPublisher,
+} from "@stats-viz/shared/ai/experimentTelemetry";
 import { criticalValue } from "@stats-viz/shared/confidence-interval";
 import { confidenceIntervalCopy, useLanguage } from "@stats-viz/shared/i18n";
 import {
@@ -12,6 +16,8 @@ import { useMemo, useState } from "react";
 import { ConfidenceIntervalChart } from "./ConfidenceIntervalChart";
 import { ControlSidebar } from "./ControlSidebar";
 import { useConfidenceIntervals } from "./useConfidenceIntervals";
+
+const TELEMETRY_INTERVAL_LIMIT = 60;
 
 export default function ConfidenceIntervalApp() {
   const language = useLanguage();
@@ -62,6 +68,114 @@ export default function ConfidenceIntervalApp() {
   const trueMeanLabel = copy.trueMean.replace("{mean}", populationMean.toFixed(1));
   const recentMeans = samples.slice(-3).map((sample) => sample.mean);
   const confidencePercent = Math.round(confidenceLevel * 100);
+  const telemetrySnapshot = useMemo<ExperimentTelemetrySnapshot>(() => {
+    const sentSamples = samples.slice(-TELEMETRY_INTERVAL_LIMIT);
+    const sentCount = sentSamples.length;
+    const truncatedCount = sampleCount - sentCount;
+    const capturedCount = samples.reduce((count, sample) => count + Number(sample.contains), 0);
+    const missedCount = sampleCount - capturedCount;
+    const standardError = populationSD / Math.sqrt(sampleSize);
+    const [domainStart, domainEnd] = scales.xScale.domain();
+    const previewScope = `Accumulated interval data: original=${sampleCount}, sent=${sentCount}, truncated=${truncatedCount}. `;
+    const previewOrder = sentCount
+      ? `The table contains the most recent ${sentCount} intervals in chronological order; ${truncatedCount} earlier intervals are omitted.`
+      : "No intervals have been generated, so the table contains no rows.";
+
+    return {
+      appId: "confidence-interval",
+      updatedAt: Date.now(),
+      experiment: {
+        title: copy.title,
+        description: copy.description,
+        researchQuestion: metadata?.localizedQuestion,
+        category: metadata?.localizedCategory,
+        exampleTitle: copy.chartTitle,
+        exampleDescription: copy.chartDescription,
+        teachingPoints: [copy.whatIsBody, copy.coverageBody, copy.learningNoteBody],
+      },
+      parameters: [
+        { id: "sample-size", label: copy.sampleSize, value: sampleSize },
+        { id: "population-mean", label: copy.populationMean, value: populationMean },
+        { id: "population-sd", label: copy.populationSD, value: populationSD },
+        {
+          id: "confidence-level",
+          label: copy.confidenceLevel,
+          value: confidenceLevel,
+        },
+        {
+          id: "sigma-known",
+          label: copy.sigmaAssumption,
+          value: sigmaKnown ? copy.sigmaKnown : copy.sigmaUnknown,
+        },
+      ],
+      outputs: {
+        headline:
+          sampleCount > 0
+            ? `${capturedCount} of ${sampleCount} intervals captured μ=${populationMean}.`
+            : "No repeated-sampling intervals have been generated yet.",
+        narrative: [
+          `Method=${sigmaKnown ? "z interval (population sigma known)" : "t interval (population sigma estimated)"}; target confidence=${confidencePercent}%.`,
+          `SE based on the configured population spread is ${standardError.toFixed(6)}; critical multiplier=${critValue.toFixed(6)}.`,
+          `Observed captures=${capturedCount}, misses=${missedCount}, observed coverage=${(coverage * 100).toFixed(3)}%, average width=${averageWidth.toFixed(6)}.`,
+        ].join("\n"),
+        metrics: [
+          {
+            label: copy.observedCoverage,
+            value: `${(coverage * 100).toFixed(3)}%`,
+            detail: `${capturedCount} captured; ${missedCount} missed; ${sampleCount} total intervals`,
+          },
+          { label: copy.samplesDrawn, value: String(sampleCount) },
+          { label: copy.averageIntervalWidth, value: averageWidth.toFixed(6) },
+          { label: copy.criticalMultiplier, value: critValue.toFixed(6) },
+          { label: "Standard error", value: standardError.toFixed(6) },
+        ],
+        tables: [
+          {
+            title: `${copy.chartTitle} — original=${sampleCount}, sent=${sentCount}, truncated=${truncatedCount}`,
+            columns: [
+              "sample number",
+              "sample mean",
+              "lower",
+              "upper",
+              "width",
+              "captures true mean",
+            ],
+            rows: sentSamples.map((sample, index) => [
+              sampleCount - sentCount + index + 1,
+              Number(sample.mean.toFixed(6)),
+              Number(sample.lower.toFixed(6)),
+              Number(sample.upper.toFixed(6)),
+              Number((sample.upper - sample.lower).toFixed(6)),
+              sample.contains ? "yes" : "no",
+            ]),
+          },
+        ],
+        chartTitle: copy.chartTitle,
+        chartSummary: [
+          `Repeated-interval chart with sampling-distribution curve; x-domain=[${domainStart.toFixed(6)}, ${domainEnd.toFixed(6)}].`,
+          `The chart holds ${sampleCount} accumulated intervals but visibly renders only the most recent ${Math.min(sampleCount, 5)} interval rows; hidden chart rows=${Math.max(0, sampleCount - 5)}.`,
+          `The true-mean reference is μ=${populationMean}; theoretical central ${confidencePercent}% band=[${(populationMean - critValue * standardError).toFixed(6)}, ${(populationMean + critValue * standardError).toFixed(6)}].`,
+        ].join("\n"),
+        rawSampleSummary: previewScope + previewOrder,
+      },
+    };
+  }, [
+    averageWidth,
+    confidenceLevel,
+    confidencePercent,
+    copy,
+    coverage,
+    critValue,
+    metadata,
+    populationMean,
+    populationSD,
+    sampleCount,
+    sampleSize,
+    samples,
+    scales.xScale,
+    sigmaKnown,
+  ]);
+  useExperimentTelemetryPublisher(telemetrySnapshot);
 
   return (
     <VisualizationFrame

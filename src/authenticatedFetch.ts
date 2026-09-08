@@ -1,3 +1,5 @@
+import { clearPortalSessionCache } from "./auth/session";
+
 function readCookie(name: string): string {
   const prefix = `${name}=`;
   return (
@@ -8,11 +10,13 @@ function readCookie(name: string): string {
       ?.slice(prefix.length) ?? ""
   );
 }
-export function authenticatedFetch(input: RequestInfo | URL, init: RequestInit = {}) {
+export async function authenticatedFetch(input: RequestInfo | URL, init: RequestInit = {}) {
   const headers = new Headers(init.headers);
   const method = (init.method ?? "GET").toUpperCase();
   if (!["GET", "HEAD", "OPTIONS"].includes(method)) {
     headers.set("X-CSRF-Token", readCookie("stat_csrf"));
   }
-  return fetch(input, { ...init, headers, credentials: "same-origin" });
+  const response = await fetch(input, { ...init, headers, credentials: "same-origin" });
+  if (response.status === 401) clearPortalSessionCache();
+  return response;
 }

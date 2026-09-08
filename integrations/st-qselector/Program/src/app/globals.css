@@ -3509,6 +3509,80 @@ body {
 	padding-left: 1.55rem;
 }
 
+.qb-mermaid {
+	margin: 1rem 0;
+	break-inside: avoid;
+	border: 1px solid #dbe3ec;
+	border-radius: 10px;
+	background: #fbfdff;
+	overflow: hidden;
+}
+
+.qb-mermaid figcaption {
+	padding: 0.55rem 0.8rem;
+	border-bottom: 1px solid #e5eaf0;
+	color: #334155;
+	background: #f8fafc;
+	font-size: 0.8rem;
+	font-weight: 650;
+}
+
+.qb-mermaid__canvas {
+	display: flex;
+	min-height: 180px;
+	align-items: center;
+	justify-content: center;
+	padding: 0.8rem;
+	overflow-x: auto;
+}
+
+.qb-mermaid__canvas svg {
+	display: block;
+	width: min(100%, 760px);
+	height: auto;
+	max-height: 480px;
+}
+
+.qb-mermaid__loading {
+	padding: 2.4rem 1rem;
+	color: #64748b;
+	font-size: 0.85rem;
+	text-align: center;
+}
+
+.qb-mermaid__fallback {
+	padding: 0.75rem 0.85rem;
+	color: #7c2d12;
+	background: #fff7ed;
+	font-size: 0.8rem;
+}
+
+.qb-mermaid__fallback summary {
+	cursor: pointer;
+	font-weight: 650;
+}
+
+.qb-mermaid__fallback pre {
+	max-height: 240px;
+	margin: 0.65rem 0 0;
+	padding: 0.65rem;
+	border-radius: 6px;
+	background: #fff;
+	overflow: auto;
+	white-space: pre-wrap;
+}
+
+@media print {
+	.qb-mermaid {
+		box-shadow: none;
+		print-color-adjust: exact;
+	}
+
+	.qb-mermaid__canvas {
+		overflow: visible;
+	}
+}
+
 .qb-question__footer {
 	display: flex;
 	align-items: center;

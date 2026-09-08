@@ -1,9 +1,10 @@
 import { useLanguage } from "@stats-viz/shared/i18n";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { portalLoginUrl, usePortalSession } from "../auth/session";
 import { authenticatedFetch } from "../authenticatedFetch";
-import { createMessageId, resolveCodeLearningContext } from "../code-learning/context";
+import { buildTutorHistory, createMessageId, resolveCodeLearningContext } from "../code-learning/context";
 import { EditorialLearningWorkspace } from "../code-learning/EditorialLearningWorkspace";
+import { prepareCodeTutorRequest } from "../code-learning/tutorPayload";
 import { loadLearningProgress, saveCodeLessonProgress } from "../course/progressStore";
 import { pythonLessons } from "./lessons";
 import {
@@ -15,7 +16,7 @@ import {
 
 type EngineStatus = "idle" | "loading" | "ready" | "running" | "error";
 type ReviewState = { kind: "idle" | "success" | "failure"; message: string };
-type TutorMessage = { id: string; role: "user" | "assistant"; content: string };
+type TutorMessage = { id: string; role: "user" | "assistant"; content: string; reasoning?: string };
 type TutorStatus = "idle" | "asking" | "error";
 type PythonObject = { name: string; type: string; preview: string };
 
@@ -58,15 +59,12 @@ const uiCopy = {
     tutorIntro: "我会结合当前题目、你的代码和最近一次运行结果回答。",
     tutorPlaceholder: "问报错原因、语法用法或下一步怎么改…",
     tutorSend: "发送",
-    tutorThinking: "正在分析当前代码…",
+    tutorThinking: "AI 思考中…",
     tutorError: "AI 助教暂时无法连接，请稍后再试。",
     tutorLoginTitle: "AI 助教需要登录",
     tutorLoginBody: "AI 助教按账号提供并有用量限制。登录后即可结合当前题目、代码与运行结果提问。",
     tutorLoginAction: "前往登录",
     contextAttached: "已附带：题目 · 当前代码 · 运行结果",
-    explainError: "解释这个报错",
-    nextStep: "给我下一步提示",
-    explainConcept: "讲清本课概念",
     runtime: "运行结果",
   },
   en: {
@@ -108,16 +106,13 @@ const uiCopy = {
     tutorIntro: "I answer with the current task, your code, and the latest run attached.",
     tutorPlaceholder: "Ask about an error, syntax, or your next step…",
     tutorSend: "Send",
-    tutorThinking: "Analyzing your current code…",
+    tutorThinking: "AI is thinking…",
     tutorError: "The AI tutor is temporarily unavailable. Please try again.",
     tutorLoginTitle: "Sign in to use the AI tutor",
     tutorLoginBody:
       "The AI tutor is account-scoped and rate limited. Sign in to ask about the current task, your code, and the latest run.",
     tutorLoginAction: "Go to sign-in",
     contextAttached: "Attached: task · current code · run result",
-    explainError: "Explain this error",
-    nextStep: "Give me the next hint",
-    explainConcept: "Explain this concept",
     runtime: "Run output",
   },
 } as const;
@@ -154,6 +149,7 @@ export function PythonLearningWorkspace() {
   const [tutorPrompt, setTutorPrompt] = useState("");
   const [tutorMessages, setTutorMessages] = useState<TutorMessage[]>([]);
   const [tutorStatus, setTutorStatus] = useState<TutorStatus>("idle");
+  const [tutorModelResetKey, setTutorModelResetKey] = useState(0);
   const tutorMessagesRef = useRef<HTMLDivElement>(null);
   // Guard refs: mounted flag, per-view epoch for execution, and abortable
   // tutor requests so lesson switches or unmount cannot leak late results
@@ -194,11 +190,6 @@ export function PythonLearningWorkspace() {
       disposePythonRuntime();
     };
   }, []);
-
-  useEffect(() => {
-    const messages = tutorMessagesRef.current;
-    if (messages) messages.scrollTop = messages.scrollHeight;
-  }, [tutorMessages, tutorStatus]);
 
   function selectLesson(id: string) {
     if (id === activeLesson.id) return;
@@ -271,99 +262,100 @@ export function PythonLearningWorkspace() {
   }
 
   async function clearSession() {
+    const viewEpoch = viewEpochRef.current;
+    const isCurrentView = () => mountedRef.current && viewEpochRef.current === viewEpoch;
     setEngineStatus(engineStatus === "idle" ? "loading" : "running");
     try {
       await resetPythonSession();
+      if (!isCurrentView()) return;
       setEngineStatus("ready");
       setConsoleLines([t.cleared]);
       setPlot(null);
       setEnvironment([]);
       setReview({ kind: "idle", message: "" });
     } catch (error) {
+      if (!isCurrentView()) return;
       setEngineStatus("error");
       setConsoleLines([error instanceof Error ? error.message : String(error)]);
     }
   }
 
   async function askTutor(suggestedQuestion?: string, model?: string) {
-    const question = (suggestedQuestion ?? tutorPrompt).trim();
-    if (!question || tutorBusyRef.current) return;
+    const requestedQuestion = (suggestedQuestion ?? tutorPrompt).trim();
+    if (!requestedQuestion || !model || tutorBusyRef.current) return;
 
+    const lesson = activeLesson;
+    const sourceCode = code;
+    const requestLanguage = language;
+    const history = buildTutorHistory(tutorMessages);
+    const request = prepareCodeTutorRequest({
+      language: requestLanguage,
+      model,
+      question: requestedQuestion,
+      lesson: {
+        title: lesson.title[requestLanguage],
+        objective: lesson.objective[requestLanguage],
+        task: lesson.task[requestLanguage],
+        concepts: lesson.concepts,
+      },
+      code: sourceCode,
+      console: consoleLines,
+      review: review.message,
+      history,
+    });
+    const question = request.question;
     tutorBusyRef.current = true;
     const tutorEpoch = ++tutorEpochRef.current;
     const controller = new AbortController();
     tutorAbortRef.current?.abort();
     tutorAbortRef.current = controller;
     const viewEpoch = viewEpochRef.current;
-    const lesson = activeLesson;
-    const sourceCode = code;
-    const requestLanguage = language;
     const isCurrentRequest = () =>
       mountedRef.current &&
       tutorEpochRef.current === tutorEpoch &&
-      viewEpochRef.current === viewEpoch;
+      viewEpochRef.current === viewEpoch &&
+      tutorAbortRef.current === controller &&
+      !controller.signal.aborted;
     const userMessage: TutorMessage = {
       id: createMessageId(),
       role: "user",
       content: question,
     };
-    const history = tutorMessages.map(({ role, content }) => ({
-      role,
-      content,
-    }));
     setTutorMessages((current) => [...current, userMessage]);
     setTutorPrompt("");
     setTutorStatus("asking");
+    let failureMessage: string = t.tutorError;
 
     try {
       const response = await authenticatedFetch("/st-qselector/api/ai/python-tutor", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         signal: controller.signal,
-        body: JSON.stringify({
-          topicId: lesson.topicId,
-          lessonId: lesson.id,
-          learningObjective: lesson.objective[requestLanguage],
-          currentParameters: learningContext.currentParameters,
-          currentCode: sourceCode,
-          consoleOutput: consoleLines,
-          chartSummary: plot
-            ? "The latest run produced a Python plot."
-            : "No plot has been produced.",
-          language: requestLanguage,
-          model,
-          question,
-          lesson: {
-            title: lesson.title[requestLanguage],
-            objective: lesson.objective[requestLanguage],
-            task: lesson.task[requestLanguage],
-            concepts: lesson.concepts,
-          },
-          code: sourceCode,
-          console: consoleLines,
-          review: review.message,
-          history,
-        }),
+        body: request.body,
       });
       const payload = (await response.json()) as {
         answer?: string;
+        reasoning?: string;
         error?: string;
       };
-      if (!response.ok || !payload.answer)
-        throw new Error(
+      if (!isCurrentRequest()) return;
+      if (!response.ok || !payload.answer) {
+        if (response.status === 409) setTutorModelResetKey((current) => current + 1);
+        failureMessage =
           response.status === 401
             ? `${t.tutorLoginTitle}（${portalLoginUrl(
-                `${window.location.pathname}${window.location.search}`,
+                `${window.location.pathname}${window.location.search}${window.location.hash}`,
               )}）`
-            : (payload.error ?? "AI request failed"),
-        );
-      if (!isCurrentRequest()) return;
+            : (payload.error || t.tutorError);
+        throw new Error(failureMessage);
+      }
       setTutorMessages((current) => [
         ...current,
         {
           id: createMessageId(),
           role: "assistant",
           content: payload.answer as string,
+          reasoning: payload.reasoning,
         },
       ]);
       setTutorStatus("idle");
@@ -373,13 +365,21 @@ export function PythonLearningWorkspace() {
       if (!isCurrentRequest()) return;
       setTutorMessages((current) => [
         ...current,
-        { id: createMessageId(), role: "assistant", content: t.tutorError },
+        { id: createMessageId(), role: "assistant", content: failureMessage },
       ]);
       setTutorStatus("error");
     } finally {
       if (tutorEpochRef.current === tutorEpoch) tutorBusyRef.current = false;
     }
   }
+
+  const closeTutor = useCallback(() => {
+    tutorEpochRef.current += 1;
+    tutorAbortRef.current?.abort();
+    tutorAbortRef.current = null;
+    tutorBusyRef.current = false;
+    setTutorStatus("idle");
+  }, []);
 
   const engineLabel =
     engineStatus === "loading"
@@ -419,15 +419,20 @@ export function PythonLearningWorkspace() {
       tutorPrompt={tutorPrompt}
       tutorMessages={tutorMessages}
       tutorStatus={tutorStatus}
+      tutorModelResetKey={tutorModelResetKey}
       tutorMessagesRef={tutorMessagesRef}
       tutorGate={
-        session.status === "anonymous" ? (
+        session.status === "loading" ? (
+          <strong>正在确认登录状态…</strong>
+        ) : session.status === "anonymous" ? (
           <>
             <strong>{t.tutorLoginTitle}</strong>
             <p>{t.tutorLoginBody}</p>
             <a
               className="ed-tutor-login-link"
-              href={portalLoginUrl(`${window.location.pathname}${window.location.search}`)}
+              href={portalLoginUrl(
+                `${window.location.pathname}${window.location.search}${window.location.hash}`,
+              )}
             >
               {t.tutorLoginAction}
             </a>
@@ -451,6 +456,7 @@ export function PythonLearningWorkspace() {
       onToggleSolution={() => setShowSolution((value) => !value)}
       onTutorPromptChange={setTutorPrompt}
       onAskTutor={(question, model) => void askTutor(question, model)}
+      onCloseTutor={closeTutor}
     />
   );
 }

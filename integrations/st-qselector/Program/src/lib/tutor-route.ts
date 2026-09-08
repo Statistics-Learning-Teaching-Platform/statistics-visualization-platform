@@ -1,37 +1,16 @@
 import "server-only";
 
 import { NextRequest, NextResponse } from "next/server";
-import { callStatAi, resolveStatAiModel } from "@/lib/ai-client";
+import { callStatAiWithReasoning, resolveStatAiModel } from "@/lib/ai-client";
+import { statAiInputByteBudget } from "@/lib/ai-context-budget";
 import { consumeRateLimit, requestPrincipal, withConcurrencyLease } from "@/lib/auth/rate-limit";
 import { requireRequestSession, verifyCsrf } from "@/lib/auth/session";
 import { assertSafeOrigin, authErrorResponse, AuthError, readLimitedJson } from "@/lib/auth/security";
+import { formatCodeTutorInput, type CodeTutorRequest } from "@/lib/code-tutor-context";
 
-interface TutorMessage {
-  role: "user" | "assistant";
-  content: string;
-}
-
-interface TutorRequest {
-  language?: "zh" | "en";
-  model?: string;
-  question?: string;
-  lesson?: { title?: string; objective?: string; task?: string; concepts?: string[] };
-  code?: string;
-  console?: string[];
-  review?: string;
-  history?: TutorMessage[];
-}
-
-function cleanMessages(value: unknown): TutorMessage[] {
-  if (!Array.isArray(value)) return [];
-  return value.slice(-6).flatMap((item) => {
-    if (!item || typeof item !== "object") return [];
-    const candidate = item as Partial<TutorMessage>;
-    if ((candidate.role !== "user" && candidate.role !== "assistant") || typeof candidate.content !== "string") return [];
-    const content = candidate.content.trim().slice(0, 2_000);
-    return content ? [{ role: candidate.role, content }] : [];
-  });
-}
+const SAFE_MERMAID_GUIDANCE =
+  "When a categorical comparison or proportion breakdown is clearer as a chart, you may include at most one Mermaid fenced block. Use only this exact safe subset: xychart-beta with an optional quoted title, quoted categorical x-axis JSON array, finite numeric y-axis min --> max, and bar/line numeric JSON arrays; when an xychart has multiple bar/line series, every series must have a unique non-empty quoted name; or pie showData with an optional quoted title and quoted labels with nonnegative numeric values. Put every plotted value in the prose too. Never emit directives, comments, HTML, links, click handlers, styles, classes, or a Mermaid block for scatterplots, histograms, dotplots, stem-and-leaf displays, boxplots, or any chart whose values are not supplied. Otherwise do not include a Mermaid block.";
+const CODE_TUTOR_MAX_OUTPUT_TOKENS = 2_048;
 
 export function createTutorPost(options: {
   runtimeName: "R" | "Python";
@@ -50,21 +29,18 @@ export function createTutorPost(options: {
         windowSeconds: 60 * 60,
       });
       await consumeRateLimit({ principal: "global", route: "ai-tutor-budget", limit: 300, windowSeconds: 60 * 60 });
-      const body = await readLimitedJson(request, 32_000) as TutorRequest;
+      const body = await readLimitedJson(request, 32_000) as CodeTutorRequest;
       const question = String(body.question ?? "").trim().slice(0, 3_000);
       if (!question) throw new AuthError(400, "请输入问题");
+      const model = resolveStatAiModel(body.model);
 
       const language = body.language === "en" ? "English" : "Simplified Chinese";
-      const lesson = body.lesson ?? {};
-      const context = [
-        `Lesson: ${String(lesson.title ?? "").slice(0, 300)}`,
-        `Concepts: ${Array.isArray(lesson.concepts) ? lesson.concepts.join(", ").slice(0, 500) : ""}`,
-        `Objective: ${String(lesson.objective ?? "").slice(0, 1_000)}`,
-        `Task: ${String(lesson.task ?? "").slice(0, 1_500)}`,
-        `Current ${options.runtimeName} code:\n${String(body.code ?? "").slice(0, 8_000)}`,
-        `Latest console output:\n${Array.isArray(body.console) ? body.console.join("\n").slice(0, 5_000) : "No output yet."}`,
-        `Latest automatic check: ${String(body.review ?? "Not checked yet.").slice(0, 1_000)}`,
-      ].join("\n\n");
+      const systemPrompt = `You are StatMind's ${options.runtimeName} programming teaching assistant. Reply in ${language}. ${options.systemDetail} Use the supplied lesson, learner code, console output, and check result as authoritative context. Diagnose the learner's exact current problem, explain the relevant concept, and give one small actionable next step. Prefer hints and short corrected snippets over replacing the whole exercise. Never invent runtime output. ${SAFE_MERMAID_GUIDANCE} If the learner explicitly asks for the full solution, you may provide it with an explanation. Keep the answer concise, well formatted, and under 350 words.`;
+      const input = formatCodeTutorInput(
+        body,
+        options.runtimeName,
+        statAiInputByteBudget(systemPrompt, CODE_TUTOR_MAX_OUTPUT_TOKENS),
+      );
 
       return await withConcurrencyLease({
         route: "ai-tutor",
@@ -72,13 +48,14 @@ export function createTutorPost(options: {
         ttlSeconds: 58,
         requestSignal: request.signal,
         work: async (signal) => {
-          const answer = await callStatAi({
+          const completion = await callStatAiWithReasoning({
             signal,
-            model: resolveStatAiModel(body.model),
-            systemPrompt: `You are StatMind's ${options.runtimeName} programming teaching assistant. Reply in ${language}. ${options.systemDetail} Use the supplied lesson, learner code, console output, and check result as authoritative context. Diagnose the learner's exact current problem, explain the relevant concept, and give one small actionable next step. Prefer hints and short corrected snippets over replacing the whole exercise. Never invent runtime output. If the learner explicitly asks for the full solution, you may provide it with an explanation. Keep the answer concise, well formatted, and under 350 words.`,
-            input: `${context}\n\nRECENT CONVERSATION\n${cleanMessages(body.history).map((item) => `${item.role}: ${item.content}`).join("\n")}\n\nLEARNER QUESTION\n${question}`,
+            model,
+            maxOutputTokens: CODE_TUTOR_MAX_OUTPUT_TOKENS,
+            systemPrompt,
+            input,
           });
-          return NextResponse.json({ answer });
+          return NextResponse.json({ answer: completion.message, reasoning: completion.reasoning });
         },
       });
     } catch (error) {

@@ -42,6 +42,12 @@ describe("shared coding-lab context", () => {
     expect(
       resolveCodeLearningContext("?lessonId=two&returnTo=https://evil.example", lessons).returnTo,
     ).toBe("/");
+    expect(
+      resolveCodeLearningContext("?lessonId=two&returnTo=%2F%5Cevil.example", lessons).returnTo,
+    ).toBe("/");
+    expect(
+      resolveCodeLearningContext("?lessonId=two&returnTo=%2F%2Fevil.example", lessons).returnTo,
+    ).toBe("/");
   });
 });
 

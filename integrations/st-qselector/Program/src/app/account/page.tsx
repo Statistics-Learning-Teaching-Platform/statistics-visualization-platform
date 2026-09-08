@@ -57,6 +57,7 @@ export default function AccountPage() {
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(true);
+  const [logoutPending, setLogoutPending] = useState(false);
 
   const load = useCallback(async () => {
     const data = await fetchAccountData();
@@ -134,8 +135,20 @@ export default function AccountPage() {
   }
 
   async function logout() {
-    await authenticatedFetch("/api/auth/logout", { method: "POST" });
-    window.location.assign(withBasePath("/login"));
+    if (logoutPending) return;
+    setLogoutPending(true);
+    setError("");
+    try {
+      const response = await authenticatedFetch("/api/auth/logout", { method: "POST" });
+      if (!response.ok && response.status !== 401) {
+        throw new Error("退出登录失败，请稍后重试。");
+      }
+      // The portal homepage is outside this Next application's basePath.
+      window.location.assign(new URL("/", window.location.origin).href);
+    } catch (reason) {
+      setError(reason instanceof Error ? reason.message : "退出登录失败，请稍后重试。");
+      setLogoutPending(false);
+    }
   }
 
   if (loading) return <main className="auth-page"><div className="auth-loading"><Loader2 className="auth-spin" /> 正在加载账号信息…</div></main>;
@@ -144,7 +157,7 @@ export default function AccountPage() {
     <main className="account-page">
       <header className="account-header">
         <div><div className="auth-brand"><span>▥</span> STATMIND</div><h1>账号与权限</h1></div>
-        <nav><a href={withBasePath("/")}>返回题库</a><button type="button" onClick={logout}><LogOut /> 退出登录</button></nav>
+        <nav><a href={withBasePath("/")}>返回题库</a><button type="button" disabled={logoutPending} onClick={logout}><LogOut /> {logoutPending ? "正在退出…" : "退出登录"}</button></nav>
       </header>
       <div className="account-grid">
         <section className="account-panel">

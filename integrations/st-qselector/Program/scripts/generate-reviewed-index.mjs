@@ -5,6 +5,7 @@ import { fileURLToPath } from "node:url";
 import { load as yamlLoad } from "js-yaml";
 import { normalizeTopicIds } from "../src/lib/topic-mapping.ts";
 import { getTextbookChapterIdsForTopics } from "../src/lib/textbook-chapters.ts";
+import { validateQuestionVisualizations } from "../src/lib/question-visualizations.ts";
 
 const scriptDir = path.dirname(fileURLToPath(import.meta.url));
 const programDir = path.resolve(scriptDir, "..");
@@ -89,6 +90,12 @@ function describeAsset(chapterId, chapterDir, reference, accessScope) {
 }
 
 function canonicalReviewRecord(chapter, question, answer, assets) {
+  const visualizations = question.visualizations === undefined
+    ? undefined
+    : validateQuestionVisualizations(question.visualizations);
+  if (question.visualizations !== undefined && !visualizations) {
+    throw new Error(`${chapter.id}/${question.id}: invalid question visualizations`);
+  }
   return {
     id: String(question.id),
     groupId: String(question.group_id || question.id),
@@ -106,6 +113,7 @@ function canonicalReviewRecord(chapter, question, answer, assets) {
     origin: question.origin === "variant" || question.origin === "generated" ? question.origin : "bank",
     parentQuestionId: question.parent_question_id ?? null,
     assets: assets.map(({ key, sha256 }) => ({ key, sha256 })).sort((a, b) => a.key.localeCompare(b.key)),
+    ...(question.visualizations !== undefined ? { visualizations } : {}),
   };
 }
 
@@ -232,6 +240,12 @@ for (const chapter of config.chapters || []) {
       continue;
     }
     const attachments = dataRefs.map((name) => ({ name, available: Boolean(resolveAsset(chapterDir, name)) }));
+    const visualizations = question.visualizations === undefined
+      ? undefined
+      : validateQuestionVisualizations(question.visualizations);
+    if (question.visualizations !== undefined && !visualizations) {
+      throw new Error(`${chapter.id}/${question.id}: invalid question visualizations`);
+    }
 
     const keywords = Array.isArray(question.keywords) ? question.keywords : [];
     const topicIds = normalizeTopicIds(String(chapter.id), keywords, question.topic_ids);
@@ -264,6 +278,7 @@ for (const chapter of config.chapters || []) {
       origin: question.origin === "variant" || question.origin === "generated" ? question.origin : "bank",
       parentQuestionId: question.parent_question_id ?? null,
       verification: question.verification ?? null,
+      ...(question.visualizations !== undefined ? { visualizations } : {}),
     });
   }
   if (

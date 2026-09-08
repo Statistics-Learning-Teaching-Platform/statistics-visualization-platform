@@ -59,6 +59,7 @@ try {
     ["AI knowledge", "/api/ai/knowledge", { method: "POST", headers: { Origin: origin } }],
     ["R tutor", "/api/ai/r-tutor", { method: "POST", headers: { Origin: origin, "Content-Type": "application/json" }, body: "{}" }],
     ["Python tutor", "/api/ai/python-tutor", { method: "POST", headers: { Origin: origin, "Content-Type": "application/json" }, body: "{}" }],
+    ["Experiment tutor", "/api/ai/experiment-tutor", { method: "POST", headers: { Origin: origin, "Content-Type": "application/json" }, body: "{}" }],
   ];
   for (const [name, pathname, init] of cases) {
     const response = await fetch(`${base}${pathname}`, init);

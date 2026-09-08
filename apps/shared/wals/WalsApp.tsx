@@ -7,6 +7,12 @@ import {
 import type { ReactNode } from "react";
 import { useCallback, useDeferredValue, useMemo, useState } from "react";
 import {
+  type ExperimentTelemetrySnapshot,
+  summarizeChartSpec,
+  summarizeNumberSeries,
+  useExperimentTelemetryPublisher,
+} from "../ai/experimentTelemetry";
+import {
   ChartFrame,
   ControlGroup,
   ExperimentChangeSummary,
@@ -522,6 +528,91 @@ export function WalsApp({ moduleConfig }: WalsAppProps) {
     ],
   );
   const isAnova = state.activeExample.kind === "anova";
+
+  // Publish the current experiment state (parameters + outputs) so the shell's
+  // AI experiment assistant can answer questions about what the learner sees.
+  const telemetrySnapshot = useMemo<ExperimentTelemetrySnapshot>(() => {
+    // `state.controls` is the exact normalized control set used to calculate
+    // `state.result`. In stochastic labs it deliberately remains the last
+    // applied run while the form may already show pending edits. Keeping both
+    // halves of the tutor snapshot on this completed run prevents the model
+    // from attributing old output to parameters that have not run yet.
+    const currentControls = state.controls;
+    const parameters = state.activeExample.controls.map((control) => {
+      const dependentValue = control.labelByValue
+        ? String(currentControls[control.labelByValue.controlId] ?? "")
+        : "";
+      const currentlyHidden = control.hideWhen?.values.includes(
+        String(currentControls[control.hideWhen.controlId] ?? ""),
+      );
+      return {
+        id: control.id,
+        label: `${control.labelByValue?.labels[dependentValue] ?? control.label}${currentlyHidden ? " [currently hidden by another parameter]" : ""}`,
+        value: currentControls[control.id] ?? control.defaultValue,
+      };
+    });
+    const chart = summarizeChartSpec(state.result.chart);
+    const allTables = state.result.tables ?? (state.result.table ? [state.result.table] : []);
+    const sentTables = allTables.slice(0, 6);
+    const tables = sentTables.map((table, tableIndex) => {
+      const sentRows = table.rows.slice(0, 20);
+      return {
+        title: `${table.title ?? `Output table ${tableIndex + 1}`} — rows original=${table.rows.length}, sent=${sentRows.length}, truncated=${table.rows.length - sentRows.length}`,
+        columns: table.columns,
+        rows: sentRows.map((row) => row.map((cell) => cell)),
+      };
+    });
+    return {
+      appId: moduleConfig.id,
+      updatedAt: Date.now(),
+      experiment: {
+        title: state.config.title,
+        description: isProbability
+          ? language === "zh"
+            ? "观察分布参数如何改变位置、离散程度与区间概率。"
+            : "Observe how distribution parameters change location, spread, and interval probability."
+          : state.activeExample.description,
+        researchQuestion: metadata?.localizedQuestion,
+        category: metadata?.localizedCategory ?? state.config.category,
+        exampleTitle: state.activeExample.title,
+        exampleDescription: state.activeExample.description,
+        teachingPoints: state.activeExample.teachingPoints,
+      },
+      parameters,
+      outputs: {
+        headline: state.result.headline,
+        narrative: state.result.narrative,
+        metrics: state.result.metrics.map((metric) => ({
+          label: metric.label,
+          value: metric.value,
+          detail: metric.detail,
+        })),
+        tables,
+        chartTitle: chart.title,
+        chartSummary: chart.summary,
+        rawSampleSummary: state.result.rawSample?.length
+          ? summarizeNumberSeries("Raw draws", state.result.rawSample)
+          : undefined,
+        sampleMeansSummary: sampleMeans?.length
+          ? summarizeNumberSeries("Accumulated sample means", sampleMeans)
+          : undefined,
+        dataSummary: `Output tables: original=${allTables.length}, sent=${sentTables.length}, truncated=${allTables.length - sentTables.length}. Each sent table title reports its original, sent, and truncated row counts. Experiment controls: original=${state.activeExample.controls.length}, sent=${parameters.length}, truncated=0; controls hidden by conditional UI are retained and labelled as hidden. Metrics: original=${state.result.metrics.length}, sent=${state.result.metrics.length}, truncated=0.`,
+        changeSummary: changeSummary
+          ? `${changeSummary.parameter}: ${String(changeSummary.previousValue)} → ${String(changeSummary.currentValue)}`
+          : undefined,
+      },
+    };
+  }, [
+    state,
+    controls,
+    moduleConfig.id,
+    metadata,
+    isProbability,
+    language,
+    sampleMeans,
+    changeSummary,
+  ]);
+  useExperimentTelemetryPublisher(telemetrySnapshot);
 
   // Behavior the generic framework does not model is declared on the active
   // example itself (accumulateSampleMeans / quickActions), not detected by

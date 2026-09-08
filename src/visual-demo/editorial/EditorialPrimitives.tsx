@@ -1,6 +1,7 @@
 import { setLanguage, useLanguage } from "@stats-viz/shared/i18n";
-import { ArrowRightIcon, UserRoundIcon } from "lucide-react";
+import { ArrowRightIcon } from "lucide-react";
 import type { ReactNode } from "react";
+import { PortalAuthEntry } from "@/auth/PortalAuthEntry";
 import { buttonVariants } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { cn } from "@/lib/utils";
@@ -73,15 +74,7 @@ export function EditorialDemoShell({
 
         <div className="ed-header__utilities">
           {siteMode === "product" ? (
-            <a
-              className="ed-profile-entry"
-              href="/profile"
-              data-current={current === "profile" || undefined}
-              aria-current={current === "profile" ? "page" : undefined}
-            >
-              <UserRoundIcon aria-hidden="true" />
-              <span>{language === "zh" ? "我的学习" : "My learning"}</span>
-            </a>
+            <PortalAuthEntry currentIsProfile={current === "profile"} />
           ) : null}
           <div className="ed-language" aria-label={language === "zh" ? "语言选择" : "Language"}>
             <button

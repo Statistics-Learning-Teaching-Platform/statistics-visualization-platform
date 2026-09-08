@@ -1,5 +1,50 @@
 import "server-only";
 import { callStatAi } from "@/lib/ai-client";
+import {
+  conservativeStatAiTokenCount,
+  statAiInputByteBudget,
+  truncateStatAiUtf8,
+} from "@/lib/ai-context-budget";
+
+export const KNOWLEDGE_MAX_OUTPUT_TOKENS = 2_048;
+export const KNOWLEDGE_SYSTEM_PROMPT = "You extract assessable statistics knowledge points from teaching material. Return JSON only with this schema: {\"concepts\":[{\"id\":\"...\",\"label\":\"...\",\"confidence\":0.0,\"evidence\":\"...\"}]}. Labels must be concise English statistics concepts, confidence is 0..1, evidence briefly cites the supplied text. Merge duplicates and return no more than 16 concepts. Do not wrap the JSON in Markdown.";
+export const MAX_AI_KNOWLEDGE_INPUT_BYTES = statAiInputByteBudget(
+  KNOWLEDGE_SYSTEM_PROMPT,
+  KNOWLEDGE_MAX_OUTPUT_TOKENS,
+);
+
+function utf8Prefix(value: string, maxBytes: number): string {
+  return truncateStatAiUtf8(value, maxBytes, "");
+}
+
+function utf8Suffix(value: string, maxBytes: number): string {
+  const reversed = utf8Prefix(Array.from(value).reverse().join(""), maxBytes);
+  return Array.from(reversed).reverse().join("");
+}
+
+/** Sample the beginning, middle, and end without overflowing an 8K context model. */
+export function boundedKnowledgeSample(text: string): string {
+  if (conservativeStatAiTokenCount(text) <= MAX_AI_KNOWLEDGE_INPUT_BYTES) return text;
+  const characters = Array.from(text);
+  const third = Math.ceil(characters.length / 3);
+  const middleMarker = "\n\n[courseware middle sample]\n\n";
+  const finalMarker = "\n\n[courseware final sample]\n\n";
+  const sampleBytes = MAX_AI_KNOWLEDGE_INPUT_BYTES
+    - conservativeStatAiTokenCount(middleMarker)
+    - conservativeStatAiTokenCount(finalMarker);
+  const headBytes = Math.floor(sampleBytes / 3);
+  const middleBytes = Math.floor(sampleBytes / 3);
+  const tailBytes = sampleBytes - headBytes - middleBytes;
+  const head = utf8Prefix(characters.slice(0, third).join(""), headBytes);
+  const center = Math.floor(characters.length / 2);
+  const middleLeftBytes = Math.floor(middleBytes / 2);
+  const middle = `${utf8Suffix(characters.slice(0, center).join(""), middleLeftBytes)}${utf8Prefix(
+    characters.slice(center).join(""),
+    middleBytes - middleLeftBytes,
+  )}`;
+  const tail = utf8Suffix(characters.slice(-third).join(""), tailBytes);
+  return `${head}${middleMarker}${middle}${finalMarker}${tail}`;
+}
 
 export interface ExtractedKnowledgePoint {
   id: string;
@@ -79,15 +124,16 @@ function validConcepts(value: unknown): ExtractedKnowledgePoint[] {
     .slice(0, 16);
 }
 
-export async function aiKnowledgeExtraction(text: string, requestSignal?: AbortSignal, model?: string): Promise<ExtractedKnowledgePoint[] | null> {
+export async function aiKnowledgeExtraction(text: string, requestSignal: AbortSignal | undefined, model: string): Promise<ExtractedKnowledgePoint[] | null> {
   const controller = new AbortController();
   const timeout = setTimeout(() => controller.abort(), 55_000);
   try {
     const content = await callStatAi({
       signal: requestSignal ? AbortSignal.any([requestSignal, controller.signal]) : controller.signal,
       model,
-      systemPrompt: "You extract assessable statistics knowledge points from teaching material. Return JSON only with this schema: {\"concepts\":[{\"id\":\"...\",\"label\":\"...\",\"confidence\":0.0,\"evidence\":\"...\"}]}. Labels must be concise English statistics concepts, confidence is 0..1, evidence briefly cites the supplied text. Merge duplicates and return no more than 16 concepts. Do not wrap the JSON in Markdown.",
-      input: text.slice(0, 60_000),
+      maxOutputTokens: KNOWLEDGE_MAX_OUTPUT_TOKENS,
+      systemPrompt: KNOWLEDGE_SYSTEM_PROMPT,
+      input: boundedKnowledgeSample(text),
     });
     const start = content.indexOf("{");
     const end = content.lastIndexOf("}");
