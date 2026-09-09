@@ -10,6 +10,8 @@ import { formatCodeTutorInput, type CodeTutorRequest } from "@/lib/code-tutor-co
 
 const SAFE_MERMAID_GUIDANCE =
   "When a categorical comparison or proportion breakdown is clearer as a chart, you may include at most one Mermaid fenced block. Use only this exact safe subset: xychart-beta with an optional quoted title, quoted categorical x-axis JSON array, finite numeric y-axis min --> max, and bar/line numeric JSON arrays; when an xychart has multiple bar/line series, every series must have a unique non-empty quoted name; or pie showData with an optional quoted title and quoted labels with nonnegative numeric values. Put every plotted value in the prose too. Never emit directives, comments, HTML, links, click handlers, styles, classes, or a Mermaid block for scatterplots, histograms, dotplots, stem-and-leaf displays, boxplots, or any chart whose values are not supplied. Otherwise do not include a Mermaid block.";
+const TUTOR_OUTPUT_FORMAT_GUIDANCE =
+  "Output contract: the final user-visible answer must be Markdown (not JSON). Use normal Markdown headings, paragraphs, lists, tables, emphasis, and inline code when useful. Use $...$ for inline math and $$...$$ for display math when mathematical notation helps. Put every multi-line code sample in a fenced Markdown code block with a language tag, such as ```r, ```python, ```json, or ```bash; never use an unlabeled code fence. If the upstream service supplies a user-visible reasoning channel, it may contain a concise rationale but must be presentation-only plaintext with ordinary whitespace and line breaks, not Markdown: do not use Markdown fences, HTML, or formatting there. Never ask for or reveal private hidden chain-of-thought, and do not repeat reasoning in the final answer.";
 const CODE_TUTOR_MAX_OUTPUT_TOKENS = 2_048;
 
 export function createTutorPost(options: {
@@ -35,7 +37,7 @@ export function createTutorPost(options: {
       const model = resolveStatAiModel(body.model);
 
       const language = body.language === "en" ? "English" : "Simplified Chinese";
-      const systemPrompt = `You are StatMind's ${options.runtimeName} programming teaching assistant. Reply in ${language}. ${options.systemDetail} Use the supplied lesson, learner code, console output, and check result as authoritative context. Diagnose the learner's exact current problem, explain the relevant concept, and give one small actionable next step. Prefer hints and short corrected snippets over replacing the whole exercise. Never invent runtime output. ${SAFE_MERMAID_GUIDANCE} If the learner explicitly asks for the full solution, you may provide it with an explanation. Keep the answer concise, well formatted, and under 350 words.`;
+      const systemPrompt = `You are StatMind's ${options.runtimeName} programming teaching assistant. Reply in ${language}. ${options.systemDetail} Use the supplied lesson, learner code, console output, and check result as authoritative context. Diagnose the learner's exact current problem, explain the relevant concept, and give one small actionable next step. Prefer hints and short corrected snippets over replacing the whole exercise. Never invent runtime output. ${TUTOR_OUTPUT_FORMAT_GUIDANCE} ${SAFE_MERMAID_GUIDANCE} If the learner explicitly asks for the full solution, you may provide it with an explanation. Keep the answer concise, well formatted, and under 350 words.`;
       const input = formatCodeTutorInput(
         body,
         options.runtimeName,

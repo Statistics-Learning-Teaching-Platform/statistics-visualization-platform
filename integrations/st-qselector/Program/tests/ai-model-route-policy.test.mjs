@@ -76,6 +76,17 @@ test("generation rescans and returns conflict instead of falling back", () => {
   assert.doesNotMatch(client, /configuredStatAiModel|DEFAULT_AI_MODEL|STAT_AI_MODEL/);
 });
 
+test("all tutor routes declare plaintext reasoning and Markdown answer output", () => {
+  for (const source of [tutorRoute, experimentTutorRoute]) {
+    assert.match(source, /final user-visible answer must be Markdown/);
+    assert.match(source, /reasoning channel, it may contain a concise rationale but must be presentation-only plaintext/);
+    assert.match(source, /Use \$\.\.\.\$ for inline math and \$\$\.\.\.\$\$ for display math/);
+    assert.match(source, /Never ask for or reveal private hidden chain-of-thought/);
+    assert.match(source, /fenced Markdown code block with a language tag/);
+    assert.match(source, /never use an unlabeled code fence/);
+  }
+});
+
 test("the catalogue response has no server-selected default or cache", () => {
   assert.match(modelsRoute, /consumeRateLimit\(\{ principal, route: "ai-model-scan"/);
   assert.match(modelsRoute, /route: "ai-model-scan-budget"/);

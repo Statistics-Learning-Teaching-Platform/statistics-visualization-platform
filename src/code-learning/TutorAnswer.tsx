@@ -1,7 +1,8 @@
 import { ChevronDownIcon } from "lucide-react";
-import type { MutableRefObject, ReactNode, RefObject } from "react";
+import type { MutableRefObject, RefObject } from "react";
 import { useCallback, useEffect, useId, useMemo, useRef, useState } from "react";
 import { MermaidDiagram } from "./MermaidDiagram";
+import { TutorMarkdown } from "./TutorMarkdown";
 import { splitTutorContent } from "./mermaid";
 
 export type EditorialTutorMessage = {
@@ -16,48 +17,10 @@ export type EditorialTutorMessage = {
 };
 
 const FOLLOW_LATEST_THRESHOLD_PX = 32;
-const WORD_CHARACTER = /[\p{L}\p{N}_]/u;
+const MAX_HIGHLIGHTED_CODE_LENGTH = 50_000;
 
-function isBoldOpening(text: string, index: number) {
-  const previous = text[index - 1] ?? "";
-  const next = text[index + 2] ?? "";
-  return Boolean(next && !/[\s*]/u.test(next) && (!previous || !WORD_CHARACTER.test(previous)));
-}
-
-function isBoldClosing(text: string, index: number) {
-  const previous = text[index - 1] ?? "";
-  const next = text[index + 2] ?? "";
-  return Boolean(previous && !/[\s*]/u.test(previous) && (!next || !WORD_CHARACTER.test(next)));
-}
-
-/** Renders the small Markdown subset used by tutor prose without corrupting
- * language operators such as Python's `x**2` exponentiation. */
-function renderTutorText(text: string): ReactNode[] {
-  const output: ReactNode[] = [];
-  let cursor = 0;
-  let searchFrom = 0;
-
-  while (searchFrom < text.length) {
-    let opening = text.indexOf("**", searchFrom);
-    while (opening >= 0 && !isBoldOpening(text, opening)) {
-      opening = text.indexOf("**", opening + 2);
-    }
-    if (opening < 0) break;
-
-    let closing = text.indexOf("**", opening + 2);
-    while (closing >= 0 && !isBoldClosing(text, closing)) {
-      closing = text.indexOf("**", closing + 2);
-    }
-    if (closing < 0) break;
-
-    if (opening > cursor) output.push(text.slice(cursor, opening));
-    output.push(<strong key={`strong-${opening}`}>{text.slice(opening + 2, closing)}</strong>);
-    cursor = closing + 2;
-    searchFrom = cursor;
-  }
-
-  if (cursor < text.length) output.push(text.slice(cursor));
-  return output;
+function normalizedFenceLanguage(language: string): string {
+  return /^[a-z0-9_+#.-]{1,32}$/u.test(language) ? language : "text";
 }
 
 /**
@@ -205,39 +168,64 @@ export function TutorAnswer({
   }, [characters, onProgress, reportComplete, shouldAnimate, streaming]);
 
   const visibleContent = characters.slice(0, visibleCharacters).join("");
-  const parts = splitTutorContent(visibleContent);
   const isTyping = visibleCharacters < characters.length;
   return (
     <div
       className={`ed-live-tutor-answer${tone === "reasoning" ? " ed-live-tutor-reasoning__content" : ""}`}
+      data-format={tone === "reasoning" ? "plaintext" : "markdown"}
       data-typing={isTyping || undefined}
       // The surrounding transcript is a polite live log. Hide intermediate
       // character batches from its accessibility tree, then expose the full
       // response once so screen readers do not announce every 20 ms update.
       aria-hidden={isTyping || streaming || undefined}
     >
-      {parts.map((part, index) => {
-        const keyPart = part.kind === "text" ? part.text : part.source;
-        const key = `${index}-${keyPart.slice(0, 12)}`;
-        if (part.kind === "text") {
-          // Keep the exact token stream (especially spaces around a delta).
-          // Only use trim for the emptiness check; trimming the rendered value
-          // can join words when a later network chunk starts with a letter.
-          return part.text.trim() ? <p key={key}>{renderTutorText(part.text)}</p> : null;
-        }
-        if (part.kind === "mermaid" && part.complete) {
-          return <MermaidDiagram key={key} source={part.source} onProgress={onProgress} />;
-        }
-        const language = part.kind === "code" ? part.language || "text" : "mermaid";
-        const source = part.complete
-          ? part.source.trim()
-          : `\`\`\`${language}\n${part.source.slice(0, 4_000)}`;
-        return (
-          <pre key={key} data-fence-complete={part.complete || undefined} data-language={language}>
-            <code>{source}</code>
-          </pre>
-        );
-      })}
+      {tone === "reasoning" ? (
+        visibleContent ? <p className="ed-tutor-plaintext">{visibleContent}</p> : null
+      ) : (
+        splitTutorContent(visibleContent).map((part, index) => {
+          const keyPart = part.kind === "text" ? part.text : part.source;
+          const key = `${index}-${keyPart.slice(0, 12)}`;
+          if (part.kind === "text") {
+            // Keep the exact token stream (especially spaces around a delta).
+            // Only use trim for the emptiness check; trimming the rendered value
+            // can join words when a later network chunk starts with a letter.
+            return part.text.trim() ? <TutorMarkdown key={key}>{part.text}</TutorMarkdown> : null;
+          }
+          if (part.kind === "mermaid" && part.complete) {
+            return <MermaidDiagram key={key} source={part.source} onProgress={onProgress} />;
+          }
+
+          const language = normalizedFenceLanguage(
+            part.kind === "code" ? part.language || "text" : "mermaid",
+          );
+          if (part.complete) {
+            if (part.source.length > MAX_HIGHLIGHTED_CODE_LENGTH) {
+              return (
+                <pre
+                  key={key}
+                  data-fence-complete="true"
+                  data-highlight="skipped"
+                  data-language={language}
+                >
+                  <code className="no-highlight" data-language={language}>
+                    {part.source}
+                  </code>
+                </pre>
+              );
+            }
+            return (
+              <div key={key} data-fence-complete="true" data-language={language}>
+                <TutorMarkdown variant="code">{`\`\`\`${language}\n${part.source}\n\`\`\``}</TutorMarkdown>
+              </div>
+            );
+          }
+          return (
+            <pre key={key} data-language={language}>
+              <code className="no-highlight">{`\`\`\`${language}\n${part.source.slice(0, 4_000)}`}</code>
+            </pre>
+          );
+        })
+      )}
     </div>
   );
 }
@@ -266,10 +254,10 @@ export function TutorAssistantMessage({
   // completion, including when React batches every fast delta into one render,
   // so completion can never restart the legacy simulated typewriter.
   const shouldAnimateMessage = animate && message.streaming === undefined;
-  // Preserve token-boundary whitespace while deltas are arriving.  Trimming
-  // each render would join words when the next delta starts with a letter.
-  const reasoning = isStreaming ? message.reasoning ?? "" : message.reasoning?.trim() ?? "";
-  const hasReasoning = reasoning.length > 0;
+  // Plaintext is preserved byte-for-byte for both live and historical turns;
+  // trim only for the empty-state check, never for the rendered value.
+  const reasoning = message.reasoning ?? "";
+  const hasReasoning = reasoning.trim().length > 0;
   const [reasoningComplete, setReasoningComplete] = useState(
     () => !shouldAnimateMessage || !hasReasoning || Boolean(message.reasoningDone),
   );

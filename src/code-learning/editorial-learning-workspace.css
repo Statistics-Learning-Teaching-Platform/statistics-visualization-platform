@@ -153,13 +153,19 @@
 }
 
 .ed-live-ai-messages article > p,
-.ed-live-tutor-answer p {
+.ed-tutor-markdown,
+.ed-tutor-plaintext {
   padding: 11px 12px;
   border-left: 2px solid var(--ed-rule);
   color: var(--ed-muted);
   background: var(--ed-surface);
   font-size: 13px;
   line-height: 1.65;
+}
+
+.ed-tutor-plaintext {
+  margin: 0;
+  overflow-wrap: anywhere;
   white-space: pre-wrap;
 }
 
@@ -171,6 +177,116 @@
 .ed-live-tutor-answer {
   display: grid;
   gap: 8px;
+  min-width: 0;
+}
+
+.ed-tutor-markdown {
+  min-width: 0;
+  overflow-x: auto;
+  overflow-wrap: anywhere;
+}
+
+.ed-tutor-markdown--code {
+  padding: 0;
+  border-left: 0;
+  background: transparent;
+}
+
+.ed-tutor-markdown > :first-child {
+  margin-top: 0;
+}
+
+.ed-tutor-markdown > :last-child {
+  margin-bottom: 0;
+}
+
+.ed-tutor-markdown :is(p, ul, ol, blockquote, table, hr, h1, h2, h3, h4, h5, h6) {
+  margin-block: 0 9px;
+}
+
+.ed-tutor-markdown :is(h1, h2, h3, h4, h5, h6) {
+  color: var(--ed-ink);
+  font-family: var(--font-heading);
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.ed-tutor-markdown h1 {
+  font-size: 18px;
+}
+
+.ed-tutor-markdown h2 {
+  font-size: 16px;
+}
+
+.ed-tutor-markdown :is(h3, h4, h5, h6) {
+  font-size: 14px;
+}
+
+.ed-tutor-markdown :is(ul, ol) {
+  padding-left: 22px;
+}
+
+.ed-tutor-markdown li + li {
+  margin-top: 4px;
+}
+
+.ed-tutor-markdown blockquote {
+  padding: 7px 10px;
+  border-left: 3px solid color-mix(in srgb, var(--ed-navy) 45%, var(--ed-rule));
+  background: var(--ed-paper);
+}
+
+.ed-tutor-markdown blockquote > :last-child {
+  margin-bottom: 0;
+}
+
+.ed-tutor-markdown table {
+  width: max-content;
+  min-width: min(100%, 360px);
+  max-width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+}
+
+.ed-tutor-markdown :is(th, td) {
+  padding: 6px 8px;
+  border: 1px solid var(--ed-rule);
+  text-align: left;
+}
+
+.ed-tutor-markdown th {
+  color: var(--ed-ink);
+  background: var(--ed-paper);
+  font-weight: 650;
+}
+
+.ed-tutor-markdown a {
+  color: var(--ed-navy);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+}
+
+.ed-tutor-markdown :not(pre) > code {
+  padding: 1px 4px;
+  border: 1px solid var(--ed-rule);
+  border-radius: 4px;
+  color: var(--ed-ink);
+  background: var(--ed-paper);
+  font-family: "JetBrains Mono Variable", "JetBrains Mono", "SFMono-Regular", monospace;
+  font-size: 0.9em;
+}
+
+.ed-tutor-markdown__image-placeholder {
+  color: var(--ed-muted);
+  font-style: italic;
+}
+
+.ed-tutor-markdown .katex,
+.ed-tutor-markdown .katex-display {
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
 }
 
 .ed-tutor-mermaid {
@@ -268,13 +384,14 @@
   padding: 0 10px 10px;
 }
 
-.ed-live-tutor-reasoning__content p {
+.ed-live-tutor-reasoning__content .ed-tutor-plaintext {
   margin: 0;
   padding: 9px 10px;
   border-left-color: color-mix(in srgb, var(--ed-navy) 45%, var(--ed-rule));
   color: var(--ed-muted);
   background: var(--ed-paper);
   font-size: 12px;
+  white-space: pre-wrap;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -292,9 +409,24 @@
   border-radius: 8px;
   color: var(--ed-surface);
   background: var(--ed-ink);
-  font-family: "Geist Mono", "SFMono-Regular", monospace;
+  font-family: "JetBrains Mono Variable", "JetBrains Mono", "SFMono-Regular", monospace;
   font-size: 12px;
   line-height: 1.65;
+  tab-size: 2;
+  white-space: pre;
+}
+
+.ed-live-tutor-answer pre code {
+  font-family: inherit;
+}
+
+.ed-live-tutor-answer pre code.hljs {
+  padding: 0;
+  overflow: visible;
+  background: transparent;
+}
+
+.ed-tutor-mermaid__fallback pre {
   white-space: pre-wrap;
 }
 
