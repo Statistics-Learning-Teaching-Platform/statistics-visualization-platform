@@ -1,5 +1,5 @@
 import { ChevronDownIcon } from "lucide-react";
-import type { MutableRefObject, RefObject } from "react";
+import type { MutableRefObject, ReactNode, RefObject } from "react";
 import { useCallback, useEffect, useId, useMemo, useRef, useState } from "react";
 import { MermaidDiagram } from "./MermaidDiagram";
 import { splitTutorContent } from "./mermaid";
@@ -9,9 +9,56 @@ export type EditorialTutorMessage = {
   role: "user" | "assistant";
   content: string;
   reasoning?: string;
+  /** True while the server is still sending this assistant turn. */
+  streaming?: boolean;
+  /** Set once the server has moved from reasoning tokens to answer tokens. */
+  reasoningDone?: boolean;
 };
 
 const FOLLOW_LATEST_THRESHOLD_PX = 32;
+const WORD_CHARACTER = /[\p{L}\p{N}_]/u;
+
+function isBoldOpening(text: string, index: number) {
+  const previous = text[index - 1] ?? "";
+  const next = text[index + 2] ?? "";
+  return Boolean(next && !/[\s*]/u.test(next) && (!previous || !WORD_CHARACTER.test(previous)));
+}
+
+function isBoldClosing(text: string, index: number) {
+  const previous = text[index - 1] ?? "";
+  const next = text[index + 2] ?? "";
+  return Boolean(previous && !/[\s*]/u.test(previous) && (!next || !WORD_CHARACTER.test(next)));
+}
+
+/** Renders the small Markdown subset used by tutor prose without corrupting
+ * language operators such as Python's `x**2` exponentiation. */
+function renderTutorText(text: string): ReactNode[] {
+  const output: ReactNode[] = [];
+  let cursor = 0;
+  let searchFrom = 0;
+
+  while (searchFrom < text.length) {
+    let opening = text.indexOf("**", searchFrom);
+    while (opening >= 0 && !isBoldOpening(text, opening)) {
+      opening = text.indexOf("**", opening + 2);
+    }
+    if (opening < 0) break;
+
+    let closing = text.indexOf("**", opening + 2);
+    while (closing >= 0 && !isBoldClosing(text, closing)) {
+      closing = text.indexOf("**", closing + 2);
+    }
+    if (closing < 0) break;
+
+    if (opening > cursor) output.push(text.slice(cursor, opening));
+    output.push(<strong key={`strong-${opening}`}>{text.slice(opening + 2, closing)}</strong>);
+    cursor = closing + 2;
+    searchFrom = cursor;
+  }
+
+  if (cursor < text.length) output.push(text.slice(cursor));
+  return output;
+}
 
 /**
  * Keeps a tutor transcript pinned while the reader is already at its end.
@@ -79,9 +126,7 @@ export function TutorThinkingIndicator({ language }: { language: "zh" | "en" }) 
       </button>
       <div id={contentId} hidden={!open}>
         <p className="ed-live-tutor-thinking" role="status">
-          {language === "zh"
-            ? "正在等待模型返回思考过程；收到后会逐字显示。"
-            : "Waiting for the model's reasoning; it will type out when received."}
+          {language === "zh" ? "思考中......" : "Thinking......"}
         </p>
       </div>
     </section>
@@ -96,12 +141,14 @@ export function TutorThinkingIndicator({ language }: { language: "zh" | "en" }) 
 export function TutorAnswer({
   content,
   animate,
+  streaming = false,
   onProgress,
   onComplete,
   tone = "answer",
 }: {
   content: string;
   animate: boolean;
+  streaming?: boolean;
   onProgress: () => void;
   onComplete: () => void;
   tone?: "answer" | "reasoning";
@@ -110,7 +157,10 @@ export function TutorAnswer({
   const reduceMotion =
     typeof window !== "undefined" &&
     window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
-  const shouldAnimate = animate && !reduceMotion;
+  // A streamed response is already being revealed by the network. Running a
+  // second timer over it would lag behind the server and repeatedly restart as
+  // each delta changes `content`; render all bytes received so far instead.
+  const shouldAnimate = animate && !reduceMotion && !streaming;
   const completionReportedRef = useRef(false);
   const [visibleCharacters, setVisibleCharacters] = useState(() =>
     shouldAnimate ? 0 : characters.length,
@@ -123,6 +173,10 @@ export function TutorAnswer({
   }, [onComplete]);
 
   useEffect(() => {
+    if (streaming) {
+      setVisibleCharacters(characters.length);
+      return;
+    }
     if (!shouldAnimate) {
       // Once this instance has completed its reveal, a parent render merely
       // changing `animate` to false must not generate another scroll event.
@@ -148,7 +202,7 @@ export function TutorAnswer({
       }
     }, 20);
     return () => window.clearInterval(timer);
-  }, [characters, onProgress, reportComplete, shouldAnimate]);
+  }, [characters, onProgress, reportComplete, shouldAnimate, streaming]);
 
   const visibleContent = characters.slice(0, visibleCharacters).join("");
   const parts = splitTutorContent(visibleContent);
@@ -160,14 +214,16 @@ export function TutorAnswer({
       // The surrounding transcript is a polite live log. Hide intermediate
       // character batches from its accessibility tree, then expose the full
       // response once so screen readers do not announce every 20 ms update.
-      aria-hidden={isTyping || undefined}
+      aria-hidden={isTyping || streaming || undefined}
     >
       {parts.map((part, index) => {
         const keyPart = part.kind === "text" ? part.text : part.source;
         const key = `${index}-${keyPart.slice(0, 12)}`;
         if (part.kind === "text") {
-          const text = part.text.replace(/\*\*/g, "").trim();
-          return text ? <p key={key}>{text}</p> : null;
+          // Keep the exact token stream (especially spaces around a delta).
+          // Only use trim for the emptiness check; trimming the rendered value
+          // can join words when a later network chunk starts with a letter.
+          return part.text.trim() ? <p key={key}>{renderTutorText(part.text)}</p> : null;
         }
         if (part.kind === "mermaid" && part.complete) {
           return <MermaidDiagram key={key} source={part.source} onProgress={onProgress} />;
@@ -203,11 +259,42 @@ export function TutorAssistantMessage({
   typedMessageIdsRef: MutableRefObject<Set<string>>;
   onProgress: () => void;
 }) {
-  const reasoning = message.reasoning?.trim() ?? "";
+  const isStreaming = message.streaming === true;
+  const wasStreamed = message.streaming !== undefined;
+  // Once a turn has arrived over SSE, its characters have already been
+  // revealed by the network. The property remains present as `false` after
+  // completion, including when React batches every fast delta into one render,
+  // so completion can never restart the legacy simulated typewriter.
+  const shouldAnimateMessage = animate && message.streaming === undefined;
+  // Preserve token-boundary whitespace while deltas are arriving.  Trimming
+  // each render would join words when the next delta starts with a letter.
+  const reasoning = isStreaming ? message.reasoning ?? "" : message.reasoning?.trim() ?? "";
   const hasReasoning = reasoning.length > 0;
-  const [reasoningComplete, setReasoningComplete] = useState(() => !animate || !hasReasoning);
-  const [reasoningOpen, setReasoningOpen] = useState(() => animate && hasReasoning);
+  const [reasoningComplete, setReasoningComplete] = useState(
+    () => !shouldAnimateMessage || !hasReasoning || Boolean(message.reasoningDone),
+  );
+  const [reasoningOpen, setReasoningOpen] = useState(() =>
+    isStreaming ? hasReasoning : shouldAnimateMessage && hasReasoning,
+  );
   const reasoningId = `tutor-reasoning-${message.id}`;
+  const effectiveReasoningComplete = wasStreamed
+    ? !hasReasoning || Boolean(message.reasoningDone)
+    : reasoningComplete;
+
+  // During a live turn, the first reasoning delta opens the disclosure and the
+  // first answer delta closes it.  Do not apply this to historical messages:
+  // their open/closed choice belongs entirely to the reader.
+  useEffect(() => {
+    if (!wasStreamed) return;
+    if (!hasReasoning) {
+      setReasoningComplete(true);
+      return;
+    }
+    const complete = Boolean(message.reasoningDone);
+    setReasoningComplete(complete);
+    if (!complete) setReasoningOpen(true);
+    else setReasoningOpen(false);
+  }, [hasReasoning, message.reasoningDone, wasStreamed]);
 
   const finishReasoning = useCallback(() => {
     setReasoningComplete(true);
@@ -222,7 +309,10 @@ export function TutorAssistantMessage({
   return (
     <>
       {hasReasoning ? (
-        <section className="ed-live-tutor-reasoning" data-complete={reasoningComplete || undefined}>
+        <section
+          className="ed-live-tutor-reasoning"
+          data-complete={effectiveReasoningComplete || undefined}
+        >
           <button
             type="button"
             aria-controls={reasoningId}
@@ -230,7 +320,7 @@ export function TutorAssistantMessage({
             onClick={() => setReasoningOpen((open) => !open)}
           >
             <span>
-              {reasoningComplete
+              {effectiveReasoningComplete
                 ? language === "zh"
                   ? "AI 思考过程"
                   : "AI reasoning"
@@ -252,20 +342,27 @@ export function TutorAssistantMessage({
           <div id={reasoningId} hidden={!reasoningOpen}>
             <TutorAnswer
               content={reasoning}
-              animate={animate}
+              animate={shouldAnimateMessage && !isStreaming}
+              streaming={isStreaming}
               tone="reasoning"
               onProgress={onProgress}
-              onComplete={finishReasoning}
+              // Network-streamed text is already complete from this
+              // component's perspective.  Do not run the legacy typewriter
+              // completion callback when `streaming` flips to false: it also
+              // collapses the disclosure and would override a reader who
+              // expanded the finished reasoning while the answer arrived.
+              onComplete={wasStreamed ? () => undefined : finishReasoning}
             />
           </div>
         </section>
       ) : null}
-      {reasoningComplete ? (
+      {effectiveReasoningComplete ? (
         <TutorAnswer
           content={message.content}
-          animate={animate}
+          animate={shouldAnimateMessage && !isStreaming}
+          streaming={isStreaming}
           onProgress={onProgress}
-          onComplete={finishAnswer}
+          onComplete={wasStreamed ? () => undefined : finishAnswer}
         />
       ) : null}
     </>

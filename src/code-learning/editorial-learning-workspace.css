@@ -101,60 +101,6 @@
   margin-block: 28px;
 }
 
-.ed-code-editor {
-  width: 100%;
-  height: var(--ed-code-editor-height, 360px);
-  min-height: var(--ed-code-editor-height, 360px);
-  overflow: hidden;
-  resize: vertical;
-}
-
-.ed-code-editor .cm-editor {
-  height: 100%;
-  color: #e7e9ec;
-  background: transparent;
-  font-family: "JetBrains Mono Variable", "JetBrains Mono", "SFMono-Regular", monospace;
-  font-size: 15px;
-  font-variant-ligatures: contextual;
-  line-height: 1.8;
-}
-
-.ed-code-editor .cm-scroller {
-  overflow: auto;
-  font-family: inherit;
-}
-
-.ed-code-editor .cm-content {
-  min-height: 100%;
-  padding-block: 20px;
-  caret-color: #f4f1e8;
-}
-
-.ed-code-editor .cm-line {
-  padding-inline: 10px 24px;
-}
-
-.ed-code-editor .cm-gutters {
-  min-width: 48px;
-  padding-top: 20px;
-  border-right-color: rgb(244 241 232 / 12%);
-  color: rgb(244 241 232 / 48%);
-  background: rgb(0 0 0 / 12%);
-  font-family: inherit;
-}
-
-.ed-code-editor .cm-activeLine,
-.ed-code-editor .cm-activeLineGutter {
-  background-color: rgb(255 255 255 / 5%);
-}
-
-.ed-code-editor .cm-editor.cm-focused {
-  /* 6.09:1 against the dark code-cell background; the primary brand blue is
-     only 2.85:1 here and falls below the 3:1 non-text focus requirement. */
-  outline: 2px solid #60a5fa;
-  outline-offset: -2px;
-}
-
 .ed-live-ide-page .ed-notebook-cell--explanation > div > p {
   max-width: 720px;
   margin-top: 13px;

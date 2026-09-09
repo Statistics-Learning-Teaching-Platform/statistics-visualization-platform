@@ -1,15 +1,22 @@
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { useRef } from "react";
 import { describe, expect, it, vi } from "vitest";
+import { splitTutorContent, validateMermaidSource } from "../src/code-learning/mermaid";
 import {
   type EditorialTutorMessage,
   TutorAnswer,
   TutorAssistantMessage,
+  TutorThinkingIndicator,
   useTutorAutoScroll,
 } from "../src/code-learning/TutorAnswer";
-import { splitTutorContent, validateMermaidSource } from "../src/code-learning/mermaid";
 
 describe("TutorAnswer", () => {
+  it("uses the concise pending reasoning copy", () => {
+    render(<TutorThinkingIndicator language="zh" />);
+    expect(screen.getByText("思考中......")).toBeInTheDocument();
+    expect(screen.queryByText(/正在等待模型返回思考过程/)).not.toBeInTheDocument();
+  });
+
   it("follows typewriter progress only while the reader remains near the bottom", async () => {
     function Harness() {
       const ref = useRef<HTMLDivElement>(null);
@@ -17,8 +24,12 @@ describe("TutorAnswer", () => {
       return (
         <>
           <div ref={ref} data-testid="transcript" onScroll={updateFollowState} />
-          <button type="button" onClick={scrollToBottom}>progress</button>
-          <button type="button" onClick={followLatest}>follow</button>
+          <button type="button" onClick={scrollToBottom}>
+            progress
+          </button>
+          <button type="button" onClick={followLatest}>
+            follow
+          </button>
         </>
       );
     }
@@ -40,6 +51,16 @@ describe("TutorAnswer", () => {
     fireEvent.click(screen.getByRole("button", { name: "progress" }));
     await waitFor(() => expect(transcript.scrollTop).toBe(1_000));
 
+    // A scroll can be queued while following and then become stale before the
+    // animation frame runs. The frame must respect the reader's newer choice.
+    transcript.scrollTop = 800;
+    fireEvent.scroll(transcript);
+    fireEvent.click(screen.getByRole("button", { name: "progress" }));
+    transcript.scrollTop = 250;
+    fireEvent.scroll(transcript);
+    await new Promise<void>((resolve) => requestAnimationFrame(() => resolve()));
+    expect(transcript.scrollTop).toBe(250);
+
     transcript.scrollTop = 120;
     fireEvent.scroll(transcript);
     fireEvent.click(screen.getByRole("button", { name: "follow" }));
@@ -59,6 +80,22 @@ describe("TutorAnswer", () => {
 
     expect(await screen.findByText(/right-hand side/, {}, { timeout: 5_000 })).toBeInTheDocument();
     await waitFor(() => expect(onComplete).toHaveBeenCalledOnce());
+  });
+
+  it("preserves exponent operators while rendering paired bold prose", async () => {
+    const view = render(
+      <TutorAnswer
+        content="Use x**2 + y**2, and **then** compare the result."
+        animate
+        onProgress={() => undefined}
+        onComplete={() => undefined}
+      />,
+    );
+
+    expect(
+      await screen.findByText(/x\*\*2 \+ y\*\*2/, {}, { timeout: 5_000 }),
+    ).toBeInTheDocument();
+    await waitFor(() => expect(view.container.querySelector("strong")).toHaveTextContent("then"));
   });
 
   it("types reasoning first and exposes its disclosure", async () => {
@@ -105,7 +142,7 @@ describe("TutorAnswer", () => {
       <TutorAssistantMessage
         message={message}
         language="en"
-        animate={false}
+        animate
         typedMessageIdsRef={typedMessageIdsRef}
         onProgress={onProgress}
       />,
@@ -144,6 +181,166 @@ describe("TutorAnswer", () => {
     expect(onProgress).not.toHaveBeenCalled();
   });
 
+  it("renders network deltas in place without starting a second typewriter", async () => {
+    const typedMessageIdsRef = { current: new Set<string>() };
+    const view = render(
+      <TutorAssistantMessage
+        message={{
+          id: "streaming-assistant",
+          role: "assistant",
+          content: "",
+          reasoning: "先检查",
+          streaming: true,
+          reasoningDone: false,
+        }}
+        language="zh"
+        animate
+        typedMessageIdsRef={typedMessageIdsRef}
+        onProgress={() => undefined}
+      />,
+    );
+    expect(screen.getByRole("button", { name: /AI 思考中/ })).toHaveAttribute(
+      "aria-expanded",
+      "true",
+    );
+    expect(screen.getByText("先检查")).toBeInTheDocument();
+
+    view.rerender(
+      <TutorAssistantMessage
+        message={{
+          id: "streaming-assistant",
+          role: "assistant",
+          content: "当前趋势为正。",
+          reasoning: "先检查参数，再解释结果。",
+          streaming: true,
+          reasoningDone: true,
+        }}
+        language="zh"
+        animate
+        typedMessageIdsRef={typedMessageIdsRef}
+        onProgress={() => undefined}
+      />,
+    );
+    expect(screen.getByText("当前趋势为正。")).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: /AI 思考过程.*展开/ })).toHaveAttribute(
+      "aria-expanded",
+      "false",
+    );
+    fireEvent.click(screen.getByRole("button", { name: /AI 思考过程.*展开/ }));
+    expect(screen.getByRole("button", { name: /AI 思考过程.*收起/ })).toHaveAttribute(
+      "aria-expanded",
+      "true",
+    );
+    view.rerender(
+      <TutorAssistantMessage
+        message={{
+          id: "streaming-assistant",
+          role: "assistant",
+          content: "当前趋势为正。",
+          reasoning: "先检查参数，再解释结果。",
+          streaming: false,
+          reasoningDone: true,
+        }}
+        language="zh"
+        animate
+        typedMessageIdsRef={typedMessageIdsRef}
+        onProgress={() => undefined}
+      />,
+    );
+    await waitFor(() => expect(screen.getByText("当前趋势为正。")).toBeVisible());
+    expect(screen.getByRole("button", { name: /AI 思考过程.*收起/ })).toHaveAttribute(
+      "aria-expanded",
+      "true",
+    );
+    expect(screen.getByText("当前趋势为正。").closest(".ed-live-tutor-answer")).not.toHaveAttribute(
+      "data-typing",
+    );
+  });
+
+  it("finishes a streamed reasoning turn when answer and done are batched", async () => {
+    const typedMessageIdsRef = { current: new Set<string>() };
+    const view = render(
+      <TutorAssistantMessage
+        message={{
+          id: "fast-streaming-assistant",
+          role: "assistant",
+          content: "",
+          reasoning: "先检查参数。",
+          streaming: true,
+          reasoningDone: false,
+        }}
+        language="zh"
+        animate
+        typedMessageIdsRef={typedMessageIdsRef}
+        onProgress={() => undefined}
+      />,
+    );
+
+    // Some transports deliver message.delta and done in one decoded chunk,
+    // allowing React to batch the two parent updates into this single render.
+    view.rerender(
+      <TutorAssistantMessage
+        message={{
+          id: "fast-streaming-assistant",
+          role: "assistant",
+          content: "当前趋势为正。",
+          reasoning: "先检查参数。",
+          streaming: false,
+          reasoningDone: true,
+        }}
+        language="zh"
+        animate
+        typedMessageIdsRef={typedMessageIdsRef}
+        onProgress={() => undefined}
+      />,
+    );
+
+    expect(screen.getByText("当前趋势为正。")).toBeVisible();
+    expect(screen.getByRole("button", { name: /AI 思考过程/ })).toHaveAttribute(
+      "aria-expanded",
+      "false",
+    );
+    expect(screen.getByText("当前趋势为正。").closest(".ed-live-tutor-answer")).not.toHaveAttribute(
+      "data-typing",
+    );
+  });
+
+  it("keeps an unfinished streamed Mermaid fence as code until it closes", () => {
+    const chartPrefix = [
+      "趋势如下：",
+      "```mermaid",
+      "xychart-beta",
+      'x-axis "Week" ["1", "2"]',
+      "y-axis 0 --> 10",
+      "line [4, 8]",
+    ].join("\n");
+    const view = render(
+      <TutorAnswer
+        content={chartPrefix}
+        animate
+        streaming
+        onProgress={() => undefined}
+        onComplete={() => undefined}
+      />,
+    );
+
+    expect(view.container.querySelector(".ed-tutor-mermaid")).not.toBeInTheDocument();
+    expect(view.container.querySelector('pre[data-language="mermaid"]')).not.toHaveAttribute(
+      "data-fence-complete",
+    );
+
+    view.rerender(
+      <TutorAnswer
+        content={`${chartPrefix}\n\`\`\``}
+        animate
+        streaming
+        onProgress={() => undefined}
+        onComplete={() => undefined}
+      />,
+    );
+    expect(view.container.querySelector(".ed-tutor-mermaid")).toBeInTheDocument();
+  });
+
   it("parses complete Mermaid fences repeatedly without leaking RegExp state", () => {
     const response = [
       "趋势如下：",
@@ -160,13 +357,17 @@ describe("TutorAnswer", () => {
     const second = splitTutorContent(response);
     expect(first).toEqual(second);
     expect(first.some((part) => part.kind === "mermaid" && part.complete)).toBe(true);
-    expect(validateMermaidSource((first.find((part) => part.kind === "mermaid") as { source: string }).source)).not.toBeNull();
+    expect(
+      validateMermaidSource(
+        (first.find((part) => part.kind === "mermaid") as { source: string }).source,
+      ),
+    ).not.toBeNull();
   });
 
   it("keeps unsafe or excessive Mermaid output as escaped code", () => {
     const dangerous = [
       "```mermaid",
-      "%%{init: {\"securityLevel\": \"loose\"}}%%",
+      '%%{init: {"securityLevel": "loose"}}%%',
       "pie",
       '"A" : 1',
       '"B" : 1',
@@ -177,7 +378,7 @@ describe("TutorAnswer", () => {
     expect(validateMermaidSource((parts[0] as { source: string }).source)).toBeNull();
 
     const chart = [
-      "```mermaid\nxychart-beta\ntitle \"S\"\nx-axis \"x\" [\"1\", \"2\"]\ny-axis 0 --> 10\nbar [1, 2]\n```",
+      '```mermaid\nxychart-beta\ntitle "S"\nx-axis "x" ["1", "2"]\ny-axis 0 --> 10\nbar [1, 2]\n```',
     ].join("\n");
     const many = splitTutorContent(`${chart}\n${chart}\n${chart}`);
     expect(many.filter((part) => part.kind === "mermaid")).toHaveLength(1);
@@ -185,15 +386,14 @@ describe("TutorAnswer", () => {
   });
 
   it("requires unique non-empty names for every series in a multi-series XY chart", () => {
-    const chart = (plots: string) => [
-      "xychart-beta",
-      'title "Scores"',
-      'x-axis "Week" ["1", "2"]',
-      "y-axis 0 --> 10",
-      plots,
-    ].join("\n");
+    const chart = (plots: string) =>
+      ["xychart-beta", 'title "Scores"', 'x-axis "Week" ["1", "2"]', "y-axis 0 --> 10", plots].join(
+        "\n",
+      );
 
-    expect(validateMermaidSource(chart('bar "Class A" [1, 2]\nline "Class B" [3, 4]'))).not.toBeNull();
+    expect(
+      validateMermaidSource(chart('bar "Class A" [1, 2]\nline "Class B" [3, 4]')),
+    ).not.toBeNull();
     expect(validateMermaidSource(chart("bar [1, 2]\nline [3, 4]"))).toBeNull();
     expect(validateMermaidSource(chart('bar "Class A" [1, 2]\nline "class a" [3, 4]'))).toBeNull();
     expect(validateMermaidSource(chart('bar "   " [1, 2]\nline "Class B" [3, 4]'))).toBeNull();

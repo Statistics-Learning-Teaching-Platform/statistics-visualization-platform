@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useMemo, useRef, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Check, FileUp, Loader2, RotateCcw, Sparkles, WandSparkles } from "lucide-react";
 import QuestionContent from "@/components/QuestionContent";
 import type { Question } from "@/lib/types";
@@ -12,6 +12,17 @@ import {
   type PaperQualityReport,
 } from "@/lib/blueprint";
 import { authenticatedFetch } from "@/lib/auth/client";
+import {
+  AI_MODEL_CACHE_EVENT,
+  AI_MODEL_CACHE_STORAGE_KEY,
+  AI_MODEL_CACHE_TTL_MS,
+  announceAiModelCacheChange,
+  clearAiModelCache,
+  loadAiModelCache,
+  saveAiModelCache,
+  type AiModelCache,
+  updateAiModelCacheSelection,
+} from "@/lib/ai-model-cache";
 import {
   isSelectableAiModel,
   selectLoadedAiModel,
@@ -126,6 +137,7 @@ export default function AiPaperWorkspace({
   const [aiModels, setAiModels] = useState<AiModelOption[]>([]);
   const [aiModelsStatus, setAiModelsStatus] = useState<"idle" | "loading" | "ready" | "error">("idle");
   const [aiModel, setAiModel] = useState("");
+  const [aiModelsCachedAt, setAiModelsCachedAt] = useState<number | null>(null);
   const aiModelsAbortRef = useRef<AbortController | null>(null);
   const knowledgeAbortRef = useRef<AbortController | null>(null);
   const paperAbortRef = useRef<AbortController | null>(null);
@@ -133,6 +145,11 @@ export default function AiPaperWorkspace({
   const candidateRef = useRef<HybridCandidate | null>(null);
   const candidateEpochRef = useRef(0);
   const applyBusyRef = useRef(false);
+  const aiModelRef = useRef(aiModel);
+
+  useEffect(() => {
+    aiModelRef.current = aiModel;
+  }, [aiModel]);
 
   function replaceCandidate(next: HybridCandidate | null) {
     // Candidate adoption is a separate asynchronous phase. Any operation that
@@ -179,23 +196,28 @@ export default function AiPaperWorkspace({
     replaceCandidate(null);
   }
 
+  const applyAiModelCache = useCallback((cache: AiModelCache | null) => {
+    setAiModels(cache?.models ?? []);
+    setAiModel(cache?.selected ?? "");
+    aiModelRef.current = cache?.selected ?? "";
+    setAiModelsCachedAt(cache?.cachedAt ?? null);
+    setAiModelsStatus(cache ? "ready" : "idle");
+  }, []);
+
   function invalidateAiModelScan() {
-    setAiModels([]);
-    setAiModel("");
-    setAiModelsStatus("idle");
+    clearAiModelCache();
+    applyAiModelCache(null);
+    announceAiModelCacheChange();
   }
 
-  // Models are fetched only when the user explicitly scans. The result lives
-  // in component memory and is replaced wholesale by every new scan.
+  // A successful explicit scan replaces the time-limited browser snapshot. Keep a
+  // still-valid snapshot visible if a manual rescan fails; server inference
+  // independently rechecks the selected model's live loaded state.
   async function scanAiModels(): Promise<void> {
     aiModelsAbortRef.current?.abort();
     cancelModelDependentRequests();
     const controller = new AbortController();
     aiModelsAbortRef.current = controller;
-    // Clear first so an old scan can never be mistaken for the current live
-    // state while the upstream request is pending or fails.
-    setAiModels([]);
-    setAiModel("");
     setAiModelsStatus("loading");
     try {
       const response = await authenticatedFetch("/api/ai/models", {
@@ -206,8 +228,9 @@ export default function AiPaperWorkspace({
       const result = await response.json() as { models?: AiModelOption[]; error?: string };
       if (!response.ok || !Array.isArray(result.models)) throw new Error(result.error || "在线模型获取失败");
       if (aiModelsAbortRef.current !== controller || controller.signal.aborted) return;
-      setAiModels(result.models);
-      setAiModelsStatus("ready");
+      const cache = saveAiModelCache(result.models, aiModelRef.current);
+      applyAiModelCache(cache);
+      announceAiModelCacheChange();
     } catch (error: unknown) {
       if (aiModelsAbortRef.current !== controller || controller.signal.aborted) return;
       setAiModelsStatus("error");
@@ -225,8 +248,60 @@ export default function AiPaperWorkspace({
     const nextModel = selectLoadedAiModel(aiModels, key);
     if (nextModel === aiModel) return;
     cancelModelDependentRequests();
+    const latestCache = loadAiModelCache();
+    if (latestCache) {
+      const nextCache = updateAiModelCacheSelection(
+        selectLoadedAiModel(latestCache.models, key),
+      );
+      if (!nextCache) return;
+      applyAiModelCache(nextCache);
+      announceAiModelCacheChange();
+      return;
+    }
     setAiModel(nextModel);
+    aiModelRef.current = nextModel;
   }
+
+  useEffect(() => {
+    const initialSync = window.setTimeout(() => applyAiModelCache(loadAiModelCache()), 0);
+    const synchronizeCache = () => {
+      aiModelsAbortRef.current?.abort();
+      knowledgeAbortRef.current?.abort();
+      paperAbortRef.current?.abort();
+      aiModelsAbortRef.current = null;
+      knowledgeAbortRef.current = null;
+      paperAbortRef.current = null;
+      setAnalyzing(false);
+      setGenerating(false);
+      applyAiModelCache(loadAiModelCache());
+    };
+    const synchronizeStorage = (event: StorageEvent) => {
+      if (event.key === AI_MODEL_CACHE_STORAGE_KEY) synchronizeCache();
+    };
+    const synchronizeVisibility = () => {
+      if (document.visibilityState === "visible") synchronizeCache();
+    };
+    window.addEventListener(AI_MODEL_CACHE_EVENT, synchronizeCache);
+    window.addEventListener("storage", synchronizeStorage);
+    document.addEventListener("visibilitychange", synchronizeVisibility);
+    return () => {
+      window.clearTimeout(initialSync);
+      window.removeEventListener(AI_MODEL_CACHE_EVENT, synchronizeCache);
+      window.removeEventListener("storage", synchronizeStorage);
+      document.removeEventListener("visibilitychange", synchronizeVisibility);
+    };
+  }, [applyAiModelCache]);
+
+  useEffect(() => {
+    if (aiModelsCachedAt === null) return;
+    const remaining = Math.max(0, aiModelsCachedAt + AI_MODEL_CACHE_TTL_MS - Date.now());
+    const timer = window.setTimeout(() => {
+      clearAiModelCache();
+      applyAiModelCache(null);
+      announceAiModelCacheChange();
+    }, remaining);
+    return () => window.clearTimeout(timer);
+  }, [aiModelsCachedAt, applyAiModelCache]);
 
   useEffect(() => () => {
     aiModelsAbortRef.current?.abort();
@@ -264,7 +339,7 @@ export default function AiPaperWorkspace({
       return;
     }
     if (!selectedAiModel) {
-      setMessage("请先手动扫描在线模型，并明确选择一个已启用模型后再提取知识点。");
+      setMessage("请先选择已启用模型，或重新扫描在线模型后再提取知识点。");
       return;
     }
     knowledgeAbortRef.current?.abort();
@@ -325,7 +400,7 @@ export default function AiPaperWorkspace({
       return;
     }
     if (!selectedAiModel) {
-      setMessage("请先手动扫描在线模型，并明确选择一个已启用模型后再生成候选试卷。");
+      setMessage("请先选择已启用模型，或重新扫描在线模型后再生成候选试卷。");
       return;
     }
     paperAbortRef.current?.abort();
@@ -434,7 +509,7 @@ export default function AiPaperWorkspace({
       <div className="qb-ai-grid">
         <div className="qb-ai-builder">
           <section className="qb-ai-section">
-            <div className="qb-ai-section__title"><span>01</span><div><h3>导入课件或考试目标</h3><p>AI 提取前须手动扫描并选择模型；也可跳过 AI，在下一步纯本地手动添加知识点</p></div></div>
+            <div className="qb-ai-section__title"><span>01</span><div><h3>导入课件或考试目标</h3><p>扫描并选择模型；也可跳过 AI，在下一步纯本地手动添加知识点</p></div></div>
             <textarea disabled={applying} value={sourceText} onChange={(event) => { invalidateMaterialInput(); setSourceText(event.target.value); }} placeholder="例如：本次考试重点考查 confidence intervals、one-sample hypothesis testing 和 linear regression，侧重计算与解释……" />
             <div className="qb-ai-model-picker">
               <label htmlFor="qb-ai-model">本次 AI 操作使用的模型</label>
@@ -447,7 +522,7 @@ export default function AiPaperWorkspace({
                         ? "本次扫描没有已启用模型"
                         : aiModelsStatus === "ready"
                           ? "请选择已启用模型"
-                          : "请先手动扫描在线模型"}
+                          : "请先扫描在线模型"}
                   </option>
                   {aiModels.map((model) => (
                     <option key={model.key} value={model.key} disabled={!isSelectableAiModel(model)}>
@@ -461,8 +536,8 @@ export default function AiPaperWorkspace({
                 </button>
               </div>
               {aiModelsStatus === "error"
-                ? <p className="qb-ai-model-picker__hint" role="status">本次扫描失败，旧结果已清空；点击右侧按钮重试。</p>
-                : <p className="qb-ai-model-picker__hint">模型不会预存或自动扫描；每次扫描都会清空上次结果与选择。未加载模型统一显示为“未启用”。</p>}
+                ? <p className="qb-ai-model-picker__hint" role="status">重新扫描失败；可点击右侧按钮重试。</p>
+                : <p className="qb-ai-model-picker__hint">请选择模型；未加载模型统一显示为“未启用”，可随时重新扫描。</p>}
             </div>
             <div className="qb-ai-upload-row">
               <input ref={fileRef} hidden disabled={applying} type="file" accept=".pdf,.pptx,.docx,.txt,.md,.markdown" onChange={(event) => { invalidateMaterialInput(); setFile(event.target.files?.[0] ?? null); }} />

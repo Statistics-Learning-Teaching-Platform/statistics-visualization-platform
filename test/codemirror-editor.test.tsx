@@ -177,14 +177,11 @@ describe("CodeMirrorEditor", () => {
   });
 
   it("declares and applies the JetBrains Mono editor font", () => {
-    const packageJson = JSON.parse(
-      readFileSync("package.json", "utf8"),
-    ) as { dependencies?: Record<string, string> };
+    const packageJson = JSON.parse(readFileSync("package.json", "utf8")) as {
+      dependencies?: Record<string, string>;
+    };
     const globalStyles = readFileSync("src/visual-demo/editorial-tailwind.css", "utf8");
-    const editorStyles = readFileSync(
-      "src/code-learning/editorial-learning-workspace.css",
-      "utf8",
-    );
+    const editorStyles = readFileSync("src/code-learning/code-mirror-editor.css", "utf8");
 
     expect(packageJson.dependencies?.["@fontsource-variable/jetbrains-mono"]).toBeTruthy();
     expect(globalStyles).toContain('@import "@fontsource-variable/jetbrains-mono";');

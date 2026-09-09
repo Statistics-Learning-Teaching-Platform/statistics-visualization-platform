@@ -28,22 +28,20 @@ test("only a loaded model returned by the current scan can be selected", () => {
   assert.equal(selectLoadedAiModel([], "loaded@q8"), "");
 });
 
-test("workspace scans only on explicit user action and clears stale scan state first", () => {
-  assert.doesNotMatch(workspace, /localStorage|sessionStorage/);
+test("workspace restores the shared browser snapshot and scans only on explicit user action", () => {
+  assert.match(workspace, /loadAiModelCache|localStorage/);
   assert.doesNotMatch(workspace, /useEffect\([\s\S]{0,400}scanAiModels\s*\(/);
 
   const scanStart = workspace.indexOf("async function scanAiModels");
-  const clearModels = workspace.indexOf("setAiModels([])", scanStart);
-  const clearSelection = workspace.indexOf('setAiModel("")', scanStart);
   const request = workspace.indexOf('authenticatedFetch("/api/ai/models"', scanStart);
-  assert.ok(scanStart >= 0 && clearModels > scanStart);
-  assert.ok(clearSelection > clearModels && request > clearSelection);
+  assert.ok(scanStart >= 0 && request > scanStart);
+  assert.match(workspace, /saveAiModelCache\(result\.models/);
   assert.match(workspace, /onClick=\{refreshAiModels\}/);
-  assert.match(workspace, /模型不会预存或自动扫描/);
+  assert.match(workspace, /请选择模型/);
 });
 
 test("each AI operation requires and sends the explicitly selected loaded model", () => {
-  assert.match(workspace, /if \(!selectedAiModel\)[\s\S]*?手动扫描在线模型/);
+  assert.match(workspace, /if \(!selectedAiModel\)[\s\S]*?选择已启用模型/);
   assert.match(workspace, /form\.set\("model", selectedAiModel\)/);
   assert.match(workspace, /JSON\.stringify\(\{ blueprint, variantPercent, model: selectedAiModel \}\)/);
   assert.doesNotMatch(workspace, /model:\s*aiModel\s*\|\||自动使用当前已启用模型|默认模型/);

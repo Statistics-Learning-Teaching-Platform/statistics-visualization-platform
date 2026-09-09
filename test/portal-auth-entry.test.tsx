@@ -5,6 +5,7 @@ import { beforeEach, describe, expect, it, vi } from "vitest";
 import { PortalAuthEntry } from "../src/auth/PortalAuthEntry";
 import { authenticatedFetch } from "../src/authenticatedFetch";
 import { loadPortalSession, resetPortalSessionCache } from "../src/auth/session";
+import { AI_MODEL_CACHE_STORAGE_KEY } from "../src/code-learning/tutorModels";
 import { EditorialDemoShell } from "../src/visual-demo/editorial/EditorialPrimitives";
 
 function authenticatedResponse() {
@@ -20,6 +21,7 @@ function authenticatedResponse() {
 describe("portal header authentication", () => {
   beforeEach(() => {
     vi.restoreAllMocks();
+    localStorage.clear();
     resetPortalSessionCache();
     setLanguage("zh");
     window.history.replaceState(null, "", "/");
@@ -146,6 +148,8 @@ describe("portal header authentication", () => {
         .mockResolvedValueOnce(new Response(null, { status: 401 }));
       const navigateHome = vi.fn();
       const user = userEvent.setup();
+      const modelCache = JSON.stringify({ marker: "keep-across-logout" });
+      localStorage.setItem(AI_MODEL_CACHE_STORAGE_KEY, modelCache);
       document.cookie = "stat_csrf=csrf-value; Path=/";
       render(<PortalAuthEntry navigateHome={navigateHome} />);
 
@@ -159,6 +163,7 @@ describe("portal header authentication", () => {
       expect(logoutInit?.method).toBe("POST");
       expect(logoutInit?.credentials).toBe("same-origin");
       expect(new Headers(logoutInit?.headers).get("X-CSRF-Token")).toBe("csrf-value");
+      expect(localStorage.getItem(AI_MODEL_CACHE_STORAGE_KEY)).toBe(modelCache);
 
       await loadPortalSession();
       expect(fetchMock).toHaveBeenCalledTimes(3);

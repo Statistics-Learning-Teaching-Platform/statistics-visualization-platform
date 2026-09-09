@@ -7,14 +7,30 @@ import { authenticatedFetch } from "../authenticatedFetch";
 import { buildTutorHistory, createMessageId, resolveCodeLearningContext } from "../code-learning/context";
 import { EditorialLearningWorkspace } from "../code-learning/EditorialLearningWorkspace";
 import { prepareCodeTutorRequest } from "../code-learning/tutorPayload";
+import { consumeTutorStream, TutorStreamError } from "../code-learning/tutor-stream";
 import { loadLearningProgress, saveCodeLessonProgress } from "../course/progressStore";
 import { rLessons } from "./lessons";
 import { checkRCode, disposeWebRRuntime, resetRSession, runRCode } from "./webrRuntime";
 
 type EngineStatus = "idle" | "loading" | "ready" | "running" | "error";
 type ReviewState = { kind: "idle" | "success" | "failure"; message: string };
-type TutorMessage = { id: string; role: "user" | "assistant"; content: string; reasoning?: string };
+type TutorMessage = {
+  id: string;
+  role: "user" | "assistant";
+  content: string;
+  reasoning?: string;
+  streaming?: boolean;
+  reasoningDone?: boolean;
+};
 type TutorStatus = "idle" | "asking" | "error";
+
+function settleInterruptedTutorMessages(messages: TutorMessage[]): TutorMessage[] {
+  return messages.flatMap((message) => {
+    if (message.role !== "assistant" || message.streaming !== true) return [message];
+    if (!message.content.trim() && !message.reasoning?.trim()) return [];
+    return [{ ...message, streaming: false, reasoningDone: true }];
+  });
+}
 
 const uiCopy = {
   zh: {
@@ -342,10 +358,25 @@ export function RLearningWorkspace() {
       role: "user",
       content: question,
     };
-    setTutorMessages((current) => [...current, userMessage]);
+    const assistantId = createMessageId();
+    setTutorMessages((current) => [
+      ...current,
+      userMessage,
+      {
+        id: assistantId,
+        role: "assistant",
+        content: "",
+        reasoning: "",
+        streaming: true,
+        reasoningDone: false,
+      },
+    ]);
     setTutorPrompt("");
     setTutorStatus("asking");
     let failureMessage: string = t.tutorError;
+    let receivedAnswer = false;
+    let completed = false;
+    let staleModelSelection = false;
 
     try {
       const response = await authenticatedFetch("/st-qselector/api/ai/r-tutor", {
@@ -354,40 +385,87 @@ export function RLearningWorkspace() {
         signal: controller.signal,
         body: request.body,
       });
-      const payload = (await response.json()) as {
-        answer?: string;
-        reasoning?: string;
-        error?: string;
-      };
-      if (!isCurrentRequest()) return;
-      if (!response.ok || !payload.answer) {
-        if (response.status === 409) setTutorModelResetKey((current) => current + 1);
-        failureMessage =
-          response.status === 401
-            ? `${t.tutorLoginTitle}（${portalLoginUrl(
-                `${window.location.pathname}${window.location.search}${window.location.hash}`,
-              )}）`
-            : (payload.error || t.tutorError);
-        throw new Error(failureMessage);
+      if (!isCurrentRequest()) {
+        await response.body?.cancel();
+        return;
       }
-      setTutorMessages((current) => [
-        ...current,
-        {
-          id: createMessageId(),
-          role: "assistant",
-          content: payload.answer as string,
-          reasoning: payload.reasoning,
-        },
-      ]);
-      setTutorStatus("idle");
+      staleModelSelection = response.status === 409;
+      await consumeTutorStream(response, (event) => {
+        if (!isCurrentRequest()) return;
+        if (event.type === "reasoning.delta") {
+          setTutorMessages((current) =>
+            current.map((message) =>
+              message.id === assistantId
+                ? {
+                    ...message,
+                    reasoning: `${message.reasoning ?? ""}${event.delta}`,
+                    streaming: true,
+                    reasoningDone: false,
+                  }
+                : message,
+            ),
+          );
+        } else if (event.type === "message.delta") {
+          receivedAnswer = true;
+          setTutorMessages((current) =>
+            current.map((message) =>
+              message.id === assistantId
+                ? {
+                    ...message,
+                    content: `${message.content}${event.delta}`,
+                    streaming: true,
+                    reasoningDone: true,
+                  }
+                : message,
+            ),
+          );
+        } else if (event.type === "done") {
+          completed = true;
+          setTutorMessages((current) =>
+            current.map((message) =>
+              message.id === assistantId
+                ? { ...message, streaming: false, reasoningDone: true }
+                : message,
+            ),
+          );
+          setTutorStatus("idle");
+        }
+      });
+      if (!completed || !receivedAnswer) throw new Error(t.tutorError);
     } catch (error) {
-      // Aborts are expected when switching lessons or unmounting.
-      if (error instanceof DOMException && error.name === "AbortError") return;
+      // Lesson changes, drawer closes, and unmounts invalidate the request
+      // before aborting it. An AbortError from a still-current request is an
+      // unexpected transport failure and must settle the pending turn.
       if (!isCurrentRequest()) return;
-      setTutorMessages((current) => [
-        ...current,
-        { id: createMessageId(), role: "assistant", content: failureMessage },
-      ]);
+      const unexpectedAbort =
+        (error instanceof DOMException && error.name === "AbortError") ||
+        (error instanceof Error && error.name === "AbortError");
+      const status = error instanceof TutorStreamError ? error.status : undefined;
+      if (status === 409 || staleModelSelection) {
+        setTutorModelResetKey((current) => current + 1);
+      }
+      failureMessage =
+        status === 401
+          ? `${t.tutorLoginTitle}（${portalLoginUrl(
+              `${window.location.pathname}${window.location.search}${window.location.hash}`,
+            )}）`
+          : error instanceof TutorStreamError
+            ? error.message
+            : !unexpectedAbort && error instanceof Error && error.message
+              ? error.message
+              : failureMessage;
+      setTutorMessages((current) =>
+        current.map((message) =>
+          message.id === assistantId
+            ? {
+                ...message,
+                content: message.content ? `${message.content}\n\n${failureMessage}` : failureMessage,
+                streaming: false,
+                reasoningDone: true,
+              }
+            : message,
+        ),
+      );
       setTutorStatus("error");
     } finally {
       if (tutorEpochRef.current === tutorEpoch) tutorBusyRef.current = false;
@@ -399,6 +477,7 @@ export function RLearningWorkspace() {
     tutorAbortRef.current?.abort();
     tutorAbortRef.current = null;
     tutorBusyRef.current = false;
+    setTutorMessages(settleInterruptedTutorMessages);
     setTutorStatus("idle");
   }, []);
 

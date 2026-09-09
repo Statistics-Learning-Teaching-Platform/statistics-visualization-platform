@@ -208,6 +208,7 @@ export function EditorialLearningWorkspace<Unit extends string>({
     hasScanned: hasScannedTutorModels,
     select: changeTutorModel,
     reset: resetTutorModels,
+    invalidate: invalidateTutorModels,
     rescan: scanTutorModels,
   } = useTutorModels();
   const tutorLauncherRef = useRef<HTMLButtonElement>(null);
@@ -235,8 +236,8 @@ export function EditorialLearningWorkspace<Unit extends string>({
   }, [activeLesson.id, resetTutorModels]);
 
   useEffect(() => {
-    resetTutorModels();
-  }, [resetTutorModels, tutorModelResetKey]);
+    if (tutorModelResetKey > 0) invalidateTutorModels();
+  }, [invalidateTutorModels, tutorModelResetKey]);
 
   useEffect(() => {
     if (tutorOpen) scrollTutorMessagesToBottom();
@@ -287,6 +288,12 @@ export function EditorialLearningWorkspace<Unit extends string>({
   const selectedTutorModel = tutorModels.find(
     (model) => model.key === tutorModel && isSelectableTutorModel(model),
   );
+  const hasStreamingTutorContent = tutorMessages.some(
+    (message) =>
+      message.role === "assistant" &&
+      message.streaming &&
+      Boolean(message.content || message.reasoning),
+  );
   const tutorModelHint =
     tutorModelsStatus === "loading"
       ? language === "zh"
@@ -294,12 +301,16 @@ export function EditorialLearningWorkspace<Unit extends string>({
         : "Scanning upstream models live…"
       : tutorModelsStatus === "error"
         ? language === "zh"
-          ? "在线模型获取失败，请点击按钮重试。"
-          : "Model scan failed. Try again."
+          ? tutorModels.length
+            ? "重新扫描失败；可点击按钮重试。"
+            : "在线模型获取失败，请点击按钮重试。"
+          : tutorModels.length
+            ? "Rescan failed. Try again when ready."
+            : "Model scan failed. Try again."
         : !hasScannedTutorModels
           ? language === "zh"
-            ? "点击右侧按钮手动扫描；列表不会预存或自动刷新。"
-            : "Scan manually; the list is never preloaded or cached."
+            ? "请点击右侧按钮扫描在线模型。"
+            : "Scan the online models with the button."
           : !tutorModels.length
             ? language === "zh"
               ? "本次扫描未发现在线语言模型。"
@@ -309,8 +320,8 @@ export function EditorialLearningWorkspace<Unit extends string>({
                 ? "本次扫描到的模型均未启用。"
                 : "All scanned models are inactive."
               : language === "zh"
-                ? "请选择一个已启用模型；未启用模型仅供查看。"
-                : "Choose an active model; inactive models are view-only.";
+                ? "请选择模型；未启用模型仅供查看，可随时重新扫描。"
+                : "Choose a model; inactive models are view-only and you can rescan anytime.";
 
   function revealHint() {
     if (hintStage >= 3) return;
@@ -777,7 +788,7 @@ export function EditorialLearningWorkspace<Unit extends string>({
                     </article>
                   ))
                 )}
-                {tutorStatus === "asking" ? (
+                {tutorStatus === "asking" && !hasStreamingTutorContent ? (
                   selectedTutorModel?.supportsReasoning ? (
                     <TutorThinkingIndicator language={language} />
                   ) : (
