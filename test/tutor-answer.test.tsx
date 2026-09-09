@@ -82,20 +82,117 @@ describe("TutorAnswer", () => {
     await waitFor(() => expect(onComplete).toHaveBeenCalledOnce());
   });
 
-  it("preserves exponent operators while rendering paired bold prose", async () => {
+  it("renders inline code alongside standard Markdown emphasis", async () => {
     const view = render(
       <TutorAnswer
-        content="Use x**2 + y**2, and **then** compare the result."
-        animate
+        content="Use `x**2 + y**2`, and **then** compare the result."
+        animate={false}
         onProgress={() => undefined}
         onComplete={() => undefined}
       />,
     );
 
-    expect(
-      await screen.findByText(/x\*\*2 \+ y\*\*2/, {}, { timeout: 5_000 }),
-    ).toBeInTheDocument();
-    await waitFor(() => expect(view.container.querySelector("strong")).toHaveTextContent("then"));
+    expect(screen.getByText("x**2 + y**2")).toHaveProperty("tagName", "CODE");
+    expect(view.container.querySelector("strong")).toHaveTextContent("then");
+  });
+
+  it("renders reasoning as literal plaintext without Markdown, HTML, or Mermaid parsing", () => {
+    const reasoning = [
+      "  **literal emphasis** and `literal code`",
+      '<img src="https://tracker.invalid/pixel" onerror="alert(1)">',
+      "```mermaid",
+      "pie showData",
+      '  "A" : 1',
+      '  "B" : 2',
+      "```  ",
+    ].join("\n");
+    const view = render(
+      <TutorAnswer
+        content={reasoning}
+        animate={false}
+        tone="reasoning"
+        onProgress={() => undefined}
+        onComplete={() => undefined}
+      />,
+    );
+
+    const output = view.container.querySelector('[data-format="plaintext"]');
+    expect(output).toHaveTextContent(reasoning, { normalizeWhitespace: false });
+    expect(output?.querySelector("strong, code, img, .ed-tutor-mermaid")).toBeNull();
+    expect(output?.querySelector(".ed-tutor-plaintext")).toBeInTheDocument();
+  });
+
+  it("renders GFM, math, safe links, and language-aware highlighted code", () => {
+    const answer = [
+      "## Model result",
+      "",
+      "- **Estimate:** $\\hat\\beta = 1.25$",
+      "- Use `summary(fit)`.",
+      "",
+      "| Term | Value |",
+      "| --- | ---: |",
+      "| x | 1.25 |",
+      "",
+      "[Documentation](https://example.com/docs)",
+      "",
+      "```r",
+      "fit <- lm(y ~ x, data = sample)",
+      "summary(fit)",
+      "```",
+      "",
+      "```python",
+      "for value in sample:",
+      "    print(value)",
+      "```",
+    ].join("\n");
+    const view = render(
+      <TutorAnswer
+        content={answer}
+        animate={false}
+        onProgress={() => undefined}
+        onComplete={() => undefined}
+      />,
+    );
+
+    expect(screen.getByRole("heading", { name: "Model result" })).toBeInTheDocument();
+    expect(view.container.querySelector("table")).toBeInTheDocument();
+    expect(view.container.querySelector(".katex")).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: "Documentation" })).toHaveAttribute(
+      "rel",
+      "nofollow noopener noreferrer",
+    );
+    expect(screen.getByRole("link", { name: "Documentation" })).toHaveAttribute(
+      "target",
+      "_blank",
+    );
+
+    const rCode = view.container.querySelector('code[data-language="r"]');
+    const pythonCode = view.container.querySelector('code[data-language="python"]');
+    expect(rCode).toHaveClass("hljs", "language-r");
+    expect(rCode?.querySelector('[class^="hljs-"]')).toBeInTheDocument();
+    expect(pythonCode).toHaveClass("hljs", "language-python");
+    expect(pythonCode?.querySelector(".hljs-keyword")).toHaveTextContent("for");
+  });
+
+  it("drops raw HTML, blocks unsafe URLs, and never fetches Markdown images", () => {
+    const view = render(
+      <TutorAnswer
+        content={[
+          "Safe text.",
+          '<script data-testid="unsafe-script">alert(1)</script>',
+          '<img data-testid="unsafe-image" src="https://tracker.invalid/raw">',
+          "![tracking pixel](https://tracker.invalid/markdown)",
+          "[unsafe link](javascript:alert(1))",
+        ].join("\n\n")}
+        animate={false}
+        onProgress={() => undefined}
+        onComplete={() => undefined}
+      />,
+    );
+
+    expect(view.container.querySelector("script, img")).toBeNull();
+    expect(screen.getByText("[Image: tracking pixel]")).toBeInTheDocument();
+    expect(screen.getByText("unsafe link").closest("a")).not.toHaveAttribute("href");
   });
 
   it("types reasoning first and exposes its disclosure", async () => {
