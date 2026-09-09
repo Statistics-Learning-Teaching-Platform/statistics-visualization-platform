@@ -1,7 +1,7 @@
-import { NextRequest, NextResponse } from "next/server";
-import { callStatAiWithReasoning, resolveStatAiModel } from "@/lib/ai-client";
+import { NextRequest } from "next/server";
+import { resolveStatAiModel, streamStatAiWithReasoning } from "@/lib/ai-client";
 import { statAiInputByteBudget } from "@/lib/ai-context-budget";
-import { consumeRateLimit, requestPrincipal, withConcurrencyLease } from "@/lib/auth/rate-limit";
+import { consumeRateLimit, requestPrincipal, withConcurrencyLeaseStream } from "@/lib/auth/rate-limit";
 import { requireRequestSession, verifyCsrf } from "@/lib/auth/session";
 import { assertSafeOrigin, authErrorResponse, AuthError, readLimitedJson } from "@/lib/auth/security";
 import {
@@ -47,7 +47,7 @@ export async function POST(request: NextRequest) {
       statAiInputByteBudget(systemPrompt, EXPERIMENT_TUTOR_MAX_OUTPUT_TOKENS),
     );
 
-    return await withConcurrencyLease({
+    return await withConcurrencyLeaseStream({
       route: "ai-tutor",
       limit: 8,
       ttlSeconds: 58,
@@ -59,17 +59,20 @@ export async function POST(request: NextRequest) {
           limit: 300,
           windowSeconds: 60 * 60,
         });
-        const completion = await callStatAiWithReasoning({
+        const stream = await streamStatAiWithReasoning({
           signal,
           model,
           maxOutputTokens: EXPERIMENT_TUTOR_MAX_OUTPUT_TOKENS,
           systemPrompt,
           input,
         });
-        return NextResponse.json(
-          { answer: completion.message, reasoning: completion.reasoning },
-          { headers: { "Cache-Control": "no-store" } },
-        );
+        return new Response(stream, {
+          headers: {
+            "Cache-Control": "no-store",
+            "Content-Type": "text/event-stream; charset=utf-8",
+            "X-Accel-Buffering": "no",
+          },
+        });
       },
     });
   } catch (error) {

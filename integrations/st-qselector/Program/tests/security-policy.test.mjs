@@ -85,15 +85,21 @@ test("upstream model discovery is byte-bounded and runtime-validated", () => {
   assert.match(catalogue, /MAX_STAT_AI_MODEL_RECORDS/);
 });
 
-test("model choices are populated only by an explicit scan and are not persisted", () => {
+test("model choices use the shared browser snapshot but still require an explicit scan when absent", () => {
   const paper = fs.readFileSync(path.join(root, "src/components/AiPaperWorkspace.tsx"), "utf8");
+  const cache = fs.readFileSync(path.join(root, "src/lib/ai-model-cache.ts"), "utf8");
   const tutor = fs.readFileSync(path.resolve(root, "../../..", "src/code-learning/EditorialLearningWorkspace.tsx"), "utf8");
   const tutorAnswer = fs.readFileSync(path.resolve(root, "../../..", "src/code-learning/TutorAnswer.tsx"), "utf8");
   for (const source of [paper, tutor]) {
-    assert.doesNotMatch(source, /MODEL_STORAGE_KEY|localStorage/);
     assert.match(source, /scan(?:Ai|Tutor)Models/);
     assert.match(source, /未启用/);
   }
+  assert.match(cache, /statmind\.ai-model-cache-v1/);
+  assert.match(cache, /24 \* 60 \* 60/);
+  assert.match(paper, /loadAiModelCache/);
+  assert.match(paper, /saveAiModelCache/);
+  assert.match(paper, /updateAiModelCacheSelection/);
+  assert.match(tutor, /useTutorModels/);
   assert.doesNotMatch(tutor, /ed-live-suggestions|为什么这里使用 mean|What does <- mean/);
   assert.match(tutorAnswer, /window\.setInterval/);
   assert.match(tutor, /useTutorAutoScroll\(tutorMessagesRef\)/);

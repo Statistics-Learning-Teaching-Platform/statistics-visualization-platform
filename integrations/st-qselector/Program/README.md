@@ -17,7 +17,7 @@ npm run dev
 
 ## AI 与课件解析
 
-默认 AI 地址通过 Cloudflare Tunnel 使用 `https://models.ljysvr.pp.ua/api/v1/chat`，也可用 `STAT_AI_API_URL` 覆盖。模型列表不写入配置或浏览器存储：用户点击扫描按钮时实时读取上游列表，只有上游报告为已加载的模型可以选择，其余统一显示为“未启用”。每次生成及重试前，服务端会再次确认所选模型仍处于已加载状态；模型被卸载或移除时要求重新扫描，不自动换用其他模型。所有 AI 路由都要求登录；知识提取和组卷仅允许教师或超级管理员调用。
+默认 AI 地址通过 Cloudflare Tunnel 使用 `https://models.ljysvr.pp.ua/api/v1/chat`，也可用 `STAT_AI_API_URL` 覆盖。模型列表不会写入项目配置；成功扫描后的列表和选择会在浏览器本地短期保留，用户仍可随时手动重新扫描。只有上游报告为已加载的模型可以选择，其余统一显示为“未启用”。每次生成及重试前，服务端会再次确认所选模型仍处于已加载状态；模型被卸载或移除时要求重新扫描，不自动换用其他模型。所有 AI 路由都要求登录；知识提取和组卷仅允许教师或超级管理员调用。
 
 部署前须在 LM Studio 的 Developer → Server Settings 中关闭 **Just in Time Model Loading**，才能满足网页请求绝不加载模型的要求。项目没有模型加载接口，但生成前的检查与推理请求之间仍可能发生上游卸载；原生 `/api/v1/chat` 支持自动加载，且没有文档化的单次请求禁用加载参数。仅改用实例 ID 也不能保证安全，因为实例 ID 可以与模型 key 相同。参见官方[服务端设置](https://lmstudio.ai/docs/developer/core/server/settings)、[聊天接口](https://lmstudio.ai/docs/developer/rest/chat)和[模型列表](https://lmstudio.ai/docs/developer/rest/list)。修改这一设置后应核验实际服务配置，再进行线上推理验收。
 

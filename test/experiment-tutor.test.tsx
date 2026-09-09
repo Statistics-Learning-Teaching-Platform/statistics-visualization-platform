@@ -9,6 +9,7 @@ import userEvent from "@testing-library/user-event";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { resetPortalSessionCache } from "../src/auth/session";
 import { buildTutorHistory } from "../src/code-learning/context";
+import { AI_MODEL_CACHE_STORAGE_KEY } from "../src/code-learning/tutorModels";
 import { ExperimentTutor } from "../src/shell/ExperimentTutor";
 
 const ACTIVE_MODEL = {
@@ -86,6 +87,44 @@ function modelsResponse(): Response {
   return jsonResponse({ models: [ACTIVE_MODEL, INACTIVE_MODEL] });
 }
 
+function tutorStreamResponse(answer: string, reasoning?: string): Response {
+  const records = [
+    ...(reasoning
+      ? [`event: reasoning.delta\ndata: ${JSON.stringify({ delta: reasoning })}\n\n`]
+      : []),
+    `event: message.delta\ndata: ${JSON.stringify({ delta: answer })}\n\n`,
+    "event: done\ndata: {}\n\n",
+  ];
+  return new Response(records.join(""), {
+    status: 200,
+    headers: { "Content-Type": "text/event-stream" },
+  });
+}
+
+function controlledTutorStream() {
+  const encoder = new TextEncoder();
+  let streamController!: ReadableStreamDefaultController<Uint8Array>;
+  const response = new Response(
+    new ReadableStream<Uint8Array>({
+      start(controller) {
+        streamController = controller;
+      },
+    }),
+    { status: 200, headers: { "Content-Type": "text/event-stream" } },
+  );
+  return {
+    response,
+    emit(type: "reasoning.delta" | "message.delta" | "done", data: object) {
+      streamController.enqueue(
+        encoder.encode(`event: ${type}\ndata: ${JSON.stringify(data)}\n\n`),
+      );
+    },
+    close() {
+      streamController.close();
+    },
+  };
+}
+
 function renderTutor(activeId = BASE_SNAPSHOT.appId) {
   return render(
     <LanguageProvider>
@@ -121,6 +160,7 @@ async function openScanAndSelect(user: ReturnType<typeof userEvent.setup>) {
 
 beforeEach(() => {
   vi.restoreAllMocks();
+  localStorage.clear();
   resetPortalSessionCache();
   setLanguage("zh");
   window.history.replaceState(null, "", "/experiments#/regression");
@@ -161,7 +201,7 @@ describe("ExperimentTutor", () => {
       if (url === "/st-qselector/api/auth/me") return Promise.resolve(authenticatedResponse());
       if (url === "/st-qselector/api/ai/models") return Promise.resolve(modelsResponse());
       if (url === "/st-qselector/api/ai/experiment-tutor") {
-        return Promise.resolve(jsonResponse({ answer: longAnswer }));
+        return Promise.resolve(tutorStreamResponse(longAnswer));
       }
       return Promise.reject(new Error(`Unexpected fetch: ${url}`));
     });
@@ -198,7 +238,7 @@ describe("ExperimentTutor", () => {
       if (url === "/st-qselector/api/auth/me") return Promise.resolve(authenticatedResponse());
       if (url === "/st-qselector/api/ai/models") return Promise.resolve(modelsResponse());
       if (url === "/st-qselector/api/ai/experiment-tutor") {
-        return Promise.resolve(jsonResponse({ answer: "不应发送" }));
+        return Promise.resolve(tutorStreamResponse("不应发送"));
       }
       return Promise.reject(new Error(`Unexpected fetch: ${url}`));
     });
@@ -209,7 +249,7 @@ describe("ExperimentTutor", () => {
     const select = await screen.findByRole("combobox", { name: "AI 模型" });
 
     expect(callsFor(fetchMock, "/st-qselector/api/ai/models")).toHaveLength(0);
-    expect(screen.getByText(/列表不会预存或自动刷新/)).toBeInTheDocument();
+    expect(screen.getByText("请点击右侧按钮扫描在线模型。")).toBeInTheDocument();
 
     const question = screen.getByRole("textbox", { name: "询问当前实验" });
     await user.type(question, "未选择模型时不应发送");
@@ -240,7 +280,7 @@ describe("ExperimentTutor", () => {
       if (url === "/st-qselector/api/auth/me") return Promise.resolve(authenticatedResponse());
       if (url === "/st-qselector/api/ai/models") return Promise.resolve(modelsResponse());
       if (url === "/st-qselector/api/ai/experiment-tutor") {
-        return Promise.resolve(jsonResponse({ answer: "已结合当前快照回答。" }));
+        return Promise.resolve(tutorStreamResponse("已结合当前快照回答。"));
       }
       return Promise.reject(new Error(`Unexpected fetch: ${url}`));
     });
@@ -291,12 +331,13 @@ describe("ExperimentTutor", () => {
   it("types reasoning first, collapses it on completion, and then types the answer", async () => {
     const reasoning = "先逐项检查当前参数、观测数据、图表趋势和拟合指标，再形成统计解释。";
     const answer = "当前散点趋势与正斜率一致。";
+    const stream = controlledTutorStream();
     vi.spyOn(globalThis, "fetch").mockImplementation((input) => {
       const url = String(input);
       if (url === "/st-qselector/api/auth/me") return Promise.resolve(authenticatedResponse());
       if (url === "/st-qselector/api/ai/models") return Promise.resolve(modelsResponse());
       if (url === "/st-qselector/api/ai/experiment-tutor") {
-        return Promise.resolve(jsonResponse({ answer, reasoning }));
+        return Promise.resolve(stream.response);
       }
       return Promise.reject(new Error(`Unexpected fetch: ${url}`));
     });
@@ -307,12 +348,27 @@ describe("ExperimentTutor", () => {
     await user.type(screen.getByRole("textbox", { name: "询问当前实验" }), "请解释拟合结果");
     await user.click(screen.getByRole("button", { name: "发送" }));
 
+    await act(async () => {
+      stream.emit("reasoning.delta", { delta: reasoning });
+      await Promise.resolve();
+    });
+
     const thinkingDisclosure = await screen.findByRole("button", { name: /AI 思考中/ });
     expect(thinkingDisclosure).toHaveAttribute("aria-expanded", "true");
-    expect(
-      thinkingDisclosure.closest("section")?.querySelector('[data-typing="true"]'),
-    ).toBeInTheDocument();
+    const streamingReasoning = thinkingDisclosure
+      .closest("section")
+      ?.querySelector(".ed-live-tutor-answer");
+    expect(streamingReasoning).toHaveTextContent(reasoning);
+    expect(streamingReasoning).toHaveAttribute("aria-hidden", "true");
+    expect(streamingReasoning).not.toHaveAttribute("data-typing");
     expect(screen.queryByText(answer)).not.toBeInTheDocument();
+
+    await act(async () => {
+      stream.emit("message.delta", { delta: answer });
+      stream.emit("done", {});
+      stream.close();
+      await Promise.resolve();
+    });
 
     expect(await screen.findByText(answer, {}, { timeout: 4_000 })).toBeInTheDocument();
     const finishedDisclosure = screen.getByRole("button", { name: /AI 思考过程.*展开/ });
@@ -352,6 +408,7 @@ describe("ExperimentTutor", () => {
     await waitFor(() => expect(select).toHaveValue(""));
     expect(screen.queryByRole("option", { name: /Qwen Loaded/ })).not.toBeInTheDocument();
     expect(screen.getByRole("button", { name: "扫描在线模型" })).toBeEnabled();
+    expect(localStorage.getItem(AI_MODEL_CACHE_STORAGE_KEY)).toBeNull();
   });
 
   it("cancels an answer when the same lab publishes changed parameters or outputs", async () => {
@@ -380,12 +437,97 @@ describe("ExperimentTutor", () => {
 
     await waitFor(() => expect(signal?.aborted).toBe(true));
     expect(await screen.findByRole("alert")).toHaveTextContent("实验参数或结果已更新");
+    const conversation = screen.getByRole("log", { name: "实验助手对话" });
+    expect(conversation.querySelectorAll('article[data-role="assistant"]')).toHaveLength(0);
+    expect(within(conversation).queryByText("思考中......")).not.toBeInTheDocument();
     await act(async () => {
-      answer.resolve(jsonResponse({ answer: "绝不能作为新快照答案显示" }));
+      answer.resolve(tutorStreamResponse("绝不能作为新快照答案显示"));
       await answer.promise;
     });
     expect(screen.queryByText("绝不能作为新快照答案显示")).not.toBeInTheDocument();
     expect(screen.getByRole("combobox", { name: "AI 模型" })).toHaveValue(ACTIVE_MODEL.key);
+  });
+
+  it("keeps a partial reasoning trace but ends it when the experiment snapshot changes", async () => {
+    const stream = controlledTutorStream();
+    const fetchMock = vi.spyOn(globalThis, "fetch").mockImplementation((input) => {
+      const url = String(input);
+      if (url === "/st-qselector/api/auth/me") return Promise.resolve(authenticatedResponse());
+      if (url === "/st-qselector/api/ai/models") return Promise.resolve(modelsResponse());
+      if (url === "/st-qselector/api/ai/experiment-tutor") {
+        return Promise.resolve(stream.response);
+      }
+      return Promise.reject(new Error(`Unexpected fetch: ${url}`));
+    });
+    const user = userEvent.setup();
+    renderTutor();
+    await openScanAndSelect(user);
+    await user.type(screen.getByRole("textbox", { name: "询问当前实验" }), "解释当前结果");
+    await user.click(screen.getByRole("button", { name: "发送" }));
+    const signal = callsFor(fetchMock, "/st-qselector/api/ai/experiment-tutor")[0][1]?.signal;
+    const partialReasoning = "先核对当前参数与图表，再继续解释。";
+
+    await act(async () => {
+      stream.emit("reasoning.delta", { delta: partialReasoning });
+      await Promise.resolve();
+    });
+    expect(await screen.findByText(partialReasoning)).toBeVisible();
+
+    act(() =>
+      publishExperimentSnapshot({
+        ...BASE_SNAPSHOT,
+        updatedAt: BASE_SNAPSHOT.updatedAt + 1,
+        outputs: { ...BASE_SNAPSHOT.outputs, headline: "更新后的结果" },
+      }),
+    );
+
+    await waitFor(() => expect(signal?.aborted).toBe(true));
+    expect(await screen.findByRole("alert")).toHaveTextContent("实验参数或结果已更新");
+    const conversation = screen.getByRole("log", { name: "实验助手对话" });
+    expect(conversation.querySelectorAll('article[data-role="assistant"]')).toHaveLength(1);
+    const disclosure = within(conversation).getByRole("button", {
+      name: /AI 思考过程.*展开/,
+    });
+    expect(within(conversation).queryByText("思考中......")).not.toBeInTheDocument();
+    await user.click(disclosure);
+    expect(within(conversation).getByText(partialReasoning)).toBeVisible();
+
+    await act(async () => {
+      stream.close();
+      await Promise.resolve();
+    });
+  });
+
+  it("settles a still-current tutor request when the transport throws AbortError", async () => {
+    let requestSignal: AbortSignal | null = null;
+    const fetchMock = vi.spyOn(globalThis, "fetch").mockImplementation((input, init) => {
+      const url = String(input);
+      if (url === "/st-qselector/api/auth/me") return Promise.resolve(authenticatedResponse());
+      if (url === "/st-qselector/api/ai/models") return Promise.resolve(modelsResponse());
+      if (url === "/st-qselector/api/ai/experiment-tutor") {
+        requestSignal = init?.signal ?? null;
+        return Promise.reject(
+          new DOMException("The connection ended unexpectedly", "AbortError"),
+        );
+      }
+      return Promise.reject(new Error(`Unexpected fetch: ${url}`));
+    });
+    const user = userEvent.setup();
+    renderTutor();
+    await openScanAndSelect(user);
+    await user.type(screen.getByRole("textbox", { name: "询问当前实验" }), "连接异常测试");
+    await user.click(screen.getByRole("button", { name: "发送" }));
+
+    expect(await screen.findByRole("alert")).toHaveTextContent(
+      "实验助手暂时无法回答，请稍后重试。",
+    );
+    const conversation = screen.getByRole("log", { name: "实验助手对话" });
+    expect((requestSignal as unknown as AbortSignal).aborted).toBe(false);
+    expect(conversation.querySelectorAll('article[data-role="assistant"]')).toHaveLength(1);
+    expect(within(conversation).queryByText("思考中......")).not.toBeInTheDocument();
+    await user.type(screen.getByRole("textbox", { name: "询问当前实验" }), "可以重新发送");
+    expect(screen.getByRole("button", { name: "发送" })).toBeEnabled();
+    fetchMock.mockRestore();
   });
 
   it("aborts and ignores stale answers when the active lab changes or the drawer closes", async () => {
@@ -428,12 +570,16 @@ describe("ExperimentTutor", () => {
     await waitFor(() => expect(firstSignal?.aborted).toBe(true));
     expect(screen.queryByRole("dialog", { name: "模拟实验助手" })).not.toBeInTheDocument();
     await act(async () => {
-      firstAnswer.resolve(jsonResponse({ answer: "绝不能出现的旧实验回答" }));
+      firstAnswer.resolve(tutorStreamResponse("绝不能出现的旧实验回答"));
       await firstAnswer.promise;
     });
     expect(screen.queryByText("绝不能出现的旧实验回答")).not.toBeInTheDocument();
 
-    await openScanAndSelect(user);
+    await user.click(screen.getByRole("button", { name: "实验助手" }));
+    expect(await screen.findByRole("combobox", { name: "AI 模型" })).toHaveValue(
+      ACTIVE_MODEL.key,
+    );
+    expect(callsFor(fetchMock, "/st-qselector/api/ai/models")).toHaveLength(1);
     expect(screen.getByText("置信区间实验", { selector: "strong" })).toBeInTheDocument();
     await user.type(screen.getByRole("textbox", { name: "询问当前实验" }), "关闭前的问题");
     await user.click(screen.getByRole("button", { name: "发送" }));
@@ -446,12 +592,14 @@ describe("ExperimentTutor", () => {
     await user.click(within(dialog).getByRole("button", { name: "关闭实验助手" }));
     expect(secondSignal?.aborted).toBe(true);
     await act(async () => {
-      secondAnswer.resolve(jsonResponse({ answer: "绝不能出现的关闭后回答" }));
+      secondAnswer.resolve(tutorStreamResponse("绝不能出现的关闭后回答"));
       await secondAnswer.promise;
     });
 
     await user.click(screen.getByRole("button", { name: "实验助手" }));
     expect(await screen.findByRole("dialog", { name: "模拟实验助手" })).toBeInTheDocument();
+    expect(screen.getByRole("combobox", { name: "AI 模型" })).toHaveValue(ACTIVE_MODEL.key);
+    expect(callsFor(fetchMock, "/st-qselector/api/ai/models")).toHaveLength(1);
     expect(screen.queryByText("绝不能出现的旧实验回答")).not.toBeInTheDocument();
     expect(screen.queryByText("绝不能出现的关闭后回答")).not.toBeInTheDocument();
   });

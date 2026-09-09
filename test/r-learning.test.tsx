@@ -3,6 +3,7 @@ import { act, fireEvent, render, screen, waitFor, within } from "@testing-librar
 import userEvent from "@testing-library/user-event";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import { resetPortalSessionCache } from "../src/auth/session";
+import { AI_MODEL_CACHE_STORAGE_KEY } from "../src/code-learning/tutorModels";
 import { rLessons } from "../src/r-learning/lessons";
 import { RLearningWorkspace } from "../src/r-learning/RLearningWorkspace";
 import { disposeWebRRuntime, resetRSession, runRCode } from "../src/r-learning/webrRuntime";
@@ -28,6 +29,20 @@ function renderWorkspace() {
 
 function courseNavigation() {
   return screen.getByRole("navigation", { name: "R 练习" });
+}
+
+function tutorStreamResponse(answer: string, reasoning?: string) {
+  const records = [
+    ...(reasoning
+      ? [`event: reasoning.delta\ndata: ${JSON.stringify({ delta: reasoning })}\n\n`]
+      : []),
+    `event: message.delta\ndata: ${JSON.stringify({ delta: answer })}\n\n`,
+    "event: done\ndata: {}\n\n",
+  ];
+  return new Response(records.join(""), {
+    status: 200,
+    headers: { "Content-Type": "text/event-stream" },
+  });
 }
 
 describe("R Coding Studio", () => {
@@ -181,11 +196,8 @@ describe("R Coding Studio", () => {
           { status: 200, headers: { "Content-Type": "application/json" } },
         );
       }
-      return new Response(
-        JSON.stringify({
-          answer: "The assignment is incomplete because the right-hand side is missing.",
-        }),
-        { status: 200, headers: { "Content-Type": "application/json" } },
+      return tutorStreamResponse(
+        "The assignment is incomplete because the right-hand side is missing.",
       );
     });
     renderWorkspace();
@@ -215,8 +227,7 @@ describe("R Coding Studio", () => {
     expect(sendButton).toBeEnabled();
     await userEvent.click(sendButton);
 
-    // The assistant answer reveals through a typewriter effect (~20ms per
-    // batch of characters), so allow a longer waitFor window than the default.
+    // The assistant answer is revealed by the real SSE token stream.
     const conversation = screen.getByRole("log", { name: "AI 助教对话" });
     expect(
       await within(conversation).findByText(/right-hand side is missing/, {}, { timeout: 5_000 }),
@@ -239,6 +250,7 @@ describe("R Coding Studio", () => {
     await waitFor(() => expect(modelSelect).toHaveValue(""));
     expect(within(modelSelect).queryByRole("option", { name: /Loaded model/ })).not.toBeInTheDocument();
     expect(scanButton).toBeEnabled();
+    expect(localStorage.getItem(AI_MODEL_CACHE_STORAGE_KEY)).toBeNull();
     expect(fetchMock.mock.calls.filter(([url]) => String(url).includes("/api/ai/models"))).toHaveLength(1);
     fetchMock.mockRestore();
   }, 15_000);
@@ -261,6 +273,99 @@ describe("R Coding Studio", () => {
     expect(fetchMock.mock.calls.every(([url]) => !String(url).includes("/api/ai/r-tutor"))).toBe(
       true,
     );
+    fetchMock.mockRestore();
+  });
+
+  it("removes an empty assistant placeholder when the tutor drawer aborts a request", async () => {
+    let resolveTutor!: (response: Response) => void;
+    let requestSignal: AbortSignal | null = null;
+    vi.spyOn(globalThis, "fetch").mockImplementation(async (input, init) => {
+      if (String(input).includes("/api/auth/me")) {
+        return new Response(JSON.stringify({ user: { username: "student01", role: "student" } }), {
+          status: 200,
+          headers: { "Content-Type": "application/json" },
+        });
+      }
+      if (String(input).includes("/api/ai/models")) {
+        return new Response(
+          JSON.stringify({
+            models: [
+              {
+                key: "loaded-model",
+                displayName: "Loaded model",
+                loaded: true,
+                supportsReasoning: true,
+              },
+            ],
+          }),
+          { status: 200, headers: { "Content-Type": "application/json" } },
+        );
+      }
+      requestSignal = init?.signal ?? null;
+      return new Promise<Response>((resolve) => {
+        resolveTutor = resolve;
+      });
+    });
+    renderWorkspace();
+
+    await userEvent.click(screen.getByRole("button", { name: /AI R 助教/ }));
+    await userEvent.click(screen.getByRole("button", { name: "扫描在线模型" }));
+    await userEvent.selectOptions(await screen.findByLabelText("AI 模型"), "loaded-model");
+    await userEvent.type(screen.getByRole("textbox", { name: /问报错原因/ }), "关闭前的问题");
+    await userEvent.click(screen.getByRole("button", { name: "发送" }));
+    await waitFor(() => expect(requestSignal).toBeDefined());
+
+    const dialog = screen.getByRole("dialog", { name: /AI R 助教/ });
+    await userEvent.click(within(dialog).getByRole("button", { name: "关闭 AI 助教" }));
+    expect((requestSignal as unknown as AbortSignal).aborted).toBe(true);
+
+    await act(async () => {
+      resolveTutor(tutorStreamResponse("关闭后不应写回的回答"));
+      await Promise.resolve();
+    });
+    await userEvent.click(screen.getByRole("button", { name: /AI R 助教/ }));
+    const conversation = await screen.findByRole("log", { name: "AI 助教对话" });
+    expect(conversation.querySelectorAll('article[data-role="assistant"]')).toHaveLength(0);
+    expect(within(conversation).getByText("关闭前的问题")).toBeInTheDocument();
+    expect(within(conversation).queryByText("思考中......")).not.toBeInTheDocument();
+    expect(within(conversation).queryByText("关闭后不应写回的回答")).not.toBeInTheDocument();
+  });
+
+  it("settles a still-current tutor request when the transport throws AbortError", async () => {
+    let requestSignal: AbortSignal | null = null;
+    const fetchMock = vi.spyOn(globalThis, "fetch").mockImplementation(async (input, init) => {
+      if (String(input).includes("/api/auth/me")) {
+        return new Response(JSON.stringify({ user: { username: "student01", role: "student" } }), {
+          status: 200,
+          headers: { "Content-Type": "application/json" },
+        });
+      }
+      if (String(input).includes("/api/ai/models")) {
+        return new Response(
+          JSON.stringify({
+            models: [{ key: "loaded-model", displayName: "Loaded model", loaded: true }],
+          }),
+          { status: 200, headers: { "Content-Type": "application/json" } },
+        );
+      }
+      requestSignal = init?.signal ?? null;
+      throw new DOMException("The connection ended unexpectedly", "AbortError");
+    });
+    renderWorkspace();
+
+    await userEvent.click(screen.getByRole("button", { name: /AI R 助教/ }));
+    await userEvent.click(screen.getByRole("button", { name: "扫描在线模型" }));
+    await userEvent.selectOptions(await screen.findByLabelText("AI 模型"), "loaded-model");
+    await userEvent.type(screen.getByRole("textbox", { name: /问报错原因/ }), "连接异常测试");
+    await userEvent.click(screen.getByRole("button", { name: "发送" }));
+
+    const conversation = screen.getByRole("log", { name: "AI 助教对话" });
+    expect(
+      await within(conversation).findByText("AI 助教暂时无法连接，请稍后再试。"),
+    ).toBeInTheDocument();
+    expect((requestSignal as unknown as AbortSignal).aborted).toBe(false);
+    expect(conversation.querySelectorAll('article[data-role="assistant"]')).toHaveLength(1);
+    expect(within(conversation).queryByText("AI 正在回答…")).not.toBeInTheDocument();
     fetchMock.mockRestore();
   });
 

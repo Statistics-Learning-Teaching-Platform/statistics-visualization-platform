@@ -6,6 +6,7 @@ import { basicSetup } from "codemirror";
 import { r } from "codemirror-lang-r";
 import type { CSSProperties } from "react";
 import { useEffect, useRef } from "react";
+import "./code-mirror-editor.css";
 
 type Props = {
   id: string;

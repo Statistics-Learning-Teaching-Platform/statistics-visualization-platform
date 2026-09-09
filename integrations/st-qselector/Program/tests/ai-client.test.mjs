@@ -28,6 +28,7 @@ const hooks = registerHooks({
 const {
   callStatAi,
   callStatAiWithReasoning,
+  streamStatAiWithReasoning,
   StatAiContextBudgetError,
 } = await import("../src/lib/ai-client.ts");
 hooks.deregister();
@@ -109,4 +110,169 @@ test("inference keeps exact namespaced keys and sends only supported reasoning c
   capability = undefined;
   await callStatAiWithReasoning(options);
   assert.equal("reasoning" in bodies[3], false);
+});
+
+function chunkedSse(records, chunkSizes = [1, 2, 5, 3]) {
+  const bytes = new TextEncoder().encode(records.join(""));
+  return new ReadableStream({
+    start(controller) {
+      let offset = 0;
+      let index = 0;
+      while (offset < bytes.byteLength) {
+        const size = chunkSizes[index++ % chunkSizes.length];
+        controller.enqueue(bytes.slice(offset, offset + size));
+        offset += size;
+      }
+      controller.close();
+    },
+  });
+}
+
+function appEvents(text) {
+  return text
+    .trim()
+    .split(/\n\n/)
+    .map((record) => {
+      const event = record.match(/^event: ([^\n]+)$/m)?.[1];
+      const data = record.match(/^data: ([^\n]+)$/m)?.[1];
+      return { event, data: data ? JSON.parse(data) : undefined };
+    });
+}
+
+test("tutor streaming maps reasoning and message deltas without duplicating chat.end", async (t) => {
+  const bodies = [];
+  t.mock.method(globalThis, "fetch", async (_url, init) => {
+    if (init.method === "GET") return catalogue(true, { allowed_options: ["on"], default: "on" });
+    bodies.push(JSON.parse(init.body));
+    const records = [
+      "event: chat.start\ndata: {\"type\":\"chat.start\"}\n\n",
+      "event: reasoning.start\ndata: {\"type\":\"reasoning.start\"}\n\n",
+      `event: reasoning.delta\ndata: ${JSON.stringify({ type: "reasoning.delta", content: "先想" })}\n\n`,
+      `event: message.delta\ndata: ${JSON.stringify({ type: "message.delta", content: "答" })}\n\n`,
+      `event: chat.end\ndata: ${JSON.stringify({ type: "chat.end", result: { output: [
+        { type: "reasoning", content: "先想" },
+        { type: "message", content: "答" },
+      ] } })}\n\n`,
+    ];
+    return new Response(chunkedSse(records));
+  });
+  const stream = await streamStatAiWithReasoning({ ...options, maxOutputTokens: 256 });
+  const events = appEvents(await new Response(stream).text());
+  assert.equal(bodies[0].stream, true);
+  assert.deepEqual(events.map(({ event }) => event), [
+    "reasoning.delta",
+    "message.delta",
+    "done",
+  ]);
+  assert.deepEqual(events.map(({ data }) => data.delta).filter(Boolean), ["先想", "答"]);
+});
+
+test("tutor streaming works without reasoning and only supplements a missing aggregate suffix", async (t) => {
+  const bodies = [];
+  t.mock.method(globalThis, "fetch", async (_url, init) => {
+    if (init.method === "GET") return catalogue(true);
+    bodies.push(JSON.parse(init.body));
+    return new Response(chunkedSse([
+      `event: message.delta\ndata: ${JSON.stringify({ type: "message.delta", content: "答" })}\n\n`,
+      `event: chat.end\ndata: ${JSON.stringify({ type: "chat.end", result: { output: [
+        { type: "message", content: "答案完整" },
+      ] } })}\n\n`,
+    ]));
+  });
+  const stream = await streamStatAiWithReasoning(options);
+  const events = appEvents(await new Response(stream).text());
+  assert.equal("reasoning" in bodies[0], false);
+  assert.deepEqual(events.map(({ event }) => event), ["message.delta", "message.delta", "done"]);
+  assert.deepEqual(events.map(({ data }) => data.delta).filter(Boolean), ["答", "案完整"]);
+});
+
+test("tutor streaming reports upstream errors and truncated streams as app errors", async (t) => {
+  let mode = "error";
+  t.mock.method(globalThis, "fetch", async (_url, init) => {
+    if (init.method === "GET") return catalogue(true);
+    const record = mode === "error"
+      ? [
+          `event: error\ndata: ${JSON.stringify({ type: "error", error: { message: "upstream failed" } })}\n\n`,
+          `event: chat.end\ndata: ${JSON.stringify({ type: "chat.end", result: { output: [
+            { type: "message", content: "must not escape after an error" },
+          ] } })}\n\n`,
+        ].join("")
+      : "event: message.start\ndata: {\"type\":\"message.start\"}\n\n";
+    return new Response(record);
+  });
+  let stream = await streamStatAiWithReasoning(options);
+  let events = appEvents(await new Response(stream).text());
+  assert.equal(events.at(-1)?.event, "error");
+  assert.equal(events.some(({ event }) => event === "done"), false);
+  assert.match(events.at(-1)?.data.message, /upstream failed/);
+  mode = "truncated";
+  stream = await streamStatAiWithReasoning(options);
+  events = appEvents(await new Response(stream).text());
+  assert.equal(events.at(-1)?.event, "error");
+  assert.match(events.at(-1)?.data.message, /ended before completion/);
+});
+
+test("cancelling a tutor stream cancels the upstream reader", async (t) => {
+  let upstreamCancellation;
+  t.mock.method(globalThis, "fetch", async (_url, init) => {
+    if (init.method === "GET") return catalogue(true);
+    return new Response(new ReadableStream({
+      start(controller) {
+        controller.enqueue(new TextEncoder().encode(
+          `event: message.delta\ndata: ${JSON.stringify({ type: "message.delta", content: "partial" })}\n\n`,
+        ));
+      },
+      cancel(reason) {
+        upstreamCancellation = reason;
+      },
+    }));
+  });
+  const stream = await streamStatAiWithReasoning(options);
+  const reader = stream.getReader();
+  assert.equal((await reader.read()).done, false);
+  await reader.cancel("learner left");
+  assert.equal(upstreamCancellation, "learner left");
+});
+
+test("aborting a tutor request actively cancels an upstream body that ignores the fetch signal", async (t) => {
+  const request = new AbortController();
+  let upstreamCancellation;
+  t.mock.method(globalThis, "fetch", async (_url, init) => {
+    if (init.method === "GET") return catalogue(true);
+    return new Response(new ReadableStream({
+      cancel(reason) {
+        upstreamCancellation = reason;
+      },
+    }));
+  });
+  const stream = await streamStatAiWithReasoning({ ...options, signal: request.signal });
+  const reader = stream.getReader();
+  const pendingRead = reader.read();
+  request.abort();
+  await assert.rejects(pendingRead, (error) => error === request.signal.reason);
+  assert.equal(upstreamCancellation, request.signal.reason);
+});
+
+test("an over-limit upstream stream is cancelled and cannot report success", async (t) => {
+  let upstreamCancellations = 0;
+  const oversized = Array.from({ length: 9 }, () =>
+    `event: chat.start\ndata: ${JSON.stringify({ type: "chat.start", padding: "x".repeat(250_000) })}\n\n`
+  ).join("");
+  t.mock.method(globalThis, "fetch", async (_url, init) => {
+    if (init.method === "GET") return catalogue(true);
+    return new Response(new ReadableStream({
+      start(controller) {
+        controller.enqueue(new TextEncoder().encode(oversized));
+      },
+      cancel() {
+        upstreamCancellations += 1;
+      },
+    }));
+  });
+  const stream = await streamStatAiWithReasoning(options);
+  const events = appEvents(await new Response(stream).text());
+  assert.equal(events.at(-1)?.event, "error");
+  assert.match(events.at(-1)?.data.message, /too large/);
+  assert.equal(events.some(({ event }) => event === "done"), false);
+  assert.equal(upstreamCancellations, 1);
 });

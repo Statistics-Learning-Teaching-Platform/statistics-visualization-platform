@@ -128,16 +128,26 @@ describe("warm editorial StatMind demo", () => {
   });
 
   it.each([
-    ["R", EditorialRPage, "[1] 80.8"],
-    ["Python", EditorialPythonPage, /A\s+82\.4/],
-  ])("runs the %s notebook lesson and reveals its explanation", async (_, Page, output) => {
-    const user = userEvent.setup();
-    render(<Page />);
+    ["R", "r", EditorialRPage, "[1] 80.8"],
+    ["Python", "python", EditorialPythonPage, /A\s+82\.4/],
+  ])(
+    "runs the %s notebook lesson and reveals its explanation",
+    async (_, language, Page, output) => {
+      const user = userEvent.setup();
+      const view = render(<Page />);
 
-    await user.click(screen.getByRole("button", { name: "运行示例" }));
-    expect(screen.getByText("运行成功")).toBeInTheDocument();
-    expect(screen.getAllByText(output).length).toBeGreaterThan(0);
-    expect(screen.getByText("自动检查通过")).toBeInTheDocument();
-    expect(screen.getByRole("button", { name: /本课演示已完成/ })).toBeDisabled();
-  });
+      expect(screen.getByRole("textbox", { name: "代码编辑器" })).toHaveClass("cm-content");
+      expect(view.container.querySelector(".ed-code-editor")).toHaveAttribute(
+        "data-language",
+        language,
+      );
+      expect(view.container.querySelector(".cm-editor")).toBeInTheDocument();
+
+      await user.click(screen.getByRole("button", { name: "运行示例" }));
+      expect(screen.getByText("运行成功")).toBeInTheDocument();
+      expect(screen.getAllByText(output).length).toBeGreaterThan(0);
+      expect(screen.getByText("自动检查通过")).toBeInTheDocument();
+      expect(screen.getByRole("button", { name: /本课演示已完成/ })).toBeDisabled();
+    },
+  );
 });

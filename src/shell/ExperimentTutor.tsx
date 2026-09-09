@@ -14,6 +14,7 @@ import {
   TutorThinkingIndicator,
   useTutorAutoScroll,
 } from "../code-learning/TutorAnswer";
+import { consumeTutorStream, TutorStreamError } from "../code-learning/tutor-stream";
 import { isSelectableTutorModel, useTutorModels } from "../code-learning/tutorModels";
 import "../code-learning/editorial-learning-workspace.css";
 
@@ -45,6 +46,16 @@ function isAbortError(error: unknown): boolean {
   );
 }
 
+function settleInterruptedTutorMessages(
+  messages: EditorialTutorMessage[],
+): EditorialTutorMessage[] {
+  return messages.flatMap((message) => {
+    if (message.role !== "assistant" || message.streaming !== true) return [message];
+    if (!message.content.trim() && !message.reasoning?.trim()) return [];
+    return [{ ...message, streaming: false, reasoningDone: true }];
+  });
+}
+
 export function ExperimentTutor({ activeId }: ExperimentTutorProps) {
   const language = useLanguage();
   const session = usePortalSession();
@@ -61,6 +72,7 @@ export function ExperimentTutor({ activeId }: ExperimentTutorProps) {
     hasScanned,
     select,
     reset: resetModels,
+    invalidate: invalidateModels,
     rescan,
   } = useTutorModels();
   const launcherRef = useRef<HTMLButtonElement>(null);
@@ -79,6 +91,12 @@ export function ExperimentTutor({ activeId }: ExperimentTutorProps) {
   const selectedModel = useMemo(
     () => models.find((model) => model.key === selected && isSelectableTutorModel(model)),
     [models, selected],
+  );
+  const hasStreamingContent = messages.some(
+    (message) =>
+      message.role === "assistant" &&
+      message.streaming &&
+      Boolean(message.content || message.reasoning),
   );
   const [, fallbackTitle] = getVisualizerLabel(activeId, language);
   const title = snapshot?.experiment.title ?? fallbackTitle;
@@ -140,6 +158,7 @@ export function ExperimentTutor({ activeId }: ExperimentTutorProps) {
     requestAbortRef.current?.abort();
     requestAbortRef.current = null;
     requestBusyRef.current = false;
+    setMessages(settleInterruptedTutorMessages);
     setStatus("error");
     setErrorMessage(
       isChinese
@@ -188,10 +207,25 @@ export function ExperimentTutor({ activeId }: ExperimentTutorProps) {
       role: "user",
       content: question,
     };
-    setMessages((current) => [...current, userMessage]);
+    const assistantId = createMessageId();
+    setMessages((current) => [
+      ...current,
+      userMessage,
+      {
+        id: assistantId,
+        role: "assistant",
+        content: "",
+        reasoning: "",
+        streaming: true,
+        reasoningDone: false,
+      },
+    ]);
     setPrompt("");
     setErrorMessage("");
     setStatus("asking");
+    let receivedAnswer = false;
+    let completed = false;
+    let staleModelSelection = false;
 
     try {
       const context = experimentRequestSnapshot(requestSnapshot);
@@ -207,48 +241,96 @@ export function ExperimentTutor({ activeId }: ExperimentTutorProps) {
           history,
         }),
       });
-      const payload = (await response.json().catch(() => ({}))) as {
-        answer?: string;
-        reasoning?: string;
-        error?: string;
-      };
-      if (!isCurrentRequest()) return;
-      if (!response.ok || !payload.answer?.trim()) {
-        // A 409 means the model changed between the live scan and inference.
-        // Discard the entire snapshot; only another manual scan may authorize
-        // a new selection, and the UI never guesses a replacement model.
-        if (response.status === 409) resetModels();
-        throw new Error(
-          payload.error ??
-            (response.status === 401
-              ? isChinese
-                ? "登录状态已失效，请重新登录。"
-                : "Your session expired. Please sign in again."
-              : isChinese
-                ? "实验助手暂时无法回答，请稍后重试。"
-                : "The lab tutor could not answer. Please try again."),
-        );
-      }
-      setMessages((current) => [
-        ...current,
-        {
-          id: createMessageId(),
-          role: "assistant",
-          content: payload.answer as string,
-          reasoning: payload.reasoning,
-        },
-      ]);
-      setStatus("idle");
-    } catch (error) {
-      if (isAbortError(error) || !isCurrentRequest()) {
+      if (!isCurrentRequest()) {
+        await response.body?.cancel();
         return;
       }
-      setErrorMessage(
-        error instanceof Error
-          ? error.message
-          : isChinese
+      staleModelSelection = response.status === 409;
+      await consumeTutorStream(response, (event) => {
+        if (!isCurrentRequest()) return;
+        if (event.type === "reasoning.delta") {
+          setMessages((current) =>
+            current.map((message) =>
+              message.id === assistantId
+                ? {
+                    ...message,
+                    reasoning: `${message.reasoning ?? ""}${event.delta}`,
+                    streaming: true,
+                    reasoningDone: false,
+                  }
+                : message,
+            ),
+          );
+        } else if (event.type === "message.delta") {
+          receivedAnswer = true;
+          setMessages((current) =>
+            current.map((message) =>
+              message.id === assistantId
+                ? {
+                    ...message,
+                    content: `${message.content}${event.delta}`,
+                    streaming: true,
+                    reasoningDone: true,
+                  }
+                : message,
+            ),
+          );
+        } else if (event.type === "done") {
+          completed = true;
+          setMessages((current) =>
+            current.map((message) =>
+              message.id === assistantId
+                ? { ...message, streaming: false, reasoningDone: true }
+                : message,
+            ),
+          );
+          setStatus("idle");
+        }
+      });
+      if (!completed || !receivedAnswer) {
+        throw new Error(
+          isChinese
             ? "实验助手暂时无法回答，请稍后重试。"
             : "The lab tutor could not answer. Please try again.",
+        );
+      }
+    } catch (error) {
+      // Expected local cancellation invalidates the request first. A still-
+      // current AbortError is a transport failure and must settle the turn.
+      if (!isCurrentRequest()) return;
+      const streamStatus = error instanceof TutorStreamError ? error.status : undefined;
+      // A 409 means the model changed between the live scan and inference.
+      // Discard the entire snapshot; only another manual scan may authorize
+      // a new selection, and the UI never guesses a replacement model.
+      if (streamStatus === 409 || staleModelSelection) invalidateModels();
+      const message =
+        streamStatus === 401
+          ? isChinese
+            ? "登录状态已失效，请重新登录。"
+            : "Your session expired. Please sign in again."
+          : isAbortError(error)
+            ? isChinese
+              ? "实验助手暂时无法回答，请稍后重试。"
+              : "The lab tutor could not answer. Please try again."
+          : error instanceof TutorStreamError || error instanceof Error
+            ? error.message
+            : isChinese
+              ? "实验助手暂时无法回答，请稍后重试。"
+              : "The lab tutor could not answer. Please try again.";
+      setErrorMessage(
+        message,
+      );
+      setMessages((current) =>
+        current.map((item) =>
+          item.id === assistantId
+            ? {
+                ...item,
+                content: item.content || message,
+                streaming: false,
+                reasoningDone: true,
+              }
+            : item,
+        ),
       );
       setStatus("error");
     } finally {
@@ -264,12 +346,17 @@ export function ExperimentTutor({ activeId }: ExperimentTutorProps) {
       return isChinese ? "正在实时扫描上游模型…" : "Scanning upstream models live…";
     }
     if (modelsStatus === "error") {
+      if (models.length) {
+        return isChinese
+          ? "重新扫描失败；可点击按钮重试。"
+          : "Rescan failed. Try again when ready.";
+      }
       return isChinese ? "在线模型获取失败，请点击按钮重试。" : "Model scan failed. Try again.";
     }
     if (!hasScanned) {
       return isChinese
-        ? "点击右侧按钮手动扫描；列表不会预存或自动刷新。"
-        : "Scan manually with the button; the list is never preloaded or cached.";
+        ? "请点击右侧按钮扫描在线模型。"
+        : "Scan the online models with the button.";
     }
     if (!models.length) {
       return isChinese ? "本次扫描未发现在线语言模型。" : "No language models were found.";
@@ -280,8 +367,8 @@ export function ExperimentTutor({ activeId }: ExperimentTutorProps) {
         : "All scanned models are inactive, so no question can be sent.";
     }
     return isChinese
-      ? "请选择一个已启用模型；未启用模型仅供查看。"
-      : "Choose an active model; inactive models are shown for reference only.";
+      ? "请选择模型；未启用模型仅供查看，可随时重新扫描。"
+      : "Choose a model; inactive models are view-only and you can rescan anytime.";
   })();
 
   return (
@@ -443,7 +530,7 @@ export function ExperimentTutor({ activeId }: ExperimentTutorProps) {
                     </article>
                   ))
                 )}
-                {status === "asking" ? (
+                {status === "asking" && !hasStreamingContent ? (
                   selectedModel?.supportsReasoning ? (
                     <TutorThinkingIndicator language={language} />
                   ) : (

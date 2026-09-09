@@ -34,7 +34,7 @@ test("experiment tutor has bounded traffic, body, generation, and concurrency", 
 
 test("experiment tutor uses reasoning with the live loaded-model guard", () => {
   const client = fs.readFileSync(path.join(root, "src/lib/ai-client.ts"), "utf8");
-  assert.match(route, /callStatAiWithReasoning\(\{/);
+  assert.match(route, /streamStatAiWithReasoning\(\{/);
   assert.match(route, /const model = resolveStatAiModel\(body\.model\)/);
   assert.match(route, /model,\s*maxOutputTokens:\s*EXPERIMENT_TUTOR_MAX_OUTPUT_TOKENS/);
   assert.match(client, /await listStatAiModels\(signal\)/);
@@ -42,6 +42,17 @@ test("experiment tutor uses reasoning with the live loaded-model guard", () => {
   assert.doesNotMatch(client, /models\.find\(\(model\) => model\.loaded\)/);
   assert.match(client, /StatAiModelSelectionError\(409/);
   assert.doesNotMatch(client, /\/api\/v1\/(?:load|models\/load)/);
+});
+
+test("experiment tutor exposes only the bounded application SSE envelope", () => {
+  assert.match(route, /text\/event-stream/);
+  assert.match(route, /withConcurrencyLeaseStream\(\{/);
+  const client = fs.readFileSync(path.join(root, "src/lib/ai-client.ts"), "utf8");
+  assert.match(client, /stream:\s*true/);
+  assert.match(client, /reasoning\.delta/);
+  assert.match(client, /message\.delta/);
+  assert.match(client, /type:\s*"done"/);
+  assert.match(client, /MAX_AI_EVENT_BYTES/);
 });
 
 test("experiment tutor does not accept a client-controlled prompt", () => {

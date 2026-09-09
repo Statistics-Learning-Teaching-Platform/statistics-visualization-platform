@@ -4,6 +4,7 @@ export interface AiModelOption {
   quantization: string;
   params: string;
   loaded: boolean;
+  supportsReasoning?: boolean;
 }
 
 export function isSelectableAiModel(model: AiModelOption): boolean {

@@ -1,5 +1,6 @@
 import { ArrowRightIcon, CheckIcon, PlayIcon, RotateCcwIcon } from "lucide-react";
 import { useState } from "react";
+import { CodeMirrorEditor } from "@/code-learning/CodeMirrorEditor";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -125,15 +126,24 @@ function EditorialLearningIdePage({ config }: { config: IdeConfig }) {
               </div>
               <small>{config.runtime}</small>
             </header>
-            <label htmlFor={`${config.kind}-editor`}>代码编辑器</label>
-            <textarea
+            <label
+              id={`${config.kind}-editor-label`}
+              onClick={() => document.getElementById(`${config.kind}-editor`)?.focus()}
+            >
+              代码编辑器
+            </label>
+            <CodeMirrorEditor
               id={`${config.kind}-editor`}
+              labelId={`${config.kind}-editor-label`}
+              language={config.kind}
+              label="代码编辑器"
+              minHeight={260}
               value={code}
-              onChange={(event) => {
-                setCode(event.target.value);
+              onChange={(value) => {
+                setCode(value);
                 setHasRun(false);
               }}
-              spellCheck="false"
+              onRun={runExample}
             />
             <footer>
               <Button onClick={runExample}>
@@ -239,9 +249,7 @@ function EditorialLearningIdePage({ config }: { config: IdeConfig }) {
             </label>
           </section>
           <Button
-            render={
-              <a href={config.realHref} aria-label={`打开真实${config.title}`} />
-            }
+            render={<a href={config.realHref} aria-label={`打开真实${config.title}`} />}
             nativeButton={false}
             variant="outline"
           >
