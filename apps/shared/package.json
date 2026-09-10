@@ -5,6 +5,7 @@
   "type": "module",
   "exports": {
     ".": "./index.ts",
+    "./ai/experimentTelemetry": "./ai/experimentTelemetry.ts",
     "./i18n": "./i18n/index.tsx",
     "./i18n/runtime-dictionary": "./i18n/runtime-dictionary.ts",
     "./random": "./random.ts",
@@ -21,7 +22,9 @@
     "./styles/tokens": "./styles/tokens.css",
     "./styles/tokens.css": "./styles/tokens.css",
     "./styles/workspace": "./styles/workspace.css",
-    "./styles/workspace.css": "./styles/workspace.css"
+    "./styles/workspace.css": "./styles/workspace.css",
+    "./styles/wals-custom": "./styles/wals-custom.css",
+    "./styles/wals-custom.css": "./styles/wals-custom.css"
   },
   "types": "./index.ts"
 }

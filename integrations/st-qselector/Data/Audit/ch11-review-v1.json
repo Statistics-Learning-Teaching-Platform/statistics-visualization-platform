@@ -3,9 +3,50 @@
   "pack_id": "ch11-review-v1",
   "chapter": "Ch11",
   "baseline_records": 2,
-  "summary": {"reviewed_and_retained": 2, "deleted": 0},
+  "summary": {
+    "reviewed_and_retained": 2,
+    "deleted": 0
+  },
   "records": [
-    {"id":"ch11_q01","chapter":"Ch11","decision":"rewrite","question_type":"综合题","difficulty":2,"keywords":["linear regression","correlation"],"formula_refs":[],"data_refs":[],"clean_question":"For five Monday evening shifts, let $x$ be the number of staff and $y$ the number of abusive customers:\n\n| Staff $x$ | 3 | 4 | 2 | 6 | 2 |\n|---|---:|---:|---:|---:|---:|\n| Abusive customers $y$ | 10 | 11 | 13 | 15 | 10 |\n\na. Fit the least-squares regression line for predicting $y$ from $x$.\n\nb. Predict $y$ when five staff work.\n\nc. Find the sample correlation coefficient.","clean_answer":"The least-squares line is $\\hat y=8.946+0.839x$. For five staff, $\\hat y=8.946+0.839(5)=13.143$ abusive customers. The sample correlation is $r=0.6478$, indicating a moderate positive linear association."},
-    {"id":"ch11_q02","chapter":"Ch11","decision":"rewrite","question_type":"简答题","difficulty":2,"keywords":["correlation","linear association"],"formula_refs":[],"data_refs":[],"clean_question":"The ages (years) and second-hand prices (in USD 100) of 11 cars are:\n\n| Age | 5 | 7 | 6 | 6 | 5 | 4 | 7 | 6 | 5 | 5 | 2 |\n|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|\n| Price | 80 | 57 | 58 | 55 | 70 | 88 | 43 | 60 | 69 | 63 | 118 |\n\nFind the sample correlation and interpret it.","clean_answer":"The sample correlation is $r\\approx-0.9570$. This very strong negative linear association means that older cars tend to have lower second-hand prices; correlation alone does not prove causation."}
-  ]
+    {
+      "id": "ch11_q01",
+      "chapter": "Ch11",
+      "decision": "rewrite",
+      "question_type": "综合题",
+      "difficulty": 2,
+      "keywords": [
+        "linear regression",
+        "correlation"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "clean_question": "For five Monday evening shifts, let $x$ be the number of staff and $y$ the number of abusive customers:\n\n| Staff $x$ | 3 | 4 | 2 | 6 | 2 |\n|---|---:|---:|---:|---:|---:|\n| Abusive customers $y$ | 10 | 11 | 13 | 15 | 10 |\n\na. Fit the least-squares regression line for predicting $y$ from $x$.\n\nb. Predict $y$ when five staff work.\n\nc. Find the sample correlation coefficient.",
+      "clean_answer": "The least-squares line is $\\hat y=8.946+0.839x$. For five staff, $\\hat y=8.946+0.839(5)=13.143$ abusive customers. The sample correlation is $r=0.6478$, indicating a moderate positive linear association.",
+      "expected_question_hash": "cfbe33bbccda77bd26955a8131437e7e9826a403272efad5f479a8c14303deea",
+      "expected_answer_hash": "b5067f3d09a3317a4e908b545bf617abac7f69e750d84095c1f99fd7d1cca44c",
+      "reviewed_question_hash": "bdd50939b6050265d532146a9ee5ee5d08d9dc0936cac027341c0e395c2a7d52",
+      "reviewed_answer_hash": "f60b2c2375efcae04f6101731b5ca3efd422735a090d14a573b0101d66e52976"
+    },
+    {
+      "id": "ch11_q02",
+      "chapter": "Ch11",
+      "decision": "rewrite",
+      "question_type": "简答题",
+      "difficulty": 2,
+      "keywords": [
+        "correlation",
+        "linear association"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "clean_question": "The ages (years) and second-hand prices (in USD 100) of 11 cars are:\n\n| Age | 5 | 7 | 6 | 6 | 5 | 4 | 7 | 6 | 5 | 5 | 2 |\n|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|\n| Price | 80 | 57 | 58 | 55 | 70 | 88 | 43 | 60 | 69 | 63 | 118 |\n\nFind the sample correlation and interpret it.",
+      "clean_answer": "The sample correlation is $r\\approx-0.9570$. This very strong negative linear association means that older cars tend to have lower second-hand prices; correlation alone does not prove causation.",
+      "expected_question_hash": "73d4faae5ab20e239c42a2f8cad8f25867de3de427b9df5aea76649c96ddfde9",
+      "expected_answer_hash": "08b15cd239ae3139b671328b993489cc61a51b48cf1f45a91c7553717ba956e3",
+      "reviewed_question_hash": "37410337d1ab6de833df2a5f4d61a5be8e15b57521d4dd0d3f65fa28f315ccf3",
+      "reviewed_answer_hash": "bce4991004bbfe19afac1d1ad1192172a9bcb76b1e1dd1acd3f9f06aa8811a3e"
+    }
+  ],
+  "hash_algorithm": "sha256",
+  "baseline_commit": "e6539f78488c8ae598bde636359eed3d9a2783e9"
 }

@@ -1,5 +1,5 @@
-import { describe, expect, it } from "vitest";
 import { getPlatformCopy } from "@stats-viz/shared/i18n";
+import { describe, expect, it } from "vitest";
 
 describe("platform language copy", () => {
   it("uses Chinese labels for all platform groups in zh mode", () => {

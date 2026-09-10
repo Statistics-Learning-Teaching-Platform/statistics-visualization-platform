@@ -1,4 +1,7 @@
-import { ExperimentMetric as ExperimentMetricCard, type ExperimentMetricProps } from "./ExperimentMetric";
+import {
+  ExperimentMetric as ExperimentMetricCard,
+  type ExperimentMetricProps,
+} from "./ExperimentMetric";
 
 export type { MetricSemantics } from "./ExperimentMetric";
 
@@ -6,10 +9,23 @@ export interface ExperimentMetricConfig extends Omit<ExperimentMetricProps, "met
   key?: string;
 }
 
-export function ExperimentMetricStrip({ metrics, ariaLabel, maxVisible = 5 }: { metrics: ExperimentMetricConfig[]; ariaLabel?: string; maxVisible?: number }) {
+export function ExperimentMetricStrip({
+  metrics,
+  ariaLabel,
+  maxVisible = 5,
+}: {
+  metrics: ExperimentMetricConfig[];
+  ariaLabel?: string;
+  maxVisible?: number;
+}) {
   const visible = metrics.slice(0, maxVisible);
   return (
-    <section className="metrics-grid experiment-metric-strip lab-metric-strip" aria-label={ariaLabel} data-metric-grid="true" data-metric-count={visible.length}>
+    <section
+      className="metrics-grid experiment-metric-strip lab-metric-strip"
+      aria-label={ariaLabel}
+      data-metric-grid="true"
+      data-metric-count={visible.length}
+    >
       {visible.map((metric, index) => (
         <ExperimentMetricCard
           key={metric.key ?? `${String(metric.label)}-${index}`}

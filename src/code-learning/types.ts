@@ -2,7 +2,10 @@ import type { LocalizedText } from "../course/types";
 
 export type CodeLanguage = "r" | "python";
 
-export type CodeLesson<Unit extends string = string, Language extends CodeLanguage = CodeLanguage> = {
+export type CodeLesson<
+  Unit extends string = string,
+  Language extends CodeLanguage = CodeLanguage,
+> = {
   id: string;
   topicId: string;
   caseId?: string;

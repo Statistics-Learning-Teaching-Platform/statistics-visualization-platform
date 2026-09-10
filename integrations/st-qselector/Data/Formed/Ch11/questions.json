@@ -14,7 +14,23 @@
       "formula_refs": [],
       "data_refs": [],
       "review_status": "independently solved and reviewed",
-      "audit_pack": "ch11-review-v1"
+      "audit_pack": "ch11-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch11-review-v1",
+        "question_hash": "bdd50939b6050265d532146a9ee5ee5d08d9dc0936cac027341c0e395c2a7d52",
+        "answer_hash": "f60b2c2375efcae04f6101731b5ca3efd422735a090d14a573b0101d66e52976",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
     },
     {
       "id": "ch11_q02",
@@ -29,7 +45,23 @@
       "formula_refs": [],
       "data_refs": [],
       "review_status": "independently solved and reviewed",
-      "audit_pack": "ch11-review-v1"
+      "audit_pack": "ch11-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch11-review-v1",
+        "question_hash": "37410337d1ab6de833df2a5f4d61a5be8e15b57521d4dd0d3f65fa28f315ccf3",
+        "answer_hash": "bce4991004bbfe19afac1d1ad1192172a9bcb76b1e1dd1acd3f9f06aa8811a3e",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
     }
   ]
 }

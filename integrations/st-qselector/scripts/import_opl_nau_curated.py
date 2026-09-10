@@ -14,6 +14,8 @@ import re
 from collections import Counter, defaultdict
 from pathlib import Path
 
+from review_schema import stamp_approved_review
+
 
 ROOT = Path(__file__).resolve().parents[1]
 FORMED = ROOT / "Data" / "Formed"
@@ -157,10 +159,8 @@ def import_pack(*, check_only: bool) -> None:
             for answer in answer_data.get("answers", [])
             if answer.get("id") not in incoming_ids
         ]
-        new_questions = kept_questions + [
-            question_record(item, pack) for item in chapter_items
-        ]
-        new_answers = kept_answers + [
+        incoming_questions = [question_record(item, pack) for item in chapter_items]
+        incoming_answers = [
             {
                 "id": item["id"],
                 "answer": item["answer"].strip(),
@@ -169,6 +169,10 @@ def import_pack(*, check_only: bool) -> None:
             }
             for item in chapter_items
         ]
+        for question, answer in zip(incoming_questions, incoming_answers, strict=True):
+            stamp_approved_review(question, answer, pack_id="opl-nau-curated-v1")
+        new_questions = kept_questions + incoming_questions
+        new_answers = kept_answers + incoming_answers
 
         print(
             f"{chapter}: {len(question_data.get('questions', []))} -> "

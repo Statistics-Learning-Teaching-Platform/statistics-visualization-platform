@@ -1,5 +1,6 @@
 // 共享数据类型（前后端通用）
 import type { TextbookChapterId } from "./textbook-chapters";
+import type { QuestionVisualization } from "./question-visualizations";
 
 export interface ChapterConfig {
   id: string; // 如 "Ch01"
@@ -10,6 +11,24 @@ export interface ChapterConfig {
 export interface AppConfig {
   dataRoot: string;
   chapters: ChapterConfig[];
+}
+
+export type ReviewGateName =
+  | "english"
+  | "source"
+  | "grouping"
+  | "independent_solution"
+  | "verification"
+  | "metadata"
+  | "render";
+
+export interface StructuredReview {
+  schema_version: 1;
+  status: "pending" | "approved" | "rejected";
+  pack_id: string;
+  question_hash: string;
+  answer_hash: string;
+  gates: Record<ReviewGateName, "pending" | "passed" | "failed">;
 }
 
 export interface Question {
@@ -44,11 +63,15 @@ export interface Question {
   parentQuestionId?: string | null;
   /** Short server-side verification summary for AI-authored questions. */
   verification?: string | null;
+  /** Optional, review-gated chart displayed after the question content. */
+  visualizations?: QuestionVisualization[];
 }
 
 export interface QuestionsResponse {
+  revision?: string;
   totalCount?: number;
   chapters: { id: string; title: string; num: number; count: number }[];
   difficulties: number[];
+  coverage?: { isComplete: boolean; emptyChapterIds: string[] };
   questions: Question[];
 }

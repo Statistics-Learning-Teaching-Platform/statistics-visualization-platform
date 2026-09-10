@@ -1,4 +1,3 @@
-import { render, screen } from "@testing-library/react";
 import { LanguageProvider } from "@stats-viz/shared/i18n";
 import {
   ChartFrame,
@@ -11,6 +10,7 @@ import {
   VisualizationHeader,
 } from "@stats-viz/shared/visualization";
 import { WalsApp } from "@stats-viz/shared/wals/WalsApp";
+import { render, screen } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
 import ConfidenceIntervalApp from "../apps/confidence-interval/src/App";
 import { moduleConfig as distributionConfig } from "../apps/mes-distributions/src/module-config";
@@ -28,16 +28,32 @@ describe("shared visualization shell", () => {
         content={
           <>
             <VisualizationHeader eyebrow="Core" title="Demo" description="Description" />
-            <ReadingGuide title="How to read"><p>Follow the curve.</p></ReadingGuide>
-            <MetricGrid ariaLabel="Metrics" metrics={[{ label: "Mean", value: "4.2", note: "Observed" }]} />
-            <ChartFrame><svg role="img" aria-label="Demo chart" /></ChartFrame>
+            <ReadingGuide title="How to read">
+              <p>Follow the curve.</p>
+            </ReadingGuide>
+            <MetricGrid
+              ariaLabel="Metrics"
+              metrics={[{ label: "Mean", value: "4.2", note: "Observed" }]}
+            />
+            <ChartFrame>
+              <svg role="img" aria-label="Demo chart" />
+            </ChartFrame>
           </>
         }
         sidebar={
           <>
-            <ParameterPanel eyebrow="Parameters"><label>Value<input /></label></ParameterPanel>
-            <FormulaCard eyebrow="Formula" formula={<span>x̄</span>}><p>Formula note</p></FormulaCard>
-            <ObservationCard eyebrow="Observe" title="Result"><p>Interpretation</p></ObservationCard>
+            <ParameterPanel eyebrow="Parameters">
+              <label>
+                Value
+                <input />
+              </label>
+            </ParameterPanel>
+            <FormulaCard eyebrow="Formula" formula={<span>x̄</span>}>
+              <p>Formula note</p>
+            </FormulaCard>
+            <ObservationCard eyebrow="Observe" title="Result">
+              <p>Interpretation</p>
+            </ObservationCard>
           </>
         }
       />,

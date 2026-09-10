@@ -1,0 +1,73 @@
+import "server-only";
+
+import { NextRequest } from "next/server";
+import { resolveStatAiModel, streamStatAiWithReasoning } from "@/lib/ai-client";
+import { statAiInputByteBudget } from "@/lib/ai-context-budget";
+import { consumeRateLimit, requestPrincipal, withConcurrencyLeaseStream } from "@/lib/auth/rate-limit";
+import { requireRequestSession, verifyCsrf } from "@/lib/auth/session";
+import { assertSafeOrigin, authErrorResponse, AuthError, readLimitedJson } from "@/lib/auth/security";
+import { formatCodeTutorInput, type CodeTutorRequest } from "@/lib/code-tutor-context";
+
+const SAFE_MERMAID_GUIDANCE =
+  "When a categorical comparison or proportion breakdown is clearer as a chart, you may include at most one Mermaid fenced block. Use only this exact safe subset: xychart-beta with an optional quoted title, quoted categorical x-axis JSON array, finite numeric y-axis min --> max, and bar/line numeric JSON arrays; when an xychart has multiple bar/line series, every series must have a unique non-empty quoted name; or pie showData with an optional quoted title and quoted labels with nonnegative numeric values. Put every plotted value in the prose too. Never emit directives, comments, HTML, links, click handlers, styles, classes, or a Mermaid block for scatterplots, histograms, dotplots, stem-and-leaf displays, boxplots, or any chart whose values are not supplied. Otherwise do not include a Mermaid block.";
+const TUTOR_OUTPUT_FORMAT_GUIDANCE =
+  "Output contract: the final user-visible answer must be Markdown (not JSON). Use normal Markdown headings, paragraphs, lists, tables, emphasis, and inline code when useful. Use $...$ for inline math and $$...$$ for display math when mathematical notation helps. Put every multi-line code sample in a fenced Markdown code block with a language tag, such as ```r, ```python, ```json, or ```bash; never use an unlabeled code fence. If the upstream service supplies a user-visible reasoning channel, it may contain a concise rationale but must be presentation-only plaintext with ordinary whitespace and line breaks, not Markdown: do not use Markdown fences, HTML, or formatting there. Never ask for or reveal private hidden chain-of-thought, and do not repeat reasoning in the final answer.";
+const CODE_TUTOR_MAX_OUTPUT_TOKENS = 2_048;
+
+export function createTutorPost(options: {
+  runtimeName: "R" | "Python";
+  route: "r-tutor" | "python-tutor";
+  systemDetail: string;
+}) {
+  return async function POST(request: NextRequest) {
+    try {
+      assertSafeOrigin(request);
+      const session = await requireRequestSession(request);
+      await verifyCsrf(request, session);
+      await consumeRateLimit({
+        principal: await requestPrincipal(request, session.user.id),
+        route: options.route,
+        limit: 30,
+        windowSeconds: 60 * 60,
+      });
+      await consumeRateLimit({ principal: "global", route: "ai-tutor-budget", limit: 300, windowSeconds: 60 * 60 });
+      const body = await readLimitedJson(request, 32_000) as CodeTutorRequest;
+      const question = String(body.question ?? "").trim().slice(0, 3_000);
+      if (!question) throw new AuthError(400, "请输入问题");
+      const model = resolveStatAiModel(body.model);
+
+      const language = body.language === "en" ? "English" : "Simplified Chinese";
+      const systemPrompt = `You are StatMind's ${options.runtimeName} programming teaching assistant. Reply in ${language}. ${options.systemDetail} Use the supplied lesson, learner code, console output, and check result as authoritative context. Diagnose the learner's exact current problem, explain the relevant concept, and give one small actionable next step. Prefer hints and short corrected snippets over replacing the whole exercise. Never invent runtime output. ${TUTOR_OUTPUT_FORMAT_GUIDANCE} ${SAFE_MERMAID_GUIDANCE} If the learner explicitly asks for the full solution, you may provide it with an explanation. Keep the answer concise, well formatted, and under 350 words.`;
+      const input = formatCodeTutorInput(
+        body,
+        options.runtimeName,
+        statAiInputByteBudget(systemPrompt, CODE_TUTOR_MAX_OUTPUT_TOKENS),
+      );
+
+      return await withConcurrencyLeaseStream({
+        route: "ai-tutor",
+        limit: 8,
+        ttlSeconds: 58,
+        requestSignal: request.signal,
+        work: async (signal) => {
+          const stream = await streamStatAiWithReasoning({
+            signal,
+            model,
+            maxOutputTokens: CODE_TUTOR_MAX_OUTPUT_TOKENS,
+            systemPrompt,
+            input,
+          });
+          return new Response(stream, {
+            headers: {
+              "Cache-Control": "no-store",
+              "Content-Type": "text/event-stream; charset=utf-8",
+              "X-Accel-Buffering": "no",
+            },
+          });
+        },
+      });
+    } catch (error) {
+      return authErrorResponse(error);
+    }
+  };
+}

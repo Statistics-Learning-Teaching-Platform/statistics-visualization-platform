@@ -1,21 +1,37 @@
-import fs from "node:fs";
-import path from "node:path";
 import { execFileSync } from "node:child_process";
 import { createHash } from "node:crypto";
+import fs from "node:fs";
+import path from "node:path";
 
 const root = path.resolve(import.meta.dirname, "..");
 const officePattern = /\.(?:pdf|pptx?|docx?)$/i;
 const legacyDocumentRoot = "integrations/st-qselector/Data/";
 const legacyDocumentBaseline = {
-  count: 86,
-  pathListSha256: "3e77af2ea6fcb7e5839b1444e818d3d54b81ea7f3ef7e5b4001ac06e1492c72b",
+  // Explicitly reviewed after removing the invalid Microsoft Office lock
+  // file `~$signment and solution_Chap 1&2.docx`. All remaining documents
+  // stay confined to the preserved offline Data tree.
+  count: 85,
+  pathListSha256: "cd48ef3b080e6301b68a23bdef36d495665900984e077f77a1c4c09416a1de87",
 };
 const deployRoots = ["public", "dist", "integrations/st-qselector/Program/public"];
-const textExtensions = new Set([".html", ".js", ".mjs", ".cjs", ".json", ".css", ".txt", ".xml", ".svg", ".map"]);
+const textExtensions = new Set([
+  ".html",
+  ".js",
+  ".mjs",
+  ".cjs",
+  ".json",
+  ".css",
+  ".txt",
+  ".xml",
+  ".svg",
+  ".map",
+]);
 const findings = [];
 
 function trackedFiles() {
-  return execFileSync("git", ["ls-files", "-z"], { cwd: root, encoding: "utf8" }).split("\0").filter(Boolean);
+  return execFileSync("git", ["ls-files", "-z"], { cwd: root, encoding: "utf8" })
+    .split("\0")
+    .filter(Boolean);
 }
 
 function walk(relativeDir) {
@@ -38,7 +54,9 @@ function inspectText(relative) {
     [/-----BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY-----/, "private key"],
     [/(?:^|[^A-Za-z0-9])sk-[A-Za-z0-9_-]{16,}/, "API key-like value"],
     [/integrations\/st-qselector\/Data\/(?:Origin|Formed)/i, "offline source path"],
-    [/(?:Assignment|Solution)[^"'\n]{0,100}\.(?:docx?|pdf|pptx?)/i, "original document name"],
+    // Require the extension to end here: Mermaid's parser includes code like
+    // addAstNodeRegionWithAssignmentsTo(...).$textRegion.documentURI.
+    [/(?:Assignment|Solution)[^"'\n]{0,100}\.(?:docx?|pdf|pptx?)(?![a-z0-9_])/i, "original document name"],
   ];
   for (const [pattern, label] of checks) {
     if (pattern.test(value)) findings.push(`${relative}: ${label}`);
@@ -47,9 +65,16 @@ function inspectText(relative) {
 
 const tracked = trackedFiles();
 const trackedOfficeFiles = tracked.filter((relative) => officePattern.test(relative)).sort();
-const trackedOfficeHash = createHash("sha256").update(`${trackedOfficeFiles.join("\n")}\n`).digest("hex");
-if (trackedOfficeFiles.length !== legacyDocumentBaseline.count || trackedOfficeHash !== legacyDocumentBaseline.pathListSha256) {
-  findings.push(`tracked office-document baseline changed (${trackedOfficeFiles.length} files); review explicitly before updating the gate`);
+const trackedOfficeHash = createHash("sha256")
+  .update(`${trackedOfficeFiles.join("\n")}\n`)
+  .digest("hex");
+if (
+  trackedOfficeFiles.length !== legacyDocumentBaseline.count ||
+  trackedOfficeHash !== legacyDocumentBaseline.pathListSha256
+) {
+  findings.push(
+    `tracked office-document baseline changed (${trackedOfficeFiles.length} files); review explicitly before updating the gate`,
+  );
 }
 for (const relative of tracked) {
   if (officePattern.test(relative) && !relative.startsWith(legacyDocumentRoot)) {
@@ -62,7 +87,8 @@ for (const relative of tracked) {
 
 for (const deployRoot of deployRoots) {
   for (const relative of walk(deployRoot)) {
-    if (officePattern.test(relative)) findings.push(`${relative}: office document in deployment output`);
+    if (officePattern.test(relative))
+      findings.push(`${relative}: office document in deployment output`);
     inspectText(relative);
   }
 }
@@ -70,7 +96,8 @@ for (const deployRoot of deployRoots) {
 // Active source files are scanned for high-confidence secrets and local paths.
 for (const relative of tracked) {
   if (!/^(?:src|apps|scripts|integrations\/st-qselector\/Program\/src)\//.test(relative)) continue;
-  if (relative.includes("/generated/") || relative === "scripts/check-content-privacy.mjs") continue;
+  if (relative.includes("/generated/") || relative === "scripts/check-content-privacy.mjs")
+    continue;
   inspectText(relative);
 }
 
@@ -80,4 +107,6 @@ if (findings.length) {
 }
 
 const preservedLegacyCount = trackedOfficeFiles.length;
-console.log(`Privacy gate passed. ${preservedLegacyCount} pre-existing offline documents remain isolated under ${legacyDocumentRoot}`);
+console.log(
+  `Privacy gate passed. ${preservedLegacyCount} pre-existing offline documents remain isolated under ${legacyDocumentRoot}`,
+);

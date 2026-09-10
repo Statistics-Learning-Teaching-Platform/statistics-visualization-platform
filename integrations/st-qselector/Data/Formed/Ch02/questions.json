@@ -14,7 +14,23 @@
       "formula_refs": [],
       "data_refs": [],
       "review_status": "independently solved and reviewed",
-      "audit_pack": "ch02-review-v1"
+      "audit_pack": "ch02-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch02-review-v1",
+        "question_hash": "e6a859eedc81ab79711cf4df5961cada3c4c423c7752db8a294d6f5976874386",
+        "answer_hash": "8604f23d376e6cec186d212ac8ddc8375443fc9dfaf579e0661001c30b0ec5d2",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
     },
     {
       "id": "ch02_q02",
@@ -30,7 +46,23 @@
       "formula_refs": [],
       "data_refs": [],
       "review_status": "independently solved and reviewed",
-      "audit_pack": "ch02-review-v1"
+      "audit_pack": "ch02-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch02-review-v1",
+        "question_hash": "e9a7ae39b43d9a309181d6a85538aab1e491e397791bbff8fd41a6ced8caa433",
+        "answer_hash": "b2b9328922890b171e354cfa73ca80fec69e09e043693d70f9db2d30aac63415",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
     },
     {
       "id": "ch02_q03",
@@ -45,7 +77,23 @@
       "formula_refs": [],
       "data_refs": [],
       "review_status": "independently solved and reviewed",
-      "audit_pack": "ch02-review-v1"
+      "audit_pack": "ch02-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch02-review-v1",
+        "question_hash": "958acc93a771bdd522102b4d287738f98d92da896aaba361a2ac564f271f2056",
+        "answer_hash": "98aceb929c079858e6075a6b59ddb8cd4acadcef92a96e2896f81e78e127308a",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
     },
     {
       "id": "ch02_q05",
@@ -60,7 +108,23 @@
       "formula_refs": [],
       "data_refs": [],
       "review_status": "independently solved and reviewed",
-      "audit_pack": "ch02-review-v1"
+      "audit_pack": "ch02-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch02-review-v1",
+        "question_hash": "e937e6be69e5bb430e6492771f86f6809d38543dba22fd6d525695e304b5459f",
+        "answer_hash": "befd8b676b6fe26e88627e3a58920fec88e34ffecbf4499c439adc273a8a7541",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
     },
     {
       "id": "ch02_q06",
@@ -74,7 +138,23 @@
       "formula_refs": [],
       "data_refs": [],
       "review_status": "independently solved and reviewed",
-      "audit_pack": "ch02-review-v1"
+      "audit_pack": "ch02-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch02-review-v1",
+        "question_hash": "55e25980e46abda622772b9b559274e45ccb1bc3554cd72d978a91561291b5e7",
+        "answer_hash": "64e6e718aa3ef60c761731d1d0a2565592a848cad1323965c1ce4cac88692d1d",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
     },
     {
       "id": "ch02_q07",
@@ -90,7 +170,23 @@
       "formula_refs": [],
       "data_refs": [],
       "review_status": "independently solved and reviewed",
-      "audit_pack": "ch02-review-v1"
+      "audit_pack": "ch02-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch02-review-v1",
+        "question_hash": "a64546b5810aa163cb0c8eebd28d66431f6da1d058914e09a9bfbbeb79382522",
+        "answer_hash": "f0aabf3dbefc8c65129333a2b3881f0aa6cdfa258cf109ca82edd47c663d7e2b",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
     },
     {
       "id": "ch02_q08",
@@ -106,7 +202,23 @@
       "formula_refs": [],
       "data_refs": [],
       "review_status": "independently solved and reviewed",
-      "audit_pack": "ch02-review-v1"
+      "audit_pack": "ch02-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch02-review-v1",
+        "question_hash": "bff6a910aca4d4984e1cef9432e36f67102abb73c939b35119f1f27edc20bb26",
+        "answer_hash": "034df12de8a56fceae6802353ff10709abab9fe144cb144118fa597d5e782ca4",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
     },
     {
       "id": "ch02_q09",
@@ -122,7 +234,23 @@
       "formula_refs": [],
       "data_refs": [],
       "review_status": "independently solved and reviewed",
-      "audit_pack": "ch02-review-v1"
+      "audit_pack": "ch02-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch02-review-v1",
+        "question_hash": "f29cbc67d815dbbf0261807ba535bb214708859fc92d0fac408c5d3fd92a0e13",
+        "answer_hash": "2fa7a0d2af5c659996a2c225982ba06691d8d994157fd97f8fff4418e6bc208b",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
     },
     {
       "id": "ch02_q10",
@@ -138,7 +266,23 @@
       "formula_refs": [],
       "data_refs": [],
       "review_status": "independently solved and reviewed",
-      "audit_pack": "ch02-review-v1"
+      "audit_pack": "ch02-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch02-review-v1",
+        "question_hash": "689d6a7ae26543552a8cbf3fe4024271310e7f65c009fa69476b15f37a994976",
+        "answer_hash": "0a8ac35b6b46de697ed010feb72071e47cbbd48d69ef71edd19a97fc70437057",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
     },
     {
       "id": "ch02_q11",
@@ -156,7 +300,23 @@
         "Assests/ch02_q04_f01_image1.jpeg"
       ],
       "review_status": "independently solved and reviewed",
-      "audit_pack": "ch02-review-v1"
+      "audit_pack": "ch02-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch02-review-v1",
+        "question_hash": "b01b1c18eaf796f4002c170c72a4f49ec60b40bb7b3ae72c58d37f39b1dfb133",
+        "answer_hash": "ea00840c44541d5aa21ea53617433734aaf26abc5a124ea4b838fff93c3119d7",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
     },
     {
       "id": "ch02_q12",
@@ -172,7 +332,23 @@
       "formula_refs": [],
       "data_refs": [],
       "review_status": "independently solved and reviewed",
-      "audit_pack": "ch02-review-v1"
+      "audit_pack": "ch02-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch02-review-v1",
+        "question_hash": "cf2aa32bc921d75ff250046f02c4fc68982f7544faef293def2e9d925f8e0306",
+        "answer_hash": "26eb88fe9d55e8fc70495861c9a02032020c429b99b961da97102b01c121024d",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
     },
     {
       "id": "ch02_q14",
@@ -188,7 +364,23 @@
       "formula_refs": [],
       "data_refs": [],
       "review_status": "independently solved and reviewed",
-      "audit_pack": "ch02-review-v1"
+      "audit_pack": "ch02-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch02-review-v1",
+        "question_hash": "b2314533aa8e5862e116a5e6ada74fa534690ddba22c9f513bce2882638a36d2",
+        "answer_hash": "b78908ec02a99c5b9d7436f3d2b2c8be9376bebaa81fc080f5607b9a84847674",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
     },
     {
       "id": "ch02_q15",
@@ -203,7 +395,23 @@
       "formula_refs": [],
       "data_refs": [],
       "review_status": "independently solved and reviewed",
-      "audit_pack": "ch02-review-v1"
+      "audit_pack": "ch02-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch02-review-v1",
+        "question_hash": "acc4fb8dfe753703eda032bc2700c126e14b4641cea9a621dd8405fc45035966",
+        "answer_hash": "5a8b25ddaee83bef867e7ea509a0c4aa99eea3a243abd53ee6aaa37007613c48",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
     },
     {
       "id": "ch02_q16",
@@ -220,7 +428,23 @@
         "Assests/ch02_q09_f02_image4.jpeg"
       ],
       "review_status": "independently solved and reviewed",
-      "audit_pack": "ch02-review-v1"
+      "audit_pack": "ch02-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch02-review-v1",
+        "question_hash": "2b597f604489de885becead10fa1e7636f0286df6153f5383f4729f77c9fc01f",
+        "answer_hash": "0713d8093ca85e27e06ecf860c33ba834cf875c8279ba108c42d4c4bcf257526",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
     },
     {
       "id": "ch02_q17",
@@ -237,7 +461,23 @@
         "Assests/ch02_q09_f01_image3.jpeg"
       ],
       "review_status": "independently solved and reviewed",
-      "audit_pack": "ch02-review-v1"
+      "audit_pack": "ch02-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch02-review-v1",
+        "question_hash": "70119f59e130436f398cff8603c707b20833a93c887837cdb77955bd48fbf7e0",
+        "answer_hash": "2794a52e146bfe758baf4d340116a08910cc65f3d7ab030ae26bb2eb24e2db96",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
     },
     {
       "id": "ch02_q18",
@@ -254,7 +494,23 @@
       "formula_refs": [],
       "data_refs": [],
       "review_status": "independently solved and reviewed",
-      "audit_pack": "ch02-review-v1"
+      "audit_pack": "ch02-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch02-review-v1",
+        "question_hash": "2288efb7f3361c93ec0e566dc2c4f12afb991890c5b61fac46d05b4d579e8e6c",
+        "answer_hash": "6dea9c914d51635e08b7831771285548a8e7d1e10b558177cf8db7ee56b20fd7",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
     },
     {
       "id": "ch02_q19",
@@ -270,7 +526,23 @@
       "formula_refs": [],
       "data_refs": [],
       "review_status": "independently solved and reviewed",
-      "audit_pack": "ch02-review-v1"
+      "audit_pack": "ch02-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch02-review-v1",
+        "question_hash": "ec25bfadd592639e08761405f013b555120d200df13b2bed40bd5244415ae217",
+        "answer_hash": "fdec1aec9363908c57c28b005f17b78a532b8aadc0aec87402e97bc032aaa4a7",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
     },
     {
       "id": "ch02_q20",
@@ -287,7 +559,23 @@
       "formula_refs": [],
       "data_refs": [],
       "review_status": "independently solved and reviewed",
-      "audit_pack": "ch02-review-v1"
+      "audit_pack": "ch02-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch02-review-v1",
+        "question_hash": "1bf7da54f1b6fa006c79cbd2d35e819ff2ef0b9df2df1fd6801a3977e6b695ac",
+        "answer_hash": "5c3a9a52a410b5b31b2af5363e69696f8ad1f77ede9d40e978b18b11fe072ec4",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
     },
     {
       "id": "ch02_q21",
@@ -304,7 +592,23 @@
       "formula_refs": [],
       "data_refs": [],
       "review_status": "independently solved and reviewed",
-      "audit_pack": "ch02-review-v1"
+      "audit_pack": "ch02-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch02-review-v1",
+        "question_hash": "fe863368d114357c42b50d0d01f23f8ee86042fbff718b38bda3abd57cd3d46f",
+        "answer_hash": "47ac4c80b1da30abff7bafb6e07d437ef14e9d0389debe9338714de8a2667206",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
     },
     {
       "id": "ch02_q24",
@@ -320,7 +624,23 @@
       "formula_refs": [],
       "data_refs": [],
       "review_status": "independently solved and reviewed",
-      "audit_pack": "ch02-review-v1"
+      "audit_pack": "ch02-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch02-review-v1",
+        "question_hash": "2522dadf7db580f75ed1359eda0419cd2c5c43a303e2daec00be70e873cda6ee",
+        "answer_hash": "ef9df88a11649ae2cc1b4c9de51028a291daf36805eacf2e5e3aa18efeaa23c2",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
     },
     {
       "id": "ch02_q25",
@@ -336,7 +656,23 @@
       "formula_refs": [],
       "data_refs": [],
       "review_status": "independently solved and reviewed",
-      "audit_pack": "ch02-review-v1"
+      "audit_pack": "ch02-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch02-review-v1",
+        "question_hash": "001cedb62c05d509188253b14f67d6f69fe05fc1ddfdae47b7a263947f95ab0a",
+        "answer_hash": "0103d8a2096aeb80e443f905d1395b666913d8ff1756e136b41e660310f2ca0a",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
     },
     {
       "id": "ch02_q26",
@@ -353,7 +689,23 @@
       "formula_refs": [],
       "data_refs": [],
       "review_status": "independently solved and reviewed",
-      "audit_pack": "ch02-review-v1"
+      "audit_pack": "ch02-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch02-review-v1",
+        "question_hash": "c99f5491b4eab85980dd18f3dad98584e3cacd02a515c097af5b63c73820843f",
+        "answer_hash": "56c90e659aed5071c262e4e498300f7ee344d29f3b2bd3fd81c8e1a2a160762a",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
     },
     {
       "id": "ch02_q27",
@@ -368,7 +720,23 @@
       "formula_refs": [],
       "data_refs": [],
       "review_status": "independently solved and reviewed",
-      "audit_pack": "ch02-review-v1"
+      "audit_pack": "ch02-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch02-review-v1",
+        "question_hash": "c486d77a869fa6ad63f468b8576bedfab49ba219bf22098fcd792c6622fd021d",
+        "answer_hash": "7af76e5ee5d98c4bb5649002cd1d0400a3935ed9158f5850003b7140322bcb02",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
     },
     {
       "id": "ch02_q28",
@@ -385,7 +753,23 @@
       "formula_refs": [],
       "data_refs": [],
       "review_status": "independently solved and reviewed",
-      "audit_pack": "ch02-review-v1"
+      "audit_pack": "ch02-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch02-review-v1",
+        "question_hash": "87eb1c44d291a0e665f8fab8d0427f040be06b7ddc2893934c49774d49d310a6",
+        "answer_hash": "23e9da35a12268cb9adf42b0fc73daab64328f30fa41cbf99d2f27cf2d8ecb04",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
     },
     {
       "id": "ch02_q29",
@@ -401,7 +785,23 @@
       "formula_refs": [],
       "data_refs": [],
       "review_status": "independently solved and reviewed",
-      "audit_pack": "ch02-review-v1"
+      "audit_pack": "ch02-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch02-review-v1",
+        "question_hash": "a1dc9a7036cc198e6b728498e5364ae9a294c0e32022accc642f4359628812c1",
+        "answer_hash": "5b3cf7fe7f98b24e8885dbe5c9cf2d07dcb6c3753c3fe0876c22eee915bc4476",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
     },
     {
       "id": "rotel_ch02_histogram_01",
@@ -421,7 +821,23 @@
       ],
       "formula_refs": [],
       "data_refs": [],
-      "audit_pack": "ch02-review-v1"
+      "audit_pack": "ch02-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch02-review-v1",
+        "question_hash": "b1851289f71e38f4b99777180e3cb62719a83881f56dfc697e35d15822cd3ad1",
+        "answer_hash": "f7d0c501b39ac5c6322b32775bc105806cc07eaaa5e9a29893cc53cb856e5bb9",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
     },
     {
       "id": "rotel_ch02_boxplot_01",
@@ -442,7 +858,23 @@
       "data_refs": [
         "Assests/rotel-boxplot-five-number.png"
       ],
-      "audit_pack": "ch02-review-v1"
+      "audit_pack": "ch02-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch02-review-v1",
+        "question_hash": "c2b943ffb9da1ab7e960dda4558f58ef34dec4ca823526b0fd300589e6121fb3",
+        "answer_hash": "f0dd02ece83cee1eb78ffb772bd50f6355df03f888151ff2e410b19770a29e26",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
     },
     {
       "id": "rotel_ch02_boxplot_02",
@@ -464,7 +896,23 @@
       "data_refs": [
         "Assests/rotel-boxplot-salary.png"
       ],
-      "audit_pack": "ch02-review-v1"
+      "audit_pack": "ch02-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch02-review-v1",
+        "question_hash": "d18bb90d88a09bca4bc8db616655937f7ce532638a26a08130118e02884705b3",
+        "answer_hash": "bf5122ac94d52393ffa8006694156579b5024d08fa8d5441c467a10f37bf2091",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
     },
     {
       "id": "opl_nau_ch02_center_01",
@@ -487,7 +935,23 @@
         "mode"
       ],
       "formula_refs": [],
-      "data_refs": []
+      "data_refs": [],
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "opl-nau-curated-v1",
+        "question_hash": "d4732c518ac612412959f30cb6e794a0f55bdb474e20d47fb318b56fb591b8f8",
+        "answer_hash": "e1b60016d37cf4e833aff9195735274613ed9a5ee94b33b0907a79cf46a9bc3e",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
     },
     {
       "id": "opl_nau_ch02_fivenum_01",
@@ -510,7 +974,23 @@
         "median"
       ],
       "formula_refs": [],
-      "data_refs": []
+      "data_refs": [],
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "opl-nau-curated-v1",
+        "question_hash": "17036564abc12b2950a8af458bfb8321fdcac05f035f94bc92c19d868187a389",
+        "answer_hash": "97ae921e033e21e5e5936fb7c4c5d15b6cad52e4748b5df5fb53a2a1bd23f521",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
     },
     {
       "id": "opl_nau_ch02_sd_01",
@@ -532,7 +1012,23 @@
         "sample standard deviation"
       ],
       "formula_refs": [],
-      "data_refs": []
+      "data_refs": [],
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "opl-nau-curated-v1",
+        "question_hash": "6d9289511f19c4dc1c9dde353eaf8ffcd93244c422edbc39f7f4758230e31a37",
+        "answer_hash": "b963fd193e8f6f1389b39745e563b179a6e0a82a9deb3c37ade82c0022faba23",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
     },
     {
       "id": "opl_nau_ch02_boxplot_01",
@@ -555,7 +1051,23 @@
         "percent of observations"
       ],
       "formula_refs": [],
-      "data_refs": []
+      "data_refs": [],
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "opl-nau-curated-v1",
+        "question_hash": "4125ac13ce5fe4905e145ea3c8c04ed69417486d85dcca8bf12289b0ddbbbfc6",
+        "answer_hash": "458d859e690f7612017e0a7d7c10b04fc515e4902893058778c428414141174e",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
     }
   ]
 }

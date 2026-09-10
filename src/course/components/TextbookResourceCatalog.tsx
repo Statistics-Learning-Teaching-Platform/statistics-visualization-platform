@@ -8,7 +8,7 @@ import { EditorialTextbookPage } from "../../visual-demo/editorial/EditorialText
  * to real visualization, R, Python, and question-bank destinations.
  */
 export function TextbookResourceCatalog() {
-	return <EditorialTextbookPage siteMode="product" />;
+  return <EditorialTextbookPage siteMode="product" />;
 }
 
 export default TextbookResourceCatalog;

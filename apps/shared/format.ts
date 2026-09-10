@@ -8,7 +8,7 @@ export function formatNumber(value: number, digits = 4): string {
 
   return new Intl.NumberFormat("en-US", {
     maximumFractionDigits: digits,
-    minimumFractionDigits: Math.min(2, digits)
+    minimumFractionDigits: Math.min(2, digits),
   }).format(value);
 }
 
@@ -18,7 +18,9 @@ export function mean(values: number[]): number {
 
 export function variance(values: number[]): number {
   const center = mean(values);
-  return values.reduce((sum, value) => sum + (value - center) ** 2, 0) / Math.max(values.length - 1, 1);
+  return (
+    values.reduce((sum, value) => sum + (value - center) ** 2, 0) / Math.max(values.length - 1, 1)
+  );
 }
 
 export function standardDeviation(values: number[]): number {

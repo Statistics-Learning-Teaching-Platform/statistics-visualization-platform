@@ -1,5 +1,5 @@
-import type { Dataset } from "./constants";
 import { ParameterPanel } from "@stats-viz/shared/visualization";
+import type { Dataset } from "./constants";
 
 interface ControlPanelProps {
   copy: {
@@ -68,7 +68,9 @@ export function ControlPanel({
             <span className="control-panel__value">{String(datasets.length)}</span>
           </div>
           <p className="control-panel__hint">{copy.datasetHint}</p>
-          <label className="sr-only" htmlFor="dataset-select">{copy.selectDataset}</label>
+          <label className="sr-only" htmlFor="dataset-select">
+            {copy.selectDataset}
+          </label>
           <select
             id="dataset-select"
             className="dataset-select control-panel__select"
@@ -77,10 +79,14 @@ export function ControlPanel({
             onChange={(e) => onSelectDataset(e.target.value)}
           >
             {datasets.length === 0 && (
-              <option value="" disabled>No datasets available</option>
+              <option value="" disabled>
+                No datasets available
+              </option>
             )}
             {datasets.map((d) => (
-              <option key={d.id} value={d.id}>{t(d.name)}</option>
+              <option key={d.id} value={d.id}>
+                {t(d.name)}
+              </option>
             ))}
           </select>
         </div>
@@ -124,10 +130,34 @@ export function ControlPanel({
           </button>
         </div>
         <div className="control-panel__group numeric-line-controls">
-          <div className="control-panel__label-row"><span className="control-panel__label">{copy.customLineParameters}</span></div>
+          <div className="control-panel__label-row">
+            <span className="control-panel__label">{copy.customLineParameters}</span>
+          </div>
           <p className="control-panel__hint">{copy.numericLineHint}</p>
-          <label className="control-field"><span className="control-label">{copy.slope}</span><input className="control-input" aria-label={copy.slope} type="number" step="0.01" value={customLineParams?.slope.toFixed(2) ?? "0"} onChange={(e) => onNumericLine(Number(e.target.value), customLineParams?.intercept ?? 0)} /></label>
-          <label className="control-field"><span className="control-label">{copy.intercept}</span><input className="control-input" aria-label={copy.intercept} type="number" step="0.1" value={customLineParams?.intercept.toFixed(2) ?? "0"} onChange={(e) => onNumericLine(customLineParams?.slope ?? 0, Number(e.target.value))} /></label>
+          <label className="control-field">
+            <span className="control-label">{copy.slope}</span>
+            <input
+              className="control-input"
+              aria-label={copy.slope}
+              type="number"
+              step="0.01"
+              value={customLineParams?.slope.toFixed(2) ?? "0"}
+              onChange={(e) =>
+                onNumericLine(Number(e.target.value), customLineParams?.intercept ?? 0)
+              }
+            />
+          </label>
+          <label className="control-field">
+            <span className="control-label">{copy.intercept}</span>
+            <input
+              className="control-input"
+              aria-label={copy.intercept}
+              type="number"
+              step="0.1"
+              value={customLineParams?.intercept.toFixed(2) ?? "0"}
+              onChange={(e) => onNumericLine(customLineParams?.slope ?? 0, Number(e.target.value))}
+            />
+          </label>
         </div>
         {selectedDataset && (
           <div className="control-panel__summary-card">
@@ -151,19 +181,25 @@ export function ControlPanel({
             {selectedDataset.source && (
               <div className="info-item">
                 <span className="metric-label">{copy.source}</span>
-                <span className="metric-value metric-value--compact">{t(selectedDataset.source)}</span>
+                <span className="metric-value metric-value--compact">
+                  {t(selectedDataset.source)}
+                </span>
               </div>
             )}
             {selectedDataset.xLabel && (
               <div className="info-item">
                 <span className="metric-label">{copy.xVariable}</span>
-                <span className="metric-value metric-value--compact">{t(selectedDataset.xLabel)}</span>
+                <span className="metric-value metric-value--compact">
+                  {t(selectedDataset.xLabel)}
+                </span>
               </div>
             )}
             {selectedDataset.yLabel && (
               <div className="info-item">
                 <span className="metric-label">{copy.yVariable}</span>
-                <span className="metric-value metric-value--compact">{t(selectedDataset.yLabel)}</span>
+                <span className="metric-value metric-value--compact">
+                  {t(selectedDataset.yLabel)}
+                </span>
               </div>
             )}
           </div>

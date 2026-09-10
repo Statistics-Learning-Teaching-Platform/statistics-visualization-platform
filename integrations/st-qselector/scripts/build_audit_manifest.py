@@ -16,6 +16,8 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
+from review_schema import validate_review_pair
+
 
 ROOT = Path(__file__).resolve().parents[1]
 FORMED = ROOT / "Data" / "Formed"
@@ -180,7 +182,25 @@ def analyze_record(
         issue_codes.append("multi_part_requires_alignment_review")
 
     review_status = question.get("review_status") or (answer or {}).get("review_status")
-    previously_reviewed = bool(review_status and re.search(r"审核|审校|reviewed", str(review_status), re.I))
+    structured_review_valid, structured_review_errors = validate_review_pair(question, answer)
+    if structured_review_errors:
+        issue_codes.extend(structured_review_errors)
+
+    blocking_issues = {
+        "empty_question",
+        "missing_answer",
+        "question_requires_english",
+        "answer_requires_english",
+        "source_unresolved",
+        "asset_missing",
+    }
+    eligible_for_paper = structured_review_valid and not blocking_issues.intersection(issue_codes)
+    question_review = question.get("review") if isinstance(question.get("review"), dict) else {}
+    review_gates = question_review.get("gates") if isinstance(question_review.get("gates"), dict) else {}
+
+    def workflow_status(gate: str) -> str:
+        value = review_gates.get(gate)
+        return value if value in {"pending", "passed", "failed"} else "pending"
 
     unique_issues = sorted(set(issue_codes))
     return {
@@ -196,6 +216,7 @@ def analyze_record(
             "formula_refs": formula_refs,
             "data_refs": data_refs,
             "review_status": review_status,
+            "structured_review": question.get("review"),
         },
         "diagnostics": {
             "question_language": language,
@@ -207,19 +228,21 @@ def analyze_record(
             "context_findings": sorted(set(context_findings)),
             "detected_part_count": part_count,
             "grouping_status": grouping_status,
-            "previously_reviewed": previously_reviewed,
+            "previously_reviewed": structured_review_valid,
+            "structured_review_valid": structured_review_valid,
+            "structured_review_errors": structured_review_errors,
             "issue_codes": unique_issues,
         },
         "workflow": {
-            "decision": "pending",
-            "english_status": "passed" if language == "en" and answer_language in {"en", "missing"} else "needs_work",
-            "source_recovery_status": "not_needed" if source["resolvable"] else "needs_work",
-            "grouping_review_status": "pending",
-            "independent_solution_status": "pending",
-            "verification_status": "pending",
-            "metadata_status": "pending",
-            "render_status": "pending",
-            "eligible_for_paper": False,
+            "decision": "approved" if eligible_for_paper else "pending",
+            "english_status": workflow_status("english"),
+            "source_recovery_status": workflow_status("source"),
+            "grouping_review_status": workflow_status("grouping"),
+            "independent_solution_status": workflow_status("independent_solution"),
+            "verification_status": workflow_status("verification"),
+            "metadata_status": workflow_status("metadata"),
+            "render_status": workflow_status("render"),
+            "eligible_for_paper": eligible_for_paper,
         },
         "audit_notes": [],
     }
@@ -238,9 +261,12 @@ def build_manifest() -> dict[str, Any]:
         answer_map: dict[str, dict[str, Any]] = {}
         if answer_file.is_file():
             for answer in load_json(answer_file).get("answers", []):
-                if answer.get("id"):
-                    answer_map[str(answer["id"])] = answer
+                answer_id = str(answer.get("id") or "")
+                if not answer_id or answer_id in answer_map:
+                    raise ValueError(f"missing or duplicate answer id {answer_id!r} in {answer_file}")
+                answer_map[answer_id] = answer
 
+        chapter_question_ids: set[str] = set()
         for question in load_json(question_file).get("questions", []):
             qid = str(question.get("id") or "")
             if not qid:
@@ -248,6 +274,7 @@ def build_manifest() -> dict[str, Any]:
             if qid in seen_ids:
                 raise ValueError(f"duplicate question id: {qid}")
             seen_ids.add(qid)
+            chapter_question_ids.add(qid)
             records.append(
                 analyze_record(
                     chapter=chapter_dir.name,
@@ -256,6 +283,8 @@ def build_manifest() -> dict[str, Any]:
                     answer=answer_map.get(qid),
                 )
             )
+        if set(answer_map) != chapter_question_ids:
+            raise ValueError(f"question/answer IDs differ in {chapter_dir.name}")
 
     issue_counts = Counter(code for record in records for code in record["diagnostics"]["issue_codes"])
     chapter_counts = Counter(record["chapter"] for record in records)
@@ -283,7 +312,7 @@ def build_manifest() -> dict[str, Any]:
             "answer_languages": dict(sorted(answer_language_counts.items())),
             "grouping_candidates": dict(sorted(grouping_counts.items())),
             "issue_counts": dict(sorted(issue_counts.items())),
-            "eligible_for_paper": 0,
+            "eligible_for_paper": sum(1 for record in records if record["workflow"]["eligible_for_paper"]),
         },
         "questions": records,
     }

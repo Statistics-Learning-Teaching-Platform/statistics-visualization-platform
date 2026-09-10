@@ -6,6 +6,11 @@ import remarkGfm from "remark-gfm";
 import remarkMath from "remark-math";
 import rehypeKatex from "rehype-katex";
 import { withBasePath } from "@/lib/base-path";
+import {
+  resolveQuestionVisualizations,
+  type QuestionVisualization,
+} from "@/lib/question-visualizations";
+import MermaidDiagram from "@/components/MermaidDiagram";
 
 // 把题目/答案原文中的自定义占位符转换成标准 markdown：
 //   [IMG:file]      -> 图片（经 /api/asset 提供）
@@ -78,12 +83,19 @@ export default function QuestionContent({
   text,
   chapterId,
   className,
+  visualizations,
 }: {
   text: string;
   chapterId: string;
   className?: string;
+  /** Explicit AI/dataset visualizations. Omitted means legacy inference is allowed. */
+  visualizations?: readonly QuestionVisualization[];
 }) {
   const processed = useMemo(() => preprocess(text, chapterId), [text, chapterId]);
+  const renderedVisualizations = useMemo(
+    () => resolveQuestionVisualizations(text, visualizations),
+    [text, visualizations],
+  );
   return (
     <div className={"md " + (className || "")}>
       <ReactMarkdown
@@ -93,6 +105,14 @@ export default function QuestionContent({
       >
         {processed}
       </ReactMarkdown>
+      {renderedVisualizations.map((visualization, index) => (
+        <MermaidDiagram
+          key={`${index}:${visualization.source}`}
+          source={visualization.source}
+          title={visualization.title}
+          alt={visualization.alt}
+        />
+      ))}
     </div>
   );
 }

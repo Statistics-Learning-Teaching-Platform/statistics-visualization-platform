@@ -1,5 +1,5 @@
-import type { RegressionPoint } from "@stats-viz/shared/regression";
 import type { ChartLayout } from "@stats-viz/shared/chart-utils";
+import type { RegressionPoint } from "@stats-viz/shared/regression";
 
 export type Point = RegressionPoint;
 
