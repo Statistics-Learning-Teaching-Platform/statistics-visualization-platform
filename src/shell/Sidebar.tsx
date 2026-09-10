@@ -1,52 +1,45 @@
-import { useLanguage, setLanguage, getPlatformCopy, getVisualizerLabel } from "@stats-viz/shared/i18n";
-import { apps, type AppRecord } from "../../scripts/apps";
+import {
+  getPlatformCopy,
+  getVisualizerLabel,
+  setLanguage,
+  useLanguage,
+} from "@stats-viz/shared/i18n";
+import { type AppRecord, apps } from "../../scripts/apps";
 
-const GROUP_ORDER: AppRecord["group"][] = [
-  "Core Visualizers",
-  "WALS Simulation",
-  "WALS MES",
-];
+const GROUP_ORDER: AppRecord["group"][] = ["Statistical Foundations", "Statistical Simulation"];
 
 interface SidebarProps {
   activeId: string;
   onNavigate: (id: string) => void;
+  id?: string;
 }
 
-export function Sidebar({ activeId, onNavigate }: SidebarProps) {
+export function Sidebar({ activeId, onNavigate, id }: SidebarProps) {
   const lang = useLanguage();
   const copy = getPlatformCopy(lang);
+  let itemIndex = 0;
 
   return (
-    <aside className="platform-sidebar">
-      <div className="platform-sidebar__title-group">
-        <div className="platform-sidebar__mark" aria-hidden="true">
-          <svg viewBox="0 0 64 64" role="img">
-            <path d="M8 44c7-1 9-26 24-26s17 25 24 26" />
-            <path d="M10 46h44" />
-            <circle cx="32" cy="18" r="4" />
-          </svg>
+    <aside id={id} className="platform-sidebar ed-lab-sidebar">
+      <div className="ed-rail-heading">
+        <div className="ed-rail-heading__compact">
+          <div>
+            <p className="ed-kicker">Laboratory Index</p>
+            <h2>{lang === "zh" ? "实验目录" : "Experiment Index"}</h2>
+          </div>
+          <span>{apps.length}</span>
         </div>
-        <h1 className="platform-sidebar__title">{copy.brandTitle}</h1>
-        <p className="platform-sidebar__subtitle">{copy.brandSubtitle}</p>
-        <p className="platform-sidebar__active-title">
-          {getVisualizerLabel(activeId, lang)[1]}
-        </p>
       </div>
 
       <nav className="visualizer-nav" aria-label={copy.navLabel}>
         {GROUP_ORDER.map((groupName) => {
           const groupApps = apps.filter((app) => app.group === groupName);
           return (
-            <section
-              key={groupName}
-              className="visualizer-nav__group"
-              data-group-name={groupName}
-            >
-              <h2 className="visualizer-nav__group-title">
-                {copy.groups[groupName]}
-              </h2>
+            <section key={groupName} className="visualizer-nav__group" data-group-name={groupName}>
+              <h2 className="visualizer-nav__group-title">{copy.groups[groupName]}</h2>
               <div className="visualizer-nav__button-row">
                 {groupApps.map((app) => {
+                  itemIndex += 1;
                   const isActive = app.id === activeId;
                   const [label, detail] = getVisualizerLabel(app.id, lang);
                   return (
@@ -60,14 +53,11 @@ export function Sidebar({ activeId, onNavigate }: SidebarProps) {
                       onClick={() => onNavigate(app.id)}
                     >
                       <span className="visualizer-nav__icon">
-                        {app.icon}
+                        {String(itemIndex).padStart(2, "0")}
                       </span>
                       <span className="visualizer-nav__copy">
                         <span className="visualizer-nav__label">{label}</span>
                         <span className="visualizer-nav__detail">{detail}</span>
-                      </span>
-                      <span className="visualizer-nav__marker">
-                        {isActive ? "✦" : ""}
                       </span>
                     </button>
                   );
@@ -78,16 +68,38 @@ export function Sidebar({ activeId, onNavigate }: SidebarProps) {
         })}
       </nav>
 
-      <aside className="platform-sidebar__tip">
-        <strong>{copy.tipTitle}</strong>
-        <span>{copy.tipBody}</span>
-      </aside>
+      <section className="ed-procedure">
+        <p className="ed-kicker">Procedure</p>
+        <ol>
+          <li data-state="current">
+            <span>1</span>
+            {lang === "zh" ? "提出问题" : "Frame a question"}
+          </li>
+          <li>
+            <span>2</span>
+            {lang === "zh" ? "设置参数" : "Set parameters"}
+          </li>
+          <li>
+            <span>3</span>
+            {lang === "zh" ? "运行 / 实时更新" : "Run / update live"}
+          </li>
+          <li>
+            <span>4</span>
+            {lang === "zh" ? "观察图形" : "Observe the plot"}
+          </li>
+          <li>
+            <span>5</span>
+            {lang === "zh" ? "阅读指标并解释" : "Read metrics and interpret"}
+          </li>
+        </ol>
+      </section>
     </aside>
   );
 }
 
 export function LanguageTabs() {
   const lang = useLanguage();
+  const copy = getPlatformCopy(lang);
 
   const tabs: Array<{ language: "zh" | "en"; label: string }> = [
     { language: "zh", label: "中文" },
@@ -95,7 +107,7 @@ export function LanguageTabs() {
   ];
 
   return (
-    <div className="platform-language-tabs" role="tablist" aria-label="Language">
+    <div className="platform-language-tabs" role="group" aria-label={copy.languageLabel}>
       {tabs.map(({ language, label }) => (
         <button
           key={language}
@@ -103,8 +115,7 @@ export function LanguageTabs() {
           type="button"
           data-language={language}
           data-active={lang === language}
-          role="tab"
-          aria-selected={lang === language}
+          aria-pressed={lang === language}
           onClick={() => setLanguage(language)}
         >
           {label}

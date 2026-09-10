@@ -1,0 +1,1105 @@
+{
+  "chapter": 4,
+  "questions": [
+    {
+      "id": "ch04_q01",
+      "content": "Choose the one correct answer for each item.\n\n1. Two mutually exclusive events with positive probabilities are ____ dependent.\nA. Always  B. Sometimes  C. Never\n\n2. ____ is a numerical measure of the chance that an uncertain event will occur.\nA. Random experiment  B. Sample space  C. Probability  D. Complement  E. Population\n\n3. Which condition guarantees that $A$ and $B$ are independent?\nA. They are mutually exclusive.  B. $P(A)$ is not influenced by $P(B)$.  C. $P(A\\cap B)=0$.  D. $P(A\\mid B)=P(A)$.  E. Both B and D.\n\n4. For independent events, ____ their probabilities to obtain the intersection probability.\nA. Divide  B. Add  C. Multiply  D. Subtract\n\n5. Events that cannot occur simultaneously are called _____.\nA. Independent  B. Mutually exclusive  C. Intersections  D. Unions\n\n6. If $A$ and $B$ are independent, which expression equals $P(A\\cap B)$?\nA. $P(A)P(B)$  B. $P(A)P(B\\mid A)$  C. $P(B)P(A\\mid B)$  D. All of the above",
+      "source": "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment_Chapter4_Probability.doc",
+      "type": "选择题",
+      "difficulty": 2,
+      "keywords": [
+        "independence",
+        "mutually exclusive events",
+        "conditional probability"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch04-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch04-review-v1",
+        "question_hash": "95a369008e472a09a9aa9facbf7d18e04e4871c44973116cf6442e1389c07904",
+        "answer_hash": "8688a0fef7e5c5add344907c7a388888d8edbef9014d722c44194674b4b6db10",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch04_q02",
+      "content": "Two patrons independently choose one of three diet colas, A, B, or C.\n\na. List the nine ordered outcomes.\n\nb. List the outcomes for (1) both choose A, (2) different colas, (3) at least one chooses A, and (4) neither chooses C.\n\nc. Assuming the nine outcomes are equally likely, find each probability.",
+      "source": "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment_Chapter4_Probability.doc",
+      "type": "综合题",
+      "difficulty": 3,
+      "keywords": [
+        "sample space",
+        "tree diagram",
+        "equally likely outcomes"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch04-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch04-review-v1",
+        "question_hash": "b717e31810a6570be4c5e08694617ac8e145671462119e9ef7906e0310daf707",
+        "answer_hash": "3cbdd31cde3819a406adfd54466bae8954032be5b53c34a14c513030d560f607",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch04_q03",
+      "content": "The following frequency table summarizes annual family income for 75,998 sampled U.S. families. Correct the final class to USD 200,000 and above so that the classes do not overlap. Estimate the probability that a randomly selected family has income from USD 60,000 through USD 199,999.\n\n| Income class | Frequency |\n|---|---:|\n| Under USD 20,000 | 11,470 |\n| USD 20,000–$39,999$ | 17,572 |\n| USD 40,000–$59,999$ | 14,534 |\n| USD 60,000–$79,999$ | 11,410 |\n| USD 80,000–$99,999$ | 7,535 |\n| USD 100,000–$199,999$ | 11,197 |\n| USD 200,000 and above | 2,280 |\n| **Total** | **75,998** |",
+      "source": "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment_Chapter4_Probability.doc",
+      "type": "计算题",
+      "difficulty": 2,
+      "keywords": [
+        "frequency distribution",
+        "probability"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch04-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch04-review-v1",
+        "question_hash": "fae631413a3b3956b1d55994fb87bbf6da3eca9fe1414c01224b40b3a49d40ec",
+        "answer_hash": "8401c279877087f4bef419059f93bfb750e182189a8b2ce03459523156bfb69f",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch04_q04",
+      "content": "Among executives, $P(T)=0.35$ read *Time*, $P(N)=0.20$ read *Newsweek*, and $P(U)=0.40$ read *U.S. News and World Report*. Also, $P(T\\cap U)=0.10$.\n\na. Find $P(T\\cup U)$.\n\nb. What is $P(T\\cap U)$ called?\n\nc. Are $T$ and $U$ mutually exclusive? Explain.",
+      "source": "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment_Chapter4_Probability.doc",
+      "type": "计算题",
+      "difficulty": 2,
+      "keywords": [
+        "addition rule",
+        "joint probability",
+        "mutually exclusive events"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch04-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch04-review-v1",
+        "question_hash": "ba808760fb42dbd0513a20de8e76db8df2a761240836e5f016e293cac5f8d384",
+        "answer_hash": "deab11eefb7221ef4966801cd7da9c66f7fbf367a10b4927b229417f0bfee61a",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch04_q05",
+      "content": "A fair coin is tossed, one card is drawn from a standard 52-card deck, and a fair die is rolled. Find the probability of a head, an ace, and a five.",
+      "source": "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment_Chapter4_Probability.doc",
+      "type": "计算题",
+      "difficulty": 1,
+      "keywords": [
+        "independence",
+        "multiplication rule"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch04-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch04-review-v1",
+        "question_hash": "67e2b3caf511c789628e0268dc066dd4bcd5ec5d0943c020f7ede3b8892aba17",
+        "answer_hash": "62bae5e961009e9e02a0922a0ad1cc467ab62a29621c0b801e3edd17523689c3",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch04_q06",
+      "content": "Joe has a $25\\%$ acceptance probability at University A and a $40\\%$ acceptance probability at University B. Assume the two admission decisions are independent. Find the probability that he is accepted by at least one university.",
+      "source": "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment_Chapter4_Probability.doc",
+      "type": "计算题",
+      "difficulty": 2,
+      "keywords": [
+        "independence",
+        "complement rule",
+        "union probability"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch04-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch04-review-v1",
+        "question_hash": "42d2a5c6a0b22c0f953eece03bceb08cfd95ca00c30dbaf599b262d6c0052c3e",
+        "answer_hash": "60ef7636efc5ffcac11f11d1dcd92446e2d7d00be382fe536e108794a2da7aab",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch04_q07",
+      "content": "The Wood County sheriff recorded 150 crimes.\n\n| Crime type | Under 20 | Age 20–40 | Over 40 | Total |\n|---|---:|---:|---:|---:|\n| Violent | 27 | 41 | 14 | 82 |\n| Nonviolent | 12 | 34 | 22 | 68 |\n| Total | 39 | 75 | 36 | 150 |\n\nFind: (a) $P(\\text{violent})$; (b) $P(\\text{violent or under 20})$ and name the addition rule; (c) $P(\\text{under 20}\\mid\\text{violent})$; and (d) if two crimes are selected without replacement, the probability both are violent.",
+      "source": "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment_Chapter4_Probability.doc",
+      "type": "综合题",
+      "difficulty": 3,
+      "keywords": [
+        "contingency table",
+        "addition rule",
+        "conditional probability"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch04-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch04-review-v1",
+        "question_hash": "ee364c7fc66dd7981d38238e59b48b20a79314e4f842c25d91d433966f767881",
+        "answer_hash": "52672a901ae10645781764bc0addd72c2213a893a394336eba9a28b7a3a3f105",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch04_q08",
+      "content": "Among 100 insurance claims, 40 are fire claims, 16 of the fire claims are fraudulent, and 40 claims in total are fraudulent.\n\na. Construct the $2\\times2$ table for fire/nonfire and fraudulent/nonfraudulent.\n\nb. Find $P(\\text{fraudulent}\\mid\\text{fire})$.\n\nc. Determine whether fraud status and fire status are independent.",
+      "source": "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment_Chapter4_Probability.doc",
+      "type": "综合题",
+      "difficulty": 2,
+      "keywords": [
+        "contingency table",
+        "conditional probability",
+        "independence"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch04-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch04-review-v1",
+        "question_hash": "29c7e396f5d5b6cc8e7ab18fefdceb11acd68357e6cdb3c0e7733590adb7bed3",
+        "answer_hash": "a0d35a528465da0ce0c8f01751ee6b8b764d788026fa959c44d6ea54406949e1",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch04_q09",
+      "content": "Events $A_1$ and $A_2$ are mutually exclusive and exhaustive, with $P(A_1)=0.8$, $P(A_2)=0.2$, $P(B\\mid A_1)=0.1$, and $P(B\\mid A_2)=0.3$. Find $P(B)$, $P(A_1\\mid B)$, and $P(A_2\\mid B)$.",
+      "source": "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment_Chapter4_Probability.doc",
+      "type": "计算题",
+      "difficulty": 3,
+      "keywords": [
+        "law of total probability",
+        "Bayes theorem"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch04-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch04-review-v1",
+        "question_hash": "a0d05489c2be128520fc3e4cdde59640b77786d5b6618e055a71bc9ba5b4506b",
+        "answer_hash": "b83adc3fe84453c3989123d2fd72a616850774023ce9dc29ad9a939edbacd6f4",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch04_q10",
+      "content": "Three percent of customers default. Of those who default, 95% were at least twice late. Of those who do not default, 30% were at least twice late.\n\na. Find the probability that a customer who was at least twice late will default.\n\nb. Should a store discontinue credit for every customer with at least two late payments? Explain using the result.",
+      "source": "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment_Chapter4_Probability.doc",
+      "type": "计算题",
+      "difficulty": 3,
+      "keywords": [
+        "Bayes theorem",
+        "conditional probability",
+        "decision analysis"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch04-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch04-review-v1",
+        "question_hash": "332e6d31b986a189c629103bec3efe2288e1e41db15885cb15acdfcdcc125505",
+        "answer_hash": "08cf9e0fe92f214102938108eb544f9468a2c73405b6e52e7f7b1a595d3f39c0",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch04_q16",
+      "content": "From a standard 52-card deck, find the probability of drawing a red card given that the card is a face card.",
+      "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter04.docx",
+      "type": "计算题",
+      "difficulty": 1,
+      "keywords": [
+        "conditional probability",
+        "cards"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch04-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch04-review-v1",
+        "question_hash": "00bc2dd7c0369f598fc30cca8ecd2cf7896866454344c2c32c775b7a4f3d4351",
+        "answer_hash": "3bd9c558e25f7e550a8677f38e3bc7798ca3001cad87ea124eac4bb4a7ca0217",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch04_q17",
+      "content": "From a standard 52-card deck, find the probability of drawing a face card given that the card is red.",
+      "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter04.docx",
+      "type": "计算题",
+      "difficulty": 1,
+      "keywords": [
+        "conditional probability",
+        "cards"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch04-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch04-review-v1",
+        "question_hash": "14727a072402435e8b44ee501cfa5bb29ad4615f85c03adf8adc2ea9c8a665b4",
+        "answer_hash": "96d66e1162b19afaf9e5c34c9143ff0e8fe3077a49d3c15161d8f8f8acfb0c56",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch04_q18",
+      "content": "A machine has upper, middle, and lower components. Their defect probabilities are 0.05, 0.04, and 0.01, respectively. Assuming defects are independent, find the probability that a machine is non-defective.",
+      "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter04.docx",
+      "type": "计算题",
+      "difficulty": 2,
+      "keywords": [
+        "independence",
+        "multiplication rule",
+        "reliability"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch04-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch04-review-v1",
+        "question_hash": "ac6571019332ab5c9dc3c6d92a3d75166c9577e948644ebb3a2801f784713cc3",
+        "answer_hash": "15f69a903f66b45f9718dde394f4ffd0ae2864b19cbfb84f3463da6b7608f2cb",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch04_q19",
+      "content": "A machine is defective with probability $0.001$. Assuming independent production, find the probability that two machines are both non-defective.",
+      "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter04.docx",
+      "type": "计算题",
+      "difficulty": 1,
+      "keywords": [
+        "independence",
+        "complement rule"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch04-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch04-review-v1",
+        "question_hash": "b26a9e867f19879f7b77add7dfec53f43553d03ecdde9b105fdc0542a1dd94fc",
+        "answer_hash": "a98271d32dbcb8719eaf7f5d441007adce15e6c98753a5ae671ce6ecb9e8eb99",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch04_q20",
+      "content": "Assume each child is independently and equally likely to be a boy or a girl. What is the probability that both children in a two-child family are girls, given that at least one is a girl?",
+      "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter04.docx",
+      "type": "计算题",
+      "difficulty": 1,
+      "keywords": [
+        "conditional probability",
+        "sample space"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch04-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch04-review-v1",
+        "question_hash": "82e89b6aab1055baba59ba63e0b8f9cac30d259762dd7bff7de4141a2bd806d2",
+        "answer_hash": "af661465c95146c252c945ef72baa9b9d4c23e0c151028f74e2f6099963f1fa0",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch04_q21",
+      "content": "At a university, 55% of undergraduates are female, 25% belong to a Greek organization, and 40% of male undergraduates belong to one. Find the probability that a randomly selected undergraduate is female or belongs to a Greek organization.",
+      "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter04.docx",
+      "type": "计算题",
+      "difficulty": 3,
+      "keywords": [
+        "conditional probability",
+        "union probability"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch04-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch04-review-v1",
+        "question_hash": "92bbafc4b3683b473adbe36e7e42d3a9e1f2cb022e676c1210075b2e194a3f3b",
+        "answer_hash": "bb41b35d298f5abfbc8fc398fa8faf76efb5fd89ba934f103ed006a7d52b1481",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch04_q22",
+      "content": "At a university, 55% of undergraduates are female, 25% belong to a Greek organization, and 40% of male undergraduates belong to one. Find $P(\\text{Greek membership}\\mid\\text{female})$.",
+      "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter04.docx",
+      "type": "计算题",
+      "difficulty": 3,
+      "keywords": [
+        "conditional probability",
+        "law of total probability"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch04-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch04-review-v1",
+        "question_hash": "96298f6461e8d68d91075396943bb7c554bc7ab1c465a8ea5cb74294d8b75067",
+        "answer_hash": "fdd5733cda3244630eb67617c097b5e205b9b1d14abad3253f37ca0078b28d7e",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch04_q23",
+      "content": "At a university, 55% of undergraduates are female, 25% belong to a Greek organization, and 40% of male undergraduates belong to one. Are gender and Greek-organization membership independent? Show your reasoning.",
+      "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter04.docx",
+      "type": "判断题",
+      "difficulty": 3,
+      "keywords": [
+        "independence",
+        "conditional probability"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch04-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch04-review-v1",
+        "question_hash": "71f24e0db582f1c678af94b1856243dbaa0d0314aec9b5896eb21c5cf1dd678e",
+        "answer_hash": "9ca581e16a62917297d66c0a450450593e7083f53061d8a6245773a17c6d4ae6",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch04_q24",
+      "content": "Among a mailing list, 40% have only a MasterCard, 10% have only an American Express card, 20% have both, and 30% have neither. Given that a person has a MasterCard, find the probability that the person also has an American Express card.",
+      "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter04.docx",
+      "type": "计算题",
+      "difficulty": 2,
+      "keywords": [
+        "conditional probability",
+        "contingency table"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch04-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch04-review-v1",
+        "question_hash": "70f1fb1f78e0bf230d6a525e315ae4e65add2fde658f45e9e28d6efa3557cc3a",
+        "answer_hash": "64754cc3560df8c477334ca03eae85f9b53212ae69021fcbc5d921f2479a61fa",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch04_q25",
+      "content": "Suppose $P(A)=0.45$, $P(B)=0.20$, $P(C)=0.35$, and $A,B,C$ are mutually exclusive and exhaustive. If $P(E\\mid A)=0.10$, $P(E\\mid B)=0.05$, and $P(E\\mid C)=0$, find $P(E)$.",
+      "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter04.docx",
+      "type": "计算题",
+      "difficulty": 2,
+      "keywords": [
+        "law of total probability"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch04-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch04-review-v1",
+        "question_hash": "c181b8977eeb4beec84fad16a5fe767b3b6e85106d62104d643f9c41d62a59e5",
+        "answer_hash": "7cfe31ab0a483c6a6ddbaa3cab50a86d5b2fcf26416c7675923f83a1e58a29b4",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch04_q26",
+      "content": "Classify each random variable as discrete or continuous.\n\na. The number of girls born to a couple who has three children.\n\nb. The number of defects found on an automobile at final inspection.\n\nc. The weight of sandwich meat placed on a sandwich.\n\nd. The number of incorrect laboratory procedures at a hospital in one week.\n\ne. The time a clerk needs to complete a task.\n\nf. The temperature of a pizza oven at a particular time.",
+      "source": "Assignment Prof Lv/Assignment4-Lu.doc",
+      "type": "判断题",
+      "difficulty": 1,
+      "keywords": [
+        "discrete random variable",
+        "continuous random variable"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch04-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch04-review-v1",
+        "question_hash": "157d8bc66ed525ff7809ed42f7363e311eb571aad5343d81011c17aee8a873eb",
+        "answer_hash": "76db06fba91405e210eaeaa8826323051d528f76d9a76b8080f906c324399254",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch04_q31",
+      "content": "A manufacturer claims that at most 1% of its golf balls exceed the 1.62-ounce limit. Let $X$ be the number exceeding the limit in a random sample of 24 balls, assuming $X\\sim\\operatorname{Binomial}(24,0.01)$. Find $P(X=0)$, $P(X\\ge1)$, $P(X=3)$, and $P(X=2)$. If two balls exceed the limit, assess the claim.",
+      "source": "Assignments for STAT 2010/assign4.doc",
+      "type": "综合题",
+      "difficulty": 3,
+      "keywords": [
+        "binomial distribution",
+        "rare-event probability",
+        "hypothesis assessment"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch04-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch04-review-v1",
+        "question_hash": "d590b7fbdd7f2a5d86b0229f7c060d572d93fca97742b25c2e5a88b7767cbe86",
+        "answer_hash": "b08d2686139e7803ab48813abf30fab1a14f3e28d5399622fb7f624f1c3768dc",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch04_q33",
+      "content": "A patrol car passes through a neighborhood according to a Poisson process with mean 3 passes per night. Let $X$ be the number of passes during one night.\n\na. Find $P(X=0)$.\n\nb. If one randomly selected night has no passes, assess the agency's claim.\n\nc. Assuming independent nights, find the probability of exactly one pass on each of four consecutive nights.",
+      "source": "Assignments for STAT 2010/assign4.doc",
+      "type": "综合题",
+      "difficulty": 3,
+      "keywords": [
+        "Poisson process",
+        "Poisson probability"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch04-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch04-review-v1",
+        "question_hash": "509b5429f1d8068748709ced8e788c4c9d4605cd51842e7c8adcc4c96dc4c0ce",
+        "answer_hash": "c23456027cf6642944fa0b1eace6139fa493a0f03c394399fbb3186efe1c0cbc",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch04_q34",
+      "content": "Let the waiting time $X$ for an elevator be uniformly distributed on [0, 6] dollars minutes.\n\na. Give the density function.\n\nb. Describe its graph.\n\nc. Find $P(2\\le X\\le4)$.\n\nd. Find $P(3\\le X\\le6)$.\n\ne. Find $P(0\\le X\\le2\\text{ or }5\\le X\\le6)$.",
+      "source": "Assignments for STAT 2012/Assignment-4.doc",
+      "type": "综合题",
+      "difficulty": 2,
+      "keywords": [
+        "uniform distribution",
+        "probability density"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch04-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch04-review-v1",
+        "question_hash": "e2977b78b166e261dce92c66deaaa5ad8a1d606108750be1e9004ee102273546",
+        "answer_hash": "0ee68638ee08f10525ab21bb7d91b5eecce09e469bc926617e69dd26b29e94e0",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch04_q35",
+      "content": "Let $X$ be uniformly distributed on [0, 6] dollars minutes. Calculate $\\mu_X$, $\\sigma_X^2$, and $\\sigma_X$, and find the probability that $X$ is within one standard deviation of the mean.",
+      "source": "Assignments for STAT 2012/Assignment-4.doc",
+      "type": "计算题",
+      "difficulty": 2,
+      "keywords": [
+        "uniform distribution",
+        "mean",
+        "variance"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch04-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch04-review-v1",
+        "question_hash": "75525483c4b85660fbac0e5c6209f1e754d7a29e342e33a07ba48b80ef8c2509",
+        "answer_hash": "9f52eb257f684adf5da61f3b50514cb13dd533aea76a4c3fb02ca68743bb6926",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch04_q36",
+      "content": "For a standard normal random variable $Z$, use the convention $P(Z>z_\\alpha)=\\alpha$. Find $z_{0.01}$, $z_{0.05}$, $z_{0.02}$, $-z_{0.01}$, and $-z_{0.10}$.",
+      "source": "Assignments for STAT 2012/Assignment-4.doc",
+      "type": "计算题",
+      "difficulty": 2,
+      "keywords": [
+        "standard normal distribution",
+        "critical value",
+        "z-score"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch04-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch04-review-v1",
+        "question_hash": "50914a204319f8bbcac82579e3b65104ab899d87a9cc70872ddfc484fd5336a5",
+        "answer_hash": "2474fd0ea5015260a463ebf4bec64cd58a230d6e889d36cc6f3b0ad0f587eb82",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch04_q37",
+      "content": "Stanford–Binet IQ scores are normally distributed with mean 100 and standard deviation 16.\n\na. Give the z-score transformation.\n\nb. Find the probability of an IQ over 140, under 88, between 72 and 128, and within 1.5 standard deviations of the mean.\n\nc. If your score is 136, find the percentage scoring higher.",
+      "source": "Assignments for STAT 2012/Assignment-4.doc",
+      "type": "综合题",
+      "difficulty": 3,
+      "keywords": [
+        "normal distribution",
+        "z-score",
+        "standard normal probability"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch04-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch04-review-v1",
+        "question_hash": "1cd8849b289af3734fe5dd22ed555a70d41afa9396a6ca2d459df7c2b592be2a",
+        "answer_hash": "5bebd3ecb28091e0c2da18a1286060a3f4504eeb73bda614d81f080d25457054",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "rotel_ch04_probability_01",
+      "content": "A bag contains 12 cards: 7 gray cards numbered 1–7 and 5 yellow cards numbered 1–5. Draw one card at random. Let $G$ denote “a gray card is drawn” and $E$ denote “the card number is even.” Find $P(G)$, $P(E)$, $P(G\\cap E)$, $P(G\\cup E)$, $P(G\\mid E)$, and $P(E\\mid G)$.",
+      "source": "ROTEL Statistical Problem Sets in WeBWorK — 3 Probability Problem 1 — https://rotel.pressbooks.pub/statsproblemsets/chapter/assignment-3-probability/",
+      "source_url": "https://rotel.pressbooks.pub/statsproblemsets/chapter/assignment-3-probability/",
+      "source_problem": "3 Probability Problem 1",
+      "license": "CC BY-NC-SA 4.0",
+      "attribution": "Rachael Norton and Peter Staab, 2023",
+      "review_status": "independently solved and reviewed",
+      "type": "计算题",
+      "difficulty": 2,
+      "keywords": [
+        "conditional probability",
+        "union probability"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "audit_pack": "ch04-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch04-review-v1",
+        "question_hash": "77a2f0f47dd1fb8d257d9c438467e8a4e61ce190da44d1a03fdc9ae0785bd38c",
+        "answer_hash": "2a5aa8d6044e9011e4e8338868dcf9c8388dcc58fc57ef140bc8c3c9231fd88f",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "rotel_ch04_probability_02",
+      "content": "A bag contains 15 cards, 9 gray and 6 yellow. Two draws are made with replacement. Let $G_1$ and $G_2$ denote gray on the first and second draws, respectively, and let $A$ denote “gray is drawn at least once.” Find $P(G_1\\cap G_2)$, $P(A)$, and $P(G_2\\mid G_1)$.",
+      "source": "ROTEL Statistical Problem Sets in WeBWorK — 3 Probability Problem 2 — https://rotel.pressbooks.pub/statsproblemsets/chapter/assignment-3-probability/",
+      "source_url": "https://rotel.pressbooks.pub/statsproblemsets/chapter/assignment-3-probability/",
+      "source_problem": "3 Probability Problem 2",
+      "license": "CC BY-NC-SA 4.0",
+      "attribution": "Rachael Norton and Peter Staab, 2023",
+      "review_status": "independently solved and reviewed",
+      "type": "计算题",
+      "difficulty": 2,
+      "keywords": [
+        "independence",
+        "complement rule"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "audit_pack": "ch04-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch04-review-v1",
+        "question_hash": "50c46ad88404cfda37744f9296c9b24a7dc7658c90cd0b7f59ff48ac80fc8dd0",
+        "answer_hash": "96e92a20c2a147556ac1678d8c79feabdf916ed8286a92cb5a3a0c4c53764cf8",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "rotel_ch04_probability_03",
+      "content": "For a type of cookie, $P(C)=0.43$ for containing chocolate, $P(N)=0.12$ for containing nuts, and $P(C\\cap N)=0.03$ for containing both. Find the probability that a cookie contains chocolate or nuts and the probability that it contains neither.",
+      "source": "ROTEL Statistical Problem Sets in WeBWorK — 3 Probability Problem 3 — https://rotel.pressbooks.pub/statsproblemsets/chapter/assignment-3-probability/",
+      "source_url": "https://rotel.pressbooks.pub/statsproblemsets/chapter/assignment-3-probability/",
+      "source_problem": "3 Probability Problem 3",
+      "license": "CC BY-NC-SA 4.0",
+      "attribution": "Rachael Norton and Peter Staab, 2023",
+      "review_status": "independently solved and reviewed",
+      "type": "计算题",
+      "difficulty": 1,
+      "keywords": [
+        "addition rule",
+        "complement rule"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "audit_pack": "ch04-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch04-review-v1",
+        "question_hash": "0ccea63b3d9d3eda0b9f6c69cd7756955ce9df36607a9918bda07cf237c87e81",
+        "answer_hash": "f901c7cf2e82c39953d35e5794869f1de93a2f0876cae1192a5450c7c7bf6bcd",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "rotel_ch04_probability_04",
+      "content": "A shop sold 226 ice creams, summarized below.\n\n| Container | Chocolate | Vanilla | Swirl | Strawberry | Total |\n|---|---:|---:|---:|---:|---:|\n| Cup | 20 | 6 | 17 | 4 | 47 |\n| Cone | 82 | 12 | 70 | 15 | 179 |\n| Total | 102 | 18 | 87 | 19 | 226 |\n\nFind:\n\na. the probability of a cup;\n\nb. the probability of chocolate or swirl;\n\nc. the probability of chocolate and a cup;\n\nd. the probability of strawberry given a cone;\n\ne. the probability of not chocolate.",
+      "source": "ROTEL Statistical Problem Sets in WeBWorK — 3 Probability Problem 4 — https://rotel.pressbooks.pub/statsproblemsets/chapter/assignment-3-probability/",
+      "source_url": "https://rotel.pressbooks.pub/statsproblemsets/chapter/assignment-3-probability/",
+      "source_problem": "3 Probability Problem 4",
+      "license": "CC BY-NC-SA 4.0",
+      "attribution": "Rachael Norton and Peter Staab, 2023",
+      "review_status": "independently solved and reviewed",
+      "type": "综合题",
+      "difficulty": 2,
+      "keywords": [
+        "contingency table",
+        "conditional probability"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "audit_pack": "ch04-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch04-review-v1",
+        "question_hash": "e2500c42f47cf864812672c19ca68799a368c7fedabe28dc109191d6eb96879a",
+        "answer_hash": "6b21d5358c0994b964535fbb9c543f59ff9f01349013ddb194f925c928ed4ce8",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "rotel_ch04_probability_05",
+      "content": "Among 100 nurses, 29 live alone and rent, 21 live alone and own, 35 do not live alone and rent, and 15 do not live alone and own. Find the probability of:\n\na. renting or living alone;\n\nb. owning or not living alone;\n\nc. renting or not living alone.",
+      "source": "ROTEL Statistical Problem Sets in WeBWorK — 3 Probability Problem 5 — https://rotel.pressbooks.pub/statsproblemsets/chapter/assignment-3-probability/",
+      "source_url": "https://rotel.pressbooks.pub/statsproblemsets/chapter/assignment-3-probability/",
+      "source_problem": "3 Probability Problem 5",
+      "license": "CC BY-NC-SA 4.0",
+      "attribution": "Rachael Norton and Peter Staab, 2023",
+      "review_status": "independently solved and reviewed",
+      "type": "计算题",
+      "difficulty": 2,
+      "keywords": [
+        "addition rule",
+        "complement rule"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "audit_pack": "ch04-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch04-review-v1",
+        "question_hash": "875ac005aacc7172c1a11cf2fde5bd79a6337245bdddc4d894b33aff380f6a2c",
+        "answer_hash": "04b94155a5005bf7f98eebf20a6937f9f5eebb631e4de3fe1abc83ccd76cf686",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "opl_nau_ch04_samplespace_01",
+      "content": "A fair coin is tossed five times, and each ordered sequence of heads and tails is treated as a distinct outcome.\n\na. How many outcomes contain exactly one head?\n\nb. How many outcomes contain exactly two tails?\n\nc. How many outcomes start and end with different faces?",
+      "source": "WeBWorK Open Problem Library — NAU Statistics — SampleSpace.pg (fixed static instance) — https://github.com/openwebwork/webwork-open-problem-library/blob/54e7db70ed308cab9c7eed8af1d2dba5a6adf7d4/OpenProblemLibrary/NAU/setStatistics/SampleSpace.pg",
+      "source_url": "https://github.com/openwebwork/webwork-open-problem-library/blob/54e7db70ed308cab9c7eed8af1d2dba5a6adf7d4/OpenProblemLibrary/NAU/setStatistics/SampleSpace.pg",
+      "source_problem": "SampleSpace.pg (fixed static instance)",
+      "source_path": "OpenProblemLibrary/NAU/setStatistics/SampleSpace.pg",
+      "source_commit": "54e7db70ed308cab9c7eed8af1d2dba5a6adf7d4",
+      "license": "CC BY-NC-SA 3.0",
+      "license_url": "https://creativecommons.org/licenses/by-nc-sa/3.0/",
+      "attribution": "Attributed in OPL metadata to John Hagood, Northern Arizona University",
+      "changes": "Randomized PG problem converted to a fixed, self-contained English instance; answer independently recomputed and Markdown/LaTeX normalized.",
+      "review_status": "independently solved and reviewed",
+      "type": "计算题",
+      "difficulty": 2,
+      "keywords": [
+        "sample space",
+        "counting",
+        "coin toss"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "opl-nau-curated-v1",
+        "question_hash": "848a33d273b563630bced9132a95ba25b950443fe8aeee40e15789241a82c1fb",
+        "answer_hash": "6dbc9df3479686e4f699853d9ceacce7f1aa003fdff94fc2659466f4f8a25abd",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "opl_nau_ch04_samplespace_02",
+      "content": "An urn contains 8 red balls and 10 blue balls. One ball is drawn. If it is red, two coins are tossed; if it is blue, three coins are tossed. Treat balls as distinct and record the complete ordered coin result.\n\na. How many outcomes include drawing a red ball?\n\nb. How many outcomes are in the full sample space?",
+      "source": "WeBWorK Open Problem Library — NAU Statistics — SampleSpace2.pg (fixed static instance) — https://github.com/openwebwork/webwork-open-problem-library/blob/54e7db70ed308cab9c7eed8af1d2dba5a6adf7d4/OpenProblemLibrary/NAU/setStatistics/SampleSpace2.pg",
+      "source_url": "https://github.com/openwebwork/webwork-open-problem-library/blob/54e7db70ed308cab9c7eed8af1d2dba5a6adf7d4/OpenProblemLibrary/NAU/setStatistics/SampleSpace2.pg",
+      "source_problem": "SampleSpace2.pg (fixed static instance)",
+      "source_path": "OpenProblemLibrary/NAU/setStatistics/SampleSpace2.pg",
+      "source_commit": "54e7db70ed308cab9c7eed8af1d2dba5a6adf7d4",
+      "license": "CC BY-NC-SA 3.0",
+      "license_url": "https://creativecommons.org/licenses/by-nc-sa/3.0/",
+      "attribution": "John Hagood, Northern Arizona University",
+      "changes": "Randomized PG problem converted to a fixed, self-contained English instance; answer independently recomputed and Markdown/LaTeX normalized.",
+      "review_status": "independently solved and reviewed",
+      "type": "计算题",
+      "difficulty": 2,
+      "keywords": [
+        "sample space",
+        "multiplication principle"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "opl-nau-curated-v1",
+        "question_hash": "6bd0fe83e7c396ab80b2ee9571523c59f18df59c2e7a46e4a0c805418faf4ab7",
+        "answer_hash": "c1228c981cff7eda84ae8a356217b8d29d4f3ce22bb2942da7165361365b985d",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    }
+  ]
+}

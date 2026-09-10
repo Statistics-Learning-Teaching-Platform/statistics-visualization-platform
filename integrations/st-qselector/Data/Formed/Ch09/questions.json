@@ -1,0 +1,828 @@
+{
+  "chapter": 9,
+  "questions": [
+    {
+      "id": "ch09_q02",
+      "content": "The 1994 national mean daily hospital cost was USD 931. A random sample of 30 Massachusetts hospital costs has mean USD 1,131. Assume $\\sigma=333$ dollars. Test at $\\alpha=0.05$ whether the Massachusetts mean exceeded USD 931.",
+      "source": "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment_Chapter 9 Hypothesis Testing Questions.docx",
+      "type": "计算题",
+      "difficulty": 2,
+      "keywords": [
+        "one-sample z test",
+        "hypothesis testing"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch09-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch09-review-v1",
+        "question_hash": "1ba71dff5f042abd76e618ac1f086dff977b5b73544f29e51c575101fea15854",
+        "answer_hash": "8ad144cd70eae9e174011ae68ba2885c14f9b6a9b16a0b40d53f7466b6f3d8d2",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch09_q03",
+      "content": "In 1990, mean annual passenger-vehicle mileage was 10.3 thousand miles. A random sample of 500 vehicles has mean 10.1 thousand miles; assume known $\\sigma=6.0$ thousand miles.\n\na. Test $H_0:\\mu=10.3$ versus $H_a:\\mu\\ne10.3$ at $\\alpha=0.05$.\n\nb. Construct a 95% confidence interval for $\\mu$.",
+      "source": "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment_Chapter 9 Hypothesis Testing Questions.docx",
+      "type": "综合题",
+      "difficulty": 2,
+      "keywords": [
+        "one-sample z test",
+        "confidence interval"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch09-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch09-review-v1",
+        "question_hash": "557151d41ce91cec2be79659af483ee2dbce4d08ba4983d3fa536715881d1416",
+        "answer_hash": "eee3f1d47addd3165742453c1cba6287cc24ecf3d7dba4aa1dae0b4336bfd89d",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch09_q04",
+      "content": "Last year's mean apartment price in Zhuhai was USD 8,650/m² with known $\\sigma=735$ dollars/m². A sample of 42 recent deals has mean USD 8,950/m². At $\\alpha=0.01$, test whether the mean price has increased.",
+      "source": "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment_Chapter 9 Hypothesis Testing Questions.docx",
+      "type": "计算题",
+      "difficulty": 2,
+      "keywords": [
+        "one-sample z test",
+        "hypothesis testing"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch09-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch09-review-v1",
+        "question_hash": "1be2fb3569eea905a1ff06b9340337024d76e9fb9ed808492a0ddaceb59fb453",
+        "answer_hash": "83af813ae286459e356b2fdeb7ee140a33417782bc2221f507e09aafc746ab97",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch09_q06",
+      "content": "A manufacturer claims mean light-bulb life is 1,520 hours. A random sample of 25 bulbs has mean 1,505 hours and sample standard deviation 86 hours. Assuming normal lifetimes, test at $\\alpha=0.05$ whether the mean is less than 1,520 hours.",
+      "source": "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment_Chapter 9 Hypothesis Testing Questions.docx",
+      "type": "计算题",
+      "difficulty": 2,
+      "keywords": [
+        "one-sample t test",
+        "hypothesis testing"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch09-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch09-review-v1",
+        "question_hash": "8c597437003493a3694442a9e2b73d55fab38c33531b8b99d4a4ac8d756bda48",
+        "answer_hash": "d445158350612790e5278e6668eed7a53db5d2d5316f43be08c2ac872067bd79",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch09_q07",
+      "content": "A shipment may contain at most 2% defective electric can openers. In a random sample of 400, 11 are defective.\n\na. Test at $\\alpha=0.05$ whether the defect rate exceeds 2%.\n\nb. Report and interpret the observed significance level.",
+      "source": "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment_Chapter 9 Hypothesis Testing Questions.docx",
+      "type": "综合题",
+      "difficulty": 3,
+      "keywords": [
+        "one-sample proportion test",
+        "hypothesis testing"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch09-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch09-review-v1",
+        "question_hash": "6b86d65b59922af503d1f0d7739c80430f340164fbb4c31cf4dcb4205f009564",
+        "answer_hash": "82aa5801e44532ef449c1668588bc32112807a75b4d01b1ee7dd4c39fa03a923",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch09_q08",
+      "content": "Miranda samples 60 people from Adam's House at Harvard and finds 44 with piercings.\n\na. Test $H_0:p\\le0.60$ versus $H_a:p>0.60$ at $\\alpha=0.05$.\n\nb. Identify a sampling concern.",
+      "source": "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment_Chapter 9 Hypothesis Testing Questions.docx",
+      "type": "综合题",
+      "difficulty": 3,
+      "keywords": [
+        "one-sample proportion test",
+        "hypothesis testing",
+        "sampling bias"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch09-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch09-review-v1",
+        "question_hash": "b9eb8eeeda32fb7fb270ff355c08731fae78e18a704864f8a63d1386de7e5e4b",
+        "answer_hash": "a8c3c0bd0806e7a310aa184385e278bc87d8bc57ed2ec08f0be274fb81808b71",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch09_q09",
+      "content": "In a blind taste test, 56 of 100 Diet Coke drinkers prefer Diet Pepsi. Test $H_0:p=0.50$ versus $H_a:p>0.50$ at $\\alpha=0.05$, and state the consequence for the advertising claim.",
+      "source": "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment_Chapter 9 Hypothesis Testing Questions.docx",
+      "type": "综合题",
+      "difficulty": 2,
+      "keywords": [
+        "one-sample proportion test",
+        "hypothesis testing"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch09-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch09-review-v1",
+        "question_hash": "499c29981ba61e53159e87770d708b1c3374c16c4ae0f354f24b7da5b4bcc87a",
+        "answer_hash": "8e4a77a87d1f1ec188d11391ed7e6ae72d09d99a5d674fec8df00a8758faae0d",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch09_q10",
+      "content": "Historically, 37% of cars failed a pollution standard. In a recent sample of 100 cars, 28% failed. Test at $\\alpha=0.01$ whether cars have improved (a lower failure rate). State hypotheses in words and symbols, compute the statistic and p-value, and interpret the conclusion.",
+      "source": "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment_Chapter 9 Hypothesis Testing Questions.docx",
+      "type": "综合题",
+      "difficulty": 3,
+      "keywords": [
+        "one-sample proportion test",
+        "hypothesis testing"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch09-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch09-review-v1",
+        "question_hash": "0d8aac3702eefa2e59c6d1796ed7ea74d06d12a63e074f2562302c0dcb784204",
+        "answer_hash": "c6a824f6230a928c9f75bba59eed34ceca0909af1263b12b63b5516be85a89dc",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch09_q11",
+      "content": "ABZ Chemical Company claims its product contains no more than 4.0 fluid ounces of caustic material per gallon on average. The population standard deviation is known to be 1.3 ounces. A random sample of 100 containers has mean 4.5 ounces.\n\na. State $H_0$ and $H_a$ in symbols and words.\n\nb. At $\\alpha=0.01$, test whether the claim is false because the mean is too high.",
+      "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter09_Hypothesis Testing.doc",
+      "type": "综合题",
+      "difficulty": 3,
+      "keywords": [
+        "one-sample z test",
+        "hypothesis testing"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch09-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch09-review-v1",
+        "question_hash": "a2842d505277f7ffc912bed8aefa9c29aaff08929ecd0e13660f514a92973876",
+        "answer_hash": "83c9fc4f7afaf6f62c89b913bea0647dc7d91c4a9813ab8b9babd9016979630c",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch09_q12",
+      "content": "The 2007 national mean daily hospital cost per patient was 1,231 dollars. A random sample of 25 Utah daily costs has sample mean 1,103 dollars, with known population standard deviation $\\sigma=252$ dollars. At $\\alpha=0.05$, test whether Utah's population mean daily cost was below the national mean.",
+      "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter09_Hypothesis Testing.doc",
+      "type": "计算题",
+      "difficulty": 2,
+      "keywords": [
+        "one-sample z test",
+        "hypothesis testing"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch09-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch09-review-v1",
+        "question_hash": "039cb969d71c53346c4bb22b5a026a42ce34117031a44e118761868b21906027",
+        "answer_hash": "76d7eec010270a430906cef0a7f752ee2e05ee5a918cc0079a6da5d8179f3310",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch09_q13",
+      "content": "SAT scores are normal with known $\\mu_0=500$ and $\\sigma=100$. A sample of 25 students after preparation has mean 554.\n\na. Test at $\\alpha=0.05$ whether the course changes the mean.\n\nb. Would the conclusion change at $\\alpha=0.01$?",
+      "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter09_Hypothesis Testing.doc",
+      "type": "综合题",
+      "difficulty": 2,
+      "keywords": [
+        "one-sample z test",
+        "hypothesis testing"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch09-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch09-review-v1",
+        "question_hash": "cc3dfbd0161faf3c46a34b0e52722579193c72440540efbcd0558aa5d65b6980",
+        "answer_hash": "4574f462372ff1e15fec2dc47deec5d44d8552780c34020347a3fda5996023f3",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch09_q14",
+      "content": "The mean IQ of all college students is 109 with known $\\sigma=15$. A random sample of 122 UIC students has mean 116. At $\\alpha=0.05$, test whether UIC students have a higher mean IQ.",
+      "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter09_Hypothesis Testing.doc",
+      "type": "计算题",
+      "difficulty": 2,
+      "keywords": [
+        "one-sample z test",
+        "hypothesis testing"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch09-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch09-review-v1",
+        "question_hash": "b3e154f185ce1ea2a071380a21a4f928d6f7de5b05f3044318e0c12a2ad2a848",
+        "answer_hash": "99656ce07049d5222a806a561d1dc3ba569b04f73b854b11af47dd7ba2ee2971",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch09_q15",
+      "content": "Last year's Zhuhai apartment price mean was USD 9,450/m² with known $\\sigma=1,035$ dollars/m². A sample of 47 recent sales has mean USD 9,850/m². At $\\alpha=0.01$, test whether the mean increased.",
+      "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter09_Hypothesis Testing.doc",
+      "type": "计算题",
+      "difficulty": 2,
+      "keywords": [
+        "one-sample z test",
+        "hypothesis testing"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch09-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch09-review-v1",
+        "question_hash": "605c3c3db88fe11a3f5d9bdd4b9553c5a39eb89a5ded72588e596ffe15deb4f8",
+        "answer_hash": "3efa563c6692bb2adbaae0f27019f6611eb6cbddea755b6f63db8184a01eb1a0",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch09_q16",
+      "content": "Last year's Zhuhai apartment price mean was USD 9,450/m². A sample of 25 recent sales has mean USD 9,850/m² and $s=1,035$ dollars/m². Assuming approximate normality, test at $\\alpha=0.01$ whether the mean increased.",
+      "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter09_Hypothesis Testing.doc",
+      "type": "计算题",
+      "difficulty": 2,
+      "keywords": [
+        "one-sample t test",
+        "hypothesis testing"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch09-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch09-review-v1",
+        "question_hash": "4b20f79b74f55503d89ccf1cff5d0d48e79ac39837ae5465e30de60bb962421a",
+        "answer_hash": "80742db04ce998855c5bfb8aef09c486947c93cd22c4cab418927bce02e4312e",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch09_q17",
+      "content": "A manufacturer claims mean bulb life is 1,520 hours. A random sample of 40 bulbs has mean 1,505 hours and $s=86$ hours. Assuming normal lifetimes, test at $\\alpha=0.05$ whether the mean is less than 1,520 hours.",
+      "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter09_Hypothesis Testing.doc",
+      "type": "计算题",
+      "difficulty": 2,
+      "keywords": [
+        "one-sample t test",
+        "hypothesis testing"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch09-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch09-review-v1",
+        "question_hash": "d795b386101596c5804b4af75ee8e8db4694bb259c8cea93346bcb23515d8211",
+        "answer_hash": "f8b0cb4ba5ff647bd6464797e9312008f0ed15f371de9bdbd9035d83f6774110",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch09_q18",
+      "content": "In 2005, mean vehicle mileage was 15.3 thousand miles. A random sample of 50 vehicles in 2010 has mean 23.1 and $s=7.2$ thousand miles.\n\na. Test at $\\alpha=0.05$ whether the 2010 mean differs from 15.3.\n\nb. Construct a 95% confidence interval for the 2010 mean.",
+      "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter09_Hypothesis Testing.doc",
+      "type": "综合题",
+      "difficulty": 3,
+      "keywords": [
+        "one-sample t test",
+        "confidence interval"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch09-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch09-review-v1",
+        "question_hash": "768941589d99131d7449a37d8e6cfbd06959dd48129eb8755cfd5e8c68531963",
+        "answer_hash": "0610b3f6ab5e844c432d8fdaea60aa9387736238f3a929f9d14608b525c9f597",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch09_q19",
+      "content": "Reaction times are normal with mean 200 ms. Fourteen people taking a medication have mean reaction time 221 ms and sample variance $s^2=300$ ms². At $\\alpha=0.05$, test whether the medication changes the population mean.",
+      "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter09_Hypothesis Testing.doc",
+      "type": "计算题",
+      "difficulty": 2,
+      "keywords": [
+        "one-sample t test",
+        "hypothesis testing"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch09-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch09-review-v1",
+        "question_hash": "c6c2f3db73136eee9d1d7bde3ea2cfd774988a38fd381032af93f451c964e644",
+        "answer_hash": "fc77eb8b46ec44543c88148236dc5ccb61f2001682e91e8da75733a293817927",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch09_q20",
+      "content": "The historical mean IQ of entering freshmen is 110.3. A random sample of 36 current freshmen has mean 114.5 and sample variance $s^2=324$. At $\\alpha=0.05$, test whether the current mean differs from 110.3.",
+      "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter09_Hypothesis Testing.doc",
+      "type": "计算题",
+      "difficulty": 2,
+      "keywords": [
+        "one-sample t test",
+        "hypothesis testing"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch09-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch09-review-v1",
+        "question_hash": "1cb2dff467e46303097d5b6c20f7e1f10fe3919a2f472e593212af0fee083e14",
+        "answer_hash": "2b674b9c57540954dd0983a8b56871b1e16484f2542a9659b71a180bbaecc542",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch09_q21",
+      "content": "In a blind taste test, 56 of 100 drinkers prefer Diet Coke. At $\\alpha=0.02$, test whether more than half of all drinkers prefer Diet Coke.",
+      "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter09_Hypothesis Testing.doc",
+      "type": "计算题",
+      "difficulty": 2,
+      "keywords": [
+        "one-sample proportion test",
+        "hypothesis testing"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch09-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch09-review-v1",
+        "question_hash": "f24e10e893b0aa04fe433246a6208de5595e55c2e766c6b6789ea0f3ec6ebddf",
+        "answer_hash": "316a0831d261e8f1cea4fc8e402047e24118e076efe105e754dc51870d272a30",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch09_q22",
+      "content": "An airline claims that more than 90% of lost luggage is recovered within 24 hours. In a sample of 122 travelers, 103 received luggage within 24 hours. At $\\alpha=0.05$, test whether the airline overstated its recovery rate.",
+      "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter09_Hypothesis Testing.doc",
+      "type": "计算题",
+      "difficulty": 2,
+      "keywords": [
+        "one-sample proportion test",
+        "hypothesis testing"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch09-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch09-review-v1",
+        "question_hash": "f4effb626adf77478e17e941cf4cec578321afb54d0c557dcbdb44b9000e0653",
+        "answer_hash": "7a51de23d894b3f5751d6cd95deacc04dbedd0fd48a2343b3710b480c48c1ced",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch09_q23",
+      "content": "A sample of 50 regular-coffee drinkers has mean 4.35 cups/day and $s=1.20$; a sample of 40 decaffeinated-coffee drinkers has mean 5.84 cups/day and $s=1.36$. Assuming independent populations, test at $\\alpha=0.01$ whether regular drinkers consume less and report the p-value.",
+      "source": "Assignment Prof Lv/assignment9-Lu.doc",
+      "type": "计算题",
+      "difficulty": 3,
+      "keywords": [
+        "two-sample t test",
+        "hypothesis testing"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch09-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch09-review-v1",
+        "question_hash": "700eac37f7761cddd95798aceaeafc4fae82217df89dda9ff1d453956a92daa6",
+        "answer_hash": "7b484f225f64872e691c04eb61b327596b1fa21affaf24dbd6ab0380c136c76a",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch09_q28",
+      "content": "At eight intersections, minor accidents before and after a traffic-light modification were:\n\n| Intersection | A | B | C | D | E | F | G | H |\n|---|---:|---:|---:|---:|---:|---:|---:|---:|\n| Before | 5 | 7 | 6 | 4 | 8 | 9 | 8 | 10 |\n| After | 3 | 7 | 7 | 0 | 4 | 6 | 8 | 2 |\n\nAt $\\alpha=0.05$, test whether the modification reduces the population mean number of accidents.",
+      "source": "Assignments for STAT 2010/Assignment 9.doc",
+      "type": "计算题",
+      "difficulty": 3,
+      "keywords": [
+        "paired t test",
+        "hypothesis testing"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch09-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch09-review-v1",
+        "question_hash": "4348e30e85c2ea387a12de4226aea4ee6f8a271a4c3f12ce26f20e8c79788dbe",
+        "answer_hash": "5ea862f56cfbc53daaeb5c1b57e4033967165ce1879141da9ff1db3df4f94bc3",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "rotel_ch09_hypothesis_01",
+      "content": "The target mean spindle diameter is 6 mm. State hypotheses for testing whether the production mean has deviated from the target.",
+      "source": "ROTEL Statistical Problem Sets in WeBWorK — 8.3-9.3 Problem 2(a) — https://rotel.pressbooks.pub/statsproblemsets/chapter/8-3-9-3-ci-and-hypothesis-testing/",
+      "source_url": "https://rotel.pressbooks.pub/statsproblemsets/chapter/8-3-9-3-ci-and-hypothesis-testing/",
+      "source_problem": "8.3-9.3 Problem 2(a)",
+      "license": "CC BY-NC-SA 4.0",
+      "attribution": "Rachael Norton and Peter Staab, 2023",
+      "review_status": "independently solved and reviewed",
+      "type": "填空题",
+      "difficulty": 1,
+      "keywords": [
+        "null hypothesis",
+        "alternative hypothesis"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "audit_pack": "ch09-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch09-review-v1",
+        "question_hash": "46128bec69f5ab2589081a59c93d65ef20648dd890880de50af99743045bb73d",
+        "answer_hash": "bbed30ea954f4d4c475463e99715d15f554a2e2c6b5c786ede91e5dc707c070e",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "rotel_ch09_hypothesis_02",
+      "content": "The national mean selling price is USD 55. State hypotheses for testing the claim that a particular area's population mean selling price is lower.",
+      "source": "ROTEL Statistical Problem Sets in WeBWorK — 8.3-9.3 Problem 2(b) — https://rotel.pressbooks.pub/statsproblemsets/chapter/8-3-9-3-ci-and-hypothesis-testing/",
+      "source_url": "https://rotel.pressbooks.pub/statsproblemsets/chapter/8-3-9-3-ci-and-hypothesis-testing/",
+      "source_problem": "8.3-9.3 Problem 2(b)",
+      "license": "CC BY-NC-SA 4.0",
+      "attribution": "Rachael Norton and Peter Staab, 2023",
+      "review_status": "independently solved and reviewed",
+      "type": "填空题",
+      "difficulty": 1,
+      "keywords": [
+        "null hypothesis",
+        "alternative hypothesis"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "audit_pack": "ch09-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch09-review-v1",
+        "question_hash": "0aff1673f208740740ba2055a96627cf8fec9b4f1460d2394b722e854e913ff9",
+        "answer_hash": "cbdf9e757fc90d338c5381bb49bbb0167becc2267c86a40789df12365a6942c7",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "rotel_ch09_errors_01",
+      "content": "For $H_0:\\mu=98.6^\\circ\\mathrm{F}$ versus $H_a:\\mu\\ne98.6^\\circ\\mathrm{F}$, classify each outcome as a correct decision, Type I error, or Type II error:\n\na. $H_0$ is true but rejected.\n\nb. $H_0$ is false and rejected.\n\nc. $H_0$ is true and not rejected.\n\nd. $H_0$ is false but not rejected.",
+      "source": "ROTEL Statistical Problem Sets in WeBWorK — 8.3-9.3 Problem 3 — https://rotel.pressbooks.pub/statsproblemsets/chapter/8-3-9-3-ci-and-hypothesis-testing/",
+      "source_url": "https://rotel.pressbooks.pub/statsproblemsets/chapter/8-3-9-3-ci-and-hypothesis-testing/",
+      "source_problem": "8.3-9.3 Problem 3",
+      "license": "CC BY-NC-SA 4.0",
+      "attribution": "Rachael Norton and Peter Staab, 2023",
+      "review_status": "independently solved and reviewed",
+      "type": "综合题",
+      "difficulty": 1,
+      "keywords": [
+        "Type I error",
+        "Type II error"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "audit_pack": "ch09-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch09-review-v1",
+        "question_hash": "f0dc4fd0c7fb4f7b04ab49219de9a0ec142dba763b96f617640f60dd66c9a470",
+        "answer_hash": "e9eebd8e944e42eb9aaafb40bcdc99b3994c32da8422802d888ddd54cd294dac",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "rotel_ch09_ttest_01",
+      "content": "A sample of 14 lifespans has mean 81.09 years and sample standard deviation 0.91 years. At $\\alpha=0.10$, test whether the population mean lifespan exceeds 77 years.",
+      "source": "ROTEL Statistical Problem Sets in WeBWorK — 9.4-9.5 Problem 1 — https://rotel.pressbooks.pub/statsproblemsets/chapter/9-4-9-5-hypothesis-testing/",
+      "source_url": "https://rotel.pressbooks.pub/statsproblemsets/chapter/9-4-9-5-hypothesis-testing/",
+      "source_problem": "9.4-9.5 Problem 1",
+      "license": "CC BY-NC-SA 4.0",
+      "attribution": "Rachael Norton and Peter Staab, 2023",
+      "review_status": "independently solved and reviewed",
+      "type": "计算题",
+      "difficulty": 2,
+      "keywords": [
+        "one-sample t test",
+        "hypothesis testing"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "audit_pack": "ch09-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch09-review-v1",
+        "question_hash": "6bd59faeab90f9206d21c3bdfcfec8500b8b3256b3d2d55028be1075dba10f11",
+        "answer_hash": "68a77531179047933c8aa272c4c0112b3b9d095db8174904d274993d4f60c654",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    }
+  ]
+}

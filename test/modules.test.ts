@@ -1,7 +1,7 @@
-import { describe, expect, it } from "vitest";
-import { createState } from "@stats-viz/shared/wals/WalsApp";
 import { runExample } from "@stats-viz/shared/wals/engine";
 import type { ModuleConfig } from "@stats-viz/shared/wals/types";
+import { createState } from "@stats-viz/shared/wals/WalsApp";
+import { describe, expect, it } from "vitest";
 
 // Discover every module config via Vite's glob. This single parameterized
 // sweep replaces the ten near-identical apps/*/test/module.test.ts copies.

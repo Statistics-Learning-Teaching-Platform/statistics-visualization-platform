@@ -1,0 +1,599 @@
+{
+  "chapter": 7,
+  "answers": [
+    {
+      "id": "ch07_q02",
+      "answer": "The sampling distribution has mean $5.2$ and standard deviation $0.08/\\sqrt{20}\\approx0.0179$. The central 95.44% corresponds to $z=\\pm2$, so the interval is $5.2\\pm2(0.0179)=[5.1642,5.2358]$ inches.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch07-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch07-review-v1",
+        "question_hash": "f3ab727684bb86cc76730b04f62ffc66f2b92f37a5d2771566eb539ab79b5c21",
+        "answer_hash": "46b3b398f2a1bb10feb2fee40df94cafeca2703afce3787c0d570ae7c35adc35",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch07_q03",
+      "answer": "a. By the Central Limit Theorem, the sampling distribution is approximately normal; no population-normality assumption is needed for this large sample.\n\nb. $E(\\bar X)=20$ and $\\operatorname{SD}(\\bar X)=4/\\sqrt{64}=0.5$.\n\nc. $z=(21-20)/0.5=2$, so $P(\\bar X>21)=P(Z>2)\\approx0.0228$.\n\nd. $z=(19.385-20)/0.5=-1.23$, so $P(\\bar X<19.385)\\approx0.1093$.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch07-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch07-review-v1",
+        "question_hash": "737697657d1cc8f6622226e75eb3542023efeb76826243e79fa5e40d0a57c557",
+        "answer_hash": "abc6cb90e8b1ecabb2fac8063f87c665b88622e2ecdc4222f49c0c6be66407aa",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch07_q04",
+      "answer": "$E(X)=0.55$ and $E(X^2)=0.20+0.40+0.45=1.05$, so $\\operatorname{Var}(X)=1.05-0.55^2=0.7475$ and $\\sigma=0.8646$. Thus $\\operatorname{SD}(\\bar X)=0.8646/\\sqrt{100}=0.08646$. By the CLT, $P(\\bar X>0.75)\\approx P(Z>(0.75-0.55)/0.08646)=P(Z>2.31)\\approx0.0104$.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch07-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch07-review-v1",
+        "question_hash": "9a469b0c81905d7ba6a9dad1b1d71f034ac70b9b0adc029da0ef7d76dbed51f7",
+        "answer_hash": "d1624d094a2dbc7497015eca37d2c62547d9713cd4d51955461203781551c39b",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch07_q06",
+      "answer": "Under $p=0.48$, $\\operatorname{SD}(\\hat p)=\\sqrt{0.48(0.52)/350}\\approx0.0267$. Hence $z=(0.54-0.48)/0.0267\\approx2.25$ and $P(\\hat p\\ge0.54)\\approx0.0123$. This small probability supports the claim that the current proportion is greater than 48%.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch07-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch07-review-v1",
+        "question_hash": "e82686e6e904289b45551e2372333e29527f900a827d2c6d8e30155892c50f71",
+        "answer_hash": "07dea1e87865331dc25cf3aaed272b8ea497f476da89c771a8111109f2ceb9ad",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch07_q07",
+      "answer": "$\\operatorname{SD}(\\hat p)=\\sqrt{0.51(0.49)/900}\\approx0.0167$. Therefore $z=(0.55-0.51)/0.0167\\approx2.40$, and $P(\\hat p\\ge0.55)\\approx0.0082$.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch07-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch07-review-v1",
+        "question_hash": "02070f7179a8fe2844a130d02fe95d474a8323829db3aaaec3af7bb5b4d2684e",
+        "answer_hash": "cf907c51597f424f7bb7c1637a699cb82afe9cba0c400b6631787bd9027d79c3",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch07_q08",
+      "answer": "The sampling distribution has mean 50 and standard deviation $5/\\sqrt{100}=0.5$.\n\na. $z=(47-50)/0.5=-6$, so $P(\\bar X<47)\\approx0$.\n\nb. The z-scores are $-6$ and $-1$, so $P(47<\\bar X<49.5)\\approx\\Phi(-1)-\\Phi(-6)\\approx0.1587$.\n\nc. $P(\\bar X>k)=0.35$ means $k$ is the 65th percentile, $z\\approx0.385$. Thus $k=50+0.385(0.5)\\approx50.19$.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch07-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch07-review-v1",
+        "question_hash": "40020b54cdf048cd6e3a5b541751e6d60b44e6ddab3cbac8c1c32fe8dc7f907d",
+        "answer_hash": "eae3804ace86c34a0445cd0962dae648a9054aa85fa075e6b60323bc9b4213ab",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch07_q09",
+      "answer": "The sample-mean standard deviation is $0.5/\\sqrt9=0.1667$. We need the 5th percentile because 95% exceed $k$: $k=7-1.645(0.1667)\\approx6.7258$ ounces.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch07-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch07-review-v1",
+        "question_hash": "2104a2a0af54f4a30d90dab0e96e67e772e76805dff5e9b4fc4e7f995304f647",
+        "answer_hash": "85ae788d0d22c945fc2265992a38d55d42ece0cdf73cf95ea37edd628b9c6baa",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch07_q10",
+      "answer": "a. Label the two employees with 7 days as $7_1$ and $7_2$. The 20 samples are $(1,3,6),(1,3,7_1),(1,3,7_2),(1,3,12),(1,6,7_1),(1,6,7_2),(1,6,12),(1,7_1,7_2),(1,7_1,12),(1,7_2,12),(3,6,7_1),(3,6,7_2),(3,6,12),(3,7_1,7_2),(3,7_1,12),(3,7_2,12),(6,7_1,7_2),(6,7_1,12),(6,7_2,12),(7_1,7_2,12)$. Their sample means have this distribution:\n\n| $\\bar x$ | Frequency | Probability |\n|---:|---:|---:|\n| $10/3$ | 1 | $1/20$ |\n| $11/3$ | 2 | $2/20$ |\n| $14/3$ | 2 | $2/20$ |\n| $15/3$ | 1 | $1/20$ |\n| $16/3$ | 3 | $3/20$ |\n| $17/3$ | 1 | $1/20$ |\n| $19/3$ | 1 | $1/20$ |\n| $20/3$ | 3 | $3/20$ |\n| $21/3$ | 1 | $1/20$ |\n| $22/3$ | 2 | $2/20$ |\n| $25/3$ | 2 | $2/20$ |\n| $26/3$ | 1 | $1/20$ |\n\nb. The mean of all sample means is $6$, equal to the population mean $(1+3+6+7+7+12)/6=6$.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch07-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch07-review-v1",
+        "question_hash": "a7d7ac4402659d1940eddfc66a8c0b5d6f3125d937714345d4f14682ed23cd32",
+        "answer_hash": "055f7a6c1e3c6ae80f42ecc9c7eacdb9cd654213125d1cd941ef6a14bea8c069",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch07_q11",
+      "answer": "a. $\\operatorname{SD}(\\bar X)=2/\\sqrt{25}=0.4$.\n\nb. $P(7.8<\\bar X<8.2)=P(-0.5<Z<0.5)\\approx0.3829$.\n\nc. For $n=100$, SD $=0.2$, so the z-scores are $-1$ and $1$ and the probability is $0.6827$.\n\nd. The larger sample has a smaller standard error, so more means fall near 8.\n\\ne. The three probabilities are $P(X>11)=P(Z>1.5)=0.0668$, $P(\\bar X_{25}>9)=P(Z>2.5)=0.0062$, and $P(\\bar X_{100}>8.6)=P(Z>3)=0.00135$. Thus the single session is most likely, followed by the 25-session mean, then the 100-session mean.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch07-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch07-review-v1",
+        "question_hash": "4384fa09bee8dea774f55590b0b62944a9afd73a4e7c223568cafea33c8e0648",
+        "answer_hash": "9c740492d8d30e43e20eac36dc835aaff94ed3eccf994318ab35ad8c43c77cf9",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch07_q12",
+      "answer": "The standard error is $0.40/\\sqrt{16}=0.10$.\n\na. $P(\\bar X\\ge3)=P(Z\\ge-1)=0.8413$.\n\nb. $z_{0.85}\\approx1.036$, so $k=3.10+1.036(0.10)=3.2036$ minutes.\n\nc. For this sample size, assume the population of service times is approximately normal (or use a justified large-sample approximation).",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch07-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch07-review-v1",
+        "question_hash": "c5d49a83716809a6e64cba8a814f3e3277a03dadd8a0ec6fbed7e0fa93d593c1",
+        "answer_hash": "7a08660469b581978831ff57cb03782eff9d2fb905fdbe09c899cb80f9589725",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch07_q13",
+      "answer": "The standard error is $12/\\sqrt{64}=1.5$ thousand miles.\n\na. The 95th percentile is $50+1.645(1.5)=52.4675$ thousand miles.\n\nb. The stated population normality is sufficient; no additional CLT assumption is needed.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch07-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch07-review-v1",
+        "question_hash": "1ac019635537e9968d483bfca0df95b7636918bf124b9c7e32d46e43c0c91b21",
+        "answer_hash": "d5dcef1e5106068c9c65cc54048632b3717813745aab7f4b8df5bd2e705724a9",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch07_q14",
+      "answer": "The sample proportion is $\\hat p=48/64=0.75$. Using $p=0.70$, $\\operatorname{SE}(\\hat p)=\\sqrt{0.70(0.30)/64}\\approx0.0573$.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch07-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch07-review-v1",
+        "question_hash": "586cc009b79064fd1ff63f8302e8fe19d049e19390293458b3ee051e66795338",
+        "answer_hash": "f8f344650ca40cbeb66bc47778c144213a5fb34ee457a10ee917188fac0fb4c8",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch07_q15",
+      "answer": "The sampling distribution has mean $0.10$ and standard deviation $\\sqrt{0.1(0.9)/400}=0.015$.\n\na. $P(0.09\\le\\hat p\\le0.10)=P(-0.667\\le Z\\le0)\\approx0.2475$.\n\nb. $P(\\hat p<0.08)=P(Z<-1.333)\\approx0.0918$.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch07-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch07-review-v1",
+        "question_hash": "c19c3cbe866a3d44ab9a0f3251cb976e84b30e38c6db27933649534f3fc17609",
+        "answer_hash": "a5e2a6be2fbd97007a158d59f86d3efaad5a2c1a9f54f184f24bd124a7594a0e",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch07_q16",
+      "answer": "The sampling distribution has mean $0.30$ and standard deviation $\\sqrt{0.3(0.7)/100}\\approx0.0458$.\n\na. $P(0.20\\le\\hat p\\le0.30)=P(-2.18\\le Z\\le0)\\approx0.4854$.\n\nb. The limits are $0.30\\pm1.96(0.0458)=[0.210,0.390]$, or approximately 21.0% to 39.0%.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch07-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch07-review-v1",
+        "question_hash": "d215a5973776f2d01c12f23dd9dc39a76b5e728c3356144b9dcc5a56c311e907",
+        "answer_hash": "485e4f1b3584965f3d728748547f9bc2c5941dcdda92bc7616e50f81c986b2d7",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch07_q17",
+      "answer": "For $n=200$, $\\operatorname{SD}(\\hat p)=\\sqrt{0.25/200}=0.0354$.\n\na. $P(0.50\\le\\hat p\\le0.60)=P(0\\le Z\\le2.83)\\approx0.4977$.\n\nb. For 90%, use $z=1.645$: $0.50\\pm1.645(0.0354)=[0.442,0.558]$.\n\nc. $z=(0.65-0.50)/0.0354=4.24$, so $P(\\hat p>0.65)\\approx0.00001$.\n\nd. For $n=200$, $z=(0.60-0.50)/0.0354=2.83$, probability about 0.0023. For $n=1000$, SD $=0.0158$ and $z=(0.55-0.50)/0.0158=3.16$, probability about 0.0008. The $n=1000$ event is less likely.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch07-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch07-review-v1",
+        "question_hash": "b741ca4a6802bf92648c8eeb4c34a6b6569179bbc9262d560a61317b78f1b6b1",
+        "answer_hash": "6b50d5bca13240c3d2ef185d0481082145d3e4a0e809abf1d208283acf0403fe",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch07_q18",
+      "answer": "A point estimate gives one plausible value, but a confidence interval also quantifies sampling uncertainty by giving a range of parameter values compatible with the data at a stated confidence level.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch07-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch07-review-v1",
+        "question_hash": "866c6c9d530208d3920f6f1557ec0171b1f9a0ee67913df854e5408d28142cd3",
+        "answer_hash": "8833db4f76673361b556e91a12f962443f5035ea8956bca1c13067cb16e60bea",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch07_q21",
+      "answer": "a. The standard deviation decreases toward 1.\n\nb. The critical values decrease toward the corresponding standard-normal critical values.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch07-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch07-review-v1",
+        "question_hash": "b31c6aaab727d87e5667baa398c6a1fbdaaa2854f408c8e0c5d867397cf08199",
+        "answer_hash": "312de47345505dd3ae78d063a14adb94b96df7fc602712dc17d29bf5a8dc01c6",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch07_q26",
+      "answer": "The standard error is $2.64/\\sqrt{65}\\approx0.3274$.\n\na. The 95% interval is $42.95\\pm1.96(0.3274)=[42.308,43.592]$. The 99% interval is $42.95\\pm2.576(0.3274)=[42.106,43.794]$.\n\nb. Yes; the 95% interval is entirely above 42.\n\nc. Yes; the 99% interval is also entirely above 42.\n\nd. Both intervals support that the population mean satisfaction rating is at least 42.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch07-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch07-review-v1",
+        "question_hash": "1d07136e4d433ad13d7d6991468b234bd2b2becdd8738560ca034830b1c4b29e",
+        "answer_hash": "9e588d569972e4ece2090b4c7e8581f6c3e42f65ee73631ec974aa45f552c708",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch07_q27",
+      "answer": "Using $s$ as a planning estimate, $n=(1.96\\cdot32.866/10)^2\\approx41.54$. Round up to $n=42$.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch07-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch07-review-v1",
+        "question_hash": "de8bc2b4eaa527315efa4d3bca73f0e5633473f00959131d5c50043f58a380b1",
+        "answer_hash": "229090af3de5a035ecb7d8bf4146deb36d7c8a3d689c9f345601346e7b21d1dd",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch07_q28",
+      "answer": "The standard error is $0.8/\\sqrt{49}=0.11429$. The test statistic is $z=(31.5531-31)/0.11429\\approx4.84$. The one-sided p-value is approximately $6.5\\times10^{-7}$. The 5% rejection cutoff is $31+1.645(0.11429)=31.188$, so reject $H_0$ and award the tax break. The p-value is also below 0.01, so the conclusion is unchanged at the 1% level.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch07-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch07-review-v1",
+        "question_hash": "2135fab7c4894c87c548e87f2fbea614faa93ca70ca96a85539c857b8eb5b86e",
+        "answer_hash": "fc5f70245610832403e63b23c7c6e0e94fc5ebeb25f8cc1a72da41e75c99d279",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch07_q29",
+      "answer": "The sample mean is $\\bar x=15.7778$ and $s=1.5889$ ($n=9$). The test statistic is $t=(15.7778-14)/(1.5889/\\sqrt9)=3.357$ with 8 degrees of freedom. The one-sided p-value is approximately $0.0050$, which is below 0.01. Reject $H_0$; it is reasonable to conclude that the mean rate exceeds 14%.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch07-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch07-review-v1",
+        "question_hash": "745a22b1fd23eaa5d642dd081d79732f56f2d69a469d884feb048494104ed1b8",
+        "answer_hash": "0e8d71c2829f8f78f83c8939c00d45d9f25bd6fd3ff74454852ec685c1405791",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch07_q30",
+      "answer": "The sample mean is $\\bar x=-0.2322$, $s=0.3120$, and $n=18$. Thus $t=-0.2322/(0.3120/\\sqrt{18})=-3.158$ with 17 degrees of freedom. The two-sided p-value is approximately $0.0057<0.05$. Reject $H_0$; the data indicate a nonzero mean, specifically a negative average change.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch07-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch07-review-v1",
+        "question_hash": "155b7c270a79aa14171a1bc8721b19902416c66e939dd4b960d604b531acb0d4",
+        "answer_hash": "d032b58e28bbbb41dd4a151e7a7d1c3f80b6d69f2aed101dda1111da8b8c30f1",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch07_q31",
+      "answer": "The sample proportion is $\\hat p=56/200=0.28$. Under $H_0$, $\\operatorname{SE}=\\sqrt{0.2(0.8)/200}=0.02828$. The z statistic is $(0.28-0.20)/0.02828=2.83$, giving a one-sided p-value about $0.0023$. Reject $H_0$ at 0.10; the data suggest a larger moving proportion in Dallas.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch07-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch07-review-v1",
+        "question_hash": "05b2bacb0c496971d85619d521778d659c797b152b710e974b60db5833726cf7",
+        "answer_hash": "77a9671ce88730b3ab14ecfa53afa1209ac1af1caebc2c6f725754b9a6533e10",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "rotel_ch07_sampling_mean_01",
+      "answer": "a. Since $\\operatorname{SD}(\\bar X)=\\sigma/\\sqrt n$, $\\operatorname{SD}_{84}/\\operatorname{SD}_{42}=\\sqrt{42/84}=1/\\sqrt2$; it decreases by a factor of $\\sqrt2$.\n\nb. $E(\\bar X)=\\mu=5.95$ ounces for either sample size, so it does not change.\n\nc. No. Because the population is normal, the sample mean is exactly normal for either sample size; the CLT is not needed.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch07-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch07-review-v1",
+        "question_hash": "43b8029202d67f8fb898441eddaeb28f8896b50f973104e9b4b44968101cee3c",
+        "answer_hash": "4197b410ff98773a71d1ca8a5f00623ea6a0347fc6210b4bd85c39e88cb2ff86",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch07_q22",
+      "answer": "Use $\\bar x\\pm t_{\\alpha/2,n-1}s/\\sqrt n$ when $\\sigma$ is unknown and the data are a random, independent sample of a quantitative variable. For small $n$, the population should be approximately normal with no strong outliers; for larger $n$, the CLT provides robustness.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch07-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch07-review-v1",
+        "question_hash": "8d203333e2153d55168112285ec1085d0374835cc72e3fa4b5c7d8f3e6ab389a",
+        "answer_hash": "30914806ea2d63a290c991fb14fc7b23cfd323ace072867567121e0c3235e758",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "opl_nau_ch07_clt_01",
+      "answer": "For a sample proportion, standard error is proportional to $1/\\sqrt n$. Therefore,\n\n$$\\frac{0.05}{0.02}=\\sqrt{\\frac{n_2}{100}}.$$\n\nSquaring gives\n\n$$n_2=100\\left(\\frac{0.05}{0.02}\\right)^2=100(6.25)=625.$$\n\nThe required sample size is **625**.",
+      "review_status": "independently solved and reviewed",
+      "source_commit": "54e7db70ed308cab9c7eed8af1d2dba5a6adf7d4",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "opl-nau-curated-v1",
+        "question_hash": "0ff9fb2a3b47e28ed3429fce748a04f1542905356ed3ca2267321f70b2667aae",
+        "answer_hash": "352e528411cc43fa5aad418e7023f5d6fe6ca12739d50ed822bbbabc6cb3828d",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "opl_nau_ch07_clt_02",
+      "answer": "a. The sampling distribution has\n\n$$\\mu_{\\bar X}=\\mu=120$$\n\nand\n\n$$\\sigma_{\\bar X}=\\frac{\\sigma}{\\sqrt n}=\\frac{30}{\\sqrt{36}}=5.$$\n\nb. Standardizing,\n\n$$z=\\frac{130-120}{5}=2.$$\n\nTherefore,\n\n$$P(\\bar X>130)=1-\\Phi(2)=1-0.97725=0.02275\\approx0.0228.$$",
+      "review_status": "independently solved and reviewed",
+      "source_commit": "54e7db70ed308cab9c7eed8af1d2dba5a6adf7d4",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "opl-nau-curated-v1",
+        "question_hash": "51b6fba3a44b7cb35d3170b2b91a707188a70850eec808d213e390f5e7ea60f5",
+        "answer_hash": "3164478996c98db297d13c84d21cfa52fc1769046c4ed8adf78cda6cee66d6ea",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    }
+  ]
+}

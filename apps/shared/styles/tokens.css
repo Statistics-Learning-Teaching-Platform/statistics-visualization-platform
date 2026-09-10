@@ -1,33 +1,63 @@
-/* Shared design tokens — imported by all apps via @stats-viz/shared/styles/tokens.css.
-   This file is the single source of truth for the platform's color palette,
-   typography, and shadow definitions. Apps may add module-specific variables
-   in their own custom.css :root block. */
+/* Shared aliases for the StatMind semantic token layer in src/styles.css.
+   Apps may add module-specific variables in their own custom.css :root block. */
 
 :root {
-  --bg: #f8f3ea;
-  --bg-soft: #faf6ef;
-  --card: rgba(255, 252, 246, 0.92);
-  --card-strong: #fffdf8;
-  --chart-bg: #fffaf1;
-  --text-primary: #252822;
-  --text-secondary: #696e63;
-  --border: rgba(90, 80, 60, 0.13);
+  --lab-bg: #ffffff;
+  --lab-plot-bg: #faf8f3;
+  --lab-surface: #ffffff;
+  --lab-surface-soft: #f7f8fa;
+  --lab-text: #17243d;
+  --lab-muted: #687386;
+  --lab-text-muted: var(--lab-muted);
+  --lab-text-secondary: var(--lab-muted);
+  --lab-border: #e2e7ed;
+  --lab-divider: #edf0f4;
+  --lab-blue: #2563d9;
+  --lab-teal: #279e96;
+  --lab-purple: #8067b3;
+  --lab-green: #65a96e;
+  --lab-orange: #e89a45;
+  --lab-coral: #d86e62;
+  --lab-left-rail: 195px;
+  --lab-right-rail: 285px;
+  --lab-radius-sm: 6px;
+  --lab-radius-md: 8px;
+  --lab-radius-lg: 10px;
+  --lab-board-gap: 24px;
+  --lab-section-gap: 22px;
+  --lab-font-sans:
+    "Geist Variable", "Geist Sans", "Source Han Sans SC", "Noto Sans CJK SC", "Noto Sans SC",
+    "PingFang SC", system-ui, sans-serif;
+  --bg: var(--lab-bg);
+  --bg-soft: var(--lab-plot-bg);
+  --card: var(--lab-surface);
+  --card-strong: var(--lab-surface);
+  --chart-bg: var(--lab-plot-bg);
+  --text-primary: var(--lab-text);
+  --text-secondary: var(--lab-muted);
+  --border: var(--lab-border);
 
-  --sage: #6f8f7a;
-  --sage-soft: #eef4ec;
-  --teal: #2f6f64;
-  --soft-teal: #ddede8;
-  --lavender: #8d75b5;
-  --soft-lavender: #f0e9f7;
-  --danger: #c8665a;
-  --danger-soft: #f8e7e3;
-  --chart-blue: #4b73d9;
+  --sage: var(--lab-green);
+  --sage-soft: color-mix(in srgb, var(--lab-green) 12%, var(--lab-bg));
+  --teal: var(--lab-teal);
+  --soft-teal: color-mix(in srgb, var(--lab-teal) 12%, var(--lab-bg));
+  --lavender: var(--lab-purple);
+  --soft-lavender: color-mix(in srgb, var(--lab-purple) 10%, var(--lab-bg));
+  --danger: var(--lab-coral);
+  --danger-soft: color-mix(in srgb, var(--lab-coral) 12%, var(--lab-bg));
+  --chart-blue: var(--lab-blue);
 
-  --shadow-soft: 0 18px 44px rgba(40, 35, 25, 0.08);
+  --shadow-soft: none;
+  --font-display:
+    "Source Han Serif SC", "Noto Serif CJK SC", "Noto Serif SC", "Songti SC", STSong, serif;
+  --font-sans: var(--lab-font-sans);
+  --font-lab: var(--lab-font-sans);
+  --font-sans-legacy:
+    "Geist Sans", "Source Han Sans SC", "Noto Sans CJK SC", "Noto Sans SC", "PingFang SC",
+    "Microsoft YaHei", system-ui, sans-serif;
+  --font-mono: "Geist Mono", "JetBrains Mono", "SFMono-Regular", Consolas, monospace;
 
   color: var(--text-primary);
   background: var(--bg);
-  font-family:
-    "Plus Jakarta Sans", Inter, ui-sans-serif, system-ui, -apple-system,
-    BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-family: var(--font-sans);
 }

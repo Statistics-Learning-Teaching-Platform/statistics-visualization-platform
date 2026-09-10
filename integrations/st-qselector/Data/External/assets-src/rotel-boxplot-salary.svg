@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="390" viewBox="0 0 1200 390" role="img" aria-labelledby="title desc">
+  <title id="title">律师年薪箱线图</title>
+  <desc id="desc">年薪单位为千美元，最小值152，第一四分位数195，中位数252，第三四分位数308，最大值351。</desc>
+  <rect width="1200" height="390" rx="28" fill="#f7f3eb"/>
+  <text x="600" y="52" font-family="Arial, PingFang SC, sans-serif" font-size="34" font-weight="700" fill="#292c28" text-anchor="middle">律师年薪（千美元）</text>
+  <line x1="120" y1="295" x2="1080" y2="295" stroke="#b8afa2" stroke-width="3"/>
+  <g stroke="#b8afa2" stroke-width="3" fill="none">
+    <line x1="200" y1="285" x2="200" y2="307"/><line x1="400" y1="285" x2="400" y2="307"/>
+    <line x1="600" y1="285" x2="600" y2="307"/><line x1="800" y1="285" x2="800" y2="307"/>
+    <line x1="1000" y1="285" x2="1000" y2="307"/>
+  </g>
+  <g font-family="Arial, PingFang SC, sans-serif" font-size="28" fill="#655f55" text-anchor="middle">
+    <text x="200" y="348">150</text><text x="400" y="348">200</text><text x="600" y="348">250</text>
+    <text x="800" y="348">300</text><text x="1000" y="348">350</text>
+  </g>
+  <g stroke="#2f756b" stroke-width="8" stroke-linecap="round" fill="none">
+    <line x1="208" y1="170" x2="380" y2="170"/><line x1="832" y1="170" x2="1004" y2="170"/>
+    <line x1="208" y1="130" x2="208" y2="210"/><line x1="1004" y1="130" x2="1004" y2="210"/>
+  </g>
+  <rect x="380" y="110" width="452" height="120" rx="12" fill="#dcece6" stroke="#2f756b" stroke-width="8"/>
+  <line x1="608" y1="110" x2="608" y2="230" stroke="#dc8b45" stroke-width="10"/>
+  <g font-family="Arial, PingFang SC, sans-serif" font-size="27" fill="#292c28" text-anchor="middle">
+    <text x="208" y="92">152</text><text x="380" y="265">Q₁ = 195</text>
+    <text x="608" y="92">中位数 252</text><text x="832" y="265">Q₃ = 308</text><text x="1004" y="92">351</text>
+  </g>
+</svg>

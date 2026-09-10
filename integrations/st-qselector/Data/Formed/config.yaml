@@ -1,0 +1,49 @@
+# 组卷系统章节配置
+# dataRoot: 数据根目录，相对本文件所在目录（Data/Formed）。
+# chapters: 每章的 id、显示标题、以及相对 dataRoot 的目录名。
+#   程序按此顺序读取每个目录下的 questions.json / answers.json，
+#   并从同目录的 Assests/ (及 Answers/ Answer/) 加载附件图片。
+# 提示：title 目前为通用编号，可手动改成真实章节名（如 "第8章 置信区间"）。
+
+dataRoot: "."
+
+chapters:
+  - id: Ch01
+    title: "第1章"
+    dir: "Ch01"
+  - id: Ch02
+    title: "第2章"
+    dir: "Ch02"
+  - id: Ch03
+    title: "第3章"
+    dir: "Ch03"
+  - id: Ch04
+    title: "第4章"
+    dir: "Ch04"
+  - id: Ch05
+    title: "第5章"
+    dir: "Ch05"
+  - id: Ch06
+    title: "第6章"
+    dir: "Ch06"
+  - id: Ch07
+    title: "第7章"
+    dir: "Ch07"
+  - id: Ch08
+    title: "第8章"
+    dir: "Ch08"
+  - id: Ch09
+    title: "第9章"
+    dir: "Ch09"
+  - id: Ch10
+    title: "第10章"
+    dir: "Ch10"
+  - id: Ch11
+    title: "第11章"
+    dir: "Ch11"
+  - id: Ch12
+    title: "第12章"
+    dir: "Ch12"
+  - id: Ch13
+    title: "第13章"
+    dir: "Ch13"

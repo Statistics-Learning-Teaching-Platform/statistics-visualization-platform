@@ -1,0 +1,753 @@
+{
+  "chapter": 6,
+  "answers": [
+    {
+      "id": "ch06_q02",
+      "answer": "a. $f(x)=1$ for $-0.5\\le x\\le0.5$ and $0$ otherwise.\n\nb. The graph is a horizontal line of height $1$ on [-0.5, 0.5] dollars.\n\nc. $P(X>0.3\\text{ or }X<-0.3)=0.2+0.2=0.4$.\n\nd. $E(X)=0$ and $\\operatorname{SD}(X)=(0.5-(-0.5))/\\sqrt{12}=1/\\sqrt{12}\\approx0.2887$ cents.\n\ne. $P(|X|\\le0.2887)=2(0.2887)\\approx0.5774$.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch06-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch06-review-v1",
+        "question_hash": "cae76180afd7ba46c82994ef33dd0db72eb18ca9bc60059165dd1337666c83cc",
+        "answer_hash": "563aa9e8c0fd414af00b8c8f30f38b975d336ac8ba2c9f7935b32c41f883b3c3",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch06_q03",
+      "answer": "a. $P(X\\ge15)=(25-15)/(25-10)=10/15=2/3\\approx0.6667$.\n\nb. Given $X>15$, the remaining interval is $(15,25)$, so $P(X>20\\mid X>15)=(25-20)/(25-15)=1/2=0.5$.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch06-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch06-review-v1",
+        "question_hash": "40e326584e6afc68978c170856d933a8d3741a9c201c0de80a34ebe879ecc950",
+        "answer_hash": "36ec200439eae5b606bb0a63bc62f8eb98126883bdf90e58dbd53a227f52e836",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch06_q06",
+      "answer": "Let $X\\sim N(12.4,20.6^2)$.\n\na. Using $z=(x-12.4)/20.6$: (1) $P(X>0)=P(Z>-0.60)\\approx0.7257$; (2) $P(X>10)=P(Z>-0.12)\\approx0.5478$; (3) $P(X\\le-10)=P(Z<-1.09)\\approx0.1379$.\n\nb. The 10th percentile has $z_{0.10}\\approx-1.28$, so $k=12.4-1.28(20.6)\\approx-13.97\\%$. Ten percent of returns are at or below $k$, and 90% are at or above it.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch06-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch06-review-v1",
+        "question_hash": "adce7fc8fbe4660cc17d289bbe5585da7442ec299c69c45b9d77bb1944614965",
+        "answer_hash": "29693a265a1f92114e6b4d6a4cb6d9bc2b7a114f75b7ad72b8a56e9e152f0a5c",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch06_q07",
+      "answer": "We need $P(X<k)=0.02$, so $z_{0.02}\\approx-2.054$. Therefore $k=40{,}000-2.054(4{,}000)\\approx31{,}784$ miles. A guarantee of about $31{,}800$ miles meets the requirement.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch06-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch06-review-v1",
+        "question_hash": "c8108a5b7d737ea556dd30ea5fa22d657d90200f91aec9fffa138ef4042e7a89",
+        "answer_hash": "e2c5fe46e898e817b343c35f172eae9a33cfbf60ff91059a37b44562153a5de8",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch06_q08",
+      "answer": "a. $z=(80-100)/16=-1.25$, so $P(X\\ge80)=P(Z\\ge-1.25)\\approx0.8944$, or $89.44\\%$.\n\nb. If 95% qualify, the cutoff is the 5th percentile, with $z_{0.05}\\approx-1.645$. Thus $k=100-1.645(16)\\approx73.7$; a minimum score of about 74 is appropriate.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch06-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch06-review-v1",
+        "question_hash": "d258b896ae2545521e052a0fdbcb8fdc2477d5efe199cf12008c63ec3ca1df89",
+        "answer_hash": "cff5ee749d594ae368c304bff2b27e8a9b64a85cda493919f500c3e7eab2dd00",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch06_q09",
+      "answer": "a. $z=(5.40-4.15)/0.50=2.50$, so $P(X>5.40)\\approx0.0062$.\n\nb. $z=(4.40-4.15)/0.50=0.50$, so $P(X<4.40)\\approx0.6915$.\n\nc. $P(X>k)=0.15$ means $k$ is the 85th percentile, $z_{0.85}\\approx1.04$. Hence $k=4.15+1.04(0.50)\\approx4.67\\%$.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch06-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch06-review-v1",
+        "question_hash": "cfeae5e59dd83b0a9cb23568f1c245d3fb1a44324bc5c902a1ff262feca998ae",
+        "answer_hash": "5da60b8bd20ee61c41dda4b9c184928f6cbb54fbe26e81ea951ab0d0495a8b0b",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch06_q10",
+      "answer": "Let $X\\sim\\operatorname{Binomial}(205,0.65)$. Here $np=133.25$ and $n(1-p)=71.75$, so the normal approximation is appropriate. The approximating normal distribution has mean $133.25$ and standard deviation $\\sqrt{205(0.65)(0.35)}\\approx6.829$. With continuity correction, $P(X\\le117)\\approx P(Y\\le117.5)=P(Z\\le-2.31)\\approx0.0105$. This is below 0.05, so the observation is unusually small under the claim and provides evidence against the claim that at least 65% disapprove.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch06-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch06-review-v1",
+        "question_hash": "b4e4495b37219efd8107d0d5547eba1f1d5ec47885b3f18347d06925bfc32cf8",
+        "answer_hash": "4488848d3fb3dd3a5a2d62de42092a84bf4916007486b7619670819887b25af3",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch06_q11",
+      "answer": "The arrival probability is $p=0.90$, so $X\\sim\\operatorname{Binomial}(325,0.90)$ has $\\mu=292.5$ and $\\sigma=\\sqrt{325(0.9)(0.1)}\\approx5.408$. All arrivals receive rooms when $X\\le300$. With continuity correction, $P(X\\le300)\\approx P(Y\\le300.5)=P(Z\\le1.48)\\approx0.9306$.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch06-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch06-review-v1",
+        "question_hash": "7dd6fde5817f9d44de929ede9c8022ce9facc3ed8736d69aae5916fd92505d10",
+        "answer_hash": "7d9d9592f7ad128815b609757737148a53762109134c3a07fadd785618e4322b",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch06_q12",
+      "answer": "Let $X$ be the number of purchasers. Under $p=0.50$, $X\\sim\\operatorname{Binomial}(400,0.5)$ with $\\mu=200$ and $\\sigma=10$. Since 45% corresponds to $X=180$, continuity correction gives $P(X\\le180)\\approx P(Y\\le180.5)=P(Z\\le-1.95)\\approx0.0256$. Because this is below 0.05, the result provides evidence that fewer than 50% of German adults purchased blue jeans.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch06-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch06-review-v1",
+        "question_hash": "4281340ef69f2942f570f4fd371342a33757ef26bfded225f4f314ba8acf3593",
+        "answer_hash": "7e248368c617b010e7b12bd1589e0995b136f084650f5176deaa2b1dc5abdefd",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch06_q13",
+      "answer": "a. Continuous.\n\nb. Discrete.\n\nc. Continuous.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch06-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch06-review-v1",
+        "question_hash": "965b812f1b2175b0baade02a1e7409832c7bae273d139d94216f66731e6bdbec",
+        "answer_hash": "cedf0d71cb7112b097a505279c5b7184deaba70a1e9643bcf60000576ae13d11",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch06_q15",
+      "answer": "The endpoints are $a=0.5$ and $b=10$ minutes.\n\na. [0.5, 10] dollars.\n\nb. $E(X)=(a+b)/2=5.25$ minutes and $\\operatorname{SD}(X)=(b-a)/\\sqrt{12}=9.5/\\sqrt{12}\\approx2.742$ minutes.\n\nc. $P(X>5)=(10-5)/(10-0.5)=5/9.5\\approx0.5263$.\n\nd. The middle 50% runs from $a+0.25(b-a)=2.875$ to $a+0.75(b-a)=7.625$ minutes.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch06-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch06-review-v1",
+        "question_hash": "7c9d34ee975506f476f2846730ef71c3ce95748dbe7eca0d19f304da497dc4ee",
+        "answer_hash": "57fc6b5d31b979e352bc8e88aabf5c96889b5e18c0151260ffc6d821ebfd1807",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch06_q17",
+      "answer": "Let $X\\sim N(1000,100^2)$. For (1), the z-scores are $-2.10$ and $0$, so $P(790<X<1000)=\\Phi(0)-\\Phi(-2.10)\\approx0.4821$. For (2), $P(X<790)=\\Phi(-2.10)\\approx0.0179$.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch06-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch06-review-v1",
+        "question_hash": "3e1f6575436bded33866ebbf75cfc6da01350f243789ebd8eb38b44a0c0674c0",
+        "answer_hash": "a869a6dc6534e88c48200b8b54447ed6a820f3f2fb91724c3602e651b83ae83c",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch06_q18",
+      "answer": "Let $X\\sim N(70{,}000,20{,}000^2)$.\n\na. $P(X\\ge80{,}000)=P(Z\\ge0.50)\\approx0.3085$.\n\nb. $P(65{,}000\\le X\\le80{,}000)=P(-0.25\\le Z\\le0.50)\\approx0.2902$.\n\nc. $P(X\\ge65{,}000)=P(Z\\ge-0.25)\\approx0.5987$.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch06-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch06-review-v1",
+        "question_hash": "2db1f50642e2612ccdf890170c604d1033ab05103cdf13119c7f84354eb06162",
+        "answer_hash": "a16fd17a5f6618189395eec4676c6cb78eb9fdf57779b968381e574ff8e092f0",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch06_q19",
+      "answer": "We need $P(X<k)=0.04$, whose standard-normal quantile is $z_{0.04}\\approx-1.751$. Thus $k=67{,}900-1.751(2{,}050)\\approx64{,}311$ miles. A guarantee of about $64{,}300$ miles meets the requirement.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch06-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch06-review-v1",
+        "question_hash": "07c4c0ef691a7a45525e5e958d90292eeee2b48e1bbe2a9735a72798382dbb75",
+        "answer_hash": "f75be2da5097d15bfed4aaf47684933bfe3fea9950171085b7a940068d186bfc",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch06_q20",
+      "answer": "a. With $z=(x-800)/75$: (1) $P(X\\le959)=P(Z\\le2.12)\\approx0.9830$; (2) $P(X>1004)=P(Z>2.72)\\approx0.0033$; (3) $P(X<650)+P(X>950)=P(Z<-2)+P(Z>2)\\approx0.0456$.\n\nb. We need $P(X\\le q)=0.975$, so $q=800+1.96(75)=947$ boxes. Order about 947 boxes.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch06-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch06-review-v1",
+        "question_hash": "d664579194ccbd3437fbf5669808baf81e6263d8e4783646ebe5f24a093275e3",
+        "answer_hash": "5e7c3069d55bb22aca97e893ceba2c8b02ee879295410af7f394a27c15fa356c",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch06_q21",
+      "answer": "For a random sample of independent observations with finite mean $\\mu$ and standard deviation $\\sigma$, the distribution of $\\bar X$ becomes approximately normal as $n$ becomes large, with mean $\\mu$ and standard deviation $\\sigma/\\sqrt n$.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch06-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch06-review-v1",
+        "question_hash": "dcfa6d149a75aad2cb5b8962f1371c3255f252a9b666780cea8a9bda499a6eee",
+        "answer_hash": "e572da588735e7243f658ff0ec6fd1438a71fd0545c88b007bf8596089bc0db7",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch06_q22",
+      "answer": "Use $E(\\bar X)=\\mu$, $\\operatorname{Var}(\\bar X)=\\sigma^2/n$, and $\\operatorname{SD}(\\bar X)=\\sigma/\\sqrt n$.\n\na. Mean 10, variance 0.16, SD 0.4.\n\nb. Mean 3, variance 0.0025, SD 0.05.\n\nc. Mean 500, variance 0.0025, SD 0.05.\n\nd. Mean 100, variance 0.000625, SD 0.025.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch06-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch06-review-v1",
+        "question_hash": "7b847d156cbf19eaf520897a6de3215987e9369e038a79cfb6f53f613b29bcf6",
+        "answer_hash": "eecd63ccd0d2538eabcffb3245ed6ff25a0cbd6a6fb030b27249a3f9c4d76f9e",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch06_q23",
+      "answer": "a. By the Central Limit Theorem, $\\bar X$ is approximately normal.\n\nb. Under $H_0$, $E(\\bar X)=6$ and $\\operatorname{SD}(\\bar X)=2.47/\\sqrt{100}=0.247$.\n\nc. $z=(5.46-6)/0.247\\approx-2.19$, so $P(\\bar X\\le5.46)\\approx0.0144$.\n\nd. The small probability is evidence against $H_0$ in favor of $H_a$; the data support a mean waiting time below six minutes.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch06-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch06-review-v1",
+        "question_hash": "b16351481983a174f14856c48d8c6ed25760dec9c047483e9b7fc71d34844572",
+        "answer_hash": "ec6271323ea9f706e7577c14ca042c7cb582b02b7b24953b46cf081b64e6e306",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch06_q24",
+      "answer": "A common rule is $np\\ge10$ and $n(1-p)\\ge10$. Under this condition, $E(\\hat p)=p$ and $\\operatorname{SD}(\\hat p)=\\sqrt{p(1-p)/n}$.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch06-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch06-review-v1",
+        "question_hash": "42f81d34e807bc830ae6acd69eb68bc969cf3c9be0db686664666f3ba6acadf0",
+        "answer_hash": "dc1dde398f83c227b5fe4ea5d8cc7dda714355ef28760a7007639d4cd9ea4679",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch06_q25",
+      "answer": "a. Yes: 40 and 60.\n\nb. No: $np=1$.\n\nc. No: $np=5$.\n\nd. Yes: 320 and 80.\n\ne. Yes: 980 and 20.\n\nf. No: $n(1-p)=4$.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch06-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch06-review-v1",
+        "question_hash": "ca61f8ebccebb1f798995e730be28bccd337789930dd36a5ed0cd91742cb6c17",
+        "answer_hash": "edecc6688b3f8d5824ff75aa3db9ee34f65d33439480247c25d6e787cccd87fc",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch06_q26",
+      "answer": "Under $p=0.20$, $E(\\hat p)=0.20$ and $\\operatorname{SD}(\\hat p)=\\sqrt{0.2(0.8)/1000}\\approx0.01265$. Therefore $z=(0.17-0.20)/0.01265\\approx-2.37$, and $P(\\hat p\\le0.17)\\approx0.0089$. This small probability supports the claim that the true proportion is below 0.20.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch06-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch06-review-v1",
+        "question_hash": "e7c63b3d7465daf32cb92291356330ce337595a4b8bbcfcc12fa76868a494b7d",
+        "answer_hash": "0e2f031e4a7f4d872009456fe5072648b4a537e0eccba9b0c497ae33a2139dfe",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch06_q27",
+      "answer": "Under $p=0.40$, $\\operatorname{SD}(\\hat p)=\\sqrt{0.4(0.6)/1031}\\approx0.01526$. Thus $z=(0.42-0.40)/0.01526\\approx1.31$, giving $P(\\hat p\\ge0.42)\\approx0.095$. The evidence is weak and is not sufficient to reject $H_0$ at the 5% level; we cannot conclude that more than 40% have vacationed at least six days.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch06-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch06-review-v1",
+        "question_hash": "621b17c131da3c7686e70688011baae881bc2272ec4ff4c3d546800fcdb4ae77",
+        "answer_hash": "b4876ca9a5edd94e898136839a6e0cf204d659264bad4ad2db75c74a337ac421",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch06_q28",
+      "answer": "The 33rd percentile has $z_{0.33}\\approx-0.44$. Therefore $k=3000-0.44(500)\\approx2,780$ dollars.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch06-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch06-review-v1",
+        "question_hash": "94c00310e57206d407cf18af94c0d7a5d42ec401f9ed612c4cb3f4d1b2a7fe4a",
+        "answer_hash": "85997912b17eefe7c23486b864ce0b959f6e7eb3d937073d604658b872e74dd7",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch06_q29",
+      "answer": "Let $X\\sim\\operatorname{Binomial}(2000,0.20)$, so $\\mu=400$ and $\\sigma=\\sqrt{320}\\approx17.889$. For a 1% shortage probability, use $z_{0.99}=2.326$ and continuity correction: $s+0.5\\approx400+2.326(17.889)=441.61$. Thus stock $s=442$ units.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch06-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch06-review-v1",
+        "question_hash": "82e71ec158f94b2c38d42602b0d75b5a39b8086720051baf691239663f179b90",
+        "answer_hash": "66511197170e0cdb8fd6fd69f7ec555e83d242c26cb4bb89e4b6f74297eb0bd0",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch06_q31",
+      "answer": "a. Larger.\n\nb. Smaller.\n\nc. Smaller.\n\nd. Larger.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch06-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch06-review-v1",
+        "question_hash": "d4303af147d55c0dbc1ada11ddbca7b69e166ee953e0c3c62c939f200e0df26a",
+        "answer_hash": "e2f5572fa6737321682fcef2cacf7bcbe70b2c26972f9916b33d980a8ce95ca2",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch06_q32",
+      "answer": "The standard error is $2.47/\\sqrt{100}=0.247$.\n\na. For 95%, $5.46\\pm1.96(0.247)=[4.976,5.944]$. For 99%, $5.46\\pm2.576(0.247)=[4.824,6.096]$.\n\nb. Yes: the entire 95% interval is below 6.\n\nc. No: the 99% interval includes values above 6.\n\nd. The data give fairly strong but not 99%-confidence evidence that the new system's mean waiting time is below six minutes.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch06-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch06-review-v1",
+        "question_hash": "95c4175c791496c6914f6f8477a372c541d1f7adffec9002d8e62e4869259338",
+        "answer_hash": "f673de9e6410abd5822640b82018f286c623135d9ac46e081c6334b782d3bd1a",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch06_q33",
+      "answer": "Because $\\sigma$ is unknown and $n=10$, use $t_{0.975,9}=2.262$. The margin of error is $2.262(32.866/\\sqrt{10})\\approx23.51$. Thus the 95% interval is $846.2\\pm23.51=[822.69,869.71]$ dollars per square foot. Since the entire interval exceeds $800$, the data support that the population mean is greater than USD 800.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch06-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch06-review-v1",
+        "question_hash": "fc75cff921e2e3879238f566cae7608d9cc8c81784362c36cf5350ad42197faa",
+        "answer_hash": "5068e67ec7f99e0f69c24239abab29ff6b76d1695e1a2d6b2f19179a1bb19a61",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch06_q34",
+      "answer": "a. $n=(z_{0.975}\\sigma/E)^2=(1.96\\cdot10/1)^2=384.16$, so round up to $n=385$.\n\nb. The interval is $295\\pm1=[294,296]$, with margin of error 1.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch06-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch06-review-v1",
+        "question_hash": "60b3a06b2eff5056a426d6e521d5873301d286112d3e4a28278660509ce89cdb",
+        "answer_hash": "af025cec200822760bdd369471c763285bf2082b3c179c3d435b078a316338e3",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch06_q35",
+      "answer": "Use $n=(z_{0.975}s/E)^2=(1.96\\cdot32.866/10)^2\\approx41.54$. Round up: at least $n=42$ sales figures are needed.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch06-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch06-review-v1",
+        "question_hash": "a67bf6bcd28cf9135c58a2307aa34b53be59ad45f15716a2c4c87cc36b54201b",
+        "answer_hash": "8dc0db37288e4337892f4e5b495fb7fb8c1a45e534b786a478b14c1f25df0caf",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch06_q36",
+      "answer": "The sample proportion is $\\hat p=350/500=0.70$, and $\\operatorname{SE}=\\sqrt{0.7(0.3)/500}\\approx0.02049$. With $z_{0.995}=2.576$, the margin of error is $2.576(0.02049)\\approx0.0528$. The 99% interval is [0.647, 0.753] dollars. It is entirely above 0.50, so the data strongly support a majority of voters favoring Miller, but no sample can confirm the election outcome with certainty.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch06-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch06-review-v1",
+        "question_hash": "27d7c81c9ae6785e91bf797e19673f81c767d88a4a799e9952ff100c3362ab1c",
+        "answer_hash": "c0633f9b560a37747d5382413fecac5061db0c9cf7143d1129a2391099ce0807",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "rotel_ch06_normal_01",
+      "answer": "a. $z_1=(65-66)/2.5=-0.4$ and $z_2=(70-66)/2.5=1.6$, so $P(65<X<70)=\\Phi(1.6)-\\Phi(-0.4)\\approx0.6006$.\n\nb. $z=(71.5-66)/2.5=2.2$, so $P(X>71.5)=1-\\Phi(2.2)\\approx0.0139$, or 1.39%.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch06-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch06-review-v1",
+        "question_hash": "cbeca0f829524ab73d49be2cae818ee37fe6fb30fdf432ec9d2d9e4c6bb480ca",
+        "answer_hash": "1b6ee80c3c4dfe030560e1cf3196b8365365dc4bb1ee40c1aa4211d1926d7c69",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch06_q16",
+      "answer": "For $X\\sim U(400,3800)$, $E(X)=(400+3800)/2=2100$ and $\\operatorname{SD}(X)=(3800-400)/\\sqrt{12}\\approx981.50$. Also, $P(X<2000)=1600/3400\\approx0.4706$, $P(X>3000)=800/3400\\approx0.2353$, and $P(1500<X<2500)=1000/3400\\approx0.2941$.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch06-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch06-review-v1",
+        "question_hash": "a460b9e9ca0ff0ee3389f500697d56fd416f5f5a661e8871d0b79f6313570f7c",
+        "answer_hash": "602cb65659fba9091d03c3e12f02a888ddea7fc28192478fbd1c680a5dfc1eb4",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "opl_nau_ch06_normal_01",
+      "answer": "The standardized score is\n\n$$z=\\frac{85-70}{10}=1.5.$$\n\nTherefore,\n\n$$P(X\\le85)=\\Phi(1.5)=0.93319\\ldots.$$\n\nThe score is at approximately the **93.32nd percentile**.",
+      "review_status": "independently solved and reviewed",
+      "source_commit": "54e7db70ed308cab9c7eed8af1d2dba5a6adf7d4",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "opl-nau-curated-v1",
+        "question_hash": "55c7cfdef6390762fdcfaa076341e3fb9a5ee649095f3cb1fc8d2d2f03cea5ad",
+        "answer_hash": "d2708bafcd245b9ceac882d9e85cb53a16beaab1fd1660fb2efced723029a5ee",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "opl_nau_ch06_normal_02",
+      "answer": "Standardizing the endpoints gives\n\n$$z_1=\\frac{420-500}{80}=-1,\\qquad z_2=\\frac{660-500}{80}=2.$$\n\nThus,\n\n$$P(420<X<660)=\\Phi(2)-\\Phi(-1)$$\n\n$$=0.9772499-0.1586553=0.8185946\\approx\\boxed{0.8186}.$$",
+      "review_status": "independently solved and reviewed",
+      "source_commit": "54e7db70ed308cab9c7eed8af1d2dba5a6adf7d4",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "opl-nau-curated-v1",
+        "question_hash": "e768a81a7093df10202fb8d1e083952240479b82efe4554dd2656ee0540c32a5",
+        "answer_hash": "4e651ca32f720f55be0b4dab848736032c68673943b9f5a091bcdda771f7e596",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    }
+  ]
+}

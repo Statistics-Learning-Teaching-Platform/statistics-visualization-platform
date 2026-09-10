@@ -1,0 +1,1073 @@
+{
+  "chapter": 2,
+  "questions": [
+    {
+      "id": "ch02_q01",
+      "content": "The table shows the number of strokes needed to complete a golf hole and the corresponding number of players.\n\n| Number of strokes, $m$ | 2 | 3 | 4 | 5 | 6 | 7 | 8 |\n|---:|---:|---:|---:|---:|---:|---:|---:|\n| Frequency, $f$ | 82 | 278 | 43 | 16 | 6 | 3 | 1 |\n\nCalculate each quantity.\n\na. $\\sum m$\n\nb. $\\sum f$\n\nc. $\\sum m^{2}$\n\nd. $\\sum mf$\n\ne. $\\sum m^{2}f$\n\nf. $(\\sum f)^{2}$",
+      "source": "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment and solution_Chap 1&2.docx",
+      "type": "计算题",
+      "difficulty": 2,
+      "keywords": [
+        "frequency distribution",
+        "weighted sum"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch02-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch02-review-v1",
+        "question_hash": "e6a859eedc81ab79711cf4df5961cada3c4c423c7752db8a294d6f5976874386",
+        "answer_hash": "8604f23d376e6cec186d212ac8ddc8375443fc9dfaf579e0661001c30b0ec5d2",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch02_q02",
+      "content": "The following data show the payment methods used by 18 customers in a supermarket checkout line. Here, C means cash, CK check, CC credit card, D debit card, and O other.\n\n```text\nC  CK  CK  C  CC  D  O  CC  D\nCK CC  D   CC C   CK CK O   D\n```\n\na. Construct a frequency distribution.\n\nb. Calculate each relative frequency and percentage.\n\nc. Give the central angle for each category in a pie chart.",
+      "source": "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment and solution_Chap 1&2.docx",
+      "type": "综合题",
+      "difficulty": 2,
+      "keywords": [
+        "frequency distribution",
+        "relative frequency",
+        "pie chart"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch02-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch02-review-v1",
+        "question_hash": "e9a7ae39b43d9a309181d6a85538aab1e491e397791bbff8fd41a6ced8caa433",
+        "answer_hash": "b2b9328922890b171e354cfa73ca80fec69e09e043693d70f9db2d30aac63415",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch02_q03",
+      "content": "The table gives the frequency distribution of gasoline purchased by all customers at a station on one day.\n\n| Gallons purchased | Number of customers |\n|---|---:|\n| 0 to less than 4 | 31 |\n| 4 to less than 8 | 78 |\n| 8 to less than 12 | 49 |\n| 12 to less than 16 | 81 |\n| 16 to less than 20 | 117 |\n| 20 to less than 24 | 13 |\n\na. Construct a cumulative-frequency distribution.\n\nb. Calculate the cumulative relative frequency and cumulative percentage for each class.\n\nc. Find the percentage of customers who purchased fewer than 16 gallons.",
+      "source": "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment and solution_Chap 1&2.docx",
+      "type": "计算题",
+      "difficulty": 2,
+      "keywords": [
+        "cumulative frequency",
+        "cumulative relative frequency"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch02-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch02-review-v1",
+        "question_hash": "958acc93a771bdd522102b4d287738f98d92da896aaba361a2ac564f271f2056",
+        "answer_hash": "98aceb929c079858e6075a6b59ddb8cd4acadcef92a96e2896f81e78e127308a",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch02_q05",
+      "content": "The stem-and-leaf display below uses two-digit leaves. The key is $2\\mid18=218$. Write the represented data set in increasing order.\n\n```text\n2 | 18 45 56\n3 | 29 67 83 97\n4 | 04 27 33 71\n5 | 23 37 51 63 81 92\n6 | 22 36 47 55 78 89\n7 |\n8 | 10 41\n```",
+      "source": "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment and solution_Chap 1&2.docx",
+      "type": "简答题",
+      "difficulty": 2,
+      "keywords": [
+        "stem-and-leaf plot",
+        "data reconstruction"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch02-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch02-review-v1",
+        "question_hash": "e937e6be69e5bb430e6492771f86f6809d38543dba22fd6d525695e304b5459f",
+        "answer_hash": "befd8b676b6fe26e88627e3a58920fec88e34ffecbf4499c439adc273a8a7541",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch02_q06",
+      "content": "The following data are the waiting times, in minutes, of 20 students at a bookstore checkout.\n\n$$15,8,23,21,4,17,31,22,31,6,5,6,14,17,16,25,27,3,31,8.$$\n\nConstruct a stem-and-leaf display using the tens digit as the stem and arrange the leaves in increasing order.",
+      "source": "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment and solution_Chap 1&2.docx",
+      "type": "计算题",
+      "difficulty": 2,
+      "keywords": [
+        "stem-and-leaf plot"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch02-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch02-review-v1",
+        "question_hash": "55e25980e46abda622772b9b559274e45ccb1bc3554cd72d978a91561291b5e7",
+        "answer_hash": "64e6e718aa3ef60c761731d1d0a2565592a848cad1323965c1ce4cac88692d1d",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch02_q07",
+      "content": "The following data give the number of ATM uses by each of 30 randomly selected bank customers during a 60-day period.\n\n$$3,2,3,2,2,5,0,4,1,3,2,3,3,5,9,0,3,2,2,15,1,3,2,7,9,3,0,4,2,2.$$\n\nConstruct a dotplot and identify any clusters or outliers.",
+      "source": "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment and solution_Chap 1&2.docx",
+      "type": "综合题",
+      "difficulty": 2,
+      "keywords": [
+        "dotplot",
+        "cluster",
+        "outlier"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch02-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch02-review-v1",
+        "question_hash": "a64546b5810aa163cb0c8eebd28d66431f6da1d058914e09a9bfbbeb79382522",
+        "answer_hash": "f0aabf3dbefc8c65129333a2b3881f0aa6cdfa258cf109ca82edd47c663d7e2b",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch02_q08",
+      "content": "The table gives seven common first names among girls born in the United States in 2010, with frequencies in thousands.\n\n| Name | Isabella | Sophia | Emma | Olivia | Ava | Emily | Abigail |\n|---|---:|---:|---:|---:|---:|---:|---:|\n| Frequency (thousands) | 22.7 | 20.5 | 17.2 | 16.9 | 15.3 | 14.2 | 14.1 |\n\nCompare a bar chart whose vertical axis starts at 0 with one whose vertical axis starts at 13.0. Explain why the second chart can be misleading.",
+      "source": "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment and solution_Chap 1&2.docx",
+      "type": "简答题",
+      "difficulty": 2,
+      "keywords": [
+        "bar chart",
+        "truncated axis",
+        "misleading graph"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch02-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch02-review-v1",
+        "question_hash": "bff6a910aca4d4984e1cef9432e36f67102abb73c939b35119f1f27edc20bb26",
+        "answer_hash": "034df12de8a56fceae6802353ff10709abab9fe144cb144118fa597d5e782ca4",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch02_q09",
+      "content": "The alcohol contents by volume, in percent, of beers from two breweries are shown below.\n\n**Flying Dog:**\n\n$$4.7,4.8,5.1,5.5,5.5,5.6,6.0,7.1,7.4,7.8,8.3,8.3,9.2,9.9,10.2,11.5.$$\n\n**Sierra Nevada:**\n\n$$4.4,5.0,5.0,5.6,5.6,5.8,5.9,5.9,6.7,6.8,6.9,7.0,9.6.$$\n\na. Give a suitable typical alcohol content for each brewery.\n\nb. Determine whether one brewery tends to produce beers with higher alcohol content.\n\nc. Compare the variability of the two distributions. Support each conclusion with the data.",
+      "source": "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment and solution_Chap 1&2.docx",
+      "type": "综合题",
+      "difficulty": 3,
+      "keywords": [
+        "back-to-back stem-and-leaf plot",
+        "median",
+        "variability"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch02-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch02-review-v1",
+        "question_hash": "f29cbc67d815dbbf0261807ba535bb214708859fc92d0fac408c5d3fd92a0e13",
+        "answer_hash": "2fa7a0d2af5c659996a2c225982ba06691d8d994157fd97f8fff4418e6bc208b",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch02_q10",
+      "content": "The 2005 U.S. new-vehicle market shares were:\n\n| Manufacturer group | Market share |\n|---|---:|\n| Chrysler/Dodge/Jeep | $13.6\\%$ |\n| Ford | $18.3\\%$ |\n| GM | $26.3\\%$ |\n| Japanese manufacturers | $28.3\\%$ |\n| Other | $13.5\\%$ |\n\nGive the bar heights for a percent-frequency bar chart and the sector angles for a percentage pie chart.",
+      "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter01-02/Assignment-Chapter01-02.docx",
+      "type": "综合题",
+      "difficulty": 2,
+      "keywords": [
+        "bar chart",
+        "pie chart",
+        "market share"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch02-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch02-review-v1",
+        "question_hash": "689d6a7ae26543552a8cbf3fe4024271310e7f65c009fa69476b15f37a994976",
+        "answer_hash": "0a8ac35b6b46de697ed010feb72071e47cbbd48d69ef71edd19a97fc70437057",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch02_q11",
+      "content": "The 2005 U.S. vehicle market shares were Chrysler/Dodge/Jeep $13.6\\%$, Ford $18.3\\%$, GM $26.3\\%$, Japanese manufacturers $28.3\\%$, and other manufacturers $13.5\\%$. The figure shows the 2010 shares by manufacturer group. Compare the major changes from 2005 to 2010.\n\n[IMG:ch02_q04_f01_image1.jpeg|Pie chart of U.S. automobile sales shares in 2010]",
+      "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter01-02/Assignment-Chapter01-02.docx",
+      "type": "简答题",
+      "difficulty": 3,
+      "keywords": [
+        "pie chart",
+        "market share",
+        "comparative analysis"
+      ],
+      "formula_refs": [],
+      "data_refs": [
+        "Assests/ch02_q04_f01_image1.jpeg"
+      ],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch02-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch02-review-v1",
+        "question_hash": "b01b1c18eaf796f4002c170c72a4f49ec60b40bb7b3ae72c58d37f39b1dfb133",
+        "answer_hash": "ea00840c44541d5aa21ea53617433734aaf26abc5a124ea4b838fff93c3119d7",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch02_q12",
+      "content": "Sixty shoppers rated a bottle design.\n\n```text\n34 33 33 29 26 33 28 25 32 33\n32 25 27 33 22 27 32 33 32 29\n24 30 20 34 31 32 30 35 33 31\n32 28 30 31 31 33 29 27 34 31\n31 28 33 31 32 28 26 29 32 34\n32 30 34 32 30 30 32 31 29 33\n```\n\na. Using the rule that the smallest integer $k$ should satisfy $2^k\\ge n$, determine the number of classes.\n\nb. Determine a convenient class width.\n\nc. Construct a frequency and cumulative-frequency distribution.\n\nd. Describe the histogram's shape.",
+      "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter01-02/Assignment-Chapter01-02.docx",
+      "type": "综合题",
+      "difficulty": 3,
+      "keywords": [
+        "frequency distribution",
+        "histogram",
+        "skewness"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch02-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch02-review-v1",
+        "question_hash": "cf2aa32bc921d75ff250046f02c4fc68982f7544faef293def2e9d925f8e0306",
+        "answer_hash": "26eb88fe9d55e8fc70495861c9a02032020c429b99b961da97102b01c121024d",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch02_q14",
+      "content": "A sample of 50 observations has the class frequencies shown below. Complete the relative-frequency and cumulative-frequency columns.\n\n| Class | Frequency |\n|---|---:|\n| $7.85$ to less than $7.95$ | 6 |\n| $7.95$ to less than $8.05$ | 18 |\n| $8.05$ to less than $8.15$ | 12 |\n| $8.15$ to less than $8.25$ | 5 |\n| $8.25$ to less than $8.35$ | 9 |",
+      "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter01-02/Assignment-Chapter01-02.docx",
+      "type": "计算题",
+      "difficulty": 2,
+      "keywords": [
+        "frequency distribution",
+        "relative frequency",
+        "cumulative frequency"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch02-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch02-review-v1",
+        "question_hash": "b2314533aa8e5862e116a5e6ada74fa534690ddba22c9f513bce2882638a36d2",
+        "answer_hash": "b78908ec02a99c5b9d7436f3d2b2c8be9376bebaa81fc080f5607b9a84847674",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch02_q15",
+      "content": "The following sales figures, in millions of dollars, are reported for 20 firms.\n\n$$6835,3517,1973,1449,2820,2384,5358,1376,1233,1725,$$\n\n$$3291,6047,2707,7903,3291,4616,2675,1541,3707,4189.$$\n\nRound each value to the nearest hundred and construct a stem-and-leaf display with a leaf unit of 100.",
+      "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter01-02/Assignment-Chapter01-02.docx",
+      "type": "计算题",
+      "difficulty": 2,
+      "keywords": [
+        "stem-and-leaf plot",
+        "rounding"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch02-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch02-review-v1",
+        "question_hash": "acc4fb8dfe753703eda032bc2700c126e14b4641cea9a621dd8405fc45035966",
+        "answer_hash": "5a8b25ddaee83bef867e7ea509a0c4aa99eea3a243abd53ee6aaa37007613c48",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch02_q16",
+      "content": "The figure gives a stem-and-leaf display of 40 trash-bag breaking strengths.\n\n[IMG:ch02_q09_f02_image4.jpeg|Stem-and-leaf display of 40 breaking strengths]\n\na. Describe the shape of the distribution.\n\nb. Write the five smallest breaking strengths in the original measurement units.",
+      "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter01-02/Assignment-Chapter01-02.docx",
+      "type": "简答题",
+      "difficulty": 2,
+      "keywords": [
+        "stem-and-leaf plot",
+        "distribution shape"
+      ],
+      "formula_refs": [],
+      "data_refs": [
+        "Assests/ch02_q09_f02_image4.jpeg"
+      ],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch02-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch02-review-v1",
+        "question_hash": "2b597f604489de885becead10fa1e7636f0286df6153f5383f4729f77c9fc01f",
+        "answer_hash": "0713d8093ca85e27e06ecf860c33ba834cf875c8279ba108c42d4c4bcf257526",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch02_q17",
+      "content": "The graph compares the resale-value percentages of Chevrolet, Dodge, and Ford trucks. What is misleading about the display?\n\n[IMG:ch02_q09_f01_image3.jpeg|Bar graph of truck resale values with a vertical axis beginning near 55 percent]",
+      "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter01-02/Assignment-Chapter01-02.docx",
+      "type": "简答题",
+      "difficulty": 2,
+      "keywords": [
+        "misleading graph",
+        "truncated axis"
+      ],
+      "formula_refs": [],
+      "data_refs": [
+        "Assests/ch02_q09_f01_image3.jpeg"
+      ],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch02-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch02-review-v1",
+        "question_hash": "70119f59e130436f398cff8603c707b20833a93c887837cdb77955bd48fbf7e0",
+        "answer_hash": "2794a52e146bfe758baf4d340116a08910cc65f3d7ab030ae26bb2eb24e2db96",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch02_q18",
+      "content": "The following are profit-margin percentages and return-on-capital percentages for 35 retailers.\n\n**Profit margins:**\n\n```text\n10.9 5.0 6.1 5.9 9.2 3.3 4.0 3.1 11.2 1.8 3.2 4.4\n24.0 2.9 5.0 5.3 2.2 3.9 6.9 5.9 5.9 5.9 5.8 7.0\n8.6 5.0 5.4 5.2 4.7 6.8 4.9 3.6 1.1 3.6 5.9\n```\n\n**Returns on capital:**\n\n```text\n25.7 17.0 14.7 11.6 22.8 21.7 20.6 8.3 20.3 0.0 11.2 18.3\n13.1 19.2 19.7 12.8 9.2 15.9 19.8 11.5 14.7 14.4 12.7 12.6\n25.1 15.4 11.0 20.8 15.2 8.6 33.4 16.5 4.0 17.6 21.1\n```\n\na. Construct a stem-and-leaf display for profit margin, using the whole-number part as the stem and the tenths digit as the leaf. Describe its shape.\n\nb. Construct the analogous display for return on capital and describe its shape.\n\nc. Compare the two distributions.\n\nd. Group the profit margins into the intervals $[1.05,4.95)$, $[4.95,8.85)$, $[8.85,12.75)$, $[12.75,16.65)$, $[16.65,20.55)$, and $[20.55,24.45)$; give the class frequencies.\n\ne. State the corresponding histogram bar heights.",
+      "source": "Assignment Prof Lv/assignment2-Lu.doc | Assignments for STAT 2012/Assignment_1.doc",
+      "type": "综合题",
+      "difficulty": 4,
+      "keywords": [
+        "stem-and-leaf plot",
+        "frequency distribution",
+        "histogram",
+        "comparative distribution"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch02-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch02-review-v1",
+        "question_hash": "2288efb7f3361c93ec0e566dc2c4f12afb991890c5b61fac46d05b4d579e8e6c",
+        "answer_hash": "6dea9c914d51635e08b7831771285548a8e7d1e10b558177cf8db7ee56b20fd7",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch02_q19",
+      "content": "Calculate the mean, median, and mode of each population.\n\na. $9,8,10,10,12,6,11,10,12,8$\n\nb. $110,120,70,90,90,100,80,130,140$",
+      "source": "Assignment Prof Lv/assignment2-Lu.doc",
+      "type": "计算题",
+      "difficulty": 2,
+      "keywords": [
+        "mean",
+        "median",
+        "mode"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch02-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch02-review-v1",
+        "question_hash": "ec25bfadd592639e08761405f013b555120d200df13b2bed40bd5244415ae217",
+        "answer_hash": "fdec1aec9363908c57c28b005f17b78a532b8aadc0aec87402e97bc032aaa4a7",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch02_q20",
+      "content": "The following waiting times, in minutes, were recorded for 100 randomly selected bank customers during peak hours.\n\n```text\n1.6 6.6 5.6 5.1 3.9 4.6 6.5 6.4 8.6 4.2 5.8 3.4 9.3\n7.4 1.8 6.2 5.4 4.9 5.4 0.8 2.5 8.3 6.1 6.3\n6.8 9.8 2.9 10.9 4.7 3.9 3.2 6.5 2.3 8.7 4.7\n3.6 2.7 3.7 0.4 10.2 2.8 11.6 4.3 3.1 5.8 5.6\n4.4 4.5 6.7 8.1 4.3 2.2 5.8 8.6 2.0 8.0 9.5\n1.3 4.8 9.9 7.9 1.1 7.2 2.9 9.1 7.7 4.0 1.4\n7.8 5.2 8.4 6.3 4.4 5.2 7.4 6.1 3.8 10.7 7.5\n7.0 5.3 4.5 4.5 1.8 3.7 4.0 5.7 2.4 9.2 5.0\n7.2 7.3 4.1 6.7 3.5 6.3 4.3 3.8 5.1 5.5\n```\n\na. At $\\alpha=0.05$, test $H_0:\\mu=6$ against $H_a:\\mu<6$.\n\nb. Find the median and compare it with the mean.\n\nc. Calculate the intervals $\\bar{x}\\pm s$, $\\bar{x}\\pm2s$, and $\\bar{x}\\pm3s$.\n\nd. Find the observed percentage of waiting times in each interval and compare the results with the Empirical Rule.\n\ne. Do the results support the claim that at least two-thirds of customers wait less than 8 minutes?",
+      "source": "Assignment Prof Lv/assignment2-Lu.doc",
+      "type": "综合题",
+      "difficulty": 4,
+      "keywords": [
+        "one-sample t test",
+        "empirical rule",
+        "mean",
+        "median"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch02-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch02-review-v1",
+        "question_hash": "1bf7da54f1b6fa006c79cbd2d35e819ff2ef0b9df2df1fd6801a3977e6b695ac",
+        "answer_hash": "5c3a9a52a410b5b31b2af5363e69696f8ad1f77ede9d40e978b18b11fe072ec4",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch02_q21",
+      "content": "A random sample of six client-entertainment expenses, in dollars, is\n\n$$157,132,109,145,125,139.$$\n\na. Calculate $\\bar{x}$, $s^2$, and $s$. Verify $s^2$ using both the deviation formula and the computational formula.\n\nb. Assuming an approximately normal distribution, estimate the intervals containing $68.26\\%$, $95.44\\%$, and $99.73\\%$ of expenses.\n\nc. Is an expense of $190$ unusually high?\n\nd. Compute the z-score of each sampled expense.",
+      "source": "Assignment Prof Lv/assignment2-Lu.doc | Assignments for STAT 2012/Assignment_1.doc",
+      "type": "综合题",
+      "difficulty": 4,
+      "keywords": [
+        "sample variance",
+        "sample standard deviation",
+        "z-score",
+        "empirical rule"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch02-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch02-review-v1",
+        "question_hash": "fe863368d114357c42b50d0d01f23f8ee86042fbff718b38bda3abd57cd3d46f",
+        "answer_hash": "47ac4c80b1da30abff7bafb6e07d437ef14e9d0389debe9338714de8a2667206",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch02_q24",
+      "content": "A national poll of 1,008 adults asked how familiar they were with blogs. The results were: very familiar $7\\%$, somewhat familiar $19\\%$, not too familiar $18\\%$, and not at all familiar $56\\%$. Give the bar heights and the sector angles required to construct a percentage bar chart and a pie chart.",
+      "source": "Assignment Prof Lv/assignment2-Lu.doc",
+      "type": "综合题",
+      "difficulty": 2,
+      "keywords": [
+        "bar chart",
+        "pie chart",
+        "survey data"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch02-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch02-review-v1",
+        "question_hash": "2522dadf7db580f75ed1359eda0419cd2c5c43a303e2daec00be70e873cda6ee",
+        "answer_hash": "ef9df88a11649ae2cc1b4c9de51028a291daf36805eacf2e5e3aa18efeaa23c2",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch02_q25",
+      "content": "On February 15, 2005, the Gallup Organization released the results of a Gallup UK poll regarding Internet usage in Great Britain. Each of 1,009 randomly selected UK adults was asked to respond to the following question:\n\n> How much time, if at all, do you personally spend using the Internet-more than an hour a day, up to one hour a day, a few times a week, a few times a month or less, or never?\n>\n> The poll's results were as follows: More than an hour a day (22%); Up to an hour a day (14%); A few times a week (15%); A few times a month or less (10%); Never (39%). Use these data to construct a bar chart and a pie chart.",
+      "source": "Assignments for STAT 2010/assign2.doc | Assignments for STAT 2012/Assignment_2.doc",
+      "type": "综合题",
+      "difficulty": 2,
+      "keywords": [
+        "bar chart",
+        "pie chart",
+        "survey data"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch02-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch02-review-v1",
+        "question_hash": "001cedb62c05d509188253b14f67d6f69fe05fc1ddfdae47b7a263947f95ab0a",
+        "answer_hash": "0103d8a2096aeb80e443f905d1395b666913d8ff1756e136b41e660310f2ca0a",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch02_q26",
+      "content": "Fifteen internists report the following annual incomes, in thousands of dollars:\n\n$$152,144,162,154,146,241,127,141,171,177,138,132,192,188,101.$$\n\nUsing the nearest-rank method, find: (a) the 90th percentile, (b) the median, (c) the first quartile, (d) the third quartile, (e) the 10th percentile, (f) the interquartile range, and (g) the five-number summary.",
+      "source": "Assignments for STAT 2010/assign2.doc | Assignments for STAT 2012/Assignment_2.doc",
+      "type": "综合题",
+      "difficulty": 3,
+      "keywords": [
+        "percentile",
+        "quartile",
+        "interquartile range",
+        "five-number summary"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch02-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch02-review-v1",
+        "question_hash": "c99f5491b4eab85980dd18f3dad98584e3cacd02a515c097af5b63c73820843f",
+        "answer_hash": "56c90e659aed5071c262e4e498300f7ee344d29f3b2bd3fd81c8e1a2a160762a",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch02_q27",
+      "content": "An investor holds the following five funds.\n\n| Fund | Amount invested | 2004 return |\n|---|---:|---:|\n| Vanguard 500 Index | $100{,}000 dollars | $10.7\\%$ |\n| Wasatch Core Growth | $500{,}000 dollars | $21.7\\%$ |\n| Fidelity Stock Selector | $500{,}000 dollars | $9.9\\%$ |\n| Fidelity Dividend Growth | $200{,}000 dollars | $6.0\\%$ |\n| Janus Worldwide | $50{,}000 dollars | $5.2\\%$ |\n\na. Compute the portfolio's weighted mean return.\n\nb. Compare it with the unweighted mean of the five returns and explain the difference.",
+      "source": "Assignments for STAT 2010/assign2.doc | Assignments for STAT 2012/Assignment_2.doc",
+      "type": "计算题",
+      "difficulty": 3,
+      "keywords": [
+        "weighted mean",
+        "portfolio return"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch02-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch02-review-v1",
+        "question_hash": "c486d77a869fa6ad63f468b8576bedfab49ba219bf22098fcd792c6622fd021d",
+        "answer_hash": "7af76e5ee5d98c4bb5649002cd1d0400a3935ed9158f5850003b7140322bcb02",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch02_q28",
+      "content": "Thirteen students shipped rugs from Istanbul, Turkey, to the United States. Their shipping times, in days, were\n\n$$31,31,42,39,42,43,34,30,28,36,37,35,40.$$\n\na. Calculate the mean and sample standard deviation.\n\nb. What percentage of the observed times are within two sample standard deviations of the mean? How does this compare with the Empirical Rule?\n\nc. Is a 60-day shipping time likely under this model?",
+      "source": "Assignments for STAT 2012/Assignment_1.doc",
+      "type": "计算题",
+      "difficulty": 3,
+      "keywords": [
+        "mean",
+        "sample standard deviation",
+        "empirical rule",
+        "z-score"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch02-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch02-review-v1",
+        "question_hash": "87eb1c44d291a0e665f8fab8d0427f040be06b7ddc2893934c49774d49d310a6",
+        "answer_hash": "23e9da35a12268cb9adf42b0fc73daab64328f30fa41cbf99d2f27cf2d8ecb04",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch02_q29",
+      "content": "Fidelity Leveraged Company Stock has mean return $17.98\\%$ and standard deviation $10.02\\%$. Baron Opportunity Retail Stock has mean return $16.43\\%$ and standard deviation $12.23\\%$. Compare their relative risk using the coefficient of variation. If an investor prefers lower relative risk, which stock should the investor choose?",
+      "source": "Assignments for STAT 2012/Assignment_2.doc",
+      "type": "计算题",
+      "difficulty": 3,
+      "keywords": [
+        "coefficient of variation",
+        "risk",
+        "return"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch02-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch02-review-v1",
+        "question_hash": "a1dc9a7036cc198e6b728498e5364ae9a294c0e32022accc642f4359628812c1",
+        "answer_hash": "5b3cf7fe7f98b24e8885dbe5c9cf2d07dcb6c3753c3fe0876c22eee915bc4476",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "rotel_ch02_histogram_01",
+      "content": "A biology department groups faculty members by years of service into six intervals: $0$–$4.9$, $5$–$9.9$, $10$–$14.9$, $15$–$19.9$, $20$–$24.9$, and $25$–$29.9$. The corresponding frequencies are $3,11,10,11,3,12$. What percentage of faculty members have fewer than 10 years of service?",
+      "source": "ROTEL Statistical Problem Sets in WeBWorK — 2.1-2.2 Problem 2 — https://rotel.pressbooks.pub/statsproblemsets/chapter/assignment-2-1-2-2-graphs-and-percentages/",
+      "source_url": "https://rotel.pressbooks.pub/statsproblemsets/chapter/assignment-2-1-2-2-graphs-and-percentages/",
+      "source_problem": "2.1-2.2 Problem 2",
+      "license": "CC BY-NC-SA 4.0",
+      "attribution": "Rachael Norton and Peter Staab, 2023",
+      "review_status": "independently solved and reviewed",
+      "type": "计算题",
+      "difficulty": 1,
+      "keywords": [
+        "histogram",
+        "frequency",
+        "percentage"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "audit_pack": "ch02-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch02-review-v1",
+        "question_hash": "b1851289f71e38f4b99777180e3cb62719a83881f56dfc697e35d15822cd3ad1",
+        "answer_hash": "f7d0c501b39ac5c6322b32775bc105806cc07eaaa5e9a29893cc53cb856e5bb9",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "rotel_ch02_boxplot_01",
+      "content": "Examine the following box plot and give the minimum value, first quartile, and median.\n\n[IMG:Assests/rotel-boxplot-five-number.png|Box plot: left whisker endpoint 24, first quartile 37, median 46, third quartile 78, right whisker endpoint 91]",
+      "source": "ROTEL Statistical Problem Sets in WeBWorK — 2.4 Problem 2 (adapted to text) — https://rotel.pressbooks.pub/statsproblemsets/chapter/assignment-2-4-box-plots/",
+      "source_url": "https://rotel.pressbooks.pub/statsproblemsets/chapter/assignment-2-4-box-plots/",
+      "source_problem": "2.4 Problem 2 (adapted to text)",
+      "license": "CC BY-NC-SA 4.0",
+      "attribution": "Rachael Norton and Peter Staab, 2023",
+      "review_status": "independently solved and reviewed",
+      "type": "填空题",
+      "difficulty": 1,
+      "keywords": [
+        "box plot",
+        "five-number summary"
+      ],
+      "formula_refs": [],
+      "data_refs": [
+        "Assests/rotel-boxplot-five-number.png"
+      ],
+      "audit_pack": "ch02-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch02-review-v1",
+        "question_hash": "c2b943ffb9da1ab7e960dda4558f58ef34dec4ca823526b0fd300589e6121fb3",
+        "answer_hash": "f0dd02ece83cee1eb78ffb772bd50f6355df03f888151ff2e410b19770a29e26",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "rotel_ch02_boxplot_02",
+      "content": "The figure below shows a box plot of annual salaries for Los Angeles attorneys (in thousands of dollars). Approximately what percentage of attorneys have annual salaries between 152,000 dollars and 252,000 dollars? Explain your reasoning.\n\n[IMG:Assests/rotel-boxplot-salary.png|Box plot of attorney salaries: minimum 152, first quartile 195, median 252, third quartile 308, maximum 351]",
+      "source": "ROTEL Statistical Problem Sets in WeBWorK — 2.4 Problem 4 (adapted to text) — https://rotel.pressbooks.pub/statsproblemsets/chapter/assignment-2-4-box-plots/",
+      "source_url": "https://rotel.pressbooks.pub/statsproblemsets/chapter/assignment-2-4-box-plots/",
+      "source_problem": "2.4 Problem 4 (adapted to text)",
+      "license": "CC BY-NC-SA 4.0",
+      "attribution": "Rachael Norton and Peter Staab, 2023",
+      "review_status": "independently solved and reviewed",
+      "type": "简答题",
+      "difficulty": 1,
+      "keywords": [
+        "box plot",
+        "quartiles",
+        "percentile"
+      ],
+      "formula_refs": [],
+      "data_refs": [
+        "Assests/rotel-boxplot-salary.png"
+      ],
+      "audit_pack": "ch02-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch02-review-v1",
+        "question_hash": "d18bb90d88a09bca4bc8db616655937f7ce532638a26a08130118e02884705b3",
+        "answer_hash": "bf5122ac94d52393ffa8006694156579b5024d08fa8d5441c467a10f37bf2091",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "opl_nau_ch02_center_01",
+      "content": "For the data set $4,7,7,9,10,13$, calculate the mean, median, and mode.",
+      "source": "WeBWorK Open Problem Library — NAU Statistics — CenterMeasures.pg (fixed static instance) — https://github.com/openwebwork/webwork-open-problem-library/blob/54e7db70ed308cab9c7eed8af1d2dba5a6adf7d4/OpenProblemLibrary/NAU/setStatistics/CenterMeasures.pg",
+      "source_url": "https://github.com/openwebwork/webwork-open-problem-library/blob/54e7db70ed308cab9c7eed8af1d2dba5a6adf7d4/OpenProblemLibrary/NAU/setStatistics/CenterMeasures.pg",
+      "source_problem": "CenterMeasures.pg (fixed static instance)",
+      "source_path": "OpenProblemLibrary/NAU/setStatistics/CenterMeasures.pg",
+      "source_commit": "54e7db70ed308cab9c7eed8af1d2dba5a6adf7d4",
+      "license": "CC BY-NC-SA 3.0",
+      "license_url": "https://creativecommons.org/licenses/by-nc-sa/3.0/",
+      "attribution": "Edgar Fisher; modified by John Hagood, Northern Arizona University",
+      "changes": "Randomized PG problem converted to a fixed, self-contained English instance; answer independently recomputed and Markdown/LaTeX normalized.",
+      "review_status": "independently solved and reviewed",
+      "type": "计算题",
+      "difficulty": 1,
+      "keywords": [
+        "mean",
+        "median",
+        "mode"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "opl-nau-curated-v1",
+        "question_hash": "d4732c518ac612412959f30cb6e794a0f55bdb474e20d47fb318b56fb591b8f8",
+        "answer_hash": "e1b60016d37cf4e833aff9195735274613ed9a5ee94b33b0907a79cf46a9bc3e",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "opl_nau_ch02_fivenum_01",
+      "content": "Using the median-of-halves convention that excludes the overall median, find the five-number summary of\n\n$$25,28,32,35,41,44,47,53,58,61,65,69,72,78,84.$$",
+      "source": "WeBWorK Open Problem Library — NAU Statistics — FiveNum1.pg (fixed static instance) — https://github.com/openwebwork/webwork-open-problem-library/blob/54e7db70ed308cab9c7eed8af1d2dba5a6adf7d4/OpenProblemLibrary/NAU/setStatistics/FiveNum1.pg",
+      "source_url": "https://github.com/openwebwork/webwork-open-problem-library/blob/54e7db70ed308cab9c7eed8af1d2dba5a6adf7d4/OpenProblemLibrary/NAU/setStatistics/FiveNum1.pg",
+      "source_problem": "FiveNum1.pg (fixed static instance)",
+      "source_path": "OpenProblemLibrary/NAU/setStatistics/FiveNum1.pg",
+      "source_commit": "54e7db70ed308cab9c7eed8af1d2dba5a6adf7d4",
+      "license": "CC BY-NC-SA 3.0",
+      "license_url": "https://creativecommons.org/licenses/by-nc-sa/3.0/",
+      "attribution": "C. Tyler Diggans, Northern Arizona University",
+      "changes": "Randomized PG problem converted to a fixed, self-contained English instance; answer independently recomputed and Markdown/LaTeX normalized.",
+      "review_status": "independently solved and reviewed",
+      "type": "计算题",
+      "difficulty": 2,
+      "keywords": [
+        "five-number summary",
+        "quartiles",
+        "median"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "opl-nau-curated-v1",
+        "question_hash": "17036564abc12b2950a8af458bfb8321fdcac05f035f94bc92c19d868187a389",
+        "answer_hash": "97ae921e033e21e5e5936fb7c4c5d15b6cad52e4748b5df5fb53a2a1bd23f521",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "opl_nau_ch02_sd_01",
+      "content": "For the sample $42,45,47,50,53,57$, calculate the sample mean and sample standard deviation. Round the standard deviation to three decimal places.",
+      "source": "WeBWorK Open Problem Library — NAU Statistics — Std_Dev_1.pg (fixed static instance) — https://github.com/openwebwork/webwork-open-problem-library/blob/54e7db70ed308cab9c7eed8af1d2dba5a6adf7d4/OpenProblemLibrary/NAU/setStatistics/Std_Dev_1.pg",
+      "source_url": "https://github.com/openwebwork/webwork-open-problem-library/blob/54e7db70ed308cab9c7eed8af1d2dba5a6adf7d4/OpenProblemLibrary/NAU/setStatistics/Std_Dev_1.pg",
+      "source_problem": "Std_Dev_1.pg (fixed static instance)",
+      "source_path": "OpenProblemLibrary/NAU/setStatistics/Std_Dev_1.pg",
+      "source_commit": "54e7db70ed308cab9c7eed8af1d2dba5a6adf7d4",
+      "license": "CC BY-NC-SA 3.0",
+      "license_url": "https://creativecommons.org/licenses/by-nc-sa/3.0/",
+      "attribution": "Original author unknown; altered by C. Tyler Diggans at Northern Arizona University",
+      "changes": "Randomized PG problem converted to a fixed, self-contained English instance; answer independently recomputed and Markdown/LaTeX normalized.",
+      "review_status": "independently solved and reviewed",
+      "type": "计算题",
+      "difficulty": 2,
+      "keywords": [
+        "sample mean",
+        "sample standard deviation"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "opl-nau-curated-v1",
+        "question_hash": "6d9289511f19c4dc1c9dde353eaf8ffcd93244c422edbc39f7f4758230e31a37",
+        "answer_hash": "b963fd193e8f6f1389b39745e563b179a6e0a82a9deb3c37ade82c0022faba23",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "opl_nau_ch02_boxplot_01",
+      "content": "A data set has five-number summary $(20,35,50,80,100)$. Assuming no tied-value ambiguity at the quartile boundaries, approximately what percentage of observations lie between the first quartile, 35, and the maximum, 100? Explain.",
+      "source": "WeBWorK Open Problem Library — NAU Statistics — BoxPlotPercentBetween.pg (converted to text) — https://github.com/openwebwork/webwork-open-problem-library/blob/54e7db70ed308cab9c7eed8af1d2dba5a6adf7d4/OpenProblemLibrary/NAU/setStatistics/BoxPlotPercentBetween.pg",
+      "source_url": "https://github.com/openwebwork/webwork-open-problem-library/blob/54e7db70ed308cab9c7eed8af1d2dba5a6adf7d4/OpenProblemLibrary/NAU/setStatistics/BoxPlotPercentBetween.pg",
+      "source_problem": "BoxPlotPercentBetween.pg (converted to text)",
+      "source_path": "OpenProblemLibrary/NAU/setStatistics/BoxPlotPercentBetween.pg",
+      "source_commit": "54e7db70ed308cab9c7eed8af1d2dba5a6adf7d4",
+      "license": "CC BY-NC-SA 3.0",
+      "license_url": "https://creativecommons.org/licenses/by-nc-sa/3.0/",
+      "attribution": "Edgar Fisher, Northern Arizona University",
+      "changes": "Randomized PG problem converted to a fixed, self-contained English instance; answer independently recomputed and Markdown/LaTeX normalized.",
+      "review_status": "independently solved and reviewed",
+      "type": "简答题",
+      "difficulty": 1,
+      "keywords": [
+        "boxplot",
+        "quartiles",
+        "percent of observations"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "opl-nau-curated-v1",
+        "question_hash": "4125ac13ce5fe4905e145ea3c8c04ed69417486d85dcca8bf12289b0ddbbbfc6",
+        "answer_hash": "458d859e690f7612017e0a7d7c10b04fc515e4902893058778c428414141174e",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    }
+  ]
+}

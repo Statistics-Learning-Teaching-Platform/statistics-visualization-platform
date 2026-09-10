@@ -346,7 +346,7 @@ body {
   margin-top: 1.5rem;
 }
 
-.metric-card {
+.type-error-app .metric-card {
   padding: 0.95rem 1rem;
   border-radius: 0.9rem;
   background: rgba(255, 255, 255, 0.94);
@@ -354,7 +354,7 @@ body {
   box-shadow: 0 0.8rem 2rem rgba(15, 23, 42, 0.06);
 }
 
-.metric-label {
+.type-error-app .metric-label {
   display: block;
   color: #64748b;
   font-size: 0.8rem;
@@ -362,7 +362,7 @@ body {
   letter-spacing: 0.05em;
 }
 
-.metric-value {
+.type-error-app .metric-value {
   display: block;
   margin-top: 0.25rem;
   color: #0f172a;
@@ -370,7 +370,7 @@ body {
   font-size: 1.15rem;
 }
 
-.metric-note {
+.type-error-app .metric-note {
   display: block;
   margin-top: 0.4rem;
   color: #64748b;
@@ -522,7 +522,7 @@ body {
 .module-intro,
 .experiment-panel,
 .teaching-panel,
-.metric-card {
+.type-error-app .metric-card {
   border: 1px solid rgba(148, 163, 184, 0.28);
   border-radius: 10px;
   background: rgba(255, 255, 255, 0.9);
@@ -582,7 +582,7 @@ body {
   overflow: auto;
 }
 
-.metrics-grid {
+.type-error-app .metrics-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
   gap: 10px;
@@ -672,7 +672,7 @@ body {
   font-size: 12px;
 }
 
-.metrics-grid {
+.type-error-app .metrics-grid {
   border-top: 1px solid #e0e7e5;
   padding-top: 12px;
 }
@@ -849,8 +849,12 @@ body {
 
 /* Final compact workbench header override. */
 @media (min-width: 760px) {
-  .experiment-board { gap: 10px !important; }
-  .experiment-header { padding-bottom: 8px !important; }
+  .experiment-board {
+    gap: 10px !important;
+  }
+  .experiment-header {
+    padding-bottom: 8px !important;
+  }
   .experiment-header .eyebrow,
   .output-heading .eyebrow {
     margin: 0 !important;
@@ -866,7 +870,9 @@ body {
   .output-heading p {
     display: none !important;
   }
-  .output-dock { gap: 8px !important; }
+  .output-dock {
+    gap: 8px !important;
+  }
   .output-heading {
     display: flex !important;
     align-items: baseline !important;
@@ -879,7 +885,9 @@ body {
     font-size: clamp(18px, 1.8vw, 24px) !important;
     line-height: 1.05 !important;
   }
-  .chart-frame { min-height: 0 !important; }
+  .chart-frame {
+    min-height: 0 !important;
+  }
 }
 
 /* Design tokens provided by @stats-viz/shared/styles/tokens.css */
@@ -911,7 +919,7 @@ body {
 
 .experiment-board,
 .teaching-panel,
-.metric-card {
+.type-error-app .metric-card {
   border: 1px solid var(--border);
   border-radius: 24px;
   background: var(--card);
@@ -950,7 +958,7 @@ body {
 .experiment-header p,
 .output-heading p,
 .teaching-panel p,
-.metric-note {
+.type-error-app .metric-note {
   color: var(--text-secondary);
   font-size: 15px;
   line-height: 1.6;
@@ -966,17 +974,16 @@ body {
 .chart-frame {
   border: 1px solid rgba(90, 80, 60, 0.1);
   border-radius: 22px;
-  background:
-    linear-gradient(180deg, rgba(255, 253, 248, 0.94), rgba(255, 250, 241, 0.96));
+  background: linear-gradient(180deg, rgba(255, 253, 248, 0.94), rgba(255, 250, 241, 0.96));
 }
 
-.metrics-grid {
+.type-error-app .metrics-grid {
   gap: 12px;
   padding-top: 18px;
   border-top: 1px solid rgba(90, 80, 60, 0.1);
 }
 
-.metric-card {
+.type-error-app .metric-card {
   min-height: 92px;
   padding: 15px;
   border-radius: 18px;
@@ -984,13 +991,13 @@ body {
   box-shadow: none;
 }
 
-.metric-label {
+.type-error-app .metric-label {
   color: var(--lavender);
   font-size: 11px;
   font-weight: 850;
 }
 
-.metric-value {
+.type-error-app .metric-value {
   color: var(--text-primary);
   font-family: Georgia, "Times New Roman", serif;
   font-size: 27px;
@@ -1162,6 +1169,12 @@ body {
   stroke-dasharray: 4 4;
 }
 
+.chart-inline-legend__line--observed {
+  stroke: var(--danger);
+  stroke-width: 2;
+  stroke-dasharray: 3 4;
+}
+
 .chart-inline-legend__area--type1 {
   fill: var(--lavender);
   opacity: 0.3;
@@ -1170,6 +1183,23 @@ body {
 .chart-inline-legend__area--type2 {
   fill: var(--danger);
   opacity: 0.3;
+}
+
+/* Semantic chart vocabulary shared with the rest of the laboratory. */
+.visualization-frame.module-shell .chart-inline-legend__line--null {
+  stroke: var(--lab-purple);
+}
+.visualization-frame.module-shell .chart-inline-legend__line--critical {
+  stroke: var(--lab-orange);
+}
+.visualization-frame.module-shell .chart-inline-legend__line--observed {
+  stroke: var(--lab-blue);
+}
+.visualization-frame.module-shell .chart-inline-legend__area--type1 {
+  fill: var(--lab-orange);
+}
+.visualization-frame.module-shell .chart-inline-legend__area--type2 {
+  fill: var(--lab-coral);
 }
 
 @media (max-width: 1100px) {

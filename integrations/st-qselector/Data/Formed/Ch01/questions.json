@@ -1,0 +1,930 @@
+{
+  "chapter": 1,
+  "questions": [
+    {
+      "id": "ch01_q01",
+      "content": "Explain whether each of the following constitutes data collected from population or a sample.\n\na.  Opinions on a certain issue obtained from all adults living in a city.\n\nb.  The price a gallon of regular unleaded gasoline on a given day at each of 35 gas stations in the Miami, Florida, metropolitan area.\n\nc.  Credit card debts of 100 families selected from San Antonio, Texas.\n\nd.  The percentage of all U.S. registered voters in each state who voted in 2012 Presidential election.\n\ne.  The number of left-handed students in each of 50 classes selected from a given university.",
+      "source": "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment and solution_Chap 1&2.docx",
+      "type": "简答题",
+      "difficulty": 1,
+      "keywords": [
+        "population",
+        "sample"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch01-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch01-review-v1",
+        "question_hash": "1d541557cc5bbdaca54a2d98ae69898f34f30721ad3fcff107f55765eafee470",
+        "answer_hash": "48e35570c5dda3b7ec469242a5f0d62fa058796b0acc6acffa60dcfec6c92062",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch01_q02",
+      "content": "Indicate which of the following variables are quantitative and which are qualitative.\n\na.  Number of children under 18 years of age in a family\n\nb.  Colors of cars\n\nc.  Salaries of Football Players\n\nd.  Time to commute from home to work\n\ne.  Number of errors in a person's credit report",
+      "source": "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment and solution_Chap 1&2.docx",
+      "type": "简答题",
+      "difficulty": 1,
+      "keywords": [
+        "quantitative variable",
+        "qualitative variable"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch01-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch01-review-v1",
+        "question_hash": "b8320da655f3856e37131735470dbc2fcc82f59ddd64765ac8c24f1229770814",
+        "answer_hash": "d6cee2b16092610d1f1d500215b23ec5fbd656ad5f2cab3db11e1f6d588c7942",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch01_q04",
+      "content": "Classify the following as cross-section or time-series data.\n\na.  Average prices of houses in 100 cities\n\nb.  Salaries of 50 employees\n\nc.  Number of cars sold each year by General Motors from 1980 to 2012\n\nd.  Number of employees employed by a company each year from 1985 to 2012",
+      "source": "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment and solution_Chap 1&2.docx",
+      "type": "简答题",
+      "difficulty": 1,
+      "keywords": [
+        "cross-sectional data",
+        "time-series data"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch01-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch01-review-v1",
+        "question_hash": "40751b71b8f8c018817da79522fb46e0ba7ee830f84298787fdf1f106b80bb23",
+        "answer_hash": "86eb6f78d64d08d349f3935683391e7023357139a9c21800939339032ac35588",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch01_q05",
+      "content": "Classify each statement as true or false.\n\na. A population is the complete set of units about which a study seeks information.\n\nb. Examining only some population units constitutes a census.\n\nc. A quantitative variable is also called a categorical variable.\n\nd. Statistical inference uses sample measurements to generalize about a population.\n\ne. Describing the important features of a set of measurements is called statistical inference.",
+      "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter01-02/Assignment-Chapter01-02.docx",
+      "type": "判断题",
+      "difficulty": 1,
+      "keywords": [
+        "population",
+        "census",
+        "descriptive statistics",
+        "statistical inference"
+      ],
+      "formula_refs": [],
+      "data_refs": [
+        "Data-Chapter01-02.xlsx"
+      ],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch01-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch01-review-v1",
+        "question_hash": "42dcbb146b6a432906e619cb4f5977aef0c600e0a65da546c4652a704e523467",
+        "answer_hash": "884756364c165dfd2995e5a79f1218f0dbb6c522b9ef82c278fa347601a39b42",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch01_q07",
+      "content": "Below we list several variables. Which of these variables are quantitative and which are qualitative? Explain.\n\na. The dollar amount on an accounts receivable invoice.\n\nb. The net profit for a company in 2005.\n\nc. The stock exchange on which a company's stock is traded.\n\nd. The national debt of the United States in 2005.\n\ne. The advertising medium (radio, television, or print) used to promote a product.",
+      "source": "Assignment Prof Lv/assignment1-Lu.doc | Assignments for STAT 2012/Assignment_1.doc",
+      "type": "简答题",
+      "difficulty": 1,
+      "keywords": [
+        "quantitative variable",
+        "qualitative variable"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch01-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch01-review-v1",
+        "question_hash": "742e67d7d2a23cd806a94aa952de9c0dbf56a022169208ec9584bbc44655d59f",
+        "answer_hash": "b914744d82f9945bcd180be7eb2fbdd344edf6ab4942d09ccb9e160c128a9b0e",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch01_q08",
+      "content": "Classify each qualitative variable as nominal or ordinal, and explain briefly.\n\na. Statistics course letter grade: A, B, C, D, or F\n\nb. Door choice on a game show: Door 1 or Door 2\n\nc. Personal computer ownership: yes or no\n\nd. Restaurant rating: one to five stars\n\ne. Income-tax filing status: married filing jointly, married filing separately, single, head of household, or qualifying widow(er)",
+      "source": "Assignment Prof Lv/assignment1-Lu.doc | Assignments for STAT 2012/Assignment_1.doc",
+      "type": "简答题",
+      "difficulty": 2,
+      "keywords": [
+        "nominal variable",
+        "ordinal variable"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch01-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch01-review-v1",
+        "question_hash": "56ca39b7aa1fa290e00f07280e2c3b0aff60adb48c19045cb36d2008e9b8e1dc",
+        "answer_hash": "92927480e26e741750af32ec26c4a4160f382535b4e088f8f0105b6e76240110",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch01_q09",
+      "content": "Describe a systematic procedure for selecting a sample of 100 companies from an ordered list of 1,853 companies in an industry trade association.",
+      "source": "Assignment Prof Lv/assignment1-Lu.doc",
+      "type": "简答题",
+      "difficulty": 2,
+      "keywords": [
+        "systematic sampling",
+        "sampling interval"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch01-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch01-review-v1",
+        "question_hash": "4673a7b2b689cfba6cfe1363b6423774bdeed08cc97482aab35b9a0bce87a3f2",
+        "answer_hash": "e9d561b4197cbd07b364e1e8ca86105182cf7c97d72ccf217311a51a68869c2f",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch01_q10",
+      "content": "Explain how a stratified random sample is selected.",
+      "source": "Assignment Prof Lv/assignment1-Lu.doc",
+      "type": "简答题",
+      "difficulty": 1,
+      "keywords": [
+        "stratified random sampling",
+        "strata"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch01-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch01-review-v1",
+        "question_hash": "aeccd2defa969e942445639e2cbc3230a0dfa98406255af689c54a9beb6b85bd",
+        "answer_hash": "1f470eccf5b1c40f10294fbd82eaf568066da7132a8decd263ec3e9b4a0304c9",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch01_q11",
+      "content": "A large state contains many cities with populations greater than 10,000. Describe how a market researcher could use multistage cluster sampling, with city blocks as clusters, to select a sample of consumers from these cities.",
+      "source": "Assignment Prof Lv/assignment1-Lu.doc",
+      "type": "简答题",
+      "difficulty": 2,
+      "keywords": [
+        "cluster sampling",
+        "multistage sampling"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch01-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch01-review-v1",
+        "question_hash": "18087165e862d3e4bbf376faea286ea144e6480244fcb0479584c44c7b72ae68",
+        "answer_hash": "3561106868ba701238df809d118e0fe610fbf0e021b4176fe7b5afcb393e8985",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch01_q12",
+      "content": "A bank wishes to study the amount of time it takes to complete a withdrawal transaction from one of its ATMs (automated teller machines). On a particular day, 63 withdrawal transactions are observed between 10 A.M. and noon. Figure below shows an Excel runs plot of the 63 transaction times. Do the transaction times seem to be in statistical control? Why or why not?\n>\n> [IMG:ch01_q33_f01_image1.jpeg]",
+      "source": "Assignment Prof Lv/assignment1-Lu.doc",
+      "type": "简答题",
+      "difficulty": 2,
+      "keywords": [
+        "runs plot",
+        "statistical control"
+      ],
+      "formula_refs": [],
+      "data_refs": [
+        "Assests/ch01_q33_f01_image1.jpeg"
+      ],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch01-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch01-review-v1",
+        "question_hash": "b36c6d5bbb24ebd430849974df93b2bfcffd3dbe5d44d0c9dae81566a44eaa4a",
+        "answer_hash": "8b75d295ac1af30c28fb1da81f5c1496f9f2634b3d8f7c4a226ce2eb57db7fd2",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch01_q13",
+      "content": "Calculate the mean, median, and mode for each population.\n\na. $17,23,19,20,25,18,22,15,21,20$\n\nb. $505,497,501,500,507,510,501$",
+      "source": "Assignments for STAT 2010/assignment01.doc",
+      "type": "计算题",
+      "difficulty": 1,
+      "keywords": [
+        "mean",
+        "median",
+        "mode"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch01-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch01-review-v1",
+        "question_hash": "d2a4fa1ccf0e72e183e28e056b85d11569d9aa80414e4c249036686038032412",
+        "answer_hash": "7bb3dcea2cef17ca2599999b5f49f71ef65481ceb0181af66791242cddf36dca",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch01_q14",
+      "content": "Lauren is taking five college courses with class sizes $350,45,35,25,40$. Find the mean and median class size. Which measure better represents her typical class size, and why?",
+      "source": "Assignments for STAT 2010/assignment01.doc",
+      "type": "计算题",
+      "difficulty": 2,
+      "keywords": [
+        "mean",
+        "median",
+        "outlier"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch01-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch01-review-v1",
+        "question_hash": "1387a1d6e5aef77000497bff9d3d8a01ddc1f30bb8664a865f0a95ed7fb5dc87",
+        "answer_hash": "d46bfed3349c4b3b362cf2e27db931b514762bbdb98cea7e3e82697a8bcb8988",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch01_q15",
+      "content": "The affordability percentages for six Texas metropolitan areas are shown below.\n\n[IMG:ch01_q03_f01_image1.jpeg]\n\nTreating the six percentages as a population, calculate the range, population variance, and population standard deviation.",
+      "source": "Assignments for STAT 2010/assignment01.doc",
+      "type": "计算题",
+      "difficulty": 2,
+      "keywords": [
+        "range",
+        "population variance",
+        "population standard deviation"
+      ],
+      "formula_refs": [],
+      "data_refs": [
+        "Assests/ch01_q03_f01_image1.jpeg"
+      ],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch01-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch01-review-v1",
+        "question_hash": "b428556478af37e4aee7224b19059cc975912a54b12b3dbfebe64ac59acd70fe",
+        "answer_hash": "e47aa2bd1971612d3c1059255f87103d5272908d2cdb003c9e56eb78ad265f01",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "rotel_ch01_variables_01",
+      "content": "Which of the following situations collects categorical data? (Select all that apply)\n\nA. Measuring the number of computers owned by households in Vancouver\n\nB. Surveying the nationality of students in a statistics course\n\nC. Classifying and counting students by hair color—black, brown, blond, white, red, other, or bald\n\nD. Classifying newborns into low birth weight and not low birth weight\n\nE. None of the above",
+      "source": "ROTEL Statistical Problem Sets in WeBWorK — 1.1 Problem 1 — https://rotel.pressbooks.pub/statsproblemsets/chapter/chapter-1/",
+      "source_url": "https://rotel.pressbooks.pub/statsproblemsets/chapter/chapter-1/",
+      "source_problem": "1.1 Problem 1",
+      "license": "CC BY-NC-SA 4.0",
+      "attribution": "Rachael Norton and Peter Staab, 2023",
+      "review_status": "independently solved and reviewed",
+      "type": "选择题",
+      "difficulty": 2,
+      "keywords": [
+        "categorical data",
+        "variable types"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "audit_pack": "ch01-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch01-review-v1",
+        "question_hash": "026b55510c477c8c44812dbe2e7823483a0e3620757acbe958978354a9129c96",
+        "answer_hash": "cbbb76c169ba9f95c19edb771120e2e5c3a926777253d041ef06cc99eb4313e0",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "rotel_ch01_variables_02",
+      "content": "In a clinical trial, which of the following variables are quantitative variables? (Select all that apply)\n\nA. Assigned sex: female, male, intersex\n\nB. Smoking history: number of cigarettes smoked per year\n\nC. Age group: under 20, 20–30, 30–40, etc.\n\nD. Body mass index, measured in $\\mathrm{kg}/\\mathrm{m}^2$\n\nE. Dosage-form code: 1 = tablet, 2 = capsule, 3 = liquid, 4 = other",
+      "source": "ROTEL Statistical Problem Sets in WeBWorK — 1.1 Problem 2 — https://rotel.pressbooks.pub/statsproblemsets/chapter/chapter-1/",
+      "source_url": "https://rotel.pressbooks.pub/statsproblemsets/chapter/chapter-1/",
+      "source_problem": "1.1 Problem 2",
+      "license": "CC BY-NC-SA 4.0",
+      "attribution": "Rachael Norton and Peter Staab, 2023",
+      "review_status": "independently solved and reviewed",
+      "type": "选择题",
+      "difficulty": 2,
+      "keywords": [
+        "quantitative variables",
+        "clinical trials"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "audit_pack": "ch01-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch01-review-v1",
+        "question_hash": "2d0976391dd8bfca77883d1d6bc6cad92402a87c9ecc31cfb8900c6edba27ffa",
+        "answer_hash": "34e5d9069c3a815c7a097fed23d68bf7870331b784350258182318db18b21950",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "rotel_ch01_sampling_01",
+      "content": "To estimate the median income of all Seattle residents, a researcher takes a simple random sample of 30 Seattle residents. Is this sample representative? Explain why.",
+      "source": "ROTEL Statistical Problem Sets in WeBWorK — 1.2 Problem 3(a) — https://rotel.pressbooks.pub/statsproblemsets/chapter/assignment-1-2-data-sampling/",
+      "source_url": "https://rotel.pressbooks.pub/statsproblemsets/chapter/assignment-1-2-data-sampling/",
+      "source_problem": "1.2 Problem 3(a)",
+      "license": "CC BY-NC-SA 4.0",
+      "attribution": "Rachael Norton and Peter Staab, 2023",
+      "review_status": "independently solved and reviewed",
+      "type": "判断题",
+      "difficulty": 1,
+      "keywords": [
+        "simple random sampling",
+        "representativeness"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "audit_pack": "ch01-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch01-review-v1",
+        "question_hash": "34d69094ecc17111e654bc1aa8e7181bdfb778a28bb3267cb67922353f0c7232",
+        "answer_hash": "bc289b74bb6f8ce72654451578840cb92ad5b6de028320dc43db0162c6d06d50",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "rotel_ch01_sampling_02",
+      "content": "To estimate the mean weight of all adults, a researcher takes a simple random sample from people aged 18 and older. Is this sample representative? Explain why.",
+      "source": "ROTEL Statistical Problem Sets in WeBWorK — 1.2 Problem 3(b) — https://rotel.pressbooks.pub/statsproblemsets/chapter/assignment-1-2-data-sampling/",
+      "source_url": "https://rotel.pressbooks.pub/statsproblemsets/chapter/assignment-1-2-data-sampling/",
+      "source_problem": "1.2 Problem 3(b)",
+      "license": "CC BY-NC-SA 4.0",
+      "attribution": "Rachael Norton and Peter Staab, 2023",
+      "review_status": "independently solved and reviewed",
+      "type": "判断题",
+      "difficulty": 1,
+      "keywords": [
+        "simple random sampling",
+        "target population"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "audit_pack": "ch01-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch01-review-v1",
+        "question_hash": "06e18b01d47a02c45009e64a1319fc7fb71fa2401a63c25bfcfbde55eea1d65d",
+        "answer_hash": "4991cd4c48b80a3d003542856fd1d7b3443ec1161aa9ef8eef8b4d88a58f9bbf",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "rotel_ch01_sampling_03",
+      "content": "A researcher conducts telephone surveys only during weekday daytime hours and uses the results to estimate a candidate's chance of winning an election. Is this sample representative? Explain why.",
+      "source": "ROTEL Statistical Problem Sets in WeBWorK — 1.2 Problem 3(c) — https://rotel.pressbooks.pub/statsproblemsets/chapter/assignment-1-2-data-sampling/",
+      "source_url": "https://rotel.pressbooks.pub/statsproblemsets/chapter/assignment-1-2-data-sampling/",
+      "source_problem": "1.2 Problem 3(c)",
+      "license": "CC BY-NC-SA 4.0",
+      "attribution": "Rachael Norton and Peter Staab, 2023",
+      "review_status": "independently solved and reviewed",
+      "type": "判断题",
+      "difficulty": 2,
+      "keywords": [
+        "sampling bias",
+        "telephone survey"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "audit_pack": "ch01-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch01-review-v1",
+        "question_hash": "a3856afc1e37854d05b54fea4485e9af4c7e48d1577cc6763fe235feb8c160d9",
+        "answer_hash": "1455267675ce2da9c9fba02f51ef14faded118a1068d23ef71707f514e83896c",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "rotel_ch01_sampling_04",
+      "content": "A researcher samples 40 patients from a local hospital, measures their cholesterol, and attempts to estimate the mean cholesterol level of all U.S. citizens. Is this sample representative? Explain why.",
+      "source": "ROTEL Statistical Problem Sets in WeBWorK — 1.2 Problem 3(d) — https://rotel.pressbooks.pub/statsproblemsets/chapter/assignment-1-2-data-sampling/",
+      "source_url": "https://rotel.pressbooks.pub/statsproblemsets/chapter/assignment-1-2-data-sampling/",
+      "source_problem": "1.2 Problem 3(d)",
+      "license": "CC BY-NC-SA 4.0",
+      "attribution": "Rachael Norton and Peter Staab, 2023",
+      "review_status": "independently solved and reviewed",
+      "type": "判断题",
+      "difficulty": 2,
+      "keywords": [
+        "sampling bias",
+        "extrapolation"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "audit_pack": "ch01-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch01-review-v1",
+        "question_hash": "fb72f65598bb273cbbca56908697eab3fc6c5ecea669fc839d6e38c85d096419",
+        "answer_hash": "feb3b5baea9604ce3f6c51747a99000b40bb6436209821c970f479c93c22c113",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "rotel_ch01_measurement_01",
+      "content": "What level of measurement applies to responses to the questionnaire item “Do you feel that you have stayed in New York long enough?”\n\nA. Nominal\n\nB. Ordinal\n\nC. Interval\n\nD. Ratio",
+      "source": "ROTEL Statistical Problem Sets in WeBWorK — 1.3 Problem 1(1) — https://rotel.pressbooks.pub/statsproblemsets/chapter/assignment-1-3-frequency/",
+      "source_url": "https://rotel.pressbooks.pub/statsproblemsets/chapter/assignment-1-3-frequency/",
+      "source_problem": "1.3 Problem 1(1)",
+      "license": "CC BY-NC-SA 4.0",
+      "attribution": "Rachael Norton and Peter Staab, 2023",
+      "review_status": "independently solved and reviewed",
+      "type": "选择题",
+      "difficulty": 1,
+      "keywords": [
+        "level of measurement",
+        "nominal data"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "audit_pack": "ch01-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch01-review-v1",
+        "question_hash": "b4b9df2c04f4d5c7aa0e4f7a66762e1ff7e782a4e9dbb5270fb3cab2ca904d4d",
+        "answer_hash": "641322da5d2a3d3fae4eeb36c3cf7e50dee66f66df1b073da814c41ba1e8b5a2",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "rotel_ch01_measurement_02",
+      "content": "What level of measurement applies to the starting salaries of newly graduated PhDs in statistics?\n\nA. Nominal\n\nB. Ordinal\n\nC. Interval\n\nD. Ratio",
+      "source": "ROTEL Statistical Problem Sets in WeBWorK — 1.3 Problem 2(2) — https://rotel.pressbooks.pub/statsproblemsets/chapter/assignment-1-3-frequency/",
+      "source_url": "https://rotel.pressbooks.pub/statsproblemsets/chapter/assignment-1-3-frequency/",
+      "source_problem": "1.3 Problem 2(2)",
+      "license": "CC BY-NC-SA 4.0",
+      "attribution": "Rachael Norton and Peter Staab, 2023",
+      "review_status": "independently solved and reviewed",
+      "type": "选择题",
+      "difficulty": 2,
+      "keywords": [
+        "level of measurement",
+        "ratio scale"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "audit_pack": "ch01-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch01-review-v1",
+        "question_hash": "31bffd567cb3003dcd852458fafcdbefdfc743fb1553a5377b018f8b083b9972",
+        "answer_hash": "1b6c94e6e2d03f035c39e611a6ae8cc676eea3d0f29108a50c619ad9de3e9e8d",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "rotel_ch01_measurement_03",
+      "content": "What level of measurement applies to the size of fries ordered by a customer (small, medium, or large)?\n\nA. Nominal\n\nB. Ordinal\n\nC. Interval\n\nD. Ratio",
+      "source": "ROTEL Statistical Problem Sets in WeBWorK — 1.3 Problem 2(4) — https://rotel.pressbooks.pub/statsproblemsets/chapter/assignment-1-3-frequency/",
+      "source_url": "https://rotel.pressbooks.pub/statsproblemsets/chapter/assignment-1-3-frequency/",
+      "source_problem": "1.3 Problem 2(4)",
+      "license": "CC BY-NC-SA 4.0",
+      "attribution": "Rachael Norton and Peter Staab, 2023",
+      "review_status": "independently solved and reviewed",
+      "type": "选择题",
+      "difficulty": 1,
+      "keywords": [
+        "level of measurement",
+        "ordinal scale"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "audit_pack": "ch01-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch01-review-v1",
+        "question_hash": "c3961c7eee88c68d223f5615a2304182f5bddba46f313699a336746c8fbe7eac",
+        "answer_hash": "377b93cd065256a59a84665fee3df88e7b9fc29ee16e29d6d21a076ed9e61a10",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "rotel_ch01_design_01",
+      "content": "Researchers compare the number of potato chips children eat while watching two types of movies. The first type is shown at 8:00 a.m. and the second at 11:00 a.m.; the researchers attribute differences in chip consumption to movie type.\n\nIdentify:\n\na. the explanatory variable;\n\nb. the response variable;\n\nc. one obvious confounding variable.",
+      "source": "ROTEL Statistical Problem Sets in WeBWorK — 1.4 Problem 1 — https://rotel.pressbooks.pub/statsproblemsets/chapter/32/",
+      "source_url": "https://rotel.pressbooks.pub/statsproblemsets/chapter/32/",
+      "source_problem": "1.4 Problem 1",
+      "license": "CC BY-NC-SA 4.0",
+      "attribution": "Rachael Norton and Peter Staab, 2023",
+      "review_status": "independently solved and reviewed",
+      "type": "简答题",
+      "difficulty": 3,
+      "keywords": [
+        "experimental design",
+        "explanatory variable",
+        "response variable",
+        "confounding variable"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "audit_pack": "ch01-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch01-review-v1",
+        "question_hash": "8b0fad09c3d84551511c43972ac5d79fddab93f4400bbfacf73e95498a1f0dff",
+        "answer_hash": "9c77220ef73e16ae13ba98707386c4d3d7bc6c799b5870569f4481e3aff1fe26",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "opl_nau_ch01_terminology_01",
+      "content": "A choir contains 1,500 singers. A conductor wants to estimate the proportion who are professional singers. Instead of surveying everyone, she asks the 650 singers seated nearest the front, and 26 of them report being professionals.\n\na. Identify the population.\n\nb. Identify the sample.\n\nc. Identify the parameter of interest.\n\nd. Calculate the sample statistic used to estimate the parameter.\n\ne. Identify the principal sampling problem in this design.",
+      "source": "WeBWorK Open Problem Library — NAU Statistics — basicTerminology.pg (fixed static instance) — https://github.com/openwebwork/webwork-open-problem-library/blob/54e7db70ed308cab9c7eed8af1d2dba5a6adf7d4/OpenProblemLibrary/NAU/setStatistics/basicTerminology.pg",
+      "source_url": "https://github.com/openwebwork/webwork-open-problem-library/blob/54e7db70ed308cab9c7eed8af1d2dba5a6adf7d4/OpenProblemLibrary/NAU/setStatistics/basicTerminology.pg",
+      "source_problem": "basicTerminology.pg (fixed static instance)",
+      "source_path": "OpenProblemLibrary/NAU/setStatistics/basicTerminology.pg",
+      "source_commit": "54e7db70ed308cab9c7eed8af1d2dba5a6adf7d4",
+      "license": "CC BY-NC-SA 3.0",
+      "license_url": "https://creativecommons.org/licenses/by-nc-sa/3.0/",
+      "attribution": "Juhee Park, Northern Arizona University",
+      "changes": "Randomized PG problem converted to a fixed, self-contained English instance; answer independently recomputed and Markdown/LaTeX normalized.",
+      "review_status": "independently solved and reviewed",
+      "type": "综合题",
+      "difficulty": 2,
+      "keywords": [
+        "population",
+        "sample",
+        "parameter",
+        "statistic",
+        "sampling bias"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "opl-nau-curated-v1",
+        "question_hash": "2c07a366782749ee84863947e5a317bfe761eaaf62b6b9390edbd55359cefaff",
+        "answer_hash": "6f8e7ee62a7f8646ddf2d6ece4ce458526f1eb361f81fd853b77e9fb87c901ce",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "opl_nau_ch01_sampling_01",
+      "content": "For each study, decide whether the sample is reasonably representative of the stated target population and explain why.\n\na. A simple random sample of 300 Seattle residents is used to estimate the median income of all Seattle residents.\n\nb. A sample of 300 Seattle dentists is used to estimate the median income of all Seattle residents.",
+      "source": "WeBWorK Open Problem Library — NAU Statistics — sampling1.pg (two fixed scenarios) — https://github.com/openwebwork/webwork-open-problem-library/blob/54e7db70ed308cab9c7eed8af1d2dba5a6adf7d4/OpenProblemLibrary/NAU/setStatistics/sampling1.pg",
+      "source_url": "https://github.com/openwebwork/webwork-open-problem-library/blob/54e7db70ed308cab9c7eed8af1d2dba5a6adf7d4/OpenProblemLibrary/NAU/setStatistics/sampling1.pg",
+      "source_problem": "sampling1.pg (two fixed scenarios)",
+      "source_path": "OpenProblemLibrary/NAU/setStatistics/sampling1.pg",
+      "source_commit": "54e7db70ed308cab9c7eed8af1d2dba5a6adf7d4",
+      "license": "CC BY-NC-SA 3.0",
+      "license_url": "https://creativecommons.org/licenses/by-nc-sa/3.0/",
+      "attribution": "ASU source, adapted at NAU by C. Tyler Diggans",
+      "changes": "Randomized PG problem converted to a fixed, self-contained English instance; answer independently recomputed and Markdown/LaTeX normalized.",
+      "review_status": "independently solved and reviewed",
+      "type": "简答题",
+      "difficulty": 2,
+      "keywords": [
+        "representative sample",
+        "sampling bias",
+        "target population"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "opl-nau-curated-v1",
+        "question_hash": "5fbeec8a0fee093aaa8f265397694ca455a13d97454443b00c9bc168641257b6",
+        "answer_hash": "932cee9a336a50d93accf59b74de97ac8694b3eadc263b8c2648292bb425e84e",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "opl_nau_ch01_design_01",
+      "content": "Classify each description as an observational study, a controlled experiment, or a double-blind experiment. Explain the feature that determines your classification.\n\na. A therapist summarizes records from adult patients who survived childhood abuse.\n\nb. Researchers survey 500 children about exercise habits and body weight.\n\nc. Five hundred adult men are randomly assigned either a high-fiber diet or a low-fiber diet to study cholesterol.\n\nd. Patients receive either a study drug or a placebo; neither the patient nor the nurse administering the dose knows which treatment was assigned.",
+      "source": "WeBWorK Open Problem Library — NAU Statistics — sampling3.pg (four fixed scenarios) — https://github.com/openwebwork/webwork-open-problem-library/blob/54e7db70ed308cab9c7eed8af1d2dba5a6adf7d4/OpenProblemLibrary/NAU/setStatistics/sampling3.pg",
+      "source_url": "https://github.com/openwebwork/webwork-open-problem-library/blob/54e7db70ed308cab9c7eed8af1d2dba5a6adf7d4/OpenProblemLibrary/NAU/setStatistics/sampling3.pg",
+      "source_problem": "sampling3.pg (four fixed scenarios)",
+      "source_path": "OpenProblemLibrary/NAU/setStatistics/sampling3.pg",
+      "source_commit": "54e7db70ed308cab9c7eed8af1d2dba5a6adf7d4",
+      "license": "CC BY-NC-SA 3.0",
+      "license_url": "https://creativecommons.org/licenses/by-nc-sa/3.0/",
+      "attribution": "C. Tyler Diggans, Northern Arizona University",
+      "changes": "Randomized PG problem converted to a fixed, self-contained English instance; answer independently recomputed and Markdown/LaTeX normalized.",
+      "review_status": "independently solved and reviewed",
+      "type": "简答题",
+      "difficulty": 2,
+      "keywords": [
+        "observational study",
+        "controlled experiment",
+        "double-blind experiment"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "opl-nau-curated-v1",
+        "question_hash": "8c210892ffe5d7bf925119a786e57a4102cbfa800cb8e353d25d6d351d29eeff",
+        "answer_hash": "194fc75de2b1f07f27cb5b7e6fcbedbcbc90e33af21236639cabede4c427fdfe",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "opl_nau_ch01_population_01",
+      "content": "A survey interviews 4,000 Americans and finds that 3,200 agree with the president on a particular issue.\n\na. Identify the population.\n\nb. Identify the sample.\n\nc. Identify the attribute of interest.\n\nd. Determine whether 0.80 is a population proportion or a sample proportion.",
+      "source": "WeBWorK Open Problem Library — NAU Statistics — sampling2.pg (fixed static instance) — https://github.com/openwebwork/webwork-open-problem-library/blob/54e7db70ed308cab9c7eed8af1d2dba5a6adf7d4/OpenProblemLibrary/NAU/setStatistics/sampling2.pg",
+      "source_url": "https://github.com/openwebwork/webwork-open-problem-library/blob/54e7db70ed308cab9c7eed8af1d2dba5a6adf7d4/OpenProblemLibrary/NAU/setStatistics/sampling2.pg",
+      "source_problem": "sampling2.pg (fixed static instance)",
+      "source_path": "OpenProblemLibrary/NAU/setStatistics/sampling2.pg",
+      "source_commit": "54e7db70ed308cab9c7eed8af1d2dba5a6adf7d4",
+      "license": "CC BY-NC-SA 3.0",
+      "license_url": "https://creativecommons.org/licenses/by-nc-sa/3.0/",
+      "attribution": "ASU source, adapted at NAU by C. Tyler Diggans",
+      "changes": "Randomized PG problem converted to a fixed, self-contained English instance; answer independently recomputed and Markdown/LaTeX normalized.",
+      "review_status": "independently solved and reviewed",
+      "type": "综合题",
+      "difficulty": 1,
+      "keywords": [
+        "population",
+        "sample",
+        "attribute",
+        "sample proportion"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "opl-nau-curated-v1",
+        "question_hash": "1f619739a9fbfcfc016a7a893c657bb4d8357f8bc677c6a0bfc60595a1fa0376",
+        "answer_hash": "0c25eccbd3402e63c489410515122a176dd18a15335999c50364ab996a458a43",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,291 @@
+{
+  "chapter": 10,
+  "answers": [
+    {
+      "id": "ch10_q01",
+      "answer": "Test $H_0:\\mu_D-\\mu_E=0$ versus $H_a:\\mu_D-\\mu_E\\ne0$. Welch's standard error is $\\sqrt{18^2/8+20^2/10}=8.972$, so $t=(41-45)/8.972=-0.446$ with approximately 15.7 degrees of freedom. The two-sided p-value is about 0.662. Fail to reject $H_0$; there is no evidence that the mean lifetimes differ.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch10-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch10-review-v1",
+        "question_hash": "57fa0d240accd2c998a3c0ecc742d858287136034dc845375adebe40cc64fd0d",
+        "answer_hash": "88bb5d0655dad4be2aa6f8a140fc18586024270613ca35e96fda19cd31d3a56f",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch10_q04",
+      "answer": "Test $H_0:\\mu_G-\\mu_P=0$ versus $H_a:\\mu_G-\\mu_P>0$. Welch's standard error is $\\sqrt{0.6^2/104+0.5^2/115}=0.0751$, so $t=(5.7-5.5)/0.0751=2.664$ with approximately 201 degrees of freedom. The one-sided p-value is about 0.0042. Reject $H_0$; the data support an increase in mean memory score.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch10-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch10-review-v1",
+        "question_hash": "601d8df77054b2e8582cec09cd6114f16228561012fbf367a349dc6132abcf20",
+        "answer_hash": "50eee0c35e9a68e364a17b4911dc4388f11aa3f52e247d7da108228595b4ced7",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch10_q05",
+      "answer": "The pooled variance is $s_p^2=[5(3.3^2)+5(2.1^2)]/10=7.65$. Thus $\\operatorname{SE}=\\sqrt{7.65(1/6+1/6)}=1.5969$ and $t=(77.4-72.2)/1.5969=3.256$ with $df=10$. The one-sided p-value is about 0.0043, so reject $H_0$; there is evidence that $\\mu_1>\\mu_2$.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch10-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch10-review-v1",
+        "question_hash": "d940d5524e77ffa2cbf3ce8f1ca49b288aebbe6e264e5a397995c5aebca8c1fd",
+        "answer_hash": "7e6e8d3b1c8eb27713f4b247f16902f66c212a4a15fb4a8b65fe016bf7052aac",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch10_q06",
+      "answer": "The sample means are 17.4 and 15.1, with sample variances 3.6 and 10.1. The pooled variance is 6.85, so $\\operatorname{SE}=1.1705$ and $t=(17.4-15.1)/1.1705=1.965$ with $df=18$. The two-sided p-value is about 0.0650. Fail to reject equality at 0.05.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch10-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch10-review-v1",
+        "question_hash": "ae16d9e8e180092562f928c31f67da81bcb15205d83bbf098d7897fbcd2d90a6",
+        "answer_hash": "4a8d791638712add257a3e1487e9920d410a76c54b2624f189508dc6d1f3533c",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch10_q07",
+      "answer": "Test $H_0:\\mu_1-\\mu_2\\le0$ versus $H_a:\\mu_1-\\mu_2>0$. The pooled variance is 1422.32, giving $\\operatorname{SE}=13.802$ and $t=25/13.802=1.811$ with $df=28$. The p-value is about 0.0404, so reject $H_0$; the data support the manufacturer's claim.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch10-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch10-review-v1",
+        "question_hash": "1d0e65f031d4ed263b7a2c68116ce7ba5cfc3429260492293ad2b5cb5d2a86e7",
+        "answer_hash": "ec34ce48955f6cb803834a7f9170fde39fd4b15b9d0c221afa71884bc362a778",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch10_q08",
+      "answer": "Test $H_0:\\mu_1-\\mu_2\\le0$ versus $H_a:\\mu_1-\\mu_2>0$. Welch's standard error is $2.4309$, $t=5.1/2.4309=2.098$, and $df\\approx30.84$. The one-sided p-value is about 0.0221. Reject $H_0$ at 0.10; the data support the personnel director's claim.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch10-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch10-review-v1",
+        "question_hash": "fea79360872955f26c87a1125a77dbefdff0bbe8bc28ca533b6daeaf32fcb2d5",
+        "answer_hash": "b7d77b6f578994e8e83c1a979c130283b9a4aa05dee63f9faa9fe20e71cdd8c7",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch10_q09",
+      "answer": "Define improvement differences $d=\\text{Without}-\\text{With}$: $1.9,2.1,1.7,0.3,1.1,2.9,1.8,1.9,0.8$. Then $\\bar d=1.6111$, $s_d=0.7705$, and $t=6.273$ with $df=8$ for $H_0:\\mu_d=0$ versus $H_a:\\mu_d>0$. The p-value is about 0.00012, so reject $H_0$; the additive improves mileage. A 90% CI for mean improvement is approximately [1.134, 2.089] dollars mpg.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch10-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch10-review-v1",
+        "question_hash": "b2ecca8ecfb8880a0c38899a32bbe591ad034c1acbebe2d27708d642cd97635b",
+        "answer_hash": "dc79cc9d4e400d583d1658cc39d53f63607375e2e3d8feae07555500852f1403",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch10_q10",
+      "answer": "Let $d=B-A=(-5,24,-6,9,10,14,-1,-7)$. Then $\\bar d=4.75$, $s_d=11.235$, and $t=1.196$ with $df=7$ for $H_0:\\mu_d=0$ versus $H_a:\\mu_d>0$. The one-sided p-value is 0.135, so fail to reject $H_0$. The 95% CI is $4.75\\pm2.365(11.235/\\sqrt8)=[-4.642,14.142]$ minutes.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch10-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch10-review-v1",
+        "question_hash": "dd5ce8d6504a4a2963c8b70b3b526fd10545d36df441d26316cf99c1c5e64f80",
+        "answer_hash": "a37eaa5af4e4417330ae67f6cc6659924fe7ab5aa3ddcc5b400ee5878919e28d",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch10_q11",
+      "answer": "Let $d=\\text{After}-\\text{Before}=(36,8,32,4,9,29,-13,0,-2,9)$. Then $\\bar d=11.2$, $s_d=16.061$, and $t=2.205$ with $df=9$ for a two-sided test. The p-value is about 0.0549, so fail to reject $H_0:\\mu_d=0$ at 0.05; evidence of a mean difference is just insufficient.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch10-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch10-review-v1",
+        "question_hash": "e7fa7e50500b95ad916a89c7cfc36543fac90c6777a89a205a7c8a9dab170afb",
+        "answer_hash": "f3efb9d55e9c446af5c496311f3a311f454bb46c4a83b7d5af57f83a0798041b",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch10_q12",
+      "answer": "Let $p_1$ and $p_2$ be the two-year and seven-month proportions. Test $H_0:p_1=p_2$ versus $H_a:p_1\\ne p_2$. The sample proportions are 0.0649 and 0.2262; pooled $\\hat p=24/161=0.1491$, giving $z=-2.870$ and two-sided p-value 0.0041. Reject $H_0$; the proportions differ, with more episodes in the seven-month group.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch10-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch10-review-v1",
+        "question_hash": "c0ed7b7e7f5837ce4db1beac54cd8c5f60149f1a7f2a757d2d1be730352b7c7c",
+        "answer_hash": "507f02a4aae02aeaa66a909eef8d8e1de788a6bab6af0fdb1346cade245d59df",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch10_q13",
+      "answer": "Test $H_0:p_{CA}=p_{OR}$ versus $H_a:p_{CA}<p_{OR}$. The pooled standard error gives $z=-1.427$ and one-sided p-value 0.0768. Fail to reject $H_0$ at 0.05; evidence is insufficient that California's smoking proportion is lower.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch10-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch10-review-v1",
+        "question_hash": "9509083faaaecd987812d3f8b812778cb32b9b8e158e4805298f5ec2b440334c",
+        "answer_hash": "23e0a9894ea8d5760b354a2236bcff61cb3f1eba093e0afcb0cd9d3420b97d8e",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch10_q14",
+      "answer": "a. For finance, $\\hat p=81/178=0.4551$. Test $H_0:p\\ge0.50$ versus $H_a:p<0.50$. Using $p_0=0.5$, $z=-1.199$ and p-value 0.115. Fail to reject; the sample does not show that fewer than half hold the view.\n\nb. The accounting proportion is $75/148=0.5068$. A pooled two-proportion test gives $z=0.930$ and two-sided p-value 0.352. Fail to reject equality; there is no significant difference.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch10-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch10-review-v1",
+        "question_hash": "597488a34b0b9248631824071fd449cb8b1f1391b48b0d9c101751b7435d2464",
+        "answer_hash": "601e53935743c6497ad75de676d0832ada8a3ea4ccbd79cb2989f5821d93332e",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch10_q03",
+      "answer": "The differences are $0.1,-0.2,0.4,0.1,-0.1,0.1,0,0.2,0.5,0.2,0.1,0.3$, with $\\bar d=0.1417$ and $s_d=0.1975$. Test $H_0:\\mu_d=0$ versus $H_a:\\mu_d>0$: $t=2.485$, $df=11$, p-value $\\approx0.0152$. Reject $H_0$. The 95% CI is $0.1417\\pm2.201(0.1975/\\sqrt{12})=[0.0162,0.2672]$ km/L.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch10-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch10-review-v1",
+        "question_hash": "1a6a3f544c480e8638f5cfc980e4516b76b51c819c092c3db5f0fd711c504305",
+        "answer_hash": "970c717b8fac62eeb60ac851dc3a9631b5eddb3d69057d50a683e1eb11021332",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    }
+  ]
+}

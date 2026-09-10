@@ -1,0 +1,549 @@
+{
+  "schema_version": 1,
+  "pack_id": "ch09-review-v1",
+  "chapter": "Ch09",
+  "baseline_records": 31,
+  "summary": {
+    "reviewed_and_retained": 26,
+    "deleted": 5
+  },
+  "records": [
+    {
+      "id": "ch09_q01",
+      "chapter": "Ch09",
+      "decision": "delete",
+      "reason": "Duplicate of the complete caustic-material hypothesis test retained as ch09_q11; the stored answer is image-only.",
+      "expected_question_hash": "37dbda2515a3b7ce59c658141a0d939e908b2d0197e78f9d26c5128a758ace5c",
+      "expected_answer_hash": "d3f32f9dfc0db4aa51aac73468c3ecb43027c1bae659da13f2f5733c3d170fc1"
+    },
+    {
+      "id": "ch09_q02",
+      "chapter": "Ch09",
+      "decision": "rewrite",
+      "question_type": "计算题",
+      "difficulty": 2,
+      "keywords": [
+        "one-sample z test",
+        "hypothesis testing"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "clean_question": "The 1994 national mean daily hospital cost was USD 931. A random sample of 30 Massachusetts hospital costs has mean USD 1,131. Assume $\\sigma=333$ dollars. Test at $\\alpha=0.05$ whether the Massachusetts mean exceeded USD 931.",
+      "clean_answer": "Test $H_0:\\mu=931$ versus $H_a:\\mu>931$. The statistic is $z=(1131-931)/(333/\\sqrt{30})\\approx3.29$, with one-sided p-value about $0.0005$. Reject $H_0$; there is sufficient evidence that the Massachusetts mean exceeded USD 931.",
+      "expected_question_hash": "8ca2ff75fb9d3515531d318aabb18074f2eeb5a5dc3ecbbba27ebd4ee3a6d710",
+      "expected_answer_hash": "49dde41bc30e4c961656e14fe74bacb95b81e131a2f2d10e38611e9ff391808d",
+      "reviewed_question_hash": "1ba71dff5f042abd76e618ac1f086dff977b5b73544f29e51c575101fea15854",
+      "reviewed_answer_hash": "8ad144cd70eae9e174011ae68ba2885c14f9b6a9b16a0b40d53f7466b6f3d8d2"
+    },
+    {
+      "id": "ch09_q03",
+      "chapter": "Ch09",
+      "decision": "rewrite",
+      "question_type": "综合题",
+      "difficulty": 2,
+      "keywords": [
+        "one-sample z test",
+        "confidence interval"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "clean_question": "In 1990, mean annual passenger-vehicle mileage was 10.3 thousand miles. A random sample of 500 vehicles has mean 10.1 thousand miles; assume known $\\sigma=6.0$ thousand miles.\n\na. Test $H_0:\\mu=10.3$ versus $H_a:\\mu\\ne10.3$ at $\\alpha=0.05$.\n\nb. Construct a 95% confidence interval for $\\mu$.",
+      "clean_answer": "a. $z=(10.1-10.3)/(6/\\sqrt{500})\\approx-0.745$, so the two-sided p-value is about 0.456. Fail to reject $H_0$.\n\nb. The 95% interval is $10.1\\pm1.96(6/\\sqrt{500})=[9.574,10.626]$ thousand miles.",
+      "expected_question_hash": "80e577553a9bf4de7fd291b983d0c56d92fab010c1b73c956788b3a6474315b1",
+      "expected_answer_hash": "8dd6661d8045c9983642955a4b5a64ee2910cbca0b7a553c677feefa0d045bcd",
+      "reviewed_question_hash": "557151d41ce91cec2be79659af483ee2dbce4d08ba4983d3fa536715881d1416",
+      "reviewed_answer_hash": "eee3f1d47addd3165742453c1cba6287cc24ecf3d7dba4aa1dae0b4336bfd89d"
+    },
+    {
+      "id": "ch09_q04",
+      "chapter": "Ch09",
+      "decision": "rewrite",
+      "question_type": "计算题",
+      "difficulty": 2,
+      "keywords": [
+        "one-sample z test",
+        "hypothesis testing"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "clean_question": "Last year's mean apartment price in Zhuhai was USD 8,650/m² with known $\\sigma=735$ dollars/m². A sample of 42 recent deals has mean USD 8,950/m². At $\\alpha=0.01$, test whether the mean price has increased.",
+      "clean_answer": "Test $H_0:\\mu=8650$ versus $H_a:\\mu>8650$. The statistic is $z=(8950-8650)/(735/\\sqrt{42})\\approx2.64$, with p-value about 0.0041. Reject $H_0$ at 0.01; there is sufficient evidence of an increase.",
+      "expected_question_hash": "aa8f942d80c2d0c5000fc7336fa576533d41f9d30896e39099757216fd99743e",
+      "expected_answer_hash": "8ab0060f7e42c83304f0c6d01783e8bf7837ef32b8fbbfd06c93760f74b28af4",
+      "reviewed_question_hash": "1be2fb3569eea905a1ff06b9340337024d76e9fb9ed808492a0ddaceb59fb453",
+      "reviewed_answer_hash": "83af813ae286459e356b2fdeb7ee140a33417782bc2221f507e09aafc746ab97"
+    },
+    {
+      "id": "ch09_q05",
+      "chapter": "Ch09",
+      "decision": "delete",
+      "reason": "Duplicate of the complete watch-rate t-test retained in Ch07; the source record is primarily image formulas.",
+      "expected_question_hash": "a103c0be5a037dca6684df0e7797a93afb907e6547c9c5bf7cddf21150399be0",
+      "expected_answer_hash": "5c18ce57019e5eb6a9f4799973bae057c1f560572aba6e18728d6e5663986051"
+    },
+    {
+      "id": "ch09_q06",
+      "chapter": "Ch09",
+      "decision": "rewrite",
+      "question_type": "计算题",
+      "difficulty": 2,
+      "keywords": [
+        "one-sample t test",
+        "hypothesis testing"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "clean_question": "A manufacturer claims mean light-bulb life is 1,520 hours. A random sample of 25 bulbs has mean 1,505 hours and sample standard deviation 86 hours. Assuming normal lifetimes, test at $\\alpha=0.05$ whether the mean is less than 1,520 hours.",
+      "clean_answer": "Test $H_0:\\mu=1520$ versus $H_a:\\mu<1520$. With $df=24$, $t=(1505-1520)/(86/\\sqrt{25})=-0.872$. The left-tail p-value is about 0.196. Fail to reject $H_0$; there is insufficient evidence that mean life is below 1,520 hours.",
+      "expected_question_hash": "782ac9c03281d8d0d147b57c46a05fdc1b57b849cb898ce3b2fd668c43d83185",
+      "expected_answer_hash": "421262dd42207039d115b139c032017b7d53fcc89c4e3dc5db749524fa356430",
+      "reviewed_question_hash": "8c597437003493a3694442a9e2b73d55fab38c33531b8b99d4a4ac8d756bda48",
+      "reviewed_answer_hash": "d445158350612790e5278e6668eed7a53db5d2d5316f43be08c2ac872067bd79"
+    },
+    {
+      "id": "ch09_q07",
+      "chapter": "Ch09",
+      "decision": "rewrite",
+      "question_type": "综合题",
+      "difficulty": 3,
+      "keywords": [
+        "one-sample proportion test",
+        "hypothesis testing"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "clean_question": "A shipment may contain at most 2% defective electric can openers. In a random sample of 400, 11 are defective.\n\na. Test at $\\alpha=0.05$ whether the defect rate exceeds 2%.\n\nb. Report and interpret the observed significance level.",
+      "clean_answer": "Let $H_0:p=0.02$ versus $H_a:p>0.02$. Here $\\hat p=11/400=0.0275$ and $\\operatorname{SE}_0=\\sqrt{0.02(0.98)/400}=0.007$. Thus $z=(0.0275-0.02)/0.007=1.07$, with p-value about 0.142. Fail to reject $H_0$ at 0.05; the observed result is not sufficiently unusual to conclude that the defect rate exceeds 2%.",
+      "expected_question_hash": "01bdf74500d209a8bdcc4e4bf51167dd98c9ebf13ee58e3f78d6ad0171fabcc2",
+      "expected_answer_hash": "1ad291693038b284308057161ebad7bab83d7ad252fba28b344e52fb5c78477b",
+      "reviewed_question_hash": "6b86d65b59922af503d1f0d7739c80430f340164fbb4c31cf4dcb4205f009564",
+      "reviewed_answer_hash": "82aa5801e44532ef449c1668588bc32112807a75b4d01b1ee7dd4c39fa03a923"
+    },
+    {
+      "id": "ch09_q08",
+      "chapter": "Ch09",
+      "decision": "rewrite",
+      "question_type": "综合题",
+      "difficulty": 3,
+      "keywords": [
+        "one-sample proportion test",
+        "hypothesis testing",
+        "sampling bias"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "clean_question": "Miranda samples 60 people from Adam's House at Harvard and finds 44 with piercings.\n\na. Test $H_0:p\\le0.60$ versus $H_a:p>0.60$ at $\\alpha=0.05$.\n\nb. Identify a sampling concern.",
+      "clean_answer": "a. $\\hat p=44/60=0.7333$. Under $p_0=0.60$, $\\operatorname{SE}=\\sqrt{0.6(0.4)/60}=0.06325$, so $z=(0.7333-0.60)/0.06325=2.11$ and p-value $\\approx0.0175$. Reject $H_0$; the sample supports a proportion above 60%.\n\nb. Adam's House is a convenience sample, not a random sample of all Harvard students, so the result may suffer selection bias and cannot be generalized reliably.",
+      "expected_question_hash": "99fd8264b7b0a03c2b7c921fbd3a536ff284acf61c7c777ca03bfae9572b574c",
+      "expected_answer_hash": "c82fbed46f8638c476253513e876a4af34fd3020ffbd0d3c99286050ecb762e8",
+      "reviewed_question_hash": "b9eb8eeeda32fb7fb270ff355c08731fae78e18a704864f8a63d1386de7e5e4b",
+      "reviewed_answer_hash": "a8c3c0bd0806e7a310aa184385e278bc87d8bc57ed2ec08f0be274fb81808b71"
+    },
+    {
+      "id": "ch09_q09",
+      "chapter": "Ch09",
+      "decision": "rewrite",
+      "question_type": "综合题",
+      "difficulty": 2,
+      "keywords": [
+        "one-sample proportion test",
+        "hypothesis testing"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "clean_question": "In a blind taste test, 56 of 100 Diet Coke drinkers prefer Diet Pepsi. Test $H_0:p=0.50$ versus $H_a:p>0.50$ at $\\alpha=0.05$, and state the consequence for the advertising claim.",
+      "clean_answer": "$\\hat p=0.56$, $\\operatorname{SE}_0=0.05$, and $z=(0.56-0.50)/0.05=1.20$. The p-value is 0.1151, so fail to reject $H_0$. The sample does not provide sufficient evidence that more than half prefer Diet Pepsi; the claim is not statistically supported.",
+      "expected_question_hash": "9a2a7461032accbf7d5bf223af9edf80ace315602d25c8f6177680f20e63f9c7",
+      "expected_answer_hash": "1b30370193cc848b0208b62bf943004146daf19b25f68cfbe36ed12647494737",
+      "reviewed_question_hash": "499c29981ba61e53159e87770d708b1c3374c16c4ae0f354f24b7da5b4bcc87a",
+      "reviewed_answer_hash": "8e4a77a87d1f1ec188d11391ed7e6ae72d09d99a5d674fec8df00a8758faae0d"
+    },
+    {
+      "id": "ch09_q10",
+      "chapter": "Ch09",
+      "decision": "rewrite",
+      "question_type": "综合题",
+      "difficulty": 3,
+      "keywords": [
+        "one-sample proportion test",
+        "hypothesis testing"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "clean_question": "Historically, 37% of cars failed a pollution standard. In a recent sample of 100 cars, 28% failed. Test at $\\alpha=0.01$ whether cars have improved (a lower failure rate). State hypotheses in words and symbols, compute the statistic and p-value, and interpret the conclusion.",
+      "clean_answer": "Let $H_0:p=0.37$ (the failure rate has not improved) and $H_a:p<0.37$ (the failure rate is lower). The statistic is $z=(0.28-0.37)/\\sqrt{0.37(0.63)/100}\\approx-1.86$, with p-value about 0.031. Since 0.031>0.01, fail to reject $H_0$; at the 1% level there is insufficient evidence that the failure rate improved.",
+      "expected_question_hash": "0144abd7e14deda3e2444d0c7af588fecc34e9e0a91f61a696ecca7ddb8fb232",
+      "expected_answer_hash": "c51fac0b96c3f6278d7ac00a0662193ab96c1dfab0692e0f0e89500aee520d1e",
+      "reviewed_question_hash": "0d8aac3702eefa2e59c6d1796ed7ea74d06d12a63e074f2562302c0dcb784204",
+      "reviewed_answer_hash": "c6a824f6230a928c9f75bba59eed34ceca0909af1263b12b63b5516be85a89dc"
+    },
+    {
+      "id": "ch09_q11",
+      "chapter": "Ch09",
+      "decision": "rewrite",
+      "question_type": "综合题",
+      "difficulty": 3,
+      "keywords": [
+        "one-sample z test",
+        "hypothesis testing"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "clean_question": "ABZ Chemical Company claims its product contains no more than 4.0 fluid ounces of caustic material per gallon on average. The population standard deviation is known to be 1.3 ounces. A random sample of 100 containers has mean 4.5 ounces.\n\na. State $H_0$ and $H_a$ in symbols and words.\n\nb. At $\\alpha=0.01$, test whether the claim is false because the mean is too high.",
+      "clean_answer": "a. $H_0:\\mu\\le4.0$ (the company's claim) versus $H_a:\\mu>4.0$ (the mean is unsafe).\n\nb. $z=(4.5-4.0)/(1.3/\\sqrt{100})=3.846$, with right-tail p-value about $0.000060$. Reject $H_0$ at 0.01; there is strong evidence that the mean exceeds 4.0 ounces.",
+      "expected_question_hash": "c0693ec01b2bba5ce5bb9a5adb372008134437c9b7e1bd4004584fc63d379ce0",
+      "expected_answer_hash": "4522131393914a084dcfc0867cf56d693617d8206fa74e2b6dfd7369756b6dfa",
+      "reviewed_question_hash": "a2842d505277f7ffc912bed8aefa9c29aaff08929ecd0e13660f514a92973876",
+      "reviewed_answer_hash": "83c9fc4f7afaf6f62c89b913bea0647dc7d91c4a9813ab8b9babd9016979630c"
+    },
+    {
+      "id": "ch09_q12",
+      "chapter": "Ch09",
+      "decision": "rewrite",
+      "question_type": "计算题",
+      "difficulty": 2,
+      "keywords": [
+        "one-sample z test",
+        "hypothesis testing"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "clean_question": "The 2007 national mean daily hospital cost per patient was 1,231 dollars. A random sample of 25 Utah daily costs has sample mean 1,103 dollars, with known population standard deviation $\\sigma=252$ dollars. At $\\alpha=0.05$, test whether Utah's population mean daily cost was below the national mean.",
+      "clean_answer": "Test $H_0:\\mu=1231$ versus $H_a:\\mu<1231$. The test statistic is $z=(1103-1231)/(252/\\sqrt{25})=-2.540$, with one-sided p-value $\\approx0.0056$. Reject $H_0$; the data support that Utah's population mean daily cost was below 1,231 dollars.",
+      "expected_question_hash": "9b42bd4ffc2fd77058884af28485aee56c2e08c6ad1fac8f663e6b63e92f001a",
+      "expected_answer_hash": "1af18e3cd5a23f1380a76ac9d4bba03628b60e3420399db8614f0e676aea2c50",
+      "reviewed_question_hash": "039cb969d71c53346c4bb22b5a026a42ce34117031a44e118761868b21906027",
+      "reviewed_answer_hash": "76d7eec010270a430906cef0a7f752ee2e05ee5a918cc0079a6da5d8179f3310"
+    },
+    {
+      "id": "ch09_q13",
+      "chapter": "Ch09",
+      "decision": "rewrite",
+      "question_type": "综合题",
+      "difficulty": 2,
+      "keywords": [
+        "one-sample z test",
+        "hypothesis testing"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "clean_question": "SAT scores are normal with known $\\mu_0=500$ and $\\sigma=100$. A sample of 25 students after preparation has mean 554.\n\na. Test at $\\alpha=0.05$ whether the course changes the mean.\n\nb. Would the conclusion change at $\\alpha=0.01$?",
+      "clean_answer": "Test $H_0:\\mu=500$ versus $H_a:\\mu\\ne500$. $z=(554-500)/(100/\\sqrt{25})=2.70$, p-value $\\approx0.0069$. Reject at both 0.05 and 0.01; there is evidence of a change, with the observed mean higher.",
+      "expected_question_hash": "af99517e8406b5387bdba16c78b1f15b82ab215b9d3bfdea01436b2d37960bdd",
+      "expected_answer_hash": "dd97a66ec1c3550c847a308d919e57bced47e42619ff11407d9d3d255f734cda",
+      "reviewed_question_hash": "cc3dfbd0161faf3c46a34b0e52722579193c72440540efbcd0558aa5d65b6980",
+      "reviewed_answer_hash": "4574f462372ff1e15fec2dc47deec5d44d8552780c34020347a3fda5996023f3"
+    },
+    {
+      "id": "ch09_q14",
+      "chapter": "Ch09",
+      "decision": "rewrite",
+      "question_type": "计算题",
+      "difficulty": 2,
+      "keywords": [
+        "one-sample z test",
+        "hypothesis testing"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "clean_question": "The mean IQ of all college students is 109 with known $\\sigma=15$. A random sample of 122 UIC students has mean 116. At $\\alpha=0.05$, test whether UIC students have a higher mean IQ.",
+      "clean_answer": "Test $H_0:\\mu=109$ versus $H_a:\\mu>109$. $z=(116-109)/(15/\\sqrt{122})\\approx5.16$, p-value $\\approx1.3\\times10^{-7}$. Reject $H_0$; UIC students have significantly higher mean IQ.",
+      "expected_question_hash": "50d85b45c92fc43b2565670d4d63f313447a0fb769b7157f9eea45dc68afa3d6",
+      "expected_answer_hash": "483e7a8f566420e17910cf6da446fb55db378de70d85cb013fe06476fb6e69ed",
+      "reviewed_question_hash": "b3e154f185ce1ea2a071380a21a4f928d6f7de5b05f3044318e0c12a2ad2a848",
+      "reviewed_answer_hash": "99656ce07049d5222a806a561d1dc3ba569b04f73b854b11af47dd7ba2ee2971"
+    },
+    {
+      "id": "ch09_q15",
+      "chapter": "Ch09",
+      "decision": "rewrite",
+      "question_type": "计算题",
+      "difficulty": 2,
+      "keywords": [
+        "one-sample z test",
+        "hypothesis testing"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "clean_question": "Last year's Zhuhai apartment price mean was USD 9,450/m² with known $\\sigma=1,035$ dollars/m². A sample of 47 recent sales has mean USD 9,850/m². At $\\alpha=0.01$, test whether the mean increased.",
+      "clean_answer": "Test $H_0:\\mu=9450$ versus $H_a:\\mu>9450$. $z=(9850-9450)/(1035/\\sqrt{47})=2.648$, p-value $\\approx0.0040$. Reject $H_0$; there is sufficient evidence of an increase.",
+      "expected_question_hash": "a1e5ac868df9048944e28688fcef5c2c966c5a01f345bd2ceeb4eca8a97f2453",
+      "expected_answer_hash": "e2f6182c5b36f8d0b4c183f31830f39c9573c6070d48e14e18b8aef5b922c6a5",
+      "reviewed_question_hash": "605c3c3db88fe11a3f5d9bdd4b9553c5a39eb89a5ded72588e596ffe15deb4f8",
+      "reviewed_answer_hash": "3efa563c6692bb2adbaae0f27019f6611eb6cbddea755b6f63db8184a01eb1a0"
+    },
+    {
+      "id": "ch09_q16",
+      "chapter": "Ch09",
+      "decision": "rewrite",
+      "question_type": "计算题",
+      "difficulty": 2,
+      "keywords": [
+        "one-sample t test",
+        "hypothesis testing"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "clean_question": "Last year's Zhuhai apartment price mean was USD 9,450/m². A sample of 25 recent sales has mean USD 9,850/m² and $s=1,035$ dollars/m². Assuming approximate normality, test at $\\alpha=0.01$ whether the mean increased.",
+      "clean_answer": "Test $H_0:\\mu=9450$ versus $H_a:\\mu>9450$. With $df=24$, $t=(9850-9450)/(1035/\\sqrt{25})=1.932$, p-value $\\approx0.0326$. Fail to reject at 0.01; evidence is insufficient at that strict level.",
+      "expected_question_hash": "b82add303e8a92ba0486bd7d6e95a69895639075b3484e3f917c9b2df59cd7f5",
+      "expected_answer_hash": "d26e922a109350971e6fc27c38996c7051f9d43a2aa44aeb279c79f1a3122f70",
+      "reviewed_question_hash": "4b20f79b74f55503d89ccf1cff5d0d48e79ac39837ae5465e30de60bb962421a",
+      "reviewed_answer_hash": "80742db04ce998855c5bfb8aef09c486947c93cd22c4cab418927bce02e4312e"
+    },
+    {
+      "id": "ch09_q17",
+      "chapter": "Ch09",
+      "decision": "rewrite",
+      "question_type": "计算题",
+      "difficulty": 2,
+      "keywords": [
+        "one-sample t test",
+        "hypothesis testing"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "clean_question": "A manufacturer claims mean bulb life is 1,520 hours. A random sample of 40 bulbs has mean 1,505 hours and $s=86$ hours. Assuming normal lifetimes, test at $\\alpha=0.05$ whether the mean is less than 1,520 hours.",
+      "clean_answer": "Test $H_0:\\mu=1520$ versus $H_a:\\mu<1520$. With $df=39$, $t=(1505-1520)/(86/\\sqrt{40})=-1.103$, p-value $\\approx0.138$. Fail to reject $H_0$; there is insufficient evidence of a lower mean life.",
+      "expected_question_hash": "983cfbaa8092f90dbcef11a5a9fb8e281f99d38748088624e71bf024a0bbf2c5",
+      "expected_answer_hash": "d586124c9118614dc98287299d91f5f4ced43dfaa278a2bcac63b214afa4a3f6",
+      "reviewed_question_hash": "d795b386101596c5804b4af75ee8e8db4694bb259c8cea93346bcb23515d8211",
+      "reviewed_answer_hash": "f8b0cb4ba5ff647bd6464797e9312008f0ed15f371de9bdbd9035d83f6774110"
+    },
+    {
+      "id": "ch09_q18",
+      "chapter": "Ch09",
+      "decision": "rewrite",
+      "question_type": "综合题",
+      "difficulty": 3,
+      "keywords": [
+        "one-sample t test",
+        "confidence interval"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "clean_question": "In 2005, mean vehicle mileage was 15.3 thousand miles. A random sample of 50 vehicles in 2010 has mean 23.1 and $s=7.2$ thousand miles.\n\na. Test at $\\alpha=0.05$ whether the 2010 mean differs from 15.3.\n\nb. Construct a 95% confidence interval for the 2010 mean.",
+      "clean_answer": "a. $t=(23.1-15.3)/(7.2/\\sqrt{50})=7.66$ with $df=49$, p-value about $6.3\\times10^{-10}$. Reject $H_0$; the means differ.\n\nb. With $t_{0.975,49}=2.010$, the interval is $23.1\\pm2.046=[21.054,25.146]$ thousand miles.",
+      "expected_question_hash": "cd425daa7abb2a716c87bdc4ea1bd7c8d6704aedd78d3d547c5d916e7d29332b",
+      "expected_answer_hash": "bcfc53635aa6212968476495db1fadbdaa3343a5df093285c82923cc16b8cd7a",
+      "reviewed_question_hash": "768941589d99131d7449a37d8e6cfbd06959dd48129eb8755cfd5e8c68531963",
+      "reviewed_answer_hash": "0610b3f6ab5e844c432d8fdaea60aa9387736238f3a929f9d14608b525c9f597"
+    },
+    {
+      "id": "ch09_q19",
+      "chapter": "Ch09",
+      "decision": "rewrite",
+      "question_type": "计算题",
+      "difficulty": 2,
+      "keywords": [
+        "one-sample t test",
+        "hypothesis testing"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "clean_question": "Reaction times are normal with mean 200 ms. Fourteen people taking a medication have mean reaction time 221 ms and sample variance $s^2=300$ ms². At $\\alpha=0.05$, test whether the medication changes the population mean.",
+      "clean_answer": "Test $H_0:\\mu=200$ versus $H_a:\\mu\\ne200$. Since $s=\\sqrt{300}=17.3205$, $t=(221-200)/(17.3205/\\sqrt{14})=4.537$ with $df=13$. The two-sided p-value is about 0.00056. Reject $H_0$; the medication changes the mean, with an observed increase.",
+      "expected_question_hash": "c99d4e5b54004210ede05de8d1885a3b109b02121d7fa4dd12573de58fa8259f",
+      "expected_answer_hash": "62d1591328941225725046f0d42d441fed6a22b47eddf649776559df73b87dfb",
+      "reviewed_question_hash": "c6c2f3db73136eee9d1d7bde3ea2cfd774988a38fd381032af93f451c964e644",
+      "reviewed_answer_hash": "fc77eb8b46ec44543c88148236dc5ccb61f2001682e91e8da75733a293817927"
+    },
+    {
+      "id": "ch09_q20",
+      "chapter": "Ch09",
+      "decision": "rewrite",
+      "question_type": "计算题",
+      "difficulty": 2,
+      "keywords": [
+        "one-sample t test",
+        "hypothesis testing"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "clean_question": "The historical mean IQ of entering freshmen is 110.3. A random sample of 36 current freshmen has mean 114.5 and sample variance $s^2=324$. At $\\alpha=0.05$, test whether the current mean differs from 110.3.",
+      "clean_answer": "Test $H_0:\\mu=110.3$ versus $H_a:\\mu\\ne110.3$. With $s=18$ and $df=35$, $t=(114.5-110.3)/(18/\\sqrt{36})=1.40$, p-value $\\approx0.170$. Fail to reject $H_0$; evidence of a difference is insufficient.",
+      "expected_question_hash": "a0d6855caa5edaf8e5a18ccfe032b2f18dd9bd0afe1df0a6cb9506e15493a906",
+      "expected_answer_hash": "94336152ccc03dbfb0a47d35460655f010fe2ef48ac21602aa19d9c7ad638066",
+      "reviewed_question_hash": "1cb2dff467e46303097d5b6c20f7e1f10fe3919a2f472e593212af0fee083e14",
+      "reviewed_answer_hash": "2b674b9c57540954dd0983a8b56871b1e16484f2542a9659b71a180bbaecc542"
+    },
+    {
+      "id": "ch09_q21",
+      "chapter": "Ch09",
+      "decision": "rewrite",
+      "question_type": "计算题",
+      "difficulty": 2,
+      "keywords": [
+        "one-sample proportion test",
+        "hypothesis testing"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "clean_question": "In a blind taste test, 56 of 100 drinkers prefer Diet Coke. At $\\alpha=0.02$, test whether more than half of all drinkers prefer Diet Coke.",
+      "clean_answer": "Test $H_0:p=0.50$ versus $H_a:p>0.50$. $\\hat p=0.56$, null SE $=0.05$, so $z=1.20$ and p-value $=0.1151$. Fail to reject $H_0$; evidence is insufficient that more than half prefer Diet Coke.",
+      "expected_question_hash": "24e8f89b146e278397512f66b4377b4bc3a21081cc0d381a4bc50c7d98fe9563",
+      "expected_answer_hash": "6a64ab6c137896f3169de5ccee06bb4afe2a9c5e007ce5820ff591b315b386fc",
+      "reviewed_question_hash": "f24e10e893b0aa04fe433246a6208de5595e55c2e766c6b6789ea0f3ec6ebddf",
+      "reviewed_answer_hash": "316a0831d261e8f1cea4fc8e402047e24118e076efe105e754dc51870d272a30"
+    },
+    {
+      "id": "ch09_q22",
+      "chapter": "Ch09",
+      "decision": "rewrite",
+      "question_type": "计算题",
+      "difficulty": 2,
+      "keywords": [
+        "one-sample proportion test",
+        "hypothesis testing"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "clean_question": "An airline claims that more than 90% of lost luggage is recovered within 24 hours. In a sample of 122 travelers, 103 received luggage within 24 hours. At $\\alpha=0.05$, test whether the airline overstated its recovery rate.",
+      "clean_answer": "Test $H_0:p=0.90$ versus $H_a:p<0.90$. $\\hat p=103/122=0.8443$, null SE $=\\sqrt{0.9(0.1)/122}=0.02716$, and $z=-2.05$. The p-value is about 0.0201, so reject $H_0$; the data suggest the recovery rate is below 90%.",
+      "expected_question_hash": "acade3e1d87a991d6a01dbfa63c08112668618916a24506180c474bfe5203f37",
+      "expected_answer_hash": "563fd1252821890112dd8b8b197078f71c14ebb70abfc82062f0e137839ece16",
+      "reviewed_question_hash": "f4effb626adf77478e17e941cf4cec578321afb54d0c557dcbdb44b9000e0653",
+      "reviewed_answer_hash": "7a51de23d894b3f5751d6cd95deacc04dbedd0fd48a2343b3710b480c48c1ced"
+    },
+    {
+      "id": "ch09_q23",
+      "chapter": "Ch09",
+      "decision": "rewrite",
+      "question_type": "计算题",
+      "difficulty": 3,
+      "keywords": [
+        "two-sample t test",
+        "hypothesis testing"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "clean_question": "A sample of 50 regular-coffee drinkers has mean 4.35 cups/day and $s=1.20$; a sample of 40 decaffeinated-coffee drinkers has mean 5.84 cups/day and $s=1.36$. Assuming independent populations, test at $\\alpha=0.01$ whether regular drinkers consume less and report the p-value.",
+      "clean_answer": "Test $H_0:\\mu_R-\\mu_D=0$ versus $H_a:\\mu_R-\\mu_D<0$. Welch's standard error is $\\sqrt{1.20^2/50+1.36^2/40}=0.2739$, so $t=(4.35-5.84)/0.2739=-5.44$ with approximately 78.5 degrees of freedom. The one-sided p-value is $2.9\\times10^{-7}$, so reject $H_0$; regular-coffee drinkers consume less on average.",
+      "expected_question_hash": "95b96be9923f2d01bca075d2ae152c31ce4fef71c244a34af4f62e99bbf3fd6e",
+      "expected_answer_hash": "ab1e3ec74e8d621e5396622800b97c941f70a375e61b129043e742d5760183d8",
+      "reviewed_question_hash": "700eac37f7761cddd95798aceaeafc4fae82217df89dda9ff1d453956a92daa6",
+      "reviewed_answer_hash": "7b484f225f64872e691c04eb61b327596b1fa21affaf24dbd6ab0380c136c76a"
+    },
+    {
+      "id": "ch09_q24",
+      "chapter": "Ch09",
+      "decision": "delete",
+      "reason": "Duplicate of the complete two-sample GPA test retained in Ch08.",
+      "expected_question_hash": "fa51f2dbe7b822a56b13d20c75b5a9e33d8d7a33bc0ff8fe340a0fcaa126447a",
+      "expected_answer_hash": "0c4740ce80b961dd14e6694597a44c24f2f44838e95fa116a69f6b51feb0277a"
+    },
+    {
+      "id": "ch09_q25",
+      "chapter": "Ch09",
+      "decision": "delete",
+      "reason": "Duplicate of the complete CARS two-sample t-test retained in Ch08.",
+      "expected_question_hash": "1c5a94009f8cf55e2bfc65ee0b824aab9e028ae42c98c9991a7ff730aaaddf61",
+      "expected_answer_hash": "0521e6630b77d5002ee94826b109dc80a206043244e030a6321b2a8fe818aaaf"
+    },
+    {
+      "id": "ch09_q26",
+      "chapter": "Ch09",
+      "decision": "delete",
+      "reason": "Duplicate of the complete paired microvessel-density test retained in Ch08.",
+      "expected_question_hash": "986166b71b117d3cf66ca83a7f0b6cd9b58c7450b8b1209c45678e448dbfc670",
+      "expected_answer_hash": "47d823d2387c540742b1569656b8929150d91094edee5b96c74fdcc3ed8844b5"
+    },
+    {
+      "id": "ch09_q28",
+      "chapter": "Ch09",
+      "decision": "rewrite",
+      "question_type": "计算题",
+      "difficulty": 3,
+      "keywords": [
+        "paired t test",
+        "hypothesis testing"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "clean_question": "At eight intersections, minor accidents before and after a traffic-light modification were:\n\n| Intersection | A | B | C | D | E | F | G | H |\n|---|---:|---:|---:|---:|---:|---:|---:|---:|\n| Before | 5 | 7 | 6 | 4 | 8 | 9 | 8 | 10 |\n| After | 3 | 7 | 7 | 0 | 4 | 6 | 8 | 2 |\n\nAt $\\alpha=0.05$, test whether the modification reduces the population mean number of accidents.",
+      "clean_answer": "Let $d=\\text{Before}-\\text{After}$, giving $2,0,-1,4,4,3,0,8$. Then $\\bar d=2.5$, $s_d=2.9277$, and $t=2.415$ with $df=7$ for $H_0:\\mu_d=0$ versus $H_a:\\mu_d>0$. The one-sided p-value is about 0.0232, so reject $H_0$; the modification significantly reduces mean accidents.",
+      "expected_question_hash": "229dc2a393de22688fd12fe2ecc671f630dbebf06c77fb25cd2c94c5e02101a4",
+      "expected_answer_hash": "7b932c583a2760a3f782309b598ed6d1282fc6f86894c050d4c760bfffa3a09d",
+      "reviewed_question_hash": "4348e30e85c2ea387a12de4226aea4ee6f8a271a4c3f12ce26f20e8c79788dbe",
+      "reviewed_answer_hash": "5ea862f56cfbc53daaeb5c1b57e4033967165ce1879141da9ff1db3df4f94bc3"
+    },
+    {
+      "id": "rotel_ch09_hypothesis_01",
+      "chapter": "Ch09",
+      "decision": "rewrite",
+      "question_type": "填空题",
+      "difficulty": 1,
+      "keywords": [
+        "null hypothesis",
+        "alternative hypothesis"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "clean_question": "The target mean spindle diameter is 6 mm. State hypotheses for testing whether the production mean has deviated from the target.",
+      "clean_answer": "$H_0:\\mu=6$ mm and $H_a:\\mu\\ne6$ mm. The alternative is two-sided because deviation can be either larger or smaller.",
+      "expected_question_hash": "1e2867452e6ceddcc344f7012a4c1f208e20499a7fd163167c67d84803edf23f",
+      "expected_answer_hash": "721c159eb7eb0890ddbd3093b62d13009c916d7d41eee5c1299f9b774b354db6",
+      "reviewed_question_hash": "46128bec69f5ab2589081a59c93d65ef20648dd890880de50af99743045bb73d",
+      "reviewed_answer_hash": "bbed30ea954f4d4c475463e99715d15f554a2e2c6b5c786ede91e5dc707c070e"
+    },
+    {
+      "id": "rotel_ch09_hypothesis_02",
+      "chapter": "Ch09",
+      "decision": "rewrite",
+      "question_type": "填空题",
+      "difficulty": 1,
+      "keywords": [
+        "null hypothesis",
+        "alternative hypothesis"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "clean_question": "The national mean selling price is USD 55. State hypotheses for testing the claim that a particular area's population mean selling price is lower.",
+      "clean_answer": "$H_0:\\mu=55$ and $H_a:\\mu<55$.",
+      "expected_question_hash": "5b1e21fbc5d58899cffef1000bac5b79e3df3bc8ee5939bd00310f2ec5a052a2",
+      "expected_answer_hash": "d227fd5688957d5bc8e59eb5aa6d75128dac6c53b093f4afb5271180dddbacde",
+      "reviewed_question_hash": "0aff1673f208740740ba2055a96627cf8fec9b4f1460d2394b722e854e913ff9",
+      "reviewed_answer_hash": "cbdf9e757fc90d338c5381bb49bbb0167becc2267c86a40789df12365a6942c7"
+    },
+    {
+      "id": "rotel_ch09_errors_01",
+      "chapter": "Ch09",
+      "decision": "rewrite",
+      "question_type": "综合题",
+      "difficulty": 1,
+      "keywords": [
+        "Type I error",
+        "Type II error"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "clean_question": "For $H_0:\\mu=98.6^\\circ\\mathrm{F}$ versus $H_a:\\mu\\ne98.6^\\circ\\mathrm{F}$, classify each outcome as a correct decision, Type I error, or Type II error:\n\na. $H_0$ is true but rejected.\n\nb. $H_0$ is false and rejected.\n\nc. $H_0$ is true and not rejected.\n\nd. $H_0$ is false but not rejected.",
+      "clean_answer": "a. Type I error.\n\nb. Correct decision.\n\nc. Correct decision.\n\nd. Type II error.",
+      "expected_question_hash": "83f4b5d770ea1292804448a40c635e352b138f4d3eb5ad6ea196f044c15e8e60",
+      "expected_answer_hash": "0b13208c89ca4c0a38d8428e67176d7470240933fc3c41910c3bb69201d2d137",
+      "reviewed_question_hash": "f0dc4fd0c7fb4f7b04ab49219de9a0ec142dba763b96f617640f60dd66c9a470",
+      "reviewed_answer_hash": "e9eebd8e944e42eb9aaafb40bcdc99b3994c32da8422802d888ddd54cd294dac"
+    },
+    {
+      "id": "rotel_ch09_ttest_01",
+      "chapter": "Ch09",
+      "decision": "rewrite",
+      "question_type": "计算题",
+      "difficulty": 2,
+      "keywords": [
+        "one-sample t test",
+        "hypothesis testing"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "clean_question": "A sample of 14 lifespans has mean 81.09 years and sample standard deviation 0.91 years. At $\\alpha=0.10$, test whether the population mean lifespan exceeds 77 years.",
+      "clean_answer": "Test $H_0:\\mu=77$ versus $H_a:\\mu>77$. With $df=13$, $t=(81.09-77)/(0.91/\\sqrt{14})=16.82$. Since $t_{0.90,13}=1.350$, reject $H_0$; there is strong evidence that the mean lifespan exceeds 77 years.",
+      "expected_question_hash": "6594f217d15afbcf37d6c911648b282ac841aca319f8b86071300d8915f036b7",
+      "expected_answer_hash": "c20558e119afd93d57e791cb055dee10cfd4611f6f11f7a51e32a6b521b49a76",
+      "reviewed_question_hash": "6bd59faeab90f9206d21c3bdfcfec8500b8b3256b3d2d55028be1075dba10f11",
+      "reviewed_answer_hash": "68a77531179047933c8aa272c4c0112b3b9d095db8174904d274993d4f60c654"
+    }
+  ],
+  "hash_algorithm": "sha256",
+  "baseline_commit": "0412c6e45a1f75ff54f49c091d4d7a516b7fcd3d"
+}

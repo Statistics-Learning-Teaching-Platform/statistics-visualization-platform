@@ -1,0 +1,158 @@
+{
+  "schema_version": 1,
+  "pack_id": "ch13-review-v1",
+  "chapter": "Ch13",
+  "baseline_records": 8,
+  "summary": {
+    "reviewed_and_retained": 7,
+    "deleted": 1
+  },
+  "records": [
+    {
+      "id": "ch13_q01",
+      "chapter": "Ch13",
+      "decision": "rewrite",
+      "question_type": "综合题",
+      "difficulty": 3,
+      "keywords": [
+        "linear regression",
+        "correlation"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "clean_question": "For five one-hour trials, assemblers $x$ and units produced $y$ were $(1,10),(2,15),(3,30),(4,25),(5,40)$.\n\na. Describe the scatterplot.\n\nb. Compute the correlation coefficient.\n\nc. Find the least-squares regression line.\n\nd. Predict production with six assemblers.",
+      "clean_answer": "a. The points show a strong positive, approximately linear association.\n\nb. $r\\approx0.9272$.\n\nc. $\\bar x=3$, $\\bar y=24$, slope $b_1=7$, intercept $b_0=3$, so $\\hat y=3+7x$.\n\nd. At $x=6$, $\\hat y=45$ units.",
+      "expected_question_hash": "52672a059dbab3a3f2e42f4b86331c1869dc0cadbe012e8fef66a6d6f4f27fe9",
+      "expected_answer_hash": "0a9d000b61b46f6505c07f475ca315a1bb8e6075d733327595967a1e7da1f795",
+      "reviewed_question_hash": "82b53aa00796af3b8e04a5f1c5e2c7b6540e474de9a2033a8080cc6537e20ab9",
+      "reviewed_answer_hash": "83bc2ea372c69cbf88ed17c2470dd5810b48ca1cb6358f018c1789215002ef86"
+    },
+    {
+      "id": "ch13_q02",
+      "chapter": "Ch13",
+      "decision": "rewrite",
+      "question_type": "综合题",
+      "difficulty": 2,
+      "keywords": [
+        "least-squares regression",
+        "slope",
+        "intercept",
+        "SSE"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "clean_question": "a. What does the sum of squared errors (SSE) measure, and what is the least-squares regression line?\n\nb. For the model $\\hat y=1+x$, where $x$ is heating time in minutes and $y$ is metal strength in pounds per square inch, interpret the intercept and slope and predict strength at $x=4$.",
+      "clean_answer": "a. SSE is $\\sum(y_i-\\hat y_i)^2$, the total squared residual error; the least-squares line is the line that minimizes SSE among all straight lines.\n\nb. The intercept 1 is the predicted mean strength at zero heating time (if zero is meaningful). The slope 1 means predicted mean strength increases by 1 psi per additional minute of heating. At $x=4$, $\\hat y=1+4=5$ psi.",
+      "expected_question_hash": "73c0ee8ac1c6261c6656b4d929ed250d0ea44dda211fb6ec447135377eeb47f7",
+      "expected_answer_hash": "4b539f500f8646893111302ce299af6a59782cc20e27a4fce01cfaf7f19a3d4c",
+      "reviewed_question_hash": "3a628938f609f675ff12ad80c2df696b657b83ee1c110e4fb71047d9743020fd",
+      "reviewed_answer_hash": "ae1d6ed263ef50927d3035237d8d377c1113462e5eb3cffaaff1001fe23e9d64"
+    },
+    {
+      "id": "ch13_q03",
+      "chapter": "Ch13",
+      "decision": "delete",
+      "reason": "The house-size and sales data are supplied only in missing images, so the requested regression coefficients cannot be independently computed.",
+      "expected_question_hash": "f1c52b34cac1d19302986783400ad589923d4c184d51e3517aed0de986953283",
+      "expected_answer_hash": "5075558c0cb47f30ddf7559ab95dc1169cbcc3660143260a085fc7de48297eb6"
+    },
+    {
+      "id": "rotel_ch13_line_01",
+      "chapter": "Ch13",
+      "decision": "rewrite",
+      "question_type": "计算题",
+      "difficulty": 1,
+      "keywords": [
+        "linear equation",
+        "slope"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "clean_question": "A line has y-intercept 3 and passes through $(1,5)$. Find its slope-intercept equation.",
+      "clean_answer": "The slope is $m=(5-3)/(1-0)=2$. Therefore $y=2x+3$.",
+      "expected_question_hash": "7d7eb8316b2a9518388ae24d66b595ebf3d1673ac11a03004d5f25fb201c8840",
+      "expected_answer_hash": "af1dc9c0ebaaf0bedbbabbd12ca05e35321190afe820dfc7fcb22ddc032078ad",
+      "reviewed_question_hash": "7d7eb8316b2a9518388ae24d66b595ebf3d1673ac11a03004d5f25fb201c8840",
+      "reviewed_answer_hash": "ed41d5ca1c67b403e928b45ccc450f745dd05356ebdabecbb90f6c906da39ae8"
+    },
+    {
+      "id": "rotel_ch13_line_02",
+      "chapter": "Ch13",
+      "decision": "rewrite",
+      "question_type": "计算题",
+      "difficulty": 1,
+      "keywords": [
+        "linear equation",
+        "slope"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "clean_question": "A line has y-intercept 1 and passes through $(9,-5)$. Find its slope-intercept equation.",
+      "clean_answer": "The slope is $m=(-5-1)/(9-0)=-2/3$. Therefore $y=-(2/3)x+1$.",
+      "expected_question_hash": "71e0347e3c5de8fcd98e1436fa85920d3b79010b938aa79edc604aee4f166aa1",
+      "expected_answer_hash": "512b1cf9321b5f18d4063fa946c1d7a58d00638e5a53f470eb842d7543cc2429",
+      "reviewed_question_hash": "71e0347e3c5de8fcd98e1436fa85920d3b79010b938aa79edc604aee4f166aa1",
+      "reviewed_answer_hash": "84fdd663a45b6fa388bc643c7c959067175c292a86e31c00750aa6ccd27a03fb"
+    },
+    {
+      "id": "rotel_ch13_causation_01",
+      "chapter": "Ch13",
+      "decision": "rewrite",
+      "question_type": "简答题",
+      "difficulty": 1,
+      "keywords": [
+        "correlation",
+        "causation",
+        "lurking variable"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "clean_question": "Beer sales and ice-cream sales show a strong positive association. Can we conclude that increasing beer sales causes ice-cream sales to increase? Give one plausible lurking variable and a design that would better establish causation.",
+      "clean_answer": "No. Outdoor temperature or season could raise both sales and create the association. A randomized controlled experiment would best establish causation; if that is infeasible, use a well-designed quasi-experimental study and adjust for confounders.",
+      "expected_question_hash": "532b6f655be1eb6ce30ef50bafb05c8b231e2b1f438241f63c24537592e844d8",
+      "expected_answer_hash": "0abd50753dc8be69ff003ff8161ccd11ef60b137780af438396848ef97692cd7",
+      "reviewed_question_hash": "c51a99c534fd0657721f49f8a5590af1ad46b098845a9457580682e1d54b89b3",
+      "reviewed_answer_hash": "d2d52729058b60b42fed0e37b5c1c4e8dfbca8f4c0ecc8cbffb3348cda46bf33"
+    },
+    {
+      "id": "rotel_ch13_slope_01",
+      "chapter": "Ch13",
+      "decision": "rewrite",
+      "question_type": "简答题",
+      "difficulty": 1,
+      "keywords": [
+        "regression slope",
+        "interpretation"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "clean_question": "A regression predicting weight $Y$ (kg) from height $X$ (cm) is $\\hat Y=0.99X-101.24$. Interpret the slope.",
+      "clean_answer": "Within the range where the model is appropriate, each additional centimeter of height is associated with a 0.99 kg increase in predicted mean weight. It describes the fitted mean, not an exact change for every individual.",
+      "expected_question_hash": "665ca3690fe63363476a8275a67b203c80d1368ec06a6f55529db506ea2645d0",
+      "expected_answer_hash": "50672d51c0383ae0fb546c66e2eb11bc62a1bc2e599cd89be6632da6381b0f1b",
+      "reviewed_question_hash": "673b596800099516baf3ee8b7a1802fae7c4aac24fc33ed71352d92c2719421d",
+      "reviewed_answer_hash": "224477707e53b831f3eebeb82f7d321d28dfe2b34144fdc0aec6fa98ed100893"
+    },
+    {
+      "id": "rotel_ch13_regression_01",
+      "chapter": "Ch13",
+      "decision": "rewrite",
+      "question_type": "计算题",
+      "difficulty": 3,
+      "keywords": [
+        "linear regression",
+        "correlation"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "clean_question": "For eight baseball teams, batting average $x$ (thousandths) and wins $y$ are $(272,40),(262,45),(317,30),(304,41),(276,44),(286,45),(263,50),(320,37)$.\n\na. Compute Pearson's correlation coefficient.\n\nb. Find the least-squares line predicting wins from batting average.",
+      "clean_answer": "With $\\bar x=287.5$ and $\\bar y=41.5$, $r\\approx-0.8074$. The least-squares coefficients are $b_1=S_{xy}/S_{xx}\\approx-0.20973$ and $b_0=\\bar y-b_1\\bar x\\approx101.7968$. Thus $\\hat y=101.7968-0.20973x$.",
+      "expected_question_hash": "563b2c0b58859bc107f42c5946f7dc4b695d4ed0914dd87eaf60475ede7f88ea",
+      "expected_answer_hash": "d4662965318c5fb65ab14afe9c175741e7f78c8939b7d4f1ed8850aab4fddcbb",
+      "reviewed_question_hash": "3712c48dedd0b7f6af9b3197a6085958e00969938eb7372b3726a026d9270cfa",
+      "reviewed_answer_hash": "a51e3cfdce069de57013c4c606bd027eeb90b627604dbdb3f9098cd6556705bf"
+    }
+  ],
+  "hash_algorithm": "sha256",
+  "baseline_commit": "cbe23fe7793fecd6338d3605cb30d742cc5cc824"
+}

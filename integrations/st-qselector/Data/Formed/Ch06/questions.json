@@ -1,0 +1,1080 @@
+{
+  "chapter": 6,
+  "questions": [
+    {
+      "id": "ch06_q02",
+      "content": "Sales tax is rounded to the nearest cent, so the round-off error $X$ is uniformly distributed on [-0.5, 0.5] dollars cents.\n\na. Give the probability density of $X$.\n\nb. Describe its graph.\n\nc. Find $P(X>0.3\\text{ or }X<-0.3)$.\n\nd. Find the mean and standard deviation of $X$.\n\ne. Find the probability that $X$ is within one standard deviation of its mean.",
+      "source": "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment and solution_Chap_6_Continuous Random Variable.doc",
+      "type": "综合题",
+      "difficulty": 2,
+      "keywords": [
+        "uniform distribution",
+        "round-off error"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch06-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch06-review-v1",
+        "question_hash": "cae76180afd7ba46c82994ef33dd0db72eb18ca9bc60059165dd1337666c83cc",
+        "answer_hash": "563aa9e8c0fd414af00b8c8f30f38b975d336ac8ba2c9f7935b32c41f883b3c3",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch06_q03",
+      "content": "Cable-repair times are uniformly distributed from 10 to 25 minutes.\n\na. Find the probability that a randomly selected repair takes at least 15 minutes.\n\nb. Find $P(X>20\\mid X>15)$. ",
+      "source": "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment and solution_Chap_6_Continuous Random Variable.doc",
+      "type": "计算题",
+      "difficulty": 2,
+      "keywords": [
+        "uniform distribution",
+        "conditional probability"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch06-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch06-review-v1",
+        "question_hash": "40e326584e6afc68978c170856d933a8d3741a9c201c0de80a34ebe879ecc950",
+        "answer_hash": "36ec200439eae5b606bb0a63bc62f8eb98126883bdf90e58dbd53a227f52e836",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch06_q06",
+      "content": "Yearly returns on common stocks are approximately normal with mean $12.4\\%$ and standard deviation $20.6\\%$.\n\na. Find the probability that a stock has (1) a positive return, (2) a return above $10\\%$, and (3) a loss of at least $10\\%$.\n\nb. Find the 10th percentile of yearly returns and state what percentages lie at or below and at or above it.",
+      "source": "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment and solution_Chap_6_Continuous Random Variable.doc",
+      "type": "综合题",
+      "difficulty": 3,
+      "keywords": [
+        "normal distribution",
+        "percentile"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch06-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch06-review-v1",
+        "question_hash": "adce7fc8fbe4660cc17d289bbe5585da7442ec299c69c45b9d77bb1944614965",
+        "answer_hash": "29693a265a1f92114e6b4d6a4cb6d9bc2b7a114f75b7ad72b8a56e9e152f0a5c",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch06_q07",
+      "content": "Tire mileages are normally distributed with mean 40,000 miles and standard deviation 4,000 miles. Find the guaranteed mileage $k$ such that no more than 2% of tires fail to reach $k$.",
+      "source": "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment and solution_Chap_6_Continuous Random Variable.doc",
+      "type": "计算题",
+      "difficulty": 2,
+      "keywords": [
+        "normal distribution",
+        "percentile"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch06-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch06-review-v1",
+        "question_hash": "c8108a5b7d737ea556dd30ea5fa22d657d90200f91aec9fffa138ef4042e7a89",
+        "answer_hash": "e2c5fe46e898e817b343c35f172eae9a33cfbf60ff91059a37b44562153a5de8",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch06_q08",
+      "content": "IQ scores are normally distributed with mean 100 and standard deviation 16.\n\na. What percentage of people have IQ at least 80?\n\nb. What minimum IQ score would allow 95% of children to qualify?",
+      "source": "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment and solution_Chap_6_Continuous Random Variable.doc",
+      "type": "综合题",
+      "difficulty": 2,
+      "keywords": [
+        "normal distribution",
+        "percentile"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch06-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch06-review-v1",
+        "question_hash": "d258b896ae2545521e052a0fdbcb8fdc2477d5efe199cf12008c63ec3ca1df89",
+        "answer_hash": "cff5ee749d594ae368c304bff2b27e8a9b64a85cda493919f500c3e7eab2dd00",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch06_q09",
+      "content": "Net interest margins for U.S. banks are normally distributed with mean $4.15\\%$ and standard deviation $0.50\\%$.\n\na. Find $P(X>5.40\\%)$.\n\nb. Find $P(X<4.40\\%)$.\n\nc. Find the margin $k$ such that only 15% of banks have margins greater than $k$.",
+      "source": "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment and solution_Chap_6_Continuous Random Variable.doc",
+      "type": "综合题",
+      "difficulty": 3,
+      "keywords": [
+        "normal distribution",
+        "percentile"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch06-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch06-review-v1",
+        "question_hash": "cfeae5e59dd83b0a9cb23568f1c245d3fb1a44324bc5c902a1ff262feca998ae",
+        "answer_hash": "5da60b8bd20ee61c41dda4b9c184928f6cbb54fbe26e81ea951ab0d0495a8b0b",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch06_q10",
+      "content": "Of 205 randomly selected marketing researchers, 117 disapprove of using ultraviolet ink on confidential questionnaires. A manager claims that at least 65% of all marketing researchers disapprove.\n\na. Assuming $p=0.65$, verify the normal approximation and find the approximate probability of 117 or fewer disapprovals.\n\nb. Use that probability to assess the manager's claim.",
+      "source": "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment and solution_Chap_6_Continuous Random Variable.doc | Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter06_Continuous Random Variables.docx",
+      "type": "综合题",
+      "difficulty": 3,
+      "keywords": [
+        "binomial distribution",
+        "normal approximation",
+        "hypothesis assessment"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch06-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch06-review-v1",
+        "question_hash": "b4e4495b37219efd8107d0d5547eba1f1d5ec47885b3f18347d06925bfc32cf8",
+        "answer_hash": "4488848d3fb3dd3a5a2d62de42092a84bf4916007486b7619670819887b25af3",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch06_q11",
+      "content": "A motel accepts 325 reservations for 300 rooms and expects a 10% no-show rate. Using a normal approximation to the binomial distribution, find the probability that every guest who arrives on July 1 receives a room.",
+      "source": "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment and solution_Chap_6_Continuous Random Variable.doc",
+      "type": "计算题",
+      "difficulty": 2,
+      "keywords": [
+        "binomial distribution",
+        "normal approximation"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch06-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch06-review-v1",
+        "question_hash": "7dd6fde5817f9d44de929ede9c8022ce9facc3ed8736d69aae5916fd92505d10",
+        "answer_hash": "7d9d9592f7ad128815b609757737148a53762109134c3a07fadd785618e4322b",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch06_q12",
+      "content": "A survey of 400 German adults found that 45% had purchased blue jeans in the past three months. To assess the claim that fewer than 50% have done so:\n\na. Assuming $p=0.50$, find the approximate probability of observing a sample proportion of 0.45 or less.\n\nb. State the conclusion.",
+      "source": "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment and solution_Chap_6_Continuous Random Variable.doc",
+      "type": "综合题",
+      "difficulty": 3,
+      "keywords": [
+        "binomial distribution",
+        "normal approximation",
+        "hypothesis assessment"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch06-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch06-review-v1",
+        "question_hash": "4281340ef69f2942f570f4fd371342a33757ef26bfded225f4f314ba8acf3593",
+        "answer_hash": "7e248368c617b010e7b12bd1589e0995b136f084650f5176deaa2b1dc5abdefd",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch06_q13",
+      "content": "At a Starbucks on Saturday morning, classify each random variable as discrete or continuous:\n\na. Temperature of the coffee served to a randomly chosen customer.\n\nb. Number of customers who order only coffee with no food.\n\nc. Waiting time before a randomly chosen customer receives the order.",
+      "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter06_Continuous Random Variables.docx",
+      "type": "简答题",
+      "difficulty": 1,
+      "keywords": [
+        "discrete and continuous variables"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch06-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch06-review-v1",
+        "question_hash": "965b812f1b2175b0baade02a1e7409832c7bae273d139d94216f66731e6bdbec",
+        "answer_hash": "cedf0d71cb7112b097a505279c5b7184deaba70a1e9643bcf60000576ae13d11",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch06_q15",
+      "content": "Technical-support time is uniformly distributed from 30 seconds to 10 minutes.\n\na. Give the endpoints in minutes.\n\nb. Find the mean and standard deviation.\n\nc. Find the probability that support takes more than 5 minutes.\n\nd. Find the endpoints of the middle 50% of support times.",
+      "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter06_Continuous Random Variables.docx",
+      "type": "综合题",
+      "difficulty": 2,
+      "keywords": [
+        "uniform distribution"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch06-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch06-review-v1",
+        "question_hash": "7c9d34ee975506f476f2846730ef71c3ce95748dbe7eca0d19f304da497dc4ee",
+        "answer_hash": "57fc6b5d31b979e352bc8e88aabf5c96889b5e18c0151260ffc6d821ebfd1807",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch06_q16",
+      "content": "A family's yearly spending on all types of insurance is uniformly distributed from USD 400 to USD 3,800. Find:\n\na. the mean;\n\nb. the standard deviation;\n\nc. $P(X<2000)$;\n\nd. $P(X>3000)$;\n\ne. $P(1500<X<2500)$.",
+      "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter06_Continuous Random Variables.docx",
+      "type": "综合题",
+      "difficulty": 2,
+      "keywords": [
+        "uniform distribution",
+        "mean",
+        "variance"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch06-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch06-review-v1",
+        "question_hash": "a460b9e9ca0ff0ee3389f500697d56fd416f5f5a661e8871d0b79f6313570f7c",
+        "answer_hash": "602cb65659fba9091d03c3e12f02a888ddea7fc28192478fbd1c680a5dfc1eb4",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch06_q17",
+      "content": "Weekly incomes of shift foremen are normally distributed with mean USD 1,000 and standard deviation USD 100. Find the probability that a randomly selected foreman's income is:\n\n1. between USD 790 and USD 1,000;\n\n2. less than USD 790.",
+      "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter06_Continuous Random Variables.docx",
+      "type": "计算题",
+      "difficulty": 2,
+      "keywords": [
+        "normal distribution"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch06-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch06-review-v1",
+        "question_hash": "3e1f6575436bded33866ebbf75cfc6da01350f243789ebd8eb38b44a0c0674c0",
+        "answer_hash": "a869a6dc6534e88c48200b8b54447ed6a820f3f2fb91724c3602e651b83ae83c",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch06_q18",
+      "content": "Home-loan amounts requested are normally distributed with mean USD 70,000 and standard deviation USD 20,000. Find the probability that a randomly selected application requests:\n\na. at least USD 80,000;\n\nb. between USD 65,000 and USD 80,000;\n\nc. at least USD 65,000.",
+      "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter06_Continuous Random Variables.docx",
+      "type": "综合题",
+      "difficulty": 2,
+      "keywords": [
+        "normal distribution"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch06-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch06-review-v1",
+        "question_hash": "2db1f50642e2612ccdf890170c604d1033ab05103cdf13119c7f84354eb06162",
+        "answer_hash": "a16fd17a5f6618189395eec4676c6cb78eb9fdf57779b968381e574ff8e092f0",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch06_q19",
+      "content": "Layton MX100 tire mileages are normally distributed with mean 67,900 miles and standard deviation 2,050 miles. Find the minimum guaranteed mileage so that no more than 4% of tires must be replaced.",
+      "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter06_Continuous Random Variables.docx",
+      "type": "计算题",
+      "difficulty": 2,
+      "keywords": [
+        "normal distribution",
+        "percentile"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch06-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch06-review-v1",
+        "question_hash": "07c4c0ef691a7a45525e5e958d90292eeee2b48e1bbe2a9735a72798382dbb75",
+        "answer_hash": "f75be2da5097d15bfed4aaf47684933bfe3fea9950171085b7a940068d186bfc",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch06_q20",
+      "content": "Weekly demand for a cereal brand is normally distributed with mean 800 boxes and standard deviation 75 boxes.\n\na. Find the probability that demand is (1) at most 959 boxes, (2) greater than 1,004 boxes, and (3) less than 650 boxes or greater than 950 boxes.\n\nb. How many boxes should the store order so that the chance of running short is at most 2.5%?",
+      "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter06_Continuous Random Variables.docx",
+      "type": "综合题",
+      "difficulty": 3,
+      "keywords": [
+        "normal distribution",
+        "percentile"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch06-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch06-review-v1",
+        "question_hash": "d664579194ccbd3437fbf5669808baf81e6263d8e4783646ebe5f24a093275e3",
+        "answer_hash": "5e7c3069d55bb22aca97e893ceba2c8b02ee879295410af7f394a27c15fa356c",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch06_q21",
+      "content": "What does the Central Limit Theorem say about the sampling distribution of the sample mean?",
+      "source": "Assignment Prof Lv/Assignment 6-lu.doc",
+      "type": "简答题",
+      "difficulty": 1,
+      "keywords": [
+        "central limit theorem",
+        "sampling distribution"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch06-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch06-review-v1",
+        "question_hash": "dcfa6d149a75aad2cb5b8962f1371c3255f252a9b666780cea8a9bda499a6eee",
+        "answer_hash": "e572da588735e7243f658ff0ec6fd1438a71fd0545c88b007bf8596089bc0db7",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch06_q22",
+      "content": "For a random sample of size $n$ from a population with mean $\\mu$ and standard deviation $\\sigma$, find the mean, variance, and standard deviation of $\\bar X$ in each case:\n\na. $\\mu=10,\\sigma=2,n=25$\n\nb. $\\mu=3,\\sigma=0.1,n=4$\n\nc. $\\mu=500,\\sigma=0.5,n=100$\n\nd. $\\mu=100,\\sigma=1,n=1600$",
+      "source": "Assignment Prof Lv/Assignment 6-lu.doc",
+      "type": "计算题",
+      "difficulty": 2,
+      "keywords": [
+        "sampling distribution of the mean"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch06-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch06-review-v1",
+        "question_hash": "7b847d156cbf19eaf520897a6de3215987e9369e038a79cfb6f53f613b29bcf6",
+        "answer_hash": "eecd63ccd0d2538eabcffb3245ed6ff25a0cbd6a6fb030b27249a3f9c4d76f9e",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch06_q23",
+      "content": "A random sample of 100 customer waiting times has $\\bar x=5.46$ minutes. The population standard deviation is known to be $\\sigma=2.47$ minutes. Investigate $H_0:\\mu=6$ against $H_a:\\mu<6$.\n\na. Describe the sampling distribution of $\\bar X$.\n\nb. Find its mean and standard deviation under $H_0$.\n\nc. Find $P(\\bar X\\le5.46\\mid\\mu=6)$.\n\nd. State the conclusion.",
+      "source": "Assignment Prof Lv/Assignment 6-lu.doc",
+      "type": "综合题",
+      "difficulty": 3,
+      "keywords": [
+        "sampling distribution",
+        "z-test",
+        "central limit theorem"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch06-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch06-review-v1",
+        "question_hash": "b16351481983a174f14856c48d8c6ed25760dec9c047483e9b7fc71d34844572",
+        "answer_hash": "ec6271323ea9f706e7577c14ca042c7cb582b02b7b24953b46cf081b64e6e306",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch06_q24",
+      "content": "For a sample proportion $\\hat p$, state a common condition that makes its sampling distribution approximately normal, and give the mean and standard deviation of that sampling distribution.",
+      "source": "Assignment Prof Lv/Assignment 6-lu.doc",
+      "type": "简答题",
+      "difficulty": 2,
+      "keywords": [
+        "sampling distribution of a proportion",
+        "normal approximation"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch06-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch06-review-v1",
+        "question_hash": "42f81d34e807bc830ae6acd69eb68bc969cf3c9be0db686664666f3ba6acadf0",
+        "answer_hash": "dc1dde398f83c227b5fe4ea5d8cc7dda714355ef28760a7007639d4cd9ea4679",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch06_q25",
+      "content": "Using the rule $np\\ge10$ and $n(1-p)\\ge10$, decide whether a normal approximation for $\\hat p$ is appropriate:\n\na. $p=0.4,n=100$\n\nb. $p=0.1,n=10$\n\nc. $p=0.1,n=50$\n\nd. $p=0.8,n=400$\n\ne. $p=0.98,n=1000$\n\nf. $p=0.99,n=400$",
+      "source": "Assignment Prof Lv/Assignment 6-lu.doc",
+      "type": "简答题",
+      "difficulty": 2,
+      "keywords": [
+        "sampling distribution of a proportion",
+        "normal approximation"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch06-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch06-review-v1",
+        "question_hash": "ca61f8ebccebb1f798995e730be28bccd337789930dd36a5ed0cd91742cb6c17",
+        "answer_hash": "edecc6688b3f8d5824ff75aa3db9ee34f65d33439480247c25d6e787cccd87fc",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch06_q26",
+      "content": "In a poll of 1,000 parents who own TVs with V-chips, 17% reported using the devices. To assess the claim $p<0.20$, assume $p=0.20$.\n\na. Find the approximate probability of observing $\\hat p\\le0.17$.\n\nb. State the conclusion.",
+      "source": "Assignment Prof Lv/Assignment 6-lu.doc",
+      "type": "综合题",
+      "difficulty": 3,
+      "keywords": [
+        "sampling distribution of a proportion",
+        "normal approximation",
+        "hypothesis assessment"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch06-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch06-review-v1",
+        "question_hash": "e7c63b3d7465daf32cb92291356330ce337595a4b8bbcfcc12fa76868a494b7d",
+        "answer_hash": "0e2f031e4a7f4d872009456fe5072648b4a537e0eccba9b0c497ae33a2139dfe",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch06_q27",
+      "content": "In a random sample of 1,031 U.S. adults, 42% had vacationed for at least six days in the previous year. To assess $H_0:p=0.40$ versus $H_a:p>0.40$, find the approximate probability of observing $\\hat p\\ge0.42$ and state the conclusion.",
+      "source": "Assignment Prof Lv/Assignment 6-lu.doc",
+      "type": "综合题",
+      "difficulty": 3,
+      "keywords": [
+        "sampling distribution of a proportion",
+        "normal approximation",
+        "hypothesis assessment"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch06-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch06-review-v1",
+        "question_hash": "621b17c131da3c7686e70688011baae881bc2272ec4ff4c3d546800fcdb4ae77",
+        "answer_hash": "b4876ca9a5edd94e898136839a6e0cf204d659264bad4ad2db75c74a337ac421",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch06_q28",
+      "content": "Yearly health-care expenses for a family of four are normally distributed with mean USD 3,000 and standard deviation USD 500. Find the expense cutoff for the lowest 33% of families.",
+      "source": "Assignments for STAT 2010/assign6.doc",
+      "type": "计算题",
+      "difficulty": 2,
+      "keywords": [
+        "normal distribution",
+        "percentile"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch06-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch06-review-v1",
+        "question_hash": "94c00310e57206d407cf18af94c0d7a5d42ec401f9ed612c4cb3f4d1b2a7fe4a",
+        "answer_hash": "85997912b17eefe7c23486b864ce0b959f6e7eb3d937073d604658b872e74dd7",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch06_q29",
+      "content": "A sale item is purchased by 20% of customers who pass a display. If 2,000 customers pass independently, how many units should the store stock so that the probability of running short is at most 1%?",
+      "source": "Assignments for STAT 2010/assign6.doc",
+      "type": "计算题",
+      "difficulty": 3,
+      "keywords": [
+        "binomial distribution",
+        "normal approximation",
+        "percentile"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch06-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch06-review-v1",
+        "question_hash": "82e71ec158f94b2c38d42602b0d75b5a39b8086720051baf691239663f179b90",
+        "answer_hash": "66511197170e0cdb8fd6fd69f7ec555e83d242c26cb4bb89e4b6f74297eb0bd0",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch06_q31",
+      "content": "For a confidence interval for a population mean, state whether the margin of error becomes larger or smaller when:\n\na. the confidence level increases;\n\nb. the sample size increases;\n\nc. the confidence level decreases;\n\nd. the sample size decreases.",
+      "source": "Assignments for STAT 2012/Assignment_6.doc",
+      "type": "简答题",
+      "difficulty": 1,
+      "keywords": [
+        "confidence interval",
+        "margin of error"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch06-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch06-review-v1",
+        "question_hash": "d4303af147d55c0dbc1ada11ddbca7b69e166ee953e0c3c62c939f200e0df26a",
+        "answer_hash": "e2f5572fa6737321682fcef2cacf7bcbe70b2c26972f9916b33d980a8ce95ca2",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch06_q32",
+      "content": "A random sample of 100 customer waiting times has $\\bar x=5.46$ minutes. The population standard deviation is known to be $\\sigma=2.47$ minutes.\n\na. Calculate 95% and 99% confidence intervals for $\\mu$.\n\nb. Can we be 95% confident that $\\mu<6$?\n\nc. Can we be 99% confident that $\\mu<6$?\n\nd. Interpret the results.",
+      "source": "Assignments for STAT 2012/Assignment_6.doc",
+      "type": "综合题",
+      "difficulty": 3,
+      "keywords": [
+        "confidence interval",
+        "known standard deviation"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch06-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch06-review-v1",
+        "question_hash": "95c4175c791496c6914f6f8477a372c541d1f7adffec9002d8e62e4869259338",
+        "answer_hash": "f673de9e6410abd5822640b82018f286c623135d9ac46e081c6334b782d3bd1a",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch06_q33",
+      "content": "For 10 Whole Foods supermarkets, the sample mean sales is $\\bar x=846.2$ dollars per square foot and the sample standard deviation is $s=32.866$. Construct a 95% confidence interval for the population mean and determine whether the mean is greater than USD 800.",
+      "source": "Assignments for STAT 2012/Assignment_6.doc",
+      "type": "计算题",
+      "difficulty": 3,
+      "keywords": [
+        "confidence interval",
+        "t distribution"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch06-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch06-review-v1",
+        "question_hash": "fc75cff921e2e3879238f566cae7608d9cc8c81784362c36cf5350ad42197faa",
+        "answer_hash": "5068e67ec7f99e0f69c24239abab29ff6b76d1695e1a2d6b2f19179a1bb19a61",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch06_q34",
+      "content": "A population has known standard deviation $\\sigma=10$.\n\na. Find the minimum sample size needed for a 95% confidence interval with margin of error 1.\n\nb. If the resulting sample has mean $\\bar x=295$, give the 95% confidence interval and its margin of error.",
+      "source": "Assignments for STAT 2012/Assignment_6.doc",
+      "type": "综合题",
+      "difficulty": 2,
+      "keywords": [
+        "confidence interval",
+        "sample size"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch06-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch06-review-v1",
+        "question_hash": "60b3a06b2eff5056a426d6e521d5873301d286112d3e4a28278660509ce89cdb",
+        "answer_hash": "af025cec200822760bdd369471c763285bf2082b3c179c3d435b078a316338e3",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch06_q35",
+      "content": "A preliminary sample of 10 Whole Foods sales figures has standard deviation $s=32.866$ dollars per square foot. Using this as a planning estimate for $\\sigma$, how large a sample is needed for 95% confidence that the sample mean is within USD 10 of the population mean?",
+      "source": "Assignments for STAT 2012/Assignment_6.doc",
+      "type": "计算题",
+      "difficulty": 2,
+      "keywords": [
+        "confidence interval",
+        "sample size"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch06-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch06-review-v1",
+        "question_hash": "a67bf6bcd28cf9135c58a2307aa34b53be59ad45f15716a2c4c87cc36b54201b",
+        "answer_hash": "8dc0db37288e4337892f4e5b495fb7fb8c1a45e534b786a478b14c1f25df0caf",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch06_q36",
+      "content": "York County has 20,000 eligible voters. In a random sample of 500 voters, 350 plan to vote for Louella Miller. Construct a 99% confidence interval for the county proportion and explain whether the sample confirms that she will be reelected.",
+      "source": "Assignments for STAT 2012/Assignment_6.doc",
+      "type": "综合题",
+      "difficulty": 3,
+      "keywords": [
+        "confidence interval",
+        "population proportion"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch06-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch06-review-v1",
+        "question_hash": "27d7c81c9ae6785e91bf797e19673f81c767d88a4a799e9952ff100c3362ab1c",
+        "answer_hash": "c0633f9b560a37747d5382413fecac5061db0c9cf7143d1129a2391099ce0807",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "rotel_ch06_normal_01",
+      "content": "Adult male height $X$, in inches, follows $N(66,2.5^2)$.\n\na. Find $P(65<X<70)$.\n\nb. Find the percentage of men taller than 71.5 inches.",
+      "source": "ROTEL Statistical Problem Sets in WeBWorK — 6.1-6.2 Problem 1 — https://rotel.pressbooks.pub/statsproblemsets/chapter/assignment-6-1-6-2-normal-dist/",
+      "source_url": "https://rotel.pressbooks.pub/statsproblemsets/chapter/assignment-6-1-6-2-normal-dist/",
+      "source_problem": "6.1-6.2 Problem 1",
+      "license": "CC BY-NC-SA 4.0",
+      "attribution": "Rachael Norton and Peter Staab, 2023",
+      "review_status": "independently solved and reviewed",
+      "type": "综合题",
+      "difficulty": 2,
+      "keywords": [
+        "normal distribution"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "audit_pack": "ch06-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch06-review-v1",
+        "question_hash": "cbeca0f829524ab73d49be2cae818ee37fe6fb30fdf432ec9d2d9e4c6bb480ca",
+        "answer_hash": "1b6ee80c3c4dfe030560e1cf3196b8365365dc4bb1ee40c1aa4211d1926d7c69",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "opl_nau_ch06_normal_01",
+      "content": "Exam scores are normally distributed with mean $70$ and standard deviation $10$. For a score of $85$, calculate the z-score and the percentile. Report the percentile to two decimal places.",
+      "source": "WeBWorK Open Problem Library — NAU Statistics — z-scores1.pg (fixed static instance) — https://github.com/openwebwork/webwork-open-problem-library/blob/54e7db70ed308cab9c7eed8af1d2dba5a6adf7d4/OpenProblemLibrary/NAU/setStatistics/z-scores1.pg",
+      "source_url": "https://github.com/openwebwork/webwork-open-problem-library/blob/54e7db70ed308cab9c7eed8af1d2dba5a6adf7d4/OpenProblemLibrary/NAU/setStatistics/z-scores1.pg",
+      "source_problem": "z-scores1.pg (fixed static instance)",
+      "source_path": "OpenProblemLibrary/NAU/setStatistics/z-scores1.pg",
+      "source_commit": "54e7db70ed308cab9c7eed8af1d2dba5a6adf7d4",
+      "license": "CC BY-NC-SA 3.0",
+      "license_url": "https://creativecommons.org/licenses/by-nc-sa/3.0/",
+      "attribution": "N. Spencer Sitton, Northern Arizona University",
+      "changes": "Randomized PG problem converted to a fixed, self-contained English instance; answer independently recomputed and Markdown/LaTeX normalized.",
+      "review_status": "independently solved and reviewed",
+      "type": "计算题",
+      "difficulty": 2,
+      "keywords": [
+        "z-score",
+        "normal distribution",
+        "percentile"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "opl-nau-curated-v1",
+        "question_hash": "55c7cfdef6390762fdcfaa076341e3fb9a5ee649095f3cb1fc8d2d2f03cea5ad",
+        "answer_hash": "d2708bafcd245b9ceac882d9e85cb53a16beaab1fd1660fb2efced723029a5ee",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "opl_nau_ch06_normal_02",
+      "content": "A normally distributed variable has mean $500$ and standard deviation $80$. Calculate $P(420<X<660)$ and report four decimal places.",
+      "source": "WeBWorK Open Problem Library — NAU Statistics — normal_dist2.pg (converted from graph to explicit bounds) — https://github.com/openwebwork/webwork-open-problem-library/blob/54e7db70ed308cab9c7eed8af1d2dba5a6adf7d4/OpenProblemLibrary/NAU/setStatistics/normal_dist2.pg",
+      "source_url": "https://github.com/openwebwork/webwork-open-problem-library/blob/54e7db70ed308cab9c7eed8af1d2dba5a6adf7d4/OpenProblemLibrary/NAU/setStatistics/normal_dist2.pg",
+      "source_problem": "normal_dist2.pg (converted from graph to explicit bounds)",
+      "source_path": "OpenProblemLibrary/NAU/setStatistics/normal_dist2.pg",
+      "source_commit": "54e7db70ed308cab9c7eed8af1d2dba5a6adf7d4",
+      "license": "CC BY-NC-SA 3.0",
+      "license_url": "https://creativecommons.org/licenses/by-nc-sa/3.0/",
+      "attribution": "N. Spencer Sitton; modified by John Hagood, Northern Arizona University",
+      "changes": "Randomized PG problem converted to a fixed, self-contained English instance; answer independently recomputed and Markdown/LaTeX normalized.",
+      "review_status": "independently solved and reviewed",
+      "type": "计算题",
+      "difficulty": 2,
+      "keywords": [
+        "normal distribution",
+        "standardization",
+        "interval probability"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "opl-nau-curated-v1",
+        "question_hash": "e768a81a7093df10202fb8d1e083952240479b82efe4554dd2656ee0540c32a5",
+        "answer_hash": "4e651ca32f720f55be0b4dab848736032c68673943b9f5a091bcdda771f7e596",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    }
+  ]
+}

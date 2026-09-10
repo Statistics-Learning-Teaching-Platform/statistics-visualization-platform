@@ -1,0 +1,863 @@
+{
+  "chapter": 7,
+  "questions": [
+    {
+      "id": "ch07_q02",
+      "content": "The diameter of small Nerf balls is approximately normal with mean 5.2 inches and standard deviation 0.08 inches. For a random sample of 20 balls, find the interval containing the central 95.44% of sample means.",
+      "source": "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment and solution_chap7&13_ Sampling distribution_regression.docx",
+      "type": "计算题",
+      "difficulty": 2,
+      "keywords": [
+        "sampling distribution of the mean",
+        "normal distribution"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch07-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch07-review-v1",
+        "question_hash": "f3ab727684bb86cc76730b04f62ffc66f2b92f37a5d2771566eb539ab79b5c21",
+        "answer_hash": "46b3b398f2a1bb10feb2fee40df94cafeca2703afce3787c0d570ae7c35adc35",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch07_q03",
+      "content": "A population has mean $\\mu=20$ and standard deviation $\\sigma=4$. A random sample of 64 measurements is selected.\n\na. Describe the shape of the sampling distribution of $\\bar X$ and state whether the population must be normal.\n\nb. Find its mean and standard deviation.\n\nc. Find $P(\\bar X>21)$.\n\nd. Find $P(\\bar X<19.385)$. ",
+      "source": "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment and solution_chap7&13_ Sampling distribution_regression.docx",
+      "type": "综合题",
+      "difficulty": 2,
+      "keywords": [
+        "sampling distribution of the mean",
+        "central limit theorem"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch07-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch07-review-v1",
+        "question_hash": "737697657d1cc8f6622226e75eb3542023efeb76826243e79fa5e40d0a57c557",
+        "answer_hash": "abc6cb90e8b1ecabb2fac8063f87c665b88622e2ecdc4222f49c0c6be66407aa",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch07_q04",
+      "content": "The number of flaws per flash drive has probabilities $P(X=0)=0.65$, $P(X=1)=0.20$, $P(X=2)=0.10$, and $P(X=3)=0.05$. A random sample of 100 drives is rejected when its mean number of flaws exceeds 0.75. The population mean is 0.55. Find the approximate probability that a shipment is rejected.",
+      "source": "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment and solution_chap7&13_ Sampling distribution_regression.docx",
+      "type": "计算题",
+      "difficulty": 3,
+      "keywords": [
+        "sampling distribution of the mean",
+        "central limit theorem"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch07-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch07-review-v1",
+        "question_hash": "9a469b0c81905d7ba6a9dad1b1d71f034ac70b9b0adc029da0ef7d76dbed51f7",
+        "answer_hash": "d1624d094a2dbc7497015eca37d2c62547d9713cd4d51955461203781551c39b",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch07_q06",
+      "content": "Historically, 48% of Bank of America customers express customer delight. In a random sample of 350 customers, 189 (54%) express delight.\n\na. Assuming $p=0.48$, find the approximate probability of observing a sample proportion at least 0.54.\n\nb. Assess the claim that the current proportion exceeds 48%.",
+      "source": "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment and solution_chap7&13_ Sampling distribution_regression.docx",
+      "type": "综合题",
+      "difficulty": 3,
+      "keywords": [
+        "sampling distribution of a proportion",
+        "normal approximation",
+        "hypothesis assessment"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch07-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch07-review-v1",
+        "question_hash": "e82686e6e904289b45551e2372333e29527f900a827d2c6d8e30155892c50f71",
+        "answer_hash": "07dea1e87865331dc25cf3aaed272b8ea497f476da89c771a8111109f2ceb9ad",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch07_q07",
+      "content": "A poll of 900 voters predicts that 55% support the incumbent governor. Assume the true support is $p=0.51$. Find the approximate probability of observing a sample proportion of at least 0.55.",
+      "source": "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment and solution_chap7&13_ Sampling distribution_regression.docx",
+      "type": "计算题",
+      "difficulty": 2,
+      "keywords": [
+        "sampling distribution of a proportion",
+        "normal approximation"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch07-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch07-review-v1",
+        "question_hash": "02070f7179a8fe2844a130d02fe95d474a8323829db3aaaec3af7bb5b4d2684e",
+        "answer_hash": "cf907c51597f424f7bb7c1637a699cb82afe9cba0c400b6631787bd9027d79c3",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch07_q08",
+      "content": "A normal population has mean $\\mu=50$ and standard deviation $\\sigma=5$. For a sample of $n=100$, find:\n\na. $P(\\bar X<47)$;\n\nb. $P(47<\\bar X<49.5)$;\n\nc. the value $k$ such that $P(\\bar X>k)=0.35$.",
+      "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter07_Sample Mean.docx",
+      "type": "综合题",
+      "difficulty": 2,
+      "keywords": [
+        "sampling distribution of the mean",
+        "normal distribution"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch07-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch07-review-v1",
+        "question_hash": "40020b54cdf048cd6e3a5b541751e6d60b44e6ddab3cbac8c1c32fe8dc7f907d",
+        "answer_hash": "eae3804ace86c34a0445cd0962dae648a9054aa85fa075e6b60323bc9b4213ab",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch07_q09",
+      "content": "The amount dispensed by a soft-drink machine is normal with mean 7 ounces and standard deviation 0.5 ounce. For samples of 9 cups, find the value exceeded by 95% of the sample means.",
+      "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter07_Sample Mean.docx",
+      "type": "计算题",
+      "difficulty": 2,
+      "keywords": [
+        "sampling distribution of the mean",
+        "normal distribution"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch07-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch07-review-v1",
+        "question_hash": "2104a2a0af54f4a30d90dab0e96e67e772e76805dff5e9b4fc4e7f995304f647",
+        "answer_hash": "85ae788d0d22c945fc2265992a38d55d42ece0cdf73cf95ea37edd628b9c6baa",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch07_q10",
+      "content": "The population of annual absence days is $1,3,6,7,7,12$. Sampling is without replacement.\n\na. List all 20 samples of size 3 and give the sampling distribution of $\\bar X$.\n\nb. Find the mean of the sample means and compare it with the population mean.",
+      "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter07_Sample Mean.docx",
+      "type": "综合题",
+      "difficulty": 3,
+      "keywords": [
+        "sampling distribution of the mean",
+        "finite population sampling"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch07-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch07-review-v1",
+        "question_hash": "a7d7ac4402659d1940eddfc66a8c0b5d6f3125d937714345d4f14682ed23cd32",
+        "answer_hash": "055f7a6c1e3c6ae80f42ecc9c7eacdb9cd654213125d1cd941ef6a14bea8c069",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch07_q11",
+      "content": "E-mail session time is normal with mean 8 minutes and standard deviation 2 minutes.\n\na. For $n=25$, find $\\operatorname{SD}(\\bar X)$.\n\nb. For $n=25$, find $P(7.8<\\bar X<8.2)$.\n\nc. For $n=100$, find the same probability.\n\nd. Explain the difference.\n\\ne. Compare the likelihoods of one session exceeding 11 minutes, a 25-session mean exceeding 9 minutes, and a 100-session mean exceeding 8.6 minutes.",
+      "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter07_Sample Mean.docx",
+      "type": "综合题",
+      "difficulty": 3,
+      "keywords": [
+        "sampling distribution of the mean",
+        "normal distribution"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch07-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch07-review-v1",
+        "question_hash": "4384fa09bee8dea774f55590b0b62944a9afd73a4e7c223568cafea33c8e0648",
+        "answer_hash": "9c740492d8d30e43e20eac36dc835aaff94ed3eccf994318ab35ad8c43c77cf9",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch07_q12",
+      "content": "Bank-teller service time has mean 3.10 minutes and standard deviation 0.40 minute. For a random sample of 16 customers:\n\na. Find $P(\\bar X\\ge3)$.\n\nb. Find $k$ such that $P(\\bar X<k)=0.85$.\n\nc. State the distributional assumption needed.",
+      "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter07_Sample Mean.docx",
+      "type": "综合题",
+      "difficulty": 2,
+      "keywords": [
+        "sampling distribution of the mean",
+        "normal distribution"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch07-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch07-review-v1",
+        "question_hash": "c5d49a83716809a6e64cba8a814f3e3277a03dadd8a0ec6fbed7e0fa93d593c1",
+        "answer_hash": "7a08660469b581978831ff57cb03782eff9d2fb905fdbe09c899cb80f9589725",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch07_q13",
+      "content": "Annual distance traveled per truck is normal with mean 50.0 thousand miles and standard deviation 12.0 thousand miles. For a sample of 64 trucks:\n\na. Find the 95th percentile of the sample mean.\n\nb. What assumption is needed?",
+      "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter07_Sample Mean.docx",
+      "type": "简答题",
+      "difficulty": 2,
+      "keywords": [
+        "sampling distribution of the mean",
+        "normal distribution"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch07-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch07-review-v1",
+        "question_hash": "1ac019635537e9968d483bfca0df95b7636918bf124b9c7e32d46e43c0c91b21",
+        "answer_hash": "d5dcef1e5106068c9c65cc54048632b3717813745aab7f4b8df5bd2e705724a9",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch07_q14",
+      "content": "Historically, 70% of people are classified as successful. In a random sample of 64 people, 48 are successful. Find the sample proportion and the standard error of the sample proportion using the historical value $p=0.70$.",
+      "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter07_Sample Mean.docx",
+      "type": "计算题",
+      "difficulty": 1,
+      "keywords": [
+        "sample proportion",
+        "standard error"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch07-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch07-review-v1",
+        "question_hash": "586cc009b79064fd1ff63f8302e8fe19d049e19390293458b3ee051e66795338",
+        "answer_hash": "f8f344650ca40cbeb66bc47778c144213a5fb34ee457a10ee917188fac0fb4c8",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch07_q15",
+      "content": "Ten percent of a large shipment of machine parts are defective. For random samples of 400 parts, find the proportion of samples with:\n\na. between 9% and 10% defective;\n\nb. fewer than 8% defective.",
+      "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter07_Sample Mean.docx",
+      "type": "综合题",
+      "difficulty": 2,
+      "keywords": [
+        "sampling distribution of a proportion",
+        "normal approximation"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch07-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch07-review-v1",
+        "question_hash": "c19c3cbe866a3d44ab9a0f3251cb976e84b30e38c6db27933649534f3fc17609",
+        "answer_hash": "a5e2a6be2fbd97007a158d59f86d3efaad5a2c1a9f54f184f24bd124a7594a0e",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch07_q16",
+      "content": "Thirty percent of credit-card purchases exceed USD 100. For random samples of 100 purchases:\n\na. Find the proportion of samples with 20% to 30% over USD 100.\n\nb. Find symmetric limits around 30% containing 95% of sample proportions.",
+      "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter07_Sample Mean.docx",
+      "type": "综合题",
+      "difficulty": 2,
+      "keywords": [
+        "sampling distribution of a proportion",
+        "normal approximation"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch07-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch07-review-v1",
+        "question_hash": "d215a5973776f2d01c12f23dd9dc39a76b5e728c3356144b9dcc5a56c311e907",
+        "answer_hash": "485e4f1b3584965f3d728748547f9bc2c5941dcdda92bc7616e50f81c986b2d7",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch07_q17",
+      "content": "Students guess which of two soft drinks they taste, so the correct-identification probability is $p=0.50$. For samples of 200 students:\n\na. Find the proportion of samples with 50% to 60% correct.\n\nb. Find symmetric limits containing 90% of sample proportions.\n\nc. Find $P(\\hat p>0.65)$.\n\nd. Compare $P(\\hat p>0.60)$ for $n=200$ with $P(\\hat p>0.55)$ for $n=1000$.",
+      "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter07_Sample Mean.docx",
+      "type": "综合题",
+      "difficulty": 3,
+      "keywords": [
+        "sampling distribution of a proportion",
+        "normal approximation"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch07-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch07-review-v1",
+        "question_hash": "b741ca4a6802bf92648c8eeb4c34a6b6569179bbc9262d560a61317b78f1b6b1",
+        "answer_hash": "6b50d5bca13240c3d2ef185d0481082145d3e4a0e809abf1d208283acf0403fe",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch07_q18",
+      "content": "Why is it useful to calculate a confidence interval in addition to a point estimate of a population parameter?",
+      "source": "Assignment Prof Lv/Assignment7-lu.doc",
+      "type": "简答题",
+      "difficulty": 1,
+      "keywords": [
+        "confidence interval",
+        "point estimate"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch07-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch07-review-v1",
+        "question_hash": "866c6c9d530208d3920f6f1557ec0171b1f9a0ee67913df854e5408d28142cd3",
+        "answer_hash": "8833db4f76673361b556e91a12f962443f5035ea8956bca1c13067cb16e60bea",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch07_q21",
+      "content": "As the degrees of freedom of a Student's $t$ distribution increase, how do (a) its standard deviation and (b) its critical values $t_{\\alpha}$ and $t_{\\alpha/2}$ change?",
+      "source": "Assignment Prof Lv/Assignment7-lu.doc",
+      "type": "简答题",
+      "difficulty": 2,
+      "keywords": [
+        "t distribution",
+        "degrees of freedom"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch07-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch07-review-v1",
+        "question_hash": "b31c6aaab727d87e5667baa398c6a1fbdaaa2854f408c8e0c5d867397cf08199",
+        "answer_hash": "312de47345505dd3ae78d063a14adb94b96df7fc602712dc17d29bf5a8dc01c6",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch07_q22",
+      "content": "When is a one-sample $t$ confidence interval appropriate for estimating a population mean $\\mu$?",
+      "source": "Assignment Prof Lv/Assignment7-lu.doc",
+      "type": "简答题",
+      "difficulty": 2,
+      "keywords": [
+        "one-sample t interval",
+        "confidence interval"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch07-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch07-review-v1",
+        "question_hash": "8d203333e2153d55168112285ec1085d0374835cc72e3fa4b5c7d8f3e6ab389a",
+        "answer_hash": "30914806ea2d63a290c991fb14fc7b23cfd323ace072867567121e0c3235e758",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch07_q26",
+      "content": "For 65 customer satisfaction ratings, the sample mean is $\\bar x=42.95$ and the known population standard deviation is $\\sigma=2.64$.\n\na. Calculate 95% and 99% confidence intervals for $\\mu$.\n\nb. Can we be 95% confident that $\\mu\\ge42$?\n\nc. Can we be 99% confident that $\\mu\\ge42$?\n\nd. Interpret the results.",
+      "source": "Assignments for STAT 2010/solution-assign7.doc",
+      "type": "综合题",
+      "difficulty": 3,
+      "keywords": [
+        "confidence interval",
+        "known standard deviation"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch07-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch07-review-v1",
+        "question_hash": "1d07136e4d433ad13d7d6991468b234bd2b2becdd8738560ca034830b1c4b29e",
+        "answer_hash": "9e588d569972e4ece2090b4c7e8581f6c3e42f65ee73631ec974aa45f552c708",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch07_q27",
+      "content": "A preliminary sample gives $s=32.866$ dollars per square foot. How large a sample is needed for 95% confidence that the sample mean is within USD 10 of the population mean?",
+      "source": "Assignments for STAT 2010/solution-assign7.doc",
+      "type": "计算题",
+      "difficulty": 2,
+      "keywords": [
+        "confidence interval",
+        "sample size"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch07-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch07-review-v1",
+        "question_hash": "de8bc2b4eaa527315efa4d3bca73f0e5633473f00959131d5c50043f58a380b1",
+        "answer_hash": "229090af3de5a035ecb7d8bf4146deb36d7c8a3d689c9f345601346e7b21d1dd",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch07_q28",
+      "content": "For 49 midsize cars, the sample mean mileage is $31.5531$ mpg. Assume the population standard deviation is $0.8$ mpg. Test $H_0:\\mu\\le31$ against $H_a:\\mu>31$ at $\\alpha=0.05$, and report the p-value. Would the decision change at $\\alpha=0.01$?",
+      "source": "Assignments for STAT 2012/Assignment-7.doc",
+      "type": "综合题",
+      "difficulty": 3,
+      "keywords": [
+        "one-sample z test",
+        "hypothesis testing"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch07-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch07-review-v1",
+        "question_hash": "2135fab7c4894c87c548e87f2fbea614faa93ca70ca96a85539c857b8eb5b86e",
+        "answer_hash": "fc5f70245610832403e63b23c7c6e0e94fc5ebeb25f8cc1a72da41e75c99d279",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch07_q29",
+      "content": "Credit-card interest rates for nine cards are 16.7, 17.4, 17.0, 17.8, 15.4, 13.1, 15.8, 14.3, and 14.5 percent. Test $H_0:\\mu=14$ against $H_a:\\mu>14$ at $\\alpha=0.01$.",
+      "source": "Assignments for STAT 2012/Assignment-7.doc",
+      "type": "计算题",
+      "difficulty": 3,
+      "keywords": [
+        "one-sample t test",
+        "hypothesis testing"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch07-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch07-review-v1",
+        "question_hash": "745a22b1fd23eaa5d642dd081d79732f56f2d69a469d884feb048494104ed1b8",
+        "answer_hash": "0e8d71c2829f8f78f83c8939c00d45d9f25bd6fd3ff74454852ec685c1405791",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch07_q30",
+      "content": "Weekly gains or losses for 18 watches, measured in seconds, are:\n\n-0.38, -0.20, -0.38, -0.32, 0.32, -0.23,\n\n0.30, 0.25, -0.10, -0.37, -0.61, -0.48,\n\n-0.47, -0.64, -0.04, -0.20, -0.68, 0.05.\n\nTest $H_0:\\mu=0$ against $H_a:\\mu\\ne0$ at $\\alpha=0.05$ and estimate the p-value.",
+      "source": "Assignments for STAT 2012/Assignment-7.doc",
+      "type": "计算题",
+      "difficulty": 3,
+      "keywords": [
+        "one-sample t test",
+        "hypothesis testing"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch07-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch07-review-v1",
+        "question_hash": "155b7c270a79aa14171a1bc8721b19902416c66e939dd4b960d604b531acb0d4",
+        "answer_hash": "d032b58e28bbbb41dd4a151e7a7d1c3f80b6d69f2aed101dda1111da8b8c30f1",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch07_q31",
+      "content": "Nationally, 20% of condominium renters move in a year. In a random sample of 200 Dallas-area renters, 56 moved. Test $H_0:p=0.20$ against $H_a:p>0.20$ at $\\alpha=0.10$ and find the p-value.",
+      "source": "Assignments for STAT 2012/Assignment-7.doc",
+      "type": "计算题",
+      "difficulty": 3,
+      "keywords": [
+        "one-sample proportion test",
+        "hypothesis testing"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch07-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch07-review-v1",
+        "question_hash": "05b2bacb0c496971d85619d521778d659c797b152b710e974b60db5833726cf7",
+        "answer_hash": "77a9671ce88730b3ab14ecfa53afa1209ac1af1caebc2c6f725754b9a6533e10",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "rotel_ch07_sampling_mean_01",
+      "content": "Canned-tuna weight is normal with mean 5.95 ounces and standard deviation 0.2 ounces. The sample size increases from 42 to 84.\n\na. How does the standard deviation of $\\bar X$ change?\n\nb. How does $E(\\bar X)$ change?\n\nc. Is the Central Limit Theorem needed for normality of $\\bar X$?",
+      "source": "ROTEL Statistical Problem Sets in WeBWorK — 7 Central Limit Theorem Problem 1 — https://rotel.pressbooks.pub/statsproblemsets/chapter/7-central-limit-theorem/",
+      "source_url": "https://rotel.pressbooks.pub/statsproblemsets/chapter/7-central-limit-theorem/",
+      "source_problem": "7 Central Limit Theorem Problem 1",
+      "license": "CC BY-NC-SA 4.0",
+      "attribution": "Rachael Norton and Peter Staab, 2023",
+      "review_status": "independently solved and reviewed",
+      "type": "综合题",
+      "difficulty": 2,
+      "keywords": [
+        "sampling distribution of the mean",
+        "central limit theorem"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "audit_pack": "ch07-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch07-review-v1",
+        "question_hash": "43b8029202d67f8fb898441eddaeb28f8896b50f973104e9b4b44968101cee3c",
+        "answer_hash": "4197b410ff98773a71d1ca8a5f00623ea6a0347fc6210b4bd85c39e88cb2ff86",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "opl_nau_ch07_clt_01",
+      "content": "For a sample proportion, a sample size of 100 produces a standard error of 5%. Assuming the same population proportion, what sample size is required to reduce the standard error to 2%? Round up if necessary.",
+      "source": "WeBWorK Open Problem Library — NAU Statistics — central_limit_theorem1.pg (fixed static instance) — https://github.com/openwebwork/webwork-open-problem-library/blob/54e7db70ed308cab9c7eed8af1d2dba5a6adf7d4/OpenProblemLibrary/NAU/setStatistics/central_limit_theorem1.pg",
+      "source_url": "https://github.com/openwebwork/webwork-open-problem-library/blob/54e7db70ed308cab9c7eed8af1d2dba5a6adf7d4/OpenProblemLibrary/NAU/setStatistics/central_limit_theorem1.pg",
+      "source_problem": "central_limit_theorem1.pg (fixed static instance)",
+      "source_path": "OpenProblemLibrary/NAU/setStatistics/central_limit_theorem1.pg",
+      "source_commit": "54e7db70ed308cab9c7eed8af1d2dba5a6adf7d4",
+      "license": "CC BY-NC-SA 3.0",
+      "license_url": "https://creativecommons.org/licenses/by-nc-sa/3.0/",
+      "attribution": "N. Spencer Sitton, Northern Arizona University",
+      "changes": "Randomized PG problem converted to a fixed, self-contained English instance; answer independently recomputed and Markdown/LaTeX normalized.",
+      "review_status": "independently solved and reviewed",
+      "type": "计算题",
+      "difficulty": 2,
+      "keywords": [
+        "standard error",
+        "sample proportion",
+        "sample size"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "opl-nau-curated-v1",
+        "question_hash": "0ff9fb2a3b47e28ed3429fce748a04f1542905356ed3ca2267321f70b2667aae",
+        "answer_hash": "352e528411cc43fa5aad418e7023f5d6fe6ca12739d50ed822bbbabc6cb3828d",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "opl_nau_ch07_clt_02",
+      "content": "A population has mean $120$ and standard deviation $30$. Random samples of size $36$ are drawn.\n\na. Find the mean and standard deviation of the sampling distribution of $\\bar X$.\n\nb. Assuming the population is normal, calculate $P(\\bar X>130)$.",
+      "source": "WeBWorK Open Problem Library — NAU Statistics — central_limit_theorem3.pg (extended fixed static instance) — https://github.com/openwebwork/webwork-open-problem-library/blob/54e7db70ed308cab9c7eed8af1d2dba5a6adf7d4/OpenProblemLibrary/NAU/setStatistics/central_limit_theorem3.pg",
+      "source_url": "https://github.com/openwebwork/webwork-open-problem-library/blob/54e7db70ed308cab9c7eed8af1d2dba5a6adf7d4/OpenProblemLibrary/NAU/setStatistics/central_limit_theorem3.pg",
+      "source_problem": "central_limit_theorem3.pg (extended fixed static instance)",
+      "source_path": "OpenProblemLibrary/NAU/setStatistics/central_limit_theorem3.pg",
+      "source_commit": "54e7db70ed308cab9c7eed8af1d2dba5a6adf7d4",
+      "license": "CC BY-NC-SA 3.0",
+      "license_url": "https://creativecommons.org/licenses/by-nc-sa/3.0/",
+      "attribution": "N. Spencer Sitton, Northern Arizona University",
+      "changes": "Randomized PG problem converted to a fixed, self-contained English instance; answer independently recomputed and Markdown/LaTeX normalized.",
+      "review_status": "independently solved and reviewed",
+      "type": "计算题",
+      "difficulty": 2,
+      "keywords": [
+        "sampling distribution",
+        "sample mean",
+        "standard error"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "opl-nau-curated-v1",
+        "question_hash": "51b6fba3a44b7cb35d3170b2b91a707188a70850eec808d213e390f5e7ea60f5",
+        "answer_hash": "3164478996c98db297d13c84d21cfa52fc1769046c4ed8adf78cda6cee66d6ea",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    }
+  ]
+}

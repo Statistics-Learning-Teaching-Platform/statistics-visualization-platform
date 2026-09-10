@@ -1,0 +1,203 @@
+{
+  "chapter": 13,
+  "answers": [
+    {
+      "id": "ch13_q01",
+      "answer": "a. The points show a strong positive, approximately linear association.\n\nb. $r\\approx0.9272$.\n\nc. $\\bar x=3$, $\\bar y=24$, slope $b_1=7$, intercept $b_0=3$, so $\\hat y=3+7x$.\n\nd. At $x=6$, $\\hat y=45$ units.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch13-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch13-review-v1",
+        "question_hash": "82b53aa00796af3b8e04a5f1c5e2c7b6540e474de9a2033a8080cc6537e20ab9",
+        "answer_hash": "83bc2ea372c69cbf88ed17c2470dd5810b48ca1cb6358f018c1789215002ef86",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch13_q02",
+      "answer": "a. SSE is $\\sum(y_i-\\hat y_i)^2$, the total squared residual error; the least-squares line is the line that minimizes SSE among all straight lines.\n\nb. The intercept 1 is the predicted mean strength at zero heating time (if zero is meaningful). The slope 1 means predicted mean strength increases by 1 psi per additional minute of heating. At $x=4$, $\\hat y=1+4=5$ psi.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch13-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch13-review-v1",
+        "question_hash": "3a628938f609f675ff12ad80c2df696b657b83ee1c110e4fb71047d9743020fd",
+        "answer_hash": "ae1d6ed263ef50927d3035237d8d377c1113462e5eb3cffaaff1001fe23e9d64",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "rotel_ch13_line_01",
+      "answer": "The slope is $m=(5-3)/(1-0)=2$. Therefore $y=2x+3$.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch13-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch13-review-v1",
+        "question_hash": "7d7eb8316b2a9518388ae24d66b595ebf3d1673ac11a03004d5f25fb201c8840",
+        "answer_hash": "ed41d5ca1c67b403e928b45ccc450f745dd05356ebdabecbb90f6c906da39ae8",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "rotel_ch13_line_02",
+      "answer": "The slope is $m=(-5-1)/(9-0)=-2/3$. Therefore $y=-(2/3)x+1$.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch13-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch13-review-v1",
+        "question_hash": "71e0347e3c5de8fcd98e1436fa85920d3b79010b938aa79edc604aee4f166aa1",
+        "answer_hash": "84fdd663a45b6fa388bc643c7c959067175c292a86e31c00750aa6ccd27a03fb",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "rotel_ch13_causation_01",
+      "answer": "No. Outdoor temperature or season could raise both sales and create the association. A randomized controlled experiment would best establish causation; if that is infeasible, use a well-designed quasi-experimental study and adjust for confounders.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch13-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch13-review-v1",
+        "question_hash": "c51a99c534fd0657721f49f8a5590af1ad46b098845a9457580682e1d54b89b3",
+        "answer_hash": "d2d52729058b60b42fed0e37b5c1c4e8dfbca8f4c0ecc8cbffb3348cda46bf33",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "rotel_ch13_slope_01",
+      "answer": "Within the range where the model is appropriate, each additional centimeter of height is associated with a 0.99 kg increase in predicted mean weight. It describes the fitted mean, not an exact change for every individual.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch13-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch13-review-v1",
+        "question_hash": "673b596800099516baf3ee8b7a1802fae7c4aac24fc33ed71352d92c2719421d",
+        "answer_hash": "224477707e53b831f3eebeb82f7d321d28dfe2b34144fdc0aec6fa98ed100893",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "rotel_ch13_regression_01",
+      "answer": "With $\\bar x=287.5$ and $\\bar y=41.5$, $r\\approx-0.8074$. The least-squares coefficients are $b_1=S_{xy}/S_{xx}\\approx-0.20973$ and $b_0=\\bar y-b_1\\bar x\\approx101.7968$. Thus $\\hat y=101.7968-0.20973x$.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch13-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch13-review-v1",
+        "question_hash": "3712c48dedd0b7f6af9b3197a6085958e00969938eb7372b3726a026d9270cfa",
+        "answer_hash": "a51e3cfdce069de57013c4c606bd027eeb90b627604dbdb3f9098cd6556705bf",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "opl_nau_ch13_regression_01",
+      "answer": "Substitute $x=80$:\n\n$$\\hat y=120+18(80)=120+1440=1560\\text{ pounds}.$$\n\nThe slope 18 means that each additional passenger is associated with an increase of **18 pounds** in predicted total checked-luggage weight.",
+      "review_status": "independently solved and reviewed",
+      "source_commit": "54e7db70ed308cab9c7eed8af1d2dba5a6adf7d4",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "opl-nau-curated-v1",
+        "question_hash": "1ba83167d6b57b1d38945d44abf6a5aa427116bbed47ed53f1fd6204143a3dd0",
+        "answer_hash": "ed9170cf75d6763895599bac4f31a6b0375e247e2c19429c2e4134de45d0b522",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "opl_nau_ch13_regression_02",
+      "answer": "The means are $\\bar x=3$ and $\\bar y=7.4$. Also,\n\n$$S_{xx}=\\sum(x_i-\\bar x)^2=10,$$\n\n$$S_{xy}=\\sum(x_i-\\bar x)(y_i-\\bar y)=19.$$\n\nTherefore,\n\n$$b_1=\\frac{S_{xy}}{S_{xx}}=1.9,$$\n\n$$b_0=\\bar y-b_1\\bar x=7.4-1.9(3)=1.7.$$\n\na. The least-squares line is\n\n$$\\hat y=1.7+1.9x.$$\n\nb. Pearson's correlation is\n\n$$r=\\frac{S_{xy}}{\\sqrt{S_{xx}S_{yy}}}\\approx0.9851,$$\n\nindicating a very strong positive linear association.\n\nc. At $x=6$,\n\n$$\\hat y=1.7+1.9(6)=13.1.$$",
+      "review_status": "independently solved and reviewed",
+      "source_commit": "54e7db70ed308cab9c7eed8af1d2dba5a6adf7d4",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "opl-nau-curated-v1",
+        "question_hash": "898516fcb9d25cf72320a16b632dd55d6cf43151a3450eaa1e213e39482f91b3",
+        "answer_hash": "e799486c2363d2e47054d4052c62461cbea92e2c6b5a5b351b24dcfbd7b05055",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    }
+  ]
+}

@@ -19,8 +19,8 @@ interface StatisticsPanelProps {
 
 export function StatisticsPanel({ sse, hoverInfo, copy }: StatisticsPanelProps) {
   return (
-    <div className="statistics-panel">
-      <h4 className="statistics-title">{copy.statistics}</h4>
+    <div className="statistics-panel" aria-label={copy.statistics}>
+      <h4 className="statistics-title sr-only">{copy.statistics}</h4>
       <div className="sse-section">
         <div className="stat-row">
           <span className="stat-label">{copy.sse}</span>
@@ -28,13 +28,15 @@ export function StatisticsPanel({ sse, hoverInfo, copy }: StatisticsPanelProps) 
         </div>
         <div className="stat-row">
           <span className="stat-label">{copy.lineType}</span>
-          <span className={`line-badge ${
-            sse.lineType === "regression"
-              ? "line-badge--regression"
-              : sse.lineType === "custom"
-                ? "line-badge--custom"
-                : "line-badge--none"
-          }`}>
+          <span
+            className={`line-badge ${
+              sse.lineType === "regression"
+                ? "line-badge--regression"
+                : sse.lineType === "custom"
+                  ? "line-badge--custom"
+                  : "line-badge--none"
+            }`}
+          >
             {sse.lineType === "regression"
               ? copy.regressionLine
               : sse.lineType === "custom"
@@ -45,19 +47,21 @@ export function StatisticsPanel({ sse, hoverInfo, copy }: StatisticsPanelProps) 
       </div>
       <div className="residual-section">
         <div className="residual-row">
-          <span className="stat-label">{copy.hover}</span>
           {hoverInfo ? (
-            <div>
-              <span className="stat-value">
-                ({hoverInfo.point.x.toFixed(2)}, {hoverInfo.point.y.toFixed(2)})
-              </span>
-              <small className="stat-divider">|</small>
-              <span className="stat-label">{copy.res}</span>
-              <span className="stat-value">{hoverInfo.residual.toFixed(4)}</span>
-              <small className="stat-divider">|</small>
-              <span className="stat-label">{copy.yHat}</span>
-              <span className="stat-value">{hoverInfo.lineY.toFixed(4)}</span>
-            </div>
+            <>
+              <span className="stat-label">{copy.hover}</span>
+              <div>
+                <span className="stat-value">
+                  ({hoverInfo.point.x.toFixed(2)}, {hoverInfo.point.y.toFixed(2)})
+                </span>
+                <small className="stat-divider">|</small>
+                <span className="stat-label">{copy.res}</span>
+                <span className="stat-value">{hoverInfo.residual.toFixed(4)}</span>
+                <small className="stat-divider">|</small>
+                <span className="stat-label">{copy.yHat}</span>
+                <span className="stat-value">{hoverInfo.lineY.toFixed(4)}</span>
+              </div>
+            </>
           ) : (
             <span className="stat-value stat-value--muted">{copy.hoverOverAPoint}</span>
           )}

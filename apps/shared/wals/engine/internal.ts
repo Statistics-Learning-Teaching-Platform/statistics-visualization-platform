@@ -21,7 +21,8 @@ export function result(
   narrative: string,
   metrics: SimulationResult["metrics"],
   chart: SimulationResult["chart"],
-  table?: TableSpec
+  table?: TableSpec,
+  extras?: Pick<SimulationResult, "tables">,
 ): SimulationResult {
-  return { headline, narrative, metrics, chart, table };
+  return { headline, narrative, metrics, chart, table, ...extras };
 }

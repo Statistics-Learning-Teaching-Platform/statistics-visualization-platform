@@ -1,0 +1,77 @@
+// 共享数据类型（前后端通用）
+import type { TextbookChapterId } from "./textbook-chapters";
+import type { QuestionVisualization } from "./question-visualizations";
+
+export interface ChapterConfig {
+  id: string; // 如 "Ch01"
+  title: string; // 显示标题，如 "第1章"
+  dir: string; // 相对 dataRoot 的目录名
+}
+
+export interface AppConfig {
+  dataRoot: string;
+  chapters: ChapterConfig[];
+}
+
+export type ReviewGateName =
+  | "english"
+  | "source"
+  | "grouping"
+  | "independent_solution"
+  | "verification"
+  | "metadata"
+  | "render";
+
+export interface StructuredReview {
+  schema_version: 1;
+  status: "pending" | "approved" | "rejected";
+  pack_id: string;
+  question_hash: string;
+  answer_hash: string;
+  gates: Record<ReviewGateName, "pending" | "passed" | "failed">;
+}
+
+export interface Question {
+  id: string; // 如 "ch01_q01"
+  groupId: string; // 组卷原子；同一大题的所有小问共享此 ID
+  partCount: number; // 顶层小问数量；单问题为 1
+  selectionUnit: "atomic"; // 大题及其小问必须整体选择
+  chapterId: string; // "Ch01"
+  chapterTitle: string; // "第1章"
+  chapterNum: number; // 1
+  content: string;
+  source: string;
+  type: string;
+  difficulty: number;
+  estimatedMinutes: number;
+  keywords: string[];
+  topicIds: string[];
+  /** Canonical textbook chapters derived from topicIds. */
+  textbookChapterIds: TextbookChapterId[];
+  dataRefs: string[];
+  attachments: { name: string; available: boolean }[];
+  answer: string | null;
+  answerIsImage: boolean; // answer 是否为图片相对路径
+  isComplete: boolean;
+  isReviewed: boolean;
+  reviewStatus: string | null;
+  /** Question provenance. Omitted on legacy records, which are treated as bank questions. */
+  origin?: "bank" | "variant" | "generated";
+  /** AI variant strategy; candidates still require explicit teacher acceptance. */
+  variantKind?: "parameter" | "context";
+  /** Bank question used as the structural seed for an AI-authored variant. */
+  parentQuestionId?: string | null;
+  /** Short server-side verification summary for AI-authored questions. */
+  verification?: string | null;
+  /** Optional, review-gated chart displayed after the question content. */
+  visualizations?: QuestionVisualization[];
+}
+
+export interface QuestionsResponse {
+  revision?: string;
+  totalCount?: number;
+  chapters: { id: string; title: string; num: number; count: number }[];
+  difficulties: number[];
+  coverage?: { isComplete: boolean; emptyChapterIds: string[] };
+  questions: Question[];
+}

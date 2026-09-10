@@ -1,0 +1,409 @@
+{
+  "chapter": 10,
+  "questions": [
+    {
+      "id": "ch10_q01",
+      "content": "Duracell battery lifetimes have sample size 8, mean 41 days, and standard deviation 18 days. Eveready lifetimes have sample size 10, mean 45 days, and standard deviation 20 days. Assuming independent approximately normal populations with unknown variances, test at $\\alpha=0.05$ whether the mean lifetimes differ.",
+      "source": "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment and solution_Chap10_Two sample testing.doc",
+      "type": "计算题",
+      "difficulty": 3,
+      "keywords": [
+        "two-sample t test",
+        "hypothesis testing"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch10-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch10-review-v1",
+        "question_hash": "57fa0d240accd2c998a3c0ecc742d858287136034dc845375adebe40cc64fd0d",
+        "answer_hash": "88bb5d0655dad4be2aa6f8a140fc18586024270613ca35e96fda19cd31d3a56f",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch10_q03",
+      "content": "The same 12 cars complete a course with radial and regular belted tires. Fuel economy (km/L) is:\n\n| Car | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 |\n|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|\n| Radial | 4.2 | 4.7 | 6.6 | 7.0 | 6.7 | 4.5 | 5.7 | 6.0 | 7.4 | 4.9 | 6.1 | 5.2 |\n| Belted | 4.1 | 4.9 | 6.2 | 6.9 | 6.8 | 4.4 | 5.7 | 5.8 | 6.9 | 4.7 | 6.0 | 4.9 |\n\nLet $d=\\text{Radial}-\\text{Belted}$. At $\\alpha=0.05$, test whether radial tires have higher mean fuel economy and construct a 95% confidence interval for $\\mu_d$.",
+      "source": "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment and solution_Chap10_Two sample testing.doc",
+      "type": "综合题",
+      "difficulty": 3,
+      "keywords": [
+        "paired t test",
+        "confidence interval"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch10-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch10-review-v1",
+        "question_hash": "1a6a3f544c480e8638f5cfc980e4516b76b51c819c092c3db5f0fd711c504305",
+        "answer_hash": "970c717b8fac62eeb60ac851dc3a9631b5eddb3d69057d50a683e1eb11021332",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch10_q04",
+      "content": "In a randomized study, 104 elderly adults took Ginkgo and 115 took a placebo for six weeks. Memory-score summaries are:\n\n| Group | n | Mean | SD |\n|---|---:|---:|---:|\n| Ginkgo | 104 | 5.7 | 0.6 |\n| Placebo | 115 | 5.5 | 0.5 |\n\nAssuming independent populations, test at $\\alpha=0.05$ whether Ginkgo increases the mean memory score.",
+      "source": "Assigments for Speaking of Statistics-Semester1-2014-2015/Assignment and solution_Chap10_Two sample testing.doc",
+      "type": "计算题",
+      "difficulty": 3,
+      "keywords": [
+        "two-sample t test",
+        "hypothesis testing"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch10-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch10-review-v1",
+        "question_hash": "601d8df77054b2e8582cec09cd6114f16228561012fbf367a349dc6132abcf20",
+        "answer_hash": "50eee0c35e9a68e364a17b4911dc4388f11aa3f52e247d7da108228595b4ced7",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch10_q05",
+      "content": "Two independent samples have $n_1=n_2=6$, means $\\bar x_1=77.4$ and $\\bar x_2=72.2$, and standard deviations $s_1=3.3$ and $s_2=2.1$. Assuming equal variances, test $H_0:\\mu_1\\le\\mu_2$ versus $H_a:\\mu_1>\\mu_2$ at $\\alpha=0.10$.",
+      "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter10_Two sample testing.doc",
+      "type": "计算题",
+      "difficulty": 2,
+      "keywords": [
+        "pooled two-sample t test",
+        "hypothesis testing"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch10-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch10-review-v1",
+        "question_hash": "d940d5524e77ffa2cbf3ce8f1ca49b288aebbe6e264e5a397995c5aebca8c1fd",
+        "answer_hash": "7e6e8d3b1c8eb27713f4b247f16902f66c212a4a15fb4a8b65fe016bf7052aac",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch10_q06",
+      "content": "At $\\alpha=0.05$, test equality of means for two independent equal-variance samples:\n\nSample 1: 16, 14, 19, 18, 19, 20, 15, 18, 17, 18.\n\nSample 2: 13, 19, 14, 17, 21, 14, 15, 10, 13, 15.",
+      "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter10_Two sample testing.doc",
+      "type": "计算题",
+      "difficulty": 3,
+      "keywords": [
+        "pooled two-sample t test",
+        "hypothesis testing"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch10-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch10-review-v1",
+        "question_hash": "ae16d9e8e180092562f928c31f67da81bcb15205d83bbf098d7897fbcd2d90a6",
+        "answer_hash": "4a8d791638712add257a3e1487e9920d410a76c54b2624f189508dc6d1f3533c",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch10_q07",
+      "content": "A manufacturer claims its 900-MHz cordless phones have greater calling range than a competitor's. Manufacturer: $n_1=14$, $\\bar x_1=1275$, $s_1=45$ miles. Competitor: $n_2=16$, $\\bar x_2=1250$, $s_2=30$ miles. Assume normal populations with equal variances. Test at $\\alpha=0.05$.",
+      "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter10_Two sample testing.doc",
+      "type": "计算题",
+      "difficulty": 2,
+      "keywords": [
+        "pooled two-sample t test",
+        "hypothesis testing"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch10-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch10-review-v1",
+        "question_hash": "1d0e65f031d4ed263b7a2c68116ce7ba5cfc3429260492293ad2b5cb5d2a86e7",
+        "answer_hash": "ec34ce48955f6cb803834a7f9170fde39fd4b15b9d0c221afa71884bc362a778",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch10_q08",
+      "content": "Allegheny County wages have sample $n_1=19$, mean $30.8$ thousand dollars, and $s_1=8.6$. Erie County has $n_2=15$, mean $25.7$ thousand dollars, and $s_2=5.5$. Assuming unequal variances, test at $\\alpha=0.10$ whether Allegheny's mean wage is greater.",
+      "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter10_Two sample testing.doc",
+      "type": "计算题",
+      "difficulty": 3,
+      "keywords": [
+        "Welch two-sample t test",
+        "hypothesis testing"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch10-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch10-review-v1",
+        "question_hash": "fea79360872955f26c87a1125a77dbefdff0bbe8bc28ca533b6daeaf32fcb2d5",
+        "answer_hash": "b7d77b6f578994e8e83c1a979c130283b9a4aa05dee63f9faa9fe20e71cdd8c7",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch10_q09",
+      "content": "Gas mileage for nine cars was measured with and without a fuel additive:\n\n| Car | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 |\n|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|\n| With additive | 34.5 | 36.7 | 34.4 | 39.8 | 33.6 | 35.4 | 38.4 | 35.3 | 37.9 |\n| Without additive | 36.4 | 38.8 | 36.1 | 40.1 | 34.7 | 38.3 | 40.2 | 37.2 | 38.7 |\n\nAt $\\alpha=0.10$, test whether the additive improves mileage.",
+      "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter10_Two sample testing.doc",
+      "type": "综合题",
+      "difficulty": 3,
+      "keywords": [
+        "paired t test",
+        "confidence interval"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch10-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch10-review-v1",
+        "question_hash": "b2ecca8ecfb8880a0c38899a32bbe591ad034c1acbebe2d27708d642cd97635b",
+        "answer_hash": "dc79cc9d4e400d583d1658cc39d53f63607375e2e3d8feae07555500852f1403",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch10_q10",
+      "content": "Eight twin pairs were assigned placebo (A) or vitamin supplement (B). Attention times (minutes) were:\n\nA: 34, 18, 39, 31, 28, 26, 28, 22\n\nB: 29, 42, 33, 40, 38, 40, 27, 15\n\n(a) At $\\alpha=0.05$, test whether the vitamin increases attention. (b) Construct a 95% confidence interval for $\\mu_B-\\mu_A$.",
+      "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter10_Two sample testing.doc",
+      "type": "综合题",
+      "difficulty": 3,
+      "keywords": [
+        "paired t test",
+        "confidence interval"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch10-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch10-review-v1",
+        "question_hash": "dd5ce8d6504a4a2963c8b70b3b526fd10545d36df441d26316cf99c1c5e64f80",
+        "answer_hash": "a37eaa5af4e4417330ae67f6cc6659924fe7ab5aa3ddcc5b400ee5878919e28d",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch10_q11",
+      "content": "Driving-ability scores for 10 students were measured before and after a driver-education course:\n\n| Student | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 |\n|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|\n| Before | 100 | 121 | 93 | 146 | 101 | 109 | 149 | 130 | 127 | 120 |\n| After | 136 | 129 | 125 | 150 | 110 | 138 | 136 | 130 | 125 | 129 |\n\nAt $\\alpha=0.05$, test whether there is a mean difference.",
+      "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter10_Two sample testing.doc",
+      "type": "计算题",
+      "difficulty": 2,
+      "keywords": [
+        "paired t test",
+        "hypothesis testing"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch10-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch10-review-v1",
+        "question_hash": "e7fa7e50500b95ad916a89c7cfc36543fac90c6777a89a205a7c8a9dab170afb",
+        "answer_hash": "f3efb9d55e9c446af5c496311f3a311f454bb46c4a83b7d5af57f83a0798041b",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch10_q12",
+      "content": "Among 77 patients taking an antidepressant for two years, 5 had a new depressive episode. Among 84 patients taking it for seven months, 19 had a new episode. At $\\alpha=0.10$, test whether the two population proportions are equal.",
+      "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter10_Two sample testing.doc",
+      "type": "计算题",
+      "difficulty": 3,
+      "keywords": [
+        "two-proportion z test",
+        "hypothesis testing"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch10-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch10-review-v1",
+        "question_hash": "c0ed7b7e7f5837ce4db1beac54cd8c5f60149f1a7f2a757d2d1be730352b7c7c",
+        "answer_hash": "507f02a4aae02aeaa66a909eef8d8e1de788a6bab6af0fdb1346cade245d59df",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch10_q13",
+      "content": "In random surveys, 18.4% of 1,500 California adults and 20.7% of 1,000 Oregon adults are smokers. At $\\alpha=0.05$, test whether the California proportion is lower.",
+      "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter10_Two sample testing.doc",
+      "type": "计算题",
+      "difficulty": 2,
+      "keywords": [
+        "two-proportion z test",
+        "hypothesis testing"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch10-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch10-review-v1",
+        "question_hash": "9509083faaaecd987812d3f8b812778cb32b9b8e158e4805298f5ec2b440334c",
+        "answer_hash": "23e0a9894ea8d5760b354a2236bcff61cb3f1eba093e0afcb0cd9d3420b97d8e",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch10_q14",
+      "content": "Among 148 accounting majors, 75 rate a sense of humor as very important; among 178 finance majors, 81 do so.\n\na. At $\\alpha=0.05$, test whether at least half of finance majors hold this view.\n\nb. At $\\alpha=0.05$, test whether accounting and finance proportions differ.",
+      "source": "Assigments for Speaking of Statistics-Semester2-2014-2015/Assignment-Chapter10_Two sample testing.doc",
+      "type": "综合题",
+      "difficulty": 3,
+      "keywords": [
+        "one-proportion z test",
+        "two-proportion z test",
+        "hypothesis testing"
+      ],
+      "formula_refs": [],
+      "data_refs": [],
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch10-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch10-review-v1",
+        "question_hash": "597488a34b0b9248631824071fd449cb8b1f1391b48b0d9c101751b7435d2464",
+        "answer_hash": "601e53935743c6497ad75de676d0832ada8a3ea4ccbd79cb2989f5821d93332e",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    }
+  ]
+}

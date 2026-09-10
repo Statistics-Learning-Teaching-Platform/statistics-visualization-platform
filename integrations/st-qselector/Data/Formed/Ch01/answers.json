@@ -1,0 +1,599 @@
+{
+  "chapter": 1,
+  "answers": [
+    {
+      "id": "ch01_q01",
+      "answer": "a. **Population**, because all adults in the city are included.\n\nb. **Sample**, because only 35 gas stations are observed.\n\nc. **Sample**, because only 100 selected families are observed.\n\nd. **Population**, because all registered voters in every state are included.\n\ne. **Sample**, because only 50 selected classes are observed.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch01-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch01-review-v1",
+        "question_hash": "1d541557cc5bbdaca54a2d98ae69898f34f30721ad3fcff107f55765eafee470",
+        "answer_hash": "48e35570c5dda3b7ec469242a5f0d62fa058796b0acc6acffa60dcfec6c92062",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch01_q02",
+      "answer": "a. **Quantitative**: number of children.\n\nb. **Qualitative**: car color.\n\nc. **Quantitative**: salary.\n\nd. **Quantitative**: commute time.\n\ne. **Quantitative**: number of credit-report errors.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch01-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch01-review-v1",
+        "question_hash": "b8320da655f3856e37131735470dbc2fcc82f59ddd64765ac8c24f1229770814",
+        "answer_hash": "d6cee2b16092610d1f1d500215b23ec5fbd656ad5f2cab3db11e1f6d588c7942",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch01_q04",
+      "answer": "a. **Cross-sectional data**: prices are measured across 100 cities.\n\nb. **Cross-sectional data**: salaries are measured across 50 employees.\n\nc. **Time-series data**: annual sales are measured over 1980–2012.\n\nd. **Time-series data**: annual employee counts are measured over 1985–2012.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch01-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch01-review-v1",
+        "question_hash": "40751b71b8f8c018817da79522fb46e0ba7ee830f84298787fdf1f106b80bb23",
+        "answer_hash": "86eb6f78d64d08d349f3935683391e7023357139a9c21800939339032ac35588",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch01_q05",
+      "answer": "a. **True.**\n\nb. **False.** A census examines every unit in the population.\n\nc. **False.** A categorical variable is qualitative, not quantitative.\n\nd. **True.**\n\ne. **False.** That task is descriptive statistics.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch01-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch01-review-v1",
+        "question_hash": "42dcbb146b6a432906e619cb4f5977aef0c600e0a65da546c4652a704e523467",
+        "answer_hash": "884756364c165dfd2995e5a79f1218f0dbb6c522b9ef82c278fa347601a39b42",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch01_q07",
+      "answer": "a. **Quantitative**, because an invoice amount is a numerical measurement.\n\nb. **Quantitative**, because net profit is a numerical amount.\n\nc. **Qualitative**, because the stock exchange is a category.\n\nd. **Quantitative**, because national debt is a numerical amount.\n\ne. **Qualitative**, because advertising medium identifies a category.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch01-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch01-review-v1",
+        "question_hash": "742e67d7d2a23cd806a94aa952de9c0dbf56a022169208ec9584bbc44655d59f",
+        "answer_hash": "b914744d82f9945bcd180be7eb2fbdd344edf6ab4942d09ccb9e160c128a9b0e",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch01_q08",
+      "answer": "a. **Ordinal**, because letter grades have a meaningful order.\n\nb. **Nominal**, because door numbers are labels with no ranking.\n\nc. **Nominal**, because yes and no are unordered categories.\n\nd. **Ordinal**, because higher star ratings indicate a higher rank.\n\ne. **Nominal**, because filing-status categories have no natural order.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch01-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch01-review-v1",
+        "question_hash": "56ca39b7aa1fa290e00f07280e2c3b0aff60adb48c19045cb36d2008e9b8e1dc",
+        "answer_hash": "92927480e26e741750af32ec26c4a4160f382535b4e088f8f0105b6e76240110",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch01_q09",
+      "answer": "Compute the sampling interval\n\n$$k=\\frac{1853}{100}=18.53.$$\n\nChoose a random start $r$ uniformly from the interval $(0,k]$. For $j=0,1,\\ldots,99$, select the company at position $\\lceil r+jk\\rceil$ on the ordered list. This procedure selects exactly 100 companies while spreading the sample across the full list.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch01-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch01-review-v1",
+        "question_hash": "4673a7b2b689cfba6cfe1363b6423774bdeed08cc97482aab35b9a0bce87a3f2",
+        "answer_hash": "e9d561b4197cbd07b364e1e8ca86105182cf7c97d72ccf217311a51a68869c2f",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch01_q10",
+      "answer": "Divide the population into mutually exclusive, collectively exhaustive strata whose units are similar with respect to a relevant characteristic. Independently select a random sample from every stratum, using either proportional allocation or another prespecified allocation rule. Combine the selected units from all strata to form the final sample.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch01-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch01-review-v1",
+        "question_hash": "aeccd2defa969e942445639e2cbc3230a0dfa98406255af689c54a9beb6b85bd",
+        "answer_hash": "1f470eccf5b1c40f10294fbd82eaf568066da7132a8decd263ec3e9b4a0304c9",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch01_q12",
+      "answer": "The process does **not** appear to be in statistical control. The runs plot shows that the transaction-time variability is not approximately constant; several abrupt spikes and changes in spread indicate nonrandom process behavior.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch01-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch01-review-v1",
+        "question_hash": "b36c6d5bbb24ebd430849974df93b2bfcffd3dbe5d44d0c9dae81566a44eaa4a",
+        "answer_hash": "8b75d295ac1af30c28fb1da81f5c1496f9f2634b3d8f7c4a226ce2eb57db7fd2",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch01_q13",
+      "answer": "a. The sum is 200 and $N=10$, so the mean is 20. The sorted data are $15,17,18,19,20,20,21,22,23,25$, so the median is 20 and the mode is 20.\n\nb. The sum is 3,521 and $N=7$, so the mean is 503. The sorted data are $497,500,501,501,505,507,510$, so the median is 501 and the mode is 501.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch01-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch01-review-v1",
+        "question_hash": "d2a4fa1ccf0e72e183e28e056b85d11569d9aa80414e4c249036686038032412",
+        "answer_hash": "7bb3dcea2cef17ca2599999b5f49f71ef65481ceb0181af66791242cddf36dca",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch01_q14",
+      "answer": "The mean is\n\n$$\\bar{x}=\\frac{350+45+35+25+40}{5}=99.$$\n\nThe sorted sizes are $25,35,40,45,350$, so the median is 40. The **median** better represents a typical class because the unusually large class of 350 is an outlier that pulls the mean upward.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch01-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch01-review-v1",
+        "question_hash": "1387a1d6e5aef77000497bff9d3d8a01ddc1f30bb8664a865f0a95ed7fb5dc87",
+        "answer_hash": "d46bfed3349c4b3b362cf2e27db931b514762bbdb98cea7e3e82697a8bcb8988",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch01_q15",
+      "answer": "The six percentages are $57.5,61.7,32.5,67.4,55.7,49.2$, with population mean 54.0.\n\nThe range is\n\n$$67.4-32.5=34.9.$$\n\nThe sum of squared deviations from 54.0 is $739.28$, so the population variance is\n\n$$\\sigma^2=\\frac{739.28}{6}\\approx123.21.$$\n\nThe population standard deviation is\n\n$$\\sigma=\\sqrt{123.21}\\approx11.10.$$",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch01-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch01-review-v1",
+        "question_hash": "b428556478af37e4aee7224b19059cc975912a54b12b3dbfebe64ac59acd70fe",
+        "answer_hash": "e47aa2bd1971612d3c1059255f87103d5272908d2cdb003c9e56eb78ad265f01",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "rotel_ch01_variables_01",
+      "answer": "Select **B, C, and D**.\n\nNationality, hair-color category, and low-birth-weight status are categorical variables; the number of computers is a discrete quantitative variable.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch01-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch01-review-v1",
+        "question_hash": "026b55510c477c8c44812dbe2e7823483a0e3620757acbe958978354a9129c96",
+        "answer_hash": "cbbb76c169ba9f95c19edb771120e2e5c3a926777253d041ef06cc99eb4313e0",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "rotel_ch01_variables_02",
+      "answer": "Select **B and D**.\n\nThe number of cigarettes smoked per year and body mass index are numerical measurements on which arithmetic operations can be performed. Age groups and dosage-form codes contain numbers but are fundamentally categorical variables.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch01-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch01-review-v1",
+        "question_hash": "2d0976391dd8bfca77883d1d6bc6cad92402a87c9ecc31cfb8900c6edba27ffa",
+        "answer_hash": "34e5d9069c3a815c7a097fed23d68bf7870331b784350258182318db18b21950",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "rotel_ch01_sampling_01",
+      "answer": "**Yes, it is representative.**\n\nThe sampled population and target population are both Seattle residents, and simple random sampling is used; assuming adequate coverage by the sampling frame, every resident has a chance of selection.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch01-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch01-review-v1",
+        "question_hash": "34d69094ecc17111e654bc1aa8e7181bdfb778a28bb3267cb67922353f0c7232",
+        "answer_hash": "bc289b74bb6f8ce72654451578840cb92ad5b6de028320dc43db0162c6d06d50",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "rotel_ch01_sampling_02",
+      "answer": "**Yes, it is representative.**\n\nThe problem defines adults as people aged 18 and older, so the sampled and target populations coincide, and simple random sampling is used.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch01-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch01-review-v1",
+        "question_hash": "06e18b01d47a02c45009e64a1319fc7fb71fa2401a63c25bfcfbde55eea1d65d",
+        "answer_hash": "4991cd4c48b80a3d003542856fd1d7b3443ec1161aa9ef8eef8b4d88a58f9bbf",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "rotel_ch01_sampling_03",
+      "answer": "**No, it is not representative.**\n\nContacting people only during weekday daytime hours can systematically omit people who are working, unable to answer then, or lack an available telephone, creating coverage and time-selection bias.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch01-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch01-review-v1",
+        "question_hash": "a3856afc1e37854d05b54fea4485e9af4c7e48d1577cc6763fe235feb8c160d9",
+        "answer_hash": "1455267675ce2da9c9fba02f51ef14faded118a1068d23ef71707f514e83896c",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "rotel_ch01_sampling_04",
+      "answer": "**No, it is not representative.**\n\nPatients at one hospital are not a random sample of all U.S. citizens. Their health status, region, and care-seeking behavior may differ from those of the target population, so the result cannot be generalized to the national mean.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch01-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch01-review-v1",
+        "question_hash": "fb72f65598bb273cbbca56908697eab3fc6c5ecea669fc839d6e38c85d096419",
+        "answer_hash": "feb3b5baea9604ce3f6c51747a99000b40bb6436209821c970f479c93c22c113",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "rotel_ch01_measurement_01",
+      "answer": "Select **A, nominal**.\n\nResponses are typically categories such as “yes” or “no,” with no natural order of magnitude.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch01-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch01-review-v1",
+        "question_hash": "b4b9df2c04f4d5c7aa0e4f7a66762e1ff7e782a4e9dbb5270fb3cab2ca904d4d",
+        "answer_hash": "641322da5d2a3d3fae4eeb36c3cf7e50dee66f66df1b073da814c41ba1e8b5a2",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "rotel_ch01_measurement_02",
+      "answer": "Select **D, ratio**.\n\nSalary has a meaningful absolute zero; both differences and ratio comparisons are meaningful.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch01-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch01-review-v1",
+        "question_hash": "31bffd567cb3003dcd852458fafcdbefdfc743fb1553a5377b018f8b083b9972",
+        "answer_hash": "1b6c94e6e2d03f035c39e611a6ae8cc676eea3d0f29108a50c619ad9de3e9e8d",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "rotel_ch01_measurement_03",
+      "answer": "Select **B, ordinal**.\n\nThe three categories have a natural order, but differences between adjacent categories cannot be interpreted as equal numerical intervals.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch01-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch01-review-v1",
+        "question_hash": "c3961c7eee88c68d223f5615a2304182f5bddba46f313699a336746c8fbe7eac",
+        "answer_hash": "377b93cd065256a59a84665fee3df88e7b9fc29ee16e29d6d21a076ed9e61a10",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "rotel_ch01_design_01",
+      "answer": "a. **Explanatory variable: movie type.**\n\nb. **Response variable: number of potato chips eaten by the children.**\n\nc. **Confounding variable: movie screening time.**\n\nMovie type and screening time change simultaneously, so differences in chip consumption cannot be separated into effects of movie type versus children's differing hunger levels at 8:00 and 11:00 a.m.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch01-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch01-review-v1",
+        "question_hash": "8b0fad09c3d84551511c43972ac5d79fddab93f4400bbfacf73e95498a1f0dff",
+        "answer_hash": "9c77220ef73e16ae13ba98707386c4d3d7bc6c799b5870569f4481e3aff1fe26",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "ch01_q11",
+      "answer": "One valid design is:\n\na. List all cities in the state whose populations exceed 10,000, and randomly select a sample of those cities.\n\nb. Within each selected city, list the city blocks and randomly select a sample of blocks.\n\nc. Within each selected block, list the eligible consumers or households and randomly select consumers to survey.\n\nRandom selection must be used at every stage. If clusters have unequal selection probabilities, the final analysis should use the corresponding sampling weights.",
+      "review_status": "independently solved and reviewed",
+      "audit_pack": "ch01-review-v1",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "ch01-review-v1",
+        "question_hash": "18087165e862d3e4bbf376faea286ea144e6480244fcb0479584c44c7b72ae68",
+        "answer_hash": "3561106868ba701238df809d118e0fe610fbf0e021b4176fe7b5afcb393e8985",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "opl_nau_ch01_terminology_01",
+      "answer": "a. The **population** is all 1,500 singers in the choir.\n\nb. The **sample** is the 650 singers seated nearest the front who were surveyed.\n\nc. The **parameter** is the true proportion of all 1,500 choir members who are professional singers.\n\nd. The sample statistic is\n\n$$\\hat p=\\frac{26}{650}=0.04.$$\n\nThus, 4% of the surveyed singers are professionals.\n\ne. This is a **convenience sample**, not a random sample. Singers seated near the front may differ systematically from the rest of the choir, so the estimate may be biased.",
+      "review_status": "independently solved and reviewed",
+      "source_commit": "54e7db70ed308cab9c7eed8af1d2dba5a6adf7d4",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "opl-nau-curated-v1",
+        "question_hash": "2c07a366782749ee84863947e5a317bfe761eaaf62b6b9390edbd55359cefaff",
+        "answer_hash": "6f8e7ee62a7f8646ddf2d6ece4ce458526f1eb361f81fd853b77e9fb87c901ce",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "opl_nau_ch01_sampling_01",
+      "answer": "a. **Reasonably representative.** The sampling frame and target population are both Seattle residents, and simple random sampling gives residents a known chance of selection.\n\nb. **Not representative.** Dentists are a specialized occupational subgroup whose income distribution is unlikely to match that of all Seattle residents.",
+      "review_status": "independently solved and reviewed",
+      "source_commit": "54e7db70ed308cab9c7eed8af1d2dba5a6adf7d4",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "opl-nau-curated-v1",
+        "question_hash": "5fbeec8a0fee093aaa8f265397694ca455a13d97454443b00c9bc168641257b6",
+        "answer_hash": "932cee9a336a50d93accf59b74de97ac8694b3eadc263b8c2648292bb425e84e",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "opl_nau_ch01_design_01",
+      "answer": "a. **Observational study.** The therapist observes existing records without assigning an exposure.\n\nb. **Observational study.** Exercise habits and weight are measured, but no treatment is assigned.\n\nc. **Controlled experiment.** Researchers assign the diet treatments and compare outcomes.\n\nd. **Double-blind experiment.** Treatment is assigned, and neither participants nor the administering nurse knows the assignment.",
+      "review_status": "independently solved and reviewed",
+      "source_commit": "54e7db70ed308cab9c7eed8af1d2dba5a6adf7d4",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "opl-nau-curated-v1",
+        "question_hash": "8c210892ffe5d7bf925119a786e57a4102cbfa800cb8e353d25d6d351d29eeff",
+        "answer_hash": "194fc75de2b1f07f27cb5b7e6fcbedbcbc90e33af21236639cabede4c427fdfe",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    },
+    {
+      "id": "opl_nau_ch01_population_01",
+      "answer": "a. The **population** is all Americans.\n\nb. The **sample** is the 4,000 Americans interviewed.\n\nc. The attribute of interest is whether a person agrees with the president on the issue.\n\nd. Since\n\n$$\\hat p=\\frac{3200}{4000}=0.80$$\n\nwas calculated from the sample, 0.80 is a **sample proportion**.",
+      "review_status": "independently solved and reviewed",
+      "source_commit": "54e7db70ed308cab9c7eed8af1d2dba5a6adf7d4",
+      "review": {
+        "schema_version": 1,
+        "status": "approved",
+        "pack_id": "opl-nau-curated-v1",
+        "question_hash": "1f619739a9fbfcfc016a7a893c657bb4d8357f8bc677c6a0bfc60595a1fa0376",
+        "answer_hash": "0c25eccbd3402e63c489410515122a176dd18a15335999c50364ab996a458a43",
+        "gates": {
+          "english": "passed",
+          "source": "passed",
+          "grouping": "passed",
+          "independent_solution": "passed",
+          "verification": "passed",
+          "metadata": "passed",
+          "render": "passed"
+        }
+      }
+    }
+  ]
+}

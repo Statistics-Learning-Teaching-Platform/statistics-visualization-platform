@@ -7,7 +7,7 @@
 // (matching the standalone confidence-interval app); apps whose content needs
 // more room (e.g. regression) pass their own layout to createLinearScales.
 
-import { scaleLinear, type ScaleLinear } from "d3";
+import { type ScaleLinear, scaleLinear } from "d3";
 
 export interface ChartLayout {
   width: number;

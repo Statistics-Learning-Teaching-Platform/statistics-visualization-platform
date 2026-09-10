@@ -1,6 +1,6 @@
-import { useCallback, useEffect, useState } from "react";
 import type { ScaleLinear } from "d3";
-import type { Point, CustomLineState } from "./constants";
+import { useCallback, useEffect, useRef, useState } from "react";
+import type { CustomLineState, Point } from "./constants";
 
 interface UseCustomLineOptions {
   scales: { xScale: ScaleLinear<number, number>; yScale: ScaleLinear<number, number> };
@@ -17,9 +17,16 @@ export function useCustomLine({ scales, chartLayoutMargin, resetDeps }: UseCusto
   const [customLine, setCustomLine] = useState<CustomLineState>({ start: null, end: null });
   const [tempLine, setTempLine] = useState<CustomLineState>({ start: null, end: null });
   const [isDragging, setIsDragging] = useState(false);
+  // Pointer down/up can occur before React commits an intervening render. Keep
+  // the drag origin synchronously as well as in state so a fast gesture never
+  // reuses a stale committed line or loses its start point.
+  const dragStartRef = useRef<Point | null>(null);
 
   useEffect(() => {
     setCustomLine({ start: null, end: null });
+    setTempLine({ start: null, end: null });
+    setIsDragging(false);
+    dragStartRef.current = null;
   }, resetDeps);
 
   const getChartCoords = useCallback(
@@ -38,8 +45,13 @@ export function useCustomLine({ scales, chartLayoutMargin, resetDeps }: UseCusto
 
   const handlePointerDown = useCallback(
     (e: React.PointerEvent<SVGSVGElement>) => {
+      e.preventDefault();
+      e.currentTarget.setPointerCapture(e.pointerId);
       const { x, y } = getChartCoords(e);
-      setTempLine({ start: { x: scales.xScale.invert(x), y: scales.yScale.invert(y) }, end: null });
+      const start = { x: scales.xScale.invert(x), y: scales.yScale.invert(y) };
+      dragStartRef.current = start;
+      setCustomLine({ start: null, end: null });
+      setTempLine({ start, end: null });
       setIsDragging(true);
     },
     [getChartCoords, scales],
@@ -47,48 +59,86 @@ export function useCustomLine({ scales, chartLayoutMargin, resetDeps }: UseCusto
 
   const handlePointerMove = useCallback(
     (e: React.PointerEvent<SVGSVGElement>) => {
-      if (!isDragging) return;
+      if (!dragStartRef.current) return;
+      e.preventDefault();
       const { x, y } = getChartCoords(e);
       setTempLine((prev) => ({
         start: prev.start,
         end: { x: scales.xScale.invert(x), y: scales.yScale.invert(y) },
       }));
     },
-    [isDragging, getChartCoords, scales],
+    [getChartCoords, scales],
   );
 
   const handlePointerUp = useCallback(
     (e: React.PointerEvent<SVGSVGElement>) => {
-      if (!isDragging) return;
+      if (!dragStartRef.current) return;
       const { x, y } = getChartCoords(e);
       setTempLine({ start: null, end: null });
       setIsDragging(false);
-      setCustomLine((prev) => {
-        const start = prev.start ?? tempLine.start;
-        const end = { x: scales.xScale.invert(x), y: scales.yScale.invert(y) };
-        if (!start || (start.x === end.x && start.y === end.y)) return { start: null, end: null };
-        return { start, end };
-      });
+      if (e.currentTarget.hasPointerCapture(e.pointerId)) {
+        e.currentTarget.releasePointerCapture(e.pointerId);
+      }
+      const start = dragStartRef.current;
+      dragStartRef.current = null;
+      const end = { x: scales.xScale.invert(x), y: scales.yScale.invert(y) };
+      setCustomLine(
+        !start || (start.x === end.x && start.y === end.y)
+          ? { start: null, end: null }
+          : { start, end },
+      );
     },
-    [isDragging, getChartCoords, scales, tempLine.start],
+    [getChartCoords, scales],
   );
 
-  const clear = useCallback(() => setCustomLine({ start: null, end: null }), []);
+  const handlePointerCancel = useCallback((e: React.PointerEvent<SVGSVGElement>) => {
+    if (e.currentTarget.hasPointerCapture(e.pointerId)) {
+      e.currentTarget.releasePointerCapture(e.pointerId);
+    }
+    dragStartRef.current = null;
+    setTempLine({ start: null, end: null });
+    setIsDragging(false);
+  }, []);
+
+  const clear = useCallback(() => {
+    dragStartRef.current = null;
+    setCustomLine({ start: null, end: null });
+    setTempLine({ start: null, end: null });
+    setIsDragging(false);
+  }, []);
+
+  const setNumericParams = useCallback(
+    (slope: number, intercept: number) => {
+      const [xMin, xMax] = scales.xScale.domain();
+      setCustomLine({
+        start: { x: xMin, y: intercept + slope * xMin },
+        end: { x: xMax, y: intercept + slope * xMax },
+      });
+    },
+    [scales],
+  );
 
   return {
     customLine,
     tempLine,
     isDragging,
-    handlers: { handlePointerDown, handlePointerMove, handlePointerUp },
+    handlers: { handlePointerDown, handlePointerMove, handlePointerUp, handlePointerCancel },
     clear,
+    setNumericParams,
   };
 }
 
 /** Returns slope/intercept for the committed custom line, or null when incomplete. */
-export function getCustomLineParams(customLine: CustomLineState): { slope: number; intercept: number } | null {
+export function getCustomLineParams(
+  customLine: CustomLineState,
+): { slope: number; intercept: number } | null {
   if (!customLine.start || !customLine.end) return null;
   const dx = customLine.end.x - customLine.start.x;
-  const slope = dx !== 0 ? (customLine.end.y - customLine.start.y) / dx : 0;
+  // A vertical stroke is not a function y = mx + b and therefore has no
+  // fitted value or SSE in this visualizer. Treat it as incomplete instead of
+  // silently converting it to a horizontal line with slope zero.
+  if (Math.abs(dx) <= Number.EPSILON) return null;
+  const slope = (customLine.end.y - customLine.start.y) / dx;
   return { slope, intercept: customLine.start.y - slope * customLine.start.x };
 }
 
@@ -107,13 +157,13 @@ export function computeHoverInfo(
   customLineParams: { slope: number; intercept: number } | null,
 ): HoverInfo {
   if (!hoverPoint) return null;
-  if (showRegression) {
-    const lineY = regression.slope * hoverPoint.x + regression.intercept;
-    return { point: hoverPoint, lineY, residual: hoverPoint.y - lineY, lineType: "regression" };
-  }
   if (customLineParams) {
     const lineY = customLineParams.slope * hoverPoint.x + customLineParams.intercept;
     return { point: hoverPoint, lineY, residual: hoverPoint.y - lineY, lineType: "custom" };
+  }
+  if (showRegression) {
+    const lineY = regression.slope * hoverPoint.x + regression.intercept;
+    return { point: hoverPoint, lineY, residual: hoverPoint.y - lineY, lineType: "regression" };
   }
   return null;
 }
