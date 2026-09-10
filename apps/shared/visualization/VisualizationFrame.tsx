@@ -8,6 +8,26 @@ import {
 } from "./WorkspaceLayout";
 import { ExperimentExplanationDrawer } from "./ExperimentExplanationDrawer";
 
+const ANOVA_SIDEBAR_WIDTH_KEY = "statmind-anova-sidebar-width";
+const ANOVA_SIDEBAR_MIN = 340;
+const ANOVA_SIDEBAR_MAX = 720;
+const ANOVA_SIDEBAR_DEFAULT = 620;
+
+function clampSidebarWidth(value: number, min: number, max: number): number {
+	return Math.min(max, Math.max(min, Math.round(value)));
+}
+
+function loadAnovaSidebarWidth(): number {
+	try {
+		const stored = Number(localStorage.getItem(ANOVA_SIDEBAR_WIDTH_KEY));
+		return Number.isFinite(stored) && stored > 0
+			? clampSidebarWidth(stored, ANOVA_SIDEBAR_MIN, ANOVA_SIDEBAR_MAX)
+			: ANOVA_SIDEBAR_DEFAULT;
+	} catch {
+		return ANOVA_SIDEBAR_DEFAULT;
+	}
+}
+
 interface VisualizationFrameProps {
 	content: ReactNode;
 	sidebar: ReactNode;
@@ -27,8 +47,11 @@ export function VisualizationFrame({
 	moduleId,
 }: VisualizationFrameProps) {
   const language = useLanguage();
+  const hasWideAnovaSidebar = moduleId === "mes-anova";
+  const sidebarMin = hasWideAnovaSidebar ? ANOVA_SIDEBAR_MIN : 270;
+  const sidebarMax = hasWideAnovaSidebar ? ANOVA_SIDEBAR_MAX : 340;
   const [rightPanelWidth, setRightPanelWidth] = useState(
-    () => loadWorkspaceLayout().rightPanelWidth,
+    () => hasWideAnovaSidebar ? loadAnovaSidebarWidth() : loadWorkspaceLayout().rightPanelWidth,
   );
   const [parameterOpen, setParameterOpen] = useState(false);
   const [teachingOpen, setTeachingOpen] = useState(false);
@@ -46,6 +69,14 @@ export function VisualizationFrame({
   }, []);
 	const updateRightPanelWidth = (width: number) => {
 		setRightPanelWidth(width);
+		if (hasWideAnovaSidebar) {
+			try {
+				localStorage.setItem(ANOVA_SIDEBAR_WIDTH_KEY, String(Math.round(width)));
+			} catch {
+				// Persistence is optional in embedded and private browsing contexts.
+			}
+			return;
+		}
 		const current = loadWorkspaceLayout();
 		saveWorkspaceLayout({ ...current, rightPanelWidth: width });
   };
@@ -109,8 +140,8 @@ export function VisualizationFrame({
 						<PanelResizeHandle
 							side="right"
 							value={rightPanelWidth}
-							min={270}
-							max={340}
+							min={sidebarMin}
+							max={sidebarMax}
 							ariaLabel="调整右侧参数面板宽度"
 							containerSelector=".module-layout"
 							onChange={updateRightPanelWidth}

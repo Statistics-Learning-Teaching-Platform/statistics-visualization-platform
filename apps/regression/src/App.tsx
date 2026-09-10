@@ -109,29 +109,31 @@ export default function RegressionApp() {
         <>
           <VisualizationHeader eyebrow={copy.coreVisualizer} title={copy.title} description={copy.description} experimentNumber={metadata?.number} category={metadata?.localizedCategory} researchQuestion={metadata?.localizedQuestion} />
           <div className="regression-workbench">
-            <section className="regression-stage" aria-labelledby="regression-chart-title">
-              <div className="regression-stage__header">
-                <div className="regression-stage__intro">
-                  <p className="eyebrow">{copy.modelOutput}</p>
-                  <h2 id="regression-chart-title">{copy.chartTitle}</h2>
-                  <p>{copy.chartDescription}</p>
-                </div>
-                <div className="regression-line-guide" role="list" aria-label={copy.lineType}>
-                  {showRegression && (
-                    <span className="regression-line-guide__item" role="listitem">
-                      <span className="regression-line-guide__swatch regression-line-guide__swatch--fit" aria-hidden="true" />
-                      {copy.regressionLine}
-                    </span>
-                  )}
-                  {customLineParams ? (
-                    <span className="regression-line-guide__item regression-line-guide__item--active" role="listitem">
-                      <span className="regression-line-guide__swatch regression-line-guide__swatch--custom" aria-hidden="true" />
-                      {copy.customLine}
-                    </span>
-                  ) : (
-                    <span className="regression-line-guide__hint">{copy.chartDescription}</span>
-                  )}
-                </div>
+            <section className="regression-stage" aria-label={copy.chartTitle}>
+              <ExperimentMetricStrip
+                ariaLabel={copy.statistics}
+                metrics={[
+                  { key: "current-sse", label: copy.sse, value: sse.value.toFixed(3), semantics: "derived" as const },
+                  { key: "ols-sse", label: language === "zh" ? "OLS SSE" : "OLS SSE", value: regression.sse.toFixed(3), semantics: "comparison" as const },
+                  { key: "delta-sse", label: language === "zh" ? "SSE 差值" : "SSE delta", value: (sse.value - regression.sse).toFixed(3), semantics: "comparison" as const },
+                  { key: "r", label: "r", value: correlation.toFixed(3), semantics: "derived" as const },
+                  { key: "r2", label: "R²", value: regression.rSquared.toFixed(3), semantics: "derived" as const },
+                ]}
+              />
+
+              <div className="regression-line-guide" role="list" aria-label={copy.lineType}>
+                {showRegression && (
+                  <span className="regression-line-guide__item" role="listitem">
+                    <span className="regression-line-guide__swatch regression-line-guide__swatch--fit" aria-hidden="true" />
+                    {copy.regressionLine}
+                  </span>
+                )}
+                {customLineParams && (
+                  <span className="regression-line-guide__item regression-line-guide__item--active" role="listitem">
+                    <span className="regression-line-guide__swatch regression-line-guide__swatch--custom" aria-hidden="true" />
+                    {copy.customLine}
+                  </span>
+                )}
               </div>
 
               <ChartFrame>
@@ -155,37 +157,8 @@ export default function RegressionApp() {
                   />
                 </div>
               </ChartFrame>
-
-              <ExperimentMetricStrip
-                ariaLabel={copy.statistics}
-                metrics={[
-                  { key: "current-sse", label: copy.sse, value: sse.value.toFixed(3), semantics: "derived" as const },
-                  { key: "ols-sse", label: language === "zh" ? "OLS SSE" : "OLS SSE", value: regression.sse.toFixed(3), semantics: "comparison" as const },
-                  { key: "delta-sse", label: language === "zh" ? "SSE 差值" : "SSE delta", value: (sse.value - regression.sse).toFixed(3), semantics: "comparison" as const },
-                  { key: "r", label: "r", value: correlation.toFixed(3), semantics: "derived" as const },
-                  { key: "r2", label: "R²", value: regression.rSquared.toFixed(3), semantics: "derived" as const },
-                ]}
-              />
               <StatisticsPanel sse={sse} hoverInfo={hoverInfo} copy={copy} />
             </section>
-
-            <aside className="regression-control-rail" aria-label={copy.parameters}>
-              <ControlPanel
-                copy={copy}
-                datasets={datasets}
-                selectedId={selectedId}
-                showRegression={showRegression}
-                showOutliers={showOutliers}
-                selectedDataset={selectedDataset}
-                onSelectDataset={setSelectedId}
-                onToggleRegression={setShowRegression}
-                onToggleOutliers={setShowOutliers}
-                onClearCustomLine={clear}
-                customLineParams={customLineParams}
-                onNumericLine={setNumericParams}
-                translate={t}
-              />
-            </aside>
 
             <section className="regression-learning-grid" aria-label={copy.teachingNotes}>
               <section className="teaching-panel regression-concept-card">
@@ -215,7 +188,23 @@ export default function RegressionApp() {
           </div>
         </>
       }
-      sidebar={null}
+      sidebar={
+        <ControlPanel
+          copy={copy}
+          datasets={datasets}
+          selectedId={selectedId}
+          showRegression={showRegression}
+          showOutliers={showOutliers}
+          selectedDataset={selectedDataset}
+          onSelectDataset={setSelectedId}
+          onToggleRegression={setShowRegression}
+          onToggleOutliers={setShowOutliers}
+          onClearCustomLine={clear}
+          customLineParams={customLineParams}
+          onNumericLine={setNumericParams}
+          translate={t}
+        />
+      }
     />
   );
 }

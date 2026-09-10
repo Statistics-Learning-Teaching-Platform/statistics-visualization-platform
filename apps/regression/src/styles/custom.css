@@ -2363,15 +2363,8 @@ body {
 }
 
 /* Regression workbench ----------------------------------------------------
- * Keep the visualizer, metrics, and controls in one module-owned layout.
- * This intentionally bypasses the legacy output-dock/sidebar overrides above. */
-.visualization-frame.module-shell[data-module-id="regression"] > .module-layout {
-  grid-template-columns: minmax(0, 1fr) !important;
-  grid-template-areas: "main" !important;
-  height: 100% !important;
-  min-height: 0 !important;
-  overflow: hidden !important;
-}
+ * The shared frame owns the canvas/parameter split. Regression only defines
+ * the arrangement of its chart, statistics and learning cards. */
 
 .visualization-frame.module-shell[data-module-id="regression"] .experiment-board {
   display: flex !important;
@@ -2418,7 +2411,6 @@ body {
   grid-template-columns: minmax(0, 1fr);
   grid-template-areas:
     "stage"
-    "controls"
     "learning";
   align-items: start;
   gap: 20px;
@@ -2843,11 +2835,11 @@ body {
 
 @container visualization-workspace (min-width: 980px) {
   .visualization-frame.module-shell[data-module-id="regression"] .regression-workbench {
-    grid-template-columns: minmax(0, 1fr) minmax(280px, 310px);
+    grid-template-columns: minmax(0, 1fr);
     grid-template-areas:
-      "stage controls"
-      "learning controls";
-    gap: 24px;
+      "stage"
+      "learning";
+    gap: 20px;
   }
 }
 

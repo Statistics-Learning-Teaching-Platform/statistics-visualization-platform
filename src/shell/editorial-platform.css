@@ -1393,3 +1393,543 @@
 		aspect-ratio: 4 / 3;
 	}
 }
+
+/* Experiment 01 visual parity ---------------------------------------------
+ * All laboratories use the probability experiment's compact type scale,
+ * continuous metric strip, warm plotting surface and bordered control card.
+ * Module styles still own their charts and interactions. */
+.editorial-demo
+	.ed-live-lab-shell
+	.visualization-frame.module-shell
+	.experiment-board.ed-lab-stage {
+	gap: 24px !important;
+	padding: 0 clamp(24px, 2.6vw, 32px) 32px !important;
+}
+
+.editorial-demo
+	.ed-live-lab-shell
+	.visualization-frame.module-shell
+	.experiment-header {
+	grid-template-columns: 58px minmax(0, 1fr);
+	gap: 18px;
+	padding: 28px 0 22px !important;
+	border-bottom: 0;
+}
+
+.editorial-demo
+	.ed-live-lab-shell
+	.visualization-frame.module-shell
+	.experiment-header h1 {
+	margin: 0 !important;
+	font-family: var(--lab-font-sans) !important;
+	font-size: 32px !important;
+	font-weight: 600 !important;
+	letter-spacing: -0.02em;
+	line-height: 1.12 !important;
+}
+
+.editorial-demo
+	.ed-live-lab-shell
+	.visualization-frame.module-shell
+	.experiment-header .experiment-header__meta {
+	margin-bottom: 6px !important;
+}
+
+.editorial-demo
+	.ed-live-lab-shell
+	.visualization-frame.module-shell
+	.experiment-header > div > p:not(.eyebrow) {
+	margin-top: 8px !important;
+	font-size: 14px !important;
+	line-height: 1.55 !important;
+}
+
+.editorial-demo
+	.ed-live-lab-shell
+	.visualization-frame.module-shell
+	.output-dock {
+	gap: 0 !important;
+	margin-top: 0;
+}
+
+.editorial-demo
+	.ed-live-lab-shell
+	.visualization-frame.module-shell
+	.output-heading {
+	display: grid !important;
+	grid-template-columns: minmax(100px, 0.42fr) minmax(210px, 0.78fr) minmax(250px, 1fr) !important;
+	align-items: center !important;
+	gap: 18px !important;
+	min-height: 76px;
+	margin: 0 0 18px !important;
+	padding: 14px 0 !important;
+	border-top: 1px solid var(--lab-blue) !important;
+	border-bottom: 1px solid var(--lab-divider) !important;
+}
+
+.editorial-demo
+	.ed-live-lab-shell
+	.visualization-frame.module-shell
+	.output-heading > .eyebrow {
+	margin: 0 !important;
+	font-size: 11px !important;
+	letter-spacing: 0.08em;
+}
+
+.editorial-demo
+	.ed-live-lab-shell
+	.visualization-frame.module-shell
+	.output-heading h2 {
+	margin: 0 !important;
+	font-family: var(--lab-font-sans) !important;
+	font-size: 20px !important;
+	font-weight: 600 !important;
+	line-height: 1.25 !important;
+	text-align: left;
+}
+
+.editorial-demo
+	.ed-live-lab-shell
+	.visualization-frame.module-shell
+	.output-heading > p:last-child {
+	margin: 0 !important;
+	font-size: 12px;
+	line-height: 1.5;
+}
+
+.editorial-demo
+	.ed-live-lab-shell
+	.visualization-frame.module-shell
+	.metrics-grid,
+.editorial-demo
+	.ed-live-lab-shell
+	.visualization-frame.module-shell[data-module-id="simulation-mcmc"]
+	.metrics-grid[data-metric-count="5"] {
+	grid-template-columns: repeat(var(--metric-count, 4), minmax(0, 1fr));
+	gap: 0 !important;
+	height: 76px !important;
+	min-height: 76px;
+	margin: 0 0 22px !important;
+	padding: 0 !important;
+	border: 1px solid var(--lab-border) !important;
+	border-radius: var(--lab-radius-md) !important;
+	background: var(--lab-surface) !important;
+	overflow: hidden;
+}
+
+.editorial-demo
+	.ed-live-lab-shell
+	.visualization-frame.module-shell
+	.metrics-grid[data-metric-count="3"] {
+	--metric-count: 3;
+}
+
+.editorial-demo
+	.ed-live-lab-shell
+	.visualization-frame.module-shell
+	.metrics-grid[data-metric-count="4"] {
+	--metric-count: 4;
+}
+
+.editorial-demo
+	.ed-live-lab-shell
+	.visualization-frame.module-shell
+	.metrics-grid[data-metric-count="5"] {
+	--metric-count: 5;
+}
+
+.editorial-demo
+	.ed-live-lab-shell
+	.visualization-frame.module-shell
+	.metrics-grid > .metric-card {
+	grid-column: auto !important;
+	min-width: 0;
+	height: 76px !important;
+	min-height: 76px !important;
+	max-height: 76px;
+	padding: 12px 16px !important;
+	border: 0 !important;
+	border-right: 1px solid var(--lab-divider) !important;
+	border-radius: 0 !important;
+	background: transparent !important;
+}
+
+.editorial-demo
+	.ed-live-lab-shell
+	.visualization-frame.module-shell
+	.metrics-grid > .metric-card:last-child {
+	border-right: 0 !important;
+}
+
+.editorial-demo
+	.ed-live-lab-shell
+	.visualization-frame.module-shell
+	.metric-label {
+	font-size: 11px !important;
+}
+
+.editorial-demo
+	.ed-live-lab-shell
+	.visualization-frame.module-shell
+	.metric-value {
+	font-family: var(--lab-font-sans) !important;
+	font-size: clamp(23px, 2vw, 26px) !important;
+	font-weight: 600 !important;
+}
+
+.editorial-demo
+	.ed-live-lab-shell
+	.visualization-frame.module-shell
+	.metric-note {
+	font-size: 10px;
+	line-height: 1.25;
+}
+
+.editorial-demo
+	.ed-live-lab-shell
+	.visualization-frame.module-shell
+	.chart-frame {
+	min-height: clamp(360px, 52vh, 480px) !important;
+	aspect-ratio: 760 / 420;
+	margin-bottom: 18px;
+	padding: 16px !important;
+	border: 1px solid var(--lab-border) !important;
+	border-radius: var(--lab-radius-md) !important;
+	background: var(--lab-surface) !important;
+}
+
+.editorial-demo
+	.ed-live-lab-shell
+	.visualization-frame.module-shell
+	.chart-frame > svg,
+.editorial-demo
+	.ed-live-lab-shell
+	.visualization-frame.module-shell
+	.chart-frame > .chart-shell,
+.editorial-demo
+	.ed-live-lab-shell
+	.visualization-frame.module-shell
+	.chart-frame .teaching-chart {
+	background: var(--lab-plot-bg);
+}
+
+.editorial-demo
+	.ed-live-lab-shell
+	.visualization-frame.module-shell
+	.teaching-area.ed-parameter-rail {
+	gap: 12px;
+}
+
+.editorial-demo
+	.ed-live-lab-shell
+	.visualization-frame.module-shell
+	.teaching-area.ed-parameter-rail > .parameter-panel,
+.editorial-demo
+	.ed-live-lab-shell
+	.visualization-frame.module-shell
+	.teaching-area.ed-parameter-rail > .studio-control-bar {
+	width: 100%;
+	margin: 0;
+	padding: 16px 18px 20px !important;
+	border: 1px solid var(--lab-border) !important;
+	border-radius: var(--lab-radius-md) !important;
+	background: var(--lab-surface) !important;
+	box-shadow: none !important;
+}
+
+.editorial-demo
+	.ed-live-lab-shell
+	.visualization-frame.module-shell
+	.parameter-panel {
+	gap: 10px !important;
+}
+
+.editorial-demo
+	.ed-live-lab-shell
+	.visualization-frame.module-shell
+	.parameter-panel > .eyebrow {
+	margin: 0 0 2px !important;
+	font-size: 11px !important;
+}
+
+.editorial-demo
+	.ed-live-lab-shell
+	.visualization-frame.module-shell
+	.control-group,
+.editorial-demo
+	.ed-live-lab-shell
+	.visualization-frame.module-shell
+	.control-panel__group {
+	gap: 8px;
+	padding: 12px 0;
+}
+
+.editorial-demo
+	.ed-live-lab-shell
+	.visualization-frame.module-shell
+	.control-panel__title {
+	font-family: var(--lab-font-sans);
+	font-size: 18px;
+	font-weight: 600;
+}
+
+.editorial-demo
+	.ed-live-lab-shell
+	.visualization-frame.module-shell
+	.control-panel__select,
+.editorial-demo
+	.ed-live-lab-shell
+	.visualization-frame.module-shell
+	.form-select,
+.editorial-demo
+	.ed-live-lab-shell
+	.visualization-frame.module-shell
+	.control-input {
+	height: 38px !important;
+	min-height: 38px !important;
+	border-radius: var(--lab-radius-sm);
+}
+
+.editorial-demo
+	.ed-live-lab-shell
+	.visualization-frame.module-shell
+	.run-button,
+.editorial-demo
+	.ed-live-lab-shell
+	.visualization-frame.module-shell
+	.studio-button--primary {
+	min-height: 38px;
+	border-radius: var(--lab-radius-sm) !important;
+	border-color: var(--lab-blue) !important;
+	color: #fff !important;
+	background: var(--lab-blue) !important;
+}
+
+.editorial-demo
+	.ed-live-lab-shell
+	.visualization-frame.module-shell
+	.example-tabs {
+	display: grid;
+	gap: 8px;
+}
+
+.editorial-demo
+	.ed-live-lab-shell
+	.visualization-frame.module-shell
+	.example-tab,
+.editorial-demo
+	.ed-live-lab-shell
+	.visualization-frame.module-shell
+	.test-type-tab {
+	min-height: 36px;
+	border: 1px solid var(--lab-border);
+	border-radius: var(--lab-radius-sm);
+	color: var(--lab-text);
+	background: var(--lab-surface);
+}
+
+.editorial-demo
+	.ed-live-lab-shell
+	.visualization-frame.module-shell
+	.example-tab[data-active="true"],
+.editorial-demo
+	.ed-live-lab-shell
+	.visualization-frame.module-shell
+	.test-type-tab[data-active="true"] {
+	border-color: var(--lab-blue);
+	color: #fff;
+	background: var(--lab-blue);
+}
+
+/* The two custom visualizers use the same visual sequence as Experiment 01. */
+.editorial-demo
+	.ed-live-lab-shell
+	.visualization-frame.module-shell[data-module-id="confidence-interval"]
+	.ci-reference-stage {
+	gap: 18px !important;
+}
+
+.editorial-demo
+	.ed-live-lab-shell
+	.visualization-frame.module-shell[data-module-id="confidence-interval"]
+	.experiment-header::before {
+	content: "EX";
+}
+
+.editorial-demo
+	.ed-live-lab-shell
+	.visualization-frame.module-shell[data-module-id="confidence-interval"]
+	.ci-reference-heading {
+	grid-template-columns: minmax(0, 1fr) auto !important;
+}
+
+.editorial-demo
+	.ed-live-lab-shell
+	.visualization-frame.module-shell[data-module-id="confidence-interval"]
+	.ci-reference-heading > div {
+	display: grid;
+	grid-template-columns: minmax(96px, 0.42fr) minmax(210px, 0.78fr) minmax(250px, 1fr);
+	align-items: center;
+	gap: 18px;
+}
+
+.editorial-demo
+	.ed-live-lab-shell
+	.visualization-frame.module-shell[data-module-id="confidence-interval"]
+	.ci-reference-heading > div > * {
+	margin: 0 !important;
+}
+
+.editorial-demo
+	.ed-live-lab-shell
+	.visualization-frame.module-shell[data-module-id="regression"]
+	.regression-workbench {
+	grid-template-columns: minmax(0, 1fr) !important;
+	grid-template-areas: "stage" "learning" !important;
+	gap: 20px;
+	padding-top: 0;
+}
+
+.editorial-demo
+	.ed-live-lab-shell
+	.visualization-frame.module-shell[data-module-id="regression"]
+	.regression-stage {
+	gap: 0;
+	padding: 0;
+	border: 0;
+	background: transparent;
+}
+
+.editorial-demo
+	.ed-live-lab-shell
+	.visualization-frame.module-shell[data-module-id="regression"]
+	.regression-stage__header {
+	min-height: 76px;
+	margin: 0 0 18px;
+	padding: 14px 0;
+	border-top: 1px solid var(--lab-blue);
+	border-bottom: 1px solid var(--lab-divider);
+}
+
+.editorial-demo
+	.ed-live-lab-shell
+	.visualization-frame.module-shell[data-module-id="regression"]
+	.regression-stage__intro h2 {
+	font-family: var(--lab-font-sans) !important;
+	font-size: 20px !important;
+	font-weight: 600 !important;
+}
+
+.editorial-demo
+	.ed-live-lab-shell
+	.visualization-frame.module-shell[data-module-id="regression"]
+	.regression-line-guide {
+	margin: 0 0 8px !important;
+}
+
+.editorial-demo
+	.ed-live-lab-shell
+	.visualization-frame.module-shell[data-module-id="regression"]
+	.chart-frame,
+.editorial-demo
+	.ed-live-lab-shell
+	.visualization-frame.module-shell[data-module-id="regression"]
+	.chart-shell,
+.editorial-demo
+	.ed-live-lab-shell
+	.visualization-frame.module-shell[data-module-id="regression"]
+	.regression-chart {
+	aspect-ratio: 760 / 420 !important;
+}
+
+.editorial-demo
+	.ed-live-lab-shell
+	.visualization-frame.module-shell[data-module-id="regression"]
+	.statistics-panel {
+	margin-top: 0 !important;
+}
+
+@media (max-width: 899px) {
+	.editorial-demo
+		.ed-live-lab-shell
+		.visualization-frame.module-shell
+		.experiment-board.ed-lab-stage {
+		gap: 20px !important;
+		padding: 0 18px 28px !important;
+	}
+
+	.editorial-demo
+		.ed-live-lab-shell
+		.visualization-frame.module-shell
+		.output-heading {
+		grid-template-columns: 1fr !important;
+		gap: 6px !important;
+	}
+
+	.editorial-demo
+		.ed-live-lab-shell
+		.visualization-frame.module-shell
+		.metrics-grid,
+	.editorial-demo
+		.ed-live-lab-shell
+		.visualization-frame.module-shell[data-module-id="simulation-mcmc"]
+		.metrics-grid[data-metric-count="5"] {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		height: auto !important;
+		min-height: 76px;
+	}
+
+	.editorial-demo
+		.ed-live-lab-shell
+		.visualization-frame.module-shell
+		.metrics-grid > .metric-card {
+		border-right: 0 !important;
+		border-bottom: 1px solid var(--lab-divider) !important;
+	}
+
+	.editorial-demo
+		.ed-live-lab-shell
+		.visualization-frame.module-shell
+		.metrics-grid > .metric-card:nth-child(odd) {
+		border-right: 1px solid var(--lab-divider) !important;
+	}
+
+	.editorial-demo
+		.ed-live-lab-shell
+		.visualization-frame.module-shell
+		.metrics-grid > .metric-card:last-child {
+		border-bottom: 0 !important;
+	}
+
+	.editorial-demo
+		.ed-live-lab-shell
+		.visualization-frame.module-shell
+		.chart-frame {
+		min-height: 320px !important;
+		padding: 10px !important;
+	}
+
+	.editorial-demo
+		.ed-live-lab-shell
+		.visualization-frame.module-shell[data-module-id="confidence-interval"]
+		.ci-reference-heading > div {
+		grid-template-columns: 1fr;
+		gap: 6px;
+	}
+}
+
+@media (max-width: 560px) {
+	.editorial-demo
+		.ed-live-lab-shell
+		.visualization-frame.module-shell
+		.experiment-header {
+		grid-template-columns: 1fr;
+	}
+
+	.editorial-demo
+		.ed-live-lab-shell
+		.visualization-frame.module-shell
+		.metrics-grid[data-metric-count="3"] {
+		grid-template-columns: 1fr;
+	}
+}

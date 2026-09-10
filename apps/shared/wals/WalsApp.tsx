@@ -128,11 +128,13 @@ function renderControl(
   onChange: (id: string, value: ControlValue) => void,
   language: "zh" | "en",
   compact = false,
+  displayLabel?: string,
 ): ReactNode {
   const effectiveControl = resolveControlConfig(control, controls);
   const value = valueFor(effectiveControl, controls);
   const dependentValue = control.labelByValue ? String(controls[control.labelByValue.controlId] ?? "") : "";
   const visibleLabel = control.labelByValue?.labels[dependentValue] ?? control.label;
+  const renderedLabel = displayLabel ?? visibleLabel;
   const description = control.description ?? (
     effectiveControl.type === "number" && effectiveControl.min !== undefined && effectiveControl.max !== undefined
       ? language === "zh"
@@ -146,7 +148,7 @@ function renderControl(
   if (effectiveControl.type === "select") {
     return (
       <label className="control-field" key={control.id}>
-        <span className="control-label">{visibleLabel}</span>
+        <span className="control-label">{renderedLabel}</span>
         <select
           className="control-input"
           data-control-id={control.id}
@@ -169,7 +171,7 @@ function renderControl(
     return (
       <label className="control-field control-field--range" key={control.id}>
         <span className="control-label-row">
-          <span className="control-label">{visibleLabel}</span>
+          <span className="control-label">{renderedLabel}</span>
           <input
             className="control-number-input"
             aria-label={`${visibleLabel} numeric value`}
@@ -204,7 +206,7 @@ function renderControl(
 
   return (
     <label className="control-field" key={control.id}>
-      <span className="control-label">{visibleLabel}</span>
+      <span className="control-label">{renderedLabel}</span>
       <input
         className="control-input"
         data-control-id={control.id}
@@ -542,8 +544,84 @@ export function WalsApp({ moduleConfig }: WalsAppProps) {
     />
   ) : null;
 
-  const parameterPanelNode = (
-    <ParameterPanel eyebrow={isAnova ? (language === "zh" ? "数据集" : "Dataset") : state.copy.parameters} className={isAnova ? "anova-parameter-rail" : isProbability ? "probability-parameter-panel" : ""}>
+  const currentControlValues = controls ?? createDefaultControls(state.activeExample);
+  const anovaControl = (id: string) => groupedControls.core.find((control) => control.id === id);
+
+  const parameterPanelNode = isAnova ? (
+    <ParameterPanel eyebrow={language === "zh" ? "数据生成设置" : "Data generation settings"} className="anova-parameter-rail">
+      <header className="anova-settings-header">
+        <h2>{language === "zh" ? "数据生成设置" : "Data generation settings"}</h2>
+        <p>{language === "zh" ? "调整各组参数后运行模拟，生成新的随机数据。" : "Adjust each group, then run the simulation to generate new random data."}</p>
+      </header>
+
+      {groupedControls.mode.length > 0 && (
+        <ControlGroup className="anova-dataset-group" title={language === "zh" ? "数据集" : "Dataset"}>
+          <div className="control-grid">
+            {groupedControls.mode.map((control) => renderControl(control, currentControlValues, handleUpdateControl, language))}
+          </div>
+        </ControlGroup>
+      )}
+
+      <ControlGroup
+        className="anova-core-group"
+        title={language === "zh" ? "组参数" : "Group parameters"}
+        description={language === "zh" ? "分别设置每组的样本量与均值" : "Set the sample size and mean for each group"}
+      >
+        <div className="anova-group-grid">
+          {[1, 2, 3].map((groupIndex) => {
+            const sizeControl = anovaControl(`n${groupIndex}`);
+            const meanControl = anovaControl(`mu${groupIndex}`);
+            return (
+              <section className="anova-group-card" key={groupIndex} aria-labelledby={`anova-group-${groupIndex}`}>
+                <header className="anova-group-card__header">
+                  <span className="anova-group-card__badge" aria-hidden="true">{String(groupIndex).padStart(2, "0")}</span>
+                  <h4 id={`anova-group-${groupIndex}`}>{language === "zh" ? `第 ${groupIndex} 组` : `Group ${groupIndex}`}</h4>
+                </header>
+                <div className="anova-group-card__controls">
+                  {sizeControl && renderControl(sizeControl, currentControlValues, handleUpdateControl, language, true, language === "zh" ? "样本量" : "Sample size")}
+                  {meanControl && renderControl(meanControl, currentControlValues, handleUpdateControl, language, true, language === "zh" ? "均值" : "Mean")}
+                </div>
+              </section>
+            );
+          })}
+        </div>
+      </ControlGroup>
+
+      {anovaControl("sigma") && (
+        <ControlGroup className="anova-common-group" title={language === "zh" ? "公共参数" : "Shared parameter"}>
+          <div className="anova-common-layout">
+            <div className="anova-common-control">
+              {renderControl(anovaControl("sigma")!, currentControlValues, handleUpdateControl, language, true)}
+            </div>
+            <aside className="anova-parameter-note" aria-label={language === "zh" ? "参数提示" : "Parameter tip"}>
+              <strong>{language === "zh" ? "参数提示" : "Parameter tip"}</strong>
+              <p>{language === "zh" ? "标准差越大，各组数据点越分散；均值决定数据中心的位置。" : "A larger standard deviation spreads the observations; the mean sets each group’s center."}</p>
+            </aside>
+          </div>
+        </ControlGroup>
+      )}
+
+      <RunControls className="anova-actions">
+        <span className="run-controls__hint">{language === "zh" ? "修改参数后需重新运行，才会生成新的随机结果。" : "Run again after changing parameters to generate new random results."}</span>
+        <div className="anova-actions__buttons">
+          <button
+            type="button"
+            className="anova-reset-button"
+            onClick={() => {
+              setSampleMeans([]);
+              setSeed(Date.now());
+            }}
+          >
+            {language === "zh" ? "重置参数" : "Reset parameters"}
+          </button>
+          <button type="button" className="run-button" onClick={handleRun}>
+            {language === "zh" ? "运行模拟" : "Run simulation"}
+          </button>
+        </div>
+      </RunControls>
+    </ParameterPanel>
+  ) : (
+    <ParameterPanel eyebrow={state.copy.parameters} className={isProbability ? "probability-parameter-panel" : ""}>
       {!isProbability && !isAnova && (
         <div className="example-tabs">
           {state.config.examples.map((example) => (
@@ -643,7 +721,10 @@ export function WalsApp({ moduleConfig }: WalsAppProps) {
   const anovaStatisticsNode = (
     <div className="anova-statistics-stack">
       {(state.result.tables ?? (state.result.table ? [state.result.table] : [])).map((table, index) => (
-        <section className="teaching-panel table-panel anova-table-panel" key={table.title ?? index}>
+        <section
+          className={`teaching-panel table-panel anova-table-panel anova-table-panel--${index === 0 ? "summary" : "test"}`}
+          key={table.title ?? index}
+        >
           <p className="eyebrow">{index === 0 ? (language === "zh" ? "汇总" : "Summary") : (language === "zh" ? "检验结果" : "Test result")}</p>
           <h2>{table.title ?? state.copy.dataTable}</h2>
           <StatisticsTable
@@ -677,13 +758,6 @@ export function WalsApp({ moduleConfig }: WalsAppProps) {
             researchQuestion={isProbability ? undefined : metadata?.localizedQuestion}
           />
           <section className={`output-dock${isProbability ? " probability-output" : ""}`}>
-            {!isProbability && (
-              <div className="output-heading">
-                <p className="eyebrow">{state.copy.modelOutput}</p>
-                <h2>{state.result.headline}</h2>
-                <p>{state.result.narrative}</p>
-              </div>
-            )}
             <ExperimentMetricStrip
               ariaLabel={isProbability ? (language === "zh" ? "关键指标" : "Key metrics") : state.copy.modelOutput}
               maxVisible={isProbability ? 4 : 5}
@@ -705,16 +779,18 @@ export function WalsApp({ moduleConfig }: WalsAppProps) {
             <ChartFrame>
               <Chart spec={state.result.chart} />
             </ChartFrame>
-            {isAnova && (
-              <section className="anova-inline-results" aria-label={language === "zh" ? "方差分析结果" : "ANOVA results"}>
-                {anovaStatisticsNode}
-              </section>
-            )}
             {isProbability && changeSummaryNode}
           </section>
         </>
       }
-      sidebar={isAnova ? parameterPanelNode : (
+      sidebar={isAnova ? (
+        <>
+          {parameterPanelNode}
+          <section className="anova-sidebar-results" aria-label={language === "zh" ? "方差分析结果" : "ANOVA results"}>
+            {anovaStatisticsNode}
+          </section>
+        </>
+      ) : (
         <>
           {parameterPanelNode}
           <section className="teaching-panel">

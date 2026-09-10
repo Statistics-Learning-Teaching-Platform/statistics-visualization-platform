@@ -5,7 +5,7 @@ import { PortalHome } from "../src/PortalHome";
 import { StatMindHomeDemo } from "../src/visual-demo/StatMindHomeDemo";
 
 describe("portal destination routing", () => {
-	it("uses the approved editorial home structure with real product routes", () => {
+	it("uses the compact portal home structure with real product routes", () => {
 		setLanguage("zh");
 		render(
 			<LanguageProvider>
@@ -14,22 +14,23 @@ describe("portal destination routing", () => {
 		);
 
 		expect(
-			screen.getByRole("heading", { name: "在思考中 学习统计" }),
+			screen.getByRole("heading", { name: "在思考中学习统计" }),
 		).toBeInTheDocument();
 		expect(
-			screen.getByRole("heading", { name: "一条完整的学习证据链" }),
-		).toBeInTheDocument();
-		expect(screen.getByRole("link", { name: "打开教材" })).toHaveAttribute(
-			"href",
-			"/catalog",
-		);
+			screen.getByRole("img", { name: "统计思维 StatMind 标志" }),
+		).toHaveAttribute("src", "/brand/statmind-logo.png");
+		expect(screen.queryByText("一条完整的学习证据链")).not.toBeInTheDocument();
 
 		const workspaceIndex = screen.getByLabelText("四个核心产品入口");
 		const expectedRoutes = [
-			["统计教学平台", "进入平台", "/teaching-platform"],
-			["统计学组卷系统", "开始组卷", "/st-qselector"],
-			["R 语言知识库", "学习 R", "/r-learning?returnTo=%2F"],
-			["Python 语言知识库", "学习 Python", "/python-learning?returnTo=%2F"],
+			["统计教学平台", "进入教学平台", "/teaching-platform"],
+			["统计学组卷系统", "进入组卷系统", "/st-qselector"],
+			["R 语言编程工作室", "进入 R 编程工作室", "/r-learning?returnTo=%2F"],
+			[
+				"Python 语言编程工作室",
+				"进入 Python 编程工作室",
+				"/python-learning?returnTo=%2F",
+			],
 		] as const;
 
 		for (const [title, action, href] of expectedRoutes) {

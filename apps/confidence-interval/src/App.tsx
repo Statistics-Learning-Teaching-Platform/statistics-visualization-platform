@@ -65,14 +65,7 @@ export default function ConfidenceIntervalApp() {
         <>
           <VisualizationHeader eyebrow={copy.coreVisualizer} title={copy.title} experimentNumber={metadata?.number} category={metadata?.localizedCategory} researchQuestion={metadata?.localizedQuestion} />
           <section className="ci-reference-stage" aria-label={copy.chartTitle}>
-              <div className="output-heading ci-reference-heading">
-                <div>
-                  <p className="eyebrow">{copy.modelOutput}</p>
-                  <h2>{copy.chartTitle}</h2>
-                  <p>{copy.chartDescription}</p>
-                </div>
-                <span className="sample-pill">{copy.samples.replace("{count}", String(sampleCount))}</span>
-              </div>
+              <ExperimentMetricStrip metrics={metrics.map((metric, index) => ({ ...metric, key: String(index), semantics: index === 0 ? "derived" : "comparison" }))} ariaLabel={copy.modelOutput} />
               <div className="chart-legend ci-reference-legend">
                 <span className="legend-item">
                   <span className="legend-swatch legend-swatch--capture" />
@@ -110,7 +103,6 @@ export default function ConfidenceIntervalApp() {
                   }
                 />
               </ChartFrame>
-              <ExperimentMetricStrip metrics={metrics.map((metric, index) => ({ ...metric, key: String(index), semantics: index === 0 ? "derived" : "comparison" }))} ariaLabel={copy.modelOutput} />
               <div className="ci-reference-explanation-grid">
                 <section className="teaching-panel ci-reference-explanation">
                   <p className="eyebrow">{copy.howToReadThis}</p>

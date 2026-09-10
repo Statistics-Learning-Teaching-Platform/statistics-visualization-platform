@@ -20,10 +20,11 @@ function withLanguage(ui: React.ReactElement) {
 }
 
 describe("WalsApp rendering", () => {
-  it("renders the module title, model output, and Run button, and survives a Run click", async () => {
+  it("renders the module title, metric strip, and Run button without a redundant output heading", async () => {
     withLanguage(<WalsApp moduleConfig={introConfig} />);
     expect(screen.getByRole("heading", { name: "模拟导论", level: 1 })).toBeInTheDocument();
-    expect(screen.getByText("模型输出")).toBeInTheDocument();
+    expect(document.querySelector("[data-metric-grid='true']")).toBeInTheDocument();
+    expect(document.querySelector(".output-heading")).not.toBeInTheDocument();
     const run = screen.getByRole("button", { name: "运行" });
     await userEvent.click(run);
     // Still mounted after re-running the simulation.
@@ -127,15 +128,16 @@ describe("core visualizer apps mount", () => {
 
   it("appends and resets confidence intervals without replacing history", async () => {
     withLanguage(<ConfidenceIntervalApp />);
-    expect(screen.getByText("样本数：0")).toBeInTheDocument();
+    const sampleCountMetric = () => screen.getByText("已抽样本数").closest(".metric-card") as HTMLElement;
+    expect(within(sampleCountMetric()).getByText("0")).toBeInTheDocument();
     await userEvent.click(screen.getByRole("button", { name: /生成 1 个样本/ }));
-    await waitFor(() => expect(screen.getByText("样本数：1")).toBeInTheDocument());
+    await waitFor(() => expect(within(sampleCountMetric()).getByText("1")).toBeInTheDocument());
     await userEvent.click(screen.getByRole("button", { name: /生成 20 个样本/ }));
-    await waitFor(() => expect(screen.getByText("样本数：21")).toBeInTheDocument());
+    await waitFor(() => expect(within(sampleCountMetric()).getByText("21")).toBeInTheDocument());
     expect(document.querySelectorAll(".ci-group")).toHaveLength(21);
     expect(document.querySelector(".ci-group title")?.textContent).toMatch(/^样本 1：/);
     await userEvent.click(screen.getByRole("button", { name: /重置/ }));
-    await waitFor(() => expect(screen.getByText("样本数：0")).toBeInTheDocument());
+    await waitFor(() => expect(within(sampleCountMetric()).getByText("0")).toBeInTheDocument());
   });
 
   it("renders the Type I / II Error app", () => {

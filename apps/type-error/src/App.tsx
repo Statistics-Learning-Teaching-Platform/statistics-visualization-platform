@@ -247,11 +247,6 @@ export default function TypeErrorApp() {
         <>
           <VisualizationHeader eyebrow={copy.coreVisualizer} title={copy.title} description={copy.description} experimentNumber={metadata?.number} category={metadata?.localizedCategory} researchQuestion={metadata?.localizedQuestion} />
           <div className="output-dock">
-            <div className="output-heading">
-              <p className="eyebrow">{copy.modelOutput}</p>
-              <h2>{copy.chartTitle}</h2>
-              <p>{copy.chartDescription}</p>
-            </div>
             <ExperimentMetricStrip
               ariaLabel={copy.modelOutput}
               metrics={[

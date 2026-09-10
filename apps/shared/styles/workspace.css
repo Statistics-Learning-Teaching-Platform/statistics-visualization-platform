@@ -641,9 +641,9 @@
   }
 }
 
-/* ANOVA standard right-parameter layout ----------------------------------
- * Results belong to the main output; experiment controls use the same right
- * rail as the other laboratory modules. */
+/* ANOVA right rail --------------------------------------------------------
+ * Parameters stay first; descriptive statistics and the ANOVA table follow
+ * underneath in the same scrollable rail. */
 .visualization-frame.module-shell[data-module-id="mes-anova"] > .module-layout > .ed-parameter-rail {
   display: flex !important;
   flex-direction: column !important;
@@ -672,16 +672,31 @@
   grid-column: 1 / -1;
 }
 
-.visualization-frame.module-shell[data-module-id="mes-anova"] .anova-inline-results,
+.visualization-frame.module-shell[data-module-id="mes-anova"] .anova-sidebar-results,
 .visualization-frame.module-shell[data-module-id="mes-anova"] .anova-statistics-stack {
   min-width: 0;
 }
 
+.visualization-frame.module-shell[data-module-id="mes-anova"] .anova-sidebar-results {
+  width: 100%;
+}
+
 .visualization-frame.module-shell[data-module-id="mes-anova"] .anova-statistics-stack {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-areas:
+    "summary"
+    "test";
+  grid-template-columns: minmax(0, 1fr);
   align-items: stretch;
-  gap: 14px;
+  gap: 12px;
+}
+
+.visualization-frame.module-shell[data-module-id="mes-anova"] .anova-table-panel--summary {
+  grid-area: summary;
+}
+
+.visualization-frame.module-shell[data-module-id="mes-anova"] .anova-table-panel--test {
+  grid-area: test;
 }
 
 .visualization-frame.module-shell[data-module-id="mes-anova"] .anova-table-panel {
@@ -689,7 +704,7 @@
   align-content: start;
   gap: 8px;
   min-width: 0;
-  min-height: 100%;
+  min-height: 0;
   margin: 0;
   padding: 18px 16px;
   border: 1px solid var(--lab-border);
@@ -723,12 +738,16 @@
 
 .visualization-frame.module-shell[data-module-id="mes-anova"] .anova-table-panel .statistics-table {
   width: 100%;
-  min-width: 300px;
+  min-width: 280px;
   border-collapse: collapse;
   color: var(--lab-text);
   font-family: var(--lab-font-sans);
   font-size: 12px;
   font-variant-numeric: tabular-nums;
+}
+
+.visualization-frame.module-shell[data-module-id="mes-anova"] .anova-table-panel--test .statistics-table {
+  min-width: 420px;
 }
 
 .visualization-frame.module-shell[data-module-id="mes-anova"] .anova-table-panel .statistics-table th,
@@ -756,6 +775,9 @@
 
 @container visualization-workspace (max-width: 760px) {
   .visualization-frame.module-shell[data-module-id="mes-anova"] .anova-statistics-stack {
+    grid-template-areas:
+      "summary"
+      "test";
     grid-template-columns: minmax(0, 1fr);
   }
 
@@ -1817,5 +1839,410 @@
 
   .visualization-frame[data-layout="three-column"] .anova-dataset-group .control-grid > .control-field:first-child {
     grid-column: auto;
+  }
+}
+
+/* ANOVA data-generation playground ---------------------------------------
+ * Keeps the simulation logic untouched while giving the seven related
+ * parameters a clear three-groups-plus-one-shared-parameter hierarchy. */
+.visualization-frame.module-shell[data-module-id="mes-anova"] {
+  --anova-bg: #f6f8fb;
+  --anova-surface: #ffffff;
+  --anova-surface-soft: #fbfcfe;
+  --anova-text: #172033;
+  --anova-secondary: #64748b;
+  --anova-muted: #94a3b8;
+  --anova-border: #e6ebf1;
+  --anova-blue: #2563eb;
+  --anova-blue-hover: #1d4ed8;
+}
+
+@media (min-width: 900px) {
+  .editorial-demo .ed-live-lab-shell .visualization-frame.module-shell[data-module-id="mes-anova"] > .ed-live-lab-layout,
+  .visualization-frame.module-shell[data-module-id="mes-anova"] > .module-layout {
+    grid-template-columns: minmax(0, 1fr) 1px clamp(340px, var(--module-sidebar-width, 620px), min(720px, 60vw));
+  }
+
+  .editorial-demo .ed-live-lab-shell .visualization-frame.module-shell[data-module-id="mes-anova"] .workspace-resize-handle--right::before {
+    inset: 0 -12px;
+  }
+}
+
+.visualization-frame.module-shell[data-module-id="mes-anova"] > .module-layout > .ed-parameter-rail {
+  gap: 12px;
+  padding: 0 4px 0 0;
+  border: 0;
+  border-radius: 0;
+  background: var(--anova-bg);
+}
+
+.visualization-frame.module-shell[data-module-id="mes-anova"] .anova-parameter-rail {
+  container-name: anova-settings;
+  container-type: inline-size;
+  display: grid;
+  gap: 0 !important;
+  width: 100%;
+  padding: 24px 26px 22px !important;
+  border: 1px solid var(--anova-border);
+  border-radius: 19px;
+  color: var(--anova-text);
+  background: var(--anova-surface);
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.03);
+}
+
+.visualization-frame.module-shell[data-module-id="mes-anova"] .anova-parameter-rail > .eyebrow {
+  display: none;
+}
+
+.visualization-frame.module-shell[data-module-id="mes-anova"] .anova-settings-header {
+  display: grid;
+  gap: 5px;
+  padding-bottom: 4px;
+}
+
+.visualization-frame.module-shell[data-module-id="mes-anova"] .anova-settings-header h2 {
+  margin: 0;
+  color: var(--anova-text);
+  font-family: var(--lab-font-sans);
+  font-size: clamp(25px, 4.5cqi, 28px);
+  font-weight: 680;
+  letter-spacing: -0.025em;
+  line-height: 1.2;
+}
+
+.visualization-frame.module-shell[data-module-id="mes-anova"] .anova-settings-header p {
+  margin: 0;
+  color: var(--anova-secondary);
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.visualization-frame.module-shell[data-module-id="mes-anova"] .anova-parameter-rail .control-group {
+  gap: 12px;
+  margin-top: 26px;
+  padding-top: 24px;
+  border-top: 1px solid var(--anova-border);
+}
+
+.visualization-frame.module-shell[data-module-id="mes-anova"] .anova-parameter-rail .control-group__heading {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.visualization-frame.module-shell[data-module-id="mes-anova"] .anova-parameter-rail .control-group__heading h3 {
+  margin: 0;
+  color: var(--anova-text);
+  font-size: 17px;
+  font-weight: 630;
+  letter-spacing: -0.01em;
+  line-height: 1.35;
+  text-transform: none;
+}
+
+.visualization-frame.module-shell[data-module-id="mes-anova"] .anova-parameter-rail .control-group__heading p {
+  margin: 0;
+  color: var(--anova-muted);
+  font-size: 12px;
+  line-height: 1.4;
+  text-align: right;
+}
+
+.visualization-frame.module-shell[data-module-id="mes-anova"] .anova-dataset-group .control-grid {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.visualization-frame.module-shell[data-module-id="mes-anova"] .anova-dataset-group .control-label {
+  display: none;
+}
+
+.visualization-frame.module-shell[data-module-id="mes-anova"] .anova-dataset-group .control-input {
+  height: 46px;
+  min-height: 46px !important;
+  padding: 0 42px 0 14px;
+  border: 1px solid var(--anova-border);
+  border-radius: 11px;
+  color: var(--anova-text);
+  background-color: var(--anova-surface-soft);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%2364748B' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+  background-position: right 14px center;
+  background-repeat: no-repeat;
+  font-size: 14px;
+  appearance: none;
+}
+
+.visualization-frame.module-shell[data-module-id="mes-anova"] .anova-dataset-group .control-input:focus-visible,
+.visualization-frame.module-shell[data-module-id="mes-anova"] .anova-parameter-rail .control-number-input:focus-visible {
+  border-color: #b7c7ea;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.08);
+}
+
+.visualization-frame.module-shell[data-module-id="mes-anova"] .anova-group-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 14px;
+}
+
+.visualization-frame.module-shell[data-module-id="mes-anova"] .anova-group-card {
+  display: grid;
+  gap: 16px;
+  min-width: 0;
+  padding: 16px;
+  border: 1px solid var(--anova-border);
+  border-radius: 15px;
+  background: var(--anova-surface);
+}
+
+.visualization-frame.module-shell[data-module-id="mes-anova"] .anova-group-card__header {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+
+.visualization-frame.module-shell[data-module-id="mes-anova"] .anova-group-card__badge {
+  display: grid;
+  min-width: 28px;
+  height: 28px;
+  padding: 0 6px;
+  place-items: center;
+  border-radius: 8px;
+  color: var(--anova-blue);
+  background: #f1f5fb;
+  font-size: 12px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.visualization-frame.module-shell[data-module-id="mes-anova"] .anova-group-card__header h4 {
+  margin: 0;
+  color: var(--anova-text);
+  font-size: 15px;
+  font-weight: 630;
+  line-height: 1.35;
+}
+
+.visualization-frame.module-shell[data-module-id="mes-anova"] .anova-group-card__controls {
+  display: grid;
+  gap: 17px;
+}
+
+.visualization-frame.module-shell[data-module-id="mes-anova"] .anova-parameter-rail .control-field--range {
+  display: grid;
+  gap: 6px;
+}
+
+.visualization-frame.module-shell[data-module-id="mes-anova"] .anova-parameter-rail .control-label-row {
+  min-height: 36px;
+  gap: 10px;
+}
+
+.visualization-frame.module-shell[data-module-id="mes-anova"] .anova-parameter-rail .control-label {
+  color: #475569;
+  font-size: 13px !important;
+  font-weight: 540 !important;
+  line-height: 1.35;
+  white-space: nowrap;
+}
+
+.visualization-frame.module-shell[data-module-id="mes-anova"] .anova-parameter-rail .control-number-input {
+  width: 68px;
+  min-width: 68px;
+  height: 36px;
+  min-height: 36px;
+  padding: 0 8px;
+  border: 1px solid var(--anova-border);
+  border-radius: 9px;
+  color: var(--anova-text);
+  background: var(--anova-surface-soft);
+  font-family: var(--lab-font-sans);
+  font-size: 14px;
+  font-weight: 620;
+  text-align: center;
+}
+
+.visualization-frame.module-shell[data-module-id="mes-anova"] input[type="number"]::-webkit-inner-spin-button,
+.visualization-frame.module-shell[data-module-id="mes-anova"] input[type="number"]::-webkit-outer-spin-button {
+  margin: 0;
+  appearance: none;
+}
+
+.visualization-frame.module-shell[data-module-id="mes-anova"] input[type="number"] {
+  appearance: textfield;
+  -moz-appearance: textfield;
+}
+
+.visualization-frame.module-shell[data-module-id="mes-anova"] .anova-parameter-rail .control-range {
+  width: 100%;
+  height: 18px;
+  margin: 0;
+  accent-color: var(--anova-blue);
+  cursor: pointer;
+}
+
+.visualization-frame.module-shell[data-module-id="mes-anova"] .anova-parameter-rail .control-range::-webkit-slider-runnable-track {
+  height: 6px;
+  border-radius: 999px;
+}
+
+.visualization-frame.module-shell[data-module-id="mes-anova"] .anova-parameter-rail .control-range::-webkit-slider-thumb {
+  width: 19px;
+  height: 19px;
+  margin-top: -6.5px;
+  border: 0;
+  border-radius: 50%;
+  background: var(--anova-blue);
+  box-shadow: 0 0 0 3px var(--anova-surface);
+  appearance: none;
+}
+
+.visualization-frame.module-shell[data-module-id="mes-anova"] .anova-parameter-rail .control-range:focus-visible {
+  outline: 3px solid rgba(37, 99, 235, 0.13);
+  outline-offset: 2px;
+}
+
+.visualization-frame.module-shell[data-module-id="mes-anova"] .anova-parameter-rail .control-range-bounds {
+  margin-top: -1px;
+  color: var(--anova-muted);
+  font-size: 11px;
+  line-height: 1.2;
+}
+
+.visualization-frame.module-shell[data-module-id="mes-anova"] .anova-common-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 14px;
+}
+
+.visualization-frame.module-shell[data-module-id="mes-anova"] .anova-common-control,
+.visualization-frame.module-shell[data-module-id="mes-anova"] .anova-parameter-note {
+  min-width: 0;
+  padding: 16px;
+  border: 1px solid var(--anova-border);
+  border-radius: 14px;
+}
+
+.visualization-frame.module-shell[data-module-id="mes-anova"] .anova-parameter-note {
+  display: grid;
+  gap: 5px;
+  background: #f8fafc;
+}
+
+.visualization-frame.module-shell[data-module-id="mes-anova"] .anova-parameter-note strong {
+  color: #475569;
+  font-size: 12px;
+  font-weight: 630;
+}
+
+.visualization-frame.module-shell[data-module-id="mes-anova"] .anova-parameter-note p {
+  margin: 0;
+  color: var(--anova-secondary);
+  font-size: 12px;
+  line-height: 1.55;
+}
+
+.visualization-frame.module-shell[data-module-id="mes-anova"] .anova-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  margin-top: 26px;
+  padding-top: 22px;
+  border-top: 1px solid var(--anova-border);
+}
+
+.visualization-frame.module-shell[data-module-id="mes-anova"] .anova-actions .run-controls__hint {
+  max-width: 38ch;
+  margin: 0;
+  color: var(--anova-secondary);
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.visualization-frame.module-shell[data-module-id="mes-anova"] .anova-actions__buttons {
+  display: flex;
+  flex: 0 0 auto;
+  gap: 8px;
+}
+
+.visualization-frame.module-shell[data-module-id="mes-anova"] .anova-reset-button,
+.visualization-frame.module-shell[data-module-id="mes-anova"] .anova-actions .run-button {
+  height: 43px;
+  min-height: 43px;
+  padding: 0 18px;
+  border-radius: 10px;
+  font-family: var(--lab-font-sans);
+  font-size: 14px;
+  font-weight: 620;
+  cursor: pointer;
+}
+
+.visualization-frame.module-shell[data-module-id="mes-anova"] .anova-reset-button {
+  border: 1px solid var(--anova-border);
+  color: #475569;
+  background: #f8fafc;
+}
+
+.visualization-frame.module-shell[data-module-id="mes-anova"] .anova-reset-button:hover {
+  background: #f1f5f9;
+}
+
+.visualization-frame.module-shell[data-module-id="mes-anova"] .anova-actions .run-button {
+  min-width: 136px;
+  border-color: var(--anova-blue);
+  color: #fff;
+  background: var(--anova-blue);
+  box-shadow: 0 8px 18px rgba(37, 99, 235, 0.14);
+}
+
+.visualization-frame.module-shell[data-module-id="mes-anova"] .anova-actions .run-button:hover {
+  background: var(--anova-blue-hover);
+}
+
+.visualization-frame.module-shell[data-module-id="mes-anova"] .anova-reset-button:focus-visible,
+.visualization-frame.module-shell[data-module-id="mes-anova"] .anova-actions .run-button:focus-visible {
+  outline: 3px solid rgba(37, 99, 235, 0.2);
+  outline-offset: 2px;
+}
+
+@container anova-settings (min-width: 400px) {
+  .visualization-frame.module-shell[data-module-id="mes-anova"] .anova-common-layout {
+    grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr);
+  }
+}
+
+@container anova-settings (max-width: 399px) {
+  .visualization-frame.module-shell[data-module-id="mes-anova"] .anova-parameter-rail {
+    padding: 18px 17px !important;
+  }
+
+  .visualization-frame.module-shell[data-module-id="mes-anova"] .anova-parameter-rail .control-group__heading {
+    display: grid;
+    gap: 3px;
+  }
+
+  .visualization-frame.module-shell[data-module-id="mes-anova"] .anova-parameter-rail .control-group__heading p {
+    text-align: left;
+  }
+
+  .visualization-frame.module-shell[data-module-id="mes-anova"] .anova-actions,
+  .visualization-frame.module-shell[data-module-id="mes-anova"] .anova-actions__buttons {
+    align-items: stretch;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .visualization-frame.module-shell[data-module-id="mes-anova"] .anova-actions .run-button,
+  .visualization-frame.module-shell[data-module-id="mes-anova"] .anova-reset-button {
+    width: 100%;
+  }
+
+  .visualization-frame.module-shell[data-module-id="mes-anova"] .anova-actions .run-button {
+    order: 1;
+  }
+
+  .visualization-frame.module-shell[data-module-id="mes-anova"] .anova-reset-button {
+    order: 2;
   }
 }
